@@ -1,36 +1,27 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import type ReactElement from 'react';
-import { Editor, EditorState } from 'draft-js';
-
-const styles = {
-  root: {
-    fontFamily: '\'Helvetica\', sans-serif',
-    padding: 20,
-    width: 600,
-  },
-  editor: {
-    border: '1px solid #ccc',
-    cursor: 'text',
-    minHeight: 80,
-    padding: 10,
-  },
-  button: {
-    marginTop: 10,
-    textAlign: 'center',
-  },
-};
+import { Editor, EditorState, CompositeDecorator } from 'draft-js';
+import hashtagStrategy from './hashtagStrategy';
+import Hashtag from './Hashtag';
+import styles from './styles';
 
 export default class UnicornEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+
+    const compositeDecorator = new CompositeDecorator([
+      {
+        strategy: hashtagStrategy,
+        component: Hashtag,
+      },
+    ]);
+
+    this.state = { editorState: EditorState.createEmpty(compositeDecorator) };
 
     this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({editorState});
-    this.logState = () => console.log(this.state.editorState.toJS());
+    this.onChange = (editorState) => this.setState({ editorState });
+    this.logState = () => console.log(this.state.editorState.toJS()); // eslint-disable-line no-console
   }
 
   render(): ReactElement {
