@@ -30,13 +30,14 @@
     "postpublish": "./scripts/publish_gh_pages.sh",
     "test": "BABEL_ENV=test BABEL_JEST_STAGE=0 jest src/",
     "test:watch": "npm run test -- --watch",
-    "lint": "npm run lint:eslint && npm run lint:jscs",
+    "lint": "npm run lint:eslint && npm run lint:jscs && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:jscs": "jscs ./",
     "lint:jscs:src": "jscs src",
     "lint:jscs:examples": "jscs examples --max-old-space-size=4096",
     "lint:jscs:docs": "jscs docs",
+    "lint:flow": "flow status",
     "alex": "alex README.md"
   },
   "devDependencies": {
@@ -56,6 +57,7 @@
     "eslint-config-airbnb": "6.0.2",
     "eslint-plugin-mocha": "^2.0.0",
     "eslint-plugin-react": "^4.1.0",
+    "flow-bin": "^0.22.0",
     "jest-cli": "^0.8.2",
     "jscs": "^2.10.1",
     "react": "^0.14.7",

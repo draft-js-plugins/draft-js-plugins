@@ -1,4 +1,6 @@
-export default (regex, contentBlock, callback) => {
+/* @flow */
+
+export default (regex: Object, contentBlock: Object, callback: Function) => {
   const text = contentBlock.getText();
   let matchArr;
   let start; // eslint-disable-line

@@ -1,3 +1,5 @@
+/* @flow */
+
 export default {
   root: {
     fontFamily: '\'Helvetica\', sans-serif',

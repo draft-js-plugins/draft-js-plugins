@@ -1,5 +1,6 @@
+/* @flow */
+
 import React, { Component } from 'react';
-import type ReactElement from 'react';
 import { Editor, EditorState, CompositeDecorator } from 'draft-js';
 import hashtagStrategy from './hashtagStrategy';
 import Hashtag from './Hashtag';
@@ -12,25 +13,31 @@ const compositeDecorator = new CompositeDecorator([
   },
 ]);
 
+type UnicornEditorState = {
+  editorState: any,
+}
+
 export default class UnicornEditor extends Component {
 
-  state = {
+  state: UnicornEditorState = {
     editorState: EditorState.createEmpty(compositeDecorator),
   };
 
-  onChange = (editorState) => {
-    this.setState({ editorState });
+  onChange: Function = (editorState: Object): void => {
+    this.setState({
+      editorState,
+    });
   };
 
-  focus = () => {
+  focus: Function = (): void => {
     this.refs.editor.focus();
   };
 
-  logState = () => {
+  logState: Function = (): void => {
     console.log(this.state.editorState.toJS()); // eslint-disable-line no-console
   };
 
-  render(): ReactElement {
+  render() {
     return (
       <div style={styles.root}>
         <div style={styles.editor} onClick={this.focus}>

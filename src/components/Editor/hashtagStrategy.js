@@ -1,3 +1,5 @@
+/* @flow */
+
 import findWithRegex from './findWithRegex';
 
 /**
@@ -6,6 +8,6 @@ import findWithRegex from './findWithRegex';
  */
 const HASHTAG_REGEX = /\#[\w\u0590-\u05ff]+/g;
 
-export default (contentBlock, callback) => {
+export default (contentBlock: Object, callback: Function) => {
   findWithRegex(HASHTAG_REGEX, contentBlock, callback);
 };

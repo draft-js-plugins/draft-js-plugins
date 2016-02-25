@@ -1,8 +1,15 @@
-import React from 'react';
+/* @flow */
+
+import React, { Component } from 'react';
 import styles from './styles';
 
-export default (props) => (
-  <span {...props} style={styles.root}>
-    {props.children}
-  </span>
-);
+export default class Hashtag extends Component {
+
+  render() {
+    return (
+      <span {...this.props} style={styles.root}>
+        {this.props.children}
+      </span>
+    );
+  }
+}

@@ -1,20 +1,18 @@
 [ignore]
-.*docs/node_modules.*
-.*examples/node_modules.*
-.*node_modules/babel.*
-.*node_modules/fbjs.*
+.*/node_modules/babel.*
+.*/node_modules/fbjs/.*
+.*/node_modules/.*.json
 
 [include]
-.*node_modules/react
 
 [libs]
-./interfaces/CSSModule.js
+./interfaces/Draft.js
 
 [options]
 esproposal.class_static_fields=enable
-module.name_mapper='.*\(.css\)' -> 'CSSModule'
+esproposal.class_instance_fields=enable
+module.name_mapper='draft-js' -> 'Draft'
 module.system=haste
-strip_root=true
 
 [version]
-0.21.0
+0.22.0
