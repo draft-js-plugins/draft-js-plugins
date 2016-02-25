@@ -24,14 +24,16 @@ type UnicornEditorState = {
   editorState: any,
 }
 
-function myBlockRenderer(contentBlock) {
+const myBlockRenderer = (contentBlock) => {
   const type = contentBlock.getType();
   if (type === 'sticker') {
     return {
       component: Sticker,
     };
   }
-}
+
+  return undefined;
+};
 
 export default class UnicornEditor extends Component {
 
@@ -56,11 +58,6 @@ export default class UnicornEditor extends Component {
   addSticker: Function = (): void => {
     const { editorState } = this.state;
     const entityKey = Entity.create('sticker', 'IMMUTABLE', { id: '2345' });
-    const withoutSticker = Modifier.applyEntity(
-      editorState.getCurrentContent(),
-      editorState.getSelection(),
-      entityKey
-    );
 
     const newContentState = Modifier.insertText(
       editorState.getCurrentContent(),
@@ -68,7 +65,7 @@ export default class UnicornEditor extends Component {
       'Woooooot',
       undefined,
       entityKey,
-    )
+    );
 
     const newEditorState = EditorState.push(
       editorState,
@@ -81,7 +78,7 @@ export default class UnicornEditor extends Component {
     this.setState({
       editorState: newEditorState,
     });
-  }
+  };
 
   render() {
     return (
