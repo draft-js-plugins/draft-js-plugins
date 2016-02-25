@@ -1,0 +1,91 @@
+{
+  "name": "unicorn-editor",
+  "version": "0.0.0",
+  "description": "Everything about Unicorns!",
+  "author": {
+    "name": "Nik Graf",
+    "email": "nik@nikgraf.com",
+    "url": "http://www.nikgraf.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/nikgraf/unicorn-editor.git"
+  },
+  "main": "lib/index.js",
+  "keywords": [
+    "unicorn",
+    "react",
+    "ux",
+    "components",
+    "widget",
+    "react-component"
+  ],
+  "peerDependencies": {
+    "react": ">=0.14.0",
+    "react-dom": ">=0.14.0"
+  },
+  "scripts": {
+    "build": "BABEL_ENV=production ./node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "prepublish": "npm run build",
+    "postpublish": "./scripts/publish_gh_pages.sh",
+    "test": "BABEL_ENV=test BABEL_JEST_STAGE=0 jest src/",
+    "test:watch": "npm run test -- --watch",
+    "lint": "npm run lint:eslint && npm run lint:jscs",
+    "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
+    "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
+    "lint:jscs": "jscs ./",
+    "lint:jscs:src": "jscs src",
+    "lint:jscs:examples": "jscs examples --max-old-space-size=4096",
+    "lint:jscs:docs": "jscs docs",
+    "alex": "alex README.md"
+  },
+  "devDependencies": {
+    "alex": "^2.0.1",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-eslint": "^5.0.0",
+    "babel-jest": "^6.0.1",
+    "babel-loader": "^6.2.3",
+    "babel-plugin-react-transform": "^2.0.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "6.0.2",
+    "eslint-plugin-mocha": "^2.0.0",
+    "eslint-plugin-react": "^4.1.0",
+    "jest-cli": "^0.8.2",
+    "jscs": "^2.10.1",
+    "react": "^0.14.7",
+    "react-addons-test-utils": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-transform-catch-errors": "^1.0.2",
+    "react-transform-hmr": "^1.0.2",
+    "redbox-react": "^1.2.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.7.1"
+  },
+  "jest": {
+    "testRunner": "<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/fbjs",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "../utils/helpers",
+      "../utils/union-class-names",
+      "../utils/is-component-of-type"
+    ],
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "preprocessCachingDisabled": true
+  },
+  "license": "MIT",
+  "dependencies": {
+    "classnames": "^2.2.3",
+    "extract-text-webpack-plugin": "^1.0.1"
+  }
+}

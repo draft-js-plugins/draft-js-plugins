@@ -1,0 +1,32 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 15px;
+  line-height: 1.6;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #444;
+  background: #F7F7F7;
+}
+
+h3 {
+  margin-top: 60px;
+}
+
+a, a:visited {
+  color: #888;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #aaa;
+}
+
+a:active {
+  color: #444;
+}

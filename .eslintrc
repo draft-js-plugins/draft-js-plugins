@@ -1,0 +1,9 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [ "mocha" ],
+  "extends": "airbnb",
+  "rules": {
+    "max-len": 0,
+    "comma-dangle": 0
+  }
+}

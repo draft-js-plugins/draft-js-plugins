@@ -1,0 +1,33 @@
+{
+  "name": "unicorn-editor-site",
+  "version": "0.0.0",
+  "description": "Website for the fabolous Unicorn Editor",
+  "author": {
+    "name": "Nik Graf",
+    "email": "nik@nikgraf.com",
+    "url": "http://www.nikgraf.com"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/nikgraf/unicorn-editor.git"
+  },
+  "dependencies": {
+    "react": "=0.14.7",
+    "react-dom": "^=0.14.7"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "^6.0.2",
+    "express": "^4.13.4",
+    "node-libs-browser": "^1.0.0",
+    "webpack": "^1.12.14",
+    "uglify-js": "=2.6.2"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "NODE_ENV=production webpack -p --config webpack.config.production.js"
+  }
+}

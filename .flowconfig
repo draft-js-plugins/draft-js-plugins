@@ -1,0 +1,20 @@
+[ignore]
+.*docs/node_modules.*
+.*examples/node_modules.*
+.*node_modules/babel.*
+.*node_modules/fbjs.*
+
+[include]
+.*node_modules/react
+
+[libs]
+./interfaces/CSSModule.js
+
+[options]
+esproposal.class_static_fields=enable
+module.name_mapper='.*\(.css\)' -> 'CSSModule'
+module.system=haste
+strip_root=true
+
+[version]
+0.21.0

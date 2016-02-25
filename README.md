@@ -1,0 +1,5 @@
+# Unicorn Editor
+
+## License
+
+MIT
