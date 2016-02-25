@@ -5,24 +5,30 @@ import hashtagStrategy from './hashtagStrategy';
 import Hashtag from './Hashtag';
 import styles from './styles';
 
+const compositeDecorator = new CompositeDecorator([
+  {
+    strategy: hashtagStrategy,
+    component: Hashtag,
+  },
+]);
+
 export default class UnicornEditor extends Component {
 
-  constructor(props) {
-    super(props);
+  state = {
+    editorState: EditorState.createEmpty(compositeDecorator),
+  };
 
-    const compositeDecorator = new CompositeDecorator([
-      {
-        strategy: hashtagStrategy,
-        component: Hashtag,
-      },
-    ]);
+  onChange = (editorState) => {
+    this.setState({ editorState });
+  };
 
-    this.state = { editorState: EditorState.createEmpty(compositeDecorator) };
+  focus = () => {
+    this.refs.editor.focus();
+  };
 
-    this.focus = () => this.refs.editor.focus();
-    this.onChange = (editorState) => this.setState({ editorState });
-    this.logState = () => console.log(this.state.editorState.toJS()); // eslint-disable-line no-console
-  }
+  logState = () => {
+    console.log(this.state.editorState.toJS()); // eslint-disable-line no-console
+  };
 
   render(): ReactElement {
     return (
