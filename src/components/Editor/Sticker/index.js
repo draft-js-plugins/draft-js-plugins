@@ -31,7 +31,7 @@ export default class Sticker extends Component {
     // TODO allow to add differnt unicorn stickers
     return (
       <figure style={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
-        <img width={100} src="https://media4.giphy.com/media/WZmgVLMt7mp44/200_s.gif" />
+        <img height={100} src="https://media4.giphy.com/media/WZmgVLMt7mp44/200_s.gif" />
         <button className="TeXEditor-removeButton" onClick={this.remove}>
           Remove
         </button>
