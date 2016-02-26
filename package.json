@@ -89,6 +89,7 @@
   "dependencies": {
     "classnames": "^2.2.3",
     "draft-js": "^0.1.0",
-    "extract-text-webpack-plugin": "^1.0.1"
+    "extract-text-webpack-plugin": "^1.0.1",
+    "immutable": "^3.7.6"
   }
 }
