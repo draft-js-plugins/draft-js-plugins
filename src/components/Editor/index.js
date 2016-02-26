@@ -2,24 +2,16 @@
 
 import React, { Component } from 'react';
 import {
-  BlockMapBuilder,
-  ContentBlock,
   Editor,
   EditorState,
-  Entity,
   CompositeDecorator,
-  Modifier,
-  genKey,
-  CharacterMetadata,
 } from 'draft-js';
-import {
-  List,
-  Repeat
-} from 'immutable';
 import hashtagStrategy from './hashtagStrategy';
 import Hashtag from './Hashtag';
 import Sticker from './Sticker';
 import styles from './styles';
+import addSticker from './modifiers/addSticker';
+import removeSticker from './modifiers/removeSticker';
 
 const compositeDecorator = new CompositeDecorator([
   {
@@ -32,17 +24,6 @@ type UnicornEditorState = {
   editorState: any,
 }
 
-const myBlockRenderer = (contentBlock) => {
-  const type = contentBlock.getType();
-  if (type === 'sticker') {
-    return {
-      component: Sticker,
-    };
-  }
-
-  return undefined;
-};
-
 export default class UnicornEditor extends Component {
 
   state: UnicornEditorState = {
@@ -50,9 +31,29 @@ export default class UnicornEditor extends Component {
   };
 
   onChange: Function = (editorState: Object): void => {
+    // console.log(editorState.toJS());
     this.setState({
       editorState,
     });
+  };
+
+  myBlockRenderer = (contentBlock) => {
+    const type = contentBlock.getType();
+    if (type === 'sticker') {
+      return {
+        component: Sticker,
+        props: {
+          onRemove: (blockKey) => {
+            const newState = removeSticker(this.state.editorState, blockKey);
+            this.setState({
+              editorState: newState,
+            });
+          },
+        },
+      };
+    }
+
+    return undefined;
   };
 
   focus: Function = (): void => {
@@ -64,66 +65,12 @@ export default class UnicornEditor extends Component {
   };
 
   addSticker: Function = (): void => {
+    // TODO fix selection for adding & remove
+
     const { editorState } = this.state;
-    const currentContentState = editorState.getCurrentContent();
-    const currentSelectionState = editorState.getSelection();
-
-    // TODO why do we need this?
-    const afterRemoval = Modifier.removeRange(
-      currentContentState,
-      currentSelectionState,
-      'backward'
-    );
-
-    // deciding on the postion to split the text
-    const targetSelection = afterRemoval.getSelectionAfter();
-
-    // the only way to insert a new seems to be by splitting an existing in to two
-    const afterSplit = Modifier.splitBlock(afterRemoval, targetSelection);
-
-    // the position to insert our blocks
-    const insertionTarget = afterSplit.getSelectionAfter();
-
-    // TODO not sure why we need it …
-    const newContentStateAfterSplit = Modifier.setBlockType(afterSplit, insertionTarget, 'sticker');
-
-    // creating a new ContentBlock including the entity with data
-    const entityKey = Entity.create('sticker', 'IMMUTABLE', { id: 'white-unicorn' });
-    const charDataOfSticker = CharacterMetadata.create({ entity: entityKey });
-    const stickerContentBlock = new ContentBlock({
-      key: genKey(),
-      type: 'sticker',
-      text: '',
-      characterList: List(Repeat(charDataOfSticker, 1)), // eslint-disable-line new-cap
-    });
-
-    // new contentblock so we can continue wrting right away after inserting the sticker
-    const emptyTextBlock = new ContentBlock({
-      key: genKey(),
-      type: 'unstyled',
-      text: '',
-      characterList: List(), // eslint-disable-line new-cap
-    });
-
-    // create fragment containing the two content blocks
-    const fragment = BlockMapBuilder.createFromArray([stickerContentBlock, emptyTextBlock]);
-
-    // replace the contentblock we reserved for our insert
-    const contentStateWithSticker = Modifier.replaceWithFragment(
-      newContentStateAfterSplit,
-      insertionTarget,
-      fragment
-    );
-
-    // update editor state with our new state including the sticker
-    const newEditorState = EditorState.push(
-      editorState,
-      contentStateWithSticker,
-      'add-sticker'
-    );
 
     this.setState({
-      editorState: newEditorState,
+      editorState: addSticker(editorState),
     });
   };
 
@@ -132,7 +79,7 @@ export default class UnicornEditor extends Component {
       <div style={styles.root}>
         <div style={styles.editor} onClick={this.focus}>
           <Editor
-            blockRendererFn={myBlockRenderer}
+            blockRendererFn={this.myBlockRenderer}
             editorState={this.state.editorState}
             onChange={this.onChange}
             placeholder="I'm a Unicorn Input!"
