@@ -60,17 +60,11 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
-  logState: Function = (): void => {
-    console.log(this.state.editorState.toJS()); // eslint-disable-line no-console
-  };
-
   addSticker: Function = (): void => {
     // TODO fix selection for adding & remove
 
-    const { editorState } = this.state;
-
     this.setState({
-      editorState: addSticker(editorState),
+      editorState: addSticker(this.state.editorState),
     });
   };
 
@@ -94,7 +88,6 @@ export default class UnicornEditor extends Component {
           Add a Unicorn
         </button>
         <input
-          onClick={this.logState}
           style={styles.button}
           type="button"
           value="Log State"
