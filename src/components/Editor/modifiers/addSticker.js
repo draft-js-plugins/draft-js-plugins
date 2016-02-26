@@ -18,24 +18,38 @@ export default (editorState: Object): Object => {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = editorState.getSelection();
 
-  // TODO why do we need this?
-  const afterRemoval = Modifier.removeRange(
+  // in case text is selected it is removed and the then the sticker is appended
+  const afterRemovalContentState = Modifier.removeRange(
     currentContentState,
     currentSelectionState,
     'backward'
   );
 
   // deciding on the postion to split the text
-  const targetSelection = afterRemoval.getSelectionAfter();
+  const targetSelection = afterRemovalContentState.getSelectionAfter();
+  const blockKeyForTarget = targetSelection.get('focusKey');
+  const block = currentContentState.getBlockForKey(blockKeyForTarget);
+  let insertionTargetSelection;
+  let insertionTargetBlock;
 
-  // the only way to insert a new seems to be by splitting an existing in to two
-  const afterSplit = Modifier.splitBlock(afterRemoval, targetSelection);
+  // In case there are no characters or entity or the selection is at the start it
+  // is safe to insert the sticker in the current block.
+  // Otherwise a new block is created (the sticker is always it's own block)
+  const isEmptyBlock = block.getLength() === 0 && block.getEntityAt(0) === null;
+  const selectedFromStart = currentSelectionState.getStartOffset() === 0;
+  if (isEmptyBlock || selectedFromStart) {
+    insertionTargetSelection = targetSelection;
+    insertionTargetBlock = afterRemovalContentState;
+  } else {
+    // the only way to insert a new seems to be by splitting an existing in to two
+    insertionTargetBlock = Modifier.splitBlock(afterRemovalContentState, targetSelection);
 
-  // the position to insert our blocks
-  const insertionTarget = afterSplit.getSelectionAfter();
+    // the position to insert our blocks
+    insertionTargetSelection = insertionTargetBlock.getSelectionAfter();
+  }
 
   // TODO not sure why we need it …
-  const newContentStateAfterSplit = Modifier.setBlockType(afterSplit, insertionTarget, 'sticker');
+  const newContentStateAfterSplit = Modifier.setBlockType(insertionTargetBlock, insertionTargetSelection, 'sticker');
 
   // creating a new ContentBlock including the entity with data
   const entityKey = Entity.create('sticker', 'IMMUTABLE', { id: 'white-unicorn' });
@@ -61,14 +75,15 @@ export default (editorState: Object): Object => {
   // replace the contentblock we reserved for our insert
   const contentStateWithSticker = Modifier.replaceWithFragment(
     newContentStateAfterSplit,
-    insertionTarget,
+    insertionTargetSelection,
     fragment
   );
 
   // update editor state with our new state including the sticker
-  return EditorState.push(
+  const newState = EditorState.push(
     editorState,
     contentStateWithSticker,
     'add-sticker'
   );
+  return EditorState.forceSelection(newState, contentStateWithSticker.getSelectionAfter());
 };
