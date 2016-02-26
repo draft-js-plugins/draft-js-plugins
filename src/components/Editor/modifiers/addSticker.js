@@ -1,3 +1,5 @@
+/* @flow */
+
 import {
   BlockMapBuilder,
   CharacterMetadata,
@@ -12,7 +14,7 @@ import {
   Repeat
 } from 'immutable';
 
-export default (editorState) => {
+export default (editorState: Object): Object => {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = editorState.getSelection();
 

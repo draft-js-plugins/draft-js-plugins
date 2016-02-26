@@ -6,7 +6,7 @@ import { Entity } from 'draft-js';
 
 export default class Sticker extends Component {
 
-  remove = (event) => {
+  remove: Function = (event) => {
     // Note: important to avoid a content edit change
     event.preventDefault();
     event.stopPropagation();

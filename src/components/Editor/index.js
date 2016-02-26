@@ -37,7 +37,7 @@ export default class UnicornEditor extends Component {
     });
   };
 
-  myBlockRenderer = (contentBlock) => {
+  myBlockRenderer: Function = (contentBlock) => {
     const type = contentBlock.getType();
     if (type === 'sticker') {
       return {

@@ -1,6 +1,7 @@
 [ignore]
 .*/node_modules/babel.*
 .*/node_modules/fbjs/.*
+.*/node_modules/immutable/.*
 .*/node_modules/.*.json
 
 [include]

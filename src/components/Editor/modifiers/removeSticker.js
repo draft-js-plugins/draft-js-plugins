@@ -1,10 +1,12 @@
+/* @flow */
+
 import {
   EditorState,
   Modifier,
   SelectionState
 } from 'draft-js';
 
-export default (editorState, blockKey) => {
+export default (editorState: Object, blockKey: String): Object => {
   const content = editorState.getCurrentContent();
   const beforeKey = content.getKeyBefore(blockKey);
   const beforeBlock = content.getBlockBefore(blockKey);
