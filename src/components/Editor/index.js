@@ -69,6 +69,16 @@ export default class UnicornEditor extends Component {
   };
 
   render() {
+    const stickerElements = stickers.map((sticker) => (
+      <button
+        onClick={ () => this.addSticker(sticker.get('id')) }
+        key={sticker.get('id')}
+        type="button"
+      >
+        <img height="100" src={ sticker.get('url') } />
+      </button>
+    ));
+
     return (
       <div style={styles.root}>
         <div style={styles.editor} onClick={this.focus}>
@@ -81,17 +91,7 @@ export default class UnicornEditor extends Component {
             spellCheck
           />
         </div>
-        {
-          Object.keys(stickers).map((key) => (
-            <button
-              onClick={ () => this.addSticker(stickers[key].id) }
-              type="button"
-            >
-              <img height="100" src={ stickers[key].url } />
-            </button>
-          ))
-        }
-
+        { stickerElements.toArray() }
         <pre style={{ whiteSpace: 'pre-wrap' }}>
           { JSON.stringify(this.state.editorState.getCurrentContent().toJS(), null, 2) }
         </pre>
