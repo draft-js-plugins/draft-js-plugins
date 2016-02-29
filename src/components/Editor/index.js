@@ -31,9 +31,17 @@ export default class UnicornEditor extends Component {
   };
 
   onChange: Function = (editorState: Object): void => {
-    // console.log(editorState.toJS());
+    let cleanEditorState = editorState;
+
+    // if there is an empty sticker block
+    editorState.getCurrentContent().get('blockMap').forEach((block) => {
+      if (block.get('type') === 'sticker' && block.getEntityAt(0) === null) {
+        cleanEditorState = removeSticker(editorState, block.get('key'));
+      }
+    });
+
     this.setState({
-      editorState,
+      editorState: cleanEditorState,
     });
   };
 
@@ -44,9 +52,8 @@ export default class UnicornEditor extends Component {
         component: Sticker,
         props: {
           onRemove: (blockKey) => {
-            const newState = removeSticker(this.state.editorState, blockKey);
             this.setState({
-              editorState: newState,
+              editorState: removeSticker(this.state.editorState, blockKey),
             });
           },
         },
@@ -92,6 +99,10 @@ export default class UnicornEditor extends Component {
           type="button"
           value="Log State"
         />
+
+        <pre style={{ whiteSpace: 'pre-wrap' }}>
+          { JSON.stringify(this.state.editorState.getCurrentContent().toJS(), null, 2) }
+        </pre>
       </div>
     );
   }

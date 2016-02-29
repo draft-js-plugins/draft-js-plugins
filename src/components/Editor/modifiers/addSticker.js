@@ -54,23 +54,26 @@ export default (editorState: Object): Object => {
   // creating a new ContentBlock including the entity with data
   const entityKey = Entity.create('sticker', 'IMMUTABLE', { id: 'white-unicorn' });
   const charDataOfSticker = CharacterMetadata.create({ entity: entityKey });
-  const stickerContentBlock = new ContentBlock({
-    key: genKey(),
-    type: 'sticker',
-    text: '',
-    characterList: List(Repeat(charDataOfSticker, 1)), // eslint-disable-line new-cap
-  });
 
-  // new contentblock so we can continue wrting right away after inserting the sticker
-  const emptyTextBlock = new ContentBlock({
-    key: genKey(),
-    type: 'unstyled',
-    text: '',
-    characterList: List(), // eslint-disable-line new-cap
-  });
+  const fragmentArray = [
+    new ContentBlock({
+      key: genKey(),
+      type: 'sticker',
+      text: '',
+      characterList: List(Repeat(charDataOfSticker, 1)), // eslint-disable-line new-cap
+    }),
+
+    // new contentblock so we can continue wrting right away after inserting the sticker
+    new ContentBlock({
+      key: genKey(),
+      type: 'unstyled',
+      text: '',
+      characterList: List(), // eslint-disable-line new-cap
+    }),
+  ];
 
   // create fragment containing the two content blocks
-  const fragment = BlockMapBuilder.createFromArray([stickerContentBlock, emptyTextBlock]);
+  const fragment = BlockMapBuilder.createFromArray(fragmentArray);
 
   // replace the contentblock we reserved for our insert
   const contentStateWithSticker = Modifier.replaceWithFragment(
@@ -83,7 +86,7 @@ export default (editorState: Object): Object => {
   const newState = EditorState.push(
     editorState,
     contentStateWithSticker,
-    'add-sticker'
+    'insert-sticker'
   );
   return EditorState.forceSelection(newState, contentStateWithSticker.getSelectionAfter());
 };

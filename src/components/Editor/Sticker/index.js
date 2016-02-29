@@ -17,15 +17,7 @@ export default class Sticker extends Component {
   render() {
     const { block } = this.props;
 
-    // the element was removed via e.g. pressing backspace and a cleanup is necessary
-    const entity = block.getEntityAt(0);
-    if (entity === null) {
-      this.props.blockProps.onRemove(this.props.block.getKey());
-
-      // TODO with React 15.0.0 return null is possible
-      return (<span></span>);
-    }
-
+    // const entity = block.getEntityAt(0);
     // const data = Entity.get(block.getEntityAt(0)).getData();
 
     // TODO allow to add differnt unicorn stickers
