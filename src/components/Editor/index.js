@@ -12,6 +12,7 @@ import Sticker from './Sticker';
 import styles from './styles';
 import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
+import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
 
 const compositeDecorator = new CompositeDecorator([
   {
@@ -31,17 +32,8 @@ export default class UnicornEditor extends Component {
   };
 
   onChange: Function = (editorState: Object): void => {
-    let cleanEditorState = editorState;
-
-    // if there is an empty sticker block
-    editorState.getCurrentContent().get('blockMap').forEach((block) => {
-      if (block.get('type') === 'sticker' && block.getEntityAt(0) === null) {
-        cleanEditorState = removeSticker(editorState, block.get('key'));
-      }
-    });
-
     this.setState({
-      editorState: cleanEditorState,
+      editorState: cleanupEmptyStickers(editorState),
     });
   };
 

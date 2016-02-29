@@ -13,7 +13,7 @@ export default (editorState: Object, blockKey: String): Object => {
   const afterKey = content.getKeyAfter(blockKey);
 
   let withoutSticker;
-  if (typeof beforeKey === 'undefined' && typeof afterKey !== 'undefined') {
+  if (beforeKey === undefined && afterKey !== undefined) {
     const targetRange = new SelectionState({
       anchorKey: blockKey,
       anchorOffset: 0,
@@ -26,7 +26,7 @@ export default (editorState: Object, blockKey: String): Object => {
       withoutSticker.getSelectionAfter(),
       'unstyled'
     );
-  } else if (typeof beforeKey !== 'undefined') {
+  } else if (beforeKey !== undefined) {
     const targetRange = new SelectionState({
       anchorKey: beforeKey,
       anchorOffset: beforeBlock.getLength(),
