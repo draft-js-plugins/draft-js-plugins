@@ -14,7 +14,7 @@ import {
   Repeat
 } from 'immutable';
 
-export default (editorState: Object): Object => {
+export default (editorState: Object, stickerId: any): Object => {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = editorState.getSelection();
 
@@ -52,7 +52,7 @@ export default (editorState: Object): Object => {
   const newContentStateAfterSplit = Modifier.setBlockType(insertionTargetBlock, insertionTargetSelection, 'sticker');
 
   // creating a new ContentBlock including the entity with data
-  const entityKey = Entity.create('sticker', 'IMMUTABLE', { id: 'white-unicorn' });
+  const entityKey = Entity.create('sticker', 'IMMUTABLE', { id: stickerId });
   const charDataOfSticker = CharacterMetadata.create({ entity: entityKey });
 
   const fragmentArray = [

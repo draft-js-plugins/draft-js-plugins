@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import styles from './styles';
 import { Entity } from 'draft-js';
+import stickers from '../constants/stickers';
 
 export default class Sticker extends Component {
 
@@ -16,14 +17,10 @@ export default class Sticker extends Component {
 
   render() {
     const { block } = this.props;
-
-    // const entity = block.getEntityAt(0);
-    // const data = Entity.get(block.getEntityAt(0)).getData();
-
-    // TODO allow to add differnt unicorn stickers
+    const data = Entity.get(block.getEntityAt(0)).getData();
     return (
       <figure style={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
-        <img height={100} src="https://media4.giphy.com/media/WZmgVLMt7mp44/200_s.gif" />
+        <img height={100} src={ stickers[data.id].url } />
         <button className="TeXEditor-removeButton" onClick={this.remove}>
           Remove
         </button>

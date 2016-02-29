@@ -13,6 +13,7 @@ import styles from './styles';
 import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
 import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
+import stickers from './constants/stickers';
 
 const compositeDecorator = new CompositeDecorator([
   {
@@ -59,11 +60,11 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
-  addSticker: Function = (): void => {
+  addSticker: Function = (stickerId): void => {
     // TODO fix selection for adding & remove
 
     this.setState({
-      editorState: addSticker(this.state.editorState),
+      editorState: addSticker(this.state.editorState, stickerId),
     });
   };
 
@@ -80,12 +81,16 @@ export default class UnicornEditor extends Component {
             spellCheck
           />
         </div>
-        <button
-          onClick={this.addSticker}
-          type="button"
-        >
-          Add a Unicorn
-        </button>
+        {
+          Object.keys(stickers).map((key) => (
+            <button
+              onClick={ () => this.addSticker(stickers[key].id) }
+              type="button"
+            >
+              <img height="100" src={ stickers[key].url } />
+            </button>
+          ))
+        }
 
         <pre style={{ whiteSpace: 'pre-wrap' }}>
           { JSON.stringify(this.state.editorState.getCurrentContent().toJS(), null, 2) }
