@@ -86,11 +86,6 @@ export default class UnicornEditor extends Component {
         >
           Add a Unicorn
         </button>
-        <input
-          style={styles.button}
-          type="button"
-          value="Log State"
-        />
 
         <pre style={{ whiteSpace: 'pre-wrap' }}>
           { JSON.stringify(this.state.editorState.getCurrentContent().toJS(), null, 2) }

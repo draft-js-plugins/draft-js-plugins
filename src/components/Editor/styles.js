@@ -12,8 +12,4 @@ export default {
     minHeight: 80,
     padding: 10,
   },
-  button: {
-    marginTop: 10,
-    textAlign: 'center',
-  },
 };
