@@ -21,8 +21,8 @@ export default class Sticker extends Component {
     return (
       <figure style={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
         <img height={100} src={ stickers[data.id].url } />
-        <button className="TeXEditor-removeButton" onClick={this.remove}>
-          Remove
+        <button style={ styles.removeButton } onClick={this.remove}>
+          ✕
         </button>
       </figure>
     );
