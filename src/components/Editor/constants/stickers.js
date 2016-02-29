@@ -1,4 +1,6 @@
-const stickers = {
+import { fromJS } from 'immutable';
+
+const stickers = fromJS({
   'b3aa388f-b9f4-45b0-bba5-d92cf2caa48b': {
     id: 'b3aa388f-b9f4-45b0-bba5-d92cf2caa48b',
     url: 'https://media4.giphy.com/media/WZmgVLMt7mp44/200_s.gif',
@@ -15,6 +17,6 @@ const stickers = {
     id: '659a0dbf-5f85-4f32-999d-eb9ba6b0f417',
     url: 'http://s4.thingpic.com/images/d7/NXB8qjjiQN87427cWkYBv1K3.png',
   },
-};
+});
 
 export default stickers;

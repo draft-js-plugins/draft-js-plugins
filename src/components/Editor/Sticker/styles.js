@@ -7,7 +7,7 @@ export default {
     display: 'block',
   },
   removeButton: {
-    backgroundColor: '#FB4F4F',
+    backgroundColor: '#D6D6D6',
     color: 'white',
     margin: 0,
     padding: '0.5em',
@@ -15,7 +15,7 @@ export default {
     borderRadius: '50%',
     lineHeight: '0.75em',
     position: 'absolute',
-    fontSize: '0.75em',
+    fontSize: '0.62em',
     marginLeft: '-0.825em',
     marginTop: '-0.825em',
   },
