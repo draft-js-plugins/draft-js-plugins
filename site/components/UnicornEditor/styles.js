@@ -5,11 +5,13 @@ export default {
     fontFamily: '\'Helvetica\', sans-serif',
     padding: 20,
     width: 600,
+    background: '#FFF',
   },
   editor: {
-    border: '1px solid #ccc',
+    border: '1px solid #ddd',
     cursor: 'text',
     minHeight: 80,
     padding: 10,
+    borderRadius: 4,
   },
 };
