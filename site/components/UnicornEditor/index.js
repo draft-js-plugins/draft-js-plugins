@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import {
-  PluginEditor,
-  hashtagPlugin,
-  stickerPlugin,
-  createEmptyEditorState,
-} from 'unicorn-editor';
+import PluginEditor, { createEmptyEditorState } from 'draft-js-plugin-editor';
+import hashtagPlugin from 'draft-js-hashtag-plugin';
+import stickerPlugin from 'draft-js-sticker-plugin';
 import {
   EditorState, // eslint-disable-line
   compositeDecorator, // eslint-disable-line
