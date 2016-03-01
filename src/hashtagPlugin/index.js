@@ -6,5 +6,5 @@ export default () => ({
     strategy: hashtagStrategy,
     component: Hashtag,
   },
-  Hashtag, // TODO do we really need to export this?
+  Hashtag,
 });

@@ -33,7 +33,6 @@ export default (editorState: Object): Object => {
   // This can happen if a user hits the backspace button and removes the sticker.
   // In this case the block will still be of type sticker.
   editorState.getCurrentContent().get('blockMap').forEach((block) => {
-    // TODO move 'sticker' to a constent and import it from there
     if (block.get('type') === 'sticker' && block.getEntityAt(0) === null) {
       newEditorState = cleanupSticker(editorState, block.get('key'));
     }

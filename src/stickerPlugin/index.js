@@ -11,5 +11,3 @@ export default (config) => ({
   remove: removeSticker,
   Sticker: sticker(config.stickers),
 });
-
-// TODO fix the remove when clickin on the icon
