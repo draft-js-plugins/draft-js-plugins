@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PluginEditor, { createEmptyEditorState } from 'draft-js-plugin-editor';
+import Editor, { createEmptyEditorState } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import {
@@ -51,7 +51,7 @@ export default class UnicornEditor extends Component {
     return (
       <div style={styles.root}>
         <div style={styles.editor} onClick={this.focus}>
-          <PluginEditor
+          <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
             placeholder="I'm a Unicorn Input!"

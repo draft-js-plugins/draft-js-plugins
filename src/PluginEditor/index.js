@@ -1,6 +1,6 @@
-import PluginEditor from './PluginEditor';
+import Editor from './Editor';
 import createEmpty from './createEmptyEditorState';
 
-export default PluginEditor;
+export default Editor;
 
 export const createEmptyEditorState = createEmpty;
