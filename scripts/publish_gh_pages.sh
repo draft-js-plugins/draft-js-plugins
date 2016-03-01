@@ -8,7 +8,6 @@ npm install
 npm run build
 
 git add static/bundle.js
-git add css/googlecode.css
 git commit -am 'add files'
 cd ..
 git subtree split --prefix site -b gh-pages
