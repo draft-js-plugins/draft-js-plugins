@@ -1,12 +1,10 @@
-/* @flow */
-
 import {
   EditorState,
   Modifier,
   SelectionState
 } from 'draft-js';
 
-export default (editorState: Object, blockKey: String): Object => {
+export default (editorState: Object, blockKey: String) => {
   const content = editorState.getCurrentContent();
   const afterKey = content.getKeyAfter(blockKey);
 
@@ -31,6 +29,7 @@ export default (editorState: Object, blockKey: String): Object => {
       'unstyled'
     );
   }
+
   const newState = EditorState.push(editorState, withoutSticker, 'remove-sticker');
   return EditorState.forceSelection(newState, withoutSticker.getSelectionAfter());
 };

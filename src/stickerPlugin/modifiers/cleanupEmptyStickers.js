@@ -1,4 +1,3 @@
-/* @flow */
 
 import {
   EditorState,
@@ -6,8 +5,9 @@ import {
   SelectionState,
 } from 'draft-js';
 
-const cleanupSticker = (editorState: Object, blockKey: String): Object => {
+const cleanupSticker = (editorState: Object, blockKey: String) => {
   const content = editorState.getCurrentContent();
+
   // get range of the broken sticker block
   const targetRange = new SelectionState({
     anchorKey: blockKey,
@@ -15,7 +15,8 @@ const cleanupSticker = (editorState: Object, blockKey: String): Object => {
     focusKey: blockKey,
     focusOffset: 0,
   });
-  // convert the stiicker block to a unstyled block to make text editing work
+
+  // convert the sticker block to a unstyled block to make text editing work
   const withoutSticker = Modifier.setBlockType(
     content,
     targetRange,
@@ -27,6 +28,7 @@ const cleanupSticker = (editorState: Object, blockKey: String): Object => {
 
 export default (editorState: Object): Object => {
   let newEditorState = editorState;
+
   // If there is an empty sticker block we remove it.
   // This can happen if a user hits the backspace button and removes the sticker.
   // In this case the block will still be of type sticker.
