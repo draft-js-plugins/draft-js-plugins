@@ -38,7 +38,7 @@ export default class PluginEditor extends Component {
     return this.plugins
       .map((plugin) => {
         if (plugin.blockRendererFn) {
-          const result = plugin.blockRendererFn(contentBlock);
+          const result = plugin.blockRendererFn(contentBlock, this);
           if (result) {
             return result;
           }
