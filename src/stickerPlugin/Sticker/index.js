@@ -5,7 +5,7 @@ import { Entity } from 'draft-js';
 export default (stickers) => {
   class Sticker extends Component {
 
-    remove: Function = (event) => {
+    remove = (event) => {
       // Note: important to avoid a content edit change
       event.preventDefault();
       event.stopPropagation();
@@ -19,9 +19,13 @@ export default (stickers) => {
       return (
         <figure style={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
           <img height={100} src={ stickers.getIn([data.id, 'url']) } />
-          <button style={ styles.removeButton } onClick={this.remove}>
+          <span
+            style={ styles.removeButton }
+            onClick={ this.remove }
+            type="button"
+          >
             ✕
-          </button>
+          </span>
         </figure>
       );
     }
