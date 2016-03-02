@@ -8,7 +8,7 @@ import stickerSelect from './StickerSelect';
 export default (config) => ({
   add: addSticker,
   blockRendererFn: blockRendererFn(config.stickers), // standard
-  cleanupStateOnChange: cleanupEmptyStickers, // standard
+  onChange: cleanupEmptyStickers, // standard
   remove: removeSticker,
   Sticker: sticker(config.stickers),
   StickerSelect: stickerSelect(config.stickers),
