@@ -9,6 +9,7 @@ import {
 import styles from './styles';
 import stickers from './stickers';
 import { List } from 'immutable';
+import StatePreview from '../StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();
 const stickerPluginInstance = stickerPlugin({ stickers });
@@ -50,10 +51,8 @@ export default class UnicornEditor extends Component {
             spellCheck
           />
         </div>
-        <StickerSelect editor={this} />
-        <pre style={{ whiteSpace: 'pre-wrap' }}>
-          { JSON.stringify(this.state.editorState.getCurrentContent().toJS(), null, 2) }
-        </pre>
+        <StickerSelect editor={ this } />
+        <StatePreview editorState={ this.state.editorState } />
       </div>
     );
   }
