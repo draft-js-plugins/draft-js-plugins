@@ -18,18 +18,18 @@ export default {
   stateView: {
     whiteSpace: 'pre-wrap',
   },
-  readOnlyButton: {
+  button: {
     border: '1px solid #bbb',
-    padding: 0,
+    height: 40,
+    padding: '0 1.5em',
     color: '#888',
     margin: 0,
     borderRadius: 20,
     lineHeight: '1.2em',
     cursor: 'pointer',
-    width: 160,
-    height: 40,
     marginLeft: 10,
     position: 'relative',
     top: -4,
+    backgroundColor: '#fff',
   },
 };
