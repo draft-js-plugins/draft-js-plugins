@@ -10,8 +10,6 @@ function setOverflow(newValue, element) {
   element.style.overflow = newValue; // eslint-disable-line no-param-reassign
 }
 
-const body = document.body;
-
 export default (stickers) => {
   class StickerSelect extends Component {
 
@@ -19,18 +17,34 @@ export default (stickers) => {
       open: false,
     };
 
+    componentWillMount() {
+      document.body.addEventListener('click', this.closePopover);
+    }
+
+    componentWillUnmount() {
+      document.body.removeEventListener('click', this.closePopover);
+    }
+
     onMouseEnter = () => {
-      setOverflow('hidden', body);
+      setOverflow('hidden', document.body);
     };
 
     onMouseLeave = () => {
-      setOverflow('auto', body);
+      setOverflow('auto', document.body);
     };
 
     toggle = () => {
       this.setState({
         open: !this.state.open,
       });
+    };
+
+    closePopover = () => {
+      if (this.state.open) {
+        this.setState({
+          open: false,
+        });
+      }
     };
 
     render() {
