@@ -17,8 +17,8 @@ export default class PluginEditor extends Component {
   onChange = (editorState) => {
     let newEditorState = editorState;
     this.plugins.forEach((plugin) => {
-      if (plugin.cleanupStateOnChange) {
-        newEditorState = plugin.cleanupStateOnChange(newEditorState);
+      if (plugin.onChange) {
+        newEditorState = plugin.onChange(newEditorState);
       }
     });
 
