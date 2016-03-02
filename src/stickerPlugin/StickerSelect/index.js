@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styles from './styles';
 import StickerOption from './StickerOption';
 
+// TODO close when clicking outside
+
 export default (stickers) => {
   class StickerSelect extends Component {
 
