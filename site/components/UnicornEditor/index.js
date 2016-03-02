@@ -35,6 +35,10 @@ export default class UnicornEditor extends Component {
     });
   };
 
+  focus = () => {
+    this.refs.editor.focus();
+  };
+
   addSticker = (stickerId) => {
     this.setState({
       editorState: stickerPluginInstance.add(this.state.editorState, stickerId),
@@ -45,13 +49,14 @@ export default class UnicornEditor extends Component {
   render() {
     return (
       <div style={styles.root}>
-        <div style={styles.editor} onClick={this.focus}>
+        <div style={styles.editor} onClick={ this.focus }>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
             placeholder="I'm a Unicorn Input!"
             plugins={plugins}
             spellCheck
+            ref="editor"
           />
         </div>
         <StickerSelect editor={ this } />

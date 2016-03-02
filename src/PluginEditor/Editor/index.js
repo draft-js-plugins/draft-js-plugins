@@ -49,6 +49,10 @@ export default class PluginEditor extends Component {
       .find((result) => result !== undefined);
   };
 
+  focus = () => {
+    this.refs.editor.focus();
+  };
+
   initializeProps(properties) {
     const {
       blockRendererFn, // eslint-disable-line
@@ -71,6 +75,7 @@ export default class PluginEditor extends Component {
         onChange={ this.onChange }
         editorState={ this.editorState }
         blockRendererFn={ this.blockRendererFn }
+        ref="editor"
       />
     );
   }
