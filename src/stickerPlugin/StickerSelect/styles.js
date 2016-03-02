@@ -23,12 +23,12 @@ export default {
     padding: 0,
     color: '#888',
     margin: 0,
-    borderRadius: '50%',
-    lineHeight: '1.2em',
-    fontSize: '1.7em',
+    borderRadius: 20,
+    lineHeight: '1.0em',
     cursor: 'pointer',
-    width: 40,
     height: 40,
+    paddingLeft: 14,
+    paddingRight: 18,
   },
   bottomGradient: {
     width: '100%',
@@ -51,5 +51,14 @@ export default {
     left: '0',
     right: '0',
     padding: 10,
+  },
+  icon: {
+    fontSize: '1.6em',
+    lineHeight: '1.2em',
+  },
+  buttonText: {
+    position: 'relative',
+    top: -3,
+    left: 5,
   },
 };

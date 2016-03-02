@@ -73,7 +73,8 @@ export default (stickers) => {
             onClick={ this.toggle }
             type="button"
           >
-            ☺
+            <span style={ styles.icon }>☺</span>
+            <span style={ styles.buttonText }>Add Sticker</span>
           </button>
           <div
             style={ popoverStyle }
