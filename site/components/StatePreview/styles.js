@@ -11,9 +11,24 @@ export default {
     whiteSpace: 'pre-wrap',
     background: '#FDFDFD',
     padding: 10,
+    height: 0,
+    maxHeight: '30em',
+    margin: 0,
   },
-  header: {
-    borderBottom: '1px solid #ddd',
+  collapseButton: {
+    border: 'none',
+    backgroundColor: 'transparent',
+    width: '100%',
+    height: '100%',
+    display: 'block',
     padding: 10,
+  },
+  headerTitle: {
+    float: 'left',
+  },
+  collapseArrow: {
+    fontSize: '0.75em',
+    float: 'right',
+    marginTop: '0.25em',
   },
 };
