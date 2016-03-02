@@ -58,7 +58,10 @@ export default (stickers) => {
             onMouseEnter={function onMouseEnter() { setOverflow('hidden', body); }}
             onMouseLeave={function onMouseLeave() { setOverflow('auto', body); }}
           >
-            { stickerElements.toList().toJS() }
+            <div style={ styles.stickerList }>
+              { stickerElements.toList().toJS() }
+            </div>
+            <div style={ styles.bottomGradient }></div>
           </div>
         </div>
       );
