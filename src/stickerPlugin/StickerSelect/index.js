@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import styles from './styles';
 import StickerOption from './StickerOption';
 
-// TODO close when clicking outside
+/**
+ * Sets the CSS overflow value to newValue
+ * Use like this: setOverflow('auto', document.body);
+ */
+function setOverflow(newValue, element) {
+  element.style.overflow = newValue; // eslint-disable-line no-param-reassign
+}
+
+const body = document.body;
 
 export default (stickers) => {
   class StickerSelect extends Component {
@@ -45,7 +53,11 @@ export default (stickers) => {
           >
             ☺
           </button>
-          <div style={ popoverStyle }>
+          <div
+            style={ popoverStyle }
+            onMouseEnter={function onMouseEnter() { setOverflow('hidden', body); }}
+            onMouseLeave={function onMouseLeave() { setOverflow('auto', body); }}
+          >
             { stickerElements.toList().toJS() }
           </div>
         </div>
