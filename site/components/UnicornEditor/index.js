@@ -28,6 +28,7 @@ export default class UnicornEditor extends Component {
   state = {
     editorState: createEmptyEditorState(plugins),
     readOnly: false,
+    showState: false,
   };
 
   onChange = (editorState) => {
@@ -68,11 +69,22 @@ export default class UnicornEditor extends Component {
     });
   };
 
+  toggleShowState = () => {
+    this.setState({
+      showState: !this.state.showState,
+    });
+  };
+
   /* eslint-disable react/jsx-no-bind */
   render() {
     const readOnlyButtonStyle = {
       ...styles.button,
       background: (this.state.readOnly ? '#ededed' : '#fff'),
+    };
+
+    const showStateButtonStyle = {
+      ...styles.button,
+      background: (this.state.showState ? '#ededed' : '#fff'),
     };
 
     const smallButtonStyle = {
@@ -81,15 +93,18 @@ export default class UnicornEditor extends Component {
       fontWeight: 'bold',
       fontSize: '1.5em',
       padding: 0,
+      top: 0,
     };
 
     return (
       <div style={styles.root}>
+
+        <h2>Unicorn Editor</h2>
+
         <div style={styles.editor} onClick={ this.focus }>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            placeholder="I'm a Unicorn Input!"
             plugins={plugins}
             spellCheck
             readOnly={ this.state.readOnly }
@@ -97,13 +112,9 @@ export default class UnicornEditor extends Component {
           />
         </div>
         <div>
-          <StickerSelect editor={ this } />
-          <button
-            style={ readOnlyButtonStyle }
-            onClick={ this.toggleReadOnly }
-          >
-            Toggle Read Only
-          </button>
+          <div style={ styles.stickerSelect }>
+            <StickerSelect editor={ this } />
+          </div>
           <button
             style={ smallButtonStyle }
             onClick={ this.undo }
@@ -116,8 +127,36 @@ export default class UnicornEditor extends Component {
           >
             ↻
           </button>
+          <button
+            style={ readOnlyButtonStyle }
+            onClick={ this.toggleReadOnly }
+          >
+            Toggle Read Only
+          </button>
+          <button
+            style={ showStateButtonStyle }
+            onClick={ this.toggleShowState }
+          >
+            Toggle State Preview
+          </button>
         </div>
-        <StatePreview editorState={ this.state.editorState } />
+        <StatePreview
+          editorState={ this.state.editorState }
+          collapsed={ !this.state.showState }
+        />
+
+        <h3>Features in this Editor via Plugins</h3>
+        <ul>
+          <li>Custom Stickers</li>
+          <li>Hashtag Support</li>
+          <li>Automatically turns links into Anchor-tags</li>
+          <li>@mentions (comming soon …)</li>
+        </ul>
+
+        <h3>Why?</h3>
+        <p>
+          Just because Unicorns are cooler than Cats 😜
+        </p>
       </div>
     );
   }

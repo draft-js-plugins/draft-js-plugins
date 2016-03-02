@@ -11,11 +11,6 @@ body {
   line-height: 1.6;
   font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #444;
-  background: #F7F7F7;
-}
-
-h3 {
-  margin-top: 60px;
 }
 
 a, a:visited {
@@ -33,4 +28,47 @@ a:active {
 
 button:focus {
   outline: 0;
+}
+
+.header {
+  background: #292631;
+  color: #fff;
+  padding: 60px 0 20px 0;
+}
+
+.logo {
+  color: #B3E4E3;
+  font-size: 38px;
+}
+
+.tagline {
+  font-size: 22px;
+  margin-top: 0px;
+}
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.plugins {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+.plugin {
+  display: inline-block;
+  padding: 3px 12px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  color: #fff;
+  /*background: #eee;*/
+}
+
+.available-plugins {
+  font-weight: normal;
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 40px;
 }
