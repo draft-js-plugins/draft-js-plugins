@@ -19,6 +19,14 @@ export default (stickers) => {
       open: false,
     };
 
+    onMouseEnter = () => {
+      setOverflow('hidden', body);
+    };
+
+    onMouseLeave = () => {
+      setOverflow('auto', body);
+    };
+
     toggle = () => {
       this.setState({
         open: !this.state.open,
@@ -55,8 +63,8 @@ export default (stickers) => {
           </button>
           <div
             style={ popoverStyle }
-            onMouseEnter={function onMouseEnter() { setOverflow('hidden', body); }}
-            onMouseLeave={function onMouseLeave() { setOverflow('auto', body); }}
+            onMouseEnter={ this.onMouseEnter }
+            onMouseLeave={ this.onMouseLeave }
           >
             <div style={ styles.stickerList }>
               { stickerElements.toList().toJS() }
