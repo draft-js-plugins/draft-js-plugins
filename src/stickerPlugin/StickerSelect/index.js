@@ -18,11 +18,11 @@ export default (stickers) => {
     };
 
     componentWillMount() {
-      document.body.addEventListener('click', this.closePopover);
+      document.addEventListener('click', this.closePopover);
     }
 
     componentWillUnmount() {
-      document.body.removeEventListener('click', this.closePopover);
+      document.removeEventListener('click', this.closePopover);
     }
 
     onMouseEnter = () => {
@@ -33,18 +33,23 @@ export default (stickers) => {
       setOverflow('auto', document.body);
     };
 
-    toggle = () => {
-      this.setState({
-        open: !this.state.open,
-      });
+    openPopover = () => {
+      if (!this.state.open) {
+        this.preventNextClose = true;
+        this.setState({
+          open: true,
+        });
+      }
     };
 
     closePopover = () => {
-      if (this.state.open) {
+      if (!this.preventNextClose && this.state.open) {
         this.setState({
           open: false,
         });
       }
+
+      this.preventNextClose = false;
     };
 
     render() {
@@ -70,7 +75,7 @@ export default (stickers) => {
         <div style={ styles.root }>
           <button
             style={ buttonStyle }
-            onClick={ this.toggle }
+            onMouseUp={ this.openPopover }
             type="button"
           >
             <span style={ styles.icon }>☺</span>
