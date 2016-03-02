@@ -40,6 +40,22 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
+  undo = () => {
+    if (!this.state.readOnly) {
+      this.setState({
+        editorState: EditorState.undo(this.state.editorState),
+      });
+    }
+  };
+
+  redo = () => {
+    if (!this.state.readOnly) {
+      this.setState({
+        editorState: EditorState.redo(this.state.editorState),
+      });
+    }
+  };
+
   addSticker = (stickerId) => {
     this.setState({
       editorState: stickerPluginInstance.add(this.state.editorState, stickerId),
@@ -55,8 +71,16 @@ export default class UnicornEditor extends Component {
   /* eslint-disable react/jsx-no-bind */
   render() {
     const readOnlyButtonStyle = {
-      ...styles.readOnlyButton,
+      ...styles.button,
       background: (this.state.readOnly ? '#ededed' : '#fff'),
+    };
+
+    const smallButtonStyle = {
+      ...styles.button,
+      width: 40,
+      fontWeight: 'bold',
+      fontSize: '1.5em',
+      padding: 0,
     };
 
     return (
@@ -79,6 +103,18 @@ export default class UnicornEditor extends Component {
             onClick={ this.toggleReadOnly }
           >
             Toggle Read Only
+          </button>
+          <button
+            style={ smallButtonStyle }
+            onClick={ this.undo }
+          >
+            ↺
+          </button>
+          <button
+            style={ smallButtonStyle }
+            onClick={ this.redo }
+          >
+            ↻
           </button>
         </div>
         <StatePreview editorState={ this.state.editorState } />
