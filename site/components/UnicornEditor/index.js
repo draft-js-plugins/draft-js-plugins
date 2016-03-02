@@ -27,6 +27,7 @@ export default class UnicornEditor extends Component {
 
   state = {
     editorState: createEmptyEditorState(plugins),
+    readOnly: false,
   };
 
   onChange = (editorState) => {
@@ -45,8 +46,19 @@ export default class UnicornEditor extends Component {
     });
   };
 
+  toggleReadOnly = () => {
+    this.setState({
+      readOnly: !this.state.readOnly,
+    });
+  };
+
   /* eslint-disable react/jsx-no-bind */
   render() {
+    const readOnlyButtonStyle = {
+      ...styles.readOnlyButton,
+      background: (this.state.readOnly ? '#ededed' : '#fff'),
+    };
+
     return (
       <div style={styles.root}>
         <div style={styles.editor} onClick={ this.focus }>
@@ -56,10 +68,19 @@ export default class UnicornEditor extends Component {
             placeholder="I'm a Unicorn Input!"
             plugins={plugins}
             spellCheck
+            readOnly={ this.state.readOnly }
             ref="editor"
           />
         </div>
-        <StickerSelect editor={ this } />
+        <div>
+          <StickerSelect editor={ this } />
+          <button
+            style={ readOnlyButtonStyle }
+            onClick={ this.toggleReadOnly }
+          >
+            Toggle Read Only
+          </button>
+        </div>
         <StatePreview editorState={ this.state.editorState } />
       </div>
     );

@@ -3,6 +3,7 @@
 export default {
   root: {
     background: '#FFF',
+    display: 'inline-block',
   },
   popover: {
     marginTop: 10,
