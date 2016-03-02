@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Editor, { createEmptyEditorState } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
+import linkPlugin from 'draft-js-link-plugin';
 import {
   EditorState, // eslint-disable-line
   compositeDecorator, // eslint-disable-line
@@ -12,12 +13,14 @@ import { List } from 'immutable';
 import StatePreview from '../StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();
+const linkPluginInstance = linkPlugin();
 const stickerPluginInstance = stickerPlugin({ stickers });
 const { StickerSelect } = stickerPluginInstance;
 
 const plugins = List([
   hashtagPluginInstance,
   stickerPluginInstance,
+  linkPluginInstance,
 ]);
 
 export default class UnicornEditor extends Component {
