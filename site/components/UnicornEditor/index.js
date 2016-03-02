@@ -51,7 +51,7 @@ export default class UnicornEditor extends Component {
           />
         </div>
         <StickerSelect editor={this} />
-        <pre style={{ whiteSpace: 'pre-wrap' }}>
+        <pre style={styles.stateView}>
           { JSON.stringify(this.state.editorState.getCurrentContent().toJS(), null, 2) }
         </pre>
       </div>

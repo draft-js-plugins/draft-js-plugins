@@ -15,4 +15,7 @@ export default {
     borderRadius: 4,
     marginBottom: 10,
   },
+  stateView: {
+    whiteSpace: 'pre-wrap',
+  },
 };
