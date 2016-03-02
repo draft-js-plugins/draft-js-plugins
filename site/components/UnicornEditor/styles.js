@@ -13,5 +13,6 @@ export default {
     minHeight: 80,
     padding: 10,
     borderRadius: 4,
+    marginBottom: 10,
   },
 };

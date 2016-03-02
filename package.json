@@ -52,6 +52,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-0": "^6.5.0",
+    "belle": "^2.0.4",
     "css-loader": "^0.23.1",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "6.0.2",

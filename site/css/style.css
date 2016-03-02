@@ -30,3 +30,7 @@ a:hover {
 a:active {
   color: #444;
 }
+
+button:focus {
+  outline: 0;
+}

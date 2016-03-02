@@ -18,7 +18,7 @@ export default (stickers) => {
       const data = Entity.get(block.getEntityAt(0)).getData();
       return (
         <figure style={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
-          <img height={100} src={ stickers.getIn([data.id, 'url']) } />
+          <img style={ styles.image } src={ stickers.getIn([data.id, 'url']) } />
           <span
             style={ styles.removeButton }
             onClick={ this.remove }

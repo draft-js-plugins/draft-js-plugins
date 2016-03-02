@@ -29,11 +29,17 @@ export default (stickers) => {
         display: (this.state.open ? 'block' : 'none'),
       };
 
+      const buttonStyle = {
+        ...styles.button,
+        background: (this.state.open ? '#ededed' : '#fff'),
+      };
+
       return (
         <div style={ styles.root }>
           <button
-            style={ styles.toggle }
+            style={ buttonStyle }
             onClick={ this.toggle }
+            type="button"
           >
             ☺
           </button>

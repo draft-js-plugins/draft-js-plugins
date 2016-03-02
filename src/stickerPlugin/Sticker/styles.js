@@ -20,4 +20,8 @@ export default {
     marginTop: '-0.825em',
     cursor: 'pointer',
   },
+  image: {
+    width: 125,
+    height: 125,
+  },
 };

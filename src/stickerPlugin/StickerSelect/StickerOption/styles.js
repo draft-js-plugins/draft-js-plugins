@@ -3,6 +3,10 @@
 export default {
   root: {
     border: 0,
-    background: '#FFF',
+    borderRadius: 4,
+  },
+  image: {
+    height: 85,
+    width: 85,
   },
 };
