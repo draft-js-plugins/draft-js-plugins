@@ -138,15 +138,15 @@ export default class UnicornEditor extends Component {
 
         <h3>Features in this Editor via Plugins</h3>
         <ul>
-          <li>Custom Stickers</li>
-          <li>Hashtag Support</li>
-          <li>Automatically turns links into Anchor-tags</li>
-          <li>@mentions (comming soon …)</li>
+          <li>Custom stickers</li>
+          <li>Hashtag support</li>
+          <li>Automatically turns links into anchor tags</li>
+          <li>@mentions (coming soon…)</li>
         </ul>
 
         <h3>Why?</h3>
         <p>
-          Just because Unicorns are cooler than Cats 😜
+          Just because unicorns are cooler than cats 😜
         </p>
       </div>
     );
