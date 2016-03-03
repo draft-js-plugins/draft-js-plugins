@@ -1,6 +1,6 @@
-import createEmptyFn from './createEmpty';
-import createWithContentFn from './createWithContent';
-import createWithTextFn from './createWithText';
+import createEmptyFn from './utils/createEmpty';
+import createWithContentFn from './utils/createWithContent';
+import createWithTextFn from './utils/createWithText';
 
 export default from './Editor';
 export const createWithContent = createWithContentFn;
