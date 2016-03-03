@@ -90,7 +90,7 @@ export default class UnicornEditor extends Component {
     return (
       <div style={styles.root}>
 
-        <h2>Unicorn Editor</h2>
+        <h2>Example: Unicorn Editor</h2>
 
         <div style={styles.editor} onClick={ this.focus }>
           <Editor
