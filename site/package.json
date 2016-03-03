@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "react": "=0.14.7",
-    "react-dom": "^=0.14.7"
+    "react-dom": "^=0.14.7",
+    "lodash": "^4.6.1"
   },
   "devDependencies": {
     "babel-core": "^6.6.0",
