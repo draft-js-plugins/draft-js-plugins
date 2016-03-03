@@ -37,9 +37,20 @@ import { createEmpty } from 'draft-js-plugin-editor';
 const editorState = createEmpty(plugins);
 ```
 
-#### createWithContent (coming soon …)
+#### createWithText
 
-Function to creates an EditorState based on leveraging the decorators of the provided plugins.
+Function to creates an EditorState with some text.
+
+Usage:
+```
+import { createWithText } from 'draft-js-plugin-editor';
+
+const editorState = createWithText('Hello World!', plugins);
+```
+
+#### createWithContent
+
+Function to creates an EditorState with provided pre-used data.
 
 Usage:
 ```
