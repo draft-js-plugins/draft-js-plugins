@@ -6,7 +6,7 @@ This plugin allows you to add stickers to your editor!
 
 Usage:
 
-```
+```js
 import stickerPlugin from 'draft-js-sticker-plugin';
 
 const stickerPluginInstance = stickerPlugin({ stickers });

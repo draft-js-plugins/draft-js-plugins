@@ -6,7 +6,6 @@ import linkifyPlugin from 'draft-js-linkify-plugin';
 import { EditorState } from 'draft-js';
 import styles from './styles';
 import stickers from './stickers';
-import { List } from 'immutable';
 import StatePreview from '../StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();

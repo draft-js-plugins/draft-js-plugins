@@ -6,7 +6,7 @@ This plugin highlights hashtags in the text!
 
 ## Usage
 
-```
+```js
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 
 const hashtagPluginInstance = hashtagPlugin();
