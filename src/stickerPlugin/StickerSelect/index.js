@@ -56,6 +56,7 @@ export default (stickers) => {
       const editor = this.props.editor;
       const stickerElements = stickers.map((sticker) => (
         <StickerOption
+          key={ sticker.get('id') }
           editor={ editor }
           sticker={ sticker }
         />
