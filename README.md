@@ -53,16 +53,16 @@ Usage:
 import React, { Component } from 'react';
 import Editor, { createEmpty } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
-import linkPlugin from 'draft-js-link-plugin';
+import linkifyPlugin from 'draft-js-linkify-plugin';
 import { EditorState } from 'draft-js';
 import { List } from 'immutable';
 
 const hashtagPluginInstance = hashtagPlugin();
-const linkPluginInstance = linkPlugin();
+const linkifyPluginInstance = linkifyPlugin();
 
 const plugins = List([
   hashtagPluginInstance,
-  linkPluginInstance,
+  linkifyPluginInstance,
 ]);
 
 export default class UnicornEditor extends Component {
