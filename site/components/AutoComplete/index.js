@@ -160,7 +160,7 @@ export default class MentionEditorExample extends React.Component {
       editorState.getCurrentContent(),
       mentionTextSelection,
       mention.handle,
-      null,
+      null, // no inline style neeeded
       entityKey
     );
 
@@ -206,7 +206,7 @@ export default class MentionEditorExample extends React.Component {
     }
 
     return (
-      <div tyle={styles.root}>
+      <div style={styles.root}>
         <div style={styles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}

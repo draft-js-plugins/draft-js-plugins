@@ -3,6 +3,7 @@ import Editor, { createEmpty } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
+import mentionPlugin from 'draft-js-mention-plugin';
 import { EditorState } from 'draft-js';
 import styles from './styles';
 import stickers from './stickers';
@@ -22,11 +23,16 @@ const plugins = List([
 
 export default class UnicornEditor extends Component {
 
-  state = {
-    editorState: createEmpty(plugins),
-    readOnly: false,
-    showState: false,
-  };
+  constructor(props) {
+    super(props);
+    const mentionPluginInstance = mentionPlugin(this);
+
+    this.state = {
+      editorState: createEmpty(List([mentionPluginInstance])),
+      readOnly: false,
+      showState: false,
+    };
+  }
 
   onChange = (editorState) => {
     this.setState({
