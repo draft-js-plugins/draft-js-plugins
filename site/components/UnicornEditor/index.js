@@ -3,10 +3,7 @@ import Editor, { createEmpty } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkPlugin from 'draft-js-link-plugin';
-import {
-  EditorState, // eslint-disable-line
-  compositeDecorator, // eslint-disable-line
-} from 'draft-js';
+import { EditorState } from 'draft-js';
 import styles from './styles';
 import stickers from './stickers';
 import { List } from 'immutable';
@@ -55,12 +52,6 @@ export default class UnicornEditor extends Component {
         editorState: EditorState.redo(this.state.editorState),
       });
     }
-  };
-
-  addSticker = (stickerId) => {
-    this.setState({
-      editorState: stickerPluginInstance.add(this.state.editorState, stickerId),
-    });
   };
 
   toggleReadOnly = () => {
