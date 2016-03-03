@@ -1,6 +1,17 @@
-# Unicorn Editor
+# DraftJS Plugin Editor
 
 This a playground to explore a plugin architecture on top of draft-js.
+
+## Available Plugins
+
+- Stickers
+- Hashtags
+- Linkify
+- @-mentions (coming soon …)
+
+## Live Example
+
+Checkout [http://nikgraf.github.io/draft-js-plugin-editor/](http://nikgraf.github.io/draft-js-plugin-editor/)
 
 ## Install
 
