@@ -7,6 +7,10 @@ window.React = React;
 
 ReactDOM.render(
   <div>
+    <h2>Documentation</h2>
+    <p>
+      Checkout it out <a href="https://github.com/nikgraf/react-unicorn-editor#documentation">on Github</a>.
+    </p>
     <UnicornEditor />
   </div>, document.getElementById('react')
 );
