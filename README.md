@@ -92,6 +92,54 @@ export default class UnicornEditor extends Component {
 }
 ```
 
+### draft-js-sticker-plugin
+
+The Sticker Plugin allows users to place ContentBlocks of the type `sticker`.
+
+Usage:
+
+```
+import stickerPlugin from 'draft-js-sticker-plugin';
+
+const stickerPluginInstance = stickerPlugin({ stickers });
+const { StickerSelect } = stickerPluginInstance;
+```
+
+#### Exported functions
+
+| Props                                          | Description
+| -----------------------------------------------|------------:|
+| add(editorState: Object, stickerId: any) | add a Sticker ContentBlock after the current Selection|
+| remove(editorState: Object, blockKey: String) | removes a Sticker ContentBlock|
+| Sticker | the default Sticker Component |
+| StickerSelect | a basic StickerSelector |
+
+### draft-js-hastag-plugin
+
+The Hashtag Plugin allows users to write Hashtags which are styled in a different color.
+
+```
+import hashtagPlugin from 'draft-js-hashtag-plugin';
+
+const hashtagPluginInstance = hashtagPlugin();
+```
+
+### draft-js-linkify-plugin
+
+The Linkify Plugin wraps every link in an Anchor-Tag which then is clickable in the `readOnly` mode.
+
+```
+import linkifyPlugin from 'draft-js-linkify-plugin';
+
+const linkifyPluginInstance = linkifyPlugin();
+```
+
+## How to write a Plugin
+
+Feel free to copy any of the existing plugins as a starting point. Feel free to directly contact @nikgraf in case you need help or open a Github Issue.
+
+More documentation is coming soon …
+
 ## License
 
 MIT
