@@ -1,9 +1,7 @@
-import { EditorState, CompositeDecorator } from 'draft-js';
+import { EditorState } from 'draft-js';
+import createCompositeDecorator from './createCompositeDecorator';
 
 export default (plugins) => {
-  const decorators = plugins
-    .filter((plugin) => plugin.compositeDecorator !== undefined)
-    .map((plugin) => plugin.compositeDecorator);
-  const compositeDecorator = new CompositeDecorator(decorators.toJS());
+  const compositeDecorator = createCompositeDecorator(plugins);
   return EditorState.createEmpty(compositeDecorator);
 };
