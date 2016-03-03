@@ -91,6 +91,8 @@
     "classnames": "^2.2.3",
     "draft-js": "^0.1.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "immutable": "^3.7.6"
+    "immutable": "^3.7.6",
+    "linkify-it": "1.2.0",
+    "tlds": "1.96.0"
   }
 }
