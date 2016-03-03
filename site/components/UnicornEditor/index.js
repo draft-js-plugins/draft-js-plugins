@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Editor, { createEmpty } from 'draft-js-plugin-editor';
+import Editor, { createWithText } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
@@ -23,7 +23,7 @@ const plugins = List([
 export default class UnicornEditor extends Component {
 
   state = {
-    editorState: createEmpty(plugins),
+    editorState: createWithText('Hello World!', plugins),
     readOnly: false,
     showState: false,
   };
