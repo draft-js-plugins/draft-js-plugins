@@ -5,4 +5,4 @@ export default (plugins) => {
     .filter((plugin) => plugin.compositeDecorator !== undefined)
     .map((plugin) => plugin.compositeDecorator);
   return new CompositeDecorator(decorators.toJS());
-}
+};

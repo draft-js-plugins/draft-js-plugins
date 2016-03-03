@@ -1,4 +1,4 @@
-import { EditorState, convertFromRaw, ContentState } from 'draft-js';
+import { EditorState, ContentState } from 'draft-js';
 import createCompositeDecorator from './createCompositeDecorator';
 
 export default (text, plugins) => {
