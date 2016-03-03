@@ -8,7 +8,7 @@ export default class StatePreview extends Component {
   render() {
     const codeStyle = {
       ...styles.code,
-      height: (this.props.collapsed ? 0 : '30em'),
+      height: (this.props.collapsed ? 0 : '50em'),
       padding: (this.props.collapsed ? 0 : 10),
       border: (this.props.collapsed ? '1px solid #fff' : '1px solid #ddd'),
       transition: (this.props.collapsed ?
