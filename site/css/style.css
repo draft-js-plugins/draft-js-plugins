@@ -72,3 +72,20 @@ button:focus {
   margin-bottom: 0px;
   margin-top: 40px;
 }
+
+.footer {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-top: 1px solid #ddd;
+}
+
+.heart {
+  color: rgb(200, 0, 0);
+  font-size: 22px;
+  position: relative;
+  top: 3px;
+}
