@@ -16,6 +16,7 @@ module.exports = {
       'draft-js-plugin-editor': path.join(__dirname, '..', 'src', 'pluginEditor'),
       'draft-js-hashtag-plugin': path.join(__dirname, '..', 'src', 'hashtagPlugin'),
       'draft-js-sticker-plugin': path.join(__dirname, '..', 'src', 'stickerPlugin'),
+      'draft-js-linkify-plugin': path.join(__dirname, '..', 'src', 'linkifyPlugin'),
       react: path.join(__dirname, 'node_modules', 'react'),
     },
     extensions: ['', '.js'],
