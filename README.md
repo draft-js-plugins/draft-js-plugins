@@ -31,7 +31,7 @@ npm start
 Function to creates an empty EditorState leveraging the decorators of the provided plugins.
 
 Usage:
-```
+```js
 import { createEmpty } from 'draft-js-plugin-editor';
 
 const editorState = createEmpty(plugins);
@@ -42,7 +42,7 @@ const editorState = createEmpty(plugins);
 Function to creates an EditorState with some text.
 
 Usage:
-```
+```js
 import { createWithText } from 'draft-js-plugin-editor';
 
 const editorState = createWithText('Hello World!', plugins);
@@ -53,7 +53,7 @@ const editorState = createWithText('Hello World!', plugins);
 Function to creates an EditorState with provided pre-used data.
 
 Usage:
-```
+```js
 import { createWithContent } from 'draft-js-plugin-editor';
 
 const editorState = createWithContent(content, plugins);
@@ -71,7 +71,7 @@ An editor component accepting plugins.
 | all other props accepted by the DraftJS Editor | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#props) |  |
 
 Usage:
-```
+```js
 import React, { Component } from 'react';
 import Editor, { createEmpty } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
@@ -119,7 +119,7 @@ The Sticker Plugin allows users to place ContentBlocks of the type `sticker`.
 
 Usage:
 
-```
+```js
 import stickerPlugin from 'draft-js-sticker-plugin';
 
 const stickerPluginInstance = stickerPlugin({ stickers });
@@ -139,7 +139,7 @@ const { StickerSelect } = stickerPluginInstance;
 
 The Hashtag Plugin allows users to write Hashtags which are styled in a different color.
 
-```
+```js
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 
 const hashtagPluginInstance = hashtagPlugin();
@@ -149,7 +149,7 @@ const hashtagPluginInstance = hashtagPlugin();
 
 The Linkify Plugin wraps every link in an Anchor-Tag which then is clickable in the `readOnly` mode.
 
-```
+```js
 import linkifyPlugin from 'draft-js-linkify-plugin';
 
 const linkifyPluginInstance = linkifyPlugin();
