@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Editor, { createEmpty } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
-import linkPlugin from 'draft-js-link-plugin';
+import linkifyPlugin from 'draft-js-linkify-plugin';
 import { EditorState } from 'draft-js';
 import styles from './styles';
 import stickers from './stickers';
@@ -10,14 +10,14 @@ import { List } from 'immutable';
 import StatePreview from '../StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();
-const linkPluginInstance = linkPlugin();
+const linkifyPluginInstance = linkifyPlugin();
 const stickerPluginInstance = stickerPlugin({ stickers });
 const { StickerSelect } = stickerPluginInstance;
 
 const plugins = List([
   hashtagPluginInstance,
   stickerPluginInstance,
-  linkPluginInstance,
+  linkifyPluginInstance,
 ]);
 
 export default class UnicornEditor extends Component {

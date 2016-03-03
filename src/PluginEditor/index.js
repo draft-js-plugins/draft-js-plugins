@@ -1,4 +1,4 @@
-import createEmpty from './createEmpty';
+import createEmptyFn from './createEmpty';
 
 export default from './Editor';
-export const createEmpty = createEmpty;
+export const createEmpty = createEmptyFn;
