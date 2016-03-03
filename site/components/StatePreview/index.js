@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styles from './styles';
 
+import Code from "../CodeHighlight";
+
 export default class StatePreview extends Component {
 
   render() {
@@ -17,7 +19,10 @@ export default class StatePreview extends Component {
     return (
       <div style={ styles.root }>
         <pre style={ codeStyle }>
-          { JSON.stringify(this.props.editorState.getCurrentContent().toJS(), null, 2) }
+          <Code
+            language="javascript"
+            code={ JSON.stringify(this.props.editorState.getCurrentContent().toJS(), null, 2) }
+          />
         </pre>
       </div>
     );

@@ -19,6 +19,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', (req, res) => {
+  // Get prism.js
+  if (req.originalUrl === '/node_modules/prismjs/prism.js') {
+    res.sendFile(path.join(__dirname, 'node_modules/prismjs/prism.js'));
+    return;
+  }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
