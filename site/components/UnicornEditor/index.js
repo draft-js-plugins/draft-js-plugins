@@ -14,11 +14,11 @@ const linkifyPluginInstance = linkifyPlugin();
 const stickerPluginInstance = stickerPlugin({ stickers });
 const { StickerSelect } = stickerPluginInstance;
 
-const plugins = List([
+const plugins = [
   hashtagPluginInstance,
   stickerPluginInstance,
   linkifyPluginInstance,
-]);
+];
 
 export default class UnicornEditor extends Component {
 
