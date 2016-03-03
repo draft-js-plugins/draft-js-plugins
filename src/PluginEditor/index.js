@@ -1,4 +1,4 @@
-import createEmpty from './createEmptyEditorState';
+import createEmpty from './createEmpty';
 
 export default from './Editor';
-export const createEmptyEditorState = createEmpty;
+export const createEmpty = createEmpty;
