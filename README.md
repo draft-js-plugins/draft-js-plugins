@@ -7,57 +7,29 @@ This a playground to explore a plugin architecture on top of draft-js.
 - Stickers
 - Hashtags
 - Linkify
-- @-mentions (coming soon …)
+- @mentions (coming soon…)
 
 ## Live Example
 
-Checkout [http://nikgraf.github.io/draft-js-plugin-editor/](http://nikgraf.github.io/draft-js-plugin-editor/)
+Checkout [the website](http://nikgraf.github.io/draft-js-plugin-editor/)!
 
-## Install
+## Usage
+
+First, install the editor with `npm`:
 
 ```
-npm install
-cd site
-npm install
-npm start
+$ npm install draft-js-plugin-editor --save
+```
+
+and then import it somewhere in your code and you're ready to go!
+
+```js
+import Editor from 'draft-js-plugin-editor';
 ```
 
 ## Documentation
 
 ### draft-js-plugin-editor
-
-#### createEmpty
-
-Function to creates an empty EditorState leveraging the decorators of the provided plugins.
-
-Usage:
-```js
-import { createEmpty } from 'draft-js-plugin-editor';
-
-const editorState = createEmpty(plugins);
-```
-
-#### createWithText
-
-Function to creates an EditorState with some text.
-
-Usage:
-```js
-import { createWithText } from 'draft-js-plugin-editor';
-
-const editorState = createWithText('Hello World!', plugins);
-```
-
-#### createWithContent
-
-Function to creates an EditorState with provided pre-used data.
-
-Usage:
-```js
-import { createWithContent } from 'draft-js-plugin-editor';
-
-const editorState = createWithContent(content, plugins);
-```
 
 #### Editor
 
@@ -67,10 +39,11 @@ An editor component accepting plugins.
 | -----------------------------------------------|:------------:| -------:|
 | editorState                                    | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content)| * |
 | onChange                                       | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onchange)| * |
-| plugins                                        | an immutable List of plugins |  |
+| plugins                                        | an array of plugins |  |
 | all other props accepted by the DraftJS Editor | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#props) |  |
 
 Usage:
+
 ```js
 import React, { Component } from 'react';
 import Editor, { createEmpty } from 'draft-js-plugin-editor';
@@ -113,53 +86,62 @@ export default class UnicornEditor extends Component {
 }
 ```
 
-### draft-js-sticker-plugin
+#### `createEmpty`
 
-The Sticker Plugin allows users to place ContentBlocks of the type `sticker`.
+Function to creates an empty EditorState leveraging the decorators of the provided plugins.
 
 Usage:
 
 ```js
-import stickerPlugin from 'draft-js-sticker-plugin';
+import { createEmpty } from 'draft-js-plugin-editor';
 
-const stickerPluginInstance = stickerPlugin({ stickers });
-const { StickerSelect } = stickerPluginInstance;
+const editorState = createEmpty(plugins);
 ```
 
-#### Exported functions
+#### `createWithText`
 
-| Props                                          | Description
-| -----------------------------------------------|------------:|
-| add(editorState: Object, stickerId: any) | add a Sticker ContentBlock after the current Selection|
-| remove(editorState: Object, blockKey: String) | removes a Sticker ContentBlock|
-| Sticker | the default Sticker Component |
-| StickerSelect | a basic StickerSelector |
+Function to creates an EditorState with some text.
 
-### draft-js-hastag-plugin
-
-The Hashtag Plugin allows users to write Hashtags which are styled in a different color.
+Usage:
 
 ```js
-import hashtagPlugin from 'draft-js-hashtag-plugin';
+import { createWithText } from 'draft-js-plugin-editor';
 
-const hashtagPluginInstance = hashtagPlugin();
+const editorState = createWithText('Hello World!', plugins);
 ```
 
-### draft-js-linkify-plugin
+#### `createWithContent`
 
-The Linkify Plugin wraps every link in an Anchor-Tag which then is clickable in the `readOnly` mode.
+Function to creates an EditorState with provided pre-used data.
+
+Usage:
 
 ```js
-import linkifyPlugin from 'draft-js-linkify-plugin';
+import { createWithContent } from 'draft-js-plugin-editor';
 
-const linkifyPluginInstance = linkifyPlugin();
+const editorState = createWithContent(content, plugins);
 ```
 
-## How to write a Plugin
+### Plugins
 
-Feel free to copy any of the existing plugins as a starting point. Feel free to directly contact @nikgraf in case you need help or open a Github Issue.
+- `draft-js-sticker-plugin`
+- `draft-js-hastag-plugin`
+- `draft-js-linkify-plugin`
 
-More documentation is coming soon …
+#### How to write a Plugin
+
+Feel free to copy any of the existing plugins as a starting point. Feel free to directly contact @nikgraf in case you need help or open a Github Issue!
+
+More documentation is coming soon…
+
+## Development
+
+```
+npm install
+cd site
+npm install
+npm start
+```
 
 ## License
 

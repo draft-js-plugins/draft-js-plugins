@@ -1,3 +1,7 @@
+/**
+ * Creates an empty editor state with some plugins
+ */
+
 import { EditorState } from 'draft-js';
 import createCompositeDecorator from './createCompositeDecorator';
 

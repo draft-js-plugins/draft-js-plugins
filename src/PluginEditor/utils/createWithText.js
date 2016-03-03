@@ -1,3 +1,7 @@
+/**
+ * Create an editor state with some text in it already
+ */
+
 import { EditorState, ContentState } from 'draft-js';
 import createCompositeDecorator from './createCompositeDecorator';
 

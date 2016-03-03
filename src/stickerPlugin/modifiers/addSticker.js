@@ -1,3 +1,7 @@
+/**
+ * Adds a sticker to an editor state
+ */
+
 import {
   BlockMapBuilder,
   CharacterMetadata,

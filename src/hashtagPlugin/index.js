@@ -1,10 +1,12 @@
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
 
-export default () => ({
+const hashtagPlugin = () => ({
   compositeDecorator: {
     strategy: hashtagStrategy,
     component: Hashtag,
   },
   Hashtag,
 });
+
+export default hashtagPlugin;

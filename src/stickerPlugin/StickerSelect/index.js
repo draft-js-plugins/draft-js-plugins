@@ -1,6 +1,11 @@
+/**
+ * A basic sticker selector component
+ */
+
 import React, { Component } from 'react';
 import styles from './styles';
 import StickerOption from './StickerOption';
+import add from '../modifiers/addSticker';
 
 /**
  * Sets the CSS overflow value to newValue
@@ -12,11 +17,13 @@ function setOverflow(newValue, element) {
 
 export default (stickers) => {
   class StickerSelect extends Component {
-
+    // Start the selector closed
     state = {
       open: false,
     };
 
+    // When the selector is open and users click anywhere on the page,
+    // the selector should close
     componentWillMount() {
       document.addEventListener('click', this.closePopover);
     }
@@ -25,6 +32,8 @@ export default (stickers) => {
       document.removeEventListener('click', this.closePopover);
     }
 
+    // When users are scrolling the popover, the page shouldn't scroll when
+    // they reach the end of it
     onMouseEnter = () => {
       setOverflow('hidden', document.body);
     };
@@ -33,6 +42,7 @@ export default (stickers) => {
       setOverflow('auto', document.body);
     };
 
+    // Open the popover
     openPopover = () => {
       if (!this.state.open) {
         this.preventNextClose = true;
@@ -42,6 +52,7 @@ export default (stickers) => {
       }
     };
 
+    // Close the popover
     closePopover = () => {
       if (!this.preventNextClose && this.state.open) {
         this.setState({
@@ -52,15 +63,26 @@ export default (stickers) => {
       this.preventNextClose = false;
     };
 
+    // Add a sticker to the editor
+    add = (id) => {
+      const { editor } = this.props;
+      editor.onChange(add(editor.state.editorState, id));
+    };
+
     render() {
-      const editor = this.props.editor;
-      const stickerElements = stickers.map((sticker) => (
-        <StickerOption
-          key={ sticker.get('id') }
-          editor={ editor }
-          sticker={ sticker }
-        />
-      ));
+      // Create the sticker selection elements
+      const stickerElements = stickers.map((sticker) => {
+        const id = sticker.get('id');
+        const url = sticker.get('url');
+        return (
+          <StickerOption
+            key={ id }
+            onClick={ this.add }
+            id={ id }
+            url={ url }
+          />
+        );
+      });
 
       const popoverStyle = {
         ...styles.popover,

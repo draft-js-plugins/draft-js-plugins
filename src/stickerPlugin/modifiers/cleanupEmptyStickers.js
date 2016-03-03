@@ -1,3 +1,6 @@
+/**
+ * Adds backspace support to stickers
+ */
 
 import {
   EditorState,

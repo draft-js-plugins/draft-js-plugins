@@ -1,3 +1,7 @@
+/**
+ * Creates a composite decorator with some plugins
+ */
+
 import { CompositeDecorator } from 'draft-js';
 
 export default (plugins) => {

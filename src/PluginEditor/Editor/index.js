@@ -1,3 +1,7 @@
+/**
+ * The main editor component
+ */
+
 import React, { Component } from 'react';
 import { Editor } from 'draft-js';
 
@@ -14,6 +18,8 @@ export default class PluginEditor extends Component {
     this.initializeProps(props);
   }
 
+  // Cycle through the plugins, changing the editor state with what the plugins
+  // changed (or didn't)
   onChange = (editorState) => {
     let newEditorState = editorState;
     this.plugins.forEach((plugin) => {
@@ -49,10 +55,12 @@ export default class PluginEditor extends Component {
       .find((result) => result !== undefined);
   };
 
+  // Put the keyboard focus on the editor
   focus = () => {
     this.refs.editor.focus();
   };
 
+  // Initialize the props and save some component-specific data
   initializeProps(properties) {
     const {
       blockRendererFn, // eslint-disable-line
