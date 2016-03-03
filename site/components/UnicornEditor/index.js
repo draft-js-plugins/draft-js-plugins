@@ -24,7 +24,6 @@ export default class UnicornEditor extends Component {
 
   state = {
     editorState: createWithText('Hello World!', plugins),
-    readOnly: false,
     showState: false,
   };
 
@@ -39,24 +38,14 @@ export default class UnicornEditor extends Component {
   };
 
   undo = () => {
-    if (!this.state.readOnly) {
-      this.setState({
-        editorState: EditorState.undo(this.state.editorState),
-      });
-    }
+    this.setState({
+      editorState: EditorState.undo(this.state.editorState),
+    });
   };
 
   redo = () => {
-    if (!this.state.readOnly) {
-      this.setState({
-        editorState: EditorState.redo(this.state.editorState),
-      });
-    }
-  };
-
-  toggleReadOnly = () => {
     this.setState({
-      readOnly: !this.state.readOnly,
+      editorState: EditorState.redo(this.state.editorState),
     });
   };
 
@@ -68,11 +57,6 @@ export default class UnicornEditor extends Component {
 
   /* eslint-disable react/jsx-no-bind */
   render() {
-    const readOnlyButtonStyle = {
-      ...styles.button,
-      background: (this.state.readOnly ? '#ededed' : '#fff'),
-    };
-
     const showStateButtonStyle = {
       ...styles.button,
       background: (this.state.showState ? '#ededed' : '#fff'),
@@ -98,7 +82,6 @@ export default class UnicornEditor extends Component {
             onChange={this.onChange}
             plugins={plugins}
             spellCheck
-            readOnly={ this.state.readOnly }
             ref="editor"
           />
         </div>
@@ -117,12 +100,6 @@ export default class UnicornEditor extends Component {
             onClick={ this.redo }
           >
             ↻
-          </button>
-          <button
-            style={ readOnlyButtonStyle }
-            onClick={ this.toggleReadOnly }
-          >
-            Toggle Read Only
           </button>
           <button
             style={ showStateButtonStyle }
