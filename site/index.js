@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import UnicornEditor from './components/UnicornEditor';
+import UnicornEditor from './components/AutoComplete';
 
 // export for http://fb.me/react-devtools
 window.React = React;
