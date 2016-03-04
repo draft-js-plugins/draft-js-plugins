@@ -1,10 +1,10 @@
 import Link from './Link';
 import linkStrategy from './linkStrategy';
 
-const linkPlugin = () => ({
-  compositeDecorator: {
+const linkPlugin = (config) => ({
+  compositeDecorator: { // standard plugin property
     strategy: linkStrategy,
-    component: Link,
+    component: (config !== undefined && config.Link !== undefined ? config.Link : Link),
   },
   Link,
 });

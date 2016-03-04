@@ -1,11 +1,11 @@
 import removeSticker from './modifiers/removeSticker';
 import sticker from './Sticker';
 
-export default (stickers) => (contentBlock, editor) => {
+export default (config) => (contentBlock, editor) => {
   const type = contentBlock.getType();
   if (type === 'sticker') {
     return {
-      component: sticker(stickers),
+      component: (config.Sticker !== undefined ? config.Sticker : sticker(config.stickers)),
       props: {
         onRemove: (blockKey) => {
           editor.onChange(removeSticker(editor.props.editorState, blockKey));

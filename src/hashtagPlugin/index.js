@@ -1,10 +1,10 @@
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
 
-const hashtagPlugin = () => ({
-  compositeDecorator: {
+const hashtagPlugin = (config) => ({
+  compositeDecorator: { // standard plugin property
     strategy: hashtagStrategy,
-    component: Hashtag,
+    component: (config !== undefined && config.Hashtag !== undefined ? config.Hashtag : Hashtag),
   },
   Hashtag,
 });
