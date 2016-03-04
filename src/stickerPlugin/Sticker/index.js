@@ -1,3 +1,7 @@
+/**
+ * A higher-order component to render a sticker in the editor
+ */
+
 import React, { Component } from 'react';
 import styles from './styles';
 import { Entity } from 'draft-js';

@@ -31,6 +31,7 @@ function getWordAt(str, pos) {
 /* eslint-enable */
 
 const mentionSearchStrategy = editor => (contentBlock, callback) => {
+  console.log(editor);
   const editorState = editor.state.editorState;
   const selection = editorState.getSelection();
   const selectionBlockKey = selection.getAnchorKey();

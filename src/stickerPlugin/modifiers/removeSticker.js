@@ -1,3 +1,7 @@
+/**
+ * Removes a sticker from the editor state
+ */
+
 import {
   EditorState,
   Modifier,

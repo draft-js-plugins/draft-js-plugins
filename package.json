@@ -1,7 +1,7 @@
 {
-  "name": "unicorn-editor",
+  "name": "draft-js-plugin-editor",
   "version": "0.0.0",
-  "description": "Everything about Unicorns!",
+  "description": "A Plugin Architecture on top of Draft.JS",
   "author": {
     "name": "Nik Graf",
     "email": "nik@nikgraf.com",
@@ -9,11 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/nikgraf/unicorn-editor.git"
+    "url": "https://github.com/nikgraf/draft-js-plugin-editor.git"
   },
   "main": "lib/index.js",
   "keywords": [
-    "unicorn",
+    "editor",
+    "wysiwyg",
+    "draft",
     "react",
     "ux",
     "components",
@@ -91,6 +93,8 @@
     "classnames": "^2.2.3",
     "draft-js": "^0.1.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "immutable": "^3.7.6"
+    "immutable": "^3.7.6",
+    "linkify-it": "1.2.0",
+    "tlds": "1.96.0"
   }
 }

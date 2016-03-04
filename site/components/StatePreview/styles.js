@@ -11,7 +11,7 @@ export default {
     background: '#FDFDFD',
     padding: 10,
     height: 0,
-    maxHeight: '30em',
+    maxHeight: '50em',
     margin: 0,
   },
 };

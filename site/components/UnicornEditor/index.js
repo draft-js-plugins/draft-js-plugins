@@ -7,7 +7,6 @@ import mentionPlugin from 'draft-js-mention-plugin';
 import { EditorState } from 'draft-js';
 import styles from './styles';
 import stickers from './stickers';
-import { List } from 'immutable';
 import StatePreview from '../StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();
@@ -15,21 +14,21 @@ const linkifyPluginInstance = linkifyPlugin();
 const stickerPluginInstance = stickerPlugin({ stickers });
 const { StickerSelect } = stickerPluginInstance;
 
-const plugins = List([
+const plugins = [
   hashtagPluginInstance,
   stickerPluginInstance,
   linkifyPluginInstance,
-]);
+];
 
 export default class UnicornEditor extends Component {
 
   constructor(props) {
     super(props);
     const mentionPluginInstance = mentionPlugin(this);
+    plugins.push(mentionPluginInstance);
 
     this.state = {
-      editorState: createEmpty(List([mentionPluginInstance])),
-      readOnly: false,
+      editorState: createEmpty(plugins),
       showState: false,
     };
   }
@@ -45,24 +44,14 @@ export default class UnicornEditor extends Component {
   };
 
   undo = () => {
-    if (!this.state.readOnly) {
-      this.setState({
-        editorState: EditorState.undo(this.state.editorState),
-      });
-    }
+    this.setState({
+      editorState: EditorState.undo(this.state.editorState),
+    });
   };
 
   redo = () => {
-    if (!this.state.readOnly) {
-      this.setState({
-        editorState: EditorState.redo(this.state.editorState),
-      });
-    }
-  };
-
-  toggleReadOnly = () => {
     this.setState({
-      readOnly: !this.state.readOnly,
+      editorState: EditorState.redo(this.state.editorState),
     });
   };
 
@@ -74,11 +63,6 @@ export default class UnicornEditor extends Component {
 
   /* eslint-disable react/jsx-no-bind */
   render() {
-    const readOnlyButtonStyle = {
-      ...styles.button,
-      background: (this.state.readOnly ? '#ededed' : '#fff'),
-    };
-
     const showStateButtonStyle = {
       ...styles.button,
       background: (this.state.showState ? '#ededed' : '#fff'),
@@ -104,7 +88,6 @@ export default class UnicornEditor extends Component {
             onChange={this.onChange}
             plugins={plugins}
             spellCheck
-            readOnly={ this.state.readOnly }
             ref="editor"
           />
         </div>
@@ -125,12 +108,6 @@ export default class UnicornEditor extends Component {
             ↻
           </button>
           <button
-            style={ readOnlyButtonStyle }
-            onClick={ this.toggleReadOnly }
-          >
-            Toggle Read Only
-          </button>
-          <button
             style={ showStateButtonStyle }
             onClick={ this.toggleShowState }
           >
@@ -144,15 +121,15 @@ export default class UnicornEditor extends Component {
 
         <h3>Features in this Editor via Plugins</h3>
         <ul>
-          <li>Custom Stickers</li>
-          <li>Hashtag Support</li>
-          <li>Automatically turns links into Anchor-tags</li>
-          <li>@mentions (comming soon …)</li>
+          <li>Custom stickers</li>
+          <li>Hashtag support</li>
+          <li>Automatically turns links into anchor tags</li>
+          <li>@mentions (coming soon…)</li>
         </ul>
 
         <h3>Why?</h3>
         <p>
-          Just because Unicorns are cooler than Cats 😜
+          Just because unicorns are cooler than cats 😜
         </p>
       </div>
     );

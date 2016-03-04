@@ -5,7 +5,7 @@ import blockRendererFn from './blockRendererFn';
 import sticker from './Sticker';
 import stickerSelect from './StickerSelect';
 
-export default (config) => ({
+const stickerPlugin = (config) => ({
   add: addSticker,
   blockRendererFn: blockRendererFn(config.stickers), // standard
   onChange: cleanupEmptyStickers, // standard
@@ -13,3 +13,5 @@ export default (config) => ({
   Sticker: sticker(config.stickers),
   StickerSelect: stickerSelect(config.stickers),
 });
+
+export default stickerPlugin;
