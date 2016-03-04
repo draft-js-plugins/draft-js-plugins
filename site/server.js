@@ -24,6 +24,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'node_modules/prismjs/prism.js'));
     return;
   }
+
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
