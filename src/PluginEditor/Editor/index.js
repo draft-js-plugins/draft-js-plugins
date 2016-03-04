@@ -13,7 +13,7 @@ export default class PluginEditor extends Component {
   constructor(props) {
     super(props);
     this.initializeProps(props);
-    const compositeDecorator = createCompositeDecorator(this.props.plugins);
+    const compositeDecorator = createCompositeDecorator(this.props.plugins, this);
     this.editorState = EditorState.set(this.editorState, { decorator: compositeDecorator });
   }
 

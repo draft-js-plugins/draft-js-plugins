@@ -2,11 +2,11 @@
  * Creates a composite decorator with some plugins
  */
 
-import { CompositeDecorator } from 'draft-js-cutting-edge';
+import CompositeDecorator from './CompositeDecorator';
 
-export default (plugins) => {
+export default (plugins, editorContext) => {
   const decorators = plugins
     .filter((plugin) => plugin.compositeDecorator !== undefined)
     .map((plugin) => plugin.compositeDecorator);
-  return new CompositeDecorator(decorators);
+  return new CompositeDecorator(decorators, editorContext);
 };
