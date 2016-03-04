@@ -44,8 +44,8 @@
   },
   "devDependencies": {
     "alex": "^2.0.1",
-    "babel-cli": "^6.6.0",
-    "babel-core": "^6.6.0",
+    "babel-cli": "^6.6.4",
+    "babel-core": "^6.6.4",
     "babel-eslint": "^5.0.0",
     "babel-jest": "^6.0.1",
     "babel-loader": "^6.2.4",
@@ -60,9 +60,9 @@
     "eslint-config-airbnb": "6.0.2",
     "eslint-plugin-mocha": "^2.0.0",
     "eslint-plugin-react": "^4.1.0",
-    "flow-bin": "^0.22.0",
+    "flow-bin": "^0.22.1",
     "jest-cli": "^0.8.2",
-    "jscs": "^2.10.1",
+    "jscs": "^2.11.0",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
@@ -72,7 +72,7 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "=2.7.1"
+    "webpack-hot-middleware": "=2.9.1"
   },
   "jest": {
     "testRunner": "<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js",
