@@ -13,8 +13,8 @@ ReactDOM.render(
       Check it out <a href="https://github.com/nikgraf/react-unicorn-editor#documentation">on Github</a>.
     </p>
 
-    <SuperheroEditor />
     <UnicornEditor />
+    <SuperheroEditor />
 
   </div>, document.getElementById('react')
 );
