@@ -22,7 +22,8 @@ const plugins = [
 export default class UnicornEditor extends Component {
 
   state = {
-    editorState: createWithText('Hello World!', plugins),
+    // editorState: EditorState.createEmpty(), // alternative to create an empty state
+    editorState: createWithText('Hello World!'),
     showState: false,
   };
 

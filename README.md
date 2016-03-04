@@ -48,7 +48,7 @@ Usage:
 
 ```js
 import React, { Component } from 'react';
-import Editor, { createEmpty } from 'draft-js-plugin-editor';
+import Editor from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import { EditorState } from 'draft-js';
@@ -64,7 +64,7 @@ const plugins = [
 export default class UnicornEditor extends Component {
 
   state = {
-    editorState: createEmpty(plugins),
+    editorState: EditorState.createEmpty(),
   };
 
   onChange = (editorState) => {
@@ -88,18 +88,6 @@ export default class UnicornEditor extends Component {
 }
 ```
 
-#### `createEmpty`
-
-Function to creates an empty EditorState leveraging the decorators of the provided plugins.
-
-Usage:
-
-```js
-import { createEmpty } from 'draft-js-plugin-editor';
-
-const editorState = createEmpty(plugins);
-```
-
 #### `createWithText`
 
 Function to creates an EditorState with some text.
@@ -110,18 +98,6 @@ Usage:
 import { createWithText } from 'draft-js-plugin-editor';
 
 const editorState = createWithText('Hello World!', plugins);
-```
-
-#### `createWithContent`
-
-Function to creates an EditorState with provided pre-used data.
-
-Usage:
-
-```js
-import { createWithContent } from 'draft-js-plugin-editor';
-
-const editorState = createWithContent(content, plugins);
 ```
 
 ### Plugins
