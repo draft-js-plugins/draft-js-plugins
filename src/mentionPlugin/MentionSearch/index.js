@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // import styles from './styles';
 import Dropdown from './Dropdown';
-import getRangeBoundingClientRect from 'draft-js/lib/getRangeBoundingClientRect'
+import getRangeBoundingClientRect from 'draft-js-cutting-edge/lib/getRangeBoundingClientRect'
 
 import addMention from '../modifiers/addMention';
 

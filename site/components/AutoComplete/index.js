@@ -4,8 +4,8 @@ import {
   Editor,
   EditorState,
   Entity,
-} from 'draft-js';
-import getRangeBoundingClientRect from 'draft-js/lib/getRangeBoundingClientRect';
+} from 'draft-js-cutting-edge';
+import getRangeBoundingClientRect from 'draft-js-cutting-edge/lib/getRangeBoundingClientRect';
 import React, { PropTypes } from 'react';
 import _ from 'lodash'; // TODO remove dep
 

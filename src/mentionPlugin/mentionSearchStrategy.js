@@ -1,4 +1,4 @@
-import { Entity } from 'draft-js';
+import { Entity } from 'draft-js-cutting-edge';
 
 // TODO this is pretty hacky, maybe a better way?
 /* eslint-disable */

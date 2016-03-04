@@ -1,4 +1,4 @@
-import { Modifier, EditorState, Entity } from 'draft-js';
+import { Modifier, EditorState, Entity } from 'draft-js-cutting-edge';
 
 const addMention = (editorState, mention, mentionSearchBegin, mentionSearchEnd) => {
   const entityKey = Entity.create('MENTION', 'IMMUTABLE', { mention });

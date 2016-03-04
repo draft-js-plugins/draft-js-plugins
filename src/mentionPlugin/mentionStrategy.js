@@ -1,4 +1,4 @@
-import { Entity } from 'draft-js';
+import { Entity } from 'draft-js-cutting-edge';
 
 export default function findMentionEntities(contentBlock, callback) {
   contentBlock.findEntityRanges(
