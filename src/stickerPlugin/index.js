@@ -10,7 +10,7 @@ const stickerPlugin = (config) => ({
   blockRendererFn: blockRendererFn(config), // standard plugin callback
   onChange: cleanupEmptyStickers, // standard plugin callback
   remove: removeSticker,
-  Sticker: sticker(config.stickers),
+  Sticker: sticker(config.stickers, config.hasRemove),
   StickerSelect: stickerSelect(config.stickers),
 });
 
