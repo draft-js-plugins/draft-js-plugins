@@ -5,7 +5,7 @@ export default (config) => (contentBlock, editor) => {
   const type = contentBlock.getType();
   if (type === 'sticker') {
     return {
-      component: (config.Sticker !== undefined ? config.Sticker : sticker(config.stickers)),
+      component: (config.Sticker !== undefined ? config.Sticker : sticker(config.stickers, config.hasRemove)),
       props: {
         onRemove: (blockKey) => {
           editor.onChange(removeSticker(editor.props.editorState, blockKey));

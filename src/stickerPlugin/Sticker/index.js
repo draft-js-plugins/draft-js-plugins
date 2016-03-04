@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import styles from './styles';
 import { Entity } from 'draft-js';
 
-export default (stickers) => {
+export default (stickers, hasRemove = true) => {
   class Sticker extends Component {
 
     remove = (event) => {
@@ -18,18 +18,22 @@ export default (stickers) => {
     };
 
     render() {
+      const removeButton = (
+        <span
+          style={ styles.removeButton }
+          onClick={ this.remove }
+          type="button"
+        >
+          ✕
+        </span>
+      );
+
       const { block } = this.props;
       const data = Entity.get(block.getEntityAt(0)).getData();
       return (
         <figure style={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
           <img style={ styles.image } src={ stickers.getIn(['data', data.id, 'url']) } />
-          <span
-            style={ styles.removeButton }
-            onClick={ this.remove }
-            type="button"
-          >
-            ✕
-          </span>
+          { hasRemove ? removeButton : null }
         </figure>
       );
     }
