@@ -9,10 +9,11 @@ import stickers from './stickers';
 import StatePreview from '../StatePreview';
 import Hashtag from './Hashtag';
 import Link from './Link';
+import Sticker from './Sticker';
 
 const hashtagPluginInstance = hashtagPlugin({ Hashtag });
 const linkifyPluginInstance = linkifyPlugin({ Link });
-const stickerPluginInstance = stickerPlugin({ stickers });
+const stickerPluginInstance = stickerPlugin({ stickers, Sticker });
 const { StickerSelect } = stickerPluginInstance;
 
 const plugins = [
