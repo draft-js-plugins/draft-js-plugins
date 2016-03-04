@@ -2,16 +2,18 @@ import {
   default as React,
   Component,
   PropTypes,
-} from "react";
+} from 'react';
 
 import {
   default as ReactComponentWithPureRenderMixin,
-} from "react-addons-pure-render-mixin";
+} from 'react-addons-pure-render-mixin';
+
+import Prism from 'prismjs';
 
 export default class Code extends Component {
   static propTypes = {
     className: PropTypes.string,
-    children: PropTypes.any,
+    code: PropTypes.string,
   };
 
   componentDidMount() {
@@ -29,7 +31,7 @@ export default class Code extends Component {
   }
 
   render() {
-    const className = (this.props.language ? 'language-' + this.props.language : '');
+    const className = (this.props.language ? `language-${this.props.language}` : '');
     return (
       <code
         ref="code"

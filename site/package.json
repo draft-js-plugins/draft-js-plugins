@@ -19,7 +19,7 @@
     "react-dom": "^=0.14.7"
   },
   "devDependencies": {
-    "babel-core": "^6.6.0",
+    "babel-core": "^6.6.4",
     "babel-loader": "^6.2.4",
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.2",

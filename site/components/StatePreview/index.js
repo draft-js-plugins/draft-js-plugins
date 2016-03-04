@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './styles';
 
-import Code from "../CodeHighlight";
+import Code from '../CodeHighlight';
 
 export default class StatePreview extends Component {
 
