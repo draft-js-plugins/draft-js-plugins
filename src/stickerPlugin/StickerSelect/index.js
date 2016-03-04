@@ -71,7 +71,7 @@ export default (stickers) => {
 
     render() {
       // Create the sticker selection elements
-      const stickerElements = stickers.map((sticker) => {
+      const stickerElements = stickers.get('data').map((sticker) => {
         const id = sticker.get('id');
         const url = sticker.get('url');
         return (
