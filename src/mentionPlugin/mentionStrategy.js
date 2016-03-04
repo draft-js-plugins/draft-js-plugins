@@ -9,6 +9,7 @@ export default function findMentionEntities(contentBlock, callback) {
         Entity.get(entityKey).getType() === 'MENTION'
       );
     },
+
     callback
   );
 }

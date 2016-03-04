@@ -3,7 +3,7 @@ import MentionSearch from './MentionSearch';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 
-// TODO init form unicorn editor
+// TODO init form passed data
 const mentions = [
   { handle: 'mjrussell', link: 'https://twitter.com/mrussell247' },
   { handle: 'nikgraf', link: 'https://twitter.com/nikgraf' },
@@ -19,6 +19,6 @@ export default (editorContext) => ({
     {
       strategy: mentionSearchStrategy(editorContext),
       component: MentionSearch(editorContext, mentions),
-    }
+    },
   ],
 });
