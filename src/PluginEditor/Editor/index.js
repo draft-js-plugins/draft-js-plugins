@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState } from 'draft-js-cutting-edge';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
 
 export default class PluginEditor extends Component {

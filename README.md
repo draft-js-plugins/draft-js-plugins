@@ -51,7 +51,7 @@ import React, { Component } from 'react';
 import Editor from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
-import { EditorState } from 'draft-js';
+import { EditorState } from 'draft-js-cutting-edge';
 
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();

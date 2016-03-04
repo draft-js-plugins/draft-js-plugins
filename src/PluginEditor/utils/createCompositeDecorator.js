@@ -2,7 +2,7 @@
  * Creates a composite decorator with some plugins
  */
 
-import { CompositeDecorator } from 'draft-js';
+import { CompositeDecorator } from 'draft-js-cutting-edge';
 
 export default (plugins) => {
   const decorators = plugins
