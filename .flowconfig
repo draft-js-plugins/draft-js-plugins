@@ -12,7 +12,7 @@
 [options]
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
-module.name_mapper='draft-js' -> 'Draft'
+module.name_mapper='draft-js-cutting-edge' -> 'Draft'
 module.system=haste
 
 [version]

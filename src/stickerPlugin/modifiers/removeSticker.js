@@ -6,7 +6,7 @@ import {
   EditorState,
   Modifier,
   SelectionState
-} from 'draft-js';
+} from 'draft-js-cutting-edge';
 
 export default (editorState: Object, blockKey: String) => {
   const content = editorState.getCurrentContent();

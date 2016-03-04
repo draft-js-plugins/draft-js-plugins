@@ -3,7 +3,8 @@
  */
 
 import React, { Component } from 'react';
-import { Editor } from 'draft-js';
+import { Editor, EditorState } from 'draft-js-cutting-edge';
+import createCompositeDecorator from '../utils/createCompositeDecorator';
 
 export default class PluginEditor extends Component {
 
@@ -12,6 +13,8 @@ export default class PluginEditor extends Component {
   constructor(props) {
     super(props);
     this.initializeProps(props);
+    const compositeDecorator = createCompositeDecorator(this.props.plugins, this);
+    this.editorState = EditorState.set(this.editorState, { decorator: compositeDecorator });
   }
 
   componentWillReceiveProps(props) {
@@ -70,10 +73,10 @@ export default class PluginEditor extends Component {
       ...editorProps, // eslint-disable-line
     } = properties;
     this.plugins = plugins;
-    this.editorState = editorState;
     this.propsOnChange = onChange;
     this.propsBlockRendererFn = blockRendererFn;
     this.editorProps = editorProps;
+    this.editorState = editorState;
   }
 
   render() {

@@ -3,12 +3,12 @@
  */
 
 import { List } from 'immutable';
-import { CompositeDecorator } from 'draft-js';
+import CompositeDecorator from './CompositeDecorator';
 
-export default (plugins) => {
+export default (plugins, editorContext) => {
   const decorators = List(plugins)
     .filter((plugin) => plugin.compositeDecorators !== undefined)
     .flatMap((plugin) => plugin.compositeDecorators)
     .toJS();
-  return new CompositeDecorator(decorators);
+  return new CompositeDecorator(decorators, editorContext);
 };

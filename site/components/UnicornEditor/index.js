@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Editor, { createEmpty } from 'draft-js-plugin-editor';
+import Editor, { createWithText } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import mentionPlugin from 'draft-js-mention-plugin';
-import { EditorState } from 'draft-js';
+import { EditorState } from 'draft-js-cutting-edge';
 import styles from './styles';
 import stickers from './stickers';
 import StatePreview from '../StatePreview';
@@ -28,7 +28,8 @@ export default class UnicornEditor extends Component {
     plugins.push(mentionPluginInstance);
 
     this.state = {
-      editorState: createEmpty(plugins),
+      // editorState: EditorState.createEmpty(), // alternative to create an empty state
+      editorState: createWithText('Hello World!'),
       showState: false,
     };
   }

@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import styles from './styles';
-import { Entity } from 'draft-js';
+import { Entity } from 'draft-js-cutting-edge';
 
 export default (stickers, hasRemove = true) => {
   class Sticker extends Component {
