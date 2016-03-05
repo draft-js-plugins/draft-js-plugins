@@ -1,11 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, {
+  // PropTypes,
+  Component,
+} from 'react';
 
 export default class Dropdown extends Component {
 
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    style: PropTypes.object,
-  };
+  // static propTypes = {
+  //   children: PropTypes.node.isRequired,
+  //   style: PropTypes.object,
+  // };
 
   static defaultProps = {
     style: {},

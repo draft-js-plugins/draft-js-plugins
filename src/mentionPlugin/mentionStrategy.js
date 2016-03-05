@@ -1,15 +1,12 @@
 import { Entity } from 'draft-js-cutting-edge';
 
-export default function findMentionEntities(contentBlock, callback) {
-  contentBlock.findEntityRanges(
-    (character) => {
-      const entityKey = character.getEntity();
-      return (
-        entityKey !== null &&
-        Entity.get(entityKey).getType() === 'MENTION'
-      );
-    },
+const findMention = (character) => {
+  const entityKey = character.getEntity();
+  return (entityKey !== null && Entity.get(entityKey).getType() === 'MENTION');
+};
 
-    callback
-  );
-}
+const findMentionEntities = (contentBlock, callback) => {
+  contentBlock.findEntityRanges(findMention, callback);
+};
+
+export default findMentionEntities;

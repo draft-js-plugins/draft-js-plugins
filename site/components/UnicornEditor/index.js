@@ -12,27 +12,23 @@ import StatePreview from '../StatePreview';
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
 const stickerPluginInstance = stickerPlugin({ stickers });
+const mentionPluginInstance = mentionPlugin();
 const { StickerSelect } = stickerPluginInstance;
 
 const plugins = [
   hashtagPluginInstance,
   stickerPluginInstance,
   linkifyPluginInstance,
+  mentionPluginInstance,
 ];
 
 export default class UnicornEditor extends Component {
 
-  constructor(props) {
-    super(props);
-    const mentionPluginInstance = mentionPlugin(this);
-    plugins.push(mentionPluginInstance);
-
-    this.state = {
-      // editorState: EditorState.createEmpty(), // alternative to create an empty state
-      editorState: createWithText('Hello World!'),
-      showState: false,
-    };
-  }
+  state = {
+    // editorState: EditorState.createEmpty(), // alternative to create an empty state
+    editorState: createWithText('Hello World!'),
+    showState: false,
+  };
 
   onChange = (editorState) => {
     this.setState({

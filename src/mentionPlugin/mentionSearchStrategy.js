@@ -1,7 +1,7 @@
 import getWordAt from './getWordAt';
 
-const mentionSearchStrategy = editor => (contentBlock, callback) => {
-  const editorState = editor.state.editorState;
+const mentionSearchStrategy = (contentBlock, callback, editorContext) => {
+  const editorState = editorContext.props.editorState;
   const selection = editorState.getSelection();
   const selectionBlockKey = selection.getAnchorKey();
   if (selection.isCollapsed() && selectionBlockKey === contentBlock.getKey()) {
