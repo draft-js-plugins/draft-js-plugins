@@ -8,11 +8,14 @@ import historyPlugin from 'draft-js-history-plugin';
 import { EditorState } from 'draft-js-cutting-edge';
 import styles from './styles';
 import stickers from './stickers';
+import mentions from './mentions';
 import StatePreview from '../StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
-const mentionPluginInstance = mentionPlugin();
+const mentionPluginInstance = mentionPlugin({
+  mentions,
+});
 const historyPluginInstance = historyPlugin();
 const stickerPluginInstance = stickerPlugin({
   stickers,

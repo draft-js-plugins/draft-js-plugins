@@ -1,5 +1,3 @@
-// TODO move to utils
-
 const getWordAt = (string, position) => {
   // Perform type conversions.
   const str = String(string);

@@ -2,7 +2,8 @@ import { Modifier, EditorState, Entity } from 'draft-js-cutting-edge';
 import getWordAt from '../utils/getWordAt';
 
 const addMention = (editorState, mention, selection) => {
-  const entityKey = Entity.create('mention', 'IMMUTABLE', { mention });
+  // TODO allow the user to override if the mentions are SEGMENTED, IMMUTABLE or MUTABLE
+  const entityKey = Entity.create('mention', 'SEGMENTED', { mention });
 
   const currentContent = editorState.getCurrentContent();
   const currentBlock = currentContent.getBlockForKey(selection.getAnchorKey());
