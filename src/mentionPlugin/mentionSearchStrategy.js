@@ -1,4 +1,4 @@
-import getWordAt from './getWordAt';
+import getWordAt from './utils/getWordAt';
 
 const mentionSearchStrategy = (contentBlock, callback, editorContext) => {
   // TODO check if the selection is faster or the regex to improve performance

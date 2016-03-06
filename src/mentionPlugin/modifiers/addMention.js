@@ -1,5 +1,5 @@
 import { Modifier, EditorState, Entity } from 'draft-js-cutting-edge';
-import getWordAt from '../getWordAt';
+import getWordAt from '../utils/getWordAt';
 
 const addMention = (editorState, mention, selection) => {
   const entityKey = Entity.create('mention', 'IMMUTABLE', { mention });
