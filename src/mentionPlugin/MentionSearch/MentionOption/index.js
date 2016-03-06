@@ -17,13 +17,13 @@ export default class MentionOption extends Component {
 
   onMouseOver = () => {
     this.setState({
-      hovered: true
+      hovered: true,
     });
   };
 
   onMouseOut = () => {
     this.setState({
-      hovered: false
+      hovered: false,
     });
   };
 
