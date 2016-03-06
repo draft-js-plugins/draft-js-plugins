@@ -4,6 +4,7 @@ import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import mentionPlugin from 'draft-js-mention-plugin';
+import historyPlugin from 'draft-js-history-plugin';
 import { EditorState } from 'draft-js-cutting-edge';
 import styles from './styles';
 import stickers from './stickers';
@@ -11,15 +12,20 @@ import StatePreview from '../StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
-const stickerPluginInstance = stickerPlugin({ stickers });
 const mentionPluginInstance = mentionPlugin();
+const historyPluginInstance = historyPlugin();
+const stickerPluginInstance = stickerPlugin({
+  stickers,
+});
 const { StickerSelect } = stickerPluginInstance;
+const { UndoButton, RedoButton } = historyPluginInstance;
 
 const plugins = [
   hashtagPluginInstance,
   stickerPluginInstance,
   linkifyPluginInstance,
   mentionPluginInstance,
+  historyPluginInstance,
 ];
 
 export default class UnicornEditor extends Component {
@@ -65,15 +71,6 @@ export default class UnicornEditor extends Component {
       background: (this.state.showState ? '#ededed' : '#fff'),
     };
 
-    const smallButtonStyle = {
-      ...styles.button,
-      width: 40,
-      fontWeight: 'bold',
-      fontSize: '1.5em',
-      padding: 0,
-      top: 0,
-    };
-
     return (
       <div style={styles.root}>
 
@@ -92,18 +89,14 @@ export default class UnicornEditor extends Component {
           <div style={ styles.stickerSelect }>
             <StickerSelect editor={ this } />
           </div>
-          <button
-            style={ smallButtonStyle }
-            onClick={ this.undo }
-          >
-            ↺
-          </button>
-          <button
-            style={ smallButtonStyle }
-            onClick={ this.redo }
-          >
-            ↻
-          </button>
+          <UndoButton
+            editorState={ this.state.editorState }
+            onChange={ this.onChange }
+          />
+          <RedoButton
+            editorState={ this.state.editorState }
+            onChange={ this.onChange }
+          />
           <button
             style={ showStateButtonStyle }
             onClick={ this.toggleShowState }

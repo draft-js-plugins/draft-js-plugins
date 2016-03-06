@@ -25,6 +25,7 @@ module.exports = {
       'draft-js-sticker-plugin': path.join(__dirname, '..', 'src', 'stickerPlugin'),
       'draft-js-linkify-plugin': path.join(__dirname, '..', 'src', 'linkifyPlugin'),
       'draft-js-mention-plugin': path.join(__dirname, '..', 'src', 'mentionPlugin'),
+      'draft-js-history-plugin': path.join(__dirname, '..', 'src', 'historyPlugin'),
       react: path.join(__dirname, 'node_modules', 'react'),
     },
     extensions: ['', '.js'],
