@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { EditorState } from 'draft-js-cutting-edge';
 
 import HistoryEntry from './HistoryEntry';
 import styles from './styles';
