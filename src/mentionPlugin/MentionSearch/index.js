@@ -1,83 +1,56 @@
 import React, { Component } from 'react';
 
 import Dropdown from './Dropdown';
-import getRangeBoundingClientRect from 'draft-js-cutting-edge/lib/getRangeBoundingClientRect';
-
+import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
-import getWordAt from '../getWordAt';
+import styles from './styles';
 
 export default (mentions) => {
   class MentionSearch extends Component {
 
-    constructor(props) {
-      super(props);
+    onMentionSelect = (mention) => {
+      // TODO dynamic mention
+      const newEditorState = addMention(this.props.editor.props.editorState, mention, this.lastSelection);
+      this.props.editor.onChange(newEditorState);
+    };
 
-      // const editorState = editor.state.editorState;
-      // const content = editorState.getCurrentContent();
-      // const selection = editorState.getSelection();
-      // const currentBlock = content.getBlockForKey(selection.getAnchorKey());
-      // const blockText = currentBlock.getText();
-      // const result = getWordAt(blockText, selection.getAnchorOffset());
-      // const begin = result.begin;
-      // const end = result.end;
-      // const text = this.props.decoratedText;
-      // if (text.startsWith('@')) {
-      //   this.mentionSearch = text.substring(1);
-      // } else {
-      //   this.mentionSearch = '';
-      // }
-      //
-      // this.mentionSearchBegin = begin;
-      // this.mentionSearchEnd = end;
-      // const range = global.getSelection().getRangeAt(0);
-      // this.rect = getRangeBoundingClientRect(range); // TODO use getViewportSelectionRect instead
-    }
+    // Get the first 5 mentions that match
+    getMentionsForFilter = () => (
+      mentions
 
-    // onMentionSelect = mention => () => {
-    //   editor.onChange(addMention(
-    //     editor.state.editorState,
-    //     mention,
-    //     this.mentionSearchBegin,
-    //     this.mentionSearchEnd
-    //   ));
-    // };
-    //
-    // // Get the first 5 mentions that match
-    // getMentionsForFilter = () => mentions.filter(m => m.handle.startsWith(this.mentionSearch)).slice(0, 5);
-    //
-    // renderItemForMention = mention => (
-    //   <div key={mention.handle}
-    //     eventKey={mention.handle}
-    //     className="mention-custom-dropdown-item"
-    //     onClick={this.onMentionSelect(mention)}
-    //   >
-    //     <span className="bold">{`@${mention.handle} `}</span>
-    //   </div>
-    // );
+      // TODO better search algorithm than startsWith
+      // mentions.filter((mention) => mention.handle.startsWith(this.mentionSearch)).slice(0, 10)
+    );
 
-    // render() {
-    //   const dropdownStyle = {
-    //     position: 'static',
-    //     border: '1px solid black',
-    //     top: this.rect.top,
-    //     left: this.rect.left,
-    //     marginTop: '11px',
-    //     width: '200px',
-    //     textAlign: 'left',
-    //   };
-    //   return (
-    //     <div style={{ display: 'inline' }}>
-    //       <span>{ this.props.children[0].props.text }</span>
-    //         <Dropdown isOpen={this.mentionSearch !== null} style={dropdownStyle}>
-    //             {this.getMentionsForFilter().map(this.renderItemForMention)}
-    //         </Dropdown>
-    //     </div>
-    //   );
-    // }
+    renderItemForMention = (mention) => (
+
+      <div key={ mention.handle }
+        eventKey={ mention.handle }
+        onClick={ this.onMentionSelect }
+      >
+        <span>{ mention.handle }</span>
+      </div>
+    );
 
     render() {
+      // TODO ask issac to provide begin & end down to the component as prop (in decorators)
+      this.lastSelection = this.props.editor.props.editorState.getSelection();
+
+      // TODO what happens to positioning if the mention is @ the end in the text field. can it break out from the inner layout?
       return (
-        <span {...this.props}>{ this.props.decoratedText }</span>
+        <span {...this.props} style={ styles.root }>
+          { this.props.children }
+          <Dropdown>
+            {
+              this.getMentionsForFilter().map((mention) => (
+                <MentionOption
+                  onMentionSelect={ this.onMentionSelect }
+                  mention={ mention }
+                />
+              ))
+            }
+          </Dropdown>
+        </span>
       );
     }
   }

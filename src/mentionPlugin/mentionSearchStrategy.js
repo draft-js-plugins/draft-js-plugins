@@ -1,6 +1,7 @@
 import getWordAt from './getWordAt';
 
 const mentionSearchStrategy = (contentBlock, callback, editorContext) => {
+  // TODO check if the selection is faster or the regex to improve performance
   const editorState = editorContext.props.editorState;
   const selection = editorState.getSelection();
   const selectionBlockKey = selection.getAnchorKey();
@@ -10,8 +11,6 @@ const mentionSearchStrategy = (contentBlock, callback, editorContext) => {
     const mentionRegex = /\@([\w]*)/;
     const matches = word.match(mentionRegex);
     const existingEntityKey = contentBlock.getEntityAt(begin);
-
-    // const alreadyMention = Entity.get(existingEntityKey).getType() === 'MENTION';
     if (!existingEntityKey && matches) {
       callback(begin, end);
     }

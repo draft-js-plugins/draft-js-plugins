@@ -5,10 +5,15 @@ import mentionSearchStrategy from './mentionSearchStrategy';
 
 // TODO init form passed data
 // TODO allow to take a promise for mentions data as well
+// TODO change handle to name?
+// TODO add profilepics/icons
+// TODO dedect if all have images to see of images should be used
+// TODO use unicorns for the unicorn editor
 const mentions = [
-  { handle: 'mjrussell', link: 'https://twitter.com/mrussell247' },
-  { handle: 'nikgraf', link: 'https://twitter.com/nikgraf' },
-  { handle: 'dan_abramov', link: 'https://twitter.com/dan_abramov' },
+  { handle: 'Matthew Russell', link: 'https://twitter.com/mrussell247' },
+  { handle: 'Jyoti Puri', link: 'https://twitter.com/jyopur' },
+  { handle: 'Max Stoiber', link: 'https://twitter.com/mxstbr' },
+  { handle: 'Nik Graf', link: 'https://twitter.com/nikgraf' },
 ];
 
 const metionsPlugin = () => ({
