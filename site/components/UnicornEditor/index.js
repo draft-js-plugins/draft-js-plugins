@@ -3,15 +3,20 @@ import Editor, { createWithText } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
+import mentionPlugin from 'draft-js-mention-plugin';
 import historyPlugin from 'draft-js-history-plugin';
 import styles from './styles';
 import stickers from './stickers';
+import mentions from './mentions';
 import StatePreview from '../StatePreview';
 
 // import { EditorState } from 'draft-js-cutting-edge';
 
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
+const mentionPluginInstance = mentionPlugin({
+  mentions,
+});
 const historyPluginInstance = historyPlugin();
 const stickerPluginInstance = stickerPlugin({
   stickers,
@@ -23,6 +28,7 @@ const plugins = [
   hashtagPluginInstance,
   stickerPluginInstance,
   linkifyPluginInstance,
+  mentionPluginInstance,
 ];
 
 export default class UnicornEditor extends Component {

@@ -84,6 +84,9 @@ export default class CompositeDraftDecorator {
 
   getPropsForKey(key: string): ?Object {
     const componentKey = parseInt(key.split(DELIMITER)[0], 10);
-    return this._decorators[componentKey].props;
+    return {
+      ...this._decorators[componentKey].props,
+      editor: this._editorContext,
+    };
   }
 }
