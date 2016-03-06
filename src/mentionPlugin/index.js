@@ -13,7 +13,7 @@ const mentions = [
 
 const metionsPlugin = () => ({
   // standard plugin property
-  compositeDecorators: [
+  decorators: [
     {
       strategy: mentionStrategy,
       component: Mention,

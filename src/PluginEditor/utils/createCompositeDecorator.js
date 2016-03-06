@@ -7,8 +7,8 @@ import CompositeDecorator from './CompositeDecorator';
 
 export default (plugins, editorContext) => {
   const decorators = List(plugins)
-    .filter((plugin) => plugin.compositeDecorators !== undefined)
-    .flatMap((plugin) => plugin.compositeDecorators)
+    .filter((plugin) => plugin.decorators !== undefined)
+    .flatMap((plugin) => plugin.decorators)
     .toJS();
   return new CompositeDecorator(decorators, editorContext);
 };
