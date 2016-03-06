@@ -43,18 +43,6 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
-  undo = () => {
-    this.setState({
-      editorState: EditorState.undo(this.state.editorState),
-    });
-  };
-
-  redo = () => {
-    this.setState({
-      editorState: EditorState.redo(this.state.editorState),
-    });
-  };
-
   toggleShowState = () => {
     this.setState({
       showState: !this.state.showState,
