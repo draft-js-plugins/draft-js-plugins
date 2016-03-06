@@ -22,7 +22,7 @@ const stickerPluginInstance = stickerPlugin({
   stickers,
 });
 const { StickerSelect } = stickerPluginInstance;
-const { UndoButton, RedoButton } = historyPluginInstance;
+const { UndoButton, RedoButton, History } = historyPluginInstance;
 
 const plugins = [
   hashtagPluginInstance,
@@ -99,6 +99,7 @@ export default class UnicornEditor extends Component {
           editorState={ this.state.editorState }
           collapsed={ !this.state.showState }
         />
+      <History editorState={ this.state.editorState } />
 
         <h3>Features in this Editor via Plugins</h3>
         <ul>

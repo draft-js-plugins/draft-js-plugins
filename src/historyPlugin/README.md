@@ -26,3 +26,15 @@ Which take two props, `onChange` (a function that takes a new editor state as an
 <UndoButton onChange={ this.onChange } editorState={ this.state.editorState } />
 <RedoButton onChange={ this.onChange } editorState={ this.state.editorState } />
 ```
+
+## Visualization
+
+You can visualize your history with the `History` component, used like this:
+
+```JS
+import { History } from historyPluginInstance;
+```
+
+```HTML
+<History editorState={ this.state.editorState } />
+```
