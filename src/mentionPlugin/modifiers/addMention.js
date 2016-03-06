@@ -15,20 +15,24 @@ const addMention = (editorState, mention, selection) => {
     focusOffset: result.end,
   });
 
-  // TODO add a space right after the mention
-  const mentionReplaced = Modifier.replaceText(
+  const mentionReplacedContent = Modifier.replaceText(
     currentContent,
     mentionTextSelection,
     mention.handle,
-    null, // no inline style neeeded
+    null, // no inline style needed
     entityKey
+  );
+  const spaceAddedContent = Modifier.insertText(
+    mentionReplacedContent,
+    mentionReplacedContent.getSelectionAfter(),
+    ' ',
   );
   const newEditorState = EditorState.push(
     editorState,
-    mentionReplaced,
-    'apply-entity',
+    spaceAddedContent,
+    'insert-mention',
   );
-  return EditorState.forceSelection(newEditorState, mentionReplaced.getSelectionAfter());
+  return EditorState.forceSelection(newEditorState, spaceAddedContent.getSelectionAfter());
 };
 
 export default addMention;

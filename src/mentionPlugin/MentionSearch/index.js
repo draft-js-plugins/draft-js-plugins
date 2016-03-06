@@ -9,7 +9,6 @@ export default (mentions) => {
   class MentionSearch extends Component {
 
     onMentionSelect = (mention) => {
-      // TODO dynamic mention
       const newEditorState = addMention(this.props.editor.props.editorState, mention, this.lastSelection);
       this.props.editor.onChange(newEditorState);
     };
@@ -35,8 +34,6 @@ export default (mentions) => {
     render() {
       // TODO ask issac to provide begin & end down to the component as prop (in decorators)
       this.lastSelection = this.props.editor.props.editorState.getSelection();
-
-      // TODO what happens to positioning if the mention is @ the end in the text field. can it break out from the inner layout?
       return (
         <span {...this.props} style={ styles.root }>
           { this.props.children }
