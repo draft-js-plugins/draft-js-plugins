@@ -41,6 +41,7 @@ export default (mentions) => {
             {
               this.getMentionsForFilter().map((mention) => (
                 <MentionOption
+                  key={ mention.handle }
                   onMentionSelect={ this.onMentionSelect }
                   mention={ mention }
                 />
