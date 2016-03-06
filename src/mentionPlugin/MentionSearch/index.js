@@ -4,6 +4,7 @@ import Dropdown from './Dropdown';
 import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
 import styles from './styles';
+import getSearchText from '../utils/getSearchText';
 
 export default (mentions) => {
   class MentionSearch extends Component {
@@ -15,18 +16,16 @@ export default (mentions) => {
 
     // Get the first 5 mentions that match
     getMentionsForFilter = () => {
-
-      const userEntered = this.props.editor.props.editorState.getCurrentContent().getLastBlock().getText();
-      const lastMentionStarts = userEntered.lastIndexOf("@");
-      const mentionValue = userEntered.substring(lastMentionStarts + 1, userEntered.length);
-      let filteredValues = mentions && mentions.filter((mention) =>
-        !mentionValue || mention.get('handle').toLowerCase().indexOf(mentionValue.toLowerCase()) > -1);
+      const { word } = getSearchText(this.props.editor.props.editorState, this.lastSelection);
+      const mentionValue = word.substring(1, word.length).toLowerCase();
+      const filteredValues = mentions && mentions.filter((mention) => (
+        !mentionValue || mention.get('handle').toLowerCase().indexOf(mentionValue) > -1
+      ));
       const size = filteredValues.size < 5 ? filteredValues.size : 5;
       return filteredValues.setSize(size);
     };
 
     renderItemForMention = (mention) => (
-
       <div key={ mention.get('handle') }
         eventKey={ mention.get('handle') }
         onClick={ this.onMentionSelect }
@@ -54,7 +53,7 @@ export default (mentions) => {
               ))
             }
           </Dropdown>
-          : void 0}
+          : null}
         </span>
       );
     }
