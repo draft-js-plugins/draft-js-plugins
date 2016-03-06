@@ -6,7 +6,7 @@ import styles from './styles';
 const Mention = (props) => {
   const { mention } = Entity.get(props.entityKey).getData();
   return (
-    <a href={mention.link} style={styles.mention}>
+    <a href={mention.get('link')} style={styles.mention}>
       { props.children }
     </a>
   );

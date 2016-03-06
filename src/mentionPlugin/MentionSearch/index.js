@@ -18,16 +18,16 @@ export default (mentions) => {
       mentions
 
       // TODO better search algorithm than startsWith
-      // mentions.filter((mention) => mention.handle.startsWith(this.mentionSearch)).slice(0, 10)
+      // mentions.filter((mention) => mention.get('handle').startsWith(this.mentionSearch)).slice(0, 10)
     );
 
     renderItemForMention = (mention) => (
 
-      <div key={ mention.handle }
-        eventKey={ mention.handle }
+      <div key={ mention.get('handle') }
+        eventKey={ mention.get('handle') }
         onClick={ this.onMentionSelect }
       >
-        <span>{ mention.handle }</span>
+        <span>{ mention.get('handle') }</span>
       </div>
     );
 
@@ -41,7 +41,7 @@ export default (mentions) => {
             {
               this.getMentionsForFilter().map((mention) => (
                 <MentionOption
-                  key={ mention.handle }
+                  key={ mention.get('handle') }
                   onMentionSelect={ this.onMentionSelect }
                   mention={ mention }
                 />

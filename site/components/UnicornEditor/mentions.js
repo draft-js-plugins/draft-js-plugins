@@ -4,11 +4,14 @@
 // TODO add profilepics/icons
 // TODO dedect if all have images to see of images should be used
 // TODO use unicorns for the unicorn editor
-const mentions = [
+
+import { fromJS } from 'immutable';
+
+const mentions = fromJS([
   { handle: 'Matthew Russell', link: 'https://twitter.com/mrussell247' },
   { handle: 'Jyoti Puri', link: 'https://twitter.com/jyopur' },
   { handle: 'Max Stoiber', link: 'https://twitter.com/mxstbr' },
   { handle: 'Nik Graf', link: 'https://twitter.com/nikgraf' },
-];
+]);
 
 export default mentions;

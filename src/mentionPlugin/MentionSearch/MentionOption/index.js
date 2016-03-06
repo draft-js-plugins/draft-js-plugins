@@ -16,7 +16,7 @@ export default class MentionOption extends Component {
         style={ styles.root }
         onClick={ this.onMentionSelect }
       >
-        { this.props.mention.handle }
+        { this.props.mention.get('handle') }
       </div>
     );
   }
