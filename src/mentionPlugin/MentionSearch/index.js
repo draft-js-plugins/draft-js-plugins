@@ -9,6 +9,14 @@ import getSearchText from '../utils/getSearchText';
 export default (mentions) => {
   class MentionSearch extends Component {
 
+    componentWillMount() {
+      console.log('attach keyboard events');
+    }
+
+    componentWillUnmount() {
+      console.log('remove keyboard events');
+    }
+
     onMentionSelect = (mention) => {
       const newEditorState = addMention(this.props.editor.props.editorState, mention, this.lastSelection);
       this.props.editor.onChange(newEditorState);

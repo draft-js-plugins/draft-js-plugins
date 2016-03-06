@@ -3,7 +3,11 @@
  */
 
 import React, { Component } from 'react';
-import { Editor, EditorState } from 'draft-js-cutting-edge';
+import {
+  Editor,
+  EditorState,
+  getDefaultKeyBinding,
+} from 'draft-js-cutting-edge';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
 
 export default class PluginEditor extends Component {
@@ -36,7 +40,48 @@ export default class PluginEditor extends Component {
     }
   };
 
+  keyBindingFn = (keyboardEvent) => {
+    // TODO optimize to break after the first one
+    const command = this.plugins
+      .map((plugin) => {
+        if (plugin.keyBindingFn) {
+          const pluginCommand = plugin.keyBindingFn(keyboardEvent);
+          if (pluginCommand) {
+            return pluginCommand;
+          }
+        }
+
+        return undefined;
+      })
+      .find((result) => result !== undefined);
+
+    // TODO allow to provide a custom handleKeyCommand
+
+    return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
+  };
+
+  handleKeyCommand = (command) => {
+    // TODO optimize to break after the first one
+    const preventDefaultBehaviour = this.plugins
+      .map((plugin) => {
+        if (plugin.handleKeyCommand) {
+          const handled = plugin.handleKeyCommand(command);
+          if (handled === true) {
+            return handled;
+          }
+        }
+
+        return undefined;
+      })
+      .find((result) => result !== false);
+
+    // TODO allow to provide a custom handleKeyCommand
+
+    return preventDefaultBehaviour === true ? preventDefaultBehaviour : false;
+  };
+
   blockRendererFn = (contentBlock) => {
+    // TODO optimize to break after the first one
     if (this.propsBlockRendererFn) {
       const result = this.propsBlockRendererFn(contentBlock);
       if (result) {
@@ -86,6 +131,8 @@ export default class PluginEditor extends Component {
         onChange={ this.onChange }
         editorState={ this.editorState }
         blockRendererFn={ this.blockRendererFn }
+        handleKeyCommand={ this.handleKeyCommand }
+        keyBindingFn={ this.keyBindingFn }
         ref="editor"
       />
     );
