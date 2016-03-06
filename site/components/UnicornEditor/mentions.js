@@ -1,8 +1,8 @@
 // TODO allow to take a promise for mentions data as well
 // TODO make sure in case no link exists it becomes not an anchor tag
-// TODO change handle to name?
+// TODO change handle to name? not sure
 // TODO add profilepics/icons
-// TODO dedect if all have images to see of images should be used
+// TODO only show/use images if all mentions have images
 // TODO use unicorns for the unicorn editor
 
 import { fromJS } from 'immutable';
