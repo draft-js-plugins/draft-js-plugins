@@ -23,7 +23,6 @@ const plugins = [
   hashtagPluginInstance,
   stickerPluginInstance,
   linkifyPluginInstance,
-  historyPluginInstance,
 ];
 
 export default class UnicornEditor extends Component {
