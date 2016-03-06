@@ -2,11 +2,11 @@
 
 export default {
   root: {
-    border: '1px solid #ccc',
+    border: '1px solid #ddd',
     marginTop: '5px',
-    width: 200,
-    height: 100,
+    minWidth: 180,
     position: 'absolute',
     background: '#fff',
+    borderRadius: 4,
   },
 };
