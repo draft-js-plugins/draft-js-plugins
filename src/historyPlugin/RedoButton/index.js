@@ -10,7 +10,12 @@ class RedoButton extends Component {
 
   render() {
     return (
-      <Button onClick={this.onClick}>↻</Button>
+      <Button
+        disabled={ this.props.editorState.getRedoStack().isEmpty() }
+        onClick={ this.onClick }
+      >
+        ↻
+      </Button>
     );
   }
 }
