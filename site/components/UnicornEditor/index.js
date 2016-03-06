@@ -5,11 +5,12 @@ import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import mentionPlugin from 'draft-js-mention-plugin';
 import historyPlugin from 'draft-js-history-plugin';
-import { EditorState } from 'draft-js-cutting-edge';
 import styles from './styles';
 import stickers from './stickers';
 import mentions from './mentions';
 import StatePreview from '../StatePreview';
+
+// import { EditorState } from 'draft-js-cutting-edge';
 
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
@@ -47,18 +48,6 @@ export default class UnicornEditor extends Component {
 
   focus = () => {
     this.refs.editor.focus();
-  };
-
-  undo = () => {
-    this.setState({
-      editorState: EditorState.undo(this.state.editorState),
-    });
-  };
-
-  redo = () => {
-    this.setState({
-      editorState: EditorState.redo(this.state.editorState),
-    });
   };
 
   toggleShowState = () => {
