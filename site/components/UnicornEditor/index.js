@@ -4,10 +4,11 @@ import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import historyPlugin from 'draft-js-history-plugin';
-import { EditorState } from 'draft-js-cutting-edge';
 import styles from './styles';
 import stickers from './stickers';
 import StatePreview from '../StatePreview';
+
+// import { EditorState } from 'draft-js-cutting-edge';
 
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
