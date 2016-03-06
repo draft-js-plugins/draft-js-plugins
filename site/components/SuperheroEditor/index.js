@@ -121,7 +121,6 @@ export default class UnicornEditor extends Component {
           <li>Custom stickers</li>
           <li>Hashtag support & applying a custom Hashtag component</li>
           <li>Automatically turns links into anchor tags</li>
-          <li>@mentions (coming soon…)</li>
         </ul>
       </div>
     );

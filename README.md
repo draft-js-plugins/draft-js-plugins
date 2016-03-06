@@ -7,7 +7,7 @@ This a playground to explore a plugin architecture on top of draft-js.
 - Stickers
 - Hashtags
 - Linkify
-- @mentions (coming soon…)
+- Mentions
 
 [![Build Status](https://travis-ci.org/nikgraf/draft-js-plugin-editor.svg?branch=master)](https://travis-ci.org/nikgraf/draft-js-plugin-editor)
 
