@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import Dropdown from './Dropdown';
 import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
 import styles from './styles';
@@ -97,7 +96,7 @@ export default (mentions, keyFunctions) => {
         <span {...this.props} style={ styles.root }>
           { this.props.children }
           { this.state.isOpen && filteredMentions.size > 0 ?
-            <Dropdown>
+          <div style={ styles.dropdown } contentEditable={ false }>
             {
               filteredMentions.map((mention, index) => (
                 <MentionOption
@@ -110,7 +109,7 @@ export default (mentions, keyFunctions) => {
                 />
               ))
             }
-          </Dropdown>
+          </div>
           : null}
         </span>
       );
