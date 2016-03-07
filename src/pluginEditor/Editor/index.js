@@ -89,11 +89,29 @@ export default class PluginEditor extends Component {
 
         return undefined;
       })
-      .find((result) => result !== false);
+      .find((result) => result === true);
 
     // TODO allow to provide a custom handleKeyCommand
+    return preventDefaultBehaviour === true;
+  };
 
-    return preventDefaultBehaviour === true ? preventDefaultBehaviour : false;
+  handleReturn = (keyboardEvent) => {
+    // TODO optimize to break after the first one
+    const preventDefaultBehaviour = this.plugins
+      .map((plugin) => {
+        if (plugin.handleReturn) {
+          const handled = plugin.handleReturn(keyboardEvent);
+          if (handled === true) {
+            return handled;
+          }
+        }
+
+        return undefined;
+      })
+      .find((result) => result === true);
+
+    // TODO allow to provide a custom handleReturn
+    return preventDefaultBehaviour === true;
   };
 
   keyBindingFn = (keyboardEvent) => {
@@ -172,6 +190,7 @@ export default class PluginEditor extends Component {
         onDownArrow={ this.onDownArrow }
         onUpArrow={ this.onUpArrow }
         onEscape={ this.onEscape }
+        handleReturn={ this.handleReturn }
         ref="editor"
       />
     );

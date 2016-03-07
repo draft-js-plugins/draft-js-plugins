@@ -21,12 +21,14 @@ export default (mentions, keyFunctions) => {
       keyFunctions.onDownArrow = this.onDownArrow; // eslint-disable-line no-param-reassign
       keyFunctions.onUpArrow = this.onUpArrow; // eslint-disable-line no-param-reassign
       keyFunctions.onEscape = this.onEscape; // eslint-disable-line no-param-reassign
+      keyFunctions.handleReturn = this.handleReturn; // eslint-disable-line no-param-reassign
     }
 
     componentWillUnmount() {
       keyFunctions.onDownArrow = undefined; // eslint-disable-line no-param-reassign
       keyFunctions.onUpArrow = undefined; // eslint-disable-line no-param-reassign
       keyFunctions.onEscape = undefined; // eslint-disable-line no-param-reassign
+      keyFunctions.handleReturn = undefined; // eslint-disable-line no-param-reassign
     }
 
     onMentionSelect = (mention) => {
@@ -34,8 +36,8 @@ export default (mentions, keyFunctions) => {
       this.props.editor.onChange(newEditorState);
     };
 
-    onDownArrow = (event) => {
-      event.preventDefault();
+    onDownArrow = (keyboardEvent) => {
+      keyboardEvent.preventDefault();
 
       const filteredMentions = this.getMentionsForFilter();
       const newIndex = this.state.focusedOptionIndex + 1;
@@ -45,8 +47,8 @@ export default (mentions, keyFunctions) => {
       });
     };
 
-    onUpArrow = (event) => {
-      event.preventDefault();
+    onUpArrow = (keyboardEvent) => {
+      keyboardEvent.preventDefault();
 
       const filteredMentions = this.getMentionsForFilter();
       if (filteredMentions.size > 0) {
@@ -57,8 +59,8 @@ export default (mentions, keyFunctions) => {
       }
     };
 
-    onEscape = (event) => {
-      event.preventDefault();
+    onEscape = (keyboardEvent) => {
+      keyboardEvent.preventDefault();
       console.log('close this');
     };
 
@@ -77,6 +79,12 @@ export default (mentions, keyFunctions) => {
       ));
       const size = filteredValues.size < 5 ? filteredValues.size : 5;
       return filteredValues.setSize(size);
+    };
+
+    handleReturn = () => {
+      const filteredMentions = this.getMentionsForFilter();
+      this.onMentionSelect(filteredMentions.get(this.state.focusedOptionIndex));
+      return true;
     };
 
     render() {
