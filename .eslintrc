@@ -6,6 +6,7 @@
     "max-len": 0,
     "comma-dangle": 0,
     "new-cap": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/prefer-stateless-function": 0
   }
 }
