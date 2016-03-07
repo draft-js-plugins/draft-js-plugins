@@ -15,26 +15,17 @@ export default class MentionOption extends Component {
     this.props.onMentionSelect(this.props.mention);
   };
 
-  onMouseOver = () => {
-    this.setState({
-      hovered: true,
-    });
-  };
-
-  onMouseOut = () => {
-    this.setState({
-      hovered: false,
-    });
+  onMouseEnter = () => {
+    this.props.onMentionFocus(this.props.index);
   };
 
   render() {
-    const style = this.state.hovered ? styles.hovered : styles.root;
+    const style = this.props.isFocused ? styles.focus : styles.root;
     return (
       <div
         style={ style }
         onClick={ this.onMentionSelect }
-        onMouseOver={ this.onMouseOver }
-        onMouseOut={ this.onMouseOut }
+        onMouseEnter={ this.onMouseEnter }
       >
         { this.props.mention.get('handle') }
       </div>
