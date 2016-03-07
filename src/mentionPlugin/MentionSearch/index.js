@@ -11,6 +11,7 @@ export default (mentions, keyFunctions) => {
 
     state = {
       focusedOptionIndex: 0,
+      isOpen: true,
     };
 
     componentWillMount() {
@@ -61,7 +62,9 @@ export default (mentions, keyFunctions) => {
 
     onEscape = (keyboardEvent) => {
       keyboardEvent.preventDefault();
-      console.log('close this');
+      this.setState({
+        isOpen: false,
+      });
     };
 
     onMentionFocus = (index) => {
@@ -93,7 +96,7 @@ export default (mentions, keyFunctions) => {
       return (
         <span {...this.props} style={ styles.root }>
           { this.props.children }
-          { filteredMentions.size > 0 ?
+          { this.state.isOpen && filteredMentions.size > 0 ?
             <Dropdown>
             {
               filteredMentions.map((mention, index) => (
