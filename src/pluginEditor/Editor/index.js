@@ -40,24 +40,40 @@ export default class PluginEditor extends Component {
     }
   };
 
-  keyBindingFn = (keyboardEvent) => {
-    // TODO optimize to break after the first one
-    const command = this.plugins
-      .map((plugin) => {
-        if (plugin.keyBindingFn) {
-          const pluginCommand = plugin.keyBindingFn(keyboardEvent);
-          if (pluginCommand) {
-            return pluginCommand;
-          }
-        }
+  onDownArrow = (keyboardEvent) => {
+    // TODO allow to provide a custom onDownArrow
 
-        return undefined;
-      })
-      .find((result) => result !== undefined);
+    this.plugins.map((plugin) => {
+      if (plugin.onDownArrow) {
+        plugin.onDownArrow(keyboardEvent);
+      }
 
-    // TODO allow to provide a custom handleKeyCommand
+      return undefined;
+    });
+  };
 
-    return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
+  onUpArrow = (keyboardEvent) => {
+    // TODO allow to provide a custom onUpArrow
+
+    this.plugins.map((plugin) => {
+      if (plugin.onUpArrow) {
+        plugin.onUpArrow(keyboardEvent);
+      }
+
+      return undefined;
+    });
+  };
+
+  onEscape = (keyboardEvent) => {
+    // TODO allow to provide a custom onEscape
+
+    this.plugins.map((plugin) => {
+      if (plugin.onEscape) {
+        plugin.onEscape(keyboardEvent);
+      }
+
+      return undefined;
+    });
   };
 
   handleKeyCommand = (command) => {
@@ -78,6 +94,26 @@ export default class PluginEditor extends Component {
     // TODO allow to provide a custom handleKeyCommand
 
     return preventDefaultBehaviour === true ? preventDefaultBehaviour : false;
+  };
+
+  keyBindingFn = (keyboardEvent) => {
+    // TODO optimize to break after the first one
+    const command = this.plugins
+      .map((plugin) => {
+        if (plugin.keyBindingFn) {
+          const pluginCommand = plugin.keyBindingFn(keyboardEvent);
+          if (pluginCommand) {
+            return pluginCommand;
+          }
+        }
+
+        return undefined;
+      })
+      .find((result) => result !== undefined);
+
+    // TODO allow to provide a custom handleKeyCommand
+
+    return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
   };
 
   blockRendererFn = (contentBlock) => {
@@ -133,6 +169,9 @@ export default class PluginEditor extends Component {
         blockRendererFn={ this.blockRendererFn }
         handleKeyCommand={ this.handleKeyCommand }
         keyBindingFn={ this.keyBindingFn }
+        onDownArrow={ this.onDownArrow }
+        onUpArrow={ this.onUpArrow }
+        onEscape={ this.onEscape }
         ref="editor"
       />
     );

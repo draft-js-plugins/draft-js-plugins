@@ -6,20 +6,66 @@ import addMention from '../modifiers/addMention';
 import styles from './styles';
 import getSearchText from '../utils/getSearchText';
 
-export default (mentions) => {
+export default (mentions, keyFunctions) => {
   class MentionSearch extends Component {
 
+    state = {
+      focusedOptionIndex: 0,
+    };
+
     componentWillMount() {
-      console.log('attach keyboard events');
+      // This a really nasty way of attaching & releasing the key related functions.
+      // It assumes that the keyFunctions object will not loose its reference and
+      // by this we can replace inner parameters spread over different modules.
+      // This better be some registering & unregistering logic. PRs are welcome :)
+      keyFunctions.onDownArrow = this.onDownArrow; // eslint-disable-line no-param-reassign
+      keyFunctions.onUpArrow = this.onUpArrow; // eslint-disable-line no-param-reassign
+      keyFunctions.onEscape = this.onEscape; // eslint-disable-line no-param-reassign
     }
 
     componentWillUnmount() {
-      console.log('remove keyboard events');
+      keyFunctions.onDownArrow = undefined; // eslint-disable-line no-param-reassign
+      keyFunctions.onUpArrow = undefined; // eslint-disable-line no-param-reassign
+      keyFunctions.onEscape = undefined; // eslint-disable-line no-param-reassign
     }
 
     onMentionSelect = (mention) => {
       const newEditorState = addMention(this.props.editor.props.editorState, mention, this.lastSelection);
       this.props.editor.onChange(newEditorState);
+    };
+
+    onDownArrow = (event) => {
+      event.preventDefault();
+
+      const filteredMentions = this.getMentionsForFilter();
+      const newIndex = this.state.focusedOptionIndex + 1;
+
+      this.setState({
+        focusedOptionIndex: (newIndex >= filteredMentions.size ? 0 : newIndex),
+      });
+    };
+
+    onUpArrow = (event) => {
+      event.preventDefault();
+
+      const filteredMentions = this.getMentionsForFilter();
+      if (filteredMentions.size > 0) {
+        const newIndex = this.state.focusedOptionIndex - 1;
+        this.setState({
+          focusedOptionIndex: Math.max(newIndex, 0),
+        });
+      }
+    };
+
+    onEscape = (event) => {
+      event.preventDefault();
+      console.log('close this');
+    };
+
+    onMentionFocus = (index) => {
+      this.setState({
+        focusedOptionIndex: index,
+      });
     };
 
     // Get the first 5 mentions that match
@@ -33,17 +79,7 @@ export default (mentions) => {
       return filteredValues.setSize(size);
     };
 
-    renderItemForMention = (mention) => (
-      <div key={ mention.get('handle') }
-        eventKey={ mention.get('handle') }
-        onClick={ this.onMentionSelect }
-      >
-        <span>{ mention.get('handle') }</span>
-      </div>
-    );
-
     render() {
-      // TODO ask issac to provide begin & end down to the component as prop (in decorators)
       this.lastSelection = this.props.editor.props.editorState.getSelection();
       const filteredMentions = this.getMentionsForFilter();
       return (
@@ -52,11 +88,14 @@ export default (mentions) => {
           { filteredMentions.size > 0 ?
             <Dropdown>
             {
-              this.getMentionsForFilter().map((mention) => (
+              filteredMentions.map((mention, index) => (
                 <MentionOption
                   key={ mention.get('handle') }
                   onMentionSelect={ this.onMentionSelect }
+                  onMentionFocus={ this.onMentionFocus }
+                  isFocused={ this.state.focusedOptionIndex === index }
                   mention={ mention }
+                  index={ index }
                 />
               ))
             }
