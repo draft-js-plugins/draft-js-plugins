@@ -7,11 +7,18 @@
 
 import { fromJS } from 'immutable';
 
+// const mentions = fromJS([
+//   { handle: 'Matthew Russell', link: 'https://twitter.com/mrussell247' },
+//   { handle: 'Jyoti Puri', link: 'https://twitter.com/jyopur' },
+//   { handle: 'Max Stoiber', link: 'https://twitter.com/mxstbr' },
+//   { handle: 'Nik Graf', link: 'https://twitter.com/nikgraf' },
+// ]);
+
 const mentions = fromJS([
-  { handle: 'Matthew Russell', link: 'https://twitter.com/mrussell247' },
-  { handle: 'Jyoti Puri', link: 'https://twitter.com/jyopur' },
-  { handle: 'Max Stoiber', link: 'https://twitter.com/mxstbr' },
-  { handle: 'Nik Graf', link: 'https://twitter.com/nikgraf' },
+  { handle: 'Matthew Russell' },
+  { handle: 'Jyoti Puri' },
+  { handle: 'Max Stoiber' },
+  { handle: 'Nik Graf' },
 ]);
 
 export default mentions;
