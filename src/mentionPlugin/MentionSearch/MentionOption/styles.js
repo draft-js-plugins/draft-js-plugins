@@ -10,7 +10,6 @@ export default {
     // render we do not need to merge the objects to create anew object each time.
     borderBottom: '1px solid #ddd',
     padding: 5,
-    backgroundColor: '#000080',
-    color: 'white',
+    backgroundColor: '#F5E5F9',
   },
 };

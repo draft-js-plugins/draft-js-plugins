@@ -10,7 +10,12 @@ class UndoButton extends Component {
 
   render() {
     return (
-      <Button onClick={this.onClick}>↺</Button>
+      <Button
+        disabled={ this.props.editorState.getUndoStack().isEmpty() }
+        onClick={ this.onClick }
+      >
+        ↺
+      </Button>
     );
   }
 }
