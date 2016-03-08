@@ -93,7 +93,7 @@ export default (mentions, keyFunctions) => {
       this.lastSelection = this.props.editor.props.editorState.getSelection();
       const filteredMentions = this.getMentionsForFilter();
       return (
-        <span {...this.props} style={ styles.root }>
+        <span {...this.props} style={ styles.root } spellCheck={ false }>
           { this.props.children }
           { this.state.isOpen && filteredMentions.size > 0 ?
           <div style={ styles.dropdown } contentEditable={ false }>

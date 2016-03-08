@@ -7,14 +7,21 @@ const Mention = (props) => {
 
   if (mention.has('link')) {
     return (
-      <a href={mention.get('link')} style={styles.mention}>
+      <a
+        href={mention.get('link')}
+        style={styles.mention}
+        spellCheck={ false }
+      >
         { props.children }
       </a>
     );
   }
 
   return (
-    <span style={styles.mention}>
+    <span
+      style={styles.mention}
+      spellCheck={ false }
+    >
       { props.children }
     </span>
   );
