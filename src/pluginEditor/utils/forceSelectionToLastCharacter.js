@@ -1,12 +1,15 @@
-/**
- * Create an editor state with some text in it already
- */
-
 import {
   EditorState,
   SelectionState,
 } from 'draft-js-cutting-edge';
 
+/**
+ * Returns a new EditorState where the Selection is forced to be at the end.
+ *
+ * This ensures to mimic the textarea behaviour where the Selection is placed at
+ * the end in case you click somewhere further down the the last text. It still
+ * works to place the Selection at a specific location by clicking on the text.
+ */
 const forceSelectionToLastCharacter = (editorState) => {
   const content = editorState.getCurrentContent();
   const blockMap = content.getBlockMap();
@@ -14,9 +17,6 @@ const forceSelectionToLastCharacter = (editorState) => {
   const key = blockMap.last().getKey();
   const length = blockMap.last().getLength();
 
-  // TODO Suggest helper functions to issac which set the selection to achieve
-  // the good UX for a textarea. by clicking inside at the bottom right the cursor
-  // should be placed at the end of the content.
   const selection = new SelectionState({
     anchorKey: key,
     anchorOffset: length,
