@@ -30,8 +30,8 @@
     "build": "BABEL_ENV=production ./node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
     "prepublish": "npm run build",
     "postpublish": "./scripts/publish_gh_pages.sh",
-    "test": "BABEL_ENV=test BABEL_JEST_STAGE=0 jest src/",
-    "test:watch": "npm run test -- --watch",
+    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js src/**/__test__/*.js",
+    "test:watch": "npm test -- --watch",
     "lint": "npm run lint:eslint && npm run lint:jscs && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
@@ -55,7 +55,9 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "belle": "^2.0.4",
+    "chai": "^3.5.0",
     "css-loader": "^0.23.1",
+    "dirty-chai": "^1.2.2",
     "eslint": "^2.3.0",
     "eslint-config-airbnb": "6.1.0",
     "eslint-plugin-mocha": "^2.0.0",
@@ -64,6 +66,7 @@
     "flow-bin": "^0.22.1",
     "jest-cli": "^0.9.0",
     "jscs": "^2.11.0",
+    "mocha": "^2.4.5",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
@@ -74,20 +77,6 @@
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "=2.9.1"
-  },
-  "jest": {
-    "testRunner": "<rootDir>/node_modules/jest-cli/src/testRunners/jasmine/jasmine2.js",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/fbjs",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils",
-      "../utils/helpers",
-      "../utils/union-class-names",
-      "../utils/is-component-of-type"
-    ],
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "preprocessCachingDisabled": true
   },
   "license": "MIT",
   "dependencies": {
