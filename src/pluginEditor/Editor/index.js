@@ -9,6 +9,7 @@ import {
   getDefaultKeyBinding,
 } from 'draft-js-cutting-edge';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
+import forceSelectionToLastCharacter from '../utils/forceSelectionToLastCharacter';
 
 export default class PluginEditor extends Component {
 
@@ -16,13 +17,29 @@ export default class PluginEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.initializeProps(props);
+    const {
+      blockRendererFn,
+      editorState,
+      plugins,
+      onChange,
+      ...editorProps,
+    } = props;
+    this.plugins = plugins;
+    this.propsOnChange = onChange;
+    this.propsBlockRendererFn = blockRendererFn;
+    this.editorProps = editorProps;
     const compositeDecorator = createCompositeDecorator(this.props.plugins, this);
-    this.editorState = EditorState.set(this.editorState, { decorator: compositeDecorator });
+    const editorStateWithDecorators = EditorState.set(editorState, { decorator: compositeDecorator });
+    this.editorState = forceSelectionToLastCharacter(editorStateWithDecorators);
+
+    // makes sure the editorState of the wrapping component is in sync with the internal one
+    if (this.propsOnChange) {
+      this.propsOnChange(this.editorState);
+    }
   }
 
   componentWillReceiveProps(props) {
-    this.initializeProps(props);
+    this.editorState = props.editorState;
   }
 
   // Cycle through the plugins, changing the editor state with what the plugins
@@ -161,22 +178,6 @@ export default class PluginEditor extends Component {
   focus = () => {
     this.refs.editor.focus();
   };
-
-  // Initialize the props and save some component-specific data
-  initializeProps(properties) {
-    const {
-      blockRendererFn, // eslint-disable-line
-      editorState, // eslint-disable-line
-      plugins, // eslint-disable-line
-      onChange, // eslint-disable-line
-      ...editorProps, // eslint-disable-line
-    } = properties;
-    this.plugins = plugins;
-    this.propsOnChange = onChange;
-    this.propsBlockRendererFn = blockRendererFn;
-    this.editorProps = editorProps;
-    this.editorState = editorState;
-  }
 
   render() {
     return (
