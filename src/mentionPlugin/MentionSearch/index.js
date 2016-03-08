@@ -74,7 +74,9 @@ export default (mentions, keyFunctions) => {
 
     // Get the first 5 mentions that match
     getMentionsForFilter = () => {
-      const { word } = getSearchText(this.props.editor.props.editorState, this.lastSelection);
+      const anchorKey = this.lastSelection.getAnchorKey();
+      const anchorOffset = this.lastSelection.getAnchorOffset() - 1;
+      const { word } = getSearchText(this.props.editor.props.editorState, anchorKey, anchorOffset);
       const mentionValue = word.substring(1, word.length).toLowerCase();
       const filteredValues = mentions && mentions.filter((mention) => (
         !mentionValue || mention.get('handle').toLowerCase().indexOf(mentionValue) > -1
