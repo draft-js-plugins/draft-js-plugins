@@ -16,24 +16,14 @@ export default class PluginEditor extends Component {
 
   constructor(props) {
     super(props);
-    const {
-      blockRendererFn,
-      editorState,
-      plugins,
-      onChange,
-      ...editorProps,
-    } = props;
-    this.plugins = plugins;
-    this.propsOnChange = onChange;
-    this.propsBlockRendererFn = blockRendererFn;
-    this.editorProps = editorProps;
+    this.plugins = props.plugins;
     const compositeDecorator = createCompositeDecorator(this.props.plugins, this);
-    const editorStateWithDecorators = EditorState.set(editorState, { decorator: compositeDecorator });
+    const editorStateWithDecorators = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
     this.editorState = EditorState.moveFocusToEnd(editorStateWithDecorators);
 
     // makes sure the editorState of the wrapping component is in sync with the internal one
-    if (this.propsOnChange) {
-      this.propsOnChange(this.editorState);
+    if (this.props.onChange) {
+      this.props.onChange(this.editorState);
     }
   }
 
@@ -51,8 +41,8 @@ export default class PluginEditor extends Component {
       }
     });
 
-    if (this.propsOnChange) {
-      this.propsOnChange(newEditorState);
+    if (this.props.onChange) {
+      this.props.onChange(newEditorState);
     }
   };
 
@@ -152,8 +142,8 @@ export default class PluginEditor extends Component {
 
   blockRendererFn = (contentBlock) => {
     // TODO optimize to break after the first one
-    if (this.propsBlockRendererFn) {
-      const result = this.propsBlockRendererFn(contentBlock);
+    if (this.props.blockRendererFn) {
+      const result = this.props.blockRendererFn(contentBlock);
       if (result) {
         return result;
       }

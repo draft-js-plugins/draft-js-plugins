@@ -67,7 +67,7 @@ export default class UnicornEditor extends Component {
 
         <h2>Example: Unicorn Editor</h2>
 
-        <div style={styles.editor} onClick={ this.focus } className='unicorn-editor-wrapper'>
+        <div style={styles.editor} onClick={ this.focus } className="unicorn-editor-wrapper">
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
