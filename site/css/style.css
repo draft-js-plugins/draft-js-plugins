@@ -89,3 +89,7 @@ button:focus {
   position: relative;
   top: 3px;
 }
+
+.unicorn-editor-wrapper .public-DraftEditor-content {
+  min-height: 300px;
+}

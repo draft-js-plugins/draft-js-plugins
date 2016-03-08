@@ -85,6 +85,7 @@ export default class UnicornEditor extends Component {
             onChange={this.onChange}
             plugins={plugins}
             spellCheck
+            className="waaahhh"
             ref="editor"
           />
         </div>

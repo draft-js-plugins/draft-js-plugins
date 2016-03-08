@@ -10,7 +10,6 @@ export default {
     padding: 10,
     borderRadius: 4,
     marginBottom: 10,
-    minHeight: 400,
   },
   stateView: {
     whiteSpace: 'pre-wrap',
