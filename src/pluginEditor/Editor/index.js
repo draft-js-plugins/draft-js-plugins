@@ -9,7 +9,6 @@ import {
   getDefaultKeyBinding,
 } from 'draft-js-cutting-edge';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
-import forceSelectionToLastCharacter from '../utils/forceSelectionToLastCharacter';
 
 export default class PluginEditor extends Component {
 
@@ -30,7 +29,7 @@ export default class PluginEditor extends Component {
     this.editorProps = editorProps;
     const compositeDecorator = createCompositeDecorator(this.props.plugins, this);
     const editorStateWithDecorators = EditorState.set(editorState, { decorator: compositeDecorator });
-    this.editorState = forceSelectionToLastCharacter(editorStateWithDecorators);
+    this.editorState = EditorState.moveFocusToEnd(editorStateWithDecorators);
 
     // makes sure the editorState of the wrapping component is in sync with the internal one
     if (this.propsOnChange) {
