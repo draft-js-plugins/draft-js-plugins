@@ -15,24 +15,32 @@ const addMention = (editorState, mention, selection) => {
     focusOffset: end,
   });
 
-  const mentionReplacedContent = Modifier.replaceText(
+  let mentionReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
     mentionTextSelection,
     mention.get('name'),
     null, // no inline style needed
     entityKey
   );
-  const spaceAddedContent = Modifier.insertText(
-    mentionReplacedContent,
-    mentionReplacedContent.getSelectionAfter(),
-    ' ',
-  );
+
+  // If the mention is insert at the end a space is append right away for a smooth
+  // writing experience.
+  const blockKey = mentionTextSelection.getAnchorKey();
+  const blockSize = editorState.getCurrentContent().getBlockForKey(blockKey).getLength();
+  if (blockSize === end) {
+    mentionReplacedContent = Modifier.insertText(
+      mentionReplacedContent,
+      mentionReplacedContent.getSelectionAfter(),
+      ' ',
+    );
+  }
+
   const newEditorState = EditorState.push(
     editorState,
-    spaceAddedContent,
+    mentionReplacedContent,
     'insert-mention',
   );
-  return EditorState.forceSelection(newEditorState, spaceAddedContent.getSelectionAfter());
+  return EditorState.forceSelection(newEditorState, mentionReplacedContent.getSelectionAfter());
 };
 
 export default addMention;
