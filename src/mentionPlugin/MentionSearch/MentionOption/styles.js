@@ -12,4 +12,8 @@ export default {
     padding: 5,
     backgroundColor: '#F5E5F9',
   },
+  text: {
+    display: 'inline-block',
+    marginLeft: 8,
+  },
 };

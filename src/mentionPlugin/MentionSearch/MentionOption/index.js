@@ -3,6 +3,7 @@ import React, {
   Component,
 } from 'react';
 import styles from './styles';
+import Avatar from './Avatar';
 
 export default class MentionOption extends Component {
 
@@ -27,7 +28,8 @@ export default class MentionOption extends Component {
         onClick={ this.onMentionSelect }
         onMouseEnter={ this.onMouseEnter }
       >
-        { this.props.mention.get('handle') }
+        <Avatar mention={ this.props.mention } />
+        <span style={ styles.text }>{ this.props.mention.get('handle') }</span>
       </div>
     );
   }
