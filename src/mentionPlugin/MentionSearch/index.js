@@ -79,7 +79,7 @@ export default (mentions, keyFunctions) => {
       const { word } = getSearchText(this.props.editor.props.editorState, anchorKey, anchorOffset);
       const mentionValue = word.substring(1, word.length).toLowerCase();
       const filteredValues = mentions && mentions.filter((mention) => (
-        !mentionValue || mention.get('handle').toLowerCase().indexOf(mentionValue) > -1
+        !mentionValue || mention.get('name').toLowerCase().indexOf(mentionValue) > -1
       ));
       const size = filteredValues.size < 5 ? filteredValues.size : 5;
       return filteredValues.setSize(size);
@@ -102,7 +102,7 @@ export default (mentions, keyFunctions) => {
             {
               filteredMentions.map((mention, index) => (
                 <MentionOption
-                  key={ mention.get('handle') }
+                  key={ mention.get('name') }
                   onMentionSelect={ this.onMentionSelect }
                   onMentionFocus={ this.onMentionFocus }
                   isFocused={ this.state.focusedOptionIndex === index }

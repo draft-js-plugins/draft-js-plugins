@@ -29,7 +29,7 @@ export default class MentionOption extends Component {
         onMouseEnter={ this.onMouseEnter }
       >
         <Avatar mention={ this.props.mention } />
-        <span style={ styles.text }>{ this.props.mention.get('handle') }</span>
+        <span style={ styles.text }>{ this.props.mention.get('name') }</span>
       </div>
     );
   }
