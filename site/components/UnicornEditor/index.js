@@ -10,7 +10,7 @@ import stickers from './stickers';
 import mentions from './mentions';
 import StatePreview from '../StatePreview';
 
-// import { EditorState } from 'draft-js-cutting-edge';
+// import { EditorState } from 'draft-js';
 
 const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();

@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "prismjs": "1.4.1",
-    "react": "=0.14.7",
-    "react-dom": "^=0.14.7",
-    "react-addons-pure-render-mixin": "0.14.7",
+    "react": "=15.0.0-rc.1",
+    "react-dom": "^=15.0.0-rc.1",
+    "react-addons-pure-render-mixin": "15.0.0-rc.1",
     "lodash": "^4.6.1"
   },
   "devDependencies": {

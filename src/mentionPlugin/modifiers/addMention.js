@@ -1,4 +1,4 @@
-import { Modifier, EditorState, Entity } from 'draft-js-cutting-edge';
+import { Modifier, EditorState, Entity } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
 const addMention = (editorState, mention, selection) => {

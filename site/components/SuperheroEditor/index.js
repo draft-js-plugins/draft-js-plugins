@@ -3,7 +3,7 @@ import Editor, { createWithText } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
-import { EditorState } from 'draft-js-cutting-edge';
+import { EditorState } from 'draft-js';
 import styles from './styles';
 import stickers from './stickers';
 import StatePreview from '../StatePreview';

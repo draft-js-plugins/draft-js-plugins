@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { EditorState } from 'draft-js-cutting-edge';
+import { EditorState } from 'draft-js';
 
 import Button from '../Button';
 

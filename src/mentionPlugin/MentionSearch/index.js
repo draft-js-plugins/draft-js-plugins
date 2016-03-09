@@ -4,7 +4,7 @@ import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
 import styles from './styles';
 import getSearchText from '../utils/getSearchText';
-import { genKey } from 'draft-js-cutting-edge';
+import { genKey } from 'draft-js';
 
 export default (mentions, keyFunctions, ariaProps) => {
   const updateAriaCloseDropdown = () => {

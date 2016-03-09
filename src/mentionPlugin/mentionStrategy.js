@@ -1,4 +1,4 @@
-import { Entity } from 'draft-js-cutting-edge';
+import { Entity } from 'draft-js';
 
 const findMention = (character) => {
   const entityKey = character.getEntity();

@@ -10,7 +10,7 @@ import {
   Entity,
   genKey,
   Modifier,
-} from 'draft-js-cutting-edge';
+} from 'draft-js';
 import {
   List,
   Repeat

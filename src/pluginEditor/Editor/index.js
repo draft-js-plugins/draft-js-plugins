@@ -7,7 +7,7 @@ import {
   Editor,
   EditorState,
   getDefaultKeyBinding,
-} from 'draft-js-cutting-edge';
+} from 'draft-js';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
 
 export default class PluginEditor extends Component {

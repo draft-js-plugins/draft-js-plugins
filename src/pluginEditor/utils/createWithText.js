@@ -5,6 +5,6 @@
 import {
   ContentState,
   EditorState,
-} from 'draft-js-cutting-edge';
+} from 'draft-js';
 
 export default (text) => EditorState.createWithContent(ContentState.createFromText(text));

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Entity } from 'draft-js-cutting-edge';
+import { Entity } from 'draft-js';
 import styles from './styles';
 
 const Mention = (props) => {

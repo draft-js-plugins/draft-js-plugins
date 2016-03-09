@@ -23,8 +23,8 @@
     "react-component"
   ],
   "peerDependencies": {
-    "react": ">=0.14.0",
-    "react-dom": ">=0.14.0"
+    "react": ">=0.14.0 || 15.0.0-rc.1",
+    "react-dom": ">=0.14.0 || 15.0.0-rc.1"
   },
   "scripts": {
     "build": "BABEL_ENV=production ./node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
@@ -54,7 +54,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
-    "belle": "^2.0.4",
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "dirty-chai": "^1.2.2",
@@ -67,9 +66,9 @@
     "jest-cli": "^0.9.0",
     "jscs": "^2.11.0",
     "mocha": "^2.4.5",
-    "react": "^0.14.7",
-    "react-addons-test-utils": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react": "^15.0.0-rc.1",
+    "react-addons-test-utils": "^15.0.0-rc.1",
+    "react-dom": "^15.0.0-rc.1",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.2",
@@ -81,7 +80,7 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.3",
-    "draft-js-cutting-edge": "^0.1.0",
+    "draft-js": "^0.2.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "immutable": "^3.7.6",
     "linkify-it": "1.2.0",
