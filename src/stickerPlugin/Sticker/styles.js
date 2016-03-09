@@ -17,7 +17,6 @@ export default {
     position: 'absolute',
     fontSize: '0.62em',
     marginLeft: '-0.825em',
-    marginTop: '-0.825em',
     cursor: 'pointer',
   },
   image: {
