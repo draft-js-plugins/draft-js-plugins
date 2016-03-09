@@ -179,8 +179,6 @@ export default class PluginEditor extends Component {
       }
     });
 
-    console.log(pluginProps, this.props);
-
     return (
       <Editor
         {...pluginProps}
