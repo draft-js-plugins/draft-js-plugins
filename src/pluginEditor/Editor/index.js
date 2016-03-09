@@ -7,6 +7,7 @@ import {
   Editor,
   EditorState,
   getDefaultKeyBinding,
+  KeyBindingUtil,
 } from 'draft-js';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
 
@@ -86,7 +87,7 @@ export default class PluginEditor extends Component {
 
   handleKeyCommand = (command) => {
     // TODO optimize to break after the first one
-    const preventDefaultBehaviour = this.plugins
+    let preventDefaultBehaviour = this.plugins
       .map((plugin) => {
         if (plugin.handleKeyCommand) {
           const handled = plugin.handleKeyCommand(command);
@@ -98,6 +99,40 @@ export default class PluginEditor extends Component {
         return undefined;
       })
       .find((result) => result === true);
+
+    if (command === 'plugin-editor-move-to-start') {
+      // TODO move to a modifier: moveToStartOfSelectedBlock
+      const selection = this.editorState.getSelection();
+      if (selection.getAnchorOffset() !== 0 || selection.getFocusOffset() !== 0) {
+        const newSelection = selection.merge({
+          anchorOffset: 0,
+          focusOffset: 0,
+        });
+        const newEditorState = EditorState.forceSelection(this.editorState, newSelection);
+        if (this.props.onChange) {
+          this.props.onChange(newEditorState);
+        }
+      }
+
+      preventDefaultBehaviour = true;
+    } else if (command === 'plugin-editor-move-to-end') {
+      // TODO move to a modifier: moveToEndOfSelectedBlock
+      const selection = this.editorState.getSelection();
+      const block = this.editorState.getCurrentContent().getBlockForKey(selection.getAnchorKey());
+      const size = block.getLength();
+      if (selection.getAnchorOffset() !== size || selection.getFocusOffset() !== size) {
+        const newSelection = selection.merge({
+          anchorOffset: size,
+          focusOffset: size,
+        });
+        const newEditorState = EditorState.forceSelection(this.editorState, newSelection);
+        if (this.props.onChange) {
+          this.props.onChange(newEditorState);
+        }
+      }
+
+      preventDefaultBehaviour = true;
+    }
 
     // TODO allow to provide a custom handleKeyCommand
     return preventDefaultBehaviour === true;
@@ -124,7 +159,7 @@ export default class PluginEditor extends Component {
 
   keyBindingFn = (keyboardEvent) => {
     // TODO optimize to break after the first one
-    const command = this.plugins
+    let command = this.plugins
       .map((plugin) => {
         if (plugin.keyBindingFn) {
           const pluginCommand = plugin.keyBindingFn(keyboardEvent);
@@ -136,6 +171,14 @@ export default class PluginEditor extends Component {
         return undefined;
       })
       .find((result) => result !== undefined);
+
+    if (command === undefined) {
+      if (keyboardEvent.keyCode === 37 && KeyBindingUtil.hasCommandModifier(keyboardEvent)) {
+        command = 'plugin-editor-move-to-start';
+      } else if (keyboardEvent.keyCode === 39 && KeyBindingUtil.hasCommandModifier(keyboardEvent)) {
+        command = 'plugin-editor-move-to-end';
+      }
+    }
 
     // TODO allow to provide a custom handleKeyCommand
 
