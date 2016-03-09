@@ -99,7 +99,7 @@ export default class UnicornEditor extends Component {
           editorState={ this.state.editorState }
           collapsed={ !this.state.showState }
         />
-      <History editorState={ this.state.editorState } />
+        {/* <History editorState={ this.state.editorState } /> */}
 
         <h3>Features in this Editor via Plugins</h3>
         <ul>
