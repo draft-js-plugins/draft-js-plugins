@@ -10,6 +10,8 @@ import {
   KeyBindingUtil,
 } from 'draft-js';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
+import moveToEndOfSelectedBlock from '../modifiers/moveToEndOfSelectedBlock';
+import moveToStartOfSelectedBlock from '../modifiers/moveToStartOfSelectedBlock';
 
 export default class PluginEditor extends Component {
 
@@ -101,36 +103,10 @@ export default class PluginEditor extends Component {
       .find((result) => result === true);
 
     if (command === 'plugin-editor-move-to-start') {
-      // TODO move to a modifier: moveToStartOfSelectedBlock
-      const selection = this.editorState.getSelection();
-      if (selection.getAnchorOffset() !== 0 || selection.getFocusOffset() !== 0) {
-        const newSelection = selection.merge({
-          anchorOffset: 0,
-          focusOffset: 0,
-        });
-        const newEditorState = EditorState.forceSelection(this.editorState, newSelection);
-        if (this.props.onChange) {
-          this.props.onChange(newEditorState);
-        }
-      }
-
+      moveToStartOfSelectedBlock(this.editorState, this.props.onChange);
       preventDefaultBehaviour = true;
     } else if (command === 'plugin-editor-move-to-end') {
-      // TODO move to a modifier: moveToEndOfSelectedBlock
-      const selection = this.editorState.getSelection();
-      const block = this.editorState.getCurrentContent().getBlockForKey(selection.getAnchorKey());
-      const size = block.getLength();
-      if (selection.getAnchorOffset() !== size || selection.getFocusOffset() !== size) {
-        const newSelection = selection.merge({
-          anchorOffset: size,
-          focusOffset: size,
-        });
-        const newEditorState = EditorState.forceSelection(this.editorState, newSelection);
-        if (this.props.onChange) {
-          this.props.onChange(newEditorState);
-        }
-      }
-
+      moveToEndOfSelectedBlock(this.editorState, this.props.onChange);
       preventDefaultBehaviour = true;
     }
 
