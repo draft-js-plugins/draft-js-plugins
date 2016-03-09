@@ -18,10 +18,12 @@ export default class PluginEditor extends Component {
     super(props);
     this.plugins = props.plugins;
     const compositeDecorator = createCompositeDecorator(this.props.plugins, this);
-    const editorStateWithDecorators = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
-    this.editorState = EditorState.moveFocusToEnd(editorStateWithDecorators);
+    this.editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
+  }
 
-    // makes sure the editorState of the wrapping component is in sync with the internal one
+  componentWillMount() {
+    // Makes sure the editorState of the wrapping component is in sync with the
+    // internal one, because we added the decorator in the constructor.
     if (this.props.onChange) {
       this.props.onChange(this.editorState);
     }
