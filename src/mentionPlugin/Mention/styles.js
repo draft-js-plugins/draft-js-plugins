@@ -3,7 +3,7 @@ export default {
     color: '#333',
     cursor: 'pointer',
     display: 'inline-block',
-    background: '#F5E5F9',
+    background: '#DEF0F7',
     paddingLeft: 2,
     paddingRight: 2,
     borderRadius: 4,
