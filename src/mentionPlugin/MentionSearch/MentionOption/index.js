@@ -27,6 +27,7 @@ export default class MentionOption extends Component {
         style={ style }
         onClick={ this.onMentionSelect }
         onMouseEnter={ this.onMouseEnter }
+        role="option"
       >
         <Avatar mention={ this.props.mention } />
         <span style={ styles.text }>{ this.props.mention.get('name') }</span>

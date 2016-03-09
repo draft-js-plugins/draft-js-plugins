@@ -4,8 +4,16 @@ import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
 import styles from './styles';
 import getSearchText from '../utils/getSearchText';
+import { genKey } from 'draft-js-cutting-edge';
 
-export default (mentions, keyFunctions) => {
+export default (mentions, keyFunctions, ariaProps) => {
+  const updateAriaCloseDropdown = () => {
+    ariaProps.ariaHasPopup = 'false'; // eslint-disable-line no-param-reassign
+    ariaProps.ariaExpanded = 'false'; // eslint-disable-line no-param-reassign
+    ariaProps.ariaActiveDescendantID = undefined; // eslint-disable-line no-param-reassign
+    ariaProps.ariaOwneeID = undefined; // eslint-disable-line no-param-reassign
+  };
+
   class MentionSearch extends Component {
 
     state = {
@@ -14,6 +22,8 @@ export default (mentions, keyFunctions) => {
     };
 
     componentWillMount() {
+      this.key = genKey();
+
       // This a really nasty way of attaching & releasing the key related functions.
       // It assumes that the keyFunctions object will not loose its reference and
       // by this we can replace inner parameters spread over different modules.
@@ -22,6 +32,24 @@ export default (mentions, keyFunctions) => {
       keyFunctions.onUpArrow = this.onUpArrow; // eslint-disable-line no-param-reassign
       keyFunctions.onEscape = this.onEscape; // eslint-disable-line no-param-reassign
       keyFunctions.handleReturn = this.handleReturn; // eslint-disable-line no-param-reassign
+      ariaProps.ariaActiveDescendantID = `mention-option-${this.key}-${this.state.focusedOptionIndex}`; // eslint-disable-line no-param-reassign
+      ariaProps.ariaOwneeID = `mentions-list-${this.key}`; // eslint-disable-line no-param-reassign
+    }
+
+    componentDidMount() {
+      // This a really nasty way of attaching & releasing the key related functions.
+      // It assumes that the ariaProps object will not loose its reference and
+      // by this we can replace inner parameters spread over different modules.
+      // This better be some registering & unregistering logic. PRs are welcome :)
+      if (this.state.isOpen) {
+        ariaProps.ariaHasPopup = 'true'; // eslint-disable-line no-param-reassign
+        ariaProps.ariaExpanded = 'true'; // eslint-disable-line no-param-reassign
+      } else {
+        updateAriaCloseDropdown();
+      }
+
+      // Note: to force a re-render of the outer component to change the aria props
+      this.props.editor.onChange(this.props.editor.props.editorState);
     }
 
     componentWillUnmount() {
@@ -32,6 +60,7 @@ export default (mentions, keyFunctions) => {
     }
 
     onMentionSelect = (mention) => {
+      updateAriaCloseDropdown();
       const newEditorState = addMention(this.props.editor.props.editorState, mention, this.lastSelection);
       this.props.editor.onChange(newEditorState);
     };
@@ -41,10 +70,7 @@ export default (mentions, keyFunctions) => {
 
       const filteredMentions = this.getMentionsForFilter();
       const newIndex = this.state.focusedOptionIndex + 1;
-
-      this.setState({
-        focusedOptionIndex: (newIndex >= filteredMentions.size ? 0 : newIndex),
-      });
+      this.onMentionFocus(newIndex >= filteredMentions.size ? 0 : newIndex);
     };
 
     onUpArrow = (keyboardEvent) => {
@@ -53,23 +79,30 @@ export default (mentions, keyFunctions) => {
       const filteredMentions = this.getMentionsForFilter();
       if (filteredMentions.size > 0) {
         const newIndex = this.state.focusedOptionIndex - 1;
-        this.setState({
-          focusedOptionIndex: Math.max(newIndex, 0),
-        });
+        this.onMentionFocus(Math.max(newIndex, 0));
       }
     };
 
     onEscape = (keyboardEvent) => {
       keyboardEvent.preventDefault();
+
+      updateAriaCloseDropdown();
       this.setState({
         isOpen: false,
       });
+
+      // to force a re-render of the outer component to change the aria props
+      this.props.editor.onChange(this.props.editor.props.editorState);
     };
 
     onMentionFocus = (index) => {
+      ariaProps.ariaActiveDescendantID = `mention-option-${this.key}-${index}`; // eslint-disable-line no-param-reassign
       this.setState({
         focusedOptionIndex: index,
       });
+
+      // to force a re-render of the outer component to change the aria props
+      this.props.editor.onChange(this.props.editor.props.editorState);
     };
 
     // Get the first 5 mentions that match
@@ -98,7 +131,12 @@ export default (mentions, keyFunctions) => {
         <span {...this.props} style={ styles.root } spellCheck={ false }>
           { this.props.children }
           { this.state.isOpen && filteredMentions.size > 0 ?
-          <div style={ styles.dropdown } contentEditable={ false }>
+          <div
+            style={ styles.dropdown }
+            contentEditable={ false }
+            role="listbox"
+            id={ `mentions-list-${this.key}` }
+          >
             {
               filteredMentions.map((mention, index) => (
                 <MentionOption
@@ -108,6 +146,7 @@ export default (mentions, keyFunctions) => {
                   isFocused={ this.state.focusedOptionIndex === index }
                   mention={ mention }
                   index={ index }
+                  id={ `mention-option-${this.key}-${index}` }
                 />
               ))
             }

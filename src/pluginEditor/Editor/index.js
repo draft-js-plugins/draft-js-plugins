@@ -169,9 +169,22 @@ export default class PluginEditor extends Component {
   };
 
   render() {
+    let pluginProps = {};
+    this.plugins.forEach((plugin) => {
+      if (plugin.getEditorProps) {
+        pluginProps = {
+          ...pluginProps,
+          ...plugin.getEditorProps(),
+        };
+      }
+    });
+
+    console.log(pluginProps, this.props);
+
     return (
       <Editor
-        {...this.editorProps}
+        {...pluginProps}
+        {...this.props}
         onChange={ this.onChange }
         editorState={ this.editorState }
         blockRendererFn={ this.blockRendererFn }
