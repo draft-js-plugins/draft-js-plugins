@@ -129,7 +129,6 @@ export default (mentions, keyFunctions, ariaProps) => {
       const filteredMentions = this.getMentionsForFilter();
       return (
         <span {...this.props} style={ styles.root } spellCheck={ false }>
-          { this.props.children }
           { this.state.isOpen && filteredMentions.size > 0 ?
           <div
             style={ styles.dropdown }
@@ -152,6 +151,7 @@ export default (mentions, keyFunctions, ariaProps) => {
             }
           </div>
           : null}
+          { this.props.children }
         </span>
       );
     }

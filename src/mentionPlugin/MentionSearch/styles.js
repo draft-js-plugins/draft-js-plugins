@@ -6,7 +6,7 @@ export default {
   },
   dropdown: {
     border: '1px solid #ddd',
-    marginTop: '5px',
+    marginTop: '1.75em',
     minWidth: 180,
     position: 'absolute',
     background: '#fff',
@@ -15,5 +15,7 @@ export default {
     MoxBoxShadow: '0px 4px 30px 0px rgba(220,220,220,1)',
     boxShadow: '0px 4px 30px 0px rgba(220,220,220,1)',
     cursor: 'pointer',
+    paddingTop: '8px',
+    paddingBottom: '8px',
   },
 };
