@@ -53,6 +53,17 @@ export default (mentions, callbacks, ariaProps) => {
       this.props.editor.onChange(this.props.editor.props.editorState);
     }
 
+    componentDidUpdate = () => {
+      // In case the list shrinks there should be still an option focused.
+      // Note: this might run multiple times and deduct 1 until the condition is
+      // not fullfilled anymore.
+      if (this.state.focusedOptionIndex >= this.filteredMentions.size) {
+        this.setState({
+          focusedOptionIndex: this.filteredMentions.size - 1,
+        });
+      }
+    };
+
     componentWillUnmount() {
       // make sure none of these callbacks are triggered
       callbacks.onDownArrow = undefined; // eslint-disable-line no-param-reassign
@@ -115,16 +126,13 @@ export default (mentions, callbacks, ariaProps) => {
 
     onDownArrow = (keyboardEvent) => {
       keyboardEvent.preventDefault();
-      const filteredMentions = this.getMentionsForFilter();
       const newIndex = this.state.focusedOptionIndex + 1;
-      this.onMentionFocus(newIndex >= filteredMentions.size ? 0 : newIndex);
+      this.onMentionFocus(newIndex >= this.filteredMentions.size ? 0 : newIndex);
     };
 
     onUpArrow = (keyboardEvent) => {
       keyboardEvent.preventDefault();
-
-      const filteredMentions = this.getMentionsForFilter();
-      if (filteredMentions.size > 0) {
+      if (this.filteredMentions.size > 0) {
         const newIndex = this.state.focusedOptionIndex - 1;
         this.onMentionFocus(Math.max(newIndex, 0));
       }
@@ -165,16 +173,15 @@ export default (mentions, callbacks, ariaProps) => {
     };
 
     handleReturn = () => {
-      const filteredMentions = this.getMentionsForFilter();
-      this.onMentionSelect(filteredMentions.get(this.state.focusedOptionIndex));
+      this.onMentionSelect(this.filteredMentions.get(this.state.focusedOptionIndex));
       return true;
     };
 
     render() {
-      const filteredMentions = this.getMentionsForFilter();
+      this.filteredMentions = this.getMentionsForFilter();
       return (
         <span {...this.props} style={ styles.root } spellCheck={ false }>
-          { this.state.isOpen && filteredMentions.size > 0 ?
+          { this.state.isOpen && this.filteredMentions.size > 0 ?
           <div
             style={ styles.dropdown }
             contentEditable={ false }
@@ -182,7 +189,7 @@ export default (mentions, callbacks, ariaProps) => {
             id={ `mentions-list-${this.key}` }
           >
             {
-              filteredMentions.map((mention, index) => (
+              this.filteredMentions.map((mention, index) => (
                 <MentionOption
                   key={ mention.get('name') }
                   onMentionSelect={ this.onMentionSelect }
