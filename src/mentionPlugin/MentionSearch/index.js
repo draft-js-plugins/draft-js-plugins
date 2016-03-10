@@ -82,7 +82,7 @@ export default (mentions, callbacks, ariaProps) => {
       if (!sameBlock) return removeList();
       const { begin, end } = getSearchText(editorState, this.initialSelection);
       const anchorOffset = selection.getAnchorOffset();
-      if (anchorOffset < begin || end < anchorOffset) return removeList();
+      if (anchorOffset <= begin || end < anchorOffset) return removeList();
 
       if (!this.state.isOpen) {
         this.setState({
