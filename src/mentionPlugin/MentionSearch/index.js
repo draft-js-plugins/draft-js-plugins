@@ -6,7 +6,7 @@ import styles from './styles';
 import getSearchText from '../utils/getSearchText';
 import { genKey } from 'draft-js';
 
-export default (mentions, keyFunctions, ariaProps) => {
+export default (mentions, callbacks, ariaProps) => {
   const updateAriaCloseDropdown = () => {
     ariaProps.ariaHasPopup = 'false'; // eslint-disable-line no-param-reassign
     ariaProps.ariaExpanded = 'false'; // eslint-disable-line no-param-reassign
@@ -28,10 +28,11 @@ export default (mentions, keyFunctions, ariaProps) => {
       // It assumes that the keyFunctions object will not loose its reference and
       // by this we can replace inner parameters spread over different modules.
       // This better be some registering & unregistering logic. PRs are welcome :)
-      keyFunctions.onDownArrow = this.onDownArrow; // eslint-disable-line no-param-reassign
-      keyFunctions.onUpArrow = this.onUpArrow; // eslint-disable-line no-param-reassign
-      keyFunctions.onEscape = this.onEscape; // eslint-disable-line no-param-reassign
-      keyFunctions.handleReturn = this.handleReturn; // eslint-disable-line no-param-reassign
+      callbacks.onDownArrow = this.onDownArrow; // eslint-disable-line no-param-reassign
+      callbacks.onUpArrow = this.onUpArrow; // eslint-disable-line no-param-reassign
+      callbacks.onEscape = this.onEscape; // eslint-disable-line no-param-reassign
+      callbacks.handleReturn = this.handleReturn; // eslint-disable-line no-param-reassign
+      callbacks.onChange = this.onEditorStateChange; // eslint-disable-line no-param-reassign
       ariaProps.ariaActiveDescendantID = `mention-option-${this.key}-${this.state.focusedOptionIndex}`; // eslint-disable-line no-param-reassign
       ariaProps.ariaOwneeID = `mentions-list-${this.key}`; // eslint-disable-line no-param-reassign
     }
@@ -53,11 +54,44 @@ export default (mentions, keyFunctions, ariaProps) => {
     }
 
     componentWillUnmount() {
-      keyFunctions.onDownArrow = undefined; // eslint-disable-line no-param-reassign
-      keyFunctions.onUpArrow = undefined; // eslint-disable-line no-param-reassign
-      keyFunctions.onEscape = undefined; // eslint-disable-line no-param-reassign
-      keyFunctions.handleReturn = undefined; // eslint-disable-line no-param-reassign
+      callbacks.onDownArrow = undefined; // eslint-disable-line no-param-reassign
+      callbacks.onUpArrow = undefined; // eslint-disable-line no-param-reassign
+      callbacks.onEscape = undefined; // eslint-disable-line no-param-reassign
+      callbacks.handleReturn = undefined; // eslint-disable-line no-param-reassign
+      callbacks.onChange = undefined; // eslint-disable-line no-param-reassign
     }
+
+    onEditorStateChange = (editorState) => {
+      if (this.initialSelection === undefined) {
+        this.initialSelection = editorState.getSelection();
+      }
+
+      const removeList = () => {
+        if (this.state.isOpen) {
+          this.setState({
+            isOpen: false,
+          });
+        }
+
+        return editorState;
+      };
+
+      const selection = editorState.getSelection();
+      if (!selection.isCollapsed()) return removeList();
+      const sameBlock = selection.getAnchorKey() === this.initialSelection.getAnchorKey();
+      if (!sameBlock) return removeList();
+      const { begin, end } = getSearchText(editorState, this.initialSelection);
+      const anchorOffset = selection.getAnchorOffset();
+      if (anchorOffset < begin || end < anchorOffset) return removeList();
+
+      if (!this.state.isOpen) {
+        this.setState({
+          isOpen: true,
+        });
+      }
+
+      return editorState;
+    };
 
     onMentionSelect = (mention) => {
       updateAriaCloseDropdown();
@@ -107,9 +141,7 @@ export default (mentions, keyFunctions, ariaProps) => {
 
     // Get the first 5 mentions that match
     getMentionsForFilter = () => {
-      const anchorKey = this.lastSelection.getAnchorKey();
-      const anchorOffset = this.lastSelection.getAnchorOffset() - 1;
-      const { word } = getSearchText(this.props.editor.props.editorState, anchorKey, anchorOffset);
+      const { word } = getSearchText(this.props.editor.props.editorState, this.lastSelection);
       const mentionValue = word.substring(1, word.length).toLowerCase();
       const filteredValues = mentions && mentions.filter((mention) => (
         !mentionValue || mention.get('name').toLowerCase().indexOf(mentionValue) > -1

@@ -5,9 +5,7 @@ const addMention = (editorState, mention, selection) => {
   // TODO allow the user to override if the mentions are SEGMENTED, IMMUTABLE or MUTABLE
   const entityKey = Entity.create('mention', 'SEGMENTED', { mention });
 
-  const anchorKey = selection.getAnchorKey();
-  const anchorOffset = selection.getAnchorOffset() - 1;
-  const { begin, end } = getSearchText(editorState, anchorKey, anchorOffset);
+  const { begin, end } = getSearchText(editorState, selection);
 
   // get selection of the @mention search text
   const mentionTextSelection = editorState.getSelection().merge({

@@ -3,9 +3,14 @@ import MentionSearch from './MentionSearch';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 
-const keyFunctions = {
+const callbacks = {
   keyBindingFn: undefined,
   handleKeyCommand: undefined,
+  onDownArrow: undefined,
+  onUpArrow: undefined,
+  onEscape: undefined,
+  handleReturn: undefined,
+  onChange: undefined,
 };
 
 const ariaProps = {
@@ -26,16 +31,20 @@ const metionsPlugin = (config) => ({
     },
     {
       strategy: mentionSearchStrategy,
-      component: MentionSearch(config.mentions, keyFunctions, ariaProps),
+      component: MentionSearch(config.mentions, callbacks, ariaProps),
     },
   ],
-  keyBindingFn: (keyboardEvent) => keyFunctions.keyBindingFn && keyFunctions.keyBindingFn(keyboardEvent), // standard plugin callback
-  handleKeyCommand: (command) => keyFunctions.handleKeyCommand && keyFunctions.handleKeyCommand(command), // standard plugin callback
-  onDownArrow: (keyboardEvent) => keyFunctions.onDownArrow && keyFunctions.onDownArrow(keyboardEvent), // standard plugin callback
-  onUpArrow: (keyboardEvent) => keyFunctions.onUpArrow && keyFunctions.onUpArrow(keyboardEvent), // standard plugin callback
-  onEscape: (keyboardEvent) => keyFunctions.onEscape && keyFunctions.onEscape(keyboardEvent), // standard plugin callback
-  handleReturn: (keyboardEvent) => keyFunctions.handleReturn && keyFunctions.handleReturn(keyboardEvent), // standard plugin callback
   getEditorProps: () => ariaProps,
+  keyBindingFn: (keyboardEvent) => callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent), // standard plugin callback
+  handleKeyCommand: (command) => callbacks.handleKeyCommand && callbacks.handleKeyCommand(command), // standard plugin callback
+  onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent), // standard plugin callback
+  onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent), // standard plugin callback
+  onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent), // standard plugin callback
+  handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent), // standard plugin callback
+  onChange: (editorState) => {
+    if (callbacks.onChange) return callbacks.onChange(editorState);
+    return editorState;
+  },
 });
 
 export default metionsPlugin;

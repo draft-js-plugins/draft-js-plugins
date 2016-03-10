@@ -1,6 +1,6 @@
 /* @flow */
 
-import findWithRegex from './findWithRegex';
+import findWithRegex from './utils/findWithRegex';
 
 /**
  * Super simple decorators for handles and hashtags, for demonstration
