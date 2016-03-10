@@ -95,13 +95,13 @@ export default (mentions, callbacks, ariaProps) => {
 
     onMentionSelect = (mention) => {
       updateAriaCloseDropdown();
-      const newEditorState = addMention(this.props.editor.props.editorState, mention, this.lastSelection);
+      const selection = this.props.editor.props.editorState.getSelection();
+      const newEditorState = addMention(this.props.editor.props.editorState, mention, selection);
       this.props.editor.onChange(newEditorState);
     };
 
     onDownArrow = (keyboardEvent) => {
       keyboardEvent.preventDefault();
-
       const filteredMentions = this.getMentionsForFilter();
       const newIndex = this.state.focusedOptionIndex + 1;
       this.onMentionFocus(newIndex >= filteredMentions.size ? 0 : newIndex);
@@ -141,7 +141,8 @@ export default (mentions, callbacks, ariaProps) => {
 
     // Get the first 5 mentions that match
     getMentionsForFilter = () => {
-      const { word } = getSearchText(this.props.editor.props.editorState, this.lastSelection);
+      const selection = this.props.editor.props.editorState.getSelection();
+      const { word } = getSearchText(this.props.editor.props.editorState, selection);
       const mentionValue = word.substring(1, word.length).toLowerCase();
       const filteredValues = mentions && mentions.filter((mention) => (
         !mentionValue || mention.get('name').toLowerCase().indexOf(mentionValue) > -1
@@ -157,7 +158,6 @@ export default (mentions, callbacks, ariaProps) => {
     };
 
     render() {
-      this.lastSelection = this.props.editor.props.editorState.getSelection();
       const filteredMentions = this.getMentionsForFilter();
       return (
         <span {...this.props} style={ styles.root } spellCheck={ false }>
