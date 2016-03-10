@@ -54,6 +54,7 @@ export default (mentions, callbacks, ariaProps) => {
     }
 
     componentWillUnmount() {
+      // make sure none of these callbacks are triggered
       callbacks.onDownArrow = undefined; // eslint-disable-line no-param-reassign
       callbacks.onUpArrow = undefined; // eslint-disable-line no-param-reassign
       callbacks.onEscape = undefined; // eslint-disable-line no-param-reassign
@@ -62,6 +63,7 @@ export default (mentions, callbacks, ariaProps) => {
     }
 
     onEditorStateChange = (editorState) => {
+      // store the initialSelection (must be at the @)
       if (this.initialSelection === undefined) {
         this.initialSelection = editorState.getSelection();
       }
@@ -77,13 +79,24 @@ export default (mentions, callbacks, ariaProps) => {
       };
 
       const selection = editorState.getSelection();
+
+      // the list should not be visible in case a range is selected or the editor has no focus
       if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
+
+      // only show the search component for the current block
       const sameBlock = selection.getAnchorKey() === this.initialSelection.getAnchorKey();
       if (!sameBlock) return removeList();
+
+      // Checks that the curosr is after the @ character but still somewhere in
+      // the word (search term). Setting it to allow the cursor being left of
+      // the @ causes causes troubles as due selection connfusion.
       const { begin, end } = getSearchText(editorState, this.initialSelection);
       const anchorOffset = selection.getAnchorOffset();
       if (anchorOffset <= begin || end < anchorOffset) return removeList();
 
+      // If none of the above triggered to close the window, it's save to assume
+      // the dropdown should be open. This is useful when a user focuses on another
+      // input field and then comes back: the dropwdown will again.
       if (!this.state.isOpen) {
         this.setState({
           isOpen: true,
