@@ -77,7 +77,7 @@ export default (mentions, callbacks, ariaProps) => {
       };
 
       const selection = editorState.getSelection();
-      if (!selection.isCollapsed()) return removeList();
+      if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
       const sameBlock = selection.getAnchorKey() === this.initialSelection.getAnchorKey();
       if (!sameBlock) return removeList();
       const { begin, end } = getSearchText(editorState, this.initialSelection);
