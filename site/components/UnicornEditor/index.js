@@ -22,7 +22,9 @@ const stickerPluginInstance = stickerPlugin({
   stickers,
 });
 const { StickerSelect } = stickerPluginInstance;
-const { UndoButton, RedoButton, History } = historyPluginInstance;
+const { UndoButton, RedoButton } = historyPluginInstance;
+
+// const { UndoButton, RedoButton, History } = historyPluginInstance;
 
 const plugins = [
   hashtagPluginInstance,
