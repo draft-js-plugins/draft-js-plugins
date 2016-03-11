@@ -9,6 +9,7 @@ export default {
   code: {
     whiteSpace: 'pre-wrap',
     background: '#FDFDFD',
+    color: '#666',
     padding: 10,
     height: 0,
     maxHeight: '50em',

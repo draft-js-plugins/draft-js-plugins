@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './styles';
+import PureComponent from 'react-pure-render/component';
+import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
 
-import Code from '../CodeHighlight';
+export default class StatePreview extends PureComponent {
 
-export default class StatePreview extends Component {
+  shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
     const codeStyle = {
@@ -16,13 +18,15 @@ export default class StatePreview extends Component {
         'height 150ms ease-out, padding 0ms 0ms'),
     };
 
+    let code = null;
+    if (!this.props.collapsed) {
+      code = JSON.stringify(this.props.editorState.getCurrentContent().toJS(), null, 2);
+    }
+
     return (
       <div style={ styles.root }>
         <pre style={ codeStyle }>
-          <Code
-            language="javascript"
-            code={ JSON.stringify(this.props.editorState.getCurrentContent().toJS(), null, 2) }
-          />
+          { code }
         </pre>
       </div>
     );
