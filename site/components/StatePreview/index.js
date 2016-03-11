@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './styles';
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
 
-export default class StatePreview extends PureComponent {
+export default class StatePreview extends Component {
 
   shouldComponentUpdate = shouldComponentUpdate;
 
