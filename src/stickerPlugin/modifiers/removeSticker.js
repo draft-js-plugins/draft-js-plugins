@@ -9,31 +9,49 @@ import {
 } from 'draft-js';
 
 export default (editorState: Object, blockKey: String) => {
-  const content = editorState.getCurrentContent();
-  const afterKey = content.getKeyAfter(blockKey);
+  let content = editorState.getCurrentContent();
+  const newSelection = new SelectionState({
+    anchorKey: blockKey,
+    anchorOffset: 0,
+    focusKey: blockKey,
+    focusOffset: 0,
+  });
 
-  let withoutSticker;
-  if (afterKey !== undefined) {
-    const targetRange = new SelectionState({
+  const afterKey = content.getKeyAfter(blockKey);
+  const afterBlock = content.getBlockForKey(afterKey);
+  let targetRange;
+
+  // Only if the following block the last with with no text then the whole block
+  // should be removed. Otherwise the block should be reduced to an unstyled block
+  // without any characters.
+  if (afterBlock &&
+      afterBlock.getType() === 'unstyled' &&
+      afterBlock.getLength() === 0 &&
+      afterBlock === content.getBlockMap().last()) {
+    targetRange = new SelectionState({
       anchorKey: blockKey,
       anchorOffset: 0,
       focusKey: afterKey,
       focusOffset: 0,
     });
-    withoutSticker = Modifier.removeRange(content, targetRange, 'backward');
-    withoutSticker = Modifier.setBlockType(
-      withoutSticker,
-      withoutSticker.getSelectionAfter(),
-      'unstyled'
-    );
   } else {
-    withoutSticker = Modifier.setBlockType(
-      content,
-      content.getSelectionAfter(),
-      'unstyled'
-    );
+    targetRange = new SelectionState({
+      anchorKey: blockKey,
+      anchorOffset: 0,
+      focusKey: blockKey,
+      focusOffset: 1,
+    });
   }
 
-  const newState = EditorState.push(editorState, withoutSticker, 'remove-sticker');
-  return EditorState.forceSelection(newState, withoutSticker.getSelectionAfter());
+  // change the blocktype and remove the characterList entry with the sticker
+  content = Modifier.setBlockType(
+    content,
+    targetRange,
+    'unstyled'
+  );
+  content = Modifier.removeRange(content, targetRange, 'backward');
+
+  // force to new selection
+  const newState = EditorState.push(editorState, content, 'remove-sticker');
+  return EditorState.forceSelection(newState, newSelection);
 };
