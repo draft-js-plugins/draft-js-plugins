@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './styles';
-import PureComponent from 'react-pure-render/component';
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
 
 export default class StatePreview extends PureComponent {
