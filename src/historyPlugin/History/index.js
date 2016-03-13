@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
 import HistoryEntry from './HistoryEntry';
-import styles from './styles';
+import styles from './styles.css';
 
 class History extends Component {
-  generateHistoryEntries(stack, style) {
+  generateHistoryEntries(stack, className) {
     return stack.map((entry) => (
-      <HistoryEntry style={style} >
+      <HistoryEntry className={ className } >
         { entry.getPlainText() }
       </HistoryEntry>
     ));
@@ -17,15 +17,11 @@ class History extends Component {
     const redoStack = this.props.editorState.getRedoStack().reverse();
     const undoHistory = this.generateHistoryEntries(undoStack, styles.entry);
     const redoHistory = this.generateHistoryEntries(redoStack, styles.entry);
-    const currentEntryStyle = {
-      ...styles.entry,
-      color: '#000',
-    };
 
     return (
       <div>
         { redoHistory }
-        <HistoryEntry style={ currentEntryStyle }>
+        <HistoryEntry className={ styles.currentEntry }>
           { this.props.editorState.getCurrentContent().getPlainText() }
         </HistoryEntry>
         { undoHistory }

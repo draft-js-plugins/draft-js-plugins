@@ -1,9 +1,7 @@
 import React from 'react';
 
-import styles from './styles';
-
 const HistoryEntry = (props) => (
-  <div style={ styles.root } { ...props } />
+  <div { ...props } />
 );
 
 export default HistoryEntry;
