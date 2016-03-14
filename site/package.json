@@ -13,13 +13,9 @@
     "url": "http://github.com/nikgraf/unicorn-editor.git"
   },
   "dependencies": {
-    "prismjs": "1.4.1",
     "react": "=15.0.0-rc.1",
     "react-dom": "^=15.0.0-rc.1",
     "react-addons-pure-render-mixin": "15.0.0-rc.1",
-    "lodash": "^4.6.1"
-  },
-  "devDependencies": {
     "babel-core": "^6.7.2",
     "babel-loader": "^6.2.4",
     "eslint": "^2.4.0",
