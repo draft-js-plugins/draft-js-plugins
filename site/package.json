@@ -20,11 +20,11 @@
     "lodash": "^4.6.1"
   },
   "devDependencies": {
-    "babel-core": "^6.6.5",
+    "babel-core": "^6.7.2",
     "babel-loader": "^6.2.4",
-    "eslint": "^2.3.0",
+    "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
-    "eslint-plugin-react": "4.2.0",
+    "eslint-plugin-react": "4.2.1",
     "express": "^4.13.4",
     "node-libs-browser": "^1.0.0",
     "uglify-js": "=2.6.2",
