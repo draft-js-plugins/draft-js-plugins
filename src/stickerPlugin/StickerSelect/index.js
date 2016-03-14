@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import styles from './styles';
+import styles from './styles.css';
 import StickerOption from './StickerOption';
 import add from '../modifiers/addSticker';
 
@@ -84,35 +84,28 @@ export default (stickers) => {
         );
       });
 
-      const popoverStyle = {
-        ...styles.popover,
-        display: (this.state.open ? 'block' : 'none'),
-      };
-
-      const buttonStyle = {
-        ...styles.button,
-        background: (this.state.open ? '#ededed' : '#fff'),
-      };
+      const popoverClassName = this.state.open ? styles.popover : styles.closedPopover;
+      const buttonClassName = this.state.open ? styles.pressedButton : styles.button;
 
       return (
-        <div style={ styles.root }>
+        <div className={ styles.root }>
           <button
-            style={ buttonStyle }
+            className={ buttonClassName }
             onMouseUp={ this.openPopover }
             type="button"
           >
-            <span style={ styles.icon }>☺</span>
-            <span style={ styles.buttonText }>Add Sticker</span>
+            <span className={ styles.icon }>☺</span>
+            <span className={ styles.buttonText }>Add Sticker</span>
           </button>
           <div
-            style={ popoverStyle }
+            className={ popoverClassName }
             onMouseEnter={ this.onMouseEnter }
             onMouseLeave={ this.onMouseLeave }
           >
-            <div style={ styles.stickerList }>
+            <div className={ styles.stickerList }>
               { stickerElements.toList().toJS() }
             </div>
-            <div style={ styles.bottomGradient }></div>
+            <div className={ styles.bottomGradient }></div>
           </div>
         </div>
       );

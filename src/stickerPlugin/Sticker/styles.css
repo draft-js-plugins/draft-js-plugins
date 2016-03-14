@@ -1,0 +1,24 @@
+.root {
+  margin: 0;
+  position: relative;
+  display: block;
+}
+
+.remove {
+  background-color: #D6D6D6;
+  color: white;
+  margin: 0;
+  padding: 0.5em;
+  border: none;
+  border-radius: 50%;
+  line-height: 0.75em;
+  position: absolute;
+  font-size: 0.62em;
+  margin-left: -0.825em;
+  cursor: pointer;
+}
+
+.image {
+  width: 125px;
+  height: 125px;
+}
