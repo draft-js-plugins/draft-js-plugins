@@ -32,12 +32,15 @@ module.exports = {
         loaders: ['babel'],
         include: path.join(__dirname, '..', 'src'),
       }, {
-        test: /\.css/,
+        test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'),
         include: [
           path.join(__dirname, '..', 'src'),
           path.join(__dirname, 'components'),
         ],
+      }, {
+        test: /\.svg$/,
+        loaders: ['url?limit=0'],
       },
     ],
   },

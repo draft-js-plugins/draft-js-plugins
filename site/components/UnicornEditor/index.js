@@ -64,8 +64,6 @@ export default class UnicornEditor extends Component {
     return (
       <div className={ styles.root }>
 
-        <h2>Example: Unicorn Editor</h2>
-
         <div className={ styles.editor } onClick={ this.focus }>
           <Editor
             editorState={this.state.editorState}
@@ -100,18 +98,6 @@ export default class UnicornEditor extends Component {
         />
         {/* <History editorState={ this.state.editorState } /> */}
 
-        <h3>Features in this Editor via Plugins</h3>
-        <ul>
-          <li>Custom stickers</li>
-          <li>Hashtag support</li>
-          <li>Automatically turns links into anchor tags</li>
-          <li>Mentions</li>
-        </ul>
-
-        <h3>Why?</h3>
-        <p>
-          Just because unicorns are cooler than cats 😜
-        </p>
       </div>
     );
   }

@@ -67,8 +67,6 @@ export default class UnicornEditor extends Component {
     return (
       <div className={ styles.root }>
 
-        <h2>Example: Superhero Editor</h2>
-
         <div className={ styles.editor } onClick={ this.focus }>
           <Editor
             editorState={ this.state.editorState }
@@ -102,13 +100,6 @@ export default class UnicornEditor extends Component {
           editorState={ this.state.editorState }
           collapsed={ !this.state.showState }
         />
-
-        <h3>Features in this Editor via Plugins</h3>
-        <ul>
-          <li>Custom stickers</li>
-          <li>Hashtag support & applying a custom Hashtag component</li>
-          <li>Automatically turns links into anchor tags</li>
-        </ul>
       </div>
     );
   }

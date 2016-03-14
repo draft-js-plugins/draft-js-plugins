@@ -1,0 +1,53 @@
+.header {
+  background: #fff;
+  padding: 60px 0 20px 0;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.logo {
+  margin-right: 40px;
+}
+
+.logoText {
+  color: #979797;
+  font-size: 36px;
+  font-weight: 200;
+}
+
+.tagline {
+  font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 3em;
+}
+
+.githubButton {
+  width: 120px;
+  height: 30px;
+  margin-bottom: 2rem;
+}
+
+.plugins {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+.plugin {
+  display: inline-block;
+  padding: 3px 12px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  color: #777;
+  background: #efefef;
+  margin-right: 14px;
+}
+
+.center {
+  text-align: center;
+}
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+}

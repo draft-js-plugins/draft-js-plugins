@@ -13,17 +13,19 @@
     "url": "http://github.com/nikgraf/unicorn-editor.git"
   },
   "dependencies": {
-    "react": "=15.0.0-rc.1",
-    "react-dom": "^=15.0.0-rc.1",
-    "react-addons-pure-render-mixin": "15.0.0-rc.1",
     "babel-core": "^6.7.2",
     "babel-loader": "^6.2.4",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "4.2.1",
     "express": "^4.13.4",
+    "file-loader": "^0.8.5",
     "node-libs-browser": "^1.0.0",
+    "react": "=15.0.0-rc.1",
+    "react-addons-pure-render-mixin": "15.0.0-rc.1",
+    "react-dom": "^=15.0.0-rc.1",
     "uglify-js": "=2.6.2",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.14"
   },
   "scripts": {
