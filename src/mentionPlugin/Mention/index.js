@@ -1,6 +1,6 @@
 import React from 'react';
 import { Entity } from 'draft-js';
-import styles from './styles';
+import styles from './styles.css';
 
 const Mention = (props) => {
   const { mention } = Entity.get(props.entityKey).getData();
@@ -8,8 +8,8 @@ const Mention = (props) => {
   if (mention.has('link')) {
     return (
       <a
-        href={mention.get('link')}
-        style={styles.mention}
+        href={ mention.get('link') }
+        className={ styles.rootLink }
         spellCheck={ false }
       >
         { props.children }
@@ -19,7 +19,7 @@ const Mention = (props) => {
 
   return (
     <span
-      style={styles.mention}
+      className={ styles.root }
       spellCheck={ false }
     >
       { props.children }

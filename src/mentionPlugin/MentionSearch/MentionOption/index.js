@@ -2,7 +2,7 @@ import React, {
   // PropTypes,
   Component,
 } from 'react';
-import styles from './styles';
+import styles from './styles.css';
 import Avatar from './Avatar';
 
 export default class MentionOption extends Component {
@@ -21,16 +21,16 @@ export default class MentionOption extends Component {
   };
 
   render() {
-    const style = this.props.isFocused ? styles.focus : styles.root;
+    const className = this.props.isFocused ? styles.focusedRoot : styles.root;
     return (
       <div
-        style={ style }
+        className={ className }
         onClick={ this.onMentionSelect }
         onMouseEnter={ this.onMouseEnter }
         role="option"
       >
         <Avatar mention={ this.props.mention } />
-        <span style={ styles.text }>{ this.props.mention.get('name') }</span>
+        <span className={ styles.text }>{ this.props.mention.get('name') }</span>
       </div>
     );
   }

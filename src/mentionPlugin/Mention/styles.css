@@ -1,0 +1,28 @@
+.root {
+  color: #333;
+  display: inline-block;
+  background: #DEF0F7;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-radius: 4px;
+}
+
+.rootLink, .rootLink:visited  {
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  background: #DEF0F7;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-radius: 4px;
+}
+
+.rootLink:hover, .rootLink:focus {
+  color: #555;
+  background: #E5F2F7;
+}
+
+.rootLink:active {
+  color: #222;
+  background: #BBE3F3;
+}
