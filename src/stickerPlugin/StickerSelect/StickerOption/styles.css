@@ -1,0 +1,14 @@
+.root {
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.root:hover {
+  background: #eee;
+}
+
+.image {
+  height: 85px;
+  width: 85px;
+}

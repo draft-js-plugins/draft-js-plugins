@@ -1,13 +1,9 @@
 import React from 'react';
-
-import styles from './styles';
+import styles from './styles.css';
 
 const Button = (props) => (
   <button
-    style={ (props.disabled ? {
-      ...styles.root,
-      backgroundColor: '#bbb',
-    } : styles.root) }
+    className={ styles.root }
     disabled={ props.disabled }
     { ...props }
   />

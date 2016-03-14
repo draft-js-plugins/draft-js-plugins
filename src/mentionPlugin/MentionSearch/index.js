@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
-import styles from './styles';
+import styles from './styles.css';
 import getSearchText from '../utils/getSearchText';
 import { genKey } from 'draft-js';
 
@@ -180,10 +180,10 @@ export default (mentions, callbacks, ariaProps) => {
     render() {
       this.filteredMentions = this.getMentionsForFilter();
       return (
-        <span {...this.props} style={ styles.root } spellCheck={ false }>
+        <span {...this.props} className={ styles.root } spellCheck={ false }>
           { this.state.isOpen && this.filteredMentions.size > 0 ?
           <div
-            style={ styles.dropdown }
+            className={ styles.dropdown }
             contentEditable={ false }
             role="listbox"
             id={ `mentions-list-${this.key}` }

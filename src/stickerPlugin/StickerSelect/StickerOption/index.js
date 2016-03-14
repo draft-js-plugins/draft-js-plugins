@@ -3,26 +3,9 @@
  */
 
 import React, { Component } from 'react';
-import styles from './styles';
+import styles from './styles.css';
 
 export default class StickerOption extends Component {
-
-  // Hack hoverstate support because we're using inline styles
-  state = {
-    hover: false,
-  };
-
-  onMouseEnter = () => {
-    this.setState({
-      hover: true,
-    });
-  };
-
-  onMouseLeave = () => {
-    this.setState({
-      hover: false,
-    });
-  };
 
   onClick = () => {
     this.props.onClick(this.props.id);
@@ -30,20 +13,14 @@ export default class StickerOption extends Component {
 
   render() {
     const { id, url } = this.props;
-    const rootStyle = {
-      ...styles.root,
-      background: (this.state.hover ? '#eee' : '#fff'),
-    };
     return (
       <button
         onClick={ this.onClick }
-        onMouseEnter={ this.onMouseEnter }
-        onMouseLeave={ this.onMouseLeave }
         key={ id }
         type="button"
-        style={ rootStyle }
+        className={ styles.root }
       >
-        <img style={ styles.image } src={ url } />
+        <img className={ styles.image } src={ url } />
       </button>
     );
   }

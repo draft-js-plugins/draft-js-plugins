@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles';
+import styles from './styles.css';
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
 
 export default class StatePreview extends Component {
@@ -7,15 +7,7 @@ export default class StatePreview extends Component {
   shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
-    const codeStyle = {
-      ...styles.code,
-      height: (this.props.collapsed ? 0 : '50em'),
-      padding: (this.props.collapsed ? 0 : 10),
-      border: (this.props.collapsed ? '1px solid #fff' : '1px solid #ddd'),
-      transition: (this.props.collapsed ?
-        'height 150ms ease-in, padding 0ms 150ms' :
-        'height 150ms ease-out, padding 0ms 0ms'),
-    };
+    const codeClassName = this.props.collapsed ? styles.collapsedCode : styles.expandedCode;
 
     let code = null;
     if (!this.props.collapsed) {
@@ -23,8 +15,8 @@ export default class StatePreview extends Component {
     }
 
     return (
-      <div style={ styles.root }>
-        <pre style={ codeStyle }>
+      <div className={ styles.root }>
+        <pre className={ codeClassName }>
           { code }
         </pre>
       </div>

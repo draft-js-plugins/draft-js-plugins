@@ -1,0 +1,13 @@
+.root {
+  padding: 5px;
+}
+
+.focusedRoot {
+  composes: root;
+  background-color: #DEF0F7;
+}
+
+.text {
+  display: inline-block;
+  margin-left: 8px;
+}

@@ -3,8 +3,9 @@ import Editor, { createWithText } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
+import historyPlugin from 'draft-js-history-plugin';
 import { EditorState } from 'draft-js';
-import styles from './styles';
+import styles from './styles.css';
 import stickers from './stickers';
 import StatePreview from '../StatePreview';
 import Hashtag from './Hashtag';
@@ -15,6 +16,8 @@ import Link from './Link';
 const stickerPluginInstance = stickerPlugin({ stickers, hasRemove: false });
 const hashtagPluginInstance = hashtagPlugin({ Hashtag });
 const linkifyPluginInstance = linkifyPlugin({ Link });
+const historyPluginInstance = historyPlugin();
+const { UndoButton, RedoButton } = historyPluginInstance;
 const { StickerSelect } = stickerPluginInstance;
 
 const plugins = [
@@ -58,55 +61,38 @@ export default class UnicornEditor extends Component {
     });
   };
 
-  /* eslint-disable react/jsx-no-bind */
   render() {
-    const showStateButtonStyle = {
-      ...styles.button,
-      background: (this.state.showState ? '#ededed' : '#fff'),
-    };
-
-    const smallButtonStyle = {
-      ...styles.button,
-      width: 40,
-      fontWeight: 'bold',
-      fontSize: '1.5em',
-      padding: 0,
-      top: 0,
-    };
+    const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
 
     return (
-      <div style={styles.root}>
+      <div className={ styles.root }>
 
         <h2>Example: Superhero Editor</h2>
 
-        <div style={styles.editor} onClick={ this.focus }>
+        <div className={ styles.editor } onClick={ this.focus }>
           <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
+            editorState={ this.state.editorState }
+            onChange={ this.onChange }
+            plugins={ plugins }
             spellCheck
             className="waaahhh"
             ref="editor"
           />
         </div>
         <div>
-          <div style={ styles.stickerSelect }>
+          <div className={ styles.stickerSelect }>
             <StickerSelect editor={ this } />
           </div>
+          <UndoButton
+            editorState={ this.state.editorState }
+            onChange={ this.onChange }
+          />
+          <RedoButton
+            editorState={ this.state.editorState }
+            onChange={ this.onChange }
+          />
           <button
-            style={ smallButtonStyle }
-            onClick={ this.undo }
-          >
-            ↺
-          </button>
-          <button
-            style={ smallButtonStyle }
-            onClick={ this.redo }
-          >
-            ↻
-          </button>
-          <button
-            style={ showStateButtonStyle }
+            className={ stateButton }
             onClick={ this.toggleShowState }
           >
             Toggle State Preview

@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react';
-import styles from './styles';
+import styles from './styles.css';
 import { Entity } from 'draft-js';
 
 export default (stickers, hasRemove = true) => {
@@ -20,7 +20,7 @@ export default (stickers, hasRemove = true) => {
     render() {
       const removeButton = (
         <span
-          style={ styles.removeButton }
+          className={ styles.remove }
           onClick={ this.remove }
           type="button"
         >
@@ -31,8 +31,8 @@ export default (stickers, hasRemove = true) => {
       const { block } = this.props;
       const data = Entity.get(block.getEntityAt(0)).getData();
       return (
-        <figure style={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
-          <img style={ styles.image } src={ stickers.getIn(['data', data.id, 'url']) } />
+        <figure className={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
+          <img className={ styles.image } src={ stickers.getIn(['data', data.id, 'url']) } />
           { hasRemove ? removeButton : null }
         </figure>
       );

@@ -1,0 +1,40 @@
+.root {
+  background: #FFF;
+}
+
+.editor {
+  border: 1px solid #ddd;
+  cursor: text;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.editor :global(.public-DraftEditor-content) {
+  min-height: 100px;
+}
+
+.stateButton {
+  border: 1px solid #bbb;
+  height: 40px;
+  padding: 0 1.2em;
+  color: #888;
+  margin: 0;
+  border-radius: 20px;
+  line-height: 1.2em;
+  cursor: pointer;
+  margin-right: 10px;
+  position: relative;
+  top: -4px;
+  background-color: #fff;
+}
+
+.pressedStateButton {
+  composes: stateButton;
+  background-color: #ededed;
+}
+
+.stickerSelect {
+  margin-right: 10px;
+  display: inline-block;
+}

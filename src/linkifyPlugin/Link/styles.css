@@ -1,0 +1,11 @@
+.root, .root:visited {
+  color: #AB0393;
+}
+
+.root:hover, .root:focus {
+  color: #DE61CC;
+}
+
+.root:active {
+  color: #8E2E80;
+}
