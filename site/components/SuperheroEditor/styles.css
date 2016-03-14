@@ -10,6 +10,10 @@
   margin-bottom: 10px;
 }
 
+.editor :global(.public-DraftEditor-content) {
+  min-height: 100px;
+}
+
 .stateButton {
   border: 1px solid #bbb;
   height: 40px;
