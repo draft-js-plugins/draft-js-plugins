@@ -1,24 +1,13 @@
 var path = require('path'); // eslint-disable-line no-var
-var webpack = require('webpack'); // eslint-disable-line no-var
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
 var autoprefixer = require('autoprefixer'); // eslint-disable-line no-var
 
 module.exports = {
-  devtool: 'inline-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './index',
-  ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'static'),
     filename: 'bundle.js',
     publicPath: '/static/',
   },
-  plugins: [
-    new ExtractTextPlugin('bundle.css', { disable: true }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-  ],
   resolve: {
     alias: {
       'draft-js-plugin-editor': path.join(__dirname, '..', 'src', 'pluginEditor'),
