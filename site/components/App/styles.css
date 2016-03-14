@@ -1,12 +1,12 @@
 .header {
   background: #fff;
-  padding: 60px 0 20px 0;
-  border-bottom: 1px solid #ddd;
+  padding: 10rem 0 0 0;
   text-align: center;
 }
 
 .logo {
-  margin-right: 40px;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
 }
 
 .logoText {
@@ -36,11 +36,11 @@
 .plugin {
   display: inline-block;
   padding: 3px 12px;
-  border: 2px solid #ddd;
+  border: 1px solid #eee;
   border-radius: 10px;
   color: #777;
-  background: #efefef;
-  margin-right: 14px;
+  background: #f6f6f6;
+  margin-right: 18px;
 }
 
 .center {
@@ -50,4 +50,24 @@
 .container {
   width: 600px;
   margin: 0 auto;
+}
+
+.containerWrapper {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 3rem;
+}
+
+.footer {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 60px;
+  padding-bottom: 60px;
+}
+
+.heart {
+  color: rgb(200, 0, 0);
+  font-size: 22px;
+  position: relative;
+  top: 3px;
 }
