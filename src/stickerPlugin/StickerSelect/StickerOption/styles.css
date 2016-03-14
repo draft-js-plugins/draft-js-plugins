@@ -5,7 +5,11 @@
 }
 
 .root:hover {
-  background: #eee;
+  background: #efefef;
+}
+
+.root:active {
+  background: #dfdfdf;
 }
 
 .image {

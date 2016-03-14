@@ -22,7 +22,7 @@ export default (stickers, hasRemove = true) => {
         <span
           className={ styles.remove }
           onClick={ this.remove }
-          type="button"
+          role="button"
         >
           ✕
         </span>
