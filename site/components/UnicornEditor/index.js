@@ -5,7 +5,7 @@ import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import mentionPlugin from 'draft-js-mention-plugin';
 import historyPlugin from 'draft-js-history-plugin';
-import styles from './styles';
+import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
 import StatePreview from '../StatePreview';
@@ -59,17 +59,14 @@ export default class UnicornEditor extends Component {
 
   /* eslint-disable react/jsx-no-bind */
   render() {
-    const showStateButtonStyle = {
-      ...styles.button,
-      background: (this.state.showState ? '#ededed' : '#fff'),
-    };
+    const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
 
     return (
-      <div style={styles.root}>
+      <div className={ styles.root }>
 
         <h2>Example: Unicorn Editor</h2>
 
-        <div style={styles.editor} onClick={ this.focus } className="unicorn-editor-wrapper">
+        <div className={ styles.editor } onClick={ this.focus }>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -79,7 +76,7 @@ export default class UnicornEditor extends Component {
           />
         </div>
         <div>
-          <div style={ styles.stickerSelect }>
+          <div className={ styles.stickerSelect }>
             <StickerSelect editor={ this } />
           </div>
           <UndoButton
@@ -91,7 +88,7 @@ export default class UnicornEditor extends Component {
             onChange={ this.onChange }
           />
           <button
-            style={ showStateButtonStyle }
+            className={ stateButton }
             onClick={ this.toggleShowState }
           >
             Toggle State Preview

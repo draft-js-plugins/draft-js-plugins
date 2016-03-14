@@ -64,15 +64,6 @@ export default class UnicornEditor extends Component {
   render() {
     const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
 
-    const smallButtonStyle = {
-      ...styles.button,
-      width: 40,
-      fontWeight: 'bold',
-      fontSize: '1.5em',
-      padding: 0,
-      top: 0,
-    };
-
     return (
       <div className={ styles.root }>
 
@@ -80,9 +71,9 @@ export default class UnicornEditor extends Component {
 
         <div className={ styles.editor } onClick={ this.focus }>
           <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
+            editorState={ this.state.editorState }
+            onChange={ this.onChange }
+            plugins={ plugins }
             spellCheck
             className="waaahhh"
             ref="editor"
