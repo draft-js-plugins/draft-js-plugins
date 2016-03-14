@@ -83,6 +83,7 @@
   "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.3",
+    "css-modules-require-hook": "^4.0.0",
     "draft-js": "^0.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "immutable": "^3.7.6",
