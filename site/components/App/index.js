@@ -26,6 +26,14 @@ export default class App extends Component {
             </div>
           </div>
         </div>
+        <div>
+          <div className={ styles.separatorPart1 }></div>
+          <div className={ styles.separatorPart2 }></div>
+          <div className={ styles.separatorPart3 }></div>
+          <div className={ styles.separatorPart4 }></div>
+          <div className={ styles.separatorPart5 }></div>
+          <div className={ styles.separatorPart6 }></div>
+        </div>
         <div className={ styles.alternateContainerWrapper }>
           <div className={ styles.container }>
             <Heading level={ 2 }>Available Plugins</Heading>
