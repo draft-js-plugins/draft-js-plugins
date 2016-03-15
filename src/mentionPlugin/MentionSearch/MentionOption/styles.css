@@ -2,6 +2,10 @@
   padding: 5px;
 }
 
+.root:active {
+  background-color: #C8EAF7;
+}
+
 .focusedRoot {
   composes: root;
   background-color: #DEF0F7;
