@@ -100,7 +100,7 @@ export default class App extends Component {
               </g>
             </svg>
             <div className={ styles.logoText }>DraftJS Plugins</div>
-            <p className={ styles.tagline }>A Plugin Architecture on top of DraftJS</p>
+            <p className={ styles.tagline }>High quality plugins with great UX</p>
             <div>
               <iframe
                 src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugin-editor&type=star&count=true&size=large"
