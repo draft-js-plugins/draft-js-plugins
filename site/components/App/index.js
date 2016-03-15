@@ -1,58 +1,58 @@
 import React, { Component } from 'react';
 import UnicornEditor from '../UnicornEditor';
 import Heading from '../Heading';
+import Separator from '../Separator';
 import styles from './styles.css';
 import animate from 'animateplus';
 
 export default class App extends Component {
 
   componentDidMount() {
-    setTimeout(
-      () => animate({
-        el: this.refs.drawnPath,
-        'stroke-dashoffset': [570, 1140],
-        duration: 800,
-        easing: 'easeOutSine',
-      }), 600
-    );
-
-    setTimeout(
-      () => {
-        animate({
-          el: this.refs.penTop,
-          'stroke-dashoffset': [85, 0],
-          duration: 900,
-          easing: 'linear',
-        });
-
-        animate({
-          el: this.refs.penRing,
-          'stroke-dashoffset': [48, 0],
-          duration: 900,
-          easing: 'linear',
-        });
-
-        animate({
-          el: this.refs.penHandle,
-          'stroke-dashoffset': [228, 456],
-          duration: 900,
-          easing: 'linear',
-        });
-      }, 1100
-    );
-
-    setTimeout(
-      () => {
-        animate({
-          el: this.refs.dot,
-          rx: [0, 3.6743313],
-          ry: [0, 1.73943662],
-          duration: 600,
-          easing: 'easeOutQuad',
-        });
-      }, 1500
-    );
+    this.animateLogo();
   }
+
+  animateLogo = () => {
+    animate({
+      el: this.refs.drawnPath,
+      'stroke-dashoffset': [570, 1140],
+      duration: 800,
+      easing: 'easeOutSine',
+      delay: 600,
+    });
+
+    animate({
+      el: this.refs.penTop,
+      'stroke-dashoffset': [85, 0],
+      duration: 900,
+      easing: 'linear',
+      delay: 1100,
+    });
+
+    animate({
+      el: this.refs.penRing,
+      'stroke-dashoffset': [48, 0],
+      duration: 900,
+      easing: 'linear',
+      delay: 1100,
+    });
+
+    animate({
+      el: this.refs.penHandle,
+      'stroke-dashoffset': [228, 456],
+      duration: 900,
+      easing: 'linear',
+      delay: 1100,
+    });
+
+    animate({
+      el: this.refs.dot,
+      rx: [0, 3.6743313],
+      ry: [0, 1.73943662],
+      duration: 600,
+      easing: 'easeOutQuad',
+      delay: 1500,
+    });
+  };
 
   render() {
     return (
@@ -111,14 +111,7 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-        <div className={ styles.separatorWrapper }>
-          <div className={ styles.separatorPart1 }></div>
-          <div className={ styles.separatorPart2 }></div>
-          <div className={ styles.separatorPart3 }></div>
-          <div className={ styles.separatorPart4 }></div>
-          <div className={ styles.separatorPart5 }></div>
-          <div className={ styles.separatorPart6 }></div>
-        </div>
+        <Separator />
         <div className={ styles.alternateContainerWrapper }>
           <div className={ styles.container }>
             <Heading level={ 2 }>Available Plugins</Heading>
