@@ -37,8 +37,8 @@
 .plugin {
   font-size: 1.2rem;
   display: inline-block;
-  padding: 10px 24px;
-  border-radius: 10px;
+  padding: 8px 22px;
+  border-radius: 5px;
   color: #777;
   background: #fff;
   margin-right: 24px;
@@ -62,17 +62,16 @@
 }
 
 .alternateContainerWrapper {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
   padding-bottom: 3rem;
   background: #F8FAFA;
 }
 
 .footer {
-  width: 600px;
-  margin: 0 auto;
   text-align: center;
-  margin-top: 60px;
+  padding-top: 60px;
   padding-bottom: 60px;
+  background: #F8FAFA;
 }
 
 .heart {
@@ -80,4 +79,46 @@
   font-size: 22px;
   position: relative;
   top: 3px;
+}
+
+.separatorWrapper {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.separatorBase {
+  width: 16.67%;
+  height: 8px;
+}
+
+.separatorPart1 {
+  composes: separatorBase;
+  background: #E3EBF4;
+}
+
+.separatorPart2 {
+  composes: separatorBase;
+  background: #EEE5EB;
+
+}
+
+.separatorPart3 {
+  composes: separatorBase;
+  background: #F8E0D8;
+
+}
+
+.separatorPart4 {
+  composes: separatorBase;
+  background: #D8ECD4;
+}
+
+.separatorPart5 {
+  composes: separatorBase;
+  background: #FCFADC;
+}
+
+.separatorPart6 {
+  composes: separatorBase;
+  background: #EFF2F5;
 }

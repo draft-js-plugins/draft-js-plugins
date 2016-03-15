@@ -9,24 +9,22 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div className={ styles.containerWrapper }>
-          <div className={ styles.header }>
-            <div className={ styles.container }>
-              <img src={ logo } className={ styles.logo } />
-              <div className={ styles.logoText }>DraftJS Plugins</div>
-              <p className={ styles.tagline }>A Plugin Architecture on top of DraftJS</p>
-              <div>
-                <iframe
-                  src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugin-editor&type=star&count=true&size=large"
-                  frameBorder="0"
-                  scrolling="0"
-                  className={ styles.githubButton }
-                ></iframe>
-              </div>
+        <div className={ styles.header }>
+          <div className={ styles.container }>
+            <img src={ logo } className={ styles.logo } />
+            <div className={ styles.logoText }>DraftJS Plugins</div>
+            <p className={ styles.tagline }>A Plugin Architecture on top of DraftJS</p>
+            <div>
+              <iframe
+                src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugin-editor&type=star&count=true&size=large"
+                frameBorder="0"
+                scrolling="0"
+                className={ styles.githubButton }
+              ></iframe>
             </div>
           </div>
         </div>
-        <div>
+        <div className={ styles.separatorWrapper }>
           <div className={ styles.separatorPart1 }></div>
           <div className={ styles.separatorPart2 }></div>
           <div className={ styles.separatorPart3 }></div>
