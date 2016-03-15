@@ -12,5 +12,10 @@ module.exports = Object.assign(webpackBaseConfig, {
     new ExtractTextPlugin('css/bundle.css', { disable: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
   ],
 });
