@@ -9,11 +9,25 @@ export default class MentionOption extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.mouseDown = false;
   }
 
-  onMentionSelect = () => {
-    this.props.onMentionSelect(this.props.mention);
+  componentDidUpdate() {
+    this.mouseDown = false;
+  }
+
+  onMouseUp = () => {
+    if (this.mouseDown) {
+      this.mouseDown = false;
+      this.props.onMentionSelect(this.props.mention);
+    }
+  };
+
+  onMouseDown = (event) => {
+    // Note: important to avoid a content edit change
+    event.preventDefault();
+
+    this.mouseDown = true;
   };
 
   onMouseEnter = () => {
@@ -25,7 +39,8 @@ export default class MentionOption extends Component {
     return (
       <div
         className={ className }
-        onClick={ this.onMentionSelect }
+        onMouseDown={ this.onMouseDown }
+        onMouseUp={ this.onMouseUp }
         onMouseEnter={ this.onMouseEnter }
         role="option"
       >
