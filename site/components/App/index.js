@@ -13,7 +13,7 @@ export default class App extends Component {
         'stroke-dashoffset': [-570, 0],
         duration: 800,
         easing: 'easeOutSine',
-      }), 1000
+      }), 600
     );
 
     setTimeout(
@@ -38,7 +38,7 @@ export default class App extends Component {
           duration: 900,
           easing: 'linear',
         });
-      }, 1500
+      }, 1100
     );
 
     setTimeout(
@@ -50,7 +50,7 @@ export default class App extends Component {
           duration: 600,
           easing: 'easeOutQuad',
         });
-      }, 1900
+      }, 1500
     );
   }
 
