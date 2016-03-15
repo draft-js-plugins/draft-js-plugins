@@ -31,6 +31,18 @@
   background-color: #fff;
 }
 
+.stateButton:focus {
+  outline: 0; /* reset for :focus */
+}
+
+.stateButton:hover {
+  background: #f3f3f3;
+}
+
+.stateButton:active {
+  background: #e6e6e6;
+}
+
 .pressedStateButton {
   composes: stateButton;
   background-color: #ededed;

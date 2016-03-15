@@ -32,6 +32,18 @@
   padding-right: 18px;
 }
 
+.button:focus {
+  outline: 0; /* reset for :focus */
+}
+
+.button:hover {
+  background: #f3f3f3;
+}
+
+.button:active {
+  background: #e6e6e6;
+}
+
 .pressedButton {
   composes: button;
   background: #ededed;

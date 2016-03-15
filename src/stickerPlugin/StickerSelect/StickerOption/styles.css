@@ -4,8 +4,9 @@
   background: #fff;
 }
 
-.root:hover {
+.root:hover, .root:focus {
   background: #efefef;
+  outline: 0; /* reset for :focus */
 }
 
 .root:active {
