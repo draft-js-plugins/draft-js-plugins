@@ -1,7 +1,18 @@
 .header {
   background: #fff;
-  padding: 10rem 0 0 0;
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 5rem 0 0 0;
+  }
+}
+
+@media (min-width: 481px) {
+  .header {
+    padding: 10rem 0 0 0;
+  }
 }
 
 .logo {
