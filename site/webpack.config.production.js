@@ -9,5 +9,10 @@ module.exports = Object.assign(webpackBaseConfig, {
   plugins: [
     new ExtractTextPlugin('css/bundle.css', { disable: true }),
     new webpack.optimize.UglifyJsPlugin({ minimize: true }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
   ],
 });
