@@ -9,7 +9,7 @@ module.exports = Object.assign(webpackBaseConfig, {
     './index',
   ],
   plugins: [
-    new ExtractTextPlugin('bundle.css', { disable: true }),
+    new ExtractTextPlugin('css/bundle.css', { disable: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
