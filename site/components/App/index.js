@@ -10,7 +10,7 @@ export default class App extends Component {
     setTimeout(
       () => animate({
         el: this.refs.drawnPath,
-        'stroke-dashoffset': [-570, 0],
+        'stroke-dashoffset': [570, 1140],
         duration: 800,
         easing: 'easeOutSine',
       }), 600
@@ -34,7 +34,7 @@ export default class App extends Component {
 
         animate({
           el: this.refs.penHandle,
-          'stroke-dashoffset': [-228, 0],
+          'stroke-dashoffset': [228, 456],
           duration: 900,
           easing: 'linear',
         });
@@ -59,7 +59,7 @@ export default class App extends Component {
       <div>
         <div className={ styles.header }>
           <div className={ styles.container }>
-            <svg className={ styles.logo } width="263px" height="209px" viewBox="0 0 263 209" version="1.1">
+            <svg className={ styles.logo } viewBox="0 0 263 209" version="1.1">
               <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fill-rule="evenodd">
                 <g id="Pencil" transform="translate(177.000000, 1.000000)" stroke="#979797" strokeWidth="2" fill="#FFFFFF">
                     <path
