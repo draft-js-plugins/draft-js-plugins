@@ -19,6 +19,7 @@
 .root:focus {
   background-color: #eee;
   color: #999;
+  outline: 0; /* reset for :focus */
 }
 
 .root:hover {

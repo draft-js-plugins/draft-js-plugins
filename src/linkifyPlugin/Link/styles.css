@@ -1,9 +1,11 @@
 .root, .root:visited {
   color: #AB0393;
+  text-decoration: none;
 }
 
 .root:hover, .root:focus {
   color: #DE61CC;
+  outline: 0; /* reset for :focus */
 }
 
 .root:active {

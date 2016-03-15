@@ -15,11 +15,13 @@
   padding-left: 2px;
   padding-right: 2px;
   border-radius: 4px;
+  text-decoration: none;
 }
 
 .rootLink:hover, .rootLink:focus {
   color: #555;
   background: #E5F2F7;
+  outline: 0; /* reset for :focus */
 }
 
 .rootLink:active {

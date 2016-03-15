@@ -12,20 +12,3 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #555;
 }
-
-a, a:visited {
-  color: #888;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #aaa;
-}
-
-a:active {
-  color: #444;
-}
-
-button:focus {
-  outline: 0;
-}
