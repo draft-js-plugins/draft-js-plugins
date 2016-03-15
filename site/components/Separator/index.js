@@ -20,7 +20,7 @@ export default class Separator extends Component {
       separator4ClassName: styles.separatorPart4,
       separator5ClassName: styles.separatorPart5,
       separator6ClassName: styles.separatorPart6,
-    }), 2000);
+    }), 1800);
   }
 
   render() {
