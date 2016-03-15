@@ -1,6 +1,6 @@
-# DraftJS Plugin Editor
+# DraftJS Plugins
 
-This a playground to explore a plugin architecture on top of draft-js.
+High quality plugins with great UX on to of [DraftJS](https://github.com/facebook/draft-js).
 
 ## Available Plugins
 
