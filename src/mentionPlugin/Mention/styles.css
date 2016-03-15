@@ -4,7 +4,7 @@
   background: #DEF0F7;
   padding-left: 2px;
   padding-right: 2px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 .rootLink, .rootLink:visited  {
@@ -14,7 +14,7 @@
   background: #DEF0F7;
   padding-left: 2px;
   padding-right: 2px;
-  border-radius: 4px;
+  border-radius: 2px;
   text-decoration: none;
 }
 
