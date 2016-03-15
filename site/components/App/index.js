@@ -26,13 +26,14 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-        <div className={ styles.containerWrapper }>
+        <div className={ styles.alternateContainerWrapper }>
           <div className={ styles.container }>
             <Heading level={ 2 }>Available Plugins</Heading>
             <ul className={ styles.plugins }>
               <li className={ styles.plugin }>Mention</li>
               <li className={ styles.plugin }>Linkify</li>
               <li className={ styles.plugin }>Sticker</li>
+              <li className={ styles.plugin }>Emoji</li>
               <li className={ styles.plugin }>Hashtag</li>
               <li className={ styles.plugin }>Undo/Redo</li>
               <li className={ styles.plugin }>Giphy</li>

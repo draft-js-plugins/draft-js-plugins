@@ -31,16 +31,20 @@
   list-style-type: none;
   padding-left: 0;
   margin-top: 8px;
+  text-align: center;
 }
 
 .plugin {
+  font-size: 1.2rem;
   display: inline-block;
-  padding: 3px 12px;
-  border: 1px solid #eee;
+  padding: 10px 24px;
   border-radius: 10px;
   color: #777;
-  background: #f6f6f6;
-  margin-right: 18px;
+  background: #fff;
+  margin-right: 24px;
+  margin-bottom: 18px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #ccc;
 }
 
 .center {
@@ -55,6 +59,12 @@
 .containerWrapper {
   border-bottom: 1px solid #ddd;
   padding-bottom: 3rem;
+}
+
+.alternateContainerWrapper {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 3rem;
+  background: #F8FAFA;
 }
 
 .footer {
