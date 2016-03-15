@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-plugin-editor",
+  "name": "draft-js-plugins",
   "version": "0.0.0",
   "description": "A Plugin Architecture on top of Draft.JS",
   "author": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nikgraf/draft-js-plugin-editor.git"
+    "url": "https://github.com/nikgraf/draft-js-plugins.git"
   },
   "main": "lib/index.js",
   "keywords": [

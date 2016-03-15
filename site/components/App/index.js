@@ -103,7 +103,7 @@ export default class App extends Component {
             <p className={ styles.tagline }>High quality plugins with great UX</p>
             <div>
               <iframe
-                src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugin-editor&type=star&count=true&size=large"
+                src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugins&type=star&count=true&size=large"
                 frameBorder="0"
                 scrolling="0"
                 className={ styles.githubButton }

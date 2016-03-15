@@ -9,11 +9,11 @@ This a playground to explore a plugin architecture on top of draft-js.
 - Linkify
 - Mentions
 
-[![Build Status](https://travis-ci.org/nikgraf/draft-js-plugin-editor.svg?branch=master)](https://travis-ci.org/nikgraf/draft-js-plugin-editor)
+[![Build Status](https://travis-ci.org/nikgraf/draft-js-plugins.svg?branch=master)](https://travis-ci.org/nikgraf/draft-js-plugins)
 
 ## Live Example
 
-Checkout [the website](http://nikgraf.github.io/draft-js-plugin-editor/)!
+Checkout [the website](http://nikgraf.github.io/draft-js-plugins/)!
 
 ## Usage
 
