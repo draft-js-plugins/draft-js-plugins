@@ -112,7 +112,7 @@ export default class App extends Component {
               <li className={ styles.plugin }>Sticker</li>
               <li className={ styles.plugin }>Emoji</li>
               <li className={ styles.plugin }>Hashtag</li>
-              <li className={ styles.plugin }>Undo/Redo</li>
+              <li className={ styles.plugin }>Undo</li>
             </ul>
           </div>
         </div>
