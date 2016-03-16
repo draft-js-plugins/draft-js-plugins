@@ -40,14 +40,16 @@ function occupySlice(
 export default class CompositeDraftDecorator {
 
   _decorators: Array<Object>;
-  _editorContext: any;
+  _getEditorState: any;
+  _updateEditorState: any;
 
-  constructor(decorators: Array<any>, editorContext: any) {
+  constructor(decorators: Array<any>, getEditorState: any, updateEditorState: any) {
     // Copy the decorator array, since we use this array order to determine
     // precedence of decoration matching. If the array is mutated externally,
     // we don't want to be affected here.
     this._decorators = decorators.slice();
-    this._editorContext = editorContext;
+    this._getEditorState = getEditorState;
+    this._updateEditorState = updateEditorState;
   }
 
   getDecorations(block: Object): List<?string> {
@@ -69,7 +71,8 @@ export default class CompositeDraftDecorator {
             }
           },
 
-          this._editorContext,
+          this._getEditorState,
+          this._updateEditorState,
         );
       }
     );
@@ -86,7 +89,8 @@ export default class CompositeDraftDecorator {
     const componentKey = parseInt(key.split(DELIMITER)[0], 10);
     return {
       ...this._decorators[componentKey].props,
-      editor: this._editorContext,
+      getEditorState: this._getEditorState,
+      updateEditorState: this._updateEditorState,
     };
   }
 }

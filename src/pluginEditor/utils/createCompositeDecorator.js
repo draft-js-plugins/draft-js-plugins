@@ -5,10 +5,10 @@
 import { List } from 'immutable';
 import CompositeDecorator from './CompositeDecorator';
 
-export default (plugins, editorContext) => {
+export default (plugins, getEditorState, updateEditorState) => {
   const decorators = List(plugins)
     .filter((plugin) => plugin.decorators !== undefined)
     .flatMap((plugin) => plugin.decorators)
     .toJS();
-  return new CompositeDecorator(decorators, editorContext);
+  return new CompositeDecorator(decorators, getEditorState, updateEditorState);
 };

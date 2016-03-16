@@ -24,7 +24,7 @@ export default class PluginEditor extends Component {
       .filter((plugin) => plugin.pluginProps !== undefined)
       .map((plugin) => plugin.pluginProps)
       .toArray();
-    const compositeDecorator = createCompositeDecorator(this.plugins, this);
+    const compositeDecorator = createCompositeDecorator(this.plugins, this.getEditorState, this.onChange);
 
     // TODO consider triggering an onChange here to make sure the editorState is in sync
     // with the outer Editor context
@@ -94,6 +94,8 @@ export default class PluginEditor extends Component {
       return undefined;
     });
   };
+
+  getEditorState = () => this.editorState;
 
   handleKeyCommand = (command) => {
     // TODO optimize to break after the first one
@@ -181,7 +183,7 @@ export default class PluginEditor extends Component {
     return this.plugins
       .map((plugin) => {
         if (plugin.blockRendererFn) {
-          const result = plugin.blockRendererFn(contentBlock, this);
+          const result = plugin.blockRendererFn(contentBlock, this.getEditorState, this.onChange);
           if (result) {
             return result;
           }

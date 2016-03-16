@@ -50,7 +50,7 @@ export default (mentions, callbacks, ariaProps) => {
       }
 
       // Note: to force a re-render of the outer component to change the aria props
-      this.props.editor.onChange(this.props.editor.props.editorState);
+      this.props.updateEditorState(this.props.getEditorState());
     }
 
     componentDidUpdate = () => {
@@ -119,9 +119,9 @@ export default (mentions, callbacks, ariaProps) => {
 
     onMentionSelect = (mention) => {
       updateAriaCloseDropdown();
-      const selection = this.props.editor.props.editorState.getSelection();
-      const newEditorState = addMention(this.props.editor.props.editorState, mention, selection);
-      this.props.editor.onChange(newEditorState);
+      const selection = this.props.getEditorState().getSelection();
+      const newEditorState = addMention(this.props.getEditorState(), mention, selection);
+      this.props.updateEditorState(newEditorState);
     };
 
     onDownArrow = (keyboardEvent) => {
@@ -147,7 +147,7 @@ export default (mentions, callbacks, ariaProps) => {
       });
 
       // to force a re-render of the outer component to change the aria props
-      this.props.editor.onChange(this.props.editor.props.editorState);
+      this.props.updateEditorState(this.props.getEditorState());
     };
 
     onMentionFocus = (index) => {
@@ -157,13 +157,13 @@ export default (mentions, callbacks, ariaProps) => {
       });
 
       // to force a re-render of the outer component to change the aria props
-      this.props.editor.onChange(this.props.editor.props.editorState);
+      this.props.updateEditorState(this.props.getEditorState());
     };
 
     // Get the first 5 mentions that match
     getMentionsForFilter = () => {
-      const selection = this.props.editor.props.editorState.getSelection();
-      const { word } = getSearchText(this.props.editor.props.editorState, selection);
+      const selection = this.props.getEditorState().getSelection();
+      const { word } = getSearchText(this.props.getEditorState(), selection);
       const mentionValue = word.substring(1, word.length).toLowerCase();
       const filteredValues = mentions && mentions.filter((mention) => (
         !mentionValue || mention.get('name').toLowerCase().indexOf(mentionValue) > -1
