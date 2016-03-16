@@ -122,7 +122,7 @@ export default class App extends Component {
             <Heading level={ 2 }>Why?</Heading>
             <p className={ styles.whyText }>
               DraftJS allows you to create powerful editors. This Plugin Architecture
-              aims to provide you as developer to leverage and create plug & play extensions with great UX while serving Mobile & Desktop as well as Screenreaders.
+              aims to provide you as a developers to use and create plug & play extensions. It comes with a set of plugins with great UX and serving Mobile & Desktop as well as Screenreaders.
             </p>
             <div style={{ textAlign: 'center' }}>
               <iframe
