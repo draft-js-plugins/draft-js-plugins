@@ -29,7 +29,7 @@
 }
 
 .containerWrapper {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
   padding-bottom: 3rem;
 }
 
@@ -115,6 +115,7 @@
   padding-top: 60px;
   padding-bottom: 60px;
   background: #F8FAFA;
+  border-bottom: 1px solid #eee;
 }
 
 .heart {
