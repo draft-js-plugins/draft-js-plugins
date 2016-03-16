@@ -102,20 +102,10 @@ export default class App extends Component {
             </svg>
             <div className={ styles.logoText }>DraftJS Plugins</div>
             <p className={ styles.tagline }>High quality plugins with great UX</p>
-            <div>
-              <iframe
-                src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugins&type=star&count=true&size=large"
-                frameBorder="0"
-                scrolling="0"
-                className={ styles.githubButton }
-              ></iframe>
-            </div>
           </div>
         </div>
-        <Separator />
-        <div className={ styles.alternateContainerWrapper }>
+        <div className={ styles.pluginsWrapper }>
           <div className={ styles.container }>
-            <Heading level={ 2 }>Available Plugins</Heading>
             <ul className={ styles.plugins }>
               <li className={ styles.plugin }>Mention</li>
               <li className={ styles.plugin }>Linkify</li>
@@ -123,8 +113,25 @@ export default class App extends Component {
               <li className={ styles.plugin }>Emoji</li>
               <li className={ styles.plugin }>Hashtag</li>
               <li className={ styles.plugin }>Undo/Redo</li>
-              <li className={ styles.plugin }>Giphy</li>
             </ul>
+          </div>
+        </div>
+        <Separator />
+        <div className={ styles.alternateContainerWrapper }>
+          <div className={ styles.container }>
+            <Heading level={ 2 }>Why?</Heading>
+            <p className={ styles.whyText }>
+              DraftJS allows you to create powerful editors. This Plugin Architecture
+              aims to provide you as developer to leverage and create plug & play extensions with great UX while serving Mobile & Desktop as well as Screenreaders.
+            </p>
+            <div style={{ textAlign: 'center' }}>
+              <iframe
+                src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugins&type=star&count=true&size=large"
+                frameBorder="0"
+                scrolling="0"
+                className={ styles.githubButton }
+              ></iframe>
+            </div>
           </div>
         </div>
         <div className={ styles.containerWrapper }>
