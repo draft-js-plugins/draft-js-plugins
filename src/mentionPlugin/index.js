@@ -23,27 +23,28 @@ const ariaProps = {
 };
 
 const metionsPlugin = (config) => ({
-  // standard plugin property
-  decorators: [
-    {
-      strategy: mentionStrategy,
-      component: Mention,
+  pluginProps: {
+    decorators: [
+      {
+        strategy: mentionStrategy,
+        component: Mention,
+      },
+      {
+        strategy: mentionSearchStrategy,
+        component: MentionSearch(config.mentions, callbacks, ariaProps),
+      },
+    ],
+    getEditorProps: () => ariaProps,
+    keyBindingFn: (keyboardEvent) => callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
+    handleKeyCommand: (command) => callbacks.handleKeyCommand && callbacks.handleKeyCommand(command),
+    onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
+    onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
+    onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
+    handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
+    onChange: (editorState) => {
+      if (callbacks.onChange) return callbacks.onChange(editorState);
+      return editorState;
     },
-    {
-      strategy: mentionSearchStrategy,
-      component: MentionSearch(config.mentions, callbacks, ariaProps),
-    },
-  ],
-  getEditorProps: () => ariaProps,
-  keyBindingFn: (keyboardEvent) => callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent), // standard plugin callback
-  handleKeyCommand: (command) => callbacks.handleKeyCommand && callbacks.handleKeyCommand(command), // standard plugin callback
-  onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent), // standard plugin callback
-  onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent), // standard plugin callback
-  onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent), // standard plugin callback
-  handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent), // standard plugin callback
-  onChange: (editorState) => {
-    if (callbacks.onChange) return callbacks.onChange(editorState);
-    return editorState;
   },
 });
 

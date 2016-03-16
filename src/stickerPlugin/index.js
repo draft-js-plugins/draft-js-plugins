@@ -6,9 +6,11 @@ import sticker from './Sticker';
 import stickerSelect from './StickerSelect';
 
 const stickerPlugin = (config) => ({
+  pluginProps: {
+    blockRendererFn: blockRendererFn(config),
+    onChange: cleanupEmptyStickers,
+  },
   add: addSticker,
-  blockRendererFn: blockRendererFn(config), // standard plugin callback
-  onChange: cleanupEmptyStickers, // standard plugin callback
   remove: removeSticker,
   Sticker: sticker(config.stickers, config.hasRemove),
   StickerSelect: stickerSelect(config.stickers),

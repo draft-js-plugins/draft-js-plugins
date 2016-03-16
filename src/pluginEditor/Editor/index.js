@@ -12,6 +12,7 @@ import {
 import createCompositeDecorator from '../utils/createCompositeDecorator';
 import moveToEndOfSelectedBlock from '../modifiers/moveToEndOfSelectedBlock';
 import moveToStartOfSelectedBlock from '../modifiers/moveToStartOfSelectedBlock';
+import { List } from 'immutable';
 
 export default class PluginEditor extends Component {
 
@@ -19,8 +20,11 @@ export default class PluginEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.plugins = props.plugins;
-    const compositeDecorator = createCompositeDecorator(this.props.plugins, this);
+    this.plugins = List(props.plugins)
+      .filter((plugin) => plugin.pluginProps !== undefined)
+      .map((plugin) => plugin.pluginProps)
+      .toArray();
+    const compositeDecorator = createCompositeDecorator(this.plugins, this);
 
     // TODO consider triggering an onChange here to make sure the editorState is in sync
     // with the outer Editor context
