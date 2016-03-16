@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, IndexLink } from 'react-router';
-import 'normalize.css';
 
 export default class App extends Component {
   render() {

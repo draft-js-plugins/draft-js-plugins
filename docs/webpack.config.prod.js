@@ -3,8 +3,9 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StaticSitePlugin = require('react-static-webpack-plugin');
+var webpackBaseConfig = require('./webpack.config.base'); // eslint-disable-line no-var
 
-module.exports = {
+module.exports = Object.assign(webpackBaseConfig, {
   devtool: 'source-map',
 
   entry: {
@@ -36,25 +37,4 @@ module.exports = {
       favicon: '/favicon.ico',
     }),
   ],
-
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'client'),
-      },
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]'
-        ),
-      },
-      {
-        test: /\.(png|jpg|gif|ico)$/,
-        loaders: ['file?name=[name].[ext]'],
-      },
-    ],
-  },
-};
+});

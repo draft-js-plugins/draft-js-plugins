@@ -1,6 +1,8 @@
 /* eslint-disable no-var */
 var path = require('path');
 var webpack = require('webpack');
+var webpackBaseConfig = require('./webpack.config.base'); // eslint-disable-line no-var
+var ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
 
 // Set up dev host host and HMR host. For the dev host this is pretty self
 // explanatory: We use a different live-reload server to server our static JS
@@ -12,7 +14,7 @@ var DEV_PORT = process.env.DEV_PORT || 3000;
 var DEV_HOST = `//localhost:${DEV_PORT}/`;
 var HMR_HOST = `${DEV_HOST}__webpack_hmr`;
 
-module.exports = {
+module.exports = Object.assign(webpackBaseConfig, {
   devtool: 'inline-source-map',
 
   entry: {
@@ -29,25 +31,8 @@ module.exports = {
   },
 
   plugins: [
+    new ExtractTextPlugin('css/bundle.css', { disable: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
-
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'client'),
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]'],
-      },
-      {
-        test: /\.(png|jpg|gif|ico)$/,
-        loaders: ['file?name=[name].[ext]'],
-      },
-    ],
-  },
-};
+});
