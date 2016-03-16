@@ -17,10 +17,15 @@
 
 .container {
   min-width: 300px;
-  max-width: 800px;
+  max-width: 640px;
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.wideContainer {
+  composes: container;
+  max-width: 800px;
 }
 
 .containerWrapper {

@@ -105,7 +105,7 @@ export default class App extends Component {
           </div>
         </div>
         <div className={ styles.pluginsWrapper }>
-          <div className={ styles.container }>
+          <div className={ styles.wideContainer }>
             <ul className={ styles.plugins }>
               <li className={ styles.plugin }>Mention</li>
               <li className={ styles.plugin }>Linkify</li>
