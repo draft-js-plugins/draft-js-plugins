@@ -13,3 +13,5 @@ bundle.js
 # NPM debug
 npm-debug.log
 npm-debug.log*
+
+docs/public
