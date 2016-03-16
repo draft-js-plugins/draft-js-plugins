@@ -30,13 +30,13 @@
 
 .separatorPart4 {
   composes: separatorBase;
-  background: #D8ECD4;
+  background: #FCF7DC;
   transition-delay: 0.3s;
 }
 
 .separatorPart5 {
   composes: separatorBase;
-  background: #FCFADC;
+  background: #D8ECD4;
   transition-delay: 0.4s;
 }
 
