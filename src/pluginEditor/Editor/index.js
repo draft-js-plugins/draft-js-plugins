@@ -1,5 +1,5 @@
 /**
- * The main editor component
+ * The main editor c;omponent
  */
 
 import React, { Component } from 'react';

@@ -22,7 +22,7 @@ const ariaProps = {
   ariaActiveDescendantID: undefined, // optional
 };
 
-const metionsPlugin = (config) => ({
+const mentionPlugin = (config) => ({
   pluginProps: {
     decorators: [
       {
@@ -48,4 +48,4 @@ const metionsPlugin = (config) => ({
   },
 });
 
-export default metionsPlugin;
+export default mentionPlugin;

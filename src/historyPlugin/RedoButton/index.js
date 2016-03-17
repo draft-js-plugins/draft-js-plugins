@@ -13,6 +13,7 @@ class RedoButton extends Component {
       <Button
         disabled={ this.props.editorState.getRedoStack().isEmpty() }
         onClick={ this.onClick }
+        theme={ this.props.theme }
       >
         ↻
       </Button>

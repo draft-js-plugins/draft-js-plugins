@@ -1,12 +1,16 @@
 import React from 'react';
-import styles from './styles.css';
+import applyStyles from '../../utils/applyStyles';
 
-const Button = (props) => (
-  <button
-    className={ styles.root }
-    disabled={ props.disabled }
-    { ...props }
-  />
-);
+// import styles from './styles.css';
+
+const Button = (props) => {
+  const { theme, ...otherProps } = props;  // eslint-disable-line no-use-before-define
+  return (
+    <button
+      { ...otherProps }
+      { ...applyStyles(theme.get('button')) }
+    />
+  );
+};
 
 export default Button;

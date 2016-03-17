@@ -1,13 +1,14 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import styles from './styles.css';
+import applyStyles from '../../utils/applyStyles';
 
 export default class Hashtag extends Component {
   render() {
+    const { theme, children, ...props } = this.props; // eslint-disable-line no-use-before-define
     return (
-      <span {...this.props} className={ styles.root }>
-        { this.props.children }
+      <span {...props} { ...applyStyles(theme.get('hashtag')) }>
+        { children }
       </span>
     );
   }

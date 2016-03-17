@@ -1,12 +1,19 @@
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
+import { fromJS } from 'immutable';
+import styles from './Hashtag/styles.css';
 
-const hashtagPlugin = (config) => ({
+const defaultHashTagTheme = fromJS({
+  hashtag: styles.root,
+});
+
+const hashtagPlugin = (config = {}) => ({
   pluginProps: {
     decorators: [
       {
         strategy: hashtagStrategy,
-        component: (config !== undefined && config.Hashtag !== undefined ? config.Hashtag : Hashtag),
+        component: Hashtag,
+        theme: defaultHashTagTheme.merge(config.theme),
       },
     ],
   },

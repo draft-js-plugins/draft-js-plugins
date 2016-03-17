@@ -13,6 +13,7 @@ class UndoButton extends Component {
       <Button
         disabled={ this.props.editorState.getUndoStack().isEmpty() }
         onClick={ this.onClick }
+        theme={ this.props.theme }
       >
         ↺
       </Button>
