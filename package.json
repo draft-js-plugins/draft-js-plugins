@@ -23,8 +23,8 @@
     "react-component"
   ],
   "peerDependencies": {
-    "react": ">=0.14.0 || 15.0.0-rc.1",
-    "react-dom": ">=0.14.0 || 15.0.0-rc.1"
+    "react": ">=0.14.0 || 15.0.0-rc.2",
+    "react-dom": ">=0.14.0 || 15.0.0-rc.2"
   },
   "scripts": {
     "build": "BABEL_ENV=production ./node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
@@ -73,9 +73,9 @@
     "jscs": "^2.11.0",
     "mocha": "^2.4.5",
     "postcss-loader": "^0.8.2",
-    "react": "^15.0.0-rc.1",
-    "react-addons-test-utils": "^15.0.0-rc.1",
-    "react-dom": "^15.0.0-rc.1",
+    "react": "^15.0.0-rc.2",
+    "react-addons-test-utils": "^15.0.0-rc.2",
+    "react-dom": "^15.0.0-rc.2",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.2",
