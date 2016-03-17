@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
+import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
+import Heading from '../../shared/Heading';
+import SimpleHashtagEditor from './SimpleHashtagEditor';
 import styles from './styles.css';
 
 export default class App extends Component {
@@ -20,11 +23,21 @@ export default class App extends Component {
 
   render() {
     return (
-      <ContainerWrapper>
-        <Container>
-          <div className={ styles.root }>Hashtag</div>
-        </Container>
-      </ContainerWrapper>
+      <div>
+        <AlternateContainerWrapper>
+          <Container>
+            <Heading level={ 2 }>Hashtag</Heading>
+            <div className={ styles.root }>Hashtag</div>
+          </Container>
+        </AlternateContainerWrapper>
+        <ContainerWrapper>
+          <Container>
+            <Heading level={ 2 }>Example</Heading>
+            <SimpleHashtagEditor />
+          </Container>
+        </ContainerWrapper>
+      </div>
+
     );
   }
 }
