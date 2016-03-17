@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import styles from './styles.css';
+import Container from '../../shared/Container';
+import ContainerWrapper from '../../shared/ContainerWrapper';
 
 export default class App extends Component {
 
@@ -19,9 +21,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={ styles.root }>
-        Emoji Details
-      </div>
+      <ContainerWrapper>
+        <Container>
+          <div className={ styles.root }>Emoji</div>
+        </Container>
+      </ContainerWrapper>
     );
   }
 }

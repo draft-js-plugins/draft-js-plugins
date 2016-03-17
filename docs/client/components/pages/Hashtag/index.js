@@ -1,5 +1,6 @@
-/* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
+import Container from '../../shared/Container';
+import ContainerWrapper from '../../shared/ContainerWrapper';
 import styles from './styles.css';
 
 export default class App extends Component {
@@ -19,9 +20,11 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className={ styles.root }>
-        Test
-      </div>
+      <ContainerWrapper>
+        <Container>
+          <div className={ styles.root }>Hashtag</div>
+        </Container>
+      </ContainerWrapper>
     );
   }
 }

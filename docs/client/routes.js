@@ -5,7 +5,6 @@ import App from './components/wrappers/App';
 import Page from './components/wrappers/Page';
 import NotFound from './components/pages/NotFound';
 import Home from './components/pages/Home';
-import About from './components/pages/About';
 import Hashtag from './components/pages/Hashtag';
 import Emoji from './components/pages/Emoji';
 import Linkify from './components/pages/Linkify';
@@ -17,7 +16,6 @@ export const routes = (
   <Route path="/" title="App" component={App}>
     <IndexRoute component={Home} />
     <Route path="/" title="App" component={Page}>
-      <Route path="about" title="App - About" component={About} />
       <Route path="plugin/hashtag" title="App - Hashtag" component={Hashtag} />
       <Route path="plugin/emoji" title="App - Emoji" component={Emoji} />
       <Route path="plugin/linkify" title="App - Linkify" component={Linkify} />
