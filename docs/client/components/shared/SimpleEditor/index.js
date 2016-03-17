@@ -30,11 +30,15 @@ export default config => class UnicornEditor extends Component {
   /* eslint-disable react/jsx-no-bind */
   render() {
     const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
-    let UndoButton, RedoButton;
+    let UndoButton, RedoButton, StickerSelect;
     if (config.pluginNames.indexOf('history') >= 0) {
       const historyPluginInstalce = config.plugins[0]
-      UndoButton = historyPluginInstalce.UndoButton;
-      RedoButton = historyPluginInstalce.RedoButton;
+      UndoButton = historyPluginInstance.UndoButton;
+      RedoButton = historyPluginInstance.RedoButton;
+    }
+    else if (config.pluginNames.indexOf('sticker') >= 0) {
+      const stickerPluginInstance = config.plugins[0]
+      StickerSelect = stickerPluginInstance.StickerSelect;
     }
 
     return (
@@ -50,6 +54,10 @@ export default config => class UnicornEditor extends Component {
           />
         </div>
         <div>
+          { config.pluginNames.indexOf('sticker') >= 0 ?
+            <div className={ styles.stickerSelect }>
+              <StickerSelect editor={ this } />
+            </div> : undefined }
           { config.pluginNames.indexOf('history') >= 0 ?
           <span>
             <UndoButton
