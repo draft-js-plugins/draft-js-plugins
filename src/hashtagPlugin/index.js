@@ -16,17 +16,15 @@ const hashtagPlugin = (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
-  const DecoratedHashtag = decorateComponentWithProps(Hashtag, { theme });
   return {
     pluginProps: {
       decorators: [
         {
           strategy: hashtagStrategy,
-          component: DecoratedHashtag,
+          component: decorateComponentWithProps(Hashtag, { theme }),
         },
       ],
     },
-    Hashtag: DecoratedHashtag, // TODO not sure if there is a value in exporting this here
   };
 };
 
