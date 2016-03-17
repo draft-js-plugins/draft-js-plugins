@@ -3,33 +3,41 @@ import Editor, { createWithText } from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
+import mentionPlugin from 'draft-js-mention-plugin';
 import historyPlugin from 'draft-js-history-plugin';
-import { EditorState } from 'draft-js';
 import styles from './styles.css';
 import stickers from './stickers';
-import StatePreview from '../StatePreview';
-import Hashtag from './Hashtag';
-import Link from './Link';
+import mentions from './mentions';
+import StatePreview from '../../../shared/StatePreview';
 
-// import Sticker from './Sticker';
-// const stickerPluginInstance = stickerPlugin({ stickers, Sticker });
-const stickerPluginInstance = stickerPlugin({ stickers, hasRemove: false });
-const hashtagPluginInstance = hashtagPlugin({ Hashtag });
-const linkifyPluginInstance = linkifyPlugin({ Link });
+// import { EditorState } from 'draft-js';
+
+const hashtagPluginInstance = hashtagPlugin();
+const linkifyPluginInstance = linkifyPlugin();
+const mentionPluginInstance = mentionPlugin({
+  mentions,
+});
 const historyPluginInstance = historyPlugin();
-const { UndoButton, RedoButton } = historyPluginInstance;
+const stickerPluginInstance = stickerPlugin({
+  stickers,
+});
 const { StickerSelect } = stickerPluginInstance;
+const { UndoButton, RedoButton } = historyPluginInstance;
+
+// const { UndoButton, RedoButton, History } = historyPluginInstance;
 
 const plugins = [
   hashtagPluginInstance,
   stickerPluginInstance,
   linkifyPluginInstance,
+  mentionPluginInstance,
 ];
 
 export default class UnicornEditor extends Component {
 
   state = {
-    editorState: createWithText('Hello World!', plugins),
+    // editorState: EditorState.createEmpty(), // alternative to create an empty state
+    editorState: createWithText('Hello World!'),
     showState: false,
   };
 
@@ -43,24 +51,13 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
-  undo = () => {
-    this.setState({
-      editorState: EditorState.undo(this.state.editorState),
-    });
-  };
-
-  redo = () => {
-    this.setState({
-      editorState: EditorState.redo(this.state.editorState),
-    });
-  };
-
   toggleShowState = () => {
     this.setState({
       showState: !this.state.showState,
     });
   };
 
+  /* eslint-disable react/jsx-no-bind */
   render() {
     const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
 
@@ -69,11 +66,10 @@ export default class UnicornEditor extends Component {
 
         <div className={ styles.editor } onClick={ this.focus }>
           <Editor
-            editorState={ this.state.editorState }
-            onChange={ this.onChange }
-            plugins={ plugins }
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            plugins={plugins}
             spellCheck
-            className="waaahhh"
             ref="editor"
           />
         </div>
@@ -100,6 +96,8 @@ export default class UnicornEditor extends Component {
           editorState={ this.state.editorState }
           collapsed={ !this.state.showState }
         />
+        {/* <History editorState={ this.state.editorState } /> */}
+
       </div>
     );
   }

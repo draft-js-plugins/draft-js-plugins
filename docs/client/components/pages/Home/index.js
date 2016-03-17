@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import UnicornEditor from './UnicornEditor';
-import Heading from '../Heading';
-import Separator from '../Separator';
+import Heading from '../../shared/Heading';
+import Separator from './Separator';
 import styles from './styles.css';
 import animate from 'animateplus';
 import { Link } from 'react-router';
