@@ -108,14 +108,24 @@ export default class App extends Component {
         <div className={ styles.pluginsWrapper }>
           <div className={ styles.wideContainer }>
             <ul className={ styles.plugins }>
-              <li className={ styles.plugin }>Mention</li>
-              <li className={ styles.plugin }>Linkify</li>
-              <li className={ styles.plugin }>Sticker</li>
-              <li className={ styles.plugin }>Emoji</li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/mention">Mention</Link>
+              </li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/linkify">Linkify</Link>
+              </li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/sticker">Sticker</Link>
+              </li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/emoji">Emoji</Link>
+              </li>
               <li className={ styles.plugin }>
                 <Link to="/plugin/hashtag">Hashtag</Link>
               </li>
-              <li className={ styles.plugin }>Undo</li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/undo">Undo</Link>
+              </li>
             </ul>
           </div>
         </div>
