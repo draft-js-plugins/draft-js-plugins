@@ -41,7 +41,7 @@ const stickers = fromJS({
 const pluginMap = new Map({
   sticker: stickerPlugin({
     stickers,
-  })
+  }),
 });
 const Editor = SimpleEditor(pluginMap);
 

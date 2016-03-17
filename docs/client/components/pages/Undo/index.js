@@ -10,7 +10,7 @@ import historyPlugin from 'draft-js-history-plugin';
 import { Map } from 'immutable';
 
 const pluginMap = new Map({
-  history: historyPlugin()
+  history: historyPlugin(),
 });
 const Editor = SimpleEditor(pluginMap);
 

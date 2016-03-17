@@ -10,7 +10,7 @@ import linkifyPlugin from 'draft-js-linkify-plugin';
 import { Map } from 'immutable';
 
 const pluginMap = new Map({
-  linkify: linkifyPlugin()
+  linkify: linkifyPlugin(),
 });
 const Editor = SimpleEditor(pluginMap);
 
