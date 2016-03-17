@@ -51,6 +51,9 @@ const renderDocumentToString = props => {
 const app = express();
 const compiler = webpack(config);
 
+app.use('/css', express.static('publicTemplate/css'));
+app.use('/images', express.static('publicTemplate/images'));
+
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,
