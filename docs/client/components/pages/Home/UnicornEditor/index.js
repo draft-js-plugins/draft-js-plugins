@@ -9,7 +9,7 @@ import styles from './styles.css';
 import Immutable from 'immutable';
 import stickers from './stickers';
 import mentions from './mentions';
-import StatePreview from '../../StatePreview';
+import StatePreview from '../../../shared/StatePreview';
 
 // import { EditorState } from 'draft-js';
 

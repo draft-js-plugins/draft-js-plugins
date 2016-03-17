@@ -1,11 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import UnicornEditor from './UnicornEditor';
-import Heading from '../Heading';
-import Separator from '../Separator';
+import Heading from '../../shared/Heading';
+import Separator from './Separator';
 import styles from './styles.css';
 import animate from 'animateplus';
 import { Link } from 'react-router';
+import Container from '../../shared/Container';
+import ContainerWrapper from '../../shared/ContainerWrapper';
+import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
 
 export default class App extends Component {
 
@@ -60,7 +63,7 @@ export default class App extends Component {
     return (
       <div>
         <div className={ styles.header }>
-          <div className={ styles.container }>
+          <Container>
             <svg className={ styles.logo } viewBox="0 0 263 209" version="1.1">
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Pencil" transform="translate(177.000000, 1.000000)" stroke="#979797" strokeWidth="2" fill="#FFFFFF">
@@ -103,25 +106,47 @@ export default class App extends Component {
             </svg>
             <div className={ styles.logoText }>DraftJS Plugins</div>
             <p className={ styles.tagline }>High quality plugins with great UX</p>
-          </div>
+          </Container>
         </div>
         <div className={ styles.pluginsWrapper }>
           <div className={ styles.wideContainer }>
             <ul className={ styles.plugins }>
-              <li className={ styles.plugin }>Mention</li>
-              <li className={ styles.plugin }>Linkify</li>
-              <li className={ styles.plugin }>Sticker</li>
-              <li className={ styles.plugin }>Emoji</li>
               <li className={ styles.plugin }>
-                <Link to="/plugin/hashtag">Hashtag</Link>
+                <Link to="/plugin/mention" className={ styles.link }>
+                  Mention
+                </Link>
               </li>
-              <li className={ styles.plugin }>Undo</li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/linkify" className={ styles.link }>
+                  Linkify
+                </Link>
+              </li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/sticker" className={ styles.link }>
+                  Sticker
+                </Link>
+              </li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/emoji" className={ styles.link }>
+                  Emoji
+                </Link>
+              </li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/hashtag" className={ styles.link }>
+                  Hashtag
+                </Link>
+              </li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/undo" className={ styles.link }>
+                  Undo
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
         <Separator />
-        <div className={ styles.alternateContainerWrapper }>
-          <div className={ styles.container }>
+        <AlternateContainerWrapper>
+          <Container>
             <Heading level={ 2 }>Wait, but why?</Heading>
             <p className={ styles.whyText }>
               DraftJS allows you to create powerful editors. This Plugin Architecture
@@ -135,11 +160,11 @@ export default class App extends Component {
                 className={ styles.githubButton }
               ></iframe>
             </div>
-          </div>
-        </div>
-        <div className={ styles.containerWrapper }>
-          <div className={ styles.container }>
-            <Heading level={ 2 }>Example: Unicorn Editor</Heading>
+          </Container>
+        </AlternateContainerWrapper>
+        <ContainerWrapper>
+          <Container>
+            <Heading level={ 2 }>Try it yourself</Heading>
             <UnicornEditor />
             <Heading level={ 3 }>Plugins used in this Editor</Heading>
             <ul>
@@ -152,15 +177,8 @@ export default class App extends Component {
             <p>
               Because Unicorns are cooler than cats 😜
             </p>
-          </div>
-        </div>
-        <footer className={ styles.footer }>
-            Built with&nbsp;
-            <span className={ styles.heart }>
-              &#x2764;
-            </span>
-            &nbsp;on Planet Earth :)
-        </footer>
+          </Container>
+        </ContainerWrapper>
       </div>
     );
   }
