@@ -110,21 +110,6 @@
   text-align: center;
 }
 
-.footer {
-  text-align: center;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  background: #F8FAFA;
-  border-bottom: 1px solid #eee;
-}
-
-.heart {
-  color: rgb(200, 0, 0);
-  font-size: 22px;
-  position: relative;
-  top: 3px;
-}
-
 .whyText {
   text-align: justify;
   max-width: 488px;

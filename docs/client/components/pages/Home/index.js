@@ -164,13 +164,6 @@ export default class App extends Component {
             </p>
           </div>
         </div>
-        <footer className={ styles.footer }>
-            Built with&nbsp;
-            <span className={ styles.heart }>
-              &#x2764;
-            </span>
-            &nbsp;on Planet Earth :)
-        </footer>
       </div>
     );
   }
