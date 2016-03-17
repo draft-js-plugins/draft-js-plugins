@@ -6,7 +6,7 @@ const linkPlugin = (config) => ({
     decorators: [
       {
         strategy: linkStrategy,
-        component: (config !== undefined && config.Link !== undefined ? config.Link : Link),
+        component: Link,
       },
     ],
   },

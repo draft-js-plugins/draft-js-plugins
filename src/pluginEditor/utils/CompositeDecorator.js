@@ -37,7 +37,7 @@ function occupySlice(
   }
 }
 
-export default class CompositeDraftDecorator {
+export default class CompositeDecorator {
 
   _decorators: Array<Object>;
   _getEditorState: any;
@@ -82,7 +82,8 @@ export default class CompositeDraftDecorator {
 
   getComponentForKey(key: string): Function {
     const componentKey = parseInt(key.split(DELIMITER)[0], 10);
-    return this._decorators[componentKey].component;
+    const component = this._decorators[componentKey].component
+    return component;
   }
 
   getPropsForKey(key: string): ?Object {

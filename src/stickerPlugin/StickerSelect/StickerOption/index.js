@@ -3,7 +3,6 @@
  */
 
 import React, { Component } from 'react';
-import styles from './styles.css';
 
 export default class StickerOption extends Component {
 
@@ -13,14 +12,15 @@ export default class StickerOption extends Component {
 
   render() {
     const { id, url } = this.props;
+    const { theme } = this.props;
     return (
       <button
         onClick={ this.onClick }
         key={ id }
         type="button"
-        className={ styles.root }
+        className={ theme.get('stickerOption') }
       >
-        <img className={ styles.image } src={ url } />
+        <img className={ theme.get('stickerOptionImage') } src={ url } />
       </button>
     );
   }

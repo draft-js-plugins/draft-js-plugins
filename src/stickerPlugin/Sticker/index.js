@@ -3,8 +3,8 @@
  */
 
 import React, { Component } from 'react';
-import styles from './styles.css';
 import { Entity } from 'draft-js';
+import applyStyles from '../../utils/applyStyles';
 
 export default (stickers, hasRemove = true) => {
   class Sticker extends Component {
@@ -18,9 +18,11 @@ export default (stickers, hasRemove = true) => {
     };
 
     render() {
+      const { block } = this.props
+      const theme = this.props.theme.map(applyStyles);
       const removeButton = (
         <span
-          className={ styles.remove }
+          {...theme.get('removeSticker')}
           onClick={ this.remove }
           role="button"
         >
@@ -28,11 +30,10 @@ export default (stickers, hasRemove = true) => {
         </span>
       );
 
-      const { block } = this.props;
       const data = Entity.get(block.getEntityAt(0)).getData();
       return (
-        <figure className={ styles.root } contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
-          <img className={ styles.image } src={ stickers.getIn(['data', data.id, 'url']) } />
+        <figure {...theme.get('root')} contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
+          <img {...theme.get('stickerImage')} src={ stickers.getIn(['data', data.id, 'url']) } />
           { hasRemove ? removeButton : null }
         </figure>
       );

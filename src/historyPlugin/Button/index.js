@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './styles.css';
+import applyStyles from '../../utils/applyStyles';
 
-const Button = (props) => (
-  <button
-    className={ styles.root }
-    disabled={ props.disabled }
-    { ...props }
-  />
-);
+const Button = (props) => {
+  const {theme, ...otherProps} = props;
+  return (<button
+    { ...otherProps }
+    { ...applyStyles(theme.get('button')) }
+  />);
+};
 
 export default Button;

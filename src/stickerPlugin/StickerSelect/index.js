@@ -3,9 +3,9 @@
  */
 
 import React, { Component } from 'react';
-import styles from './styles.css';
 import StickerOption from './StickerOption';
 import add from '../modifiers/addSticker';
+import applyStyles from '../../utils/applyStyles';
 
 /**
  * Sets the CSS overflow value to newValue
@@ -76,6 +76,7 @@ export default (stickers) => {
         const url = sticker.get('url');
         return (
           <StickerOption
+            theme={this.props.theme}
             key={ id }
             onClick={ this.add }
             id={ id }
@@ -84,28 +85,29 @@ export default (stickers) => {
         );
       });
 
-      const popoverClassName = this.state.open ? styles.popover : styles.closedPopover;
-      const buttonClassName = this.state.open ? styles.pressedButton : styles.button;
+      const theme = this.props.theme.map(applyStyles);
+      const popoverStyle = this.state.open ? theme.get('popover') : theme.get('closedPopover');
+      const buttonStyle = this.state.open ? theme.get('pressedButton') : theme.get('button');
 
       return (
-        <div className={ styles.root }>
+        <div { ...theme.get('root') }>
           <button
-            className={ buttonClassName }
+            { ...buttonStyle }
             onMouseUp={ this.openPopover }
             type="button"
           >
-            <span className={ styles.icon }>☺</span>
-            <span className={ styles.buttonText }>Add Sticker</span>
+            <span { ...theme.get('icon') }>☺</span>
+            <span { ...theme.get('buttonText') }>Add Sticker</span>
           </button>
           <div
-            className={ popoverClassName }
+            { ...popoverStyle }
             onMouseEnter={ this.onMouseEnter }
             onMouseLeave={ this.onMouseLeave }
           >
-            <div className={ styles.stickerList }>
+            <div { ...theme.get('stickerList') }>
               { stickerElements.toList().toJS() }
             </div>
-            <div className={ styles.bottomGradient }></div>
+            <div { ...theme.get('bottomGradient') }></div>
           </div>
         </div>
       );
