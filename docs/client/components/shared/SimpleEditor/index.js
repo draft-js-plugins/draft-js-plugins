@@ -31,13 +31,14 @@ export default plugins => class UnicornEditor extends Component {
   render() {
     const pluginsList = plugins.valueSeq().toArray();
     const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
-    let UndoButton, RedoButton, StickerSelect;
+    let UndoButton;
+    let RedoButton;
+    let StickerSelect;
     if (plugins.get('history')) {
       const historyPluginInstance = plugins.get('history');
       UndoButton = historyPluginInstance.UndoButton;
       RedoButton = historyPluginInstance.RedoButton;
-    }
-    else if (plugins.get('sticker')) {
+    } else if (plugins.get('sticker')) {
       const stickerPluginInstance = plugins.get('sticker');
       StickerSelect = stickerPluginInstance.StickerSelect;
     }
@@ -69,7 +70,7 @@ export default plugins => class UnicornEditor extends Component {
               editorState={ this.state.editorState }
               onChange={ this.onChange }
             />
-          </span>: undefined }
+          </span> : undefined }
           <button
             className={ stateButton }
             onClick={ this.toggleShowState }
@@ -84,4 +85,4 @@ export default plugins => class UnicornEditor extends Component {
       </div>
     );
   }
-}
+};

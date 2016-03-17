@@ -33,7 +33,7 @@ const mentions = fromJS([
 ]);
 
 const pluginMap = new Map({
-  mention: mentionPlugin({mentions, })
+  mention: mentionPlugin({ mentions }),
 });
 const Editor = SimpleEditor(pluginMap);
 
