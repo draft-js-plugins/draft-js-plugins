@@ -109,22 +109,34 @@ export default class App extends Component {
           <div className={ styles.wideContainer }>
             <ul className={ styles.plugins }>
               <li className={ styles.plugin }>
-                <Link to="/plugin/mention">Mention</Link>
+                <Link to="/plugin/mention" className={ styles.link }>
+                  Mention
+                </Link>
               </li>
               <li className={ styles.plugin }>
-                <Link to="/plugin/linkify">Linkify</Link>
+                <Link to="/plugin/linkify" className={ styles.link }>
+                  Linkify
+                </Link>
               </li>
               <li className={ styles.plugin }>
-                <Link to="/plugin/sticker">Sticker</Link>
+                <Link to="/plugin/sticker" className={ styles.link }>
+                  Sticker
+                </Link>
               </li>
               <li className={ styles.plugin }>
-                <Link to="/plugin/emoji">Emoji</Link>
+                <Link to="/plugin/emoji" className={ styles.link }>
+                  Emoji
+                </Link>
               </li>
               <li className={ styles.plugin }>
-                <Link to="/plugin/hashtag">Hashtag</Link>
+                <Link to="/plugin/hashtag" className={ styles.link }>
+                  Hashtag
+                </Link>
               </li>
               <li className={ styles.plugin }>
-                <Link to="/plugin/undo">Undo</Link>
+                <Link to="/plugin/undo" className={ styles.link }>
+                  Undo
+                </Link>
               </li>
             </ul>
           </div>
@@ -149,7 +161,7 @@ export default class App extends Component {
         </div>
         <div className={ styles.containerWrapper }>
           <div className={ styles.container }>
-            <Heading level={ 2 }>Example: Unicorn Editor</Heading>
+            <Heading level={ 2 }>Try it yourself</Heading>
             <UnicornEditor />
             <Heading level={ 3 }>Plugins used in this Editor</Heading>
             <ul>
