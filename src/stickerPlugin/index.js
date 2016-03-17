@@ -27,8 +27,6 @@ const defaultStyles = fromJS({
   stickerOptionImage: stickerOptionStyles.image,
 });
 
-console.log(defaultStyles.toJS());
-
 const stickerPlugin = (config = {}) => {
   const theme = defaultStyles.merge(config.theme);
   return {
@@ -38,9 +36,9 @@ const stickerPlugin = (config = {}) => {
     },
     add: addSticker,
     remove: removeSticker,
-    Sticker: decorateComponentWithProps(sticker(config.stickers, config.hasRemove), {theme}),
-    StickerSelect: decorateComponentWithProps(stickerSelect(config.stickers), {theme}),
-  }
+    Sticker: decorateComponentWithProps(sticker(config.stickers, config.hasRemove), { theme }),
+    StickerSelect: decorateComponentWithProps(stickerSelect(config.stickers), { theme }),
+  };
 };
 
 export default stickerPlugin;

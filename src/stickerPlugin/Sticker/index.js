@@ -18,7 +18,7 @@ export default (stickers, hasRemove = true) => {
     };
 
     render() {
-      const { block } = this.props
+      const { block } = this.props;
       const theme = this.props.theme.map(applyStyles);
       const removeButton = (
         <span

@@ -13,12 +13,14 @@ import StatePreview from '../../../shared/StatePreview';
 
 // import { EditorState } from 'draft-js';
 
-const hashtagPluginInstance = hashtagPlugin({ theme: Immutable.Map({
-  hashtag: {
-    color: 'red',
-    fontFamily: 'monospace',
-  }
-})});
+const hashtagPluginInstance = hashtagPlugin({
+  theme: Immutable.Map({
+    hashtag: {
+      color: 'red',
+      fontFamily: 'monospace',
+    },
+  }),
+});
 
 const linkifyPluginInstance = linkifyPlugin();
 const mentionPluginInstance = mentionPlugin({

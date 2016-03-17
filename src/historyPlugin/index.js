@@ -5,7 +5,7 @@ import buttonStyles from './Button/styles.css';
 import historyStyles from './History/styles.css';
 import decorateComponentWithProps from '../utils/decorateComponentWithProps';
 
-const defaultStyles = fromJS({ 
+const defaultStyles = fromJS({
   button: buttonStyles.root,
   entry: historyStyles.entry,
   lastEntry: historyStyles.lastEntry,
@@ -14,11 +14,11 @@ const defaultStyles = fromJS({
 // import History from './History';
 
 const historyPlugin = (config = {}) => {
-  const theme = defaultStyles.merge(config.theme)
+  const theme = defaultStyles.merge(config.theme);
   return {
-    UndoButton: decorateComponentWithProps(UndoButton, {theme}),
-    RedoButton: decorateComponentWithProps(RedoButton, {theme}),
-  }
+    UndoButton: decorateComponentWithProps(UndoButton, { theme }),
+    RedoButton: decorateComponentWithProps(RedoButton, { theme }),
+  };
 };
 
 export default historyPlugin;
