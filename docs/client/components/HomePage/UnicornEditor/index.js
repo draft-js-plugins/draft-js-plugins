@@ -8,7 +8,7 @@ import historyPlugin from 'draft-js-history-plugin';
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
-import StatePreview from '../StatePreview';
+import StatePreview from '../../StatePreview';
 
 // import { EditorState } from 'draft-js';
 

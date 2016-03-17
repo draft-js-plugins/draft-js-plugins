@@ -3,11 +3,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disabl
 var autoprefixer = require('autoprefixer'); // eslint-disable-line no-var
 
 module.exports = {
-  output: {
-    path: path.join(__dirname, 'static'),
-    filename: 'bundle.js',
-    publicPath: '/static/',
-  },
   resolve: {
     alias: {
       'draft-js-plugin-editor': path.join(__dirname, '..', 'src', 'pluginEditor'),
@@ -26,7 +21,7 @@ module.exports = {
         test: /\.js$/,
         loaders: ['babel'],
         exclude: /node_modules/,
-        include: __dirname,
+        include: path.join(__dirname, 'client'),
       }, {
         test: /\.js$/,
         loaders: ['babel'],
@@ -36,11 +31,11 @@ module.exports = {
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader'),
         include: [
           path.join(__dirname, '..', 'src'),
-          path.join(__dirname, 'components'),
+          path.join(__dirname, 'client/components'),
         ],
       }, {
-        test: /\.svg$/,
-        loaders: ['url?limit=0'],
+        test: /\.(png|jpg|gif|ico)$/,
+        loaders: ['file?name=[name].[ext]'],
       },
     ],
   },
