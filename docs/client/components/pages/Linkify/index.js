@@ -7,9 +7,12 @@ import Heading from '../../shared/Heading';
 import SimpleEditor from '../../shared/SimpleEditor';
 import styles from './styles.css';
 import linkifyPlugin from 'draft-js-linkify-plugin';
+import { Map } from 'immutable';
 
-const plugins = [linkifyPlugin()];
-const Editor = SimpleEditor({plugins, pluginNames: ['linkify']});
+const pluginMap = new Map({
+  linkify: linkifyPlugin()
+});
+const Editor = SimpleEditor(pluginMap);
 
 export default class App extends Component {
 

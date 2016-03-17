@@ -7,7 +7,7 @@ import Heading from '../../shared/Heading';
 import SimpleEditor from '../../shared/SimpleEditor';
 import styles from './styles.css';
 import stickerPlugin from 'draft-js-sticker-plugin';
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 const stickers = fromJS({
   data: {
@@ -38,10 +38,12 @@ const stickers = fromJS({
   },
 });
 
-const plugins = [stickerPlugin({
-  stickers,
-})];
-const Editor = SimpleEditor({plugins, pluginNames: ['sticker']});
+const pluginMap = new Map({
+  sticker: stickerPlugin({
+    stickers,
+  })
+});
+const Editor = SimpleEditor(pluginMap);
 
 export default class App extends Component {
 

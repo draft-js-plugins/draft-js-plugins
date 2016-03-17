@@ -7,10 +7,12 @@ import Heading from '../../shared/Heading';
 import SimpleEditor from '../../shared/SimpleEditor';
 import styles from './styles.css';
 import historyPlugin from 'draft-js-history-plugin';
-import { fromJS } from 'immutable';
+import { Map } from 'immutable';
 
-const plugins = [historyPlugin()];
-const Editor = SimpleEditor({plugins, pluginNames: ['history']});
+const pluginMap = new Map({
+  history: historyPlugin()
+});
+const Editor = SimpleEditor(pluginMap);
 
 export default class App extends Component {
 

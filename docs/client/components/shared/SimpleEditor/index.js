@@ -4,7 +4,7 @@ import { EditorState } from 'draft-js';
 import styles from './styles.css';
 import StatePreview from '../StatePreview';
 
-export default config => class UnicornEditor extends Component {
+export default plugins => class UnicornEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(), // alternative to create an empty state
@@ -29,15 +29,16 @@ export default config => class UnicornEditor extends Component {
 
   /* eslint-disable react/jsx-no-bind */
   render() {
+    const pluginsList = plugins.valueSeq().toArray();
     const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
     let UndoButton, RedoButton, StickerSelect;
-    if (config.pluginNames.indexOf('history') >= 0) {
-      const historyPluginInstalce = config.plugins[0]
+    if (plugins.get('history')) {
+      const historyPluginInstance = plugins.get('history');
       UndoButton = historyPluginInstance.UndoButton;
       RedoButton = historyPluginInstance.RedoButton;
     }
-    else if (config.pluginNames.indexOf('sticker') >= 0) {
-      const stickerPluginInstance = config.plugins[0]
+    else if (plugins.get('sticker')) {
+      const stickerPluginInstance = plugins.get('sticker');
       StickerSelect = stickerPluginInstance.StickerSelect;
     }
 
@@ -48,17 +49,17 @@ export default config => class UnicornEditor extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            plugins={config.plugins}
+            plugins={pluginsList}
             spellCheck
             ref="editor"
           />
         </div>
         <div>
-          { config.pluginNames.indexOf('sticker') >= 0 ?
+          { plugins.get('sticker') ?
             <div className={ styles.stickerSelect }>
               <StickerSelect editor={ this } />
             </div> : undefined }
-          { config.pluginNames.indexOf('history') >= 0 ?
+          { plugins.get('history') ?
           <span>
             <UndoButton
               editorState={ this.state.editorState }

@@ -44,6 +44,5 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
-    "immutable": "^3.7.6"
   }
 }

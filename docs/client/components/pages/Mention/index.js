@@ -7,7 +7,7 @@ import Heading from '../../shared/Heading';
 import SimpleEditor from '../../shared/SimpleEditor';
 import styles from './styles.css';
 import mentionPlugin from 'draft-js-mention-plugin';
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 const mentions = fromJS([
   {
@@ -32,8 +32,10 @@ const mentions = fromJS([
   },
 ]);
 
-const plugins = [mentionPlugin({mentions, })];
-const Editor = SimpleEditor({plugins, pluginNames: ['mentions']});
+const pluginMap = new Map({
+  mention: mentionPlugin({mentions, })
+});
+const Editor = SimpleEditor(pluginMap);
 
 export default class App extends Component {
 
