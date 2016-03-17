@@ -4,11 +4,15 @@ import { EditorState } from 'draft-js';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import styles from './styles.css';
 import StatePreview from '../../../shared/StatePreview';
+import { Map } from 'immutable';
 
-const hashtagPluginInstance = hashtagPlugin();
+const theme = Map({
+  hashtag: styles.hashtag,
+});
+const hashtagPluginInstance = hashtagPlugin({ theme });
 const plugins = [hashtagPluginInstance];
 
-export default class SimpleHashtagEditor extends Component {
+export default class CustomHashtagEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(), // alternative to create an empty state

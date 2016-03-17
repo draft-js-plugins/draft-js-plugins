@@ -4,6 +4,7 @@ import ContainerWrapper from '../../shared/ContainerWrapper';
 import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
 import Heading from '../../shared/Heading';
 import SimpleHashtagEditor from './SimpleHashtagEditor';
+import CustomHashtagEditor from './CustomHashtagEditor';
 import styles from './styles.css';
 
 export default class App extends Component {
@@ -32,8 +33,14 @@ export default class App extends Component {
         </AlternateContainerWrapper>
         <ContainerWrapper>
           <Container>
-            <Heading level={ 2 }>Example</Heading>
+            <Heading level={ 2 }>Simple Example</Heading>
             <SimpleHashtagEditor />
+          </Container>
+        </ContainerWrapper>
+        <ContainerWrapper>
+          <Container>
+            <Heading level={ 2 }>Themed Hashtag Example</Heading>
+            <CustomHashtagEditor />
           </Container>
         </ContainerWrapper>
       </div>
