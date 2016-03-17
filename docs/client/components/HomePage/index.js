@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
-import UnicornEditor from '../UnicornEditor';
+import UnicornEditor from './UnicornEditor';
 import Heading from '../Heading';
 import Separator from '../Separator';
 import styles from './styles.css';
 import animate from 'animateplus';
+import { Link } from 'react-router';
 
 export default class App extends Component {
 
@@ -111,7 +112,9 @@ export default class App extends Component {
               <li className={ styles.plugin }>Linkify</li>
               <li className={ styles.plugin }>Sticker</li>
               <li className={ styles.plugin }>Emoji</li>
-              <li className={ styles.plugin }>Hashtag</li>
+              <li className={ styles.plugin }>
+                <Link to="/plugin/hashtag">Hashtag</Link>
+              </li>
               <li className={ styles.plugin }>Undo</li>
             </ul>
           </div>
