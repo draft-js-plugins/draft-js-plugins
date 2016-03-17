@@ -1,8 +1,16 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
-import styles from './styles.css';
 import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
+import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
+import Heading from '../../shared/Heading';
+import SimpleEditor from '../../shared/SimpleEditor';
+import styles from './styles.css';
+import historyPlugin from 'draft-js-history-plugin';
+import { fromJS } from 'immutable';
+
+const plugins = [historyPlugin()];
+const Editor = SimpleEditor({plugins, pluginNames: ['history']});
 
 export default class App extends Component {
 
@@ -21,11 +29,21 @@ export default class App extends Component {
 
   render() {
     return (
-      <ContainerWrapper>
-        <Container>
-          <div className={ styles.root }>Undo</div>
-        </Container>
-      </ContainerWrapper>
+      <div>
+        <AlternateContainerWrapper>
+          <Container>
+            <Heading level={ 2 }>Hashtag</Heading>
+            <div className={ styles.root }>Hashtag</div>
+          </Container>
+        </AlternateContainerWrapper>
+        <ContainerWrapper>
+          <Container>
+            <Heading level={ 2 }>Example</Heading>
+            <Editor />
+          </Container>
+        </ContainerWrapper>
+      </div>
+
     );
   }
 }

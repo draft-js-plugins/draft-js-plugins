@@ -43,5 +43,7 @@
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "immutable": "^3.7.6"
+  }
 }
