@@ -1,12 +1,15 @@
 /* @flow */
 
+import { Map } from 'immutable';
 import React, { Component } from 'react';
+import unionClassNames from '../../utils/unionClassNames';
 
 export default class Hashtag extends Component {
   render() {
-    const { theme, children, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { theme = Map(), children, className, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const combinedClassName = unionClassNames(theme.get('hashtag'), className);
     return (
-      <span { ...props } className={ theme.get('hashtag') }>
+      <span { ...props } className={ combinedClassName }>
         { children }
       </span>
     );
