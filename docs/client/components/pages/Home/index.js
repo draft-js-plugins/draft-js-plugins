@@ -10,6 +10,9 @@ import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
 import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
 
+import TwitterButton from '../../shared/TwitterButton';
+
+
 export default class App extends Component {
 
   componentDidMount() {
@@ -152,6 +155,8 @@ export default class App extends Component {
               DraftJS allows you to create powerful editors. This Plugin Architecture
               aims to provide you with plug & play extensions. It comes with a set of plugins with great UX (inspired by Facebook & Slack) serving Mobile & Desktop as well as Screenreaders.
             </p>
+
+            <TwitterButton />
             <div style={{ textAlign: 'center' }}>
               <iframe
                 src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugins&type=star&count=true&size=large"
