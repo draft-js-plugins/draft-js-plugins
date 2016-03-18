@@ -9,9 +9,8 @@ import { Link } from 'react-router';
 import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
 import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
-
 import TwitterButton from '../../shared/TwitterButton';
-
+import FacebookButton from '../../shared/FacebookButton';
 
 export default class App extends Component {
 
@@ -157,6 +156,7 @@ export default class App extends Component {
             </p>
 
             <TwitterButton />
+            <FacebookButton />
             <div style={{ textAlign: 'center' }}>
               <iframe
                 src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugins&type=star&count=true&size=large"

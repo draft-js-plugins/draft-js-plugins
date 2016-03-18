@@ -11,6 +11,9 @@ export default class TwitterButton extends Component {
     twitterbutton.parentNode.appendChild(twitterscript);
   }
 
+  // prevent re-rendering of the button
+  shouldComponentUpdate = () => false;
+
   componentWillUnmount() {
     const elem = document.getElementById('twitter-wjs');
     if (elem !== undefined) {
