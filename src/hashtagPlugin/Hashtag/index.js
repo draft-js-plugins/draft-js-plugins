@@ -1,5 +1,3 @@
-/* @flow */
-
 import { Map } from 'immutable';
 import React, { Component } from 'react';
 import unionClassNames from '../../utils/unionClassNames';

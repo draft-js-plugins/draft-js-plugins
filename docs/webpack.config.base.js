@@ -2,8 +2,6 @@ var path = require('path'); // eslint-disable-line no-var
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
 var autoprefixer = require('autoprefixer'); // eslint-disable-line no-var
 
-console.log(path.join(__dirname, 'node_modules'));
-
 module.exports = {
   resolve: {
     alias: {
