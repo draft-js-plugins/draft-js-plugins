@@ -28,8 +28,10 @@
     "file-loader": "^0.8.5",
     "history": "^2.0.0",
     "normalize.css": "^3.0.3",
+    "prismjs": "^1.4.1",
+    "raw-loader": "^0.5.1",
     "react": "^15.0.0-rc.2",
-    "react-addons-pure-render-mixin": "15.0.0-rc.2",
+    "react-addons-pure-render-mixin": "^15.0.0-rc.2",
     "react-dom": "^15.0.0-rc.2",
     "react-router": "^1.0.3",
     "react-static-webpack-plugin": "^0.4.0",
@@ -42,7 +44,5 @@
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
-  },
-  "dependencies": {
   }
 }

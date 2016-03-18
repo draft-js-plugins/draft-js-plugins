@@ -15,7 +15,7 @@ const plugins = [hashtagPluginInstance];
 export default class CustomHashtagEditor extends Component {
 
   state = {
-    editorState: EditorState.createEmpty(), // alternative to create an empty state
+    editorState: EditorState.createEmpty(),
     showState: false,
   };
 
@@ -37,7 +37,9 @@ export default class CustomHashtagEditor extends Component {
 
   /* eslint-disable react/jsx-no-bind */
   render() {
-    const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
+    const stateButton = this.state.showState ?
+      styles.pressedStateButton :
+      styles.stateButton;
 
     return (
       <div className={ styles.root }>

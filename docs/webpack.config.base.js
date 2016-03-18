@@ -2,6 +2,8 @@ var path = require('path'); // eslint-disable-line no-var
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
 var autoprefixer = require('autoprefixer'); // eslint-disable-line no-var
 
+console.log(path.join(__dirname, 'node_modules'));
+
 module.exports = {
   resolve: {
     alias: {
@@ -18,7 +20,8 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        // match all js files except example.js
+        test: /^(?!.*example\.js$).*\.js$/,
         loaders: ['babel'],
         exclude: /node_modules/,
         include: path.join(__dirname, 'client'),
