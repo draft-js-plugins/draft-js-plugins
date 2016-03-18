@@ -1,6 +1,15 @@
-.separatorWrapper {
+.root {
   display: flex;
-  /*border-bottom: 1px solid #eee;*/
+  border-top-style: solid;
+  border-top-color: #eee;
+  border-top-width: 1px;
+  transition: border-top-color 1.4s;
+  transition-timing-function: ease-out;
+}
+
+.rootFinal {
+  composes: root;
+  border-top-color: #fff;
 }
 
 .separatorBase {

@@ -10,6 +10,7 @@ export default class Separator extends Component {
     separator4ClassName: styles.separatorBase,
     separator5ClassName: styles.separatorBase,
     separator6ClassName: styles.separatorBase,
+    separatorRootClassName: styles.root,
   };
 
   componentDidMount() {
@@ -20,12 +21,13 @@ export default class Separator extends Component {
       separator4ClassName: styles.separatorPart4,
       separator5ClassName: styles.separatorPart5,
       separator6ClassName: styles.separatorPart6,
+      separatorRootClassName: styles.rootFinal,
     }), 1800);
   }
 
   render() {
     return (
-      <div className={ styles.separatorWrapper }>
+      <div className={ this.state.separatorRootClassName }>
         <div className={ this.state.separator1ClassName }></div>
         <div className={ this.state.separator2ClassName }></div>
         <div className={ this.state.separator3ClassName }></div>
