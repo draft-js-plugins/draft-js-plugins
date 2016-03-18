@@ -21,7 +21,7 @@ export default class GithubStarButton extends Component {
 
   render() {
     const size = this.props.size ? this.props.size : 'default'; // 'mega' is the other option
-    const text = this.props.text ? this.props.text : 'Star';
+    const text = this.props.text ? this.props.text : 'Github';
 
     // Note: all of the attributes including the className 'github-button' are requried
     return (
