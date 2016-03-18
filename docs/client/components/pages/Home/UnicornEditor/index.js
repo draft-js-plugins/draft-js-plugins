@@ -6,22 +6,13 @@ import linkifyPlugin from 'draft-js-linkify-plugin';
 import mentionPlugin from 'draft-js-mention-plugin';
 import historyPlugin from 'draft-js-history-plugin';
 import styles from './styles.css';
-import Immutable from 'immutable';
 import stickers from './stickers';
 import mentions from './mentions';
 import StatePreview from '../../../shared/StatePreview';
 
 // import { EditorState } from 'draft-js';
 
-const hashtagPluginInstance = hashtagPlugin({
-  theme: Immutable.Map({
-    hashtag: {
-      color: 'red',
-      fontFamily: 'monospace',
-    },
-  }),
-});
-
+const hashtagPluginInstance = hashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
 const mentionPluginInstance = mentionPlugin({
   mentions,
