@@ -32,16 +32,18 @@ export default class FacebookLikeButton extends Component {
   };
 
   render() {
+    // Note: the width was set to 280 to work well on mobile
     return (
       <div
         id="fbbutton"
         ref="fbbutton"
         className="fb-like"
-        data-href={this.props.url}
+        data-href={ this.props.url }
         data-layout="standard"
         data-action="like"
         data-show-faces="true"
         data-share="true"
+        data-width="290"
       />
     );
   }

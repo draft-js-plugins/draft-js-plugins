@@ -9,8 +9,7 @@ import { Link } from 'react-router';
 import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
 import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
-import TwitterButton from '../../shared/TwitterButton';
-import FacebookButton from '../../shared/FacebookButton';
+import SocialBar from '../../shared/SocialBar';
 
 export default class App extends Component {
 
@@ -155,16 +154,8 @@ export default class App extends Component {
               aims to provide you with plug & play extensions. It comes with a set of plugins with great UX (inspired by Facebook & Slack) serving Mobile & Desktop as well as Screenreaders.
             </p>
 
-            <TwitterButton />
-            <FacebookButton />
-            <div style={{ textAlign: 'center' }}>
-              <iframe
-                src="https://ghbtns.com/github-btn.html?user=nikgraf&repo=draft-js-plugins&type=star&count=true&size=large"
-                frameBorder="0"
-                scrolling="0"
-                className={ styles.githubButton }
-              ></iframe>
-            </div>
+            <Heading level={ 2 }>Help spreading the word …</Heading>
+            <SocialBar />
           </Container>
         </AlternateContainerWrapper>
         <ContainerWrapper>

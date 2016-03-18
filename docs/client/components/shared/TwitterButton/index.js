@@ -35,6 +35,8 @@ export default class TwitterButton extends Component {
   };
 
   render() {
-    return <div ref="twitterbutton" />;
+    return (
+      <span ref="twitterbutton" />
+    );
   }
 }
