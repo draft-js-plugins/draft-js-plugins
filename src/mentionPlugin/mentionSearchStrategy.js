@@ -1,6 +1,6 @@
 /* @flow */
 
-import findWithRegex from './utils/findWithRegex';
+import findWithRegex from '../utils/findWithRegex';
 
 const MENTION_REGEX = /\@[\w]*/g;
 
