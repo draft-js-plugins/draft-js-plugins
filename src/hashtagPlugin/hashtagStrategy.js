@@ -3,8 +3,7 @@
 import findWithRegex from '../utils/findWithRegex';
 
 /**
- * Super simple decorators for handles and hashtags, for demonstration
- * purposes only. Don't reuse these regexes.
+ * TODO improve this strategy
  */
 const HASHTAG_REGEX = /\#[\w\u0590-\u05ff]+/g;
 
