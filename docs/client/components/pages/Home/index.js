@@ -4,7 +4,6 @@ import UnicornEditor from './UnicornEditor';
 import Heading from '../../shared/Heading';
 import Separator from './Separator';
 import styles from './styles.css';
-import animate from 'animateplus';
 import { Link } from 'react-router';
 import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
@@ -18,6 +17,7 @@ export default class App extends Component {
   }
 
   animateLogo = () => {
+    const animate = require('animateplus');
     animate({
       el: this.refs.drawnPath,
       'stroke-dashoffset': [570, 1140],

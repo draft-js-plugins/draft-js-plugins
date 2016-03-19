@@ -24,7 +24,7 @@ export default (stickers) => {
 
     // When the selector is open and users click anywhere on the page,
     // the selector should close
-    componentWillMount() {
+    componentDidMount() {
       document.addEventListener('click', this.closePopover);
     }
 
