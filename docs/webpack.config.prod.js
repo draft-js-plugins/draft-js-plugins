@@ -35,6 +35,7 @@ module.exports = Object.assign(webpackBaseConfig, {
       src: 'app',
       stylesheet: '/app.css',
       favicon: '/favicon.ico',
+      template: path.join(__dirname, 'index.html.js'),
     }),
   ],
 });
