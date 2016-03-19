@@ -35,6 +35,12 @@ module.exports = {
           path.join(__dirname, 'client/components'),
         ],
       }, {
+        test: /prism\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        include: [
+          path.join(__dirname, 'node_modules/prismjs/themes/'),
+        ],
+      }, {
         test: /\.(png|jpg|gif|ico)$/,
         loaders: ['file?name=[name].[ext]'],
       },
