@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugin-editor';
+import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
+import Editor from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import styles from './styles.css';
-import StatePreview from '../../../shared/StatePreview';
-import { Map } from 'immutable';
 
 const theme = Map({
   hashtag: styles.hashtag,
