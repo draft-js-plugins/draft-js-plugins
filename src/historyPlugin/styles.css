@@ -1,4 +1,4 @@
-.root {
+.button {
   border: 1px solid #bbb;
   height: 40px;
   color: #888;
@@ -16,23 +16,23 @@
   margin-right: 10px;
 }
 
-.root:focus {
+.button:focus {
   background-color: #eee;
   color: #999;
   outline: 0; /* reset for :focus */
 }
 
-.root:hover {
+.button:hover {
   background-color: #eee;
   color: #999;
 }
 
-.root:active {
+.button:active {
   background-color: #ddd;
   color: #777;
 }
 
-.root:disabled {
-  background-color: #dfdfdf;
-  color: #999;
+.button:disabled {
+  background-color: #F5F5F5;
+  color: #ccc;
 }

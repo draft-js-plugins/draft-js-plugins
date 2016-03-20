@@ -1,23 +1,28 @@
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
-import { fromJS } from 'immutable';
-import buttonStyles from './Button/styles.css';
-import historyStyles from './History/styles.css';
+import { Map } from 'immutable';
+import styles from './styles.css';
 import decorateComponentWithProps from '../utils/decorateComponentWithProps';
 
-const defaultStyles = fromJS({
-  button: buttonStyles.root,
-  entry: historyStyles.entry,
-  lastEntry: historyStyles.lastEntry,
+const defaultTheme = Map({
+  redo: styles.button,
+  undo: styles.button,
 });
 
-// import History from './History';
-
 const historyPlugin = (config = {}) => {
-  const theme = defaultStyles.merge(config.theme);
+  const undoContent = config.undoContent ? config.undoContent : '↺';
+  const redoContent = config.redoContent ? config.redoContent : '↻';
+
+  // Styles are overwritten instead of merged as merging causes a lot of confusion.
+  //
+  // Why? Because when merging a developer needs to know all of the underlying
+  // styles which needs a deep dive into the code. Merging also makes it prone to
+  // errors when upgrading as basically every styling change would become a major
+  // breaking change. 1px of an increased padding can break a whole layout.
+  const theme = config.theme ? config.theme : defaultTheme;
   return {
-    UndoButton: decorateComponentWithProps(UndoButton, { theme }),
-    RedoButton: decorateComponentWithProps(RedoButton, { theme }),
+    UndoButton: decorateComponentWithProps(UndoButton, { theme, children: undoContent }),
+    RedoButton: decorateComponentWithProps(RedoButton, { theme, children: redoContent }),
   };
 };
 
