@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import styles from './styles.css';
 import Container from '../../shared/Container';
+import AlternateContainer from '../../shared/AlternateContainer';
+import Heading from '../../shared/Heading';
 
 export default class App extends Component {
 
