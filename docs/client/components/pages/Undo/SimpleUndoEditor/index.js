@@ -33,7 +33,7 @@ export default class SimpleUndoEditor extends Component {
             ref="editor"
           />
         </div>
-        <div>
+        <div className={ styles.editorOptions }>
           <UndoButton
             editorState={ this.state.editorState }
             onChange={ this.onChange }

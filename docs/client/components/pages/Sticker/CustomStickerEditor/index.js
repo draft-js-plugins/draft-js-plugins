@@ -65,7 +65,7 @@ export default class CustomStickerEditor extends Component {
             ref="editor"
           />
         </div>
-        <div className={ styles.stickerSelect }>
+        <div className={ styles.editorOptions }>
           <StickerSelect editor={ this } />
         </div>
       </div>

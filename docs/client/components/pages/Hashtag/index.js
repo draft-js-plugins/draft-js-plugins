@@ -29,6 +29,19 @@ export default class App extends Component {
           <Code code={ customExampleCode } name="CustomHashtagEditor.js" />
           <Code code={ customExampleStylesCode } name="styles.css" />
         </Container>
+        <Container>
+          <Heading level={ 2 }>Parameters</Heading>
+          <div>
+            <div className={ styles.paramName }>theme</div>
+            <span>Map of CSS classes to style the plugin.</span>
+            <table className={ styles.themeTable }>
+              <tr>
+                <td className={ styles.themeProperty }>hashtag</td>
+                <td>CSS class to be applied to Hashtag text</td>
+              </tr>
+            </table>
+          </div>
+        </Container>
       </div>
 
     );

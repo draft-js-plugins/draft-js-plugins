@@ -16,7 +16,6 @@
   min-height: 140px;
 }
 
-.stickerSelect {
-  margin-right: 10px;
-  display: inline-block;
+.editorOptions {
+  margin-bottom: 20px;
 }
