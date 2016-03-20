@@ -15,7 +15,7 @@ High quality plugins with great UX on to of [DraftJS](https://github.com/faceboo
 
 ## Live Example
 
-Checkout [the website](http://nikgraf.github.io/draft-js-plugins/)!
+Checkout [the website](https://www.draft-js-plugins.com/)!
 
 ## Usage
 
