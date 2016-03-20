@@ -57,8 +57,8 @@ export default class App extends Component {
       <div>
         <AlternateContainerWrapper>
           <Container>
-            <Heading level={ 2 }>Hashtag</Heading>
-            <div className={ styles.root }>Hashtag</div>
+            <Heading level={ 2 }>Mention</Heading>
+            <div className={ styles.root }>Mention</div>
           </Container>
         </AlternateContainerWrapper>
         <ContainerWrapper>

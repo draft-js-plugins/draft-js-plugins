@@ -34,8 +34,8 @@ export default class App extends Component {
       <div>
         <AlternateContainerWrapper>
           <Container>
-            <Heading level={ 2 }>Hashtag</Heading>
-            <div className={ styles.root }>Hashtag</div>
+            <Heading level={ 2 }>Linkify</Heading>
+            <div className={ styles.root }>Linkify</div>
           </Container>
         </AlternateContainerWrapper>
         <ContainerWrapper>
