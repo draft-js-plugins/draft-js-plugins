@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import styles from './styles.css';
-import { fromJS } from 'immutable';
 
 const linkifyPluginInstance = linkifyPlugin();
 const plugins = [linkifyPluginInstance];

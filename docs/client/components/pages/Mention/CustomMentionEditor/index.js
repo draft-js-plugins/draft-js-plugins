@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
 import mentionPlugin from 'draft-js-mention-plugin';
