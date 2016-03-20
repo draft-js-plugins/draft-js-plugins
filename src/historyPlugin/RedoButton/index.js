@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
 import unionClassNames from '../../utils/unionClassNames';
+import { Map } from 'immutable';
 
 class RedoButton extends Component {
 
@@ -8,7 +9,7 @@ class RedoButton extends Component {
     children: PropTypes.node.isRequired,
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.any.isRequired,
-    theme: PropTypes.any.isRequired,
+    theme: PropTypes.any,
   };
 
   onClick = () => {
