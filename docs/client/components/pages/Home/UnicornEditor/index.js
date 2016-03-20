@@ -3,7 +3,7 @@ import Editor, { createWithText } from 'draft-js-plugin-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import mentionPlugin from 'draft-js-mention-plugin';
+import createMentionPlugin from 'draft-js-mention-plugin';
 import historyPlugin from 'draft-js-history-plugin';
 import styles from './styles.css';
 import stickers from './stickers';
@@ -14,7 +14,7 @@ import StatePreview from '../../../shared/StatePreview';
 
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
-const mentionPluginInstance = mentionPlugin({
+const mentionPlugin = createMentionPlugin({
   mentions,
 });
 const historyPluginInstance = historyPlugin();
@@ -30,7 +30,7 @@ const plugins = [
   hashtagPlugin,
   stickerPluginInstance,
   linkifyPlugin,
-  mentionPluginInstance,
+  mentionPlugin,
 ];
 
 export default class UnicornEditor extends Component {

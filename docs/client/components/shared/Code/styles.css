@@ -5,6 +5,7 @@
   padding: 10px;
   position: relative;
   margin-bottom: 2rem;
+  overflow-x: scroll;
 }
 
 .root code {

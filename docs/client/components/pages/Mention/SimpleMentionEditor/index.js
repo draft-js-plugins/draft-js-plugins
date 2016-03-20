@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
-import mentionPlugin from 'draft-js-mention-plugin';
+import createMentionPlugin from 'draft-js-mention-plugin';
 import styles from './styles.css';
 import { fromJS } from 'immutable';
 
@@ -28,8 +28,8 @@ const mentions = fromJS([
   },
 ]);
 
-const mentionPluginInstance = mentionPlugin({ mentions });
-const plugins = [mentionPluginInstance];
+const mentionPlugin = createMentionPlugin({ mentions });
+const plugins = [mentionPlugin];
 
 export default class SimpleMentionEditor extends Component {
 
