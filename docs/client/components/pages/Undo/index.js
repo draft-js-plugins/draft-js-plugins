@@ -32,7 +32,32 @@ export default class App extends Component {
           <Code code={ customExampleButtonCSSCode } name="buttonStyles.css" />
           <Code code={ customExampleCSSCode } name="styles.css" />
         </Container>
-      </div>
+        <Container>
+          <Heading level={ 2 }>Parameters</Heading>
+          <div>
+            <span className={ styles.paramName }>theme</span>
+            <span>Map of CSS classes to style the plugin.</span>
+            <table className={ styles.themeTable }>
+              <tr>
+                <td className={ styles.themeProperty }>undo</td>
+                <td>CSS class to be applied to undo button</td>
+              </tr>
+              <tr>
+                <td className={ styles.themeProperty }>redo</td>
+                <td>CSS class to be applied to redo button</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <span className={ styles.paramName }>undoContent</span>
+            <span>Content of undo button. (Default content is ↺)</span>
+          </div>
+          <div>
+            <span className={ styles.paramName }>redoContent</span>
+            <span>Content of redo button. (Default content is ↻)</span>
+          </div>
+        </Container>
+    </div>
     );
   }
 }

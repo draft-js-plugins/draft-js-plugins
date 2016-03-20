@@ -34,7 +34,7 @@ const stickers = fromJS({
   },
 });
 
-const stickerPluginInstance = stickerPlugin({stickers,});
+const stickerPluginInstance = stickerPlugin({ stickers, });
 const plugins = [stickerPluginInstance];
 const StickerSelect = stickerPluginInstance.StickerSelect;
 
@@ -65,7 +65,7 @@ export default class SimpleMentionEditor extends Component {
             ref="editor"
           />
         </div>
-        <div className={ styles.stickerSelect }>
+        <div className={ styles.editorOptions }>
           <StickerSelect editor={ this } />
         </div>
       </div>

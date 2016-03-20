@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import styles from './styles.css';
 import { fromJS } from 'immutable';
-
 
 const stickers = fromJS({
   data: {
@@ -36,7 +34,7 @@ const stickers = fromJS({
   },
 });
 
-const stickerPluginInstance = stickerPlugin({stickers,});
+const stickerPluginInstance = stickerPlugin({ stickers, });
 const plugins = [stickerPluginInstance];
 const StickerSelect = stickerPluginInstance.StickerSelect;
 
@@ -67,7 +65,7 @@ export default class CustomStickerEditor extends Component {
             ref="editor"
           />
         </div>
-        <div className={ styles.stickerSelect }>
+        <div className={ styles.editorOptions }>
           <StickerSelect editor={ this } />
         </div>
       </div>
