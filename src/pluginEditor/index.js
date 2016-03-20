@@ -1,4 +1,4 @@
-import createWithTextFn from './utils/createWithText';
+import createEditorStateWithTextFn from './utils/createEditorStateWithText';
 
 export default from './Editor';
-export const createWithText = createWithTextFn;
+export const createEditorStateWithText = createEditorStateWithTextFn;

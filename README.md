@@ -90,16 +90,16 @@ export default class UnicornEditor extends Component {
 }
 ```
 
-#### `createWithText`
+#### `createEditorStateWithText`
 
 Function to creates an EditorState with some text.
 
 Usage:
 
 ```js
-import { createWithText } from 'draft-js-plugins-editor';
+import { createEditorStateWithText } from 'draft-js-plugins-editor';
 
-const editorState = createWithText('Hello World!', plugins);
+const editorState = createEditorStateWithText('Hello World!', plugins);
 ```
 
 ### Plugins

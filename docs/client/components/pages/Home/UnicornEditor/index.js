@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Editor, { createWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
@@ -35,7 +35,7 @@ export default class UnicornEditor extends Component {
 
   state = {
     // editorState: EditorState.createEmpty(), // alternative to create an empty state
-    editorState: createWithText('Hello World!'),
+    editorState: createEditorStateWithText('Hello World!'),
     showState: false,
   };
 
