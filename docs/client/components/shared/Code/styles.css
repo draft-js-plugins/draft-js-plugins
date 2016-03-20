@@ -7,6 +7,10 @@
   margin-bottom: 2rem;
 }
 
+.root code {
+  font-family: 'Inconsolata';
+}
+
 .name {
   position: absolute;
   top: 0;

@@ -19,6 +19,7 @@ module.exports = (props) => {
       <link rel="stylesheet" href="/css/Draft.css"/>
       <link rel="stylesheet" href="/app.css"/>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css"/>
+      <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     </head>
     <body>
       <div id="root">

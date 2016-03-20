@@ -16,7 +16,7 @@ export default class Code extends Component {
     return (
       <div className={ styles.root }>
         <div className={ nameClassname }>{ this.props.name }</div>
-        <pre>
+        <pre className={ styles.code }>
           <code
             dangerouslySetInnerHTML={{ __html: this.props.code }}
           />
