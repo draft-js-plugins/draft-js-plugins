@@ -25,11 +25,11 @@
   color: #888;
   margin: 0;
   border-radius: 20px;
-  line-height: 1.0em;
   cursor: pointer;
   height: 40px;
-  padding-left: 14px;
-  padding-right: 18px;
+  width: 40px;
+  font-size: 1.6em;
+  line-height: 1.2em;
 }
 
 .selectButton:focus {
@@ -47,12 +47,6 @@
 .selectPressedButton {
   composes: selectButton;
   background: #ededed;
-}
-
-.selectButtonText {
-  position: relative;
-  top: -3px;
-  left: 5px;
 }
 
 .selectBottomGradient {
@@ -76,9 +70,4 @@
   left: 0;
   right: 0;
   padding: 10px;
-}
-
-.selectIcon {
-  font-size: 1.6em;
-  line-height: 1.2em;
 }

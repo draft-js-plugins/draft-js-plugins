@@ -97,8 +97,7 @@ export default class StickerSelect extends Component {
           onMouseUp={ this.openPopover }
           type="button"
         >
-          <span className={ theme.get('selectIcon') }>☺</span>
-          <span className={ theme.get('selectButtonText') }>Add Sticker</span>
+          { this.props.selectButtonContent }
         </button>
         <div
           className={ popoverClassName }

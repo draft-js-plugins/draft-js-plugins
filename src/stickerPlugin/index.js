@@ -21,9 +21,7 @@ const defaultTheme = Map({
   selectBottomGradient: selectStyles.selectBottomGradient,
   selectButton: selectStyles.selectButton,
   selectPressedButton: selectStyles.selectPressedButton,
-  selectButtonText: selectStyles.selectButtonText,
   selectStickerList: selectStyles.selectStickerList,
-  selectIcon: selectStyles.selectIcon,
 
   selectSticker: selectStickerStyles.selectSticker,
   selectStickerImage: selectStickerStyles.selectStickerImage,
@@ -38,10 +36,12 @@ const stickerPlugin = (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
   const stickers = config.stickers;
+  const selectButtonContent = config.selectButtonContent ? config.selectButtonContent : '☺';
 
   // default to true if not explicitly set to false
   const attachRemoveButton = config.attachRemoveButton !== false;
   const stickerSelectProps = {
+    selectButtonContent,
     stickers,
     theme,
   };
