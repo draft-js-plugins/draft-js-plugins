@@ -4,12 +4,10 @@ import unionClassNames from '../../utils/unionClassNames';
 
 export default class Hashtag extends Component {
   render() {
-    const { theme = Map(), children, className, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { theme = Map(), className, ...props } = this.props; // eslint-disable-line no-use-before-define
     const combinedClassName = unionClassNames(theme.get('hashtag'), className);
     return (
-      <span { ...props } className={ combinedClassName }>
-        { children }
-      </span>
+      <span { ...props } className={ combinedClassName } />
     );
   }
 }

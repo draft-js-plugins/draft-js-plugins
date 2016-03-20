@@ -1,15 +1,20 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import styles from './styles.css';
+import unionClassNames from '../../utils/unionClassNames';
+import { Map } from 'immutable';
 
 // The component we render when we encouter a hyperlink in the text
 export default class Link extends Component {
   render() {
+    const { theme = Map(), className, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const combinedClassName = unionClassNames(theme.get('link'), className);
     return (
-      <a { ...this.props } href={ this.props.decoratedText } className={ styles.root }>
-        { this.props.children }
-      </a>
+      <a
+        { ...props }
+        href={ this.props.decoratedText }
+        className={ combinedClassName }
+      />
     );
   }
 }

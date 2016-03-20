@@ -1,10 +1,10 @@
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
-import { fromJS } from 'immutable';
+import { Map } from 'immutable';
 import styles from './styles.css';
 import decorateComponentWithProps from '../utils/decorateComponentWithProps';
 
-const defaultTheme = fromJS({
+const defaultTheme = Map({
   hashtag: styles.hashtag,
 });
 
