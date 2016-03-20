@@ -2,42 +2,66 @@ import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
 import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
 import blockRendererFn from './blockRendererFn';
-import sticker from './Sticker';
-import stickerSelect from './StickerSelect';
-import { fromJS } from 'immutable';
-import stickerStyles from './Sticker/styles.css';
-import stickerSelectStyles from './StickerSelect/styles.css';
-import stickerOptionStyles from './StickerSelect/StickerOption/styles.css';
+import Sticker from './Sticker';
+import StickerSelect from './StickerSelect';
+import { Map } from 'immutable';
 import decorateComponentWithProps from '../utils/decorateComponentWithProps';
+import stickerStyles from './stickerStyles.css';
+import selectStyles from './selectStyles.css';
+import selectStickerStyles from './selectStickerStyles.css';
 
-const defaultStyles = fromJS({
-  stickerSelect: stickerSelectStyles.root,
-  popover: stickerSelectStyles.popover,
-  removeSticker: stickerStyles.remove,
-  stickerImage: stickerStyles.image,
-  sticker: stickerStyles.root,
-  closedPopover: stickerSelectStyles.closedPopover,
-  selectButton: stickerSelectStyles.button,
-  bottomGradient: stickerSelectStyles.bottomGradient,
-  buttonPressed: stickerSelectStyles.pressedButton,
-  stickerList: stickerSelectStyles.stickerList,
-  icon: stickerSelectStyles.icon,
-  buttonText: stickerSelectStyles.buttonText,
-  stickerOption: stickerOptionStyles.root,
-  stickerOptionImage: stickerOptionStyles.image,
+const defaultTheme = Map({
+  sticker: stickerStyles.sticker,
+  stickerImage: stickerStyles.stickerImage,
+  stickerRemoveButton: stickerStyles.stickerRemoveButton,
+
+  stickerSelect: selectStyles.root,
+  popover: selectStyles.popover,
+  closedPopover: selectStyles.closedPopover,
+  bottomGradient: selectStyles.bottomGradient,
+  button: selectStyles.button,
+  pressedButton: selectStyles.pressedButton,
+  stickerList: selectStyles.stickerList,
+  icon: selectStyles.icon,
+  buttonText: selectStyles.buttonText,
+
+  stickerOption: selectStickerStyles.root,
+  stickerOptionImage: selectStickerStyles.image,
 });
 
 const stickerPlugin = (config = {}) => {
-  const theme = defaultStyles.merge(config.theme);
+  // Styles are overwritten instead of merged as merging causes a lot of confusion.
+  //
+  // Why? Because when merging a developer needs to know all of the underlying
+  // styles which needs a deep dive into the code. Merging also makes it prone to
+  // errors when upgrading as basically every styling change would become a major
+  // breaking change. 1px of an increased padding can break a whole layout.
+  const theme = config.theme ? config.theme : defaultTheme;
+  const stickers = config.stickers;
+
+  // default to true if not explicitly set to false
+  const attachRemoveButton = config.attachRemoveButton !== false;
+  const stickerSelectProps = {
+    stickers,
+    theme,
+  };
+  const stickerProps = {
+    attachRemoveButton,
+    stickers,
+    theme,
+  };
+  const blockRendererConfig = {
+    ...config,
+    Sticker: decorateComponentWithProps(Sticker, stickerProps),
+  };
   return {
     pluginProps: {
-      blockRendererFn: blockRendererFn(config),
+      blockRendererFn: blockRendererFn(blockRendererConfig),
       onChange: cleanupEmptyStickers,
     },
     add: addSticker,
     remove: removeSticker,
-    Sticker: decorateComponentWithProps(sticker(config.stickers, config.attachRemoveButton), { theme }),
-    StickerSelect: decorateComponentWithProps(stickerSelect(config.stickers), { theme }),
+    StickerSelect: decorateComponentWithProps(StickerSelect, stickerSelectProps),
   };
 };
 
