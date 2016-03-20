@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
-import styles from './styles.css';
 import getSearchText from '../utils/getSearchText';
 import { genKey } from 'draft-js';
+import { List } from 'immutable';
 
-export default (mentions, callbacks, ariaProps) => {
+export default (callbacks, ariaProps) => {
   const updateAriaCloseDropdown = () => {
     ariaProps.ariaHasPopup = 'false'; // eslint-disable-line no-param-reassign
     ariaProps.ariaExpanded = 'false'; // eslint-disable-line no-param-reassign
@@ -165,7 +165,8 @@ export default (mentions, callbacks, ariaProps) => {
       const selection = this.props.getEditorState().getSelection();
       const { word } = getSearchText(this.props.getEditorState(), selection);
       const mentionValue = word.substring(1, word.length).toLowerCase();
-      const filteredValues = mentions && mentions.filter((mention) => (
+      const mentions = this.props.mentions ? this.props.mentions : List([]);
+      const filteredValues = mentions.filter((mention) => (
         !mentionValue || mention.get('name').toLowerCase().indexOf(mentionValue) > -1
       ));
       const size = filteredValues.size < 5 ? filteredValues.size : 5;
@@ -179,11 +180,12 @@ export default (mentions, callbacks, ariaProps) => {
 
     render() {
       this.filteredMentions = this.getMentionsForFilter();
+      const { theme } = this.props;
       return (
-        <span {...this.props} className={ styles.root } spellCheck={ false }>
+        <span {...this.props} className={ theme.get('autocomplete') } spellCheck={ false }>
           { this.state.isOpen && this.filteredMentions.size > 0 ?
           <div
-            className={ styles.dropdown }
+            className={ theme.get('autocompletePopover') }
             contentEditable={ false }
             role="listbox"
             id={ `mentions-list-${this.key}` }
@@ -198,6 +200,7 @@ export default (mentions, callbacks, ariaProps) => {
                   mention={ mention }
                   index={ index }
                   id={ `mention-option-${this.key}-${index}` }
+                  theme={ theme }
                 />
               ))
             }

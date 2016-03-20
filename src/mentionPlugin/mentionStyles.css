@@ -1,13 +1,4 @@
-.root {
-  color: #333;
-  display: inline-block;
-  background: #DEF0F7;
-  padding-left: 2px;
-  padding-right: 2px;
-  border-radius: 2px;
-}
-
-.rootLink, .rootLink:visited  {
+.mention, .mention:visited  {
   color: #333;
   cursor: pointer;
   display: inline-block;
@@ -18,13 +9,13 @@
   text-decoration: none;
 }
 
-.rootLink:hover, .rootLink:focus {
+.mention:hover, .mention:focus {
   color: #555;
   background: #E5F2F7;
   outline: 0; /* reset for :focus */
 }
 
-.rootLink:active {
+.mention:active {
   color: #222;
   background: #BBE3F3;
 }

@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './styles.css';
 
-const Avatar = ({ mention }) => {
+const Avatar = ({ mention, theme }) => {
   if (mention.has('avatar')) {
     return (
-      <img src={ mention.get('avatar') } className={ styles.root } />
+      <img src={ mention.get('avatar') } className={ theme.get('autocompleteEntryAvatar') } />
     );
   }
 

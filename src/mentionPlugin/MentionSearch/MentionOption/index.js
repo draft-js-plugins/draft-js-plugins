@@ -2,7 +2,6 @@ import React, {
   // PropTypes,
   Component,
 } from 'react';
-import styles from './styles.css';
 import Avatar from './Avatar';
 
 export default class MentionOption extends Component {
@@ -35,7 +34,8 @@ export default class MentionOption extends Component {
   };
 
   render() {
-    const className = this.props.isFocused ? styles.focusedRoot : styles.root;
+    const { theme } = this.props;
+    const className = this.props.isFocused ? theme.get('autocompleteEntryFocused') : theme.get('autocompleteEntry');
     return (
       <div
         className={ className }
@@ -44,8 +44,8 @@ export default class MentionOption extends Component {
         onMouseEnter={ this.onMouseEnter }
         role="option"
       >
-        <Avatar mention={ this.props.mention } />
-        <span className={ styles.text }>{ this.props.mention.get('name') }</span>
+        <Avatar mention={ this.props.mention } theme={ theme } />
+        <span className={ theme.get('autocompleteEntryText') }>{ this.props.mention.get('name') }</span>
       </div>
     );
   }

@@ -1,8 +1,8 @@
-.root {
+.autocomplete {
   display: inline-block;
 }
 
-.dropdown {
+.autocompletePopover {
   border: 1px solid #ddd;
   margin-top: 1.75em;
   min-width: 180px;
