@@ -25,8 +25,8 @@ const defaultTheme = Map({
   icon: selectStyles.icon,
   buttonText: selectStyles.buttonText,
 
-  stickerOption: selectStickerStyles.root,
-  stickerOptionImage: selectStickerStyles.image,
+  selectSticker: selectStickerStyles.selectSticker,
+  selectStickerImage: selectStickerStyles.selectStickerImage,
 });
 
 const stickerPlugin = (config = {}) => {

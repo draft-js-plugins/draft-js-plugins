@@ -18,9 +18,9 @@ export default class StickerOption extends Component {
         onClick={ this.onClick }
         key={ id }
         type="button"
-        className={ theme.get('stickerOption') }
+        className={ theme.get('selectSticker') }
       >
-        <img className={ theme.get('stickerOptionImage') } src={ url } />
+        <img className={ theme.get('selectStickerImage') } src={ url } />
       </button>
     );
   }

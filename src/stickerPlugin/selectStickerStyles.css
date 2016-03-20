@@ -1,19 +1,19 @@
-.root {
+.selectSticker {
   border: 0;
   border-radius: 4px;
   background: #fff;
 }
 
-.root:hover, .root:focus {
+.selectSticker:hover, .root:focus {
   background: #efefef;
   outline: 0; /* reset for :focus */
 }
 
-.root:active {
+.selectSticker:active {
   background: #dfdfdf;
 }
 
-.image {
+.selectStickerImage {
   height: 85px;
   width: 85px;
 }
