@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Map } from 'immutable';
-import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import styles from './styles.css';
 
@@ -10,11 +9,12 @@ const theme = Map({
 });
 const hashtagPlugin = createHashtagPlugin({ theme });
 const plugins = [hashtagPlugin];
+const text = 'In this editor we even applied our own styles … #design #theme';
 
 export default class CustomHashtagEditor extends Component {
 
   state = {
-    editorState: EditorState.createEmpty(),
+    editorState: createEditorStateWithText(text),
   };
 
   onChange = (editorState) => {
