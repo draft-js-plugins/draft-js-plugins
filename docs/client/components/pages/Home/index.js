@@ -5,9 +5,9 @@ import Heading from '../../shared/Heading';
 import Separator from './Separator';
 import styles from './styles.css';
 import { Link } from 'react-router';
+import ContainerBox from '../../shared/ContainerBox';
 import Container from '../../shared/Container';
-import ContainerWrapper from '../../shared/ContainerWrapper';
-import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
+import AlternateContainer from '../../shared/AlternateContainer';
 import SocialBar from '../../shared/SocialBar';
 
 export default class App extends Component {
@@ -64,7 +64,7 @@ export default class App extends Component {
     return (
       <div>
         <div className={ styles.header }>
-          <Container>
+          <ContainerBox>
             <svg className={ styles.logo } viewBox="0 0 263 209" version="1.1">
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Pencil" transform="translate(177.000000, 1.000000)" stroke="#979797" strokeWidth="2" fill="#FFFFFF">
@@ -107,7 +107,7 @@ export default class App extends Component {
             </svg>
             <div className={ styles.logoText }>DraftJS Plugins</div>
             <p className={ styles.tagline }>High quality plugins with great UX</p>
-          </Container>
+          </ContainerBox>
         </div>
         <div className={ styles.pluginsWrapper }>
           <div className={ styles.wideContainer }>
@@ -146,35 +146,31 @@ export default class App extends Component {
           </div>
         </div>
         <Separator />
-        <AlternateContainerWrapper>
-          <Container>
-            <Heading level={ 2 }>Wait, but why?</Heading>
-            <p className={ styles.whyText }>
-              DraftJS allows you to create powerful editors. This Plugin Architecture
-              aims to provide you with plug & play extensions. It comes with a set of plugins with great UX (inspired by Facebook & Slack) serving Mobile & Desktop as well as Screenreaders.
-            </p>
+        <AlternateContainer>
+          <Heading level={ 2 }>Wait, but why?</Heading>
+          <p className={ styles.whyText }>
+            DraftJS allows you to create powerful editors. This Plugin Architecture
+            aims to provide you with plug & play extensions. It comes with a set of plugins with great UX (inspired by Facebook & Slack) serving Mobile & Desktop as well as Screenreaders.
+          </p>
 
-            <Heading level={ 2 }>Help spreading the word …</Heading>
-            <SocialBar />
-          </Container>
-        </AlternateContainerWrapper>
-        <ContainerWrapper>
-          <Container>
-            <Heading level={ 2 }>Try it yourself</Heading>
-            <UnicornEditor />
-            <Heading level={ 3 }>Plugins used in this Editor</Heading>
-            <ul>
-              <li>Custom stickers</li>
-              <li>Hashtag support</li>
-              <li>Automatically turns links into anchor tags</li>
-              <li>Mentions</li>
-            </ul>
-            <Heading level={ 3 }>Why a UnicornEditor?</Heading>
-            <p>
-              Because Unicorns are cooler than cats 😜
-            </p>
-          </Container>
-        </ContainerWrapper>
+          <Heading level={ 2 }>Help spreading the word …</Heading>
+          <SocialBar />
+        </AlternateContainer>
+        <Container>
+          <Heading level={ 2 }>Try it yourself</Heading>
+          <UnicornEditor />
+          <Heading level={ 3 }>Plugins used in this Editor</Heading>
+          <ul>
+            <li>Custom stickers</li>
+            <li>Hashtag support</li>
+            <li>Automatically turns links into anchor tags</li>
+            <li>Mentions</li>
+          </ul>
+          <Heading level={ 3 }>Why a UnicornEditor?</Heading>
+          <p>
+            Because Unicorns are cooler than cats 😜
+          </p>
+        </Container>
       </div>
     );
   }

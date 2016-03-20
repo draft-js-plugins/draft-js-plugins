@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './styles.css';
 import ContainerBox from '../ContainerBox';
 
-export default class Container extends Component {
+export default class AlternateContainer extends Component {
 
   render() {
     return (

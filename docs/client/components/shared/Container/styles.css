@@ -1,7 +1,4 @@
 .root {
-  min-width: 300px;
-  max-width: 640px;
-  margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 3rem;
 }

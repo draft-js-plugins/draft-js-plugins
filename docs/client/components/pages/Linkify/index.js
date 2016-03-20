@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import Container from '../../shared/Container';
-import ContainerWrapper from '../../shared/ContainerWrapper';
-import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
+import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
 import SimpleEditor from '../../shared/SimpleEditor';
 import styles from './styles.css';
@@ -32,18 +31,14 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <AlternateContainerWrapper>
-          <Container>
-            <Heading level={ 2 }>Linkify</Heading>
-            <div className={ styles.root }>Linkify</div>
-          </Container>
-        </AlternateContainerWrapper>
-        <ContainerWrapper>
-          <Container>
-            <Heading level={ 2 }>Example</Heading>
-            <Editor />
-          </Container>
-        </ContainerWrapper>
+        <AlternateContainer>
+          <Heading level={ 2 }>Linkify</Heading>
+          <div className={ styles.root }>Linkify</div>
+        </AlternateContainer>
+        <Container>
+          <Heading level={ 2 }>Example</Heading>
+          <Editor />
+        </Container>
       </div>
 
     );

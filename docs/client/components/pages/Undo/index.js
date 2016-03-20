@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import Container from '../../shared/Container';
-import ContainerWrapper from '../../shared/ContainerWrapper';
-import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
+import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
 import styles from './styles.css';
 import Code from '../../shared/Code';
@@ -30,27 +29,21 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <AlternateContainerWrapper>
-          <Container>
-            <Heading level={ 2 }>Undo/Redo</Heading>
-            <div className={ styles.root }>Undo/Redo</div>
-          </Container>
-        </AlternateContainerWrapper>
-        <ContainerWrapper>
-          <Container>
-            <Heading level={ 2 }>Simple Example</Heading>
-            <SimpleUndoEditor />
-            <Code code={ simpleExampleCode } />
-          </Container>
-        </ContainerWrapper>
-        <ContainerWrapper>
-          <Container>
-            <Heading level={ 2 }>Themed Hashtag Example</Heading>
-            <CustomUndoEditor />
-            <Code code={ customExampleCode } />
-            <Code code={ customExampleCSSCode } />
-          </Container>
-        </ContainerWrapper>
+        <AlternateContainer>
+          <Heading level={ 2 }>Undo/Redo</Heading>
+          <div className={ styles.root }>Undo/Redo</div>
+        </AlternateContainer>
+        <Container>
+          <Heading level={ 2 }>Simple Example</Heading>
+          <SimpleUndoEditor />
+          <Code code={ simpleExampleCode } />
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Themed Hashtag Example</Heading>
+          <CustomUndoEditor />
+          <Code code={ customExampleCode } />
+          <Code code={ customExampleCSSCode } />
+        </Container>
       </div>
     );
   }
