@@ -34,7 +34,7 @@ const stickers = fromJS({
   },
 });
 
-const stickerPluginInstance = stickerPlugin({ stickers, });
+const stickerPluginInstance = stickerPlugin({ stickers });
 const plugins = [stickerPluginInstance];
 const StickerSelect = stickerPluginInstance.StickerSelect;
 

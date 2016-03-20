@@ -1,5 +1,5 @@
 import Mention from './Mention';
-import createMentionSearch from './MentionSearch';
+import MentionSearch from './MentionSearch';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 import decorateComponentWithProps from '../utils/decorateComponentWithProps';
@@ -47,8 +47,9 @@ const mentionPlugin = (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
-  const MentionSearch = createMentionSearch(callbacks, ariaProps);
   const mentionSearchProps = {
+    ariaProps,
+    callbacks,
     mentions: config.mentions,
     theme,
   };
