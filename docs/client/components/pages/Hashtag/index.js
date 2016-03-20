@@ -14,9 +14,12 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <AlternateContainer>
+        <Container>
           <Heading level={ 2 }>Hashtag</Heading>
           <div className={ styles.root }>Hashtag</div>
+        </Container>
+        <AlternateContainer>
+          <Heading level={ 2 }>Getting Started</Heading>
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>

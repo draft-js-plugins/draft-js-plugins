@@ -20,9 +20,14 @@ export default class App extends Component {
 
   render() {
     return (
-      <Container>
-        <div className={ styles.root }>Emoji</div>
-      </Container>
+      <div>
+        <Container>
+          <div className={ styles.root }>Emoji</div>
+        </Container>
+        <AlternateContainer>
+          <Heading level={ 2 }>Getting Started</Heading>
+        </AlternateContainer>
+      </div>
     );
   }
 }

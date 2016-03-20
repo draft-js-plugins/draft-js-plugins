@@ -16,9 +16,12 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <AlternateContainer>
+        <Container>
           <Heading level={ 2 }>Undo/Redo</Heading>
           <div className={ styles.root }>Undo/Redo</div>
+        </Container>
+        <AlternateContainer>
+          <Heading level={ 2 }>Getting Started</Heading>
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>

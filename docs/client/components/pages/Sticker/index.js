@@ -14,9 +14,12 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <AlternateContainer>
+        <Container>
           <Heading level={ 2 }>Sticker</Heading>
           <div className={ styles.root }>Sticker</div>
+        </Container>
+        <AlternateContainer>
+          <Heading level={ 2 }>Getting Started</Heading>
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
