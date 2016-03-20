@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
-import hashtagPlugin from 'draft-js-hashtag-plugin';
+import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import styles from './styles.css';
 
 const theme = Map({
   hashtag: styles.hashtag,
 });
-const hashtagPluginInstance = hashtagPlugin({ theme });
-const plugins = [hashtagPluginInstance];
+const hashtagPlugin = createHashtagPlugin({ theme });
+const plugins = [hashtagPlugin];
 
 export default class CustomHashtagEditor extends Component {
 

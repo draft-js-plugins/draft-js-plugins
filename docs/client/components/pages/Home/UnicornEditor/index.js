@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Editor, { createWithText } from 'draft-js-plugin-editor';
-import hashtagPlugin from 'draft-js-hashtag-plugin';
+import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import stickerPlugin from 'draft-js-sticker-plugin';
 import linkifyPlugin from 'draft-js-linkify-plugin';
 import mentionPlugin from 'draft-js-mention-plugin';
@@ -12,7 +12,7 @@ import StatePreview from '../../../shared/StatePreview';
 
 // import { EditorState } from 'draft-js';
 
-const hashtagPluginInstance = hashtagPlugin();
+const hashtagPlugin = createHashtagPlugin();
 const linkifyPluginInstance = linkifyPlugin();
 const mentionPluginInstance = mentionPlugin({
   mentions,
@@ -27,7 +27,7 @@ const { UndoButton, RedoButton } = historyPluginInstance;
 // const { UndoButton, RedoButton, History } = historyPluginInstance;
 
 const plugins = [
-  hashtagPluginInstance,
+  hashtagPlugin,
   stickerPluginInstance,
   linkifyPluginInstance,
   mentionPluginInstance,

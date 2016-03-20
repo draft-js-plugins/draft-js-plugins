@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
-import hashtagPlugin from 'draft-js-hashtag-plugin';
+import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import styles from './styles.css';
 
-const hashtagPluginInstance = hashtagPlugin();
-const plugins = [hashtagPluginInstance];
+const hashtagPlugin = createHashtagPlugin();
+const plugins = [hashtagPlugin];
 
 export default class SimpleHashtagEditor extends Component {
 
