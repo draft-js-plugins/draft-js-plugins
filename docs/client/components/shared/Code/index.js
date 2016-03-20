@@ -12,9 +12,10 @@ export default class Code extends Component {
   shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
+    const nameClassname = this.props.name ? styles.name : styles.hiddenName;
     return (
       <div className={ styles.root }>
-        <div className={ styles.name }>{ this.props.name }</div>
+        <div className={ nameClassname }>{ this.props.name }</div>
         <pre>
           <code
             dangerouslySetInnerHTML={{ __html: this.props.code }}
