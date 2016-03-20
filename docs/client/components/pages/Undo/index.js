@@ -10,6 +10,7 @@ import SimpleUndoEditor from './SimpleUndoEditor';
 import CustomUndoEditor from './CustomUndoEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleUndoEditor';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomUndoEditor';
+import customExampleCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/buttonStyles.css';
 
 export default class App extends Component {
 
@@ -47,10 +48,10 @@ export default class App extends Component {
             <Heading level={ 2 }>Themed Hashtag Example</Heading>
             <CustomUndoEditor />
             <Code code={ customExampleCode } />
+            <Code code={ customExampleCSSCode } />
           </Container>
         </ContainerWrapper>
       </div>
-
     );
   }
 }
