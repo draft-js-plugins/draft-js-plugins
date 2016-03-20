@@ -1,56 +1,16 @@
-/* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
-import SimpleEditor from '../../shared/SimpleEditor';
 import styles from './styles.css';
-import mentionPlugin from 'draft-js-mention-plugin';
-import { fromJS, Map } from 'immutable';
-
-const mentions = fromJS([
-  {
-    name: 'Matthew Russell',
-    link: 'https://twitter.com/mrussell247',
-    avatar: 'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
-  },
-  {
-    name: 'Jyoti Puri',
-    link: 'https://twitter.com/jyopur',
-    avatar: 'https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_400x400.jpg',
-  },
-  {
-    name: 'Max Stoiber',
-    link: 'https://twitter.com/mxstbr',
-    avatar: 'https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_400x400.jpg',
-  },
-  {
-    name: 'Nik Graf',
-    link: 'https://twitter.com/nikgraf',
-    avatar: 'https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_400x400.jpeg',
-  },
-]);
-
-const pluginMap = new Map({
-  mention: mentionPlugin({ mentions }),
-});
-const Editor = SimpleEditor(pluginMap);
+import Code from '../../shared/Code';
+import SimpleMentionEditor from './SimpleMentionEditor';
+import CustomMentionEditor from './CustomMentionEditor';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor';
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
+import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/styles.css';
 
 export default class App extends Component {
-
-  // description what the plugin does
-
-  // h2 "Simple Example"
-  // an simple editor with hashtag plugin (can be copied from unicorn editor)
-  // simple code example
-
-  // h2 "Custom Styling"
-  // an editor with hashtag plugin & custom styles (can be copied from unicorn editor)
-  // custom styles code example
-
-  // h2 "API"
-  // a table explaining what is exported
-
   render() {
     return (
       <div>
@@ -59,8 +19,15 @@ export default class App extends Component {
           <div className={ styles.root }>Mention</div>
         </AlternateContainer>
         <Container>
-          <Heading level={ 2 }>Example</Heading>
-          <Editor />
+          <Heading level={ 2 }>Simple Example</Heading>
+          <SimpleMentionEditor />
+          <Code code={ simpleExampleCode } name="SimpleMentionEditor.js" />
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Themed Mention Example</Heading>
+          <CustomMentionEditor />
+          <Code code={ customExampleCode } name="CustomMentionEditor.js" />
+          <Code code={ customExampleStylesCode } name="styles.css" />
         </Container>
       </div>
 
