@@ -1,6 +1,6 @@
 # Hashtag Plugin
 
-*This is a plugin for the `draft-js-plugin-editor`.*
+*This is a plugin for the `draft-js-plugins-editor`.*
 
 This plugin highlights hashtags in the text!
 

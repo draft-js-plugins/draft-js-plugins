@@ -1,6 +1,6 @@
 # Sticker Plugin
 
-*This is a plugin for the `draft-js-plugin-editor`.*
+*This is a plugin for the `draft-js-plugins-editor`.*
 
 This plugin allows you to add stickers to your editor!
 

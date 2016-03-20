@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugin-editor';
+import Editor from 'draft-js-plugins-editor';
 import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
 import buttonStyles from './buttonStyles.css';

@@ -1,6 +1,6 @@
 # History Plugin
 
-*This is a plugin for the `draft-js-plugin-editor`.*
+*This is a plugin for the `draft-js-plugins-editor`.*
 
 This plugin adds undo/redo functionality to your editor!
 

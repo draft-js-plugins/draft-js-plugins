@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugin-editor';
+import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin from 'draft-js-mention-plugin';
 import styles from './styles.css';
 import { fromJS } from 'immutable';

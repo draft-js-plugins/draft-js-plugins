@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Editor, { createWithText } from 'draft-js-plugin-editor';
+import Editor, { createWithText } from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';

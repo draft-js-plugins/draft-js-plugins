@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer'); // eslint-disable-line no-var
 module.exports = {
   resolve: {
     alias: {
-      'draft-js-plugin-editor': path.join(__dirname, '..', 'src', 'pluginEditor'),
+      'draft-js-plugins-editor': path.join(__dirname, '..', 'src', 'pluginEditor'),
       'draft-js-hashtag-plugin': path.join(__dirname, '..', 'src', 'hashtagPlugin'),
       'draft-js-sticker-plugin': path.join(__dirname, '..', 'src', 'stickerPlugin'),
       'draft-js-linkify-plugin': path.join(__dirname, '..', 'src', 'linkifyPlugin'),

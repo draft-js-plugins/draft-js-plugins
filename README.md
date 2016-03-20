@@ -22,18 +22,18 @@ Checkout [the website](https://www.draft-js-plugins.com/)!
 First, install the editor with `npm`:
 
 ```
-$ npm install draft-js-plugin-editor --save
+$ npm install draft-js-plugins-editor --save
 ```
 
 and then import it somewhere in your code and you're ready to go!
 
 ```js
-import Editor from 'draft-js-plugin-editor';
+import Editor from 'draft-js-plugins-editor';
 ```
 
 ## Documentation
 
-### draft-js-plugin-editor
+### draft-js-plugins-editor
 
 #### Editor
 
@@ -50,7 +50,7 @@ Usage:
 
 ```js
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugin-editor';
+import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import { EditorState } from 'draft-js';
@@ -97,7 +97,7 @@ Function to creates an EditorState with some text.
 Usage:
 
 ```js
-import { createWithText } from 'draft-js-plugin-editor';
+import { createWithText } from 'draft-js-plugins-editor';
 
 const editorState = createWithText('Hello World!', plugins);
 ```
