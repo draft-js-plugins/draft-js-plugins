@@ -16,7 +16,6 @@ export default class CustomHashtagEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(),
-    showState: false,
   };
 
   onChange = (editorState) => {
@@ -29,18 +28,7 @@ export default class CustomHashtagEditor extends Component {
     this.refs.editor.focus();
   };
 
-  toggleShowState = () => {
-    this.setState({
-      showState: !this.state.showState,
-    });
-  };
-
-  /* eslint-disable react/jsx-no-bind */
   render() {
-    const stateButton = this.state.showState ?
-      styles.pressedStateButton :
-      styles.stateButton;
-
     return (
       <div className={ styles.root }>
         <div className={ styles.editor } onClick={ this.focus }>
@@ -51,18 +39,6 @@ export default class CustomHashtagEditor extends Component {
             ref="editor"
           />
         </div>
-        <div>
-          <button
-            className={ stateButton }
-            onClick={ this.toggleShowState }
-          >
-            Toggle State Preview
-          </button>
-        </div>
-        <StatePreview
-          editorState={ this.state.editorState }
-          collapsed={ !this.state.showState }
-        />
       </div>
     );
   }

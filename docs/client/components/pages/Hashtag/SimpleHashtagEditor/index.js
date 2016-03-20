@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugin-editor';
 import { EditorState } from 'draft-js';
+import Editor from 'draft-js-plugin-editor';
 import hashtagPlugin from 'draft-js-hashtag-plugin';
 import styles from './styles.css';
-import StatePreview from '../../../shared/StatePreview';
 
 const hashtagPluginInstance = hashtagPlugin();
 const plugins = [hashtagPluginInstance];
@@ -12,7 +11,6 @@ export default class SimpleHashtagEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(),
-    showState: false,
   };
 
   onChange = (editorState) => {
@@ -25,17 +23,7 @@ export default class SimpleHashtagEditor extends Component {
     this.refs.editor.focus();
   };
 
-  toggleShowState = () => {
-    this.setState({
-      showState: !this.state.showState,
-    });
-  };
-
   render() {
-    const stateButton = this.state.showState ?
-      styles.pressedStateButton :
-      styles.stateButton;
-
     return (
       <div className={ styles.root }>
         <div className={ styles.editor } onClick={ this.focus }>
@@ -46,18 +34,6 @@ export default class SimpleHashtagEditor extends Component {
             ref="editor"
           />
         </div>
-        <div>
-          <button
-            className={ stateButton }
-            onClick={ this.toggleShowState }
-          >
-            Toggle State Preview
-          </button>
-        </div>
-        <StatePreview
-          editorState={ this.state.editorState }
-          collapsed={ !this.state.showState }
-        />
       </div>
     );
   }
