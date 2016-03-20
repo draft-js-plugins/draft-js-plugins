@@ -39,8 +39,8 @@ export default plugins => class UnicornEditor extends Component {
       UndoButton = historyPluginInstance.UndoButton;
       RedoButton = historyPluginInstance.RedoButton;
     } else if (plugins.get('sticker')) {
-      const stickerPluginInstance = plugins.get('sticker');
-      StickerSelect = stickerPluginInstance.StickerSelect;
+      const stickerPlugin = plugins.get('sticker');
+      StickerSelect = stickerPlugin.StickerSelect;
     }
 
     return (

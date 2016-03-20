@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
-import stickerPlugin from 'draft-js-sticker-plugin';
+import createStickerPlugin from 'draft-js-sticker-plugin';
 import styles from './styles.css';
 import { fromJS } from 'immutable';
 
@@ -34,9 +34,9 @@ const stickers = fromJS({
   },
 });
 
-const stickerPluginInstance = stickerPlugin({ stickers });
-const plugins = [stickerPluginInstance];
-const StickerSelect = stickerPluginInstance.StickerSelect;
+const stickerPlugin = createStickerPlugin({ stickers });
+const plugins = [stickerPlugin];
+const StickerSelect = stickerPlugin.StickerSelect;
 
 export default class SimpleMentionEditor extends Component {
 

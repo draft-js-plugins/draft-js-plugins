@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Editor, { createWithText } from 'draft-js-plugin-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import stickerPlugin from 'draft-js-sticker-plugin';
+import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMentionPlugin from 'draft-js-mention-plugin';
 import historyPlugin from 'draft-js-history-plugin';
@@ -18,17 +18,17 @@ const mentionPlugin = createMentionPlugin({
   mentions,
 });
 const historyPluginInstance = historyPlugin();
-const stickerPluginInstance = stickerPlugin({
+const stickerPlugin = createStickerPlugin({
   stickers,
 });
-const { StickerSelect } = stickerPluginInstance;
+const { StickerSelect } = stickerPlugin;
 const { UndoButton, RedoButton } = historyPluginInstance;
 
 // const { UndoButton, RedoButton, History } = historyPluginInstance;
 
 const plugins = [
   hashtagPlugin,
-  stickerPluginInstance,
+  stickerPlugin,
   linkifyPlugin,
   mentionPlugin,
 ];
