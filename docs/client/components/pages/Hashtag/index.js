@@ -21,13 +21,13 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleHashtagEditor />
-          <Code code={ simpleExampleCode } />
+          <Code code={ simpleExampleCode } name="SimpleHashtagEditor.js" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Hashtag Example</Heading>
           <CustomHashtagEditor />
-          <Code code={ customExampleCode } />
-          <Code code={ customExampleStylesCode } />
+          <Code code={ customExampleCode } name="CustomHashtagEditor.js" />
+          <Code code={ customExampleStylesCode } name="styles.css" />
         </Container>
       </div>
 

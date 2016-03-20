@@ -13,11 +13,14 @@ export default class Code extends Component {
 
   render() {
     return (
-      <pre className={ styles.root } >
-        <code
-          dangerouslySetInnerHTML={{ __html: this.props.code }}
-        />
-      </pre>
+      <div className={ styles.root }>
+        <div className={ styles.name }>{ this.props.name }</div>
+        <pre>
+          <code
+            dangerouslySetInnerHTML={{ __html: this.props.code }}
+          />
+        </pre>
+      </div>
     );
   }
 }
