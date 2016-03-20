@@ -3,10 +3,10 @@ import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
 import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
 import Heading from '../../shared/Heading';
-import SimpleHashtagEditor from './SimpleHashtagEditor';
-import CustomHashtagEditor from './CustomHashtagEditor';
 import styles from './styles.css';
 import Code from '../../shared/Code';
+import SimpleHashtagEditor from './SimpleHashtagEditor';
+import CustomHashtagEditor from './CustomHashtagEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleHashtagEditor';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomHashtagEditor';
 

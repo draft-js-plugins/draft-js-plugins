@@ -4,15 +4,12 @@ import Container from '../../shared/Container';
 import ContainerWrapper from '../../shared/ContainerWrapper';
 import AlternateContainerWrapper from '../../shared/AlternateContainerWrapper';
 import Heading from '../../shared/Heading';
-import SimpleEditor from '../../shared/SimpleEditor';
 import styles from './styles.css';
-import historyPlugin from 'draft-js-history-plugin';
-import { Map } from 'immutable';
-
-const pluginMap = new Map({
-  history: historyPlugin(),
-});
-const Editor = SimpleEditor(pluginMap);
+import Code from '../../shared/Code';
+import SimpleUndoEditor from './SimpleUndoEditor';
+import CustomUndoEditor from './CustomUndoEditor';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleUndoEditor';
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomUndoEditor';
 
 export default class App extends Component {
 
@@ -34,14 +31,22 @@ export default class App extends Component {
       <div>
         <AlternateContainerWrapper>
           <Container>
-            <Heading level={ 2 }>Hashtag</Heading>
-            <div className={ styles.root }>Hashtag</div>
+            <Heading level={ 2 }>Undo/Redo</Heading>
+            <div className={ styles.root }>Undo/Redo</div>
           </Container>
         </AlternateContainerWrapper>
         <ContainerWrapper>
           <Container>
-            <Heading level={ 2 }>Example</Heading>
-            <Editor />
+            <Heading level={ 2 }>Simple Example</Heading>
+            <SimpleUndoEditor />
+            <Code code={ simpleExampleCode } />
+          </Container>
+        </ContainerWrapper>
+        <ContainerWrapper>
+          <Container>
+            <Heading level={ 2 }>Themed Hashtag Example</Heading>
+            <CustomUndoEditor />
+            <Code code={ customExampleCode } />
           </Container>
         </ContainerWrapper>
       </div>

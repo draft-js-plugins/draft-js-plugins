@@ -47,3 +47,8 @@
   composes: stateButton;
   background-color: #ededed;
 }
+
+.stickerSelect {
+  margin-right: 10px;
+  display: inline-block;
+}
