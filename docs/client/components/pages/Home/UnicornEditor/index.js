@@ -4,7 +4,7 @@ import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMentionPlugin from 'draft-js-mention-plugin';
-import historyPlugin from 'draft-js-history-plugin';
+import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
@@ -17,14 +17,12 @@ const linkifyPlugin = createLinkifyPlugin();
 const mentionPlugin = createMentionPlugin({
   mentions,
 });
-const historyPluginInstance = historyPlugin();
+const undoPlugin = createUndoPlugin();
 const stickerPlugin = createStickerPlugin({
   stickers,
 });
 const { StickerSelect } = stickerPlugin;
-const { UndoButton, RedoButton } = historyPluginInstance;
-
-// const { UndoButton, RedoButton, History } = historyPluginInstance;
+const { UndoButton, RedoButton } = undoPlugin;
 
 const plugins = [
   hashtagPlugin,

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
-import historyPlugin from 'draft-js-history-plugin';
+import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
 
-const historyPluginInstance = historyPlugin();
-const { UndoButton, RedoButton } = historyPluginInstance;
+const undoPlugin = createUndoPlugin();
+const { UndoButton, RedoButton } = undoPlugin;
 
 export default class SimpleUndoEditor extends Component {
 

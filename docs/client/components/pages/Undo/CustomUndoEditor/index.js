@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
-import historyPlugin from 'draft-js-history-plugin';
+import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
 import buttonStyles from './buttonStyles.css';
 
@@ -10,12 +10,12 @@ const theme = Map({
   undo: buttonStyles.button,
   redo: buttonStyles.button,
 });
-const historyPluginInstance = historyPlugin({
+const undoPlugin = createUndoPlugin({
   undoContent: 'Undo',
   redoContent: 'Redo',
   theme,
 });
-const { UndoButton, RedoButton } = historyPluginInstance;
+const { UndoButton, RedoButton } = undoPlugin;
 
 export default class CustomUndoEditor extends Component {
 
