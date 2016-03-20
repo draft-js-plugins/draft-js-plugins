@@ -6,6 +6,7 @@
     "coverage/**",
     "node_modules/**",
     "**/node_modules/**",
+    "docs/public/**",
     "lib/**"
   ]
 }
