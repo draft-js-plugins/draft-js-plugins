@@ -8,6 +8,12 @@ module.exports = (props) => {
       <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
       <title>DraftJS Plugins (including the ultimate Unicorn Editor)</title>
+      <script>
+        if (window.location.href.indexOf('nikgraf.github.io/draft-js-plugins') !== -1) {
+          // TODO improve redirect to redirect with the proper path
+          window.location.href = 'https://www.draft-js-plugins.com/';
+        }
+      </script>
       <link rel="stylesheet" href="/css/normalize.css"/>
       <link rel="stylesheet" href="/css/base.css"/>
       <link rel="stylesheet" href="/css/Draft.css"/>
