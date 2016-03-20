@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { Entity } from 'draft-js';
 import applyStyles from '../../utils/applyStyles';
 
-export default (stickers, hasRemove = true) => {
+export default (stickers, attachRemoveButton = true) => {
   class Sticker extends Component {
 
     remove = (event) => {
@@ -34,7 +34,7 @@ export default (stickers, hasRemove = true) => {
       return (
         <figure {...theme.get('root')} contentEditable={ false } data-offset-key={ `${block.get('key')}-0-0` }>
           <img {...theme.get('stickerImage')} src={ stickers.getIn(['data', data.id, 'url']) } />
-          { hasRemove ? removeButton : null }
+          { attachRemoveButton ? removeButton : null }
         </figure>
       );
     }

@@ -36,7 +36,7 @@ const stickerPlugin = (config = {}) => {
     },
     add: addSticker,
     remove: removeSticker,
-    Sticker: decorateComponentWithProps(sticker(config.stickers, config.hasRemove), { theme }),
+    Sticker: decorateComponentWithProps(sticker(config.stickers, config.attachRemoveButton), { theme }),
     StickerSelect: decorateComponentWithProps(stickerSelect(config.stickers), { theme }),
   };
 };
