@@ -2,10 +2,10 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router } from 'react-router';
 
-// if (window.location.href.indexOf('nikgraf.github.io/draft-js-plugins') !== -1) {
-//   // TODO improve redirect to redirect with the proper path
-//   window.location.href = 'https://www.draft-js-plugins.com/';
-// }
+if (window && window.location.href.indexOf('nikgraf.github.io/draft-js-plugins') !== -1) {
+  // TODO improve redirect to redirect with the proper path
+  window.location.href = 'https://www.draft-js-plugins.com/';
+}
 
 // Since we're rendering static files don't forget to use browser history.
 // Server's don't get the URL hash during a request.
