@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugin-editor';
-import linkifyPlugin from 'draft-js-linkify-plugin';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import styles from './styles.css';
 
-const linkifyPluginInstance = linkifyPlugin();
-const plugins = [linkifyPluginInstance];
+const linkifyPlugin = createLinkifyPlugin();
+const plugins = [linkifyPlugin];
 
 export default class SimpleMentionEditor extends Component {
 

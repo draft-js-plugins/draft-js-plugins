@@ -52,15 +52,15 @@ Usage:
 import React, { Component } from 'react';
 import Editor from 'draft-js-plugin-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import linkifyPlugin from 'draft-js-linkify-plugin';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import { EditorState } from 'draft-js';
 
 const hashtagPlugin = createHashtagPlugin();
-const linkifyPluginInstance = linkifyPlugin();
+const linkifyPlugin = createLinkifyPlugin();
 
 const plugins = [
   hashtagPlugin,
-  linkifyPluginInstance,
+  linkifyPlugin,
 ];
 
 export default class UnicornEditor extends Component {

@@ -7,7 +7,7 @@ This plugin turns hyperlinks in the text to highlighted, clickable anchor tags!
 ## Usage
 
 ```js
-import linkifyPlugin from 'draft-js-linkify-plugin';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
 
-const linkifyPluginInstance = linkifyPlugin();
+const linkifyPlugin = createLinkifyPlugin();
 ```
