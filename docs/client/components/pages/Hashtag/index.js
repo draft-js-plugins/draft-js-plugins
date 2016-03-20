@@ -9,6 +9,7 @@ import CustomHashtagEditor from './CustomHashtagEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleHashtagEditor';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomHashtagEditor';
 import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomHashtagEditor/styles.css';
+import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 
 export default class App extends Component {
   render() {
@@ -20,6 +21,8 @@ export default class App extends Component {
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
+          <Code code="npm install draft-js-hashtag-plugin --save" />
+          <Code code={ gettingStarted } name="gettingStarted.js" />
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
