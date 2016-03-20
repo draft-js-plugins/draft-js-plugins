@@ -1,9 +1,9 @@
-.root {
+.select {
   background: #FFF;
   display: inline-block;
 }
 
-.popover {
+.selectPopover {
   margin-top: 10px;
   background: #FFF;
   position: absolute;
@@ -14,11 +14,11 @@
   box-shadow: 0px 4px 30px 0px rgba(220,220,220,1);
 }
 
-.closedPopover {
+.selectClosedPopover {
   display: none;
 }
 
-.button {
+.selectButton {
   background: #fff;
   border: 1px solid #bbb;
   padding: 0;
@@ -32,24 +32,30 @@
   padding-right: 18px;
 }
 
-.button:focus {
+.selectButton:focus {
   outline: 0; /* reset for :focus */
 }
 
-.button:hover {
+.selectButton:hover {
   background: #f3f3f3;
 }
 
-.button:active {
+.selectButton:active {
   background: #e6e6e6;
 }
 
-.pressedButton {
-  composes: button;
+.selectPressedButton {
+  composes: selectButton;
   background: #ededed;
 }
 
-.bottomGradient {
+.selectButtonText {
+  position: relative;
+  top: -3px;
+  left: 5px;
+}
+
+.selectBottomGradient {
   width: 100%;
   height: 1em;
   position: absolute;
@@ -61,7 +67,7 @@
   background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
 }
 
-.stickerList {
+.selectStickerList {
   position: absolute;
   overflow-x: none;
   overflow-y: scroll;
@@ -72,13 +78,7 @@
   padding: 10px;
 }
 
-.icon {
+.selectIcon {
   font-size: 1.6em;
   line-height: 1.2em;
-}
-
-.buttonText {
-  position: relative;
-  top: -3px;
-  left: 5px;
 }

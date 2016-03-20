@@ -83,28 +83,32 @@ export default class StickerSelect extends Component {
     });
 
     const theme = this.props.theme;
-    const popoverClassName = this.state.open ? theme.get('popover') : theme.get('closedPopover');
-    const buttonClassName = this.state.open ? theme.get('pressedButton') : theme.get('button');
+    const popoverClassName = this.state.open ?
+      theme.get('selectPopover') :
+      theme.get('selectClosedPopover');
+    const buttonClassName = this.state.open ?
+      theme.get('selectPressedButton') :
+      theme.get('selectButton');
 
     return (
-      <div className={ theme.get('root') }>
+      <div className={ theme.get('select') }>
         <button
           className={ buttonClassName }
           onMouseUp={ this.openPopover }
           type="button"
         >
-          <span className={ theme.get('icon') }>☺</span>
-          <span className={ theme.get('buttonText') }>Add Sticker</span>
+          <span className={ theme.get('selectIcon') }>☺</span>
+          <span className={ theme.get('selectButtonText') }>Add Sticker</span>
         </button>
         <div
           className={ popoverClassName }
           onMouseEnter={ this.onMouseEnter }
           onMouseLeave={ this.onMouseLeave }
         >
-          <div className={ theme.get('stickerList') }>
+          <div className={ theme.get('selectStickerList') }>
             { stickerElements.toList().toJS() }
           </div>
-          <div className={ theme.get('bottomGradient') }></div>
+          <div className={ theme.get('selectBottomGradient') }></div>
         </div>
       </div>
     );
