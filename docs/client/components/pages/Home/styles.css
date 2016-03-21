@@ -118,3 +118,25 @@
 .link:active {
   color: #7E96A5;
 }
+
+.teamImage {
+  width: 100px;
+  border-radius: 20px;
+}
+
+.teamTwitterLink {
+  text-decoration: none;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.teamSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.teamMember {
+  display: flex;
+  flex-direction: column;
+}
