@@ -10,6 +10,7 @@ import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascri
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomHashtagEditor';
 import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomHashtagEditor/styles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+import SocialBar from '../../shared/SocialBar';
 
 export default class App extends Component {
   render() {
@@ -30,10 +31,12 @@ export default class App extends Component {
             <div className={ styles.paramName }>theme</div>
             <span>map of CSS classes to style the plugin</span>
             <table className={ styles.themeTable }>
-              <tr>
-                <td className={ styles.themeProperty }>hashtag</td>
-                <td>CSS class to be applied to hashtag text</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td className={ styles.themeProperty }>hashtag</td>
+                  <td>CSS class to be applied to hashtag text</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </Container>
@@ -48,6 +51,7 @@ export default class App extends Component {
           <Code code={ customExampleCode } name="CustomHashtagEditor.js" />
           <Code code={ customExampleStylesCode } name="styles.css" />
         </Container>
+        <SocialBar />
       </div>
 
     );

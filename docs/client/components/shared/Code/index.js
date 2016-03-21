@@ -9,14 +9,28 @@ export default class Code extends Component {
     code: PropTypes.string,
   };
 
+  state = {
+    collapsed: true,
+  };
+
   shouldComponentUpdate = shouldComponentUpdate;
+
+  onCodeClick = () => {
+    const collapsed = !this.state.collapsed;
+    this.setState({
+      collapsed,
+    });
+  };
 
   render() {
     const nameClassname = this.props.name ? styles.name : styles.hiddenName;
+    const codeClassname = this.state.collapsed ? styles.collapsed : styles.expanded;
     return (
       <div className={ styles.root }>
         <div className={ nameClassname }>{ this.props.name }</div>
-        <pre className={ styles.code }>
+        <pre className={ codeClassname }
+          onClick={ this.onCodeClick }
+        >
           <code
             dangerouslySetInnerHTML={{ __html: this.props.code }}
           />

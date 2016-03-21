@@ -173,6 +173,33 @@ export default class App extends Component {
             Because Unicorns are cooler than cats 😜
           </p>
         </Container>
+        <Container>
+          <Heading level={ 2 }>Team</Heading>
+          <div className={ styles.teamSection }>
+            <div className={ styles.teamMember }>
+              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
+              <a className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">Nik Graf</a>
+            </div>
+            <div className={ styles.teamMember }>
+              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" />
+              <a className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">Jyoti Puri</a>
+            </div>
+            <div className={ styles.teamMember }>
+              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
+              <a className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">Max Stoiber</a>
+            </div>
+            <div className={ styles.teamMember }>
+              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
+              <a className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">Julian Krispel-Samsel</a>
+            </div>
+          </div>
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Discussion and Support</Heading>
+          <p className={ styles.centeredText }>
+            Join the channel #plugin-editor after signing into the DraftJS [<a href="https://draftjs.herokuapp.com">Slack organization</a>]!
+          </p>
+        </Container>
       </div>
     );
   }
