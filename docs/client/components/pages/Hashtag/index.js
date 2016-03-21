@@ -25,17 +25,6 @@ export default class App extends Component {
           <Code code={ gettingStarted } name="gettingStarted.js" />
         </AlternateContainer>
         <Container>
-          <Heading level={ 2 }>Simple Example</Heading>
-          <SimpleHashtagEditor />
-          <Code code={ simpleExampleCode } name="SimpleHashtagEditor.js" />
-        </Container>
-        <Container>
-          <Heading level={ 2 }>Themed Hashtag Example</Heading>
-          <CustomHashtagEditor />
-          <Code code={ customExampleCode } name="CustomHashtagEditor.js" />
-          <Code code={ customExampleStylesCode } name="styles.css" />
-        </Container>
-        <Container>
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div>
             <div className={ styles.paramName }>theme</div>
@@ -47,6 +36,17 @@ export default class App extends Component {
               </tr>
             </table>
           </div>
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Simple Example</Heading>
+          <SimpleHashtagEditor />
+          <Code code={ simpleExampleCode } name="SimpleHashtagEditor.js" />
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Themed Hashtag Example</Heading>
+          <CustomHashtagEditor />
+          <Code code={ customExampleCode } name="CustomHashtagEditor.js" />
+          <Code code={ customExampleStylesCode } name="styles.css" />
         </Container>
       </div>
 
