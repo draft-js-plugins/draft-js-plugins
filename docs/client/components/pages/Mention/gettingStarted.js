@@ -2,6 +2,7 @@
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin from 'draft-js-mention-plugin';
 import React from 'react';
+import { fromJS } from 'immutable';
 
 // Creates an Instance. Passing a list of mentions as argument.
 const mentions = fromJS([

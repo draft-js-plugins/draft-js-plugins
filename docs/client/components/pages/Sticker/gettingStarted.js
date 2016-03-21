@@ -2,6 +2,7 @@
 import Editor from 'draft-js-plugins-editor';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import React from 'react';
+import { fromJS } from 'immutable';
 
 // Creates an Instance. Passing a list of stickers as argument.
 const stickers = fromJS({
