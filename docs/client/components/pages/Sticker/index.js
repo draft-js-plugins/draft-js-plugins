@@ -10,6 +10,7 @@ import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascri
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomStickerEditor';
 import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomStickerEditor/styles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+import SocialBar from '../../shared/SocialBar';
 
 export default class App extends Component {
   render() {
@@ -106,6 +107,7 @@ export default class App extends Component {
             <span>Flag to attach or non-attach remove button to stickers. (Default value is true)</span>
           </div>
         </Container>
+        <SocialBar />
       </div>
 
     );

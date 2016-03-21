@@ -12,6 +12,7 @@ import customExampleCode from '!!../../../loaders/prism-loader?language=javascri
 import customExampleButtonCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/buttonStyles.css';
 import customExampleCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/styles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+import SocialBar from '../../shared/SocialBar';
 
 export default class App extends Component {
   render() {
@@ -65,6 +66,7 @@ export default class App extends Component {
           <Code code={ customExampleButtonCSSCode } name="buttonStyles.css" />
           <Code code={ customExampleCSSCode } name="styles.css" />
         </Container>
+        <SocialBar />
       </div>
     );
   }

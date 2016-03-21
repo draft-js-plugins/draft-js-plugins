@@ -10,6 +10,7 @@ import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascri
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomLinkifyEditor';
 import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomLinkifyEditor/styles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+import SocialBar from '../../shared/SocialBar';
 
 export default class App extends Component {
   render() {
@@ -50,6 +51,7 @@ export default class App extends Component {
           <Code code={ customExampleCode } name="CustomLinkifyEditor.js" />
           <Code code={ customExampleStylesCode } name="styles.css" />
         </Container>
+        <SocialBar />
       </div>
     );
   }
