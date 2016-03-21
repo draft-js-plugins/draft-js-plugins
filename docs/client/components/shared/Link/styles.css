@@ -1,13 +1,13 @@
-.root {
-  color: #609fc5;
+.root, .root:visited {
+  color: #377ea9;
   cursor: pointer;
   text-decoration: none;
 }
 
 .root:hover, .root:focus {
-  color: #8bb8d4;
+  color: #8bb2ca;
 }
 
 .root:active {
-  color: #4684ab;
+  color: #1b5b82;
 }
