@@ -93,7 +93,7 @@ export default class App extends Component {
           </div>
           <div>
             <span className={ styles.paramName }>stickers</span>
-            <span>Immutable map of stickers.</span>
+            <span>Immutable list of stickers.</span>
           </div>
           <div>
             <span className={ styles.paramName }>selectButtonContent</span>
