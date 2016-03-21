@@ -176,7 +176,7 @@ export default class App extends Component {
             Because Unicorns are cooler than cats 😜
           </p>
         </Container>
-        <Container>
+        <AlternateContainer>
           <Heading level={ 2 }>Team</Heading>
           <div className={ styles.teamSection }>
             <div className={ styles.teamMember }>
@@ -195,9 +195,14 @@ export default class App extends Component {
               <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">Max Stoiber</ExternalLink>
             </div>
-
           </div>
-        </Container>
+          <p className={ styles.specialThanks }>
+            Special thanks to all the people from Stripe for their invaluable feedback and funding Nik's efforts during the&nbsp;
+            <ExternalLink href="https://stripe.com/blog/open-source-retreat-2016-grantees">
+              Stripe Open Source Retreat
+            </ExternalLink>.
+          </p>
+        </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Discussion and Support</Heading>
           <p className={ styles.centeredText }>

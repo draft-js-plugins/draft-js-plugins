@@ -146,10 +146,16 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 3rem;
 }
 
 .teamMember {
   display: flex;
   flex-direction: column;
   flex-basis: 110px;
+}
+
+.specialThanks {
+  text-align: center;
+  margin-top: 3rem;
 }
