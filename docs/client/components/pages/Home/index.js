@@ -149,12 +149,13 @@ export default class App extends Component {
         </div>
         <Separator />
         <AlternateContainer>
+          <p className={ styles.whatText }>
+            Slack like emoji autocompletion, Facebook like stickers & mentions and many more features out of the box to enhance your web application.
+          </p>
           <Heading level={ 2 }>Wait, but why?</Heading>
           <p className={ styles.whyText }>
-            DraftJS allows you to create powerful editors. This Plugin Architecture
-            aims to provide you with plug & play extensions. It comes with a set of plugins with great UX (inspired by Facebook & Slack) serving Mobile & Desktop as well as Screenreaders.
+            Facebook's DraftJS allows you to create powerful editors. We built a plugin architecture on top of it the aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way out want to or build your own.
           </p>
-
           <Heading level={ 2 }>Help spread the word …</Heading>
           <SocialBar />
         </AlternateContainer>

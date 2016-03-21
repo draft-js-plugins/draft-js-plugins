@@ -86,6 +86,17 @@
   text-align: center;
 }
 
+.whatText {
+  text-align: center;
+  max-width: 488px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  margin-top: 0;
+  padding-top: 4rem;
+  font-size: 1.05rem;
+}
+
 .whyText {
   text-align: justify;
   max-width: 488px;
