@@ -1,0 +1,13 @@
+.root {
+  color: #609fc5;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.root:hover, .root:focus {
+  color: #8bb8d4;
+}
+
+.root:active {
+  color: #4684ab;
+}

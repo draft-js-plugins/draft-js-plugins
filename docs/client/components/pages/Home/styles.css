@@ -120,8 +120,9 @@
 }
 
 .teamImage {
-  width: 100px;
-  border-radius: 20px;
+  width: 60px;
+  border-radius: 30px;
+  margin: 0 auto;
 }
 
 .teamTwitterLink {
@@ -139,4 +140,5 @@
 .teamMember {
   display: flex;
   flex-direction: column;
+  flex-basis: 110px;
 }

@@ -9,6 +9,7 @@ import ContainerBox from '../../shared/ContainerBox';
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import SocialBar from '../../shared/SocialBar';
+import ExternalLink from '../../shared/Link';
 
 export default class App extends Component {
 
@@ -177,27 +178,28 @@ export default class App extends Component {
           <Heading level={ 2 }>Team</Heading>
           <div className={ styles.teamSection }>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
-              <a className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">Nik Graf</a>
-            </div>
-            <div className={ styles.teamMember }>
               <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" />
-              <a className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">Jyoti Puri</a>
-            </div>
-            <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
-              <a className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">Max Stoiber</a>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">Jyoti Puri</ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
-              <a className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">Julian Krispel-Samsel</a>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">Julian Krispel-Samsel</ExternalLink>
             </div>
+            <div className={ styles.teamMember }>
+              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">Nik Graf</ExternalLink>
+            </div>
+            <div className={ styles.teamMember }>
+              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">Max Stoiber</ExternalLink>
+            </div>
+
           </div>
         </Container>
         <Container>
           <Heading level={ 2 }>Discussion and Support</Heading>
           <p className={ styles.centeredText }>
-            Join the channel #plugin-editor after signing into the DraftJS [<a href="https://draftjs.herokuapp.com">Slack organization</a>]!
+            Join the channel <b>#draft-js-plugins</b> after signing up the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
           </p>
         </Container>
       </div>
