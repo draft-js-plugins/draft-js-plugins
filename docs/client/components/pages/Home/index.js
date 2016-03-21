@@ -200,7 +200,7 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Discussion and Support</Heading>
           <p className={ styles.centeredText }>
-            Join the channel <b>#draft-js-plugins</b> after signing up the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
+            Join the <b>#draft-js-plugins</b> channel after signing up for the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
           </p>
           <Heading level={ 2 }>Stay Informed</Heading>
             <p className={ styles.centeredText }>
