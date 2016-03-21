@@ -154,7 +154,15 @@ export default class App extends Component {
           </p>
           <Heading level={ 2 }>Wait, but why?</Heading>
           <p className={ styles.whyText }>
-            Facebook's DraftJS allows you to create powerful editors. We built a plugin architecture on top of it the aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own.
+            Facebook's rich-text editor framework
+            <ExternalLink href="https://facebook.github.io/draft-js/">
+              &nbsp;DraftJS&nbsp;
+            </ExternalLink>
+            built on top of
+            <ExternalLink href="https://facebook.github.io/react/">
+              &nbsp;React&nbsp;
+            </ExternalLink>
+            allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own.
           </p>
           <Heading level={ 2 }>Help spread the word …</Heading>
           <SocialBar />
