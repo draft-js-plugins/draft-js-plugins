@@ -25,17 +25,6 @@ export default class App extends Component {
           <Code code={ gettingStarted } name="gettingStarted.js" />
         </AlternateContainer>
         <Container>
-          <Heading level={ 2 }>Simple Example</Heading>
-          <SimpleMentionEditor />
-          <Code code={ simpleExampleCode } name="SimpleMentionEditor.js" />
-        </Container>
-        <Container>
-          <Heading level={ 2 }>Themed Mention Example</Heading>
-          <CustomMentionEditor />
-          <Code code={ customExampleCode } name="CustomMentionEditor.js" />
-          <Code code={ customExampleStylesCode } name="styles.css" />
-        </Container>
-        <Container>
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div>
             <span className={ styles.paramName }>theme</span>
@@ -76,8 +65,18 @@ export default class App extends Component {
             <span>Immutable list of mentions.</span>
           </div>
         </Container>
+        <Container>
+          <Heading level={ 2 }>Simple Example</Heading>
+          <SimpleMentionEditor />
+          <Code code={ simpleExampleCode } name="SimpleMentionEditor.js" />
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Themed Mention Example</Heading>
+          <CustomMentionEditor />
+          <Code code={ customExampleCode } name="CustomMentionEditor.js" />
+          <Code code={ customExampleStylesCode } name="styles.css" />
+        </Container>
       </div>
-
     );
   }
 }

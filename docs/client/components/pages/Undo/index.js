@@ -27,18 +27,6 @@ export default class App extends Component {
           <Code code={ gettingStarted } name="gettingStarted.js" />
         </AlternateContainer>
         <Container>
-          <Heading level={ 2 }>Simple Example</Heading>
-          <SimpleUndoEditor />
-          <Code code={ simpleExampleCode } name="SimpleUndoEditor.js" />
-        </Container>
-        <Container>
-          <Heading level={ 2 }>Themed Hashtag Example</Heading>
-          <CustomUndoEditor />
-          <Code code={ customExampleCode } name="CustomUndoEditor.js" />
-          <Code code={ customExampleButtonCSSCode } name="buttonStyles.css" />
-          <Code code={ customExampleCSSCode } name="styles.css" />
-        </Container>
-        <Container>
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div>
             <span className={ styles.paramName }>theme</span>
@@ -63,7 +51,19 @@ export default class App extends Component {
             <span>Content of redo button. (Default content is ↻)</span>
           </div>
         </Container>
-    </div>
+        <Container>
+          <Heading level={ 2 }>Simple Example</Heading>
+          <SimpleUndoEditor />
+          <Code code={ simpleExampleCode } name="SimpleUndoEditor.js" />
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Themed Hashtag Example</Heading>
+          <CustomUndoEditor />
+          <Code code={ customExampleCode } name="CustomUndoEditor.js" />
+          <Code code={ customExampleButtonCSSCode } name="buttonStyles.css" />
+          <Code code={ customExampleCSSCode } name="styles.css" />
+        </Container>
+      </div>
     );
   }
 }
