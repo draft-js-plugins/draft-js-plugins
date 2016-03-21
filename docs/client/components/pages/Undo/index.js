@@ -32,14 +32,16 @@ export default class App extends Component {
             <span className={ styles.paramName }>theme</span>
             <span>Map of CSS classes to style the plugin.</span>
             <table className={ styles.themeTable }>
-              <tr>
-                <td className={ styles.themeProperty }>undo</td>
-                <td>CSS class to be applied to undo button</td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>redo</td>
-                <td>CSS class to be applied to redo button</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td className={ styles.themeProperty }>undo</td>
+                  <td>CSS class to be applied to undo button</td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>redo</td>
+                  <td>CSS class to be applied to redo button</td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div>

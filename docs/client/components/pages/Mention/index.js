@@ -29,35 +29,37 @@ export default class App extends Component {
           <div>
             <span className={ styles.paramName }>theme</span>
             <span>Map of CSS classes to style the plugin.</span>
-          <table className={ styles.themeTable }>
-              <tr>
-                <td className={ styles.themeProperty }>mention</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>autocomplete</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>autocompletePopover</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>autocompleteEntry</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>autocompleteEntryFocused</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>autocompleteEntryText</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>autocompleteEntryAvatar</td>
-                <td>CSS class to be applied to </td>
-              </tr>
+            <table className={ styles.themeTable }>
+              <tbody>
+                <tr>
+                  <td className={ styles.themeProperty }>mention</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>autocomplete</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>autocompletePopover</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>autocompleteEntry</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>autocompleteEntryFocused</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>autocompleteEntryText</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>autocompleteEntryAvatar</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div>

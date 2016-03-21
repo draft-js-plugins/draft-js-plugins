@@ -41,54 +41,56 @@ export default class App extends Component {
             <span className={ styles.paramName }>theme</span>
             <span>Map of CSS classes to style the plugin.</span>
             <table className={ styles.themeTable }>
-              <tr>
-                <td className={ styles.themeProperty }>sticker</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>stickerImage</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>stickerRemoveButton</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>select</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectPopover</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectClosedPopover</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectBottomGradient</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectButton</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectPressedButton</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectStickerList</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectSticker</td>
-                <td>CSS class to be applied to </td>
-              </tr>
-              <tr>
-                <td className={ styles.themeProperty }>selectStickerImage</td>
-                <td>CSS class to be applied to </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td className={ styles.themeProperty }>sticker</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>stickerImage</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>stickerRemoveButton</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>select</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectPopover</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectClosedPopover</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectBottomGradient</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectButton</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectPressedButton</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectStickerList</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectSticker</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+                <tr>
+                  <td className={ styles.themeProperty }>selectStickerImage</td>
+                  <td>CSS class to be applied to </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div>

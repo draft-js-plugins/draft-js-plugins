@@ -30,10 +30,12 @@ export default class App extends Component {
             <div className={ styles.paramName }>theme</div>
             <span>map of CSS classes to style the plugin</span>
             <table className={ styles.themeTable }>
-              <tr>
-                <td className={ styles.themeProperty }>link</td>
-                <td>CSS class to be applied to link text</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td className={ styles.themeProperty }>link</td>
+                  <td>CSS class to be applied to link text</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </Container>
