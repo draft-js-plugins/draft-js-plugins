@@ -10,6 +10,7 @@ import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import SocialBar from '../../shared/SocialBar';
 import ExternalLink from '../../shared/Link';
+import MailchimpForm from '../../shared/MailchimpForm';
 
 export default class App extends Component {
 
@@ -201,6 +202,11 @@ export default class App extends Component {
           <p className={ styles.centeredText }>
             Join the channel <b>#draft-js-plugins</b> after signing up the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
           </p>
+          <Heading level={ 2 }>Stay Informed</Heading>
+            <p className={ styles.centeredText }>
+              by signing up to our newsletter
+            </p>
+          <MailchimpForm />
         </Container>
       </div>
     );
