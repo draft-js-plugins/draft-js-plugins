@@ -18,7 +18,7 @@ export default class Code extends Component {
   onCodeClick = () => {
     const collapsed = !this.state.collapsed;
     this.setState({
-      collapsed
+      collapsed,
     });
   };
 

@@ -112,8 +112,6 @@ const editorState = createEditorStateWithText('Hello World!', plugins);
 
 Feel free to copy any of the existing plugins as a starting point. Feel free to directly contact @nikgraf in case you need help or open a Github Issue!
 
-You can also join the development team at #plugin-editor channel in the draftJS Slack. Sign up here: [https://draftjs.herokuapp.com/](https://draftjs.herokuapp.com/).
-
 More documentation is coming soon…
 
 ## Development
@@ -124,6 +122,8 @@ cd site
 npm install
 npm start
 ```
+## Discussion and Support
+Join the channel #plugin-editor after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
 
 ## License
 

@@ -173,6 +173,12 @@ export default class App extends Component {
             Because Unicorns are cooler than cats 😜
           </p>
         </Container>
+        <Container>
+          <Heading level={ 2 }>Discussion and Support</Heading>
+          <p className={ styles.centeredText }>
+            Join the channel #plugin-editor after signing into the DraftJS [<a href="https://draftjs.herokuapp.com">Slack organization</a>]!
+          </p>
+        </Container>
       </div>
     );
   }
