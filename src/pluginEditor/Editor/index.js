@@ -29,7 +29,9 @@ export default class PluginEditor extends Component {
     // TODO consider triggering an onChange here to make sure the editorState is in sync
     // with the outer Editor context
     const editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
-    this.editorState = EditorState.moveFocusToEnd(editorState);
+    this.editorState = editorState;
+
+    // this.editorState = EditorState.moveFocusToEnd(editorState);
   }
 
   componentWillMount() {
