@@ -5,6 +5,17 @@ import 'prismjs/themes/prism.css';
 
 export default class Code extends Component {
 
+  state = {
+    collapsed: true,
+  };
+
+  onCodeClick = () => {
+    const collapsed = !this.state.collapsed;
+    this.setState({
+      collapsed
+    });
+  };
+
   static propTypes = {
     code: PropTypes.string,
   };
@@ -13,10 +24,12 @@ export default class Code extends Component {
 
   render() {
     const nameClassname = this.props.name ? styles.name : styles.hiddenName;
+    const codeClassname = this.state.collapsed ? styles.collapsed : styles.expanded;
     return (
       <div className={ styles.root }>
         <div className={ nameClassname }>{ this.props.name }</div>
-        <pre className={ styles.code }>
+        <pre className={ codeClassname }
+          onClick={ this.onCodeClick }>
           <code
             dangerouslySetInnerHTML={{ __html: this.props.code }}
           />
