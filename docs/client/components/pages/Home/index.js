@@ -189,8 +189,8 @@ export default class App extends Component {
               <a className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">Max Stoiber</a>
             </div>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/517863945/mattsailing_200x200.jpg" />
-              <a className={ styles.teamTwitterLink } href="https://twitter.com/mrussell247">Matthew Russell</a>
+              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
+              <a className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">Julian Krispel-Samsel</a>
             </div>
           </div>
         </Container>
