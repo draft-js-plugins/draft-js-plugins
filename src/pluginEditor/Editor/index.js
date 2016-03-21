@@ -10,6 +10,7 @@ import {
   KeyBindingUtil,
 } from 'draft-js';
 import createCompositeDecorator from '../utils/createCompositeDecorator';
+import moveSelectionToEnd from '../utils/moveSelectionToEnd';
 import moveToEndOfSelectedBlock from '../modifiers/moveToEndOfSelectedBlock';
 import moveToStartOfSelectedBlock from '../modifiers/moveToStartOfSelectedBlock';
 import { List } from 'immutable';
@@ -29,9 +30,7 @@ export default class PluginEditor extends Component {
     // TODO consider triggering an onChange here to make sure the editorState is in sync
     // with the outer Editor context
     const editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
-    this.editorState = editorState;
-
-    // this.editorState = EditorState.moveFocusToEnd(editorState);
+    this.editorState = moveSelectionToEnd(editorState);
   }
 
   componentWillMount() {
