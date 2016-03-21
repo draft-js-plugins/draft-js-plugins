@@ -11,6 +11,7 @@ import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascri
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomUndoEditor';
 import customExampleButtonCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/buttonStyles.css';
 import customExampleCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/styles.css';
+import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 
 export default class App extends Component {
   render() {
@@ -22,6 +23,8 @@ export default class App extends Component {
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
+          <Code code="npm install draft-js-history-plugin --save" />
+          <Code code={ gettingStarted } name="gettingStarted.js" />
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
@@ -36,7 +39,7 @@ export default class App extends Component {
           <Code code={ customExampleCSSCode } name="styles.css" />
         </Container>
         <Container>
-          <Heading level={ 2 }>Parameters</Heading>
+          <Heading level={ 2 }>Configuration Parameters</Heading>
           <div>
             <span className={ styles.paramName }>theme</span>
             <span>Map of CSS classes to style the plugin.</span>
