@@ -36,14 +36,14 @@ export default class App extends Component {
           <Code code={ customExampleStylesCode } name="styles.css" />
         </Container>
         <Container>
-          <Heading level={ 2 }>Parameters</Heading>
+          <Heading level={ 2 }>Configuration Parameters</Heading>
           <div>
             <div className={ styles.paramName }>theme</div>
-            <span>Map of CSS classes to style the plugin.</span>
+            <span>map of CSS classes to style the plugin</span>
             <table className={ styles.themeTable }>
               <tr>
                 <td className={ styles.themeProperty }>hashtag</td>
-                <td>CSS class to be applied to Hashtag text</td>
+                <td>CSS class to be applied to hashtag text</td>
               </tr>
             </table>
           </div>
