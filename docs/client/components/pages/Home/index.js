@@ -160,14 +160,16 @@ export default class App extends Component {
           <Heading level={ 2 }>Try it yourself</Heading>
           <UnicornEditor />
           <Heading level={ 3 }>Plugins used in this Editor</Heading>
-          <ul>
-            <li>Custom stickers</li>
-            <li>Hashtag support</li>
-            <li>Automatically turns links into anchor tags</li>
-            <li>Mentions</li>
-          </ul>
+          <div className={ styles.flexCenteredDisplay }>
+            <ul>
+              <li>Custom stickers</li>
+              <li>Hashtag support</li>
+              <li>Automatically turns links into anchor tags</li>
+              <li>Mentions</li>
+            </ul>
+          </div>
           <Heading level={ 3 }>Why a UnicornEditor?</Heading>
-          <p>
+          <p className={ styles.centeredText }>
             Because Unicorns are cooler than cats 😜
           </p>
         </Container>

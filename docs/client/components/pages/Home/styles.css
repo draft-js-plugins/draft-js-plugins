@@ -94,6 +94,15 @@
   line-height: 1.6;
 }
 
+.centeredText {
+  text-align: center;
+}
+
+.flexCenteredDisplay {
+  display: flex;
+  justify-content: center;
+}
+
 .link, .link:visited {
   color: #979797;
   text-decoration: none;
