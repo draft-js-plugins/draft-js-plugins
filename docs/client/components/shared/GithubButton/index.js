@@ -23,17 +23,19 @@ export default class GithubStarButton extends Component {
     const size = this.props.size ? this.props.size : 'default'; // 'mega' is the other option
     const text = this.props.text ? this.props.text : 'Github';
 
+    // TODO make name & repo dynamic
+
     // Note: all of the attributes including the className 'github-button' are requried
     return (
       <a
         ref="githubButton"
         className="github-button"
-        href="https://github.com/nikgraf/draft-js-plugins"
+        href="https://github.com/draft-js-plugins/draft-js-plugins"
         data-style={ size }
-        data-count-href="/nikgraf/draft-js-plugins/stargazers"
-        data-count-api="/repos/nikgraf/draft-js-plugins#stargazers_count"
+        data-count-href="/draft-js-plugins/draft-js-plugins/stargazers"
+        data-count-api="/repos/draft-js-plugins/draft-js-plugins#stargazers_count"
         data-count-aria-label="# stargazers on GitHub"
-        aria-label="Star nikgraf/draft-js-plugins on GitHub"
+        aria-label="Star draft-js-plugins/draft-js-plugins on GitHub"
       >
         { text }
       </a>

@@ -11,7 +11,7 @@ High quality plugins with great UX on to of [DraftJS](https://github.com/faceboo
 - Linkify
 - Mentions
 
-[![Build Status](https://travis-ci.org/nikgraf/draft-js-plugins.svg?branch=master)](https://travis-ci.org/nikgraf/draft-js-plugins)
+[![Build Status](https://travis-ci.org/draft-js-plugins/draft-js-plugins.svg?branch=master)](https://travis-ci.org/draft-js-plugins/draft-js-plugins)
 
 ## Live Example
 
