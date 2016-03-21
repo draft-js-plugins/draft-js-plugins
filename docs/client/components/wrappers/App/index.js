@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ExternalLink from '../../shared/Link';
 import styles from './styles.css';
 
 export default class Wrapper extends Component {
