@@ -155,7 +155,7 @@ export default class App extends Component {
             aims to provide you with plug & play extensions. It comes with a set of plugins with great UX (inspired by Facebook & Slack) serving Mobile & Desktop as well as Screenreaders.
           </p>
 
-          <Heading level={ 2 }>Help spreading the word …</Heading>
+          <Heading level={ 2 }>Help spread the word …</Heading>
           <SocialBar />
         </AlternateContainer>
         <Container>
@@ -200,7 +200,7 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Discussion and Support</Heading>
           <p className={ styles.centeredText }>
-            Join the <b>#draft-js-plugins</b> channel after signing up for the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
+            Join the <b>#draft-js-plugins</b> channel after signing up to the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
           </p>
           <Heading level={ 2 }>Stay Informed</Heading>
             <p className={ styles.centeredText }>
