@@ -27,15 +27,13 @@ export default class SimpleHashtagEditor extends Component {
 
   render() {
     return (
-      <div className={ styles.root }>
-        <div className={ styles.editor } onClick={ this.focus }>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            ref="editor"
-          />
-        </div>
+      <div className={ styles.editor } onClick={ this.focus }>
+        <Editor
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+          plugins={plugins}
+          ref="editor"
+        />
       </div>
     );
   }

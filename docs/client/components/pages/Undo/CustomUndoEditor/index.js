@@ -35,7 +35,7 @@ export default class CustomUndoEditor extends Component {
 
   render() {
     return (
-      <div className={ styles.root }>
+      <div>
         <div className={ styles.editor } onClick={ this.focus }>
           <Editor
             editorState={this.state.editorState}

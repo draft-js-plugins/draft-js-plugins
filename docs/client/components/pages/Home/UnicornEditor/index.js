@@ -10,8 +10,6 @@ import stickers from './stickers';
 import mentions from './mentions';
 import StatePreview from '../../../shared/StatePreview';
 
-// import { EditorState } from 'draft-js';
-
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
 const mentionPlugin = createMentionPlugin({
@@ -34,7 +32,6 @@ const plugins = [
 export default class UnicornEditor extends Component {
 
   state = {
-    // editorState: EditorState.createEmpty(), // alternative to create an empty state
     editorState: createEditorStateWithText('Hello World!'),
     showState: false,
   };
@@ -61,7 +58,6 @@ export default class UnicornEditor extends Component {
 
     return (
       <div className={ styles.root }>
-
         <div className={ styles.editor } onClick={ this.focus }>
           <Editor
             editorState={this.state.editorState}
@@ -94,8 +90,6 @@ export default class UnicornEditor extends Component {
           editorState={ this.state.editorState }
           collapsed={ !this.state.showState }
         />
-        {/* <History editorState={ this.state.editorState } /> */}
-
       </div>
     );
   }
