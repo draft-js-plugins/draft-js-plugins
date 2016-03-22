@@ -4,7 +4,6 @@ import UnicornEditor from './UnicornEditor';
 import Heading from '../../shared/Heading';
 import Separator from './Separator';
 import styles from './styles.css';
-import { Link } from 'react-router';
 import ContainerBox from '../../shared/ContainerBox';
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';

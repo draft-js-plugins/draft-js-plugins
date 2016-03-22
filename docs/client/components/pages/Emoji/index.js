@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import Container from '../../shared/Container';
-import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
 import styles from './styles.css';
-import Code from '../../shared/Code';
-import SimpleEmojiEditor from './SimpleEmojiEditor';
-import CustomEmojiEditor from './CustomEmojiEditor';
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleEmojiEditor';
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomEmojiEditor';
-import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomEmojiEditor/styles.css';
-import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 
@@ -30,6 +22,15 @@ export default class App extends Component {
 }
 
 /**
+import Code from '../../shared/Code';
+import AlternateContainer from '../../shared/AlternateContainer';
+import SimpleEmojiEditor from './SimpleEmojiEditor';
+import CustomEmojiEditor from './CustomEmojiEditor';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleEmojiEditor';
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomEmojiEditor';
+import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomEmojiEditor/styles.css';
+import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+
 <AlternateContainer>
   <Heading level={ 2 }>Getting Started</Heading>
   <Code code="npm install draft-js-emoji-plugin --save" />
