@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-undo-pluin",
+  "name": "draft-js-undo-plugin",
   "version": "0.0.0",
   "description": "Undo Plugin for DraftJS",
   "author": {

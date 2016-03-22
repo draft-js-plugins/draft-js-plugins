@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-linkify-pluin",
+  "name": "draft-js-linkify-plugin",
   "version": "0.0.0",
   "description": "Linkify Plugin for DraftJS",
   "author": {
