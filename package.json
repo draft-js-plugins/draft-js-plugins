@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "alex": "^2.0.1",
-    "autoprefixer": "^6.3.3",
+    "autoprefixer": "^6.3.4",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
@@ -61,7 +61,7 @@
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^4.0.0",
     "dirty-chai": "^1.2.2",
-    "enzyme": "^2.1.0",
+    "enzyme": "^2.2.0",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "6.1.0",
     "eslint-plugin-mocha": "^2.0.0",
