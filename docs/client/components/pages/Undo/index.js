@@ -60,7 +60,7 @@ export default class App extends Component {
           <Code code={ simpleExampleCode } name="SimpleUndoEditor.js" />
         </Container>
         <Container>
-          <Heading level={ 2 }>Themed Hashtag Example</Heading>
+          <Heading level={ 2 }>Themed Undo/Redo Example</Heading>
           <CustomUndoEditor />
           <Code code={ customExampleCode } name="CustomUndoEditor.js" />
           <Code code={ customExampleButtonCSSCode } name="buttonStyles.css" />

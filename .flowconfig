@@ -9,6 +9,7 @@
 [libs]
 ./interfaces/CSSModule.js
 ./interfaces/Draft.js
+./interfaces/findWithRegex.js
 
 [options]
 esproposal.class_static_fields=enable
