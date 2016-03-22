@@ -27,9 +27,6 @@
     "react-dom": ">=0.14.0 || 15.0.0-rc.2"
   },
   "scripts": {
-    "build": "BABEL_ENV=production ./node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
-    "prepublish": "npm run build",
-    "postpublish": "./scripts/publish_gh_pages.sh",
     "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js **/__test__/*.js",
     "test:watch": "npm test -- --watch",
     "lint": "npm run lint:eslint && npm run lint:jscs && npm run lint:flow",
