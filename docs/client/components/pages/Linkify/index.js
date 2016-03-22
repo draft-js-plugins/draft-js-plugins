@@ -22,7 +22,6 @@ export default class App extends Component {
         <Separator />
         <Container>
           <Heading level={ 2 }>Linkify</Heading>
-          <div className={ styles.root }>Linkify</div>
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
@@ -31,19 +30,14 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Configuration Parameters</Heading>
-          <div>
-            <div className={ styles.paramName }>theme</div>
-            <span>map of CSS classes to style the plugin</span>
-            <table className={ styles.themeTable }>
-              <tbody>
-                <tr>
-                  <td className={ styles.themeProperty }>link</td>
-                  <td>CSS class to be applied to link text</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className={ styles.param }>
+            <span className={ styles.paramName }>theme</span>
+            <span>Map of CSS classes to style the plugin its has following values.</span>
+            <div className={ styles.subParams}>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>link:</span> CSS class to be applied to link text</div>
+            </div>
           </div>
-        </Container>
+      </Container>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleLinkifyEditor />

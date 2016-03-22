@@ -3,23 +3,6 @@
   padding-top: 10em;
 }
 
-.paramName {
-  font-weight: bold;
-  width: 125px;
-  display: inline-block;
-}
-
-.themeTable {
-  border: 1px solid #eee;
-  margin-left: 125px;
-}
-
-.themeProperty {
-  font-weight: bold;
-  width: 75px;
-  border-right: 1px solid #eee;
-}
-
 .center {
   text-align: center;
 }

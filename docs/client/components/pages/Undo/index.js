@@ -32,27 +32,19 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Configuration Parameters</Heading>
-          <div>
+          <div className={ styles.param }>
             <span className={ styles.paramName }>theme</span>
-            <span>Map of CSS classes to style the plugin.</span>
-            <table className={ styles.themeTable }>
-              <tbody>
-                <tr>
-                  <td className={ styles.themeProperty }>undo</td>
-                  <td>CSS class to be applied to undo button</td>
-                </tr>
-                <tr>
-                  <td className={ styles.themeProperty }>redo</td>
-                  <td>CSS class to be applied to redo button</td>
-                </tr>
-              </tbody>
-            </table>
+            <span>Map of CSS classes to style the plugin its has following values.</span>
+            <div className={ styles.subParams}>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>undo:</span> CSS class to be applied to undo button.</div>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>redo:</span> CSS class to be applied to redo button.</div>
+            </div>
           </div>
-          <div>
+          <div className={ styles.param }>
             <span className={ styles.paramName }>undoContent</span>
             <span>Content of undo button. (Default content is ↺)</span>
           </div>
-          <div>
+          <div className={ styles.param }>
             <span className={ styles.paramName }>redoContent</span>
             <span>Content of redo button. (Default content is ↻)</span>
           </div>

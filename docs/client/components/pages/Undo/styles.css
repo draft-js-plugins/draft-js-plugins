@@ -3,19 +3,27 @@
   padding-top: 10em;
 }
 
+.param {
+  margin: 10px 0;
+}
+
 .paramName {
   font-weight: bold;
   width: 125px;
   display: inline-block;
 }
 
-.themeTable {
-  border: 1px solid #eee;
+.subParams {
   margin-left: 125px;
+  margin-top: 10px;
 }
 
-.themeProperty {
+.subParam {
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.subParamName {
   font-weight: bold;
-  width: 75px;
-  border-right: 1px solid #eee;
+  margin-right: 5px;
 }
