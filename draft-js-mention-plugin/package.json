@@ -1,7 +1,7 @@
 {
-  "name": "draft-js-linkify-pluin",
+  "name": "draft-js-hashtag-pluin",
   "version": "0.0.0",
-  "description": "Linkify Plugin for DraftJS",
+  "description": "Mention Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
     "email": "nik@nikgraf.com",

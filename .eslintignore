@@ -2,5 +2,6 @@
 lib/**
 draft-js-hashtag-plugin/lib/**
 draft-js-linkify-plugin/lib/**
+draft-js-mention-plugin/lib/**
 scripts/**
 docs/public/**

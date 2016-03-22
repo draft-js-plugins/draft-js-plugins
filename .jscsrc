@@ -9,6 +9,7 @@
     "docs/public/**",
     "draft-js-hashtag-plugin/lib/**",
     "draft-js-linkify-plugin/lib/**",
+    "draft-js-mention-plugin/lib/**",
     "lib/**"
   ]
 }
