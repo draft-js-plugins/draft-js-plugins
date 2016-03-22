@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './styles.css';
-import unionClassNames from '../../../utils/unionClassNames';
+import unionClassNames from 'union-class-names';
 
 export default class Link extends Component {
 

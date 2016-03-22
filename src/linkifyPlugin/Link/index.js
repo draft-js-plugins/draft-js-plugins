@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import unionClassNames from '../../utils/unionClassNames';
+import unionClassNames from 'union-class-names';
 import { Map } from 'immutable';
 
 // The component we render when we encouter a hyperlink in the text

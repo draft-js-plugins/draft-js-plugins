@@ -38,6 +38,7 @@
     "redbox-react": "^1.2.2",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.0",
+    "union-class-names": "^1.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.5.1",

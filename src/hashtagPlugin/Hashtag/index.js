@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import React, { Component } from 'react';
-import unionClassNames from '../../utils/unionClassNames';
+import unionClassNames from 'union-class-names';
 
 export default class Hashtag extends Component {
   render() {

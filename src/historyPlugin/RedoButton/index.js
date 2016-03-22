@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
-import unionClassNames from '../../utils/unionClassNames';
+import unionClassNames from 'union-class-names';
 import { Map } from 'immutable';
 
 class RedoButton extends Component {
