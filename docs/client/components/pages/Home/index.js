@@ -2,13 +2,13 @@
 import React, { Component } from 'react';
 import UnicornEditor from './UnicornEditor';
 import Heading from '../../shared/Heading';
-import Separator from './Separator';
+import Separator from '../../shared/Separator';
 import styles from './styles.css';
-import { Link } from 'react-router';
 import ContainerBox from '../../shared/ContainerBox';
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import SocialBar from '../../shared/SocialBar';
+import NavBar from '../../shared/NavBar';
 import ExternalLink from '../../shared/Link';
 import MailchimpForm from '../../shared/MailchimpForm';
 
@@ -111,42 +111,7 @@ export default class App extends Component {
             <p className={ styles.tagline }>High quality plugins with great UX</p>
           </ContainerBox>
         </div>
-        <div className={ styles.pluginsWrapper }>
-          <div className={ styles.wideContainer }>
-            <ul className={ styles.plugins }>
-              <li className={ styles.plugin }>
-                <Link to="/plugin/mention" className={ styles.link }>
-                  Mention
-                </Link>
-              </li>
-              <li className={ styles.plugin }>
-                <Link to="/plugin/linkify" className={ styles.link }>
-                  Linkify
-                </Link>
-              </li>
-              <li className={ styles.plugin }>
-                <Link to="/plugin/sticker" className={ styles.link }>
-                  Sticker
-                </Link>
-              </li>
-              <li className={ styles.plugin }>
-                <Link to="/plugin/emoji" className={ styles.link }>
-                  Emoji
-                </Link>
-              </li>
-              <li className={ styles.plugin }>
-                <Link to="/plugin/hashtag" className={ styles.link }>
-                  Hashtag
-                </Link>
-              </li>
-              <li className={ styles.plugin }>
-                <Link to="/plugin/undo" className={ styles.link }>
-                  Undo
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <NavBar />
         <Separator />
         <AlternateContainer>
           <p className={ styles.whatText }>
@@ -181,7 +146,7 @@ export default class App extends Component {
             </ul>
           </div>
           <Heading level={ 3 }>Why a UnicornEditor?</Heading>
-          <p className={ styles.centeredText }>
+          <p className={ styles.center }>
             Because Unicorns are cooler than cats 😜
           </p>
         </Container>
@@ -189,12 +154,22 @@ export default class App extends Component {
           <Heading level={ 2 }>Team</Heading>
           <div className={ styles.teamSection }>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">Jyoti Puri</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" />
+                <div>Jyoti Puri</div>
+              </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">Julian Krispel-Samsel</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
+                <div>Julian Krispel-Samsel</div>
+              </ExternalLink>
+            </div>
+            <div className={ styles.teamMember }>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mrussell247">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/517863945/mattsailing_200x200.jpg" />
+                <div>Matthew Russell</div>
+              </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
@@ -214,11 +189,11 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Discussion and Support</Heading>
-          <p className={ styles.centeredText }>
+          <p className={ styles.center }>
             Join the <b>#draft-js-plugins</b> channel after signing up to the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
           </p>
           <Heading level={ 2 }>Stay Informed</Heading>
-            <p className={ styles.centeredText }>
+            <p className={ styles.center }>
               by signing up to our newsletter
             </p>
           <MailchimpForm />

@@ -19,3 +19,7 @@
   width: 75px;
   border-right: 1px solid #eee;
 }
+
+.center {
+  text-align: center;
+}
