@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer'); // eslint-disable-line no-var
 module.exports = {
   resolve: {
     alias: {
-      'draft-js-plugins-editor': path.join(__dirname, '..', 'src', 'pluginEditor'),
+      'draft-js-plugins-editor': path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
       'draft-js-hashtag-plugin': path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
       'draft-js-linkify-plugin': path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
       'draft-js-mention-plugin': path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),
@@ -27,7 +27,7 @@ module.exports = {
         test: /\.js$/,
         loaders: ['babel'],
         include: [
-          path.join(__dirname, '..', 'src'),
+          path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),
@@ -38,7 +38,7 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader'),
         include: [
-          path.join(__dirname, '..', 'src'),
+          path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),

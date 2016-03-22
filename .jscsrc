@@ -12,6 +12,7 @@
     "draft-js-mention-plugin/lib/**",
     "draft-js-sticker-plugin/lib/**",
     "draft-js-undo-plugin/lib/**",
+    "draft-js-plugins-editor/lib/**",
     "lib/**"
   ]
 }
