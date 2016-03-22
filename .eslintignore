@@ -3,5 +3,6 @@ lib/**
 draft-js-hashtag-plugin/lib/**
 draft-js-linkify-plugin/lib/**
 draft-js-mention-plugin/lib/**
+draft-js-sticker-plugin/lib/**
 scripts/**
 docs/public/**
