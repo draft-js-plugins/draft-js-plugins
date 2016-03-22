@@ -8,7 +8,6 @@ import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
-import StatePreview from '../../../shared/StatePreview';
 
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
@@ -31,7 +30,7 @@ const plugins = [
 
 const text = `Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It's creators like Jyoti, Nik or Julian could mentioned. Of course it also supports unicorn stickers like this one:
 
-Of course it also supports Emojis 🤓🎉`;
+Of course it also supports Emojis 🤓 🎉`;
 
 export default class UnicornEditor extends Component {
 
@@ -50,16 +49,8 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
-  toggleShowState = () => {
-    this.setState({
-      showState: !this.state.showState,
-    });
-  };
-
   /* eslint-disable react/jsx-no-bind */
   render() {
-    const stateButton = this.state.showState ? styles.pressedStateButton : styles.stateButton;
-
     return (
       <div className={ styles.root }>
         <div className={ styles.editor } onClick={ this.focus }>
@@ -83,17 +74,7 @@ export default class UnicornEditor extends Component {
             editorState={ this.state.editorState }
             onChange={ this.onChange }
           />
-          <button
-            className={ stateButton }
-            onClick={ this.toggleShowState }
-          >
-            Toggle State Preview
-          </button>
         </div>
-        <StatePreview
-          editorState={ this.state.editorState }
-          collapsed={ !this.state.showState }
-        />
       </div>
     );
   }
