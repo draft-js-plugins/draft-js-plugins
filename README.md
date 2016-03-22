@@ -110,11 +110,13 @@ const editorState = createEditorStateWithText('Hello World!', plugins);
 
 #### How to write a Plugin
 
-Feel free to copy any of the existing plugins as a starting point. Feel free to directly contact @nikgraf in case you need help or open a Github Issue!
+Feel free to copy any of the existing plugins as a starting point. Feel free to directly contact [@nikgraf](https://github.com/nikgraf) in case you need help or open a Github Issue!
 
 More documentation is coming soon…
 
 ## Development
+
+You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins.
 
 ```
 npm install
