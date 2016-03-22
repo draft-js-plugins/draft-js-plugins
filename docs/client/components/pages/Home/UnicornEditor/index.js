@@ -29,10 +29,14 @@ const plugins = [
   mentionPlugin,
 ];
 
+const text = `Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It's creators like Jyoti, Nik or Julian could mentioned. Of course it also supports unicorn stickers like this one:
+
+Of course it also supports Emojis 🤓🎉`;
+
 export default class UnicornEditor extends Component {
 
   state = {
-    editorState: createEditorStateWithText('Hello World!'),
+    editorState: createEditorStateWithText(text),
     showState: false,
   };
 
