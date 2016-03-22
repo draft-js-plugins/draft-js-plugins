@@ -188,12 +188,22 @@ export default class App extends Component {
           <Heading level={ 2 }>Team</Heading>
           <div className={ styles.teamSection }>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">Jyoti Puri</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" />
+                <div>Jyoti Puri</div>
+              </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">Julian Krispel-Samsel</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
+                <div>Julian Krispel-Samsel</div>
+              </ExternalLink>
+            </div>
+            <div className={ styles.teamMember }>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mrussell247">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/517863945/mattsailing_200x200.jpg" />
+                <div>Matthew Russell</div>
+              </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
