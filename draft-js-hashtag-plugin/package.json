@@ -1,6 +1,6 @@
 {
   "name": "draft-js-hashtag-plugin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Hashtag Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
