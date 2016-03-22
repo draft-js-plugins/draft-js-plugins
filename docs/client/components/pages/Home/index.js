@@ -132,6 +132,8 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <div className={ styles.demoWrapper }>
+            <Heading level={ 2 }>Gif Demo</Heading>
+            <br /><br />
             <img src="/images/demo.gif" width="175" height="250" className={ styles.demo } />
           </div>
         </Container>
