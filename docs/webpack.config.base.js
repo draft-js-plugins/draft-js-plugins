@@ -7,8 +7,8 @@ module.exports = {
     alias: {
       'draft-js-plugins-editor': path.join(__dirname, '..', 'src', 'pluginEditor'),
       'draft-js-hashtag-plugin': path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
+      'draft-js-linkify-plugin': path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
       'draft-js-sticker-plugin': path.join(__dirname, '..', 'src', 'stickerPlugin'),
-      'draft-js-linkify-plugin': path.join(__dirname, '..', 'src', 'linkifyPlugin'),
       'draft-js-mention-plugin': path.join(__dirname, '..', 'src', 'mentionPlugin'),
       'draft-js-undo-plugin': path.join(__dirname, '..', 'src', 'historyPlugin'),
       react: path.join(__dirname, 'node_modules', 'react'),
@@ -29,6 +29,7 @@ module.exports = {
         include: [
           path.join(__dirname, '..', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
         ],
       }, {
         test: /\.css$/,
@@ -36,6 +37,7 @@ module.exports = {
         include: [
           path.join(__dirname, '..', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
           path.join(__dirname, 'client/components'),
         ],
       }, {

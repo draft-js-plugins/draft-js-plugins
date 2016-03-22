@@ -1,5 +1,6 @@
 **/node_modules/**
 lib/**
 draft-js-hashtag-plugin/lib/**
+draft-js-linkify-plugin/lib/**
 scripts/**
 docs/public/**
