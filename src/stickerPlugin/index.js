@@ -5,7 +5,7 @@ import blockRendererFn from './blockRendererFn';
 import Sticker from './Sticker';
 import StickerSelect from './StickerSelect';
 import { Map } from 'immutable';
-import decorateComponentWithProps from '../utils/decorateComponentWithProps';
+import decorateComponentWithProps from 'decorate-component-with-props';
 import stickerStyles from './stickerStyles.css';
 import selectStyles from './selectStyles.css';
 import selectStickerStyles from './selectStickerStyles.css';

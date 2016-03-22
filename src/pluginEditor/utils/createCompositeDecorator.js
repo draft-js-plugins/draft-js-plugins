@@ -4,7 +4,7 @@
 
 import { List } from 'immutable';
 import { CompositeDecorator } from 'draft-js';
-import decorateComponentWithProps from '../../utils/decorateComponentWithProps';
+import decorateComponentWithProps from 'decorate-component-with-props';
 
 export default (plugins, getEditorState, updateEditorState) => {
   const decorators = List(plugins)

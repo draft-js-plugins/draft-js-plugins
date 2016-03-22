@@ -2,7 +2,7 @@ import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
 import { Map } from 'immutable';
 import styles from './styles.css';
-import decorateComponentWithProps from '../utils/decorateComponentWithProps';
+import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = Map({
   redo: styles.button,

@@ -2,7 +2,7 @@ import Mention from './Mention';
 import MentionSearch from './MentionSearch';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
-import decorateComponentWithProps from '../utils/decorateComponentWithProps';
+import decorateComponentWithProps from 'decorate-component-with-props';
 import { Map } from 'immutable';
 import mentionStyles from './mentionStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';

@@ -2,7 +2,7 @@ import Link from './Link';
 import linkStrategy from './linkStrategy';
 import { Map } from 'immutable';
 import styles from './styles.css';
-import decorateComponentWithProps from '../utils/decorateComponentWithProps';
+import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = Map({
   link: styles.link,
