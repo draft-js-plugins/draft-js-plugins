@@ -116,6 +116,8 @@ More documentation is coming soon…
 
 ## Development
 
+You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins.
+
 ```
 npm install
 cd site
