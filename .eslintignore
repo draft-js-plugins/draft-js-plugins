@@ -1,4 +1,5 @@
 **/node_modules/**
 lib/**
+draft-js-hashtag-plugin/lib/**
 scripts/**
 docs/public/**
