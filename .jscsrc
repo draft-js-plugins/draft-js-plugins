@@ -11,6 +11,7 @@
     "draft-js-linkify-plugin/lib/**",
     "draft-js-mention-plugin/lib/**",
     "draft-js-sticker-plugin/lib/**",
+    "draft-js-undo-plugin/lib/**",
     "lib/**"
   ]
 }
