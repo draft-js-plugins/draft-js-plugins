@@ -129,6 +129,13 @@ export default class App extends Component {
             </ExternalLink>
             allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own.
           </p>
+        </AlternateContainer>
+        <Container>
+          <div className={ styles.demoWrapper }>
+            <img src="/images/demo.gif" width="175" height="250" className={ styles.demo } />
+          </div>
+        </Container>
+        <AlternateContainer>
           <Heading level={ 2 }>Help spread the word …</Heading>
           <SocialBar />
         </AlternateContainer>
