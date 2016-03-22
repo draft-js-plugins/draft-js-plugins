@@ -1,6 +1,6 @@
 /* @flow */
 
-import findWithRegex from '../utils/findWithRegex';
+import findWithRegex from 'find-with-regex';
 
 /**
  * TODO improve this strategy
