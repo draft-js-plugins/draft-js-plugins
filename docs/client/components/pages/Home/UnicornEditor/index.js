@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
@@ -8,6 +8,12 @@ import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
+import {
+  ContentState,
+  EditorState,
+  convertFromRaw
+} from 'draft-js';
+import initialState from './initialState';
 
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
@@ -28,14 +34,12 @@ const plugins = [
   mentionPlugin,
 ];
 
-const text = `Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It's creators like Jyoti, Nik or Julian could mentioned. Of course it also supports unicorn stickers like this one:
-
-Of course it also supports Emojis 🤓 🎉`;
+const contentState = ContentState.createFromBlockArray(convertFromRaw(initialState));
 
 export default class UnicornEditor extends Component {
 
   state = {
-    editorState: createEditorStateWithText(text),
+    editorState: EditorState.createWithContent(contentState),
     showState: false,
   };
 
@@ -43,6 +47,8 @@ export default class UnicornEditor extends Component {
     this.setState({
       editorState,
     });
+
+    // console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
   };
 
   focus = () => {
