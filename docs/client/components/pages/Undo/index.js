@@ -13,11 +13,13 @@ import customExampleButtonCSSCode from '!!../../../loaders/prism-loader?language
 import customExampleCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/styles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
+import NavBar from '../../shared/NavBar';
 
 export default class App extends Component {
   render() {
     return (
       <div>
+        <NavBar />
         <Container>
           <Heading level={ 2 }>Undo/Redo</Heading>
           <div className={ styles.root }>Undo/Redo</div>
