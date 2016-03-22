@@ -4,12 +4,14 @@ import Heading from '../../shared/Heading';
 import styles from './styles.css';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
+import Separator from '../../shared/Separator';
 
 export default class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
+        <Separator />
         <Container>
           <Heading level={ 2 }>Emoji</Heading>
           <div className={ styles.center }>The Emoji Plugin is not yet ready & will be released tomorrow.</div>

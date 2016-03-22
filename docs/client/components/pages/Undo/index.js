@@ -14,15 +14,16 @@ import customExampleCSSCode from '!!../../../loaders/prism-loader?language=css!.
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
+import Separator from '../../shared/Separator';
 
 export default class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
+        <Separator />
         <Container>
           <Heading level={ 2 }>Undo/Redo</Heading>
-          <div className={ styles.root }>Undo/Redo</div>
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>

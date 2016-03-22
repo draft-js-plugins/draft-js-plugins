@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import UnicornEditor from './UnicornEditor';
 import Heading from '../../shared/Heading';
-import Separator from './Separator';
+import Separator from '../../shared/Separator';
 import styles from './styles.css';
 import ContainerBox from '../../shared/ContainerBox';
 import Container from '../../shared/Container';

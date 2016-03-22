@@ -12,12 +12,14 @@ import customExampleStylesCode from '!!../../../loaders/prism-loader?language=cs
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
+import Separator from '../../shared/Separator';
 
 export default class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
+        <Separator />
         <Container>
           <Heading level={ 2 }>Linkify</Heading>
           <div className={ styles.root }>Linkify</div>
