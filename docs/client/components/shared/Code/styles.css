@@ -28,11 +28,14 @@
 .collapsed {
   height: 45px;
   overflow: hidden;
-  cursor: pointer;
   font-family: 'Inconsolata';
 }
 
 .expanded {
-  cursor: pointer;
   font-family: 'Inconsolata';
+}
+
+.indicator {
+  cursor: pointer;
+  margin-left: 10px;
 }

@@ -30,43 +30,20 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Configuration Parameters</Heading>
-          <div>
+          <div className={ styles.param }>
             <span className={ styles.paramName }>theme</span>
-            <span>Map of CSS classes to style the plugin.</span>
-            <table className={ styles.themeTable }>
-              <tbody>
-                <tr>
-                  <td className={ styles.themeProperty }>mention</td>
-                  <td>CSS class to be applied to </td>
-                </tr>
-                <tr>
-                  <td className={ styles.themeProperty }>autocomplete</td>
-                  <td>CSS class to be applied to </td>
-                </tr>
-                <tr>
-                  <td className={ styles.themeProperty }>autocompletePopover</td>
-                  <td>CSS class to be applied to </td>
-                </tr>
-                <tr>
-                  <td className={ styles.themeProperty }>autocompleteEntry</td>
-                  <td>CSS class to be applied to </td>
-                </tr>
-                <tr>
-                  <td className={ styles.themeProperty }>autocompleteEntryFocused</td>
-                  <td>CSS class to be applied to </td>
-                </tr>
-                <tr>
-                  <td className={ styles.themeProperty }>autocompleteEntryText</td>
-                  <td>CSS class to be applied to </td>
-                </tr>
-                <tr>
-                  <td className={ styles.themeProperty }>autocompleteEntryAvatar</td>
-                  <td>CSS class to be applied to </td>
-                </tr>
-              </tbody>
-            </table>
+            <span>Map of CSS classes to style the plugin its has following values.</span>
+            <div className={ styles.subParams}>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>mention:</span> CSS class for mention text.</div>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>autocomplete:</span> CSS class for mention autocomplete.</div>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>autocompletePopover:</span> CSS class for autocomplete popover.</div>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>autocompleteEntry:</span> CSS class for an entry in autocomplete.</div>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>autocompleteEntryFocused:</span> CSS class for focused autocomplete entry.</div>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>autocompleteEntryText:</span> CSS class for autocopmplete entry text.</div>
+              <div className={ styles.subParam}><span className={ styles.subParamName }>autocompleteEntryAvatar:</span> CSS class for autocopmplete entry image.</div>
+            </div>
           </div>
-          <div>
+          <div className={ styles.param }>
             <span className={ styles.paramName }>mentions</span>
             <span>Immutable list of mentions.</span>
           </div>
