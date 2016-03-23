@@ -115,7 +115,7 @@ export default class App extends Component {
         <Separator />
         <AlternateContainer>
           <p className={ styles.whatText }>
-            Slack-like emoji autocompletion, Facebook-like stickers & mentions and many more features out of the box to enhance your web application.
+            Slack-like emoji autocompletion, Facebook-like stickers & mentions, and many more features out of the box to enhance your web application.
           </p>
           <p className={ styles.whyText }>
             <b>IMPORTANT</b>: There is no working version on NPM yet. We want to release at 01:00 PDT 2015-03-23. Please do not post it on Hackernews, Reddit or so on before that. Thank you :)
@@ -130,7 +130,7 @@ export default class App extends Component {
             <ExternalLink href="https://facebook.github.io/react/">
               &nbsp;React&nbsp;
             </ExternalLink>
-            allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own.
+            allows you to create powerful editors. We're building a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want or build your own.
           </p>
         </AlternateContainer>
         <Container>

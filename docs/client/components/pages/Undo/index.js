@@ -34,10 +34,10 @@ export default class App extends Component {
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div className={ styles.param }>
             <span className={ styles.paramName }>theme</span>
-            <span>Map of CSS classes to style the plugin its has following values.</span>
-            <div className={ styles.subParams}>
-              <div className={ styles.subParam}><span className={ styles.subParamName }>undo:</span> CSS class to be applied to undo button.</div>
-              <div className={ styles.subParam}><span className={ styles.subParamName }>redo:</span> CSS class to be applied to redo button.</div>
+            <span>Immutable.js Map of CSS classes with the following keys.</span>
+            <div className={ styles.subParams }>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>undo:</span> CSS class to be applied to undo button.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>redo:</span> CSS class to be applied to redo button.</div>
             </div>
           </div>
           <div className={ styles.param }>

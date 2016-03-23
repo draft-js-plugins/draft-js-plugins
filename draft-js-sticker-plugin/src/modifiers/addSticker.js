@@ -20,7 +20,7 @@ export default (editorState: Object, stickerId: any) => {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = editorState.getSelection();
 
-  // in case text is selected it is removed and the then the sticker is appended
+  // in case text is selected it is removed and then the sticker is appended
   const afterRemovalContentState = Modifier.removeRange(
     currentContentState,
     currentSelectionState,
@@ -36,7 +36,7 @@ export default (editorState: Object, stickerId: any) => {
 
   // In case there are no characters or entity or the selection is at the start it
   // is safe to insert the sticker in the current block.
-  // Otherwise a new block is created (the sticker is always it's own block)
+  // Otherwise a new block is created (the sticker is always its own block)
   const isEmptyBlock = block.getLength() === 0 && block.getEntityAt(0) === null;
   const selectedFromStart = currentSelectionState.getStartOffset() === 0;
   if (isEmptyBlock || selectedFromStart) {

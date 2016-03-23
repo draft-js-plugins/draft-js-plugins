@@ -4,10 +4,10 @@ var webpack = require('webpack');
 var webpackBaseConfig = require('./webpack.config.base'); // eslint-disable-line no-var
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
 
-// Set up dev host host and HMR host. For the dev host this is pretty self
-// explanatory: We use a different live-reload server to server our static JS
+// Set up dev host and HMR host. For the dev host this is pretty self
+// explanatory: We use a different live-reload server to serve our static JS
 // files in dev, so we need to be able to actually point a script tag to that
-// host so it can load the right files. The HRM host is a bit stranger. For more
+// host so it can load the right files. The HMR host is a bit stranger. For more
 // details on why we need this URL see the readme and:
 // https://github.com/glenjamin/webpack-hot-middleware/issues/37
 var DEV_PORT = process.env.DEV_PORT || 3000;

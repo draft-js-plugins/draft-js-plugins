@@ -32,7 +32,7 @@ export default class FacebookLikeButton extends Component {
   };
 
   render() {
-    // Note: the width was set to 280 to work well on mobile
+    // Note: the width was set to 290 to work well on mobile
     return (
       <div
         id="fbbutton"
