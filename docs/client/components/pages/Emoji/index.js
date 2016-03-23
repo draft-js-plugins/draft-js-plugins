@@ -59,7 +59,7 @@ export default class App extends Component {
           </div>
         </Container>
         <Container>
-          <Heading level={ 2 }>Simple Example</Heading>
+          <Heading level={ 2 }>Themed Emoji Example</Heading>
           <SimpleEmojiEditor />
           <Code code={ simpleExampleCode } name="SimpleEmojiEditor.js" />
           <Code code={ simpleEditorStylesCode } name="editorStyles.js" />
