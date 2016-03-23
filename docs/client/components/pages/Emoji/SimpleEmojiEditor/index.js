@@ -5,8 +5,8 @@ import styles from './styles.css';
 
 const emojiPlugin = createEmojiPlugin();
 const plugins = [emojiPlugin];
-const text = `cool 🤓wow
-🌿wow that may work`;
+const text = `Cool, we can have all sorts if Emojis here. 🙌
+🌿☃️🎉🙈 aaaand maybe a few more here: 🐲☀️🗻 Quite fun!`;
 
 export default class SimpleHashtagEditor extends Component {
 

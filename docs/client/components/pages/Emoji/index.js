@@ -18,6 +18,9 @@ export default class App extends Component {
         <Separator />
         <Container>
           <Heading level={ 2 }>Emoji</Heading>
+          <p>
+            In this implementation the original Emoji unicode is wrapped in a span. The character is hidden with via the styles & while the background image shows the icon. This way you have a consistent set shown beteen all platforms while copy & pasting still works fine. We recommend to copy & paste the text below into an native editor to see the effect.
+          </p>
         </Container>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
