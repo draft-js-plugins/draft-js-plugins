@@ -58,7 +58,6 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
-  /* eslint-disable react/jsx-no-bind */
   render() {
     return (
       <div className={ styles.root }>

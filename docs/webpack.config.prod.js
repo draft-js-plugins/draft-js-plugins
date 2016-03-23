@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StaticSitePlugin = require('react-static-webpack-plugin');
-var webpackBaseConfig = require('./webpack.config.base'); // eslint-disable-line no-var
+var webpackBaseConfig = require('./webpack.config.base');
 
 module.exports = Object.assign(webpackBaseConfig, {
   devtool: 'source-map',
