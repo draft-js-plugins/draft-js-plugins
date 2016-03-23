@@ -206,12 +206,16 @@ export default class App extends Component {
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">Nik Graf</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
+                <div>Nik Graf</div>
+              </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">Max Stoiber</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
+                <div>Max Stoiber</div>
+              </ExternalLink>
             </div>
           </div>
           <p className={ styles.specialThanks }>
