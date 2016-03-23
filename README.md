@@ -6,14 +6,17 @@ High quality plugins with great UX on to of [DraftJS](https://github.com/faceboo
 
 ## Available Plugins
 
-- Stickers
-- Hashtags
-- Linkify
-- Mentions
+- [Emoji](https://www.draft-js-plugins.com/plugin/emoji)
+- [Stickers](https://www.draft-js-plugins.com/plugin/sticker)
+- [Hashtags](https://www.draft-js-plugins.com/plugin/hashtag)
+- [Linkify](https://www.draft-js-plugins.com/plugin/linkify)
+- [Mentions](https://www.draft-js-plugins.com/plugin/mention)
+- [Undo](https://www.draft-js-plugins.com/plugin/undo)
+- or build your own … :)
 
 [![Build Status](https://travis-ci.org/draft-js-plugins/draft-js-plugins.svg?branch=master)](https://travis-ci.org/draft-js-plugins/draft-js-plugins)
 
-## Live Example
+## Live Example & Documentation
 
 Checkout [the website](https://www.draft-js-plugins.com/)!
 
@@ -81,32 +84,12 @@ export default class UnicornEditor extends Component {
         editorState={this.state.editorState}
         onChange={this.onChange}
         plugins={plugins}
-        spellCheck
-        readOnly={ this.state.readOnly }
         ref="editor"
       />
     );
   }
 }
 ```
-
-#### `createEditorStateWithText`
-
-Function to creates an EditorState with some text.
-
-Usage:
-
-```js
-import { createEditorStateWithText } from 'draft-js-plugins-editor';
-
-const editorState = createEditorStateWithText('Hello World!', plugins);
-```
-
-### Plugins
-
-- `draft-js-sticker-plugin`
-- `draft-js-hastag-plugin`
-- `draft-js-linkify-plugin`
 
 #### How to write a Plugin
 
