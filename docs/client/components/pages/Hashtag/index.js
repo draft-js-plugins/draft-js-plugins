@@ -32,9 +32,9 @@ export default class App extends Component {
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div className={ styles.param }>
             <span className={ styles.paramName }>theme</span>
-            <span>Map of CSS classes to style the plugin its has following values.</span>
-            <div className={ styles.subParams}>
-              <div className={ styles.subParam}><span className={ styles.subParamName }>hashtag:</span> CSS class to be applied to hashtag text</div>
+            <span>Immutable.js Map of CSS classes with the following keys.</span>
+            <div className={ styles.subParams }>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>hashtag:</span> CSS class to be applied to hashtag text</div>
             </div>
           </div>
         </Container>

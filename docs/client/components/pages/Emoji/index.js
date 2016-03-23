@@ -47,7 +47,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div>
             <div className={ styles.paramName }>theme</div>
-            <span>map of CSS classes to style the plugin</span>
+            <span>Immutable.js Map of CSS classes with the following keys.</span>
             <table className={ styles.themeTable }>
               <tbody>
                 <tr>

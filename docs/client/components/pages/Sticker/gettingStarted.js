@@ -4,7 +4,8 @@ import createStickerPlugin from 'draft-js-sticker-plugin';
 import React from 'react';
 import { fromJS } from 'immutable';
 
-// Creates an Instance. Passing a list of stickers as argument.
+// Creates an Instance. Passing in an Immutable.js List of stickers as an
+// argument.
 const stickers = fromJS({
   data: {
     'b3aa388f-b9f4-45b0-bba5-d92cf2caa48b': {
@@ -20,8 +21,8 @@ const stickers = fromJS({
 
 const stickerPlugin = createStickerPlugin({ stickers });
 
-// The Editor accept a list of plugins. In this case only the stickerPlugin is
-// passed, while it is possible to pass in multiple plugins.
+// The Editor accepts an array of plugins. In this case, only the stickerPlugin
+// is passed in, although it is possible to pass in multiple plugins.
 const MyEditor = ({ editorState, onChange }) => (
   <Editor
     editorState={ editorState }

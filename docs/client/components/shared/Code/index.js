@@ -29,7 +29,7 @@ export default class Code extends Component {
       <div className={ styles.root }>
         <div className={ nameClassname }>
           <span>{ this.props.name }</span>
-          <span onClick={ this.onCodeClick } className={styles.indicator }>{ this.state.collapsed ? '▼' : '▲' }</span>
+          <span onClick={ this.onCodeClick } className={ styles.indicator }>{ this.state.collapsed ? '▼' : '▲' }</span>
         </div>
         <pre className={ codeClassname }>
           <code

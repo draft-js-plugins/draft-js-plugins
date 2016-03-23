@@ -1,10 +1,9 @@
-import { Modifier, EditorState, Entity } from 'draft-js';
+import { Modifier, EditorState } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
+import emojioneList from '../utils/emojioneList';
+import convertShortNameToUnicode from '../utils/convertShortNameToUnicode';
 
-const addMention = (editorState, mention, selection) => {
-  // TODO allow the user to override if the mentions are SEGMENTED, IMMUTABLE or MUTABLE
-  const entityKey = Entity.create('mention', 'SEGMENTED', { mention });
-
+const addEmoji = (editorState, emojiShortName, selection) => {
   const { begin, end } = getSearchText(editorState, selection);
 
   // get selection of the @mention search text
@@ -13,16 +12,16 @@ const addMention = (editorState, mention, selection) => {
     focusOffset: end,
   });
 
+  const unicode = emojioneList[emojiShortName][0];
+  const emoji = convertShortNameToUnicode(unicode);
   let mentionReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
     mentionTextSelection,
-    mention.get('name'),
-    null, // no inline style needed
-    entityKey
+    emoji,
   );
 
-  // If the mention is inserted at the end, a space is appended right after for
-  // a smooth writing experience.
+  // If the mention is insert at the end a space is append right away for a smooth
+  // writing experience.
   const blockKey = mentionTextSelection.getAnchorKey();
   const blockSize = editorState.getCurrentContent().getBlockForKey(blockKey).getLength();
   if (blockSize === end) {
@@ -36,9 +35,9 @@ const addMention = (editorState, mention, selection) => {
   const newEditorState = EditorState.push(
     editorState,
     mentionReplacedContent,
-    'insert-mention',
+    'insert-emoji',
   );
   return EditorState.forceSelection(newEditorState, mentionReplacedContent.getSelectionAfter());
 };
 
-export default addMention;
+export default addEmoji;
