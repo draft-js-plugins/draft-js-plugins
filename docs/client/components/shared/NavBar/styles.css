@@ -49,7 +49,7 @@
 
 .link, .link:visited {
   color: #979797;
-  text-decoration: none;
+  text-decoration: underline;;
   display: block;
   padding: 18px 0px;
 }
