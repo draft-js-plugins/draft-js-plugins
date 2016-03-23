@@ -1,10 +1,10 @@
+**IMPORTANT**: There is no working version on NPM yet. We want to **release at 01:00 PDT 2015-03-22**. Please do not post it on Hackernews, Reddit or so on before that. Thank you :)
+
 # DraftJS Plugins
 
 ![Draft JS Plugins Logo](https://dl.dropboxusercontent.com/u/40735/draft-js-plugins.svg)
 
 High quality plugins with great UX on to of [DraftJS](https://github.com/facebook/draft-js).
-
-IMPORTANT: There is no working version on NPM yet. We want to release at 01:00 PDT 2015-03-22. Please do not post it on Hackernews, Reddit or so on before that. Thank you :)
 
 ## Available Plugins
 
