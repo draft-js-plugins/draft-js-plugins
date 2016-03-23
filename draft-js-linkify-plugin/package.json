@@ -1,6 +1,6 @@
 {
   "name": "draft-js-linkify-plugin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Linkify Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
@@ -27,7 +27,7 @@
     "react-dom": ">=0.14.0 || 15.0.0-rc.2"
   },
   "scripts": {
-    "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "build": "../node_modules/.bin/rimraf lib && NODE_ENV=production BABEL_ENV=production ../node_modules/.bin/webpack --config webpack.config.js",
     "prepublish": "npm run build"
   },
   "license": "MIT",
