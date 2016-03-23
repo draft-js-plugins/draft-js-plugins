@@ -13,6 +13,7 @@ module.exports = (props) => {
       <meta property="og:description" content="Facebook's rich-text editor framework DraftJS built on top of React allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own." />
       <meta property="og:url" content="https://www.draft-js-plugins.com" />
       <meta property="og:site_name" content="draft-js-plugins" />
+      <meta property="og:image" content="/images/draft-js-plugins.png" />
       <title>DraftJS Plugins - High quality plugins with great UX</title>
       <script>
         if (window.location.href.indexOf('draft-js-plugins.github.io/draft-js-plugins') !== -1) {
