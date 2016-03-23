@@ -1,20 +1,8 @@
 import React from 'react';
 import escapeMap from '../utils/escapeMap';
-import emojioneList from '../utils/emojioneList';
 import unionClassNames from 'union-class-names';
+import mappedUnicode from '../utils/mappedUnicode';
 
-const mapShortToUnicode = function() {
-  var new_obj = {};
-  for (var shortname in emojioneList) {
-    if (!emojioneList.hasOwnProperty(shortname)) { continue; }
-    for(var i = 0, len = emojioneList[shortname].length; i < len; i++){
-        new_obj[emojioneList[shortname][i]] = shortname;
-    }
-  }
-  return new_obj;
-};
-
-const mappedUnicode = mapShortToUnicode();
 const imagePathSVG = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const cacheBustParam = '?v=2.1.2';
 
