@@ -1,4 +1,4 @@
-**IMPORTANT**: There is no working version on NPM yet. We want to **release at 01:00 PDT 2015-03-22**. Please do not post it on Hackernews, Reddit or so on before that. Thank you :)
+**IMPORTANT**: There is no working version on NPM yet. We want to **release at 01:00 PDT 2015-03-23**. Please do not post it on Hackernews, Reddit or so on before that. Thank you :)
 
 # DraftJS Plugins
 
