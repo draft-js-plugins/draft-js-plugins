@@ -1,12 +1,8 @@
 .emoji {
   /* Hide the original Emoji icon no matter what system it is. */
   color: transparent;
-  /* Make the size depedent on the wrapping text. */
-  background-size: 1em 1em;
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  /* move it a bit further down to align it fine with text */
-  position: relative;
-  top: 3px;
+  /* make sure the background the image is only shown once */
+  background-repeat: no-repeat;
+  /* move it a bit further down to align it nicer with the text */
+  vertical-align: middle;
 }
