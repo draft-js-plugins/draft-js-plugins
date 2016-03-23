@@ -89,6 +89,7 @@
     "immutable": "^3.7.6",
     "linkify-it": "1.2.0",
     "tlds": "1.99.0",
-    "union-class-names": "^1.0.0"
+    "union-class-names": "^1.0.0",
+    "webpack": "^1.12.14"
   }
 }
