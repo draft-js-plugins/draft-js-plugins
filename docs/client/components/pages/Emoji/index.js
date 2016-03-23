@@ -29,13 +29,13 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Emoji</Heading>
           <p>
-            This implementation allows users to add Emojis and they will be consistently displayed
-            accross all platforms. This implementation is independent form the host system an therfor
-            even not supported which are not supported on the current system are displayed.
+            This implementation allows users to add Emojis that will be consistently displayed
+            across all platforms. This implementation is independent from the host system and therefore
+            even emojis which are not supported on the current system can be displayed.
           </p>
           <Heading level={ 3 }>Implementation</Heading>
           <p>
-            In this implementation the original Emoji unicode is wrapped in a span. The character is hidden with via the styles & while the background image shows the icon. This way you have a consistent set shown beteen all platforms while copy & pasting still works fine. We recommend to copy & paste the text below into an native editor to see the effect.
+            In this implementation, the original Emoji unicode is wrapped in a span. The character is hidden with CSS & the background image shows the icon. This way you have a consistent set of emojis shown between all platforms while copy & pasting still works. Try copy & pasting the text below into a native editor to see this in action.
           </p>
         </Container>
         <AlternateContainer>
@@ -47,7 +47,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div>
             <div className={ styles.paramName }>theme</div>
-            <span>map of CSS classes to style the plugin</span>
+            <span>Immutable.js Map of CSS classes with the following keys.</span>
             <table className={ styles.themeTable }>
               <tbody>
                 <tr>

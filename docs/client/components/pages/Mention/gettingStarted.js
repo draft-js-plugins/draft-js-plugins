@@ -4,7 +4,8 @@ import createMentionPlugin from 'draft-js-mention-plugin';
 import React from 'react';
 import { fromJS } from 'immutable';
 
-// Creates an Instance. Passing a list of mentions as argument.
+// Creates an Instance. Passing in an Immutable.js List of mentions as an
+// argument.
 const mentions = fromJS([
   {
     name: 'Max Stoiber',
@@ -20,8 +21,8 @@ const mentions = fromJS([
 
 const mentionPlugin = createMentionPlugin({ mentions });
 
-// The Editor accept a list of plugins. In this case only the mentionPlugin is
-// passed, while it is possible to pass in multiple plugins.
+// The Editor accepts an array of plugins. In this case, only the mentionPlugin
+// is passed in, although it is possible to pass in multiple plugins.
 const MyEditor = ({ editorState, onChange }) => (
   <Editor
     editorState={ editorState }

@@ -83,21 +83,21 @@ export default class MentionSearch extends Component {
 
     const selection = editorState.getSelection();
 
-    // the list should not be visible in case a range is selected or the editor has no focus
+    // the list should not be visible if a range is selected or the editor has no focus
     if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
 
     // only show the search component for the current block
     const sameBlock = selection.getAnchorKey() === this.initialSelection.getAnchorKey();
     if (!sameBlock) return removeList();
 
-    // Checks that the curosr is after the @ character but still somewhere in
-    // the word (search term). Setting it to allow the cursor being left of
-    // the @ causes causes troubles as due selection connfusion.
+    // Checks that the cursor is after the @ character but still somewhere in
+    // the word (search term). Setting it to allow the cursor to be left of
+    // the @ causes troubles as due selection confusion.
     const { begin, end } = getSearchText(editorState, this.initialSelection);
     const anchorOffset = selection.getAnchorOffset();
     if (anchorOffset <= begin || end < anchorOffset) return removeList();
 
-    // If none of the above triggered to close the window, it's save to assume
+    // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropwdown will again.
     if (!this.state.isOpen) {

@@ -80,12 +80,13 @@
   display: flex;
   justify-content: space-between;
   margin-top: 3rem;
+  flex-wrap: wrap;
 }
 
 .teamMember {
   display: flex;
   flex-direction: column;
-  flex-basis: 110px;
+  flex-basis: 90px;
 }
 
 .specialThanks {
