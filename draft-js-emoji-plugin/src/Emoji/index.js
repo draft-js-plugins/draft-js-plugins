@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map } from 'immutable';
 import escapeMap from '../utils/escapeMap';
 import unionClassNames from 'union-class-names';
 import mappedUnicode from '../utils/mappedUnicode';
