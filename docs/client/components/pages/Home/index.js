@@ -151,7 +151,7 @@ export default class App extends Component {
               <li>Hashtags</li>
               <li>Linkfiy (automatically turns links into a-tags)</li>
               <li>Mentions</li>
-              <li>Emojis (coming tomorrow …)</li>
+              <li>Emojis</li>
             </ul>
           </div>
           <Heading level={ 3 }>Why a UnicornEditor?</Heading>
