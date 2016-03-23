@@ -41,7 +41,7 @@ const initialState = {
   },
   'blocks': [{
     'key': '5ncb4',
-    'text': 'Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It\'s creators like Jyoti Puri or Nik Graf could mentioned. The editor also supports unicorn stickers. Add one by clicking the icon with the smiley below.',
+    'text': 'Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It\'s creators like Jyoti Puri or Nik Graf can be mentioned. The editor also supports unicorn stickers. Add one by clicking the icon with the smiley below.',
     'type': 'unstyled',
     'depth': 0,
     'inlineStyleRanges': [],
