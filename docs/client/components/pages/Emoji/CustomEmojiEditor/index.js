@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Map } from 'immutable';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import styles from './styles.css';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
+import emojiStyles from './emojiStyles.css';
+import editorStyles from './editorStyles.css';
 
 const theme = Map({
-  hashtag: styles.hashtag,
+  emoji: emojiStyles.emoji,
 });
-const hashtagPlugin = createHashtagPlugin({ theme });
-const plugins = [hashtagPlugin];
-const text = 'In this editor we even applied our own styles … #design #theme';
+const emojiPlugin = createEmojiPlugin({ theme });
+const plugins = [emojiPlugin];
+const text = `Cool, we can have all sorts if Emojis here. 🙌
+🌿☃️🎉🙈 aaaand maybe a few more here: 🐲☀️🗻 Quite fun!`;
 
-export default class CustomHashtagEditor extends Component {
+export default class CustomEmojiEditor extends Component {
 
   state = {
     editorState: createEditorStateWithText(text),
@@ -29,7 +31,7 @@ export default class CustomHashtagEditor extends Component {
 
   render() {
     return (
-      <div className={ styles.editor } onClick={ this.focus }>
+      <div className={ editorStyles.editor } onClick={ this.focus }>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

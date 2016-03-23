@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
-import styles from './styles.css';
+import editorStyles from './editorStyles.css';
 
 const emojiPlugin = createEmojiPlugin();
 const plugins = [emojiPlugin];
 const text = `Cool, we can have all sorts if Emojis here. 🙌
 🌿☃️🎉🙈 aaaand maybe a few more here: 🐲☀️🗻 Quite fun!`;
 
-export default class SimpleHashtagEditor extends Component {
+export default class SimpleEmojiEditor extends Component {
 
   state = {
     editorState: createEditorStateWithText(text),
@@ -26,7 +26,7 @@ export default class SimpleHashtagEditor extends Component {
 
   render() {
     return (
-      <div className={ styles.editor } onClick={ this.focus }>
+      <div className={ editorStyles.editor } onClick={ this.focus }>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

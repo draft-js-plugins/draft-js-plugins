@@ -6,3 +6,29 @@
 .center {
   text-align: center;
 }
+
+
+.param {
+  margin: 10px 0;
+}
+
+.paramName {
+  font-weight: bold;
+  width: 125px;
+  display: inline-block;
+}
+
+.subParams {
+  margin-left: 125px;
+  margin-top: 10px;
+}
+
+.subParam {
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.subParamName {
+  font-weight: bold;
+  margin-right: 5px;
+}
