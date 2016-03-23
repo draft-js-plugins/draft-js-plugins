@@ -41,7 +41,7 @@ const initialState = {
   },
   'blocks': [{
     'key': '5ncb4',
-    'text': 'Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It\'s creators like Jyoti Puri or Nik Graf could mentioned. Of course it also supports unicorn stickers like this one:',
+    'text': 'Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It\'s creators like Jyoti Puri or Nik Graf could mentioned. The editor also supports unicorn stickers. Add one by clicking the icon with the smiley below.',
     'type': 'unstyled',
     'depth': 0,
     'inlineStyleRanges': [],
@@ -55,6 +55,13 @@ const initialState = {
       'key': 1
     }]
   }, {
+    'key': 'mlp',
+    'text': '',
+    'type': 'unstyled',
+    'depth': 0,
+    'inlineStyleRanges': [],
+    'entityRanges': []
+  }, {
   //   'key': '8sra4',
   //   'text': '',
   //   'type': 'sticker',
@@ -67,7 +74,7 @@ const initialState = {
   //   }]
   // }, {
     'key': 'mlq',
-    'text': 'Of course it also supports Emojis 🤓 🎉',
+    'text': 'Of course it comes with Emoji support 🤓 🎉 … type in a colon and add yours here',
     'type': 'unstyled',
     'depth': 0,
     'inlineStyleRanges': [],
