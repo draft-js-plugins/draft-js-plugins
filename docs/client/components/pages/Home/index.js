@@ -8,13 +8,21 @@ import ContainerBox from '../../shared/ContainerBox';
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import SocialBar from '../../shared/SocialBar';
+import GithubButton from '../../shared/GithubButton';
 import NavBar from '../../shared/NavBar';
 import ExternalLink from '../../shared/Link';
 import MailchimpForm from '../../shared/MailchimpForm';
 
 export default class App extends Component {
 
+  state = {
+    logoClassName: styles.hiddenLogo,
+  };
+
   componentDidMount() {
+    this.setState({ // eslint-disable-line react/no-did-mount-set-state
+      logoClassName: styles.logo,
+    });
     this.animateLogo();
   }
 
@@ -60,6 +68,14 @@ export default class App extends Component {
       easing: 'easeOutQuad',
       delay: 1500,
     });
+
+    animate({
+      el: this.refs.githubWrapper,
+      opacity: [0, 1],
+      duration: 1600,
+      easing: 'easeOutQuad',
+      delay: 2500,
+    });
   };
 
   render() {
@@ -67,7 +83,7 @@ export default class App extends Component {
       <div>
         <div className={ styles.header }>
           <ContainerBox>
-            <svg className={ styles.logo } viewBox="0 0 263 209" version="1.1">
+            <svg className={ this.state.logoClassName } viewBox="0 0 263 209" version="1.1">
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Pencil" transform="translate(177.000000, 1.000000)" stroke="#979797" strokeWidth="2" fill="#FFFFFF">
                     <path
@@ -109,6 +125,9 @@ export default class App extends Component {
             </svg>
             <div className={ styles.logoText }>DraftJS Plugins</div>
             <p className={ styles.tagline }>High quality plugins with great UX</p>
+            <div className={ styles.githubWrapper } ref="githubWrapper">
+              <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="mega" />
+            </div>
           </ContainerBox>
         </div>
         <NavBar />
