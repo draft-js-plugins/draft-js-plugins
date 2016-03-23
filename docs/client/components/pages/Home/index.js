@@ -184,6 +184,12 @@ export default class App extends Component {
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/psbrandt">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_200x200.png" />
+                <div>Pascal Brandt</div>
+              </ExternalLink>
+            </div>
+            <div className={ styles.teamMember }>
               <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">Nik Graf</ExternalLink>
             </div>
