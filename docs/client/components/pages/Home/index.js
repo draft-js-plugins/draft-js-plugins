@@ -117,9 +117,6 @@ export default class App extends Component {
           <p className={ styles.whatText }>
             Slack-like emoji autocompletion, Facebook-like stickers & mentions, and many more features out of the box to enhance your web application.
           </p>
-          <p className={ styles.whyText }>
-            <b>IMPORTANT</b>: There is no working version on NPM yet. We want to release at 01:00 PDT 2015-03-23. Please do not post it on Hackernews, Reddit or so on before that. Thank you :)
-          </p>
           <Heading level={ 2 }>Wait, but why?</Heading>
           <p className={ styles.whyText }>
             Facebook's rich-text editor framework
