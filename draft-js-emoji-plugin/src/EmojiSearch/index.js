@@ -4,7 +4,7 @@ import EmojiOption from './EmojiOption';
 import addEmoji from '../modifiers/addEmoji';
 import getSearchText from '../utils/getSearchText';
 import { genKey } from 'draft-js';
-import { List } from 'immutable';
+import emojiShortNames from '../utils/shortNames';
 
 export default class EmojiSearch extends Component {
 
@@ -152,16 +152,15 @@ export default class EmojiSearch extends Component {
     this.props.updateEditorState(this.props.getEditorState());
   };
 
-  // Get the first 5 emojis that match
+  // Get the first 6 emojis that match
   getEmojisForFilter = () => {
     const selection = this.props.getEditorState().getSelection();
     const { word } = getSearchText(this.props.getEditorState(), selection);
     const emojiValue = word.substring(1, word.length).toLowerCase();
-    const emojis = this.props.emojis ? this.props.emojis : List([]);
-    const filteredValues = emojis.filter((emoji) => (
-      !emojiValue || emoji.get('name').toLowerCase().indexOf(emojiValue) > -1
+    const filteredValues = emojiShortNames.filter((emojiShortName) => (
+      !emojiValue || emojiShortName.indexOf(emojiValue) > -1
     ));
-    const size = filteredValues.size < 5 ? filteredValues.size : 5;
+    const size = filteredValues.size < 6 ? filteredValues.size : 6;
     return filteredValues.setSize(size);
   };
 
@@ -192,7 +191,7 @@ export default class EmojiSearch extends Component {
           {
             this.filteredEmojis.map((emoji, index) => (
               <EmojiOption
-                key={ emoji.get('name') }
+                key={ emoji }
                 onEmojiSelect={ this.onEmojiSelect }
                 onEmojiFocus={ this.onEmojiFocus }
                 isFocused={ this.state.focusedOptionIndex === index }

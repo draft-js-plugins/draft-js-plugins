@@ -5,7 +5,7 @@
 .autocompletePopover {
   border: 1px solid #ddd;
   margin-top: 1.75em;
-  min-width: 180px;
+  min-width: 240px;
   position: absolute;
   background: #fff;
   border-radius: 4px;

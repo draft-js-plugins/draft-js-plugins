@@ -20,6 +20,7 @@ const defaultTheme = Map({
   autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
   autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
   autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
+  autocompleteEntryIcon: autocompleteEntryStyles.autocompleteEntryIcon,
   autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
 });
 

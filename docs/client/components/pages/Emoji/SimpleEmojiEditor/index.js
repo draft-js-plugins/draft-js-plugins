@@ -6,7 +6,7 @@ import editorStyles from './editorStyles.css';
 const emojiPlugin = createEmojiPlugin();
 const plugins = [emojiPlugin];
 const text = `Cool, we can have all sorts if Emojis here. 🙌
-🌿☃️🎉🙈 aaaand maybe a few more here: 🐲☀️🗻 Quite fun!`;
+🌿☃️🎉🙈 aaaand maybe a few more here 🐲☀️🗻 Quite fun!`;
 
 export default class SimpleEmojiEditor extends Component {
 

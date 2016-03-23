@@ -16,9 +16,11 @@
   margin-left: 8px;
 }
 
-.autocompleteEntryAvatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
+.autocompleteEntryIcon {
+  width: 1em;
+  height: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.25em;
+  display: inline-block;
   vertical-align: middle;
 }
