@@ -33,7 +33,7 @@
   "license": "MIT",
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
-    "draft-js": "^0.2.2",
+    "draft-js": "^0.3.0",
     "emojione": "^2.1.2",
     "find-with-regex": "^1.0.2",
     "immutable": "^3.7.6",
