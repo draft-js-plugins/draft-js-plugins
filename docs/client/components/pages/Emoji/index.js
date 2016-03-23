@@ -29,13 +29,13 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Emoji</Heading>
           <p>
-            This implementation allows users to add Emojis that will be consistently displayed
-            across all platforms. This implementation is independent from the host system and therefore
-            even emojis which are not supported on the current system can be displayed.
+            Consistent Emoji display across all platforms, independent of the host system.
           </p>
           <Heading level={ 3 }>Implementation</Heading>
           <p>
-            In this implementation, the original Emoji unicode is wrapped in a span. The character is hidden with CSS & the background image shows the icon. This way you have a consistent set of emojis shown between all platforms while copy & pasting still works. Try copy & pasting the text below into a native editor to see this in action.
+            Emoji unicode characters are wrapped in a span, hidden, and displayed instead through
+            a background image. This creates consistency across all platforms while maintaining
+            natural copy/pasting functionality.
           </p>
         </Container>
         <AlternateContainer>
@@ -73,7 +73,6 @@ export default class App extends Component {
         </Container>
         <SocialBar />
       </div>
-
     );
   }
 }
