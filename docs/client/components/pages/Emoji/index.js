@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Container from '../../shared/Container';
 import Heading from '../../shared/Heading';
-import styles from './styles.css';
+
+// import styles from './styles.css';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
+import Code from '../../shared/Code';
+import SimpleEmojiEditor from './SimpleEmojiEditor';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleEmojiEditor';
 
 export default class App extends Component {
   render() {
@@ -14,7 +18,11 @@ export default class App extends Component {
         <Separator />
         <Container>
           <Heading level={ 2 }>Emoji</Heading>
-          <div className={ styles.center }>The Emoji Plugin is not yet ready & will be released tomorrow.</div>
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Simple Example</Heading>
+          <SimpleEmojiEditor />
+          <Code code={ simpleExampleCode } name="SimpleEmojiEditor.js" />
         </Container>
         <SocialBar />
       </div>
