@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import getWordAt from '../getWordAt';
 
 describe('getWordAt', () => {
-  it('finds a word in between sentence', () => {
+  it('finds a word in between sentences', () => {
     const expected = {
       word: 'is',
       begin: 5,

@@ -9,7 +9,7 @@ const theme = Map({
 });
 const hashtagPlugin = createHashtagPlugin({ theme });
 const plugins = [hashtagPlugin];
-const text = 'In this editor we even applied our own styles … #design #theme';
+const text = 'In this editor, we can even apply our own styles … #design #theme';
 
 export default class CustomHashtagEditor extends Component {
 

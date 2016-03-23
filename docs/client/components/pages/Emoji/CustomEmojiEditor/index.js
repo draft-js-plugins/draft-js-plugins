@@ -10,7 +10,7 @@ const theme = Map({
 });
 const emojiPlugin = createEmojiPlugin({ theme });
 const plugins = [emojiPlugin];
-const text = `Cool, we can have all sorts if Emojis here. 🙌
+const text = `Cool, we can have all sorts of Emojis here. 🙌
 🌿☃️🎉🙈 aaaand maybe a few more here: 🐲☀️🗻 Quite fun!`;
 
 export default class CustomEmojiEditor extends Component {
