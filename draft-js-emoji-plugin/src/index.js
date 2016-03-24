@@ -30,6 +30,7 @@ const callbacks = {
   onDownArrow: undefined,
   onUpArrow: undefined,
   onEscape: undefined,
+  onTab: undefined,
   handleReturn: undefined,
   onChange: undefined,
 };
@@ -74,6 +75,7 @@ const emojiPlugin = (config = {}) => {
       onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
       onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
       onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
+      onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
       handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
       onChange: (editorState) => {
         if (callbacks.onChange) return callbacks.onChange(editorState);

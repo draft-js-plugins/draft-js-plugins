@@ -96,6 +96,18 @@ export default class PluginEditor extends Component {
     });
   };
 
+  onTab = (keyboardEvent) => {
+    // TODO allow to provide a custom onTab
+
+    this.plugins.map((plugin) => {
+      if (plugin.onTab) {
+        plugin.onTab(keyboardEvent);
+      }
+
+      return undefined;
+    });
+  };
+
   getEditorState = () => this.editorState;
 
   handleKeyCommand = (command) => {
@@ -221,6 +233,7 @@ export default class PluginEditor extends Component {
         handleKeyCommand={ this.handleKeyCommand }
         keyBindingFn={ this.keyBindingFn }
         onDownArrow={ this.onDownArrow }
+        onTab={ this.onTab }
         onUpArrow={ this.onUpArrow }
         onEscape={ this.onEscape }
         handleReturn={ this.handleReturn }
