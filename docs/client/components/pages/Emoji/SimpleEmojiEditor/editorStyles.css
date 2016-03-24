@@ -11,8 +11,3 @@
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
 }
-
-.hashtag {
-  color: #1CA782;
-  font-family: cursive;
-}

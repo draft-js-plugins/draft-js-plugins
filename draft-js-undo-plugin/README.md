@@ -14,13 +14,13 @@ import createUndoPlugin from 'draft-js-undo-plugin';
 const undoPlugin = createUndoPlugin();
 ```
 
-Now import the `UndoButton` and the `RedoButton` from the instance:
+Now get the `UndoButton` and the `RedoButton` components from the instance:
 
 ```JS
-import { UndoButton, RedoButton } from undoPlugin;
+const { UndoButton, RedoButton } = undoPlugin;
 ```
 
-Which take two props, `onChange` (a function that takes a new editor state as an argument and updates your editors state) and `editorState` (the current editor state). Render them with those props and your editor now has undo/redo functionality!
+Which take two props, `onChange` (a function that takes a new editor state as an argument and updates your editor's state) and `editorState` (the current editor state). Render them with those props and your editor now has undo/redo functionality!
 
 ```HTML
 <UndoButton onChange={ this.onChange } editorState={ this.state.editorState } />

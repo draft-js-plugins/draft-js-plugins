@@ -20,6 +20,12 @@
   margin-bottom: 2rem;
   width: 263px;
   height: 209px;
+  opacity: 1;
+}
+
+.hiddenLogo {
+  composes: logo;
+  opacity: 0;
 }
 
 .logoText {
@@ -31,7 +37,13 @@
 .tagline {
   font-size: 18px;
   margin-top: 0.4em;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
+}
+
+.githubWrapper {
+  margin-bottom: 1.5em;
+  height: 33px;
+  opacity: 0;
 }
 
 .center {
@@ -80,12 +92,13 @@
   display: flex;
   justify-content: space-between;
   margin-top: 3rem;
+  flex-wrap: wrap;
 }
 
 .teamMember {
   display: flex;
   flex-direction: column;
-  flex-basis: 110px;
+  flex-basis: 90px;
 }
 
 .specialThanks {

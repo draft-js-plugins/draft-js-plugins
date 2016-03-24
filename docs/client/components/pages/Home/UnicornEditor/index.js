@@ -4,6 +4,7 @@ import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import createMentionPlugin from 'draft-js-mention-plugin';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
 import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
 import stickers from './stickers';
@@ -15,6 +16,7 @@ import {
 } from 'draft-js';
 import initialState from './initialState';
 
+const emojiPlugin = createEmojiPlugin();
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
 const mentionPlugin = createMentionPlugin({
@@ -28,6 +30,7 @@ const { StickerSelect } = stickerPlugin;
 const { UndoButton, RedoButton } = undoPlugin;
 
 const plugins = [
+  emojiPlugin,
   hashtagPlugin,
   stickerPlugin,
   linkifyPlugin,
@@ -55,7 +58,6 @@ export default class UnicornEditor extends Component {
     this.refs.editor.focus();
   };
 
-  /* eslint-disable react/jsx-no-bind */
   render() {
     return (
       <div className={ styles.root }>

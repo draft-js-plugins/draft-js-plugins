@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import styles from './styles.css';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
+import editorStyles from './editorStyles.css';
 
-const hashtagPlugin = createHashtagPlugin();
-const plugins = [hashtagPlugin];
-const text = `#TIL: This editor can have all sorts of #hashtags. Pretty #cool :)
-Try it yourself by starting a word with a # (hash character) …
-`;
+const emojiPlugin = createEmojiPlugin();
+const plugins = [emojiPlugin];
+const text = `Cool, we can have all sorts of Emojis here. 🙌
+🌿☃️🎉🙈 aaaand maybe a few more here 🐲☀️🗻 Quite fun!`;
 
-export default class SimpleHashtagEditor extends Component {
+export default class SimpleEmojiEditor extends Component {
 
   state = {
     editorState: createEditorStateWithText(text),
@@ -27,7 +26,7 @@ export default class SimpleHashtagEditor extends Component {
 
   render() {
     return (
-      <div className={ styles.editor } onClick={ this.focus }>
+      <div className={ editorStyles.editor } onClick={ this.focus }>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

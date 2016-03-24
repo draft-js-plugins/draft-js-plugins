@@ -32,25 +32,25 @@ export default class App extends Component {
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div className={ styles.param }>
             <span className={ styles.paramName }>theme</span>
-            <span>Map of CSS classes to style the plugin its has following values.</span>
-            <div className={ styles.subParams}>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>sticker:</span> CSS class for sticker.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>stickerImage:</span> CSS class for </div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>stickerRemoveButton:</span> CSS class for sticker remove button.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>select:</span> CSS class for sticker select.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectPopover:</span> CSS class for sticker select popup.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectClosedPopover:</span> CSS class for sticker select close button.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectBottomGradient:</span> CSS class for sticker select bottom gradient.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectButton:</span> CSS class for button to open sticker select.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectPressedButton:</span> CSS class for pressed state of button to open sticker select.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectStickerList:</span> CSS class for sticker select list.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectSticker:</span> CSS class for sticker select.</div>
-            <div className={ styles.subParam}><span className={ styles.subParamName }>selectStickerImage:</span> CSS class for sticker select image.</div>
+            <span>Immutable.js Map of CSS classes with the following keys.</span>
+            <div className={ styles.subParams }>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>sticker:</span> CSS class for sticker.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>stickerImage:</span> CSS class for </div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>stickerRemoveButton:</span> CSS class for sticker remove button.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>select:</span> CSS class for sticker select.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectPopover:</span> CSS class for sticker select popup.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectClosedPopover:</span> CSS class for sticker select close button.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectBottomGradient:</span> CSS class for sticker select bottom gradient.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectButton:</span> CSS class for button to open sticker select.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectPressedButton:</span> CSS class for pressed state of button to open sticker select.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectStickerList:</span> CSS class for sticker select list.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectSticker:</span> CSS class for sticker select.</div>
+              <div className={ styles.subParam }><span className={ styles.subParamName }>selectStickerImage:</span> CSS class for sticker select image.</div>
             </div>
           </div>
           <div className={ styles.param }>
             <span className={ styles.paramName }>stickers</span>
-            <span>Immutable list of stickers.</span>
+            <span>Immutable.js List of stickers.</span>
           </div>
           <div className={ styles.paramBig }>
             <span className={ styles.paramName }>selectButtonContent</span>
@@ -58,7 +58,7 @@ export default class App extends Component {
           </div>
           <div className={ styles.paramBig }>
             <span className={ styles.paramName }>attachRemoveButton</span>
-            <span>Flag to attach or non-attach remove button to stickers. (Default value is true)</span>
+            <span>Flag to attach or detach a remove button to stickers. (Default value is true)</span>
           </div>
         </Container>
         <Container>
@@ -74,7 +74,6 @@ export default class App extends Component {
         </Container>
         <SocialBar />
       </div>
-
     );
   }
 }

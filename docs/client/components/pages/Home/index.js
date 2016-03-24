@@ -8,13 +8,21 @@ import ContainerBox from '../../shared/ContainerBox';
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import SocialBar from '../../shared/SocialBar';
+import GithubButton from '../../shared/GithubButton';
 import NavBar from '../../shared/NavBar';
 import ExternalLink from '../../shared/Link';
 import MailchimpForm from '../../shared/MailchimpForm';
 
 export default class App extends Component {
 
+  state = {
+    logoClassName: styles.hiddenLogo,
+  };
+
   componentDidMount() {
+    this.setState({ // eslint-disable-line react/no-did-mount-set-state
+      logoClassName: styles.logo,
+    });
     this.animateLogo();
   }
 
@@ -60,6 +68,14 @@ export default class App extends Component {
       easing: 'easeOutQuad',
       delay: 1500,
     });
+
+    animate({
+      el: this.refs.githubWrapper,
+      opacity: [0, 1],
+      duration: 1600,
+      easing: 'easeOutQuad',
+      delay: 2500,
+    });
   };
 
   render() {
@@ -67,7 +83,7 @@ export default class App extends Component {
       <div>
         <div className={ styles.header }>
           <ContainerBox>
-            <svg className={ styles.logo } viewBox="0 0 263 209" version="1.1">
+            <svg className={ this.state.logoClassName } viewBox="0 0 263 209" version="1.1">
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Pencil" transform="translate(177.000000, 1.000000)" stroke="#979797" strokeWidth="2" fill="#FFFFFF">
                     <path
@@ -109,13 +125,16 @@ export default class App extends Component {
             </svg>
             <div className={ styles.logoText }>DraftJS Plugins</div>
             <p className={ styles.tagline }>High quality plugins with great UX</p>
+            <div className={ styles.githubWrapper } ref="githubWrapper">
+              <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="mega" />
+            </div>
           </ContainerBox>
         </div>
         <NavBar />
         <Separator />
         <AlternateContainer>
           <p className={ styles.whatText }>
-            Slack-like emoji autocompletion, Facebook-like stickers & mentions and many more features out of the box to enhance your web application.
+            Slack-like emoji autocompletion, Facebook-like stickers & mentions, and many more features out of the box to enhance your web application.
           </p>
           <Heading level={ 2 }>Wait, but why?</Heading>
           <p className={ styles.whyText }>
@@ -127,7 +146,7 @@ export default class App extends Component {
             <ExternalLink href="https://facebook.github.io/react/">
               &nbsp;React&nbsp;
             </ExternalLink>
-            allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own.
+            allows you to create powerful editors. We're building a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want or build your own.
           </p>
         </AlternateContainer>
         <Container>
@@ -151,7 +170,7 @@ export default class App extends Component {
               <li>Hashtags</li>
               <li>Linkfiy (automatically turns links into a-tags)</li>
               <li>Mentions</li>
-              <li>Emojis (coming tomorrow …)</li>
+              <li>Emojis</li>
             </ul>
           </div>
           <Heading level={ 3 }>Why a UnicornEditor?</Heading>
@@ -181,12 +200,22 @@ export default class App extends Component {
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">Nik Graf</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/psbrandt">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_200x200.png" />
+                <div>Pascal Brandt</div>
+              </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
-              <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">Max Stoiber</ExternalLink>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
+                <div>Nik Graf</div>
+              </ExternalLink>
+            </div>
+            <div className={ styles.teamMember }>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
+                <div>Max Stoiber</div>
+              </ExternalLink>
             </div>
           </div>
           <p className={ styles.specialThanks }>
