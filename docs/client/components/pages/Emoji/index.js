@@ -8,7 +8,6 @@ import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
 import Code from '../../shared/Code';
 import SimpleEmojiEditor from './SimpleEmojiEditor';
-import CustomEmojiEditor from './CustomEmojiEditor';
 import AlternateContainer from '../../shared/AlternateContainer';
 
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
@@ -16,15 +15,11 @@ import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleEmojiEditor';
 import simpleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleEmojiEditor/editorStyles.css';
 
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomEmojiEditor';
-import customEmojiStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomEmojiEditor/emojiStyles.css';
-import customEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomEmojiEditor/editorStyles.css';
-
 export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBar />
         <Separator />
         <Container>
           <Heading level={ 2 }>Emoji</Heading>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
-import emojiStyles from './emojiStyles.css';
 import editorStyles from './editorStyles.css';
 
 const emojiPlugin = createEmojiPlugin();
