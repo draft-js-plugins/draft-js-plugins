@@ -1,12 +1,17 @@
+/* eslint no-unused-expressions: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
 import Redo from '../index';
 import { Map } from 'immutable';
-import { expect } from 'chai';
-import { EditorState } from 'draft-js';
+import sinon from 'sinon';
+import chai, { expect } from 'chai';
+import sinonChai from 'sinon-chai';
+import { EditorState, Modifier } from 'draft-js';
+
+chai.use(sinonChai);
 
 describe('RedoButton', () => {
-  const onChange = () => undefined;
+  const onChange = () => sinon.spy();
   let editorState;
 
   beforeEach(() => {
@@ -52,7 +57,46 @@ describe('RedoButton', () => {
     expect(result).to.have.prop('className').to.contain('custom-class-name');
   });
 
-  // TODO test: button is disabled in case the getRedoStack is empty
-  // TODO test: button is not disabled in case the getRedoStack is not empty
-  // TODO test: onClick on the button triggers an update with a redo
+  it('adds disabled attribute to button if the getRedoStack is empty', () => {
+    const result = shallow(
+      <Redo
+        editorState={ editorState }
+        onChange={ onChange }
+        children="redo"
+      />
+    );
+    expect(result.find('button')).prop('disabled').to.equal(true);
+  });
+
+  it('removes disabled attribute from button if the getRedoStack is not empty', () => {
+    const contentState = editorState.getCurrentContent();
+    const SelectionState = editorState.getSelection();
+    const newContent = Modifier.insertText(
+      contentState,
+      SelectionState,
+      'hello'
+    );
+    const newEditorState = EditorState.push(editorState, newContent, 'insert-text');
+    const undoEditorState = EditorState.undo(newEditorState);
+    const result = shallow(
+      <Redo
+        editorState={ undoEditorState }
+        onChange={ onChange }
+        children="redo"
+      />
+    );
+    expect(result.find('button')).prop('disabled').to.equal(false);
+  });
+
+  it('triggers an update with redo when the button is clicked', () => {
+    const result = shallow(
+      <Redo
+        editorState={ editorState }
+        onChange={ onChange }
+        children="redo"
+      />
+    );
+    result.find('button').simulate('click');
+    expect(onChange).to.have.been.calledOnce;
+  });
 });
