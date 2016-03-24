@@ -23,7 +23,8 @@ export default class EmojiSearch extends Component {
     this.props.callbacks.onDownArrow = this.onDownArrow;
     this.props.callbacks.onUpArrow = this.onUpArrow;
     this.props.callbacks.onEscape = this.onEscape;
-    this.props.callbacks.handleReturn = this.handleReturn;
+    this.props.callbacks.onTab = this.onTab;
+    this.props.callbacks.handleReturn = this.commitSelection;
     this.props.callbacks.onChange = this.onEditorStateChange;
     this.props.ariaProps.ariaActiveDescendantID = `emoji-option-${this.key}-${this.state.focusedOptionIndex}`;
     this.props.ariaProps.ariaOwneeID = `emojis-list-${this.key}`;
@@ -130,6 +131,11 @@ export default class EmojiSearch extends Component {
     }
   };
 
+  onTab = (keyboardEvent) => {
+    keyboardEvent.preventDefault();
+    this.commitSelection();
+  };
+
   onEscape = (keyboardEvent) => {
     keyboardEvent.preventDefault();
 
@@ -164,7 +170,7 @@ export default class EmojiSearch extends Component {
     return filteredValues.setSize(size);
   };
 
-  handleReturn = () => {
+  commitSelection = () => {
     this.onEmojiSelect(this.filteredEmojis.get(this.state.focusedOptionIndex));
     return true;
   };

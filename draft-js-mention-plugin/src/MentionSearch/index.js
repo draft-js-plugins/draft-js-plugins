@@ -23,7 +23,8 @@ export default class MentionSearch extends Component {
     this.props.callbacks.onDownArrow = this.onDownArrow;
     this.props.callbacks.onUpArrow = this.onUpArrow;
     this.props.callbacks.onEscape = this.onEscape;
-    this.props.callbacks.handleReturn = this.handleReturn;
+    this.props.callbacks.handleReturn = this.commitSelection;
+    this.props.callbacks.onTab = this.onTab;
     this.props.callbacks.onChange = this.onEditorStateChange;
     this.props.ariaProps.ariaActiveDescendantID = `mention-option-${this.key}-${this.state.focusedOptionIndex}`;
     this.props.ariaProps.ariaOwneeID = `mentions-list-${this.key}`;
@@ -122,6 +123,11 @@ export default class MentionSearch extends Component {
     this.onMentionFocus(newIndex >= this.filteredMentions.size ? 0 : newIndex);
   };
 
+  onTab = (keyboardEvent) => {
+    keyboardEvent.preventDefault();
+    this.commitSelection();
+  }
+
   onUpArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
     if (this.filteredMentions.size > 0) {
@@ -165,7 +171,7 @@ export default class MentionSearch extends Component {
     return filteredValues.setSize(size);
   };
 
-  handleReturn = () => {
+  commitSelection = () => {
     this.onMentionSelect(this.filteredMentions.get(this.state.focusedOptionIndex));
     return true;
   };
