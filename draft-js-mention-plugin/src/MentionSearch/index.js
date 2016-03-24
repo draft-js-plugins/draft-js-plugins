@@ -126,7 +126,7 @@ export default class MentionSearch extends Component {
   onTab = (keyboardEvent) => {
     keyboardEvent.preventDefault();
     this.commitSelection();
-  }
+  };
 
   onUpArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
