@@ -27,7 +27,10 @@
     "react-dom": ">=0.14.0 || 15.0.0-rc.2"
   },
   "scripts": {
-    "build": "../node_modules/.bin/rimraf lib && NODE_ENV=production BABEL_ENV=production ../node_modules/.bin/webpack --config webpack.config.js",
+    "clean": "../node_modules/.bin/rimraf lib",
+    "build": "npm run clean && npm run build:js && npm run build:css",
+    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
+    "build:css": "node ../scripts/concatCssFiles $(pwd) && ../node_modules/.bin/rimraf lib-css",
     "prepublish": "npm run build"
   },
   "license": "MIT",
