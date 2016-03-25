@@ -1,6 +1,6 @@
 {
   "name": "draft-js-undo-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Undo Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
