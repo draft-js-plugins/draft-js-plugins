@@ -7,7 +7,7 @@ module.exports = {
   output: {
     publicPath: '/',
     libraryTarget: 'commonjs2', // necessary for the babel plugin
-    path: path.join(__dirname, 'lib'), // where to place webpack files
+    path: path.join(__dirname, 'lib-css'), // where to place webpack files
   },
   module: {
     loaders: [
@@ -19,6 +19,6 @@ module.exports = {
   },
   postcss: [autoprefixer({ browsers: ['> 1%'] })],
   plugins: [
-    new ExtractTextPlugin('plugin.css', { allChunks: true }),
+    new ExtractTextPlugin(`${path.parse(process.argv[2]).name}.css`),
   ],
 };
