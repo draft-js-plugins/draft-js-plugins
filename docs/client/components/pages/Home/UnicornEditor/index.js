@@ -10,9 +10,10 @@ import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
 import {
+  // convertToRaw,
+  convertFromRaw,
   ContentState,
   EditorState,
-  convertFromRaw
 } from 'draft-js';
 import initialState from './initialState';
 
