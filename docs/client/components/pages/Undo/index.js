@@ -8,6 +8,7 @@ import Code from '../../shared/Code';
 import SimpleUndoEditor from './SimpleUndoEditor';
 import CustomUndoEditor from './CustomUndoEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleUndoEditor';
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleUndoEditor/editorStyles.css';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomUndoEditor';
 import customExampleButtonCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/buttonStyles.css';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/editorStyles.css';
@@ -53,6 +54,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleUndoEditor />
           <Code code={ simpleExampleCode } name="SimpleUndoEditor.js" />
+          <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Undo/Redo Example</Heading>

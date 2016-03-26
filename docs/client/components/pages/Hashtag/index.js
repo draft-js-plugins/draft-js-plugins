@@ -7,6 +7,7 @@ import Code from '../../shared/Code';
 import SimpleHashtagEditor from './SimpleHashtagEditor';
 import CustomHashtagEditor from './CustomHashtagEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleHashtagEditor';
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleHashtagEditor/editorStyles.css';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomHashtagEditor';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomHashtagEditor/editorStyles.css';
 import customExampleHashtagStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomHashtagEditor/hashtagStyles.css';
@@ -43,6 +44,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleHashtagEditor />
           <Code code={ simpleExampleCode } name="SimpleHashtagEditor.js" />
+          <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Hashtag Example</Heading>

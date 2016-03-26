@@ -7,6 +7,7 @@ import Code from '../../shared/Code';
 import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor';
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
@@ -52,6 +53,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleMentionEditor />
           <Code code={ simpleExampleCode } name="SimpleMentionEditor.js" />
+          <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Mention Example</Heading>

@@ -1,7 +1,3 @@
-.root {
-  background: #FFF;
-}
-
 .editor {
   border: 1px solid #ddd;
   cursor: text;
@@ -14,4 +10,8 @@
 
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
+}
+
+.options {
+  margin-bottom: 20px;
 }
