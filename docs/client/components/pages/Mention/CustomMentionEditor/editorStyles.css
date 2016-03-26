@@ -3,15 +3,11 @@
   cursor: text;
   padding: 16px;
   border-radius: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 2em;
   box-shadow: inset 0px 1px 8px -3px #ABABAB;
   background: #fefefe;
 }
 
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
-}
-
-.editorOptions {
-  margin-bottom: 20px;
 }

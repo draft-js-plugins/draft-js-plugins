@@ -7,8 +7,9 @@ import Code from '../../shared/Code';
 import SimpleLinkifyEditor from './SimpleLinkifyEditor';
 import CustomLinkifyEditor from './CustomLinkifyEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleLinkifyEditor';
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleLinkifyEditor/editorStyles.css';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomLinkifyEditor';
-import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomLinkifyEditor/styles.css';
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomLinkifyEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
@@ -42,12 +43,13 @@ export default class App extends Component {
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleLinkifyEditor />
           <Code code={ simpleExampleCode } name="SimpleLinkifyEditor.js" />
+          <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Linkify Example</Heading>
           <CustomLinkifyEditor />
           <Code code={ customExampleCode } name="CustomLinkifyEditor.js" />
-          <Code code={ customExampleStylesCode } name="styles.css" />
+          <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>

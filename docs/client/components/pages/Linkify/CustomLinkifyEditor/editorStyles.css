@@ -11,7 +11,3 @@
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
 }
-
-.editorOptions {
-  margin-bottom: 20px;
-}

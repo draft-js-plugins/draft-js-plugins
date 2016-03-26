@@ -31,13 +31,6 @@ const initialState = {
         })
       }
     },
-    '2': {
-      'type': 'sticker',
-      'mutability': 'IMMUTABLE',
-      'data': {
-        'id': 'b3aa388f-b9f4-45b0-bba5-d92cf2caa48b'
-      }
-    }
   },
   'blocks': [{
     'key': '5ncb4',
@@ -62,18 +55,7 @@ const initialState = {
     'inlineStyleRanges': [],
     'entityRanges': []
   }, {
-  //   'key': '8sra4',
-  //   'text': '',
-  //   'type': 'sticker',
-  //   'depth': 0,
-  //   'inlineStyleRanges': [],
-  //   'entityRanges': [{
-  //     'offset': 0,
-  //     'length': 0,
-  //     'key': 2
-  //   }]
-  // }, {
-    'key': 'mlq',
+    'key': '3dk28',
     'text': 'Of course it comes with Emoji support 🤓 🎉 … type in a colon and add yours here',
     'type': 'unstyled',
     'depth': 0,

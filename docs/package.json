@@ -12,7 +12,6 @@
   "license": "MIT",
   "devDependencies": {
     "animateplus": "^1.4.0",
-    "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
