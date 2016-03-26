@@ -26,3 +26,33 @@ Which take two props, `onChange` (a function that takes a new editor state as an
 <UndoButton onChange={ this.onChange } editorState={ this.state.editorState } />
 <RedoButton onChange={ this.onChange } editorState={ this.state.editorState } />
 ```
+
+## Importing the default styles
+
+The plugin ships with a default styling available at this location in the installed package:
+`node_modules/draft-js-mention-plugin/lib/plugin.css`.
+
+### Webpack Usage
+
+You can import the css file by using the `style-loader` and `css-loader`. For example you can add this to your webpack config:
+
+```js
+module: {
+  loaders: [{
+    test: /\.css$/,
+    loaders: [
+      'style', 'css'
+    ]
+  }]
+}
+```
+
+and then import the styles:
+
+```js
+import 'draft-js-undo-plugin/lib/plugin.css';
+```
+
+### Browserify Usage
+
+TODO: PR welcome
