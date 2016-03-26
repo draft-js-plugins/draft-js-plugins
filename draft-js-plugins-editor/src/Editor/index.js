@@ -111,15 +111,16 @@ export default class PluginEditor extends Component {
   getEditorState = () => this.editorState;
 
   handleKeyCommand = (command) => {
+    let preventDefaultBehaviour = false;
     if (this.props.handleKeyCommand) {
       const handled = this.props.handleKeyCommand(command);
       if (handled === true) {
-        return handled;
+        preventDefaultBehaviour = true;
       }
     }
 
     // TODO optimize to break after the first one
-    let preventDefaultBehaviour = this.plugins
+    preventDefaultBehaviour = this.plugins
       .map((plugin) => {
         if (plugin.handleKeyCommand) {
           const handled = plugin.handleKeyCommand(command);
@@ -140,7 +141,6 @@ export default class PluginEditor extends Component {
       preventDefaultBehaviour = true;
     }
 
-    // TODO allow to provide a custom handleKeyCommand
     return preventDefaultBehaviour === true;
   };
 
