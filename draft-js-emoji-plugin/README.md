@@ -1,21 +1,21 @@
-# DraftJS Linkify Plugin
+# DraftJS Emoji Plugin
 
 *This is a plugin for the `draft-js-plugins-editor`.*
 
-This plugin turns hyperlinks in the text to highlighted, clickable anchor tags!
+This plugin highlights hashtags in the text!
 
 ## Usage
 
 ```js
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
 
-const linkifyPlugin = createLinkifyPlugin();
+const emojiPlugin = createEmojiPlugin();
 ```
 
 ## Importing the default styles
 
 The plugin ships with a default styling available at this location in the installed package:
-`node_modules/draft-js-linkify-plugin/lib/plugin.css`.
+`node_modules/draft-js-emoji-plugin/lib/plugin.css`.
 
 ### Webpack Usage
 
@@ -35,7 +35,7 @@ module: {
 and then import the styles:
 
 ```js
-import 'draft-js-linkify-plugin/lib/plugin.css';
+import 'draft-js-emoji-plugin/lib/plugin.css';
 ```
 
 ### Browserify Usage
