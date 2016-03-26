@@ -10,7 +10,7 @@ import CustomUndoEditor from './CustomUndoEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleUndoEditor';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomUndoEditor';
 import customExampleButtonCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/buttonStyles.css';
-import customExampleCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/styles.css';
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
@@ -59,7 +59,7 @@ export default class App extends Component {
           <CustomUndoEditor />
           <Code code={ customExampleCode } name="CustomUndoEditor.js" />
           <Code code={ customExampleButtonCSSCode } name="buttonStyles.css" />
-          <Code code={ customExampleCSSCode } name="styles.css" />
+          <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>

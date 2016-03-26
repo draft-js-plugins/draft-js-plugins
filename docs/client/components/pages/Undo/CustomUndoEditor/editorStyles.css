@@ -12,11 +12,6 @@
   min-height: 140px;
 }
 
-.hashtag {
-  color: #1CA782;
-  font-family: cursive;
-}
-
-.editorOptions {
+.options {
   margin-bottom: 20px;
 }

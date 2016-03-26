@@ -8,7 +8,8 @@ import SimpleHashtagEditor from './SimpleHashtagEditor';
 import CustomHashtagEditor from './CustomHashtagEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleHashtagEditor';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomHashtagEditor';
-import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomHashtagEditor/styles.css';
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomHashtagEditor/editorStyles.css';
+import customExampleHashtagStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomHashtagEditor/hashtagStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
@@ -47,7 +48,8 @@ export default class App extends Component {
           <Heading level={ 2 }>Themed Hashtag Example</Heading>
           <CustomHashtagEditor />
           <Code code={ customExampleCode } name="CustomHashtagEditor.js" />
-          <Code code={ customExampleStylesCode } name="styles.css" />
+          <Code code={ customExampleHashtagStylesCode } name="hashtagStyles.css" />
+          <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createStickerPlugin from 'draft-js-sticker-plugin';
-import styles from './styles.css';
+import editorStyles from './editorStyles.css';
 import { fromJS } from 'immutable';
 
 const stickers = fromJS({
@@ -57,7 +57,7 @@ export default class CustomStickerEditor extends Component {
   render() {
     return (
       <div>
-        <div className={ styles.editor } onClick={ this.focus }>
+        <div className={ editorStyles.editor } onClick={ this.focus }>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -65,7 +65,7 @@ export default class CustomStickerEditor extends Component {
             ref="editor"
           />
         </div>
-        <div className={ styles.editorOptions }>
+        <div className={ editorStyles.options }>
           <StickerSelect editor={ this } />
         </div>
       </div>
