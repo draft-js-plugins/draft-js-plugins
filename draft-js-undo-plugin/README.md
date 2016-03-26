@@ -30,7 +30,7 @@ Which take two props, `onChange` (a function that takes a new editor state as an
 ## Importing the default styles
 
 The plugin ships with a default styling available at this location in the installed package:
-`node_modules/draft-js-mention-plugin/lib/plugin.css`.
+`node_modules/draft-js-undo-plugin/lib/plugin.css`.
 
 ### Webpack Usage
 
