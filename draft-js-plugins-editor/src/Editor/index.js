@@ -191,12 +191,25 @@ export default class PluginEditor extends Component {
     return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
   };
 
+  // Inject props into blockRendererFn blocks
+  injectBlockProps(block){
+    var props = {
+      // Force content refresh, can be used to refresh after Entity.mergeData
+      refreshEditorState: ()=>{
+        this.onChange(EditorState.createWithContent(this.getEditorState().getCurrentContent(), createCompositeDecorator(this.plugins, this.getEditorState, this.onChange)));
+      }
+    };
+    if(block.props) block.props = {...block.props, ...props};
+    else block.props = props;
+    return block;
+  }
+
   blockRendererFn = (contentBlock) => {
     // TODO optimize to break after the first one
     if (this.props.blockRendererFn) {
       const result = this.props.blockRendererFn(contentBlock);
       if (result) {
-        return result;
+        return this.injectBlockProps(result);
       }
     }
 
@@ -205,7 +218,7 @@ export default class PluginEditor extends Component {
         if (plugin.blockRendererFn) {
           const result = plugin.blockRendererFn(contentBlock, this.getEditorState, this.onChange);
           if (result) {
-            return result;
+            return this.injectBlockProps(result);
           }
         }
 
