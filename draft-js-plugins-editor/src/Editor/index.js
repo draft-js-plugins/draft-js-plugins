@@ -249,6 +249,43 @@ export default class PluginEditor extends Component {
         .find((result) => result !== undefined);
   };
 
+
+  handleDrop = (selection, dataTransfer, isInternal) => {
+    if (this.props.handleDrop) {
+      const result = this.props.handleDrop({
+        selection: selection,
+        dataTransfer: dataTransfer,
+        isInternal: isInternal,
+        editorState: this.getEditorState,
+        onChange: this.onChange,
+        props: this.props
+      });
+      if (result) {
+        return result;
+      }
+    }
+
+    return this.plugins
+        .map((plugin) => {
+          if (plugin.handleDrop) {
+            const result = plugin.handleDrop({
+              selection: selection,
+              dataTransfer: dataTransfer,
+              isInternal: isInternal,
+              editorState: this.getEditorState,
+              onChange: this.onChange,
+              props: this.props
+            });
+            if (result) {
+              return result;
+            }
+          }
+
+          return undefined;
+        })
+        .find((result) => result !== undefined);
+  };
+
   // Put the keyboard focus on the editor
   focus = () => {
     this.refs.editor.focus();
@@ -271,6 +308,7 @@ export default class PluginEditor extends Component {
         {...this.props}
         onChange={ this.onChange }
         handleDroppedFiles={ this.handleDroppedFiles }
+        handleDrop={ this.handleDrop }
         editorState={ this.editorState }
         blockRendererFn={ this.blockRendererFn }
         handleKeyCommand={ this.handleKeyCommand }
