@@ -2,7 +2,6 @@ import AddBlock from './addBlock';
 
 export default function(config) {
     return function(e){
-        console.log(e);
         const {props, selection, files, editorState, onChange} = e;
         // Get upload function from config or editor props
         const upload = config.upload || props.upload;
