@@ -10,35 +10,30 @@ class Wrapper extends Component {
         draggable: true,
         readOnly: false
     }
-    positionLeft(){
+    align(align){
         var entityKey = this.props.block.getEntityAt(0);
         if (entityKey) {
-            Entity.mergeData(entityKey, {position: 'left'});
-            this.props.blockProps.refreshContent();
+            Entity.mergeData(entityKey, {align});
+            this.props.blockProps.refreshEditorState();
         }
     }
-    positionCenter(){
-        var entityKey = this.props.block.getEntityAt(0);
-        if (entityKey) {
-            Entity.mergeData(entityKey, {position: 'center'});
-            this.props.blockProps.refreshContent();
-        }
+    alignLeft(){
+        this.align('left');
     }
-    positionRight(){
-        var entityKey = this.props.block.getEntityAt(0);
-        if (entityKey) {
-            Entity.mergeData(entityKey, {position: 'right'});
-            this.props.blockProps.refreshContent();
-        }
+    alignCenter(){
+        this.align('center');
+    }
+    alignRight(){
+        this.align('right');
     }
     render(){
-        const {draggable, WrappedComponent, blockProps} = this.props;
+        const {WrappedComponent, blockProps} = this.props;
         return (
             <WrappedComponent {...this.props}
-                position={blockProps.position}
-                positionLeft={::this.positionLeft}
-                positionCenter={::this.positionCenter}
-                positionRight={::this.positionRight}/>
+                align={blockProps.align}
+                alignLeft={::this.alignLeft}
+                alignCenter={::this.alignCenter}
+                alignRight={::this.alignRight}/>
         );
     }
 };
