@@ -9,7 +9,11 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 const defaultTheme = Map({
   imageWrapper: imageStyles.imageWrapper,
   image: imageStyles.image,
-  imageButton: imageStyles.imageButton
+  imageButton: imageStyles.imageButton,
+
+  left: imageStyles.left,
+  center: imageStyles.center,
+  right: imageStyles.right
 });
 
 const uploadPlugin = (config = {}) => {
