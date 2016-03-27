@@ -26,6 +26,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "history": "^2.0.1",
+    "multer": "1.1.0",
     "prismjs": "^1.4.1",
     "react": "^15.0.0-rc.2",
     "react-addons-pure-render-mixin": "^15.0.0-rc.2",

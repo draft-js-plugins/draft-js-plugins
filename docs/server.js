@@ -17,6 +17,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+// File upload
+app.post('/upload', require('./upload')({
+  folder: './publicTemplate/images'
+}));
+
 // Send the boilerplate HTML payload down for all get requests. Routing will be
 // handled entirely client side and we don't make an effort to pre-render pages
 // before they are served when in dev mode.
