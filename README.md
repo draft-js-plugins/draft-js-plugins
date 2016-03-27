@@ -97,6 +97,9 @@ Feel free to copy any of the existing plugins as a starting point. Feel free to 
 
 More documentation is coming soon…
 
+## Discussion and Support
+Join the channel #plugin-editor after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
+
 ## Development
 
 You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins.
@@ -107,8 +110,10 @@ cd docs
 npm install
 npm start
 ```
-## Discussion and Support
-Join the channel #plugin-editor after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
+
+## Publishing Github Pages
+
+Run `./script/publishGithubPages.sh`
 
 ## License
 
