@@ -115,6 +115,8 @@ npm start
 
 Run `./script/publishGithubPages.sh`
 
+The `build` script renames the .babelrc files of all plugins to avoid issues with the build. In the future we might be able to remove this again.
+
 ## License
 
 MIT
