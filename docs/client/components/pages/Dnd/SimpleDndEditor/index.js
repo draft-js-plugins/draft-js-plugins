@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {EditorState} from 'draft-js';
 import request from 'superagent';
 import Editor from 'draft-js-plugins-editor';
-import createUploadPlugin from 'draft-js-upload-plugin';
+import createUploadPlugin from 'draft-js-dnd-plugin';
 import styles from './styles.css';
 
 const uploadPlugin = createUploadPlugin({
@@ -23,7 +23,7 @@ const uploadPlugin = createUploadPlugin({
 });
 const plugins = [uploadPlugin];
 
-export default class SimpleUploadEditor extends Component {
+export default class SimpleDndEditor extends Component {
     state = {
         editorState: EditorState.createEmpty(),
     };

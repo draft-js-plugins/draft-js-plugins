@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Container from '../../shared/Container';
 import Heading from '../../shared/Heading';
 import Code from '../../shared/Code';
-import SimpleUploadEditor from './SimpleUploadEditor';
+import SimpleUploadEditor from './SimpleDndEditor';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
 
@@ -13,7 +13,7 @@ export default class App extends Component {
                 <NavBar />
                 <Separator />
                 <Container>
-                    <Heading level={ 2 }>Image uploading</Heading>
+                    <Heading level={ 2 }>Drag & Drop</Heading>
                 </Container>
                 <Container>
                     <Heading level={ 2 }>Simple Example</Heading>

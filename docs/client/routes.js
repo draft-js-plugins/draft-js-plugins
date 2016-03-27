@@ -11,7 +11,7 @@ import Linkify from './components/pages/Linkify';
 import Sticker from './components/pages/Sticker';
 import Undo from './components/pages/Undo';
 import Mention from './components/pages/Mention';
-import Upload from './components/pages/Upload';
+import Dnd from './components/pages/Dnd';
 
 export const routes = (
   <Route path="/" title="App" component={App}>
@@ -23,7 +23,7 @@ export const routes = (
       <Route path="plugin/sticker" title="App - Sticker" component={Sticker} />
       <Route path="plugin/undo" title="App - Undo" component={Undo} />
       <Route path="plugin/mention" title="App - Mention" component={Mention} />
-      <Route path="plugin/upload" title="App - Upload" component={Upload} />
+      <Route path="plugin/dnd" title="App - Drag & Drop" component={Dnd} />
     </Route>
     <Route path="*" title="404: Not Found" component={NotFound} />
   </Route>
