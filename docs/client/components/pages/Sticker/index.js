@@ -7,8 +7,10 @@ import Code from '../../shared/Code';
 import SimpleStickerEditor from './SimpleStickerEditor';
 import CustomStickerEditor from './CustomStickerEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleStickerEditor';
+import simpleExampleStickersCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleStickerEditor/stickers.js';
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleStickerEditor/editorStyles.css';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomStickerEditor';
+import customExampleStickersCode from '!!../../../loaders/prism-loader?language=javascript!./CustomStickerEditor/stickers.js';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomStickerEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
@@ -66,12 +68,14 @@ export default class App extends Component {
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleStickerEditor />
           <Code code={ simpleExampleCode } name="SimpleStickerEditor.js" />
+          <Code code={ simpleExampleStickersCode } name="stickers.js" />
           <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Sticker Example</Heading>
           <CustomStickerEditor />
           <Code code={ customExampleCode } name="CustomStickerEditor.js" />
+          <Code code={ customExampleStickersCode } name="stickers.js" />
           <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
