@@ -196,7 +196,7 @@ export default class PluginEditor extends Component {
     var props = {};
 
     if (this.props.injectBlockProps) {
-      const result = this.props.injectBlockProps(contentBlock, this.getEditorState, this.onChange);
+      const result = this.props.injectBlockProps(block, this.getEditorState, this.onChange);
       if (result) {
         props = {...result, ...props};
       }
@@ -205,7 +205,7 @@ export default class PluginEditor extends Component {
     this.plugins
         .forEach((plugin) => {
           if (plugin.injectBlockProps) {
-            const result = plugin.injectBlockProps(contentBlock, this.getEditorState, this.onChange);
+            const result = plugin.injectBlockProps(block, this.getEditorState, this.onChange);
             if (result) {
               props = {...result, ...props};
             }
