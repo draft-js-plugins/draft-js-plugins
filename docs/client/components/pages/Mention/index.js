@@ -7,8 +7,10 @@ import Code from '../../shared/Code';
 import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor';
+import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js';
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
+import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
@@ -53,12 +55,14 @@ export default class App extends Component {
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleMentionEditor />
           <Code code={ simpleExampleCode } name="SimpleMentionEditor.js" />
+          <Code code={ simpleExampleMentionsCode } name="mentions.js" />
           <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Mention Example</Heading>
           <CustomMentionEditor />
           <Code code={ customExampleCode } name="CustomMentionEditor.js" />
+          <Code code={ customExampleMentionsCode } name="mentions.js" />
           <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
