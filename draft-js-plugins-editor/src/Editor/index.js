@@ -193,12 +193,27 @@ export default class PluginEditor extends Component {
 
   // Inject props into blockRendererFn blocks
   injectBlockProps(block){
-    var props = {
-      // Force content refresh, can be used to refresh after Entity.mergeData
-      refreshEditorState: ()=>{
-        this.onChange(EditorState.createWithContent(this.getEditorState().getCurrentContent(), createCompositeDecorator(this.plugins, this.getEditorState, this.onChange)));
+    var props = {};
+
+    if (this.props.injectBlockProps) {
+      const result = this.props.injectBlockProps(contentBlock, this.getEditorState, this.onChange);
+      if (result) {
+        props = {...result, ...props};
       }
-    };
+    }
+
+    this.plugins
+        .forEach((plugin) => {
+          if (plugin.injectBlockProps) {
+            const result = plugin.injectBlockProps(contentBlock, this.getEditorState, this.onChange);
+            if (result) {
+              props = {...result, ...props};
+            }
+          }
+
+          return undefined;
+        });
+
     if(block.props) block.props = {...block.props, ...props};
     else block.props = props;
     return block;
