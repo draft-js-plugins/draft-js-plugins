@@ -4,6 +4,7 @@ import blockRendererFn from './blockRendererFn';
 import Image from './Image';
 import imageStyles from './imageStyles.css';
 import { Map } from 'immutable';
+import {EditorState} from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = Map({
@@ -29,7 +30,13 @@ const uploadPlugin = (config = {}) => {
     pluginProps: {
       blockRendererFn: blockRendererFn(blockRendererConfig),
       handleDroppedFiles: onDropFile(config),
-      handleDrop: onDrop(config)
+      handleDrop: onDrop(config),
+      injectBlockProps: (block, getEditorState, onChange)=>{
+        var editorState = getEditorState();
+        return {
+          refreshEditorState: ()=>onChange(EditorState.createWithContent(editorState.getCurrentContent(), editorState.decorator))
+        }
+      }
     }
   };
 };

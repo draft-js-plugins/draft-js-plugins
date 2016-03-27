@@ -14,6 +14,7 @@ class Wrapper extends Component {
         var entityKey = this.props.block.getEntityAt(0);
         if (entityKey) {
             Entity.mergeData(entityKey, {align});
+            // Force refresh
             this.props.blockProps.refreshEditorState();
         }
     }
