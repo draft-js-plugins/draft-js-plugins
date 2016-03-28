@@ -112,8 +112,7 @@ export default class EmojiSearch extends Component {
 
   onEmojiSelect = (emoji) => {
     this.updateAriaCloseDropdown();
-    const selection = this.props.getEditorState().getSelection();
-    const newEditorState = addEmoji(this.props.getEditorState(), emoji, selection);
+    const newEditorState = addEmoji(this.props.getEditorState(), emoji);
     this.props.updateEditorState(newEditorState);
   };
 

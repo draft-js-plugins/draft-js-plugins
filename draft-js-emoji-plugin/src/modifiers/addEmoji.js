@@ -3,11 +3,12 @@ import getSearchText from '../utils/getSearchText';
 import emojioneList from '../utils/emojioneList';
 import convertShortNameToUnicode from '../utils/convertShortNameToUnicode';
 
-const addEmoji = (editorState, emojiShortName, selection) => {
-  const { begin, end } = getSearchText(editorState, selection);
+const addEmoji = (editorState, emojiShortName) => {
+  const currentSelectionState = editorState.getSelection();
+  const { begin, end } = getSearchText(editorState, currentSelectionState);
 
   // get selection of the @mention search text
-  const mentionTextSelection = editorState.getSelection().merge({
+  const mentionTextSelection = currentSelectionState.merge({
     anchorOffset: begin,
     focusOffset: end,
   });

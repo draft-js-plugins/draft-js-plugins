@@ -112,8 +112,7 @@ export default class MentionSearch extends Component {
 
   onMentionSelect = (mention) => {
     this.updateAriaCloseDropdown();
-    const selection = this.props.getEditorState().getSelection();
-    const newEditorState = addMention(this.props.getEditorState(), mention, selection);
+    const newEditorState = addMention(this.props.getEditorState(), mention);
     this.props.updateEditorState(newEditorState);
   };
 
