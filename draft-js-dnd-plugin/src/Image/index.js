@@ -35,7 +35,7 @@ class Image extends Component {
     
     return (
         <div className={ theme.get('imageWrapper')+' '+theme.get(alignment||'center') } contentEditable={false}>
-          <img src={'/images'+blockProps.url} width="100%" height="auto" className={ theme.get('image') }/>
+          <img src={blockProps.src || ('/images'+blockProps.url)} width="100%" height="auto" className={ theme.get('image') }/>
           { attachButtons ? buttons : null }
         </div>
     );
