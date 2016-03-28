@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from "react";
 import Draggable from "../components/block-draggable-wrapper";
-import aligning from "../components/block-alignment-wrapper";
+import Alignment from "../components/block-alignment-wrapper";
 
 class Image extends Component {
   remove = (event) => {
@@ -42,4 +42,4 @@ class Image extends Component {
   }
 }
 
-export default Draggable(aligning(Image));
+export default Draggable(Alignment(Image));
