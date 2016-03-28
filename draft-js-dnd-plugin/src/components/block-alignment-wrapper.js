@@ -10,31 +10,20 @@ class Wrapper extends Component {
         draggable: true,
         readOnly: false
     }
-    align(align){
+    align(alignment){
         var entityKey = this.props.block.getEntityAt(0);
         if (entityKey) {
-            Entity.mergeData(entityKey, {align});
+            Entity.mergeData(entityKey, {alignment});
             // Force refresh
             this.props.blockProps.refreshEditorState();
         }
-    }
-    alignLeft(){
-        this.align('left');
-    }
-    alignCenter(){
-        this.align('center');
-    }
-    alignRight(){
-        this.align('right');
     }
     render(){
         const {WrappedComponent, blockProps} = this.props;
         return (
             <WrappedComponent {...this.props}
-                align={blockProps.align}
-                alignLeft={::this.alignLeft}
-                alignCenter={::this.alignCenter}
-                alignRight={::this.alignRight}/>
+                alignment={blockProps.alignment}
+                align={::this.align}/>
         );
     }
 };

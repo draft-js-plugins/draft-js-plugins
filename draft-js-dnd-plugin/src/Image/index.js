@@ -11,22 +11,22 @@ class Image extends Component {
   };
 
   render() {
-    const {blockProps, attachButtons, theme, align} = this.props;
+    const {blockProps, attachButtons, theme, alignment} = this.props;
 
     const buttons = [
       <span className={ theme.get('imageButton') }
-            onClick={ this.props.alignLeft }
+            onClick={ ()=>this.props.align('left') }
             style={{marginLeft: '-2.4em'}}
             role="button" key={'left'}>
         L
       </span>,
       <span className={ theme.get('imageButton') }
-            onClick={ this.props.alignCenter }
+            onClick={ ()=>this.props.align('center') }
             role="button" key={'center'}>
         C
       </span>,
       <span className={ theme.get('imageButton') }
-            onClick={ this.props.alignRight }
+            onClick={ ()=>this.props.align('right') }
             style={{marginLeft: '0.9em'}}
             role="button" key={'right'}>
         R
@@ -34,7 +34,7 @@ class Image extends Component {
     ];
     
     return (
-        <div className={ theme.get('imageWrapper')+' '+theme.get(align||'center') } contentEditable={false}>
+        <div className={ theme.get('imageWrapper')+' '+theme.get(alignment||'center') } contentEditable={false}>
           <img src={'/images'+blockProps.url} width="100%" height="auto" className={ theme.get('image') }/>
           { attachButtons ? buttons : null }
         </div>
