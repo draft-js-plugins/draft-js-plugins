@@ -9,10 +9,15 @@ export default function(config) {
             //this.setState({fileDrag: false, uploading: true});
             console.log('Starting upload');
 
-            var data = new FormData();
+            var formData = new FormData();
+            var data = {
+                files: []
+            };
             for (var key in files) {
-                data.append('files', files[key]);
+                formData.append('files', files[key]);
+                data.files.push(files[key]);
             }
+            data.formData = data;
             upload(data, (files, tag)=> {
                 console.log('Upload done');
                 // Success, tag can be function that returns editorState or a tag-type (default: image)
