@@ -106,26 +106,3 @@ export default class App extends Component {
     );
   }
 }
-
-/**
-import Code from '../../shared/Code';
-import AlternateContainer from '../../shared/AlternateContainer';
-import SimpleEmojiEditor from './SimpleEmojiEditor';
-import CustomEmojiEditor from './CustomEmojiEditor';
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleEmojiEditor';
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomEmojiEditor';
-import customExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomEmojiEditor/styles.css';
-import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
-
-<Container>
-  <Heading level={ 2 }>Simple Example</Heading>
-  <SimpleEmojiEditor />
-  <Code code={ simpleExampleCode } name="SimpleEmojiEditor.js" />
-</Container>
-<Container>
-  <Heading level={ 2 }>Themed Emoji Example</Heading>
-  <CustomEmojiEditor />
-  <Code code={ customExampleCode } name="CustomEmojiEditor.js" />
-  <Code code={ customExampleStylesCode } name="styles.css" />
-</Container>
-*/
