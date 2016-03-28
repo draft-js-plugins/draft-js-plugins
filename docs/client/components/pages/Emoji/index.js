@@ -30,6 +30,11 @@ export default class App extends Component {
           <p>
             Consistent Emoji display across all platforms, independent of the host system.
           </p>
+          <Heading level={ 3 }>Attribution to EmojiOne</Heading>
+          <p>
+            The beautiful Emoji art used in this plugin is provided by the <ExternalLink href="http://emojione.com/">Emoji One</ExternalLink> project.
+            Personal or non-commercial use of the emojis do not require attribution. For the rights to use our emojis still for free in commercial projects proper attribution in form of a link is required. More here: <ExternalLink href="http://emojione.com/licensing">http://emojione.com/licensing</ExternalLink>.
+          </p>
           <Heading level={ 3 }>Implementation</Heading>
           <p>
             Emoji unicode characters are wrapped in a span, hidden, and displayed instead through
