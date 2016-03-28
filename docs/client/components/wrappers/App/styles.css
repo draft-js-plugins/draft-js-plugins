@@ -14,16 +14,7 @@
   top: 3px;
 }
 
-.stripe {
-  background-image: url(https://stripe.com/img/navigation/logo@2x.png?2);
-  background-size: 100% 100%;
-  width: 63px;
-  height: 27px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-
-.openSourceRetreat {
-  font-size: 0.8rem;
+.emojiAttribution {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
 }
