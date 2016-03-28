@@ -33,3 +33,17 @@
   font-weight: bold;
   margin-right: 5px;
 }
+
+.list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.listEntry {
+  margin-top: 1rem;
+}
+
+.guideCodeBlock {
+  margin-top: 1rem;
+  margin-bottom: 1rem !important;
+}
