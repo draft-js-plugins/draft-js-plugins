@@ -1,5 +1,5 @@
 import AddBlock from './addBlock';
-import RemoveBlock from './remove-block';
+import RemoveBlock from './removeBlock';
 import {Entity} from "draft-js";
 
 export default function(config) {
