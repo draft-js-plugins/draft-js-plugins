@@ -1,7 +1,6 @@
 import {Modifier, ContentState, EditorState, SelectionState, convertFromRaw, convertToRaw} from "draft-js";
 
 export default function(editorState, blockKey){
-
     let content = editorState.getCurrentContent();
     const newSelection = new SelectionState({
         anchorKey: blockKey,
@@ -36,7 +35,7 @@ export default function(editorState, blockKey){
         });
     }
 
-    // change the blocktype and remove the characterList entry with the sticker
+    // change the blocktype and remove the characterList entry with the block
     content = Modifier.setBlockType(
         content,
         targetRange,
@@ -45,6 +44,6 @@ export default function(editorState, blockKey){
     content = Modifier.removeRange(content, targetRange, 'backward');
 
     // force to new selection
-    const newState = EditorState.push(editorState, content, 'remove-sticker');
+    const newState = EditorState.push(editorState, content, 'remove-block');
     return EditorState.forceSelection(newState, newSelection);
 }

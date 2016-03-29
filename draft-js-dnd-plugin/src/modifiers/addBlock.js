@@ -5,7 +5,7 @@ export default function (editorState, selection, type, data) {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = selection;
 
-  // in case text is selected it is removed and then the sticker is appended
+  // in case text is selected it is removed and then the block is appended
   const afterRemovalContentState = Modifier.removeRange(
       currentContentState,
       currentSelectionState,
@@ -20,8 +20,8 @@ export default function (editorState, selection, type, data) {
   let insertionTargetBlock;
 
   // In case there are no characters or entity or the selection is at the start it
-  // is safe to insert the sticker in the current block.
-  // Otherwise a new block is created (the sticker is always its own block)
+  // is safe to insert the block in the current block.
+  // Otherwise a new block is created (the block is always its own block)
   const isEmptyBlock = block.getLength() === 0 && block.getEntityAt(0) === null;
   const selectedFromStart = currentSelectionState.getStartOffset() === 0;
   if (isEmptyBlock || selectedFromStart) {
@@ -39,18 +39,18 @@ export default function (editorState, selection, type, data) {
   const newContentStateAfterSplit = Modifier.setBlockType(insertionTargetBlock, insertionTargetSelection, type);
 
   // creating a new ContentBlock including the entity with data
-  const entityKey = Entity.create('sticker', 'IMMUTABLE', data);
-  const charDataOfSticker = CharacterMetadata.create({ entity: entityKey });
+  const entityKey = Entity.create(type, 'IMMUTABLE', { ...data });
+  const charData = CharacterMetadata.create({ entity: entityKey });
 
   const fragmentArray = [
     new ContentBlock({
       key: genKey(),
       type: type,
       text: '',
-      characterList: List(Repeat(charDataOfSticker, 1)), // eslint-disable-line new-cap
+      characterList: List(Repeat(charData, 1)), // eslint-disable-line new-cap
     }),
 
-    // new contentblock so we can continue wrting right away after inserting the sticker
+    // new contentblock so we can continue wrting right away after inserting the block
     new ContentBlock({
       key: genKey(),
       type: 'unstyled',
@@ -63,17 +63,17 @@ export default function (editorState, selection, type, data) {
   const fragment = BlockMapBuilder.createFromArray(fragmentArray);
 
   // replace the contentblock we reserved for our insert
-  const contentStateWithSticker = Modifier.replaceWithFragment(
+  const contentStateWithBlock = Modifier.replaceWithFragment(
       newContentStateAfterSplit,
       insertionTargetSelection,
       fragment
   );
 
-  // update editor state with our new state including the sticker
+  // update editor state with our new state including the block
   const newState = EditorState.push(
       editorState,
-      contentStateWithSticker,
-      'insert-sticker'
+      contentStateWithBlock,
+      'insert-'+type
   );
-  return EditorState.forceSelection(newState, contentStateWithSticker.getSelectionAfter());
+  return EditorState.forceSelection(newState, contentStateWithBlock.getSelectionAfter());
 }
