@@ -1,35 +1,16 @@
 import React, {Component} from 'react';
-import {EditorState} from 'draft-js';
-//import request from 'superagent';
+import {EditorState, convertToRaw} from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createUploadPlugin from 'draft-js-dnd-plugin';
 import styles from './styles.css';
+import mockUpload from '../utils/mockUpload';
+import DndWrapper from 'draft-js-dnd-plugin/components/dnd-wrapper';
 
 const uploadPlugin = createUploadPlugin({
     upload: (data, success, failed, progress) => {
-        // Mock file upload, actually only happens client side
-        var reader = new FileReader();
-        // This is called when finished reading
-        reader.onload = function (e) {
-            // Report progress
-            progress(100);
-            // Return an array with one image
-            success([{
-                // These are attributes like size, name, type, ...
-                ...data.files[0],
-                // This is the files content as base64
-                src: e.target.result,
-                // No URL, since nothing on server
-                url: null
-            }])
-        };
-        // Start reading the file
-        reader.readAsDataURL(data.files[0]);
-        // Report progress
-        progress(0);
-
+        return mockUpload(data, success, failed, progress);
         // This would be a real file upload to server
-        /*request.post('/upload')
+        superagent.post('/upload')
             .accept('application/json')
             .send(data.formData)
             .on('progress', ({percent}) => {
@@ -40,19 +21,20 @@ const uploadPlugin = createUploadPlugin({
                     return failed(err);
                 }
                 success(res.body.files, 'image');
-            });*/
+            });
     }
 });
-const plugins = [uploadPlugin];
 
-export default class SimpleDndEditor extends Component {
+class SimpleDndEditor extends Component {
     state = {
         editorState: EditorState.createEmpty(),
+        draggingOver: false
     };
-    
+
     onChange = (editorState) => {
+        //console.log(convertToRaw(editorState.getCurrentContent()));
         this.setState({
-            editorState,
+            editorState
         });
     };
 
@@ -61,17 +43,18 @@ export default class SimpleDndEditor extends Component {
     };
 
     render() {
+        const {editorState} = this.state;
+        const {isDragging, progress} = this.props;
+        const classNames = [styles.editor]
+        if (isDragging) classNames.push(styles.dnd);
+        if (progress) classNames.push(styles.uploading);
+
         return (
-            <div>
-                <div className={ styles.editor } onClick={ this.focus }>
-                    <Editor
-                        editorState={this.state.editorState}
-                        onChange={this.onChange}
-                        plugins={plugins}
-                        ref="editor"
-                    />
-                </div>
+            <div className={classNames.join(' ')} onClick={this.focus}>
+                <Editor editorState={editorState} onChange={this.onChange} plugins={[uploadPlugin]} ref="editor"/>
             </div>
         );
     }
 }
+
+export default DndWrapper(SimpleDndEditor, uploadPlugin);
