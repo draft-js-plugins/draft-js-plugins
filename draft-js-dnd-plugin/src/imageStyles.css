@@ -3,6 +3,7 @@
   position: relative;
   display: block;
   width: 200px;
+  margin: 0;
 }
 
 .center {
@@ -11,10 +12,12 @@
 
 .left {
   float: left;
+  margin-right: 10px;
 }
 
 .right {
   float: right;
+  margin-left: 10px;
 }
 
 .imageButton {
@@ -29,7 +32,7 @@
   font-size: 0.62em;
   margin-left: -0.825em;
   cursor: pointer;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .imageButton:hover {
