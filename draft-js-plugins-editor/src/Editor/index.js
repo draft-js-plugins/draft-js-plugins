@@ -16,15 +16,10 @@ import moveToStartOfSelectedBlock from '../modifiers/moveToStartOfSelectedBlock'
 import { List } from 'immutable';
 
 export default class PluginEditor extends Component {
-
   // TODO add flow types & propTypes - since it's a library and people might not use flow we want to have both
-
   constructor(props) {
     super(props);
-    this.plugins = List(props.plugins)
-      .filter((plugin) => plugin.pluginProps !== undefined)
-      .map((plugin) => plugin.pluginProps)
-      .toArray();
+    this.plugins = List(props.plugins).toArray();
     const compositeDecorator = createCompositeDecorator(this.plugins, this.getEditorState, this.onChange);
 
     // TODO consider triggering an onChange here to make sure the editorState is in sync

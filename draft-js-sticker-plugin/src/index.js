@@ -55,10 +55,8 @@ const stickerPlugin = (config = {}) => {
     Sticker: decorateComponentWithProps(Sticker, stickerProps),
   };
   return {
-    pluginProps: {
-      blockRendererFn: blockRendererFn(blockRendererConfig),
-      onChange: cleanupEmptyStickers,
-    },
+    blockRendererFn: blockRendererFn(blockRendererConfig),
+    onChange: cleanupEmptyStickers,
     add: addSticker,
     remove: removeSticker,
     StickerSelect: decorateComponentWithProps(StickerSelect, stickerSelectProps),
