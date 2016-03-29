@@ -29,7 +29,7 @@ module.exports = function uploadEndpoint(options) {
     },
   }).array('files', 3);
 
-  return [upload, function afterUpload(req, res) {
+  function afterUpload(req, res) {
     const files = req.files;
     setTimeout(() => {
       req.files.forEach((file) => {
@@ -49,5 +49,7 @@ module.exports = function uploadEndpoint(options) {
         url: `/${file.originalname}`,
       })),
     });
-  }, ];
+  }
+
+  return [upload, afterUpload];
 };

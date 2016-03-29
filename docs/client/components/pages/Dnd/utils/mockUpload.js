@@ -7,7 +7,7 @@ export default function mockUpload(data, success, failed, progress) {
   // This is called when finished reading
   reader.onload = e => {
     // Return an array with one image
-    success([{
+    const x = {
       // These are attributes like size, name, type, ...
       ...data.files[0],
 
@@ -16,7 +16,8 @@ export default function mockUpload(data, success, failed, progress) {
 
       // No URL, since nothing on server
       url: null,
-    }, ]);
+    };
+    success([x]);
   };
 
   function doProgress(percent) {
