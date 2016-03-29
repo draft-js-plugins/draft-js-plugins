@@ -121,16 +121,8 @@ export default class PluginEditor extends Component {
 
     // TODO optimize to break after the first one
     preventDefaultBehaviour = this.plugins
-      .map((plugin) => {
-        if (plugin.handleKeyCommand) {
-          const handled = plugin.handleKeyCommand(command);
-          if (handled === true) {
-            return handled;
-          }
-        }
-
-        return undefined;
-      })
+      .filter((plug) => plug.handleKeyCommand)
+      .map((plugin) => plugin.handleKeyCommand(command, this.editorState))
       .find((result) => result === true);
 
     if (command === 'plugin-editor-move-to-start') {
