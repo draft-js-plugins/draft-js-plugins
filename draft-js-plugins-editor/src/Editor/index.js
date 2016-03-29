@@ -169,8 +169,6 @@ export default class PluginEditor extends Component {
   createEventListeners = () => {
     const listeners = {
       onChange: this.onChange,
-      editorState: this.editorState,
-      blockRendererFn: this.blockRendererFn,
       handleKeyCommand: this.handleKeyCommand,
       keyBindingFn: this.keyBindingFn,
       handleReturn: this.handleReturn,
@@ -211,13 +209,13 @@ export default class PluginEditor extends Component {
 
     const listeners = this.createEventListeners();
 
-    return (
-      <Editor
-        {...pluginProps}
-        {...this.props}
-        {...listeners}
-        ref="editor"
-      />
-    );
+    return (<Editor
+      {...pluginProps}
+      {...this.props}
+      {...listeners}
+      editorState={this.editorState}
+      blockRendererFn={this.blockRendererFn}
+      ref="editor"
+    />);
   }
 }
