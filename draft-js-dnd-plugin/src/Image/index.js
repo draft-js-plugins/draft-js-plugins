@@ -11,8 +11,8 @@ class Image extends Component {
   };
 
   render() {
-    const {blockProps, attachButtons, theme, alignment} = this.props;
-
+    const {blockProps, block, attachButtons, theme, alignment, onDragStart, draggable} = this.props;
+    
     const buttons = [
       <span className={ theme.get('imageButton') }
             onClick={ ()=>this.props.align('left') }
@@ -32,12 +32,17 @@ class Image extends Component {
         R
       </span>
     ];
-    
+
+    var className = theme.get('imageWrapper')+' '+theme.get(alignment||'center');
     return (
-        <div className={ theme.get('imageWrapper')+' '+theme.get(alignment||'center') } contentEditable={false}>
+        <figure className={ className }
+             contentEditable={false}
+             data-offset-key={ `${block.get('key')}-0-0` }
+             onDragStart={onDragStart} draggable={draggable}>
           <img src={blockProps.src || ('/images'+blockProps.url)} width="100%" height="auto" className={ theme.get('image') }/>
+          {blockProps.progress >= 0 ? <div style={{position: 'absolute', width: `${100-blockProps.progress}%`, right: 0, top: 0, height: '100%', backgroundColor: 'white'}}/> : null}
           { attachButtons ? buttons : null }
-        </div>
+        </figure>
     );
   }
 }
