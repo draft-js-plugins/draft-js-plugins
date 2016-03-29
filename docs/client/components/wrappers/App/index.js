@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './styles.css';
+import ExternalLink from '../../shared/Link';
 
 export default class Wrapper extends Component {
   render() {
@@ -12,6 +13,11 @@ export default class Wrapper extends Component {
             &#x2764;
           </span>
           &nbsp;on Planet Earth
+
+          <div className={ styles.emojiAttribution }>
+            Emoji art provided free by&nbsp;
+            <ExternalLink href="http://emojione.com/">Emoji One</ExternalLink>
+          </div>
         </footer>
       </div>
     );

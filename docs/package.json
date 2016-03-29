@@ -7,7 +7,7 @@
     "start:dev": "babel-node ./server.js",
     "start": "npm run start:dev",
     "build:static": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build": "npm run clean && cp -r publicTemplate public && npm run build:static"
+    "build": "npm run clean && cp -r publicTemplate public && $(pwd)/../scripts/renameBabelConfigs.sh && npm run build:static && $(pwd)/../scripts/restoreBabelConfigs.sh"
   },
   "license": "MIT",
   "devDependencies": {

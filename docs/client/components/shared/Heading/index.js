@@ -12,6 +12,9 @@ export default class Heading extends Component {
       case 3:
         style = styles.level3;
         break;
+      case 4:
+        style = styles.level4;
+        break;
       default:
         style = styles.level2;
     }

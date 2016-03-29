@@ -21,23 +21,21 @@ const defaultTheme = Map({
 });
 
 const callbacks = {
-  keyBindingFn: undefined,
-  handleKeyCommand: undefined,
-  onDownArrow: undefined,
-  onUpArrow: undefined,
-  onTab: undefined,
-  onEscape: undefined,
-  handleReturn: undefined,
-  onChange: undefined,
+  keyBindingFn: Map(),
+  handleKeyCommand: Map(),
+  onDownArrow: Map(),
+  onUpArrow: Map(),
+  onTab: Map(),
+  onEscape: Map(),
+  handleReturn: Map(),
+  onChange: Map(),
 };
 
 const ariaProps = {
-  role: 'combobox',
-  ariaAutoComplete: 'list',
-  ariaHasPopup: 'false',
-  ariaExpanded: 'false',
-  ariaOwneeID: 'mentions-select', // optional
-  ariaActiveDescendantID: undefined, // optional
+  ariaHasPopup: Map(),
+  ariaExpanded: Map(),
+  ariaOwneeID: Map(),
+  ariaActiveDescendantID: Map(),
 };
 
 const mentionPlugin = (config = {}) => {
@@ -66,17 +64,37 @@ const mentionPlugin = (config = {}) => {
           component: decorateComponentWithProps(MentionSearch, mentionSearchProps),
         },
       ],
-      getEditorProps: () => ariaProps,
-      keyBindingFn: (keyboardEvent) => callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
-      handleKeyCommand: (command) => callbacks.handleKeyCommand && callbacks.handleKeyCommand(command),
-      onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
-      onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
-      onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
-      onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
-      handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
+      getEditorProps: () => {
+        const ariaHasPopup = ariaProps.ariaHasPopup.some((entry) => entry);
+        const ariaExpanded = ariaProps.ariaExpanded.some((entry) => entry);
+        return {
+          role: 'combobox',
+          ariaAutoComplete: 'list',
+          ariaHasPopup: ariaHasPopup ? 'true' : 'false',
+          ariaExpanded: ariaExpanded ? 'true' : 'false',
+          ariaActiveDescendantID: ariaProps.ariaActiveDescendantID.first(),
+          ariaOwneeID: ariaProps.ariaOwneeID.first(),
+        };
+      },
+
+      onDownArrow: (keyboardEvent) => callbacks.onDownArrow.forEach((onDownArrow) => onDownArrow(keyboardEvent)),
+      onTab: (keyboardEvent) => callbacks.onTab.forEach((onTab) => onTab(keyboardEvent)),
+      onUpArrow: (keyboardEvent) => callbacks.onUpArrow.forEach((onUpArrow) => onUpArrow(keyboardEvent)),
+      onEscape: (keyboardEvent) => callbacks.onEscape.forEach((onEscape) => onEscape(keyboardEvent)),
+      handleReturn: (keyboardEvent) => (
+        callbacks.handleReturn
+          .map((handleReturn) => handleReturn(keyboardEvent))
+          .find((result) => result === true)
+      ),
       onChange: (editorState) => {
-        if (callbacks.onChange) return callbacks.onChange(editorState);
-        return editorState;
+        let newEditorState = editorState;
+        if (callbacks.onChange.size !== 0) {
+          callbacks.onChange.forEach((onChange) => {
+            newEditorState = onChange(editorState);
+          });
+        }
+
+        return newEditorState;
       },
     },
   };
