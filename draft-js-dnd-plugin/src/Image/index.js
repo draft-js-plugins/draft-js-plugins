@@ -15,7 +15,7 @@ class Image extends Component {
   };
 
   alignCenter = () => {
-    this.props.align('cener');
+    this.props.align('center');
   };
 
   alignRight = () => {

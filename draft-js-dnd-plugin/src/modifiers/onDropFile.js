@@ -56,7 +56,7 @@ export default function onDropFile(config) {
       }
       data.formData = data;
 
-            // Read files on client side
+      // Read files on client side
       readFiles(data.files).then(previews => {
         // Add blocks for each image before uploading
         let state = editorState();
@@ -65,9 +65,9 @@ export default function onDropFile(config) {
         });
         onChange(state);
 
-                // Perform upload
+        // Perform upload
         upload(data, uploadedFiles => {
-                    // Success, remove 'progress' and 'src'
+          // Success, remove 'progress' and 'src'
           let newEditorState = editorState();
           uploadedFiles.forEach(x => {
             const key = getBlockWhereEntityData(newEditorState, y => y.src === x.src);
@@ -78,22 +78,22 @@ export default function onDropFile(config) {
               });
             }
           });
-                    // Propagate progress
+          // Propagate progress
           if (progress) progress(null);
           onChange(newEditorState);
         }, () => {
           // console.error(err);
         }, (percent) => {
-                    // On progress, set entity data's progress field
+          // On progress, set entity data's progress field
           let newEditorState = editorState();
-          files.forEach(x => {
+          previews.forEach(x => {
             const key = getBlockWhereEntityData(newEditorState, y => y.src === x.src);
             if (key) {
               newEditorState = ModifyBlockData(newEditorState, key, { progress: percent });
             }
           });
           onChange(newEditorState);
-                    // Propagate progress
+          // Propagate progress
           if (progress) progress(percent);
         });
       });
