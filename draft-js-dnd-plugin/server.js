@@ -2,6 +2,14 @@ import path from 'path';
 import multer from 'multer';
 import fs from 'fs';
 
+/* Use like this with express
+
+ app.post('/upload', require('draft-js-dnd-plugin/server')({
+    folder: './publicTemplate/images'
+ }));
+
+ */
+
 module.exports = function upload(options){
     // Simple upload endpoint
     var storage = multer.diskStorage({
