@@ -1,10 +1,12 @@
+import cleanupEmpty from './modifiers/cleanupEmpty';
 import onDropFile from './modifiers/onDropFile';
-import onDrop from './modifiers/onDrop';
+import onDropBlock from './modifiers/onDropBlock';
 import blockRendererFn from './blockRendererFn';
 import Image from './Image';
 import imageStyles from './imageStyles.css';
-import { Map } from 'immutable';
+import {Map} from 'immutable';
 import {EditorState} from 'draft-js';
+import EventEmitter from './utils/eventEmitter';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = Map({
@@ -12,6 +14,7 @@ const defaultTheme = Map({
   image: imageStyles.image,
   imageButton: imageStyles.imageButton,
 
+  // This is for block-alignment-wrapper, only temporarily living here
   left: imageStyles.left,
   center: imageStyles.center,
   right: imageStyles.right
@@ -22,22 +25,29 @@ const uploadPlugin = (config = {}) => {
 
   const attachButtons = config.attachButtons !== false;
 
+  var emitter = new EventEmitter();
   const blockRendererConfig = {
     ...config,
+    emitter,
     Image: decorateComponentWithProps(Image, {theme, attachButtons})
   };
+
   return {
     pluginProps: {
+      onChange: cleanupEmpty,
       blockRendererFn: blockRendererFn(blockRendererConfig),
-      handleDroppedFiles: onDropFile(config),
-      handleDrop: onDrop(config),
+      handleDroppedFiles: onDropFile(blockRendererConfig),
+      handleDrop: onDropBlock(blockRendererConfig),
+      // This is for block-alignment-wrapper, only temporarily living here
       injectBlockProps: (block, getEditorState, onChange)=>{
         var editorState = getEditorState();
         return {
-          refreshEditorState: ()=>onChange(EditorState.createWithContent(editorState.getCurrentContent(), editorState.decorator))
+          refreshEditorState: ()=>onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter()))
         }
       }
-    }
+    },
+    addListener: emitter.addListener,
+    removeListener: emitter.removeListener
   };
 };
 
