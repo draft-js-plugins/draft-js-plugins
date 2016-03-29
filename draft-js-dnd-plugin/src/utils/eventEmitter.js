@@ -2,10 +2,12 @@ export default class EventEmitter {
   constructor() {
     this.listeners = new Map();
   }
+
   addListener = (label, callback) => {
     if (!this.listeners.has(label)) this.listeners.set(label, []);
     this.listeners.get(label).push(callback);
-  }
+  };
+
   removeListener = (label, callback) => {
     const listeners = this.listeners.get(label);
 
@@ -19,8 +21,10 @@ export default class EventEmitter {
         return true;
       }
     }
+
     return false;
-  }
+  };
+
   emit = (label, ...args) => {
     const listeners = this.listeners.get(label);
 
@@ -30,6 +34,7 @@ export default class EventEmitter {
       });
       return true;
     }
+
     return false;
-  }
+  };
 }

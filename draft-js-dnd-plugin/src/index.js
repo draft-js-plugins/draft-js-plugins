@@ -17,7 +17,7 @@ const defaultTheme = Map({
   // This is for block-alignment-wrapper, only temporarily living here
   left: imageStyles.left,
   center: imageStyles.center,
-  right: imageStyles.right
+  right: imageStyles.right,
 });
 
 const uploadPlugin = (config = {}) => {
@@ -29,7 +29,7 @@ const uploadPlugin = (config = {}) => {
   const blockRendererConfig = {
     ...config,
     emitter,
-    Image: decorateComponentWithProps(Image, { theme, attachButtons })
+    Image: decorateComponentWithProps(Image, { theme, attachButtons }),
   };
 
   return {
@@ -38,16 +38,17 @@ const uploadPlugin = (config = {}) => {
       blockRendererFn: blockRendererFn(blockRendererConfig),
       handleDroppedFiles: onDropFile(blockRendererConfig),
       handleDrop: onDropBlock(blockRendererConfig),
+
       // This is for block-alignment-wrapper, only temporarily living here
       injectBlockProps: (block, getEditorState, onChange) => {
         const editorState = getEditorState();
         return {
-          refreshEditorState: () => onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter()))
+          refreshEditorState: () => onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter())),
         };
-      }
+      },
     },
     addListener: emitter.addListener,
-    removeListener: emitter.removeListener
+    removeListener: emitter.removeListener,
   };
 };
 

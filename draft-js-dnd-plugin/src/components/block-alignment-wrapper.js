@@ -11,16 +11,18 @@ export default function WrapComponent(C) {
     static displayName = `Decorated(${getDisplayName(C)})`;
     static defaultProps = {
       draggable: true,
-      readOnly: false
-    }
+      readOnly: false,
+    };
     align(alignment) {
       const entityKey = this.props.block.getEntityAt(0);
       if (entityKey) {
         Entity.mergeData(entityKey, { alignment });
+
         // Force refresh
         this.props.blockProps.refreshEditorState();
       }
     }
+
     render() {
       const { blockProps } = this.props;
       return (

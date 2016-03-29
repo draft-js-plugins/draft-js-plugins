@@ -5,18 +5,22 @@ import { Entity } from 'draft-js';
 function readFile(file) {
   return new Promise(resolve => {
     const reader = new FileReader();
+
     // This is called when finished reading
     reader.onload = e => {
       // Return an array with one image
       resolve({
         // These are attributes like size, name, type, ...
         ...file,
+
         // This is the files content as base64
         src: e.target.result,
+
         // No URL, since nothing on server
-        url: null
+        url: null,
       });
     };
+
     reader.readAsDataURL(file);
   });
 }
@@ -34,12 +38,14 @@ function getBlockWhereEntityData(state, query) {
       return block.get('key');
     }
   }
+
   return null;
 }
 
 export default function onDropFile(config) {
   return function onDropFileInner(e) {
     const { props, selection, files, editorState, onChange } = e;
+
     // Get upload function from config or editor props
     const upload = config.upload || props.upload;
     const progress = config.progress || props.progress || ((x) => config.emitter.emit('progress', x));
@@ -54,6 +60,7 @@ export default function onDropFile(config) {
           data.files.push(files[key]);
         }
       }
+
       data.formData = data;
 
       // Read files on client side
@@ -74,10 +81,11 @@ export default function onDropFile(config) {
             if (key) {
               newEditorState = ModifyBlockData(newEditorState, key, {
                 progress: undefined,
-                src: undefined, ...x
+                src: undefined, ...x,
               });
             }
           });
+
           // Propagate progress
           if (progress) progress(null);
           onChange(newEditorState);
@@ -93,6 +101,7 @@ export default function onDropFile(config) {
             }
           });
           onChange(newEditorState);
+
           // Propagate progress
           if (progress) progress(percent);
         });
@@ -100,6 +109,7 @@ export default function onDropFile(config) {
 
       return true;
     }
+
     return undefined;
   };
 }

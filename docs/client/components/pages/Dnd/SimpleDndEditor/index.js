@@ -8,32 +8,33 @@ import DndWrapper from 'draft-js-dnd-plugin/components/dnd-wrapper';
 
 const uploadPlugin = createUploadPlugin({
   upload: (data, success, failed, progress) =>
-      mockUpload(data, success, failed, progress)
-        // This would be a real file upload to server
-    /* superagent.post('/upload')
-            .accept('application/json')
-            .send(data.formData)
-            .on('progress', ({ percent }) => {
-              progress(percent);
-            })
-            .end((err, res) => {
-              if (err) {
-                return failed(err);
-              }
-              success(res.body.files, 'image');
-            });*/
+      mockUpload(data, success, failed, progress),
+
+  // This would be a real file upload to server
+  /* superagent.post('/upload')
+          .accept('application/json')
+          .send(data.formData)
+          .on('progress', ({ percent }) => {
+            progress(percent);
+          })
+          .end((err, res) => {
+            if (err) {
+              return failed(err);
+            }
+            success(res.body.files, 'image');
+          });*/
 });
 
 class SimpleDndEditor extends Component {
   state = {
     editorState: EditorState.createEmpty(),
-    draggingOver: false
+    draggingOver: false,
   };
 
   onChange = (editorState) => {
-        // console.log(convertToRaw(editorState.getCurrentContent()));
+    // console.log(convertToRaw(editorState.getCurrentContent()));
     this.setState({
-      editorState
+      editorState,
     });
   };
 

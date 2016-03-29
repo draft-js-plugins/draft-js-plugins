@@ -10,22 +10,23 @@ import fs from 'fs';
  */
 
 module.exports = function uploadEndpoint(options) {
-    // Simple upload endpoint
+  // Simple upload endpoint
   const storage = multer.diskStorage({
     destination: (req, file, callback) => {
       callback(null, options.folder);
     },
+
     filename: (req, file, callback) => {
       callback(null, file.originalname);
-    }
+    },
   });
   const upload = multer({
     storage,
     limits: {
       fields: 10,
       files: 3,
-      fileSize: 1000000
-    }
+      fileSize: 1000000,
+    },
   }).array('files', 3);
 
   return [upload, function afterUpload(req, res) {
@@ -45,8 +46,8 @@ module.exports = function uploadEndpoint(options) {
         mimetype: file.mimetype,
         originalname: file.originalname,
         size: file.originalname,
-        url: `/${file.originalname}`
-      }))
+        url: `/${file.originalname}`,
+      })),
     });
-  }];
+  }, ];
 };

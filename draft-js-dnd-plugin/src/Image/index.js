@@ -45,7 +45,7 @@ class Image extends Component {
         role="button" key={'right'}
       >
         R
-      </span>
+      </span>,
     ];
 
     const className = `${theme.get('imageWrapper')} ${theme.get(alignment || 'center')}`;

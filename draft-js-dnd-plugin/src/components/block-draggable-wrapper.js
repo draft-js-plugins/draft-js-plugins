@@ -7,8 +7,9 @@ export default function WrapComponent(component, options) {
   class Wrapper extends Component {
     static defaultProps = {
       draggable: true,
-      readOnly: false
-    }
+      readOnly: false,
+    };
+
         // Handle start-drag and setData with blockKey
     startDrag(e) {
       const event = e;
@@ -16,9 +17,11 @@ export default function WrapComponent(component, options) {
       if (!allow) return;
 
       event.dataTransfer.dropEffect = 'move';
-            // Declare data and give info that its an existing key and a block needs to be moved
+
+      // Declare data and give info that its an existing key and a block needs to be moved
       event.dataTransfer.setData('text', `key:${this.props.block.key}`);
     }
+
     render() {
       const { draggable, WrappedComponent } = this.props;
       if (useDiv) {

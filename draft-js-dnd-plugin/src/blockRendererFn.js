@@ -10,8 +10,8 @@ export default (config) => (contentBlock, getEditorState, updateEditorState) => 
       component: config.Image,
       props: {
         ...data,
-        remove: () => updateEditorState(removeBlock(getEditorState(), contentBlock.key))
-      }
+        remove: () => updateEditorState(removeBlock(getEditorState(), contentBlock.key)),
+      },
     };
   }
 

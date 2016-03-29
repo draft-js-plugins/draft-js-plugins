@@ -243,7 +243,6 @@ export default class PluginEditor extends Component {
       .find((result) => result !== undefined);
   };
 
-
   handleDroppedFiles = (selection, files) => {
     if (this.props.handleDroppedFiles) {
       const result = this.props.handleDroppedFiles({
@@ -251,7 +250,7 @@ export default class PluginEditor extends Component {
         files,
         editorState: this.getEditorState,
         onChange: this.onChange,
-        props: this.props
+        props: this.props,
       });
       if (result) {
         return result;
@@ -266,7 +265,7 @@ export default class PluginEditor extends Component {
               files,
               editorState: this.getEditorState,
               onChange: this.onChange,
-              props: this.props
+              props: this.props,
             });
             if (result) {
               return result;
@@ -278,7 +277,6 @@ export default class PluginEditor extends Component {
         .find((result) => result !== undefined);
   };
 
-
   handleDrop = (selection, dataTransfer, isInternal) => {
     if (this.props.handleDrop) {
       const result = this.props.handleDrop({
@@ -287,7 +285,7 @@ export default class PluginEditor extends Component {
         isInternal,
         editorState: this.getEditorState,
         onChange: this.onChange,
-        props: this.props
+        props: this.props,
       });
       if (result) {
         return result;
@@ -303,7 +301,7 @@ export default class PluginEditor extends Component {
               isInternal,
               editorState: this.getEditorState,
               onChange: this.onChange,
-              props: this.props
+              props: this.props,
             });
             if (result) {
               return result;

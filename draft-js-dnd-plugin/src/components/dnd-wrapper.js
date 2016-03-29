@@ -13,6 +13,7 @@ export default function WrapComponent(C, plugin) {
 
       plugin.addListener('progress', this.onProgress);
     }
+
     componentWillUnmount() {
       this.DOMNode.removeEventListener('dragover', this.onDragOver);
       this.DOMNode.removeEventListener('dragleave', this.onDragLeave);
@@ -25,23 +26,23 @@ export default function WrapComponent(C, plugin) {
       const { isDragging } = this.state;
       if (!containsFiles(e) || isDragging) return;
       this.setState({ isDragging: true });
-    }
+    };
 
     onDragLeave = (e) => {
       const { isDragging } = this.state;
       if (!containsFiles(e) || !isDragging) return;
       this.setState({ isDragging: false });
-    }
+    };
 
     onDragDrop = (e) => {
       const { draggingOver } = this.state;
       if (!containsFiles(e) || !draggingOver) return;
       this.setState({ isDragging: false });
-    }
+    };
 
     onProgress = (e) => {
       this.setState({ progress: e, isDragging: false });
-    }
+    };
 
     render() {
       const { isDragging, progress } = this.state;

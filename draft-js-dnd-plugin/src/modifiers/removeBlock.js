@@ -13,9 +13,9 @@ export default function (editorState, blockKey) {
   const afterBlock = content.getBlockForKey(afterKey);
   let targetRange;
 
-    // Only if the following block the last with no text then the whole block
-    // should be removed. Otherwise the block should be reduced to an unstyled block
-    // without any characters.
+  // Only if the following block the last with no text then the whole block
+  // should be removed. Otherwise the block should be reduced to an unstyled block
+  // without any characters.
   if (afterBlock &&
         afterBlock.getType() === 'unstyled' &&
         afterBlock.getLength() === 0 &&
@@ -35,7 +35,7 @@ export default function (editorState, blockKey) {
     });
   }
 
-    // change the blocktype and remove the characterList entry with the block
+  // change the blocktype and remove the characterList entry with the block
   content = Modifier.setBlockType(
         content,
         targetRange,
@@ -43,7 +43,7 @@ export default function (editorState, blockKey) {
     );
   content = Modifier.removeRange(content, targetRange, 'backward');
 
-    // force to new selection
+  // force to new selection
   const newState = EditorState.push(editorState, content, 'remove-block');
   return EditorState.forceSelection(newState, newSelection);
 }
