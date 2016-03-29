@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from "react";
-import Draggable from "../components/block-draggable-wrapper";
-import Alignment from "../components/block-alignment-wrapper";
+import React, { Component } from 'react';
+import Draggable from '../components/block-draggable-wrapper';
+import Alignment from '../components/block-alignment-wrapper';
 
 class Image extends Component {
   remove = (event) => {
@@ -10,37 +10,53 @@ class Image extends Component {
     this.props.blockProps.onRemove(this.props.block.getKey());
   };
 
+  alignLeft = () => {
+    this.props.align('left');
+  };
+
+  alignCenter = () => {
+    this.props.align('cener');
+  };
+
+  alignRight = () => {
+    this.props.align('right');
+  };
+
   render() {
-    const {blockProps, block, attachButtons, theme, alignment, onDragStart, draggable} = this.props;
-    
+    const { blockProps, block, attachButtons, theme, alignment, onDragStart, draggable } = this.props;
+
     const buttons = [
       <span className={ theme.get('imageButton') }
-            onClick={ ()=>this.props.align('left') }
-            style={{marginLeft: '-2.4em'}}
-            role="button" key={'left'}>
+        onClick={this.alignLeft}
+        style={{ marginLeft: '-2.4em' }}
+        role="button" key={'left'}
+      >
         L
       </span>,
       <span className={ theme.get('imageButton') }
-            onClick={ ()=>this.props.align('center') }
-            role="button" key={'center'}>
+        onClick={this.alignCenter}
+        role="button" key={'center'}
+      >
         C
       </span>,
       <span className={ theme.get('imageButton') }
-            onClick={ ()=>this.props.align('right') }
-            style={{marginLeft: '0.9em'}}
-            role="button" key={'right'}>
+        onClick={this.alignRight}
+        style={{ marginLeft: '0.9em' }}
+        role="button" key={'right'}
+      >
         R
       </span>
     ];
 
-    var className = theme.get('imageWrapper')+' '+theme.get(alignment||'center');
+    const className = `${theme.get('imageWrapper')} ${theme.get(alignment || 'center')}`;
     return (
         <figure className={ className }
-             contentEditable={false}
-             data-offset-key={ `${block.get('key')}-0-0` }
-             onDragStart={onDragStart} draggable={draggable}>
-          <img src={blockProps.src || ('/images'+blockProps.url)} width="100%" height="auto" className={ theme.get('image') }/>
-          {blockProps.progress >= 0 ? <div style={{position: 'absolute', width: `${100-blockProps.progress}%`, right: 0, top: 0, height: '100%', backgroundColor: 'white'}}/> : null}
+          contentEditable={false}
+          data-offset-key={ `${block.get('key')}-0-0` }
+          onDragStart={onDragStart} draggable={draggable}
+        >
+          <img src={blockProps.src || (`/images ${blockProps.url}`)} width="100%" height="auto" className={ theme.get('image') } />
+          {blockProps.progress >= 0 ? <div style={{ position: 'absolute', width: `${100 - blockProps.progress}%`, right: 0, top: 0, height: '100%', backgroundColor: 'white' }} /> : null}
           { attachButtons ? buttons : null }
         </figure>
     );

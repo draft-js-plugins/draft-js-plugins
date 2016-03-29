@@ -192,13 +192,14 @@ export default class PluginEditor extends Component {
   };
 
   // Inject props into blockRendererFn blocks
-  injectBlockProps(block){
-    var props = {};
+  injectBlockProps(b) {
+    let props = {};
+    const block = b;
 
     if (this.props.injectBlockProps) {
       const result = this.props.injectBlockProps(block, this.getEditorState, this.onChange);
       if (result) {
-        props = {...result, ...props};
+        props = { ...result, ...props };
       }
     }
 
@@ -207,14 +208,14 @@ export default class PluginEditor extends Component {
           if (plugin.injectBlockProps) {
             const result = plugin.injectBlockProps(block, this.getEditorState, this.onChange);
             if (result) {
-              props = {...result, ...props};
+              props = { ...result, ...props };
             }
           }
 
           return undefined;
         });
 
-    if(block.props) block.props = {...block.props, ...props};
+    if (block.props) block.props = { ...block.props, ...props };
     else block.props = props;
     return block;
   }
@@ -246,8 +247,8 @@ export default class PluginEditor extends Component {
   handleDroppedFiles = (selection, files) => {
     if (this.props.handleDroppedFiles) {
       const result = this.props.handleDroppedFiles({
-        selection: selection,
-        files: files,
+        selection,
+        files,
         editorState: this.getEditorState,
         onChange: this.onChange,
         props: this.props
@@ -261,8 +262,8 @@ export default class PluginEditor extends Component {
         .map((plugin) => {
           if (plugin.handleDroppedFiles) {
             const result = plugin.handleDroppedFiles({
-              selection: selection,
-              files: files,
+              selection,
+              files,
               editorState: this.getEditorState,
               onChange: this.onChange,
               props: this.props
@@ -281,9 +282,9 @@ export default class PluginEditor extends Component {
   handleDrop = (selection, dataTransfer, isInternal) => {
     if (this.props.handleDrop) {
       const result = this.props.handleDrop({
-        selection: selection,
-        dataTransfer: dataTransfer,
-        isInternal: isInternal,
+        selection,
+        dataTransfer,
+        isInternal,
         editorState: this.getEditorState,
         onChange: this.onChange,
         props: this.props
@@ -297,9 +298,9 @@ export default class PluginEditor extends Component {
         .map((plugin) => {
           if (plugin.handleDrop) {
             const result = plugin.handleDrop({
-              selection: selection,
-              dataTransfer: dataTransfer,
-              isInternal: isInternal,
+              selection,
+              dataTransfer,
+              isInternal,
               editorState: this.getEditorState,
               onChange: this.onChange,
               props: this.props

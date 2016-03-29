@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Container from '../../shared/Container';
 import Heading from '../../shared/Heading';
-import Code from '../../shared/Code';
 import SimpleUploadEditor from './SimpleDndEditor';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
 
 export default class App extends Component {
-    render() {
-        return (
+  render() {
+    return (
             <div>
                 <NavBar />
                 <Separator />
@@ -21,5 +20,5 @@ export default class App extends Component {
                 </Container>
             </div>
         );
-    }
+  }
 }

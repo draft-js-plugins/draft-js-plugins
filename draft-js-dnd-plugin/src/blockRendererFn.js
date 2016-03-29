@@ -1,4 +1,4 @@
-import {Entity} from 'draft-js';
+import { Entity } from 'draft-js';
 import removeBlock from './modifiers/removeBlock';
 
 export default (config) => (contentBlock, getEditorState, updateEditorState) => {
@@ -9,8 +9,8 @@ export default (config) => (contentBlock, getEditorState, updateEditorState) => 
     return {
       component: config.Image,
       props: {
-          ...data,
-        remove: ()=>updateEditorState(removeBlock(getEditorState(), contentBlock.key))
+        ...data,
+        remove: () => updateEditorState(removeBlock(getEditorState(), contentBlock.key))
       }
     };
   }

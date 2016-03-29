@@ -1,5 +1,5 @@
-import {List, Repeat} from 'immutable';
-import {Modifier, CharacterMetadata, BlockMapBuilder, EditorState, ContentBlock, ContentState, Entity, genKey, convertToRaw} from "draft-js";
+import { List, Repeat } from 'immutable';
+import { Modifier, CharacterMetadata, BlockMapBuilder, EditorState, ContentBlock, Entity, genKey } from 'draft-js';
 
 export default function (editorState, selection, type, data) {
   const currentContentState = editorState.getCurrentContent();
@@ -45,7 +45,7 @@ export default function (editorState, selection, type, data) {
   const fragmentArray = [
     new ContentBlock({
       key: genKey(),
-      type: type,
+      type,
       text: '',
       characterList: List(Repeat(charData, 1)), // eslint-disable-line new-cap
     }),
@@ -73,7 +73,7 @@ export default function (editorState, selection, type, data) {
   const newState = EditorState.push(
       editorState,
       contentStateWithBlock,
-      'insert-'+type
+      `insert-${type}`
   );
   return EditorState.forceSelection(newState, contentStateWithBlock.getSelectionAfter());
 }

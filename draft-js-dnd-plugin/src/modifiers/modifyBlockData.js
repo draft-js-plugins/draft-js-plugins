@@ -1,4 +1,4 @@
-import {Modifier, CharacterMetadata, BlockMapBuilder, EditorState, ContentBlock, ContentState, Entity, genKey, convertToRaw, convertFromRaw} from "draft-js";
+import { EditorState, Entity } from 'draft-js';
 
 export default function (editorState, key, data) {
   const currentContentState = editorState.getCurrentContent();
