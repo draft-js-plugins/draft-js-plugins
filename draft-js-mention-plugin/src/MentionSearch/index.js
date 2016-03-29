@@ -32,7 +32,8 @@ export default class MentionSearch extends Component {
     // In case the list shrinks there should be still an option focused.
     // Note: this might run multiple times and deduct 1 until the condition is
     // not fullfilled anymore.
-    if (this.state.focusedOptionIndex >= this.filteredMentions.size) {
+    const size = this.filteredMentions.size;
+    if (size > 0 && this.state.focusedOptionIndex >= size) {
       this.setState({
         focusedOptionIndex: this.filteredMentions.size - 1,
       });
