@@ -7,38 +7,38 @@ const addEmoji = (editorState, emojiShortName) => {
   const currentSelectionState = editorState.getSelection();
   const { begin, end } = getSearchText(editorState, currentSelectionState);
 
-  // get selection of the @mention search text
-  const mentionTextSelection = currentSelectionState.merge({
+  // Get the selection of the :emoji: search text
+  const emojiTextSelection = currentSelectionState.merge({
     anchorOffset: begin,
     focusOffset: end,
   });
 
   const unicode = emojioneList[emojiShortName][0];
   const emoji = convertShortNameToUnicode(unicode);
-  let mentionReplacedContent = Modifier.replaceText(
+  let emojiReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
-    mentionTextSelection,
+    emojiTextSelection,
     emoji,
   );
 
-  // If the mention is insert at the end a space is append right away for a smooth
-  // writing experience.
-  const blockKey = mentionTextSelection.getAnchorKey();
+  // If the emoji is inserted at the end, a space is appended right after for
+  // a smooth writing experience.
+  const blockKey = emojiTextSelection.getAnchorKey();
   const blockSize = editorState.getCurrentContent().getBlockForKey(blockKey).getLength();
   if (blockSize === end) {
-    mentionReplacedContent = Modifier.insertText(
-      mentionReplacedContent,
-      mentionReplacedContent.getSelectionAfter(),
+    emojiReplacedContent = Modifier.insertText(
+      emojiReplacedContent,
+      emojiReplacedContent.getSelectionAfter(),
       ' ',
     );
   }
 
   const newEditorState = EditorState.push(
     editorState,
-    mentionReplacedContent,
+    emojiReplacedContent,
     'insert-emoji',
   );
-  return EditorState.forceSelection(newEditorState, mentionReplacedContent.getSelectionAfter());
+  return EditorState.forceSelection(newEditorState, emojiReplacedContent.getSelectionAfter());
 };
 
 export default addEmoji;
