@@ -29,26 +29,20 @@ function readFiles(files) {
   return Promise.all(files.map(readFile));
 }
 
-function getBlockWhereEntityData(state, query) {
-  const map = state.getCurrentContent().get('blockMap').toArray();
-  for (let i = 0; i < map.length; i++) {
-    const block = map[i];
+function getBlocksWhereEntityData(state, query) {
+  return state.getCurrentContent().get('blockMap').filter(block => {
     const entityData = block.getEntityAt(0) ? Entity.get(block.getEntityAt(0)).getData() : null;
-    if (block.get('type') === 'image' && entityData && query(entityData)) {
-      return block.get('key');
-    }
-  }
-
-  return null;
+    return block.get('type') === 'image' && entityData && query(entityData);
+  });
 }
 
 export default function onDropFile(config) {
-  return function onDropFileInner(e) {
-    const { props, selection, files, editorState, onChange } = e;
+  return function onDropFileInner(event) {
+    const { selection, files, getEditorState, updateEditorState } = event;
 
     // Get upload function from config or editor props
-    const upload = config.upload || props.upload;
-    const progress = config.progress || props.progress || ((x) => config.emitter.emit('progress', x));
+    const upload = config.upload;
+    const progress = config.progress || (percent => config.emitter.emit('progress', percent));
     if (upload) {
       const formData = new FormData();
 
@@ -75,11 +69,11 @@ export default function onDropFile(config) {
         // Perform upload
         upload(data, uploadedFiles => {
           // Success, remove 'progress' and 'src'
-          let newEditorState = editorState();
-          uploadedFiles.forEach(x => {
-            const key = getBlockWhereEntityData(newEditorState, y => y.src === x.src);
-            if (key) {
-              newEditorState = ModifyBlockData(newEditorState, key, {
+          let newEditorState = getEditorState();
+          uploadedFiles.forEach(file => {
+            const blocks = getBlocksWhereEntityData(newEditorState, y => y.src === file.src);
+            if (blocks.size) {
+              newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), {
                 progress: undefined,
                 src: undefined, ...file,
               });
@@ -93,11 +87,11 @@ export default function onDropFile(config) {
           // console.error(err);
         }, (percent) => {
           // On progress, set entity data's progress field
-          let newEditorState = editorState();
-          previews.forEach(x => {
-            const key = getBlockWhereEntityData(newEditorState, y => y.src === x.src);
-            if (key) {
-              newEditorState = ModifyBlockData(newEditorState, key, { progress: percent });
+          let newEditorState = getEditorState();
+          previews.forEach(preview => {
+            const blocks = getBlocksWhereEntityData(newEditorState, preview2 => preview2.src === preview.src);
+            if (blocks.size) {
+              newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
             }
           });
           updateEditorState(newEditorState);
