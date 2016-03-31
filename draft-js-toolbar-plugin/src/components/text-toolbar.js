@@ -61,7 +61,7 @@ export default class DraftToolbar extends Component {
   }
 
   render() {
-    const { editorState, blockTypes, inlineStyles, actions } = this.props;
+    const { editorState, inlineStyles, actions } = this.props;
 
     const rect = getSelectionRect(this.browserSelection);
     if (!rect || this.editorSelection.isCollapsed()) return null;
@@ -71,7 +71,7 @@ export default class DraftToolbar extends Component {
     const block = editorState
         .getCurrentContent()
         .getBlockForKey(editorState.getSelection().getStartKey());
-    
+
     // const blockType = block.getType();
     // ...blockTypes.map(x => ({ icon: x.icon, button: x.button, label: x.label, active: blockType === x.style, toggle: () => this.toggleBlockType(x.style) })),
 
@@ -112,6 +112,7 @@ DraftToolbar.defaultProps = {
          );
         return active;
       },
+
       toggle: (action, state, editorState, onChange) => {
         const selection = editorState.getSelection();
         if (selection.isCollapsed()) {

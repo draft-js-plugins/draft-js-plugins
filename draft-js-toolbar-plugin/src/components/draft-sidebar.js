@@ -6,7 +6,7 @@ import Tooltip from './tooltip';
 export default class DraftToolbar extends Component {
   mouseDown = (event) => {
     event.preventDefault();
-  }
+  };
 
   add() {
     // this.props.onChange(AddBlock(this.props.editorState, null, key));
@@ -19,7 +19,7 @@ export default class DraftToolbar extends Component {
         {key.substr(0, 2)}
       </button>
     );
-  }
+  };
 
   renderMenu = () => {
     const { blockTypes } = this.props;
@@ -29,7 +29,7 @@ export default class DraftToolbar extends Component {
         {Object.keys(blockTypes).filter(filter).map(this.renderButton)}
       </div>
     );
-  }
+  };
 
   render() {
     return (

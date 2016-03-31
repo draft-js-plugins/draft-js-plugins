@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 import createToolbarPlugin from 'draft-js-toolbar-plugin';

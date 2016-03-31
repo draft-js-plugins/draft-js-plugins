@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Tooltip from './tooltip';
 
 export default class DraftToolbar extends Component {
@@ -28,7 +27,7 @@ export default class DraftToolbar extends Component {
         </button>
       </div>
     );
-  }
+  };
 
   render() {
     const { theme, actions } = this.props;
