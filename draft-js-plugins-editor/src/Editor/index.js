@@ -9,6 +9,7 @@ import {
   getDefaultKeyBinding,
   KeyBindingUtil,
 } from 'draft-js';
+
 import createCompositeDecorator from '../utils/createCompositeDecorator';
 import moveSelectionToEnd from '../utils/moveSelectionToEnd';
 import moveToEndOfSelectedBlock from '../modifiers/moveToEndOfSelectedBlock';
@@ -55,54 +56,6 @@ export default class PluginEditor extends Component {
     }
   };
 
-  onDownArrow = (keyboardEvent) => {
-    // TODO allow to provide a custom onDownArrow
-
-    this.plugins.map((plugin) => {
-      if (plugin.onDownArrow) {
-        plugin.onDownArrow(keyboardEvent);
-      }
-
-      return undefined;
-    });
-  };
-
-  onUpArrow = (keyboardEvent) => {
-    // TODO allow to provide a custom onUpArrow
-
-    this.plugins.map((plugin) => {
-      if (plugin.onUpArrow) {
-        plugin.onUpArrow(keyboardEvent);
-      }
-
-      return undefined;
-    });
-  };
-
-  onEscape = (keyboardEvent) => {
-    // TODO allow to provide a custom onEscape
-
-    this.plugins.map((plugin) => {
-      if (plugin.onEscape) {
-        plugin.onEscape(keyboardEvent);
-      }
-
-      return undefined;
-    });
-  };
-
-  onTab = (keyboardEvent) => {
-    // TODO allow to provide a custom onTab
-
-    this.plugins.map((plugin) => {
-      if (plugin.onTab) {
-        plugin.onTab(keyboardEvent);
-      }
-
-      return undefined;
-    });
-  };
-
   getEditorState = () => this.editorState;
 
   handleKeyCommand = (command) => {
@@ -118,7 +71,7 @@ export default class PluginEditor extends Component {
     preventDefaultBehaviour = this.plugins
       .map((plugin) => {
         if (plugin.handleKeyCommand) {
-          const handled = plugin.handleKeyCommand(command);
+          const handled = plugin.handleKeyCommand(command, this.getEditorState, this.onChange);
           if (handled === true) {
             return handled;
           }
@@ -139,31 +92,12 @@ export default class PluginEditor extends Component {
     return preventDefaultBehaviour === true;
   };
 
-  handleReturn = (keyboardEvent) => {
-    // TODO optimize to break after the first one
-    const preventDefaultBehaviour = this.plugins
-      .map((plugin) => {
-        if (plugin.handleReturn) {
-          const handled = plugin.handleReturn(keyboardEvent);
-          if (handled === true) {
-            return handled;
-          }
-        }
-
-        return undefined;
-      })
-      .find((result) => result === true);
-
-    // TODO allow to provide a custom handleReturn
-    return preventDefaultBehaviour === true;
-  };
-
   keyBindingFn = (keyboardEvent) => {
     // TODO optimize to break after the first one
     let command = this.plugins
       .map((plugin) => {
         if (plugin.keyBindingFn) {
-          const pluginCommand = plugin.keyBindingFn(keyboardEvent);
+          const pluginCommand = plugin.keyBindingFn(keyboardEvent, this.getEditorState, this.onChange);
           if (pluginCommand) {
             return pluginCommand;
           }
@@ -209,13 +143,126 @@ export default class PluginEditor extends Component {
       .find((result) => result !== undefined);
   };
 
+  handleDroppedFiles = (selection, files) => {
+    if (this.props.handleDroppedFiles) {
+      const result = this.props.handleDroppedFiles({
+        selection,
+        files,
+        getEditorState: this.getEditorState,
+        updateEditorState: this.onChange,
+        props: this.props,
+      });
+      if (result) {
+        return result;
+      }
+    }
+
+    return this.plugins
+        .map((plugin) => {
+          if (plugin.handleDroppedFiles) {
+            const result = plugin.handleDroppedFiles({
+              selection,
+              files,
+              getEditorState: this.getEditorState,
+              updateEditorState: this.onChange,
+              props: this.props,
+            });
+            if (result) {
+              return result;
+            }
+          }
+
+          return undefined;
+        })
+        .find((result) => result !== undefined);
+  };
+
+  handleDrop = (selection, dataTransfer, isInternal) => {
+    if (this.props.handleDrop) {
+      const result = this.props.handleDrop({
+        selection,
+        dataTransfer,
+        isInternal,
+        getEditorState: this.getEditorState,
+        updateEditorState: this.onChange,
+        props: this.props,
+      });
+      if (result) {
+        return result;
+      }
+    }
+
+    return this.plugins
+        .map((plugin) => {
+          if (plugin.handleDrop) {
+            const result = plugin.handleDrop({
+              selection,
+              dataTransfer,
+              isInternal,
+              getEditorState: this.getEditorState,
+              updateEditorState: this.onChange,
+              props: this.props,
+            });
+            if (result) {
+              return result;
+            }
+          }
+
+          return undefined;
+        })
+        .find((result) => result !== undefined);
+  };
+
   // Put the keyboard focus on the editor
   focus = () => {
     this.refs.editor.focus();
   };
 
+  createHandleListener = (name) => (event) => (
+    this.plugins
+      .filter((plug) => plug[name])
+      .map((plugin) => plugin[name](event))
+      .find((result) => result === true) === true
+  );
+
+  createOnListener = (name) => (event) => (
+    this.plugins
+      .filter(plug => typeof plug[name] === 'function')
+      .forEach(plug => plug[name](event))
+  );
+
+  createEventListeners = () => {
+    const listeners = {
+      onChange: this.onChange,
+      handleKeyCommand: this.handleKeyCommand,
+      keyBindingFn: this.keyBindingFn,
+      handleReturn: this.handleReturn,
+    };
+
+    const keepHandlers = ['onChange', 'handleKeyCommand'];
+
+    // bind random onListeners and handleListeners
+    this.plugins.forEach((plug) => {
+      Object.keys(plug).forEach((attrName) => {
+        if (attrName.indexOf('on') === 0 && !keepHandlers.includes(attrName)) {
+          listeners[attrName] = this.createOnListener(attrName);
+        }
+
+        if (attrName.indexOf('handle') === 0 && !keepHandlers.includes(attrName)) {
+          listeners[attrName] = this.createHandleListener(attrName);
+        }
+      });
+    });
+
+    return listeners;
+  };
+
   render() {
     let pluginProps = {};
+
+    // This puts pluginProps and the object inside getEditorProps
+    // on the Editor component (main use case is for aria props right now)
+    // Last plugin wins right now (not ideal)
     this.plugins.forEach((plugin) => {
       if (plugin.getEditorProps) {
         pluginProps = {
@@ -225,20 +272,17 @@ export default class PluginEditor extends Component {
       }
     });
 
+    const listeners = this.createEventListeners();
+
     return (
       <Editor
         {...pluginProps}
         {...this.props}
-        onChange={ this.onChange }
-        editorState={ this.editorState }
-        blockRendererFn={ this.blockRendererFn }
-        handleKeyCommand={ this.handleKeyCommand }
-        keyBindingFn={ this.keyBindingFn }
-        onDownArrow={ this.onDownArrow }
-        onTab={ this.onTab }
-        onUpArrow={ this.onUpArrow }
-        onEscape={ this.onEscape }
-        handleReturn={ this.handleReturn }
+        {...listeners}
+        handleDroppedFiles={ this.handleDroppedFiles }
+        handleDrop={ this.handleDrop }
+        editorState={this.editorState}
+        blockRendererFn={this.blockRendererFn}
         ref="editor"
       />
     );
