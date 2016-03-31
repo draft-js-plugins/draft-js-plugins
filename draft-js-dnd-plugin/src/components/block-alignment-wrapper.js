@@ -6,9 +6,9 @@ const getDisplayName = (WrappedComponent) => (
 );
 
 // Export
-export default function WrapComponent(C) {
+export default function WrapComponent(WrappedComponent) {
   return class Wrapper extends Component {
-    static displayName = `Decorated(${getDisplayName(C)})`;
+    static displayName = `Decorated(${getDisplayName(WrappedComponent)})`;
     static defaultProps = {
       draggable: true,
       readOnly: false,
@@ -26,7 +26,7 @@ export default function WrapComponent(C) {
     render() {
       const { blockProps } = this.props;
       return (
-          <C {...this.props}
+          <WrappedComponent {...this.props}
             alignment={blockProps.alignment}
             align={this.align}
           />

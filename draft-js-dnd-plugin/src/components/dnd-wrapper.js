@@ -40,8 +40,8 @@ export default function WrapComponent(WrappedComponent, plugin) {
       this.setState({ isDragging: false });
     };
 
-    onProgress = (e) => {
-      this.setState({ progress: e, isDragging: false });
+    onProgress = (event) => {
+      this.setState({ progress: event, isDragging: false });
     };
 
     render() {

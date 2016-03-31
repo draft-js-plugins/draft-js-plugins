@@ -12,12 +12,11 @@ export default function WrapComponent(component, options) {
     };
 
         // Handle start-drag and setData with blockKey
-    startDrag(e) {
-      const event = e;
+    startDrag(event) {
       const allow = this.props.draggable && !this.props.readOnly;
       if (!allow) return;
 
-      event.dataTransfer.dropEffect = 'move';
+      event.dataTransfer.dropEffect = 'move'; // eslint-disable-line no-param-reassign
 
       // Declare data and give info that its an existing key and a block needs to be moved
       event.dataTransfer.setData('text', `${DRAFTJS_BLOCK_KEY}:${this.props.block.key}`);
