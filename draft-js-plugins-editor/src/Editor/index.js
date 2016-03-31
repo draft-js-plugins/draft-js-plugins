@@ -123,7 +123,7 @@ export default class PluginEditor extends Component {
     preventDefaultBehaviour = this.plugins
       .map((plugin) => {
         if (plugin.handleKeyCommand) {
-          const handled = plugin.handleKeyCommand(command);
+          const handled = plugin.handleKeyCommand(command, this.getEditorState, this.onChange);
           if (handled === true) {
             return handled;
           }
@@ -168,7 +168,7 @@ export default class PluginEditor extends Component {
     let command = this.plugins
       .map((plugin) => {
         if (plugin.keyBindingFn) {
-          const pluginCommand = plugin.keyBindingFn(keyboardEvent);
+          const pluginCommand = plugin.keyBindingFn(keyboardEvent, this.getEditorState, this.onChange);
           if (pluginCommand) {
             return pluginCommand;
           }
