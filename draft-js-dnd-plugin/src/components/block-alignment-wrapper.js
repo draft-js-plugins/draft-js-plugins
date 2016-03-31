@@ -13,7 +13,7 @@ export default function WrapComponent(C) {
       draggable: true,
       readOnly: false,
     };
-    align(alignment) {
+    align = alignment => {
       const entityKey = this.props.block.getEntityAt(0);
       if (entityKey) {
         Entity.mergeData(entityKey, { alignment });
@@ -21,14 +21,14 @@ export default function WrapComponent(C) {
         // Force refresh
         this.props.blockProps.refreshEditorState();
       }
-    }
+    };
 
     render() {
       const { blockProps } = this.props;
       return (
           <C {...this.props}
             alignment={blockProps.alignment}
-            align={::this.align}
+            align={this.align}
           />
       );
     }
