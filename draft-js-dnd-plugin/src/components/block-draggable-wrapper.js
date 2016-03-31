@@ -11,7 +11,7 @@ export default function WrapComponent(component, options) {
       readOnly: false,
     };
 
-        // Handle start-drag and setData with blockKey
+    // Handle start-drag and setData with blockKey
     startDrag(event) {
       const allow = this.props.draggable && !this.props.readOnly;
       if (!allow) return;
@@ -26,15 +26,15 @@ export default function WrapComponent(component, options) {
       const { draggable, WrappedComponent } = this.props;
       if (useDiv) {
         return (
-                    <div onDragStart={::this.startDrag} draggable={draggable}>
-                        <WrappedComponent {...this.props} />
-                    </div>
-                );
+          <div onDragStart={::this.startDrag} draggable={draggable}>
+            <WrappedComponent {...this.props} />
+          </div>
+        );
       }
 
       return <WrappedComponent {...this.props} onDragStart={::this.startDrag} draggable={draggable} />;
     }
-    }
+  }
 
   return props => <Wrapper {...props} WrappedComponent={component} />;
 }
