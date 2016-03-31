@@ -30,7 +30,7 @@ const uploadPlugin = (config = {}) => {
   const blockRendererConfig = {
     ...config,
     emitter,
-    Image: decorateComponentWithProps(Image, { theme, attachButtons }),
+    Image: decorateComponentWithProps(config.Image || Image, { theme, attachButtons }),
   };
 
   return {
