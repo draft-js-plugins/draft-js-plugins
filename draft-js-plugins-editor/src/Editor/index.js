@@ -17,7 +17,13 @@ import moveToStartOfSelectedBlock from '../modifiers/moveToStartOfSelectedBlock'
 import { List } from 'immutable';
 
 export default class PluginEditor extends Component {
-  // TODO add flow types & propTypes - since it's a library and people might not use flow we want to have both
+
+  static propTypes = {
+    editorState: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    plugins: React.PropTypes.array,
+  };
+
   constructor(props) {
     super(props);
     this.plugins = List(props.plugins).toArray();
