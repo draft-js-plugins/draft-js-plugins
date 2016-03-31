@@ -12,6 +12,7 @@ import Sticker from './components/pages/Sticker';
 import Undo from './components/pages/Undo';
 import Mention from './components/pages/Mention';
 import Dnd from './components/pages/Dnd';
+import Toolbar from './components/pages/Toolbar';
 
 export const routes = (
   <Route path="/" title="App" component={App}>
@@ -24,6 +25,7 @@ export const routes = (
       <Route path="plugin/undo" title="App - Undo" component={Undo} />
       <Route path="plugin/mention" title="App - Mention" component={Mention} />
       <Route path="plugin/dnd" title="App - Drag & Drop" component={Dnd} />
+      <Route path="plugin/toolbar" title="App - Toolbar" component={Toolbar} />
     </Route>
     <Route path="*" title="404: Not Found" component={NotFound} />
   </Route>
