@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { DRAFTJS_BLOCK_KEY } from '../constants';
 
 // Export
 export default function WrapComponent(component, options) {
@@ -19,7 +20,7 @@ export default function WrapComponent(component, options) {
       event.dataTransfer.dropEffect = 'move';
 
       // Declare data and give info that its an existing key and a block needs to be moved
-      event.dataTransfer.setData('text', `key:${this.props.block.key}`);
+      event.dataTransfer.setData('text', `${DRAFTJS_BLOCK_KEY}:${this.props.block.key}`);
     }
 
     render() {

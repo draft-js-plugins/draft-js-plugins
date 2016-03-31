@@ -1,6 +1,7 @@
 import addBlock from './addBlock';
 import removeBlock from './removeBlock';
 import { Entity } from 'draft-js';
+import { DRAFTJS_BLOCK_KEY, DRAFTJS_BLOCK_TYPE } from '../constants';
 
 export default function onDropBlock() {
   return function onDropBlockInner(event) {
@@ -17,7 +18,7 @@ export default function onDropBlock() {
     }
 
     // Existing block dropped
-    if (data[0] === 'key') {
+    if (data[0] === DRAFTJS_BLOCK_KEY) {
       const blockKey = data[1];
 
       // Get content, selection, block
@@ -27,7 +28,7 @@ export default function onDropBlock() {
     }
 
     // New block dropped
-    if (data[0] === 'type') {
+    if (data[0] === DRAFTJS_BLOCK_TYPE) {
       const blockType = data[1];
 
       // Get content, selection, block
