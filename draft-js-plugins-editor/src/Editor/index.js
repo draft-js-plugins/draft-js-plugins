@@ -191,12 +191,41 @@ export default class PluginEditor extends Component {
     return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
   };
 
+  // Inject props into blockRendererFn blocks
+  injectBlockProps(b) {
+    let props = {};
+    const block = b;
+
+    if (this.props.injectBlockProps) {
+      const result = this.props.injectBlockProps(block, this.getEditorState, this.onChange);
+      if (result) {
+        props = { ...result, ...props };
+      }
+    }
+
+    this.plugins
+        .forEach((plugin) => {
+          if (plugin.injectBlockProps) {
+            const result = plugin.injectBlockProps(block, this.getEditorState, this.onChange);
+            if (result) {
+              props = { ...result, ...props };
+            }
+          }
+
+          return undefined;
+        });
+
+    if (block.props) block.props = { ...block.props, ...props };
+    else block.props = props;
+    return block;
+  }
+
   blockRendererFn = (contentBlock) => {
     // TODO optimize to break after the first one
     if (this.props.blockRendererFn) {
       const result = this.props.blockRendererFn(contentBlock);
       if (result) {
-        return result;
+        return this.injectBlockProps(result);
       }
     }
 
@@ -205,13 +234,83 @@ export default class PluginEditor extends Component {
         if (plugin.blockRendererFn) {
           const result = plugin.blockRendererFn(contentBlock, this.getEditorState, this.onChange);
           if (result) {
-            return result;
+            return this.injectBlockProps(result);
           }
         }
 
         return undefined;
       })
       .find((result) => result !== undefined);
+  };
+
+  handleDroppedFiles = (selection, files) => {
+    if (this.props.handleDroppedFiles) {
+      const result = this.props.handleDroppedFiles({
+        selection,
+        files,
+        getEditorState: this.getEditorState,
+        updateEditorState: this.onChange,
+        props: this.props,
+      });
+      if (result) {
+        return result;
+      }
+    }
+
+    return this.plugins
+        .map((plugin) => {
+          if (plugin.handleDroppedFiles) {
+            const result = plugin.handleDroppedFiles({
+              selection,
+              files,
+              getEditorState: this.getEditorState,
+              updateEditorState: this.onChange,
+              props: this.props,
+            });
+            if (result) {
+              return result;
+            }
+          }
+
+          return undefined;
+        })
+        .find((result) => result !== undefined);
+  };
+
+  handleDrop = (selection, dataTransfer, isInternal) => {
+    if (this.props.handleDrop) {
+      const result = this.props.handleDrop({
+        selection,
+        dataTransfer,
+        isInternal,
+        getEditorState: this.getEditorState,
+        updateEditorState: this.onChange,
+        props: this.props,
+      });
+      if (result) {
+        return result;
+      }
+    }
+
+    return this.plugins
+        .map((plugin) => {
+          if (plugin.handleDrop) {
+            const result = plugin.handleDrop({
+              selection,
+              dataTransfer,
+              isInternal,
+              getEditorState: this.getEditorState,
+              updateEditorState: this.onChange,
+              props: this.props,
+            });
+            if (result) {
+              return result;
+            }
+          }
+
+          return undefined;
+        })
+        .find((result) => result !== undefined);
   };
 
   // Put the keyboard focus on the editor
@@ -235,6 +334,8 @@ export default class PluginEditor extends Component {
         {...pluginProps}
         {...this.props}
         onChange={ this.onChange }
+        handleDroppedFiles={ this.handleDroppedFiles }
+        handleDrop={ this.handleDrop }
         editorState={ this.editorState }
         blockRendererFn={ this.blockRendererFn }
         handleKeyCommand={ this.handleKeyCommand }
