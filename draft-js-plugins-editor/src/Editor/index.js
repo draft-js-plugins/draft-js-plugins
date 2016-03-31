@@ -191,41 +191,12 @@ export default class PluginEditor extends Component {
     return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
   };
 
-  // Inject props into blockRendererFn blocks
-  injectBlockProps(b) {
-    let props = {};
-    const block = b;
-
-    if (this.props.injectBlockProps) {
-      const result = this.props.injectBlockProps(block, this.getEditorState, this.onChange);
-      if (result) {
-        props = { ...result, ...props };
-      }
-    }
-
-    this.plugins
-        .forEach((plugin) => {
-          if (plugin.injectBlockProps) {
-            const result = plugin.injectBlockProps(block, this.getEditorState, this.onChange);
-            if (result) {
-              props = { ...result, ...props };
-            }
-          }
-
-          return undefined;
-        });
-
-    if (block.props) block.props = { ...block.props, ...props };
-    else block.props = props;
-    return block;
-  }
-
   blockRendererFn = (contentBlock) => {
     // TODO optimize to break after the first one
     if (this.props.blockRendererFn) {
       const result = this.props.blockRendererFn(contentBlock);
       if (result) {
-        return this.injectBlockProps(result);
+        return result;
       }
     }
 
@@ -234,7 +205,7 @@ export default class PluginEditor extends Component {
         if (plugin.blockRendererFn) {
           const result = plugin.blockRendererFn(contentBlock, this.getEditorState, this.onChange);
           if (result) {
-            return this.injectBlockProps(result);
+            return result;
           }
         }
 
