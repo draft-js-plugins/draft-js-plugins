@@ -17,14 +17,12 @@ const hashtagPlugin = (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
   return {
-    pluginProps: {
-      decorators: [
-        {
-          strategy: hashtagStrategy,
-          component: decorateComponentWithProps(Hashtag, { theme }),
-        },
-      ],
-    },
+    decorators: [
+      {
+        strategy: hashtagStrategy,
+        component: decorateComponentWithProps(Hashtag, { theme }),
+      },
+    ],
   };
 };
 

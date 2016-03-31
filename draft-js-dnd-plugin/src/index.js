@@ -37,12 +37,10 @@ const uploadPlugin = (config = {}) => {
   };
 
   return {
-    pluginProps: {
-      onChange: cleanupEmpty,
-      blockRendererFn: blockRendererFn(blockRendererConfig),
-      handleDroppedFiles: onDropFile(blockRendererConfig),
-      handleDrop: onDropBlock(blockRendererConfig),
-    },
+    onChange: cleanupEmpty,
+    blockRendererFn: blockRendererFn(blockRendererConfig),
+    handleDroppedFiles: onDropFile(blockRendererConfig),
+    handleDrop: onDropBlock(blockRendererConfig),
     addListener: emitter.addListener,
     removeListener: emitter.removeListener,
   };
