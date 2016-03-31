@@ -31,23 +31,16 @@ const uploadPlugin = (config = {}) => {
     ...config,
     emitter,
     Image: decorateComponentWithProps(config.Image || Image, { theme, attachButtons }),
+
+    // This is for block-alignment-wrapper, only temporarily living here
+    refreshEditorState: (editorState, onChange) => onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter())),
   };
 
   return {
-    pluginProps: {
-      onChange: cleanupEmpty,
-      blockRendererFn: blockRendererFn(blockRendererConfig),
-      handleDroppedFiles: onDropFile(blockRendererConfig),
-      handleDrop: onDropBlock(blockRendererConfig),
-
-      // This is for block-alignment-wrapper, only temporarily living here
-      injectBlockProps: (block, getEditorState, onChange) => {
-        const editorState = getEditorState();
-        return {
-          refreshEditorState: () => onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter())),
-        };
-      },
-    },
+    onChange: cleanupEmpty,
+    blockRendererFn: blockRendererFn(blockRendererConfig),
+    handleDroppedFiles: onDropFile(blockRendererConfig),
+    handleDrop: onDropBlock(blockRendererConfig),
     addListener: emitter.addListener,
     removeListener: emitter.removeListener,
   };
