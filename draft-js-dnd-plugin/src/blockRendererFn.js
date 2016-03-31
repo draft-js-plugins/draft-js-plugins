@@ -1,5 +1,6 @@
 import { Entity } from 'draft-js';
 import removeBlock from './modifiers/removeBlock';
+import refreshEditorState from './modifiers/refreshEditorState';
 
 export default (config) => (contentBlock, getEditorState, updateEditorState) => {
   const type = contentBlock.getType();
@@ -11,6 +12,9 @@ export default (config) => (contentBlock, getEditorState, updateEditorState) => 
       props: {
         ...data,
         remove: () => updateEditorState(removeBlock(getEditorState(), contentBlock.key)),
+
+        // This is for block-alignment-wrapper, only temporarily living here
+        refreshEditorState: () => updateEditorState(refreshEditorState(getEditorState())),
       },
     };
   }
