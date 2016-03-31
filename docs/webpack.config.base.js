@@ -12,6 +12,7 @@ module.exports = {
       'draft-js-sticker-plugin': path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
       'draft-js-undo-plugin': path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),
       'draft-js-emoji-plugin': path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src'),
+      'draft-js-dnd-plugin': path.join(__dirname, '..', 'draft-js-dnd-plugin', 'src'),
       react: path.join(__dirname, 'node_modules', 'react'),
     },
     extensions: ['', '.js'],
@@ -35,6 +36,7 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-dnd-plugin', 'src'),
         ],
       }, {
         test: /\.css$/,
@@ -47,6 +49,7 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-dnd-plugin', 'src'),
           path.join(__dirname, 'client/components'),
         ],
       }, {
