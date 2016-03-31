@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import containsFiles from '../utils/containsFiles';
 
-export default function WrapComponent(C, plugin) {
+export default function WrapComponent(WrappedComponent, plugin) {
   class Wrapper extends Component {
     state = {};
     componentDidMount() {
@@ -22,21 +22,21 @@ export default function WrapComponent(C, plugin) {
       plugin.removeListener('progress', this.onProgress);
     }
 
-    onDragOver = (e) => {
+    onDragOver = (event) => {
       const { isDragging } = this.state;
-      if (!containsFiles(e) || isDragging) return;
+      if (!containsFiles(event) || isDragging) return;
       this.setState({ isDragging: true });
     };
 
-    onDragLeave = (e) => {
+    onDragLeave = (event) => {
       const { isDragging } = this.state;
-      if (!containsFiles(e) || !isDragging) return;
+      if (!containsFiles(event) || !isDragging) return;
       this.setState({ isDragging: false });
     };
 
-    onDragDrop = (e) => {
+    onDragDrop = (event) => {
       const { draggingOver } = this.state;
-      if (!containsFiles(e) || !draggingOver) return;
+      if (!containsFiles(event) || !draggingOver) return;
       this.setState({ isDragging: false });
     };
 
@@ -46,7 +46,7 @@ export default function WrapComponent(C, plugin) {
 
     render() {
       const { isDragging, progress } = this.state;
-      return <C ref="com" isDragging={isDragging} progress={progress} />;
+      return <WrappedComponent ref="com" isDragging={isDragging} progress={progress} />;
     }
     }
 

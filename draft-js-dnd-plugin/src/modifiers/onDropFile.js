@@ -1,5 +1,5 @@
-import AddBlock from './addBlock';
-import ModifyBlockData from './modifyBlockData';
+import addBlock from './addBlock';
+import modifyBlockData from './modifyBlockData';
 import { Entity } from 'draft-js';
 
 function readFile(file) {
@@ -7,14 +7,14 @@ function readFile(file) {
     const reader = new FileReader();
 
     // This is called when finished reading
-    reader.onload = e => {
+    reader.onload = event => {
       // Return an array with one image
       resolve({
         // These are attributes like size, name, type, ...
         ...file,
 
         // This is the files content as base64
-        src: e.target.result,
+        src: event.target.result,
 
         // No URL, since nothing on server
         url: null,
@@ -66,11 +66,11 @@ export default function onDropFile(config) {
       // Read files on client side
       readFiles(data.files).then(previews => {
         // Add blocks for each image before uploading
-        let state = editorState();
-        previews.forEach(x => {
-          state = AddBlock(state, selection, 'image', { ...x, progress: 1 });
+        let state = getEditorState();
+        previews.forEach(preview => {
+          state = addBlock(state, selection, 'image', { ...preview, progress: 1 });
         });
-        onChange(state);
+        updateEditorState(state);
 
         // Perform upload
         upload(data, uploadedFiles => {
@@ -81,14 +81,14 @@ export default function onDropFile(config) {
             if (key) {
               newEditorState = ModifyBlockData(newEditorState, key, {
                 progress: undefined,
-                src: undefined, ...x,
+                src: undefined, ...file,
               });
             }
           });
 
           // Propagate progress
           if (progress) progress(null);
-          onChange(newEditorState);
+          updateEditorState(newEditorState);
         }, () => {
           // console.error(err);
         }, (percent) => {
@@ -100,7 +100,7 @@ export default function onDropFile(config) {
               newEditorState = ModifyBlockData(newEditorState, key, { progress: percent });
             }
           });
-          onChange(newEditorState);
+          updateEditorState(newEditorState);
 
           // Propagate progress
           if (progress) progress(percent);

@@ -248,8 +248,8 @@ export default class PluginEditor extends Component {
       const result = this.props.handleDroppedFiles({
         selection,
         files,
-        editorState: this.getEditorState,
-        onChange: this.onChange,
+        getEditorState: this.getEditorState,
+        updateEditorState: this.onChange,
         props: this.props,
       });
       if (result) {
@@ -263,8 +263,8 @@ export default class PluginEditor extends Component {
             const result = plugin.handleDroppedFiles({
               selection,
               files,
-              editorState: this.getEditorState,
-              onChange: this.onChange,
+              getEditorState: this.getEditorState,
+              updateEditorState: this.onChange,
               props: this.props,
             });
             if (result) {
@@ -283,8 +283,8 @@ export default class PluginEditor extends Component {
         selection,
         dataTransfer,
         isInternal,
-        editorState: this.getEditorState,
-        onChange: this.onChange,
+        getEditorState: this.getEditorState,
+        updateEditorState: this.onChange,
         props: this.props,
       });
       if (result) {
@@ -299,8 +299,8 @@ export default class PluginEditor extends Component {
               selection,
               dataTransfer,
               isInternal,
-              editorState: this.getEditorState,
-              onChange: this.onChange,
+              getEditorState: this.getEditorState,
+              updateEditorState: this.onChange,
               props: this.props,
             });
             if (result) {

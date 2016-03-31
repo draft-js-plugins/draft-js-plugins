@@ -1,12 +1,12 @@
-import AddBlock from './addBlock';
-import RemoveBlock from './removeBlock';
+import addBlock from './addBlock';
+import removeBlock from './removeBlock';
 import { Entity } from 'draft-js';
 
 export default function onDropBlock() {
-  return function onDropBlockInner(e) {
-    const { selection, dataTransfer, editorState, onChange } = e;
+  return function onDropBlockInner(event) {
+    const { selection, dataTransfer, getEditorState, updateEditorState } = event;
 
-    const state = editorState();
+    const state = getEditorState();
 
     // Get data 'text' (anything else won't move the cursor) and expecting kind of data (text/key)
     const raw = dataTransfer.data.getData('text');
@@ -22,8 +22,8 @@ export default function onDropBlock() {
 
       // Get content, selection, block
       const block = state.getCurrentContent().getBlockForKey(blockKey);
-      const editorStateAfterInsert = AddBlock(state, selection, block.getType(), Entity.get(block.getEntityAt(0)).data);
-      onChange(RemoveBlock(editorStateAfterInsert, blockKey));
+      const editorStateAfterInsert = addBlock(state, selection, block.getType(), Entity.get(block.getEntityAt(0)).data);
+      updateEditorState(removeBlock(editorStateAfterInsert, blockKey));
     }
 
     // New block dropped
@@ -31,8 +31,8 @@ export default function onDropBlock() {
       const blockType = data[1];
 
       // Get content, selection, block
-      const editorStateAfterInsert = AddBlock(state, selection, blockType, {});
-      onChange(editorStateAfterInsert);
+      const editorStateAfterInsert = addBlock(state, selection, blockType, {});
+      updateEditorState(editorStateAfterInsert);
     }
 
     return true;
