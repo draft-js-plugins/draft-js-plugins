@@ -13,6 +13,7 @@ const defaultTheme = Map({
   imageWrapper: imageStyles.imageWrapper,
   image: imageStyles.image,
   imageButton: imageStyles.imageButton,
+  imageLoader: imageStyles.imageLoader,
 
   // This is for block-alignment-wrapper, only temporarily living here
   left: imageStyles.left,
