@@ -84,6 +84,8 @@ describe('Editor', () => {
       expect(plugins[0].onEscape).has.been.calledOnce();
       result.node.props.onTab();
       expect(plugins[0].onTab).has.been.calledOnce();
+      result.node.props.onChange(editorState);
+      expect(plugins[0].onChange).has.been.calledOnce();
     });
   });
 });
