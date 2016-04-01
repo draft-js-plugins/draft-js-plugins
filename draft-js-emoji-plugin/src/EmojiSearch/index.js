@@ -30,7 +30,7 @@ export default class EmojiSearch extends Component {
     this.updateAriaCloseDropdown();
 
     // Note: to force a re-render of the outer component to change the aria props
-    this.props.updateEditorState(this.props.getEditorState());
+    this.props.setEditorState(this.props.getEditorState());
   }
 
   componentDidUpdate = () => {
@@ -93,7 +93,7 @@ export default class EmojiSearch extends Component {
   onEmojiSelect = (emoji) => {
     this.closeDropdown();
     const newEditorState = addEmoji(this.props.getEditorState(), emoji);
-    this.props.updateEditorState(newEditorState);
+    this.props.setEditorState(newEditorState);
   };
 
   onDownArrow = (keyboardEvent) => {
@@ -121,7 +121,7 @@ export default class EmojiSearch extends Component {
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
-    this.props.updateEditorState(this.props.getEditorState());
+    this.props.setEditorState(this.props.getEditorState());
   };
 
   onEmojiFocus = (index) => {
@@ -132,7 +132,7 @@ export default class EmojiSearch extends Component {
     });
 
     // to force a re-render of the outer component to change the aria props
-    this.props.updateEditorState(this.props.getEditorState());
+    this.props.setEditorState(this.props.getEditorState());
   };
 
   // Get the first 6 emojis that match
