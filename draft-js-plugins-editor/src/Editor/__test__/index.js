@@ -182,4 +182,51 @@ describe('Editor', () => {
       expect(draftEditor.blur).has.been.calledOnce();
     });
   });
+
+  describe('custom prop overwrites plugin hook', () => {
+    const onChange = sinon.spy();
+    let editorState;
+    let customHook;
+
+    beforeEach(() => {
+      editorState = EditorState.createEmpty();
+      customHook = sinon.spy();
+    });
+
+    it('onUpArrow', () => {
+      const plugin = {
+        onUpArrow: sinon.spy(),
+      };
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ [plugin] }
+          onUpArrow={ customHook }
+        />
+      );
+      const draftEditor = result.node;
+      draftEditor.props.onUpArrow();
+      expect(plugin.onUpArrow).has.not.been.called();
+      expect(customHook).has.been.calledOnce();
+    });
+
+    it('blockRendererFn', () => {
+      const plugin = {
+        blockRendererFn: sinon.spy(),
+      };
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ [plugin] }
+          blockRendererFn={ customHook }
+        />
+      );
+      const draftEditor = result.node;
+      draftEditor.props.blockRendererFn();
+      expect(plugin.blockRendererFn).has.not.been.called();
+      expect(customHook).has.been.called();
+    });
+  });
 });

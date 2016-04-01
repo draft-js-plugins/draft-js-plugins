@@ -136,11 +136,12 @@ class PluginEditor extends Component {
     });
 
     const pluginHooks = this.createPluginHooks();
+
     return (
       <Editor
         {...pluginProps}
-        {...this.props}
         {...pluginHooks}
+        {...this.props}
         onChange={ this.onChange }
         editorState={this.editorState}
         ref="editor"
