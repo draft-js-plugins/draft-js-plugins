@@ -1,7 +1,3 @@
-/**
- * The main editor c;omponent
- */
-
 import React, { Component } from 'react';
 import {
   Editor,
@@ -13,6 +9,9 @@ import moveSelectionToEnd from '../utils/moveSelectionToEnd';
 import * as defaultKeyBindingPlugin from '../utils/defaultKeyBindingPlugin';
 import { List } from 'immutable';
 
+/**
+ * The main editor component
+ */
 export default class PluginEditor extends Component {
 
   static propTypes = {
@@ -66,23 +65,23 @@ export default class PluginEditor extends Component {
     this.refs.editor.focus();
   };
 
-  createHandleListener = (name) => (...args) => {
+  createHandleHooks = (name) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
     return this.plugins
-      .filter((plugin) => plugin[name])
+      .filter((plugin) => typeof plugin[name] === 'function')
       .map((plugin) => plugin[name](...newArgs))
       .find((result) => result === true) === true;
   };
 
-  createOnListener = (name) => (event) => (
+  createOnHooks = (name) => (event) => (
     this.plugins
       .filter((plugin) => typeof plugin[name] === 'function')
       .forEach((plugin) => plugin[name](event))
   );
 
-  createFnListener = (name) => (...args) => {
+  createFnHooks = (name) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
@@ -92,30 +91,28 @@ export default class PluginEditor extends Component {
       .find((result) => result !== undefined);
   };
 
-  createEventListeners = () => {
-    const listeners = {};
-    const keepHandlers = ['onChange'];
+  createPluginHooks = () => {
+    const pluginHooks = {};
     this.plugins.push(defaultKeyBindingPlugin);
-
-    // bind random onListeners and handleListeners
     this.plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
-        if (attrName.indexOf('on') === 0 && keepHandlers.indexOf(attrName !== -1)) {
-          listeners[attrName] = this.createOnListener(attrName);
+        if (attrName === 'onChange') return;
+
+        if (attrName.indexOf('on') === 0) {
+          pluginHooks[attrName] = this.createOnHooks(attrName);
         }
 
-        if (attrName.indexOf('handle') === 0 && keepHandlers.indexOf(attrName !== -1)) {
-          listeners[attrName] = this.createHandleListener(attrName);
+        if (attrName.indexOf('handle') === 0) {
+          pluginHooks[attrName] = this.createHandleHooks(attrName);
         }
 
-        const endsWithFn = attrName.length - 2 === attrName.indexOf('Fn');
-        if (endsWithFn && keepHandlers.indexOf(attrName !== -1)) {
-          listeners[attrName] = this.createFnListener(attrName);
+        // checks if the function ends with Fn
+        if (attrName.length - 2 === attrName.indexOf('Fn')) {
+          pluginHooks[attrName] = this.createFnHooks(attrName);
         }
       });
     });
-
-    return listeners;
+    return pluginHooks;
   };
 
   render() {
@@ -133,12 +130,12 @@ export default class PluginEditor extends Component {
       }
     });
 
-    const listeners = this.createEventListeners();
+    const pluginHooks = this.createPluginHooks();
     return (
       <Editor
         {...pluginProps}
         {...this.props}
-        {...listeners}
+        {...pluginHooks}
         onChange={ this.onChange }
         editorState={this.editorState}
         ref="editor"
