@@ -69,30 +69,36 @@ class PluginEditor extends Component {
 
   getEditorState = () => this.editorState;
 
-  createHandleHooks = (name, plugins) => (...args) => {
+  createHandleHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
-    return plugins
-      .filter((plugin) => typeof plugin[name] === 'function')
-      .map((plugin) => plugin[name](...newArgs))
-      .find((result) => result === true) === true;
+    for (const plugin of plugins) {
+      if (typeof plugin[methodName] !== 'function') continue;
+      const result = plugin[methodName](...newArgs);
+      if (result === true) return true;
+    }
+
+    return false;
   };
 
-  createOnHooks = (name, plugins) => (event) => (
+  createOnHooks = (methodName, plugins) => (event) => (
     plugins
-      .filter((plugin) => typeof plugin[name] === 'function')
-      .forEach((plugin) => plugin[name](event))
+      .filter((plugin) => typeof plugin[methodName] === 'function')
+      .forEach((plugin) => plugin[methodName](event))
   );
 
-  createFnHooks = (name, plugins) => (...args) => {
+  createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
-    return plugins
-      .filter((plugin) => typeof plugin[name] === 'function')
-      .map((plugin) => plugin[name](...newArgs))
-      .find((result) => result !== undefined);
+    for (const plugin of plugins) {
+      if (typeof plugin[methodName] !== 'function') continue;
+      const result = plugin[methodName](...newArgs);
+      if (result !== undefined) return result;
+    }
+
+    return false;
   };
 
   createPluginHooks = () => {
