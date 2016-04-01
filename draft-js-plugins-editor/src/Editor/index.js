@@ -28,7 +28,7 @@ class PluginEditor extends Component {
     // attach proxy methods like `focus` or `blur`
     for (const method of proxies) {
       this[method] = (...args) => (
-        this.refs.editor[method].apply(this.refs.editor, args)
+        this.refs.editor[method](...args)
       );
     }
 
