@@ -12,16 +12,16 @@ const defaultTheme = Map({
 const toolbarPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   return {
-    pluginProps: {
-      decorators: [
-        {
-          strategy: linkStrategy,
-          component: Link,
-        },
-      ],
-    },
+    decorators: [
+      {
+        strategy: linkStrategy,
+        component: Link,
+      },
+    ],
     TextToolbar: decorateComponentWithProps(TextToolbar, { theme }),
     theme,
+
+    // State
   };
 };
 

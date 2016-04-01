@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import Tooltip from './tooltip';
 
 export default class DraftToolbar extends Component {
+  static defaultProps = {
+    actions: [],
+    active: true,
+  };
+
   preventDefault = (event) => {
     event.preventDefault();
   };
@@ -30,9 +35,13 @@ export default class DraftToolbar extends Component {
   };
 
   render() {
-    const { theme, actions } = this.props;
+    const { theme, actions, active } = this.props;
+
+    // const current = toolbars.indexOf(this) === (toolbars.length - 1);
+    if (!active) return null;
+
     return (
-      <Tooltip {...this.props}>
+      <Tooltip {...this.props} active={this.props.active} group="toolbar">
         <div className={theme.get('toolbar')} onMouseDown={this.preventDefault}>
           {actions.map(this.renderAction)}
         </div>
@@ -40,6 +49,3 @@ export default class DraftToolbar extends Component {
     );
   }
 }
-DraftToolbar.defaultProps = {
-  actions: [],
-};

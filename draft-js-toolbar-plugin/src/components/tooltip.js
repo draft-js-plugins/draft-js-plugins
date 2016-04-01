@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Portal from 'react-portal';
 import ReactDOM from 'react-dom';
+import Portal from './tooltip-portal';
 
-export default class Tooltip extends Component {
+class Tooltip extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -38,7 +38,7 @@ export default class Tooltip extends Component {
 
       // Set state
       this.setState({ // eslint-disable-line react/no-did-mount-set-state
-        top: top - (position === 'left' ? 0 : refRect.height) + scrollY - (position === 'left' ? 0 : 5),
+        top: top - (position === 'left' ? 0 : refRect.height) + scrollY,
         left: forceLeft || (left - (refRect.width / 2) + (width / 2) + scrollX),
       });
     }
@@ -81,19 +81,32 @@ export default class Tooltip extends Component {
 
   render() {
     // Is server?
-    if (typeof window === 'undefined' || this.props.active === false) {
+    if (typeof window === 'undefined') {
       return null;
     }
 
     const left = `${this.state.left}px`;
-    const top = `${this.state.top}px`;
+    const top = `${this.state.top+1}px`;
+
+    const style = {
+      transition: 'all .3s ease-in-out, visibility .3s ease-in-out',
+      zIndex: 3,
+      position: 'absolute',
+      left,
+      top,
+    }
+
+    if (this.props.active === false) {
+      style.opacity = 0;
+    }
 
     return (
-      <Portal isOpened>
-        <div {...this.props} className="draft-tooltip" ref="tooltip" style={{ zIndex: 3, position: 'absolute', left, top }}>
-          {this.props.children}
-        </div>
-      </Portal>
+      <div className="draft-tooltip" ref="tooltip" style={style} {...this.props}>
+        {this.props.children}
+        <div style={{ backgroundColor: 'transparent', height: '5px', width: '100%', clear: 'both' }} />
+      </div>
     );
   }
 }
+
+export default Portal(Tooltip);
