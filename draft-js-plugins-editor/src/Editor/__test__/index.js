@@ -48,6 +48,29 @@ describe('Editor', () => {
       );
       expect(result).to.have.ref('editor');
     });
+
+    it('and by default adds the defaultKeyBindings plugin', () => {
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+        />
+      );
+      const pluginEditor = result.instance();
+      expect(pluginEditor.resolvePlugins()[0]).to.include.keys('keyBindingFn');
+    });
+
+    it('without the defaultKeyBindings plugin if deactivated', () => {
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          defaultKeyBindings={ false }
+        />
+      );
+      const pluginEditor = result.instance();
+      expect(pluginEditor.resolvePlugins()).to.have.lengthOf(0);
+    });
   });
 
   describe('with a plugin', () => {
@@ -88,7 +111,9 @@ describe('Editor', () => {
       draftEditor.props.onTab();
       expect(plugin.onTab).has.been.calledOnce();
       draftEditor.props.onChange(editorState);
-      expect(plugin.onChange).has.been.calledOnce();
+
+      // is called twice since componentWillMount injects the decorators and calls onChange again
+      expect(plugin.onChange).has.been.calledTwice();
     });
 
     it('calls the handle-hooks of the plugin', () => {

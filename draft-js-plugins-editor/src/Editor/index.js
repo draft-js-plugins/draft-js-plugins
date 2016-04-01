@@ -18,9 +18,13 @@ class PluginEditor extends Component {
     editorState: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
     plugins: React.PropTypes.array,
+    defaultKeyBindings: React.PropTypes.bool,
   };
 
-  static defaultProps = { plugins: [] };
+  static defaultProps = {
+    defaultKeyBindings: true,
+    plugins: [],
+  };
 
   constructor(props) {
     super(props);
@@ -31,25 +35,12 @@ class PluginEditor extends Component {
         this.refs.editor[method](...args)
       );
     }
-
-    const compositeDecorator = createCompositeDecorator(props.plugins, this.getEditorState, this.onChange);
-
-    // TODO consider triggering an onChange here to make sure the editorState is in sync
-    // with the outer Editor context
-    const editorState = EditorState.set(props.editorState, { decorator: compositeDecorator });
-    this.editorState = moveSelectionToEnd(editorState);
   }
 
   componentWillMount() {
-    // Makes sure the editorState of the wrapping component is in sync with the
-    // internal one, because we added the decorator in the constructor.
-    if (this.props.onChange) {
-      this.props.onChange(this.editorState);
-    }
-  }
-
-  componentWillReceiveProps(props) {
-    this.editorState = props.editorState;
+    const compositeDecorator = createCompositeDecorator(this.props.plugins, this.getEditorState, this.onChange);
+    const editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
+    this.onChange(moveSelectionToEnd(editorState));
   }
 
   // Cycle through the plugins, changing the editor state with what the plugins
@@ -67,7 +58,7 @@ class PluginEditor extends Component {
     }
   };
 
-  getEditorState = () => this.editorState;
+  getEditorState = () => this.props.editorState;
 
   createHandleHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
@@ -103,8 +94,8 @@ class PluginEditor extends Component {
 
   createPluginHooks = () => {
     const pluginHooks = {};
-    const plugins = this.props.plugins.slice(0);
-    plugins.push(defaultKeyBindingPlugin);
+    const plugins = this.resolvePlugins();
+
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
         if (attrName === 'onChange') return;
@@ -124,6 +115,15 @@ class PluginEditor extends Component {
       });
     });
     return pluginHooks;
+  };
+
+  resolvePlugins = () => {
+    const plugins = this.props.plugins.slice(0);
+    if (this.props.defaultKeyBindings) {
+      plugins.push(defaultKeyBindingPlugin);
+    }
+
+    return plugins;
   };
 
   render() {
@@ -149,7 +149,7 @@ class PluginEditor extends Component {
         {...pluginHooks}
         {...this.props}
         onChange={ this.onChange }
-        editorState={this.editorState}
+        editorState={ this.props.editorState }
         ref="editor"
       />
     );
