@@ -6,14 +6,11 @@ import React, { Component } from 'react';
 import {
   Editor,
   EditorState,
-  getDefaultKeyBinding,
-  KeyBindingUtil,
 } from 'draft-js';
 
 import createCompositeDecorator from '../utils/createCompositeDecorator';
 import moveSelectionToEnd from '../utils/moveSelectionToEnd';
-import moveToEndOfSelectedBlock from '../modifiers/moveToEndOfSelectedBlock';
-import moveToStartOfSelectedBlock from '../modifiers/moveToStartOfSelectedBlock';
+import * as defaultKeyBindingPlugin from '../utils/defaultKeyBindingPlugin';
 import { List } from 'immutable';
 
 export default class PluginEditor extends Component {
@@ -64,80 +61,6 @@ export default class PluginEditor extends Component {
 
   getEditorState = () => this.editorState;
 
-  handleKeyCommand = (command) => {
-    let preventDefaultBehaviour = false;
-    if (this.props.handleKeyCommand) {
-      const handled = this.props.handleKeyCommand(command);
-      if (handled === true) {
-        preventDefaultBehaviour = true;
-      }
-    }
-
-    // TODO optimize to break after the first one
-    preventDefaultBehaviour = this.plugins
-      .filter((plug) => plug.handleKeyCommand)
-      .map((plugin) => plugin.handleKeyCommand(command, this.getEditorState, this.onChange))
-      .find((result) => result === true);
-
-    if (command === 'plugin-editor-move-to-start') {
-      moveToStartOfSelectedBlock(this.editorState, this.props.onChange);
-      preventDefaultBehaviour = true;
-    } else if (command === 'plugin-editor-move-to-end') {
-      moveToEndOfSelectedBlock(this.editorState, this.props.onChange);
-      preventDefaultBehaviour = true;
-    }
-
-    return preventDefaultBehaviour === true;
-  };
-
-  keyBindingFn = (keyboardEvent) => {
-    let command = this.plugins
-      .map((plugin) => {
-        if (plugin.keyBindingFn) {
-          const pluginCommand = plugin.keyBindingFn(keyboardEvent, this.getEditorState, this.onChange);
-          if (pluginCommand) {
-            return pluginCommand;
-          }
-        }
-
-        return undefined;
-      })
-      .find((result) => result !== undefined);
-
-    if (command === undefined) {
-      if (keyboardEvent.keyCode === 37 && KeyBindingUtil.hasCommandModifier(keyboardEvent)) {
-        command = 'plugin-editor-move-to-start';
-      } else if (keyboardEvent.keyCode === 39 && KeyBindingUtil.hasCommandModifier(keyboardEvent)) {
-        command = 'plugin-editor-move-to-end';
-      }
-    }
-
-    return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
-  };
-
-  blockRendererFn = (contentBlock) => {
-    // TODO optimize to break after the first one
-    if (this.props.blockRendererFn) {
-      const result = this.props.blockRendererFn(contentBlock);
-      if (result) {
-        return result;
-      }
-    }
-
-    return this.plugins
-      .map((plugin) => {
-        if (plugin.blockRendererFn) {
-          const result = plugin.blockRendererFn(contentBlock, this.getEditorState, this.onChange);
-          if (result) {
-            return result;
-          }
-        }
-
-        return undefined;
-      })
-      .find((result) => result !== undefined);
-  };
-
   // Put the keyboard focus on the editor
   focus = () => {
     this.refs.editor.focus();
@@ -147,7 +70,6 @@ export default class PluginEditor extends Component {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
-
     return this.plugins
       .filter((plugin) => plugin[name])
       .map((plugin) => plugin[name](...newArgs))
@@ -156,13 +78,24 @@ export default class PluginEditor extends Component {
 
   createOnListener = (name) => (event) => (
     this.plugins
-      .filter(plug => typeof plug[name] === 'function')
-      .forEach(plug => plug[name](event))
+      .filter((plugin) => typeof plugin[name] === 'function')
+      .forEach((plugin) => plugin[name](event))
   );
+
+  createFnListener = (name) => (...args) => {
+    const newArgs = [].slice.apply(args);
+    newArgs.push(this.getEditorState);
+    newArgs.push(this.onChange);
+    return this.plugins
+      .filter((plugin) => typeof plugin[name] === 'function')
+      .map((plugin) => plugin[name](...newArgs))
+      .find((result) => result !== undefined);
+  };
 
   createEventListeners = () => {
     const listeners = {};
-    const keepHandlers = ['onChange', 'handleKeyCommand'];
+    const keepHandlers = ['onChange'];
+    this.plugins.push(defaultKeyBindingPlugin);
 
     // bind random onListeners and handleListeners
     this.plugins.forEach((plugin) => {
@@ -173,6 +106,11 @@ export default class PluginEditor extends Component {
 
         if (attrName.indexOf('handle') === 0 && keepHandlers.indexOf(attrName !== -1)) {
           listeners[attrName] = this.createHandleListener(attrName);
+        }
+
+        const endsWithFn = attrName.length - 2 === attrName.indexOf('Fn');
+        if (endsWithFn && keepHandlers.indexOf(attrName !== -1)) {
+          listeners[attrName] = this.createFnListener(attrName);
         }
       });
     });
@@ -202,10 +140,7 @@ export default class PluginEditor extends Component {
         {...this.props}
         {...listeners}
         onChange={ this.onChange }
-        handleKeyCommand={ this.handleKeyCommand }
-        keyBindingFn={ this.keyBindingFn }
         editorState={this.editorState}
-        blockRendererFn={this.blockRendererFn}
         ref="editor"
       />
     );

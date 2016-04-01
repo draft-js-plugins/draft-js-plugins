@@ -124,5 +124,31 @@ describe('Editor', () => {
       expect(plugin.handleDrop).has.been.calledOnce();
       expect(plugin.handleDrop).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
     });
+
+    it('calls the fn-hooks of the plugin', () => {
+      const plugins = [
+        {
+          blockRendererFn: sinon.spy(),
+          keyBindingFn: sinon.spy(),
+        },
+      ];
+      const result = shallow(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+
+      const pluginEditor = result.instance();
+      const draftEditor = result.node;
+      const plugin = plugins[0];
+      draftEditor.props.blockRendererFn('command');
+      expect(plugin.blockRendererFn).has.been.calledOnce();
+      expect(plugin.blockRendererFn).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+      draftEditor.props.keyBindingFn('command');
+      expect(plugin.keyBindingFn).has.been.calledOnce();
+      expect(plugin.keyBindingFn).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+    });
   });
 });
