@@ -66,6 +66,7 @@ describe('Editor', () => {
           onDragEnter: sinon.spy(),
           onEscape: sinon.spy(),
           onTab: sinon.spy(),
+          onChange: sinon.spy(),
         },
       ];
       const result = shallow(
@@ -84,8 +85,8 @@ describe('Editor', () => {
       expect(plugins[0].onEscape).has.been.calledOnce();
       result.node.props.onTab();
       expect(plugins[0].onTab).has.been.calledOnce();
-      // result.node.props.onChange(editorState);
-      // expect(onChange).has.been.calledOnce();
+      result.node.props.onChange(editorState);
+      expect(plugins[0].onChange).has.been.calledOnce();
     });
 
     it('calls the handle-hooks of the plugin', () => {
