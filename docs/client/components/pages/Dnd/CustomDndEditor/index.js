@@ -12,7 +12,7 @@ import decorateWithProps from 'decorate-component-with-props';
 
 const toolbarPlugin = createToolbarPlugin({});
 const uploadPlugin = createUploadPlugin({
-  Image: decorateWithProps(Image, {toolbarTheme: toolbarPlugin.theme}),
+  Image: decorateWithProps(Image, { toolbarTheme: toolbarPlugin.theme }),
   upload: (data, success, failed, progress) =>
     mockUpload(data, success, failed, progress),
 });
@@ -34,17 +34,17 @@ class SimpleDndEditor extends Component {
   };
 
   render() {
-    const {editorState} = this.state;
-    const {isDragging, progress} = this.props;
+    const { editorState } = this.state;
+    const { isDragging, progress } = this.props;
     const classNames = [styles.editor];
     if (isDragging) classNames.push(styles.dnd);
     if (progress) classNames.push(styles.uploading);
 
     const plugins = [uploadPlugin, toolbarPlugin];
     return (
-      <div className={classNames.join(' ')} onClick={this.focus}>
+      <div className={classNames.join(' ')} onMouseDown={this.focus}>
         <Editor editorState={editorState} onChange={this.onChange} plugins={plugins} ref="editor" />
-        <TextToolbar editorState={ editorState } theme={toolbarPlugin.theme} onChange={this.onChange} />
+        <TextToolbar editorState={ editorState } plugin={toolbarPlugin} onChange={this.onChange} />
       </div>
     );
   }
