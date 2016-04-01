@@ -151,4 +151,35 @@ describe('Editor', () => {
       expect(plugin.keyBindingFn).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
     });
   });
+
+  describe('passed proxy to DraftEditor', () => {
+    let draftEditor;
+    let pluginEditor;
+
+    beforeEach(() => {
+      const onChange = sinon.spy();
+      const editorState = EditorState.createEmpty();
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ [] }
+        />
+      );
+      draftEditor = result.node;
+      pluginEditor = result.instance();
+    });
+
+    it('focus', () => {
+      draftEditor.focus = sinon.spy();
+      pluginEditor.focus();
+      expect(draftEditor.focus).has.been.calledOnce();
+    });
+
+    it('blur', () => {
+      draftEditor.blur = sinon.spy();
+      pluginEditor.blur();
+      expect(draftEditor.blur).has.been.calledOnce();
+    });
+  });
 });

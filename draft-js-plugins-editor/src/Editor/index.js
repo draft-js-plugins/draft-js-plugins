@@ -6,12 +6,13 @@ import {
 
 import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
+import proxies from './proxies';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
 
 /**
  * The main editor component
  */
-export default class PluginEditor extends Component {
+class PluginEditor extends Component {
 
   static propTypes = {
     editorState: React.PropTypes.object.isRequired,
@@ -19,8 +20,18 @@ export default class PluginEditor extends Component {
     plugins: React.PropTypes.array,
   };
 
+  static defaultProps = { plugins: [] };
+
   constructor(props) {
     super(props);
+
+    // attach proxies like focus or blur
+    for (const method of proxies) {
+      this[method] = (...args) => (
+        this.refs.editor[method].apply(this.refs.editor, args)
+      );
+    }
+
     const compositeDecorator = createCompositeDecorator(props.plugins, this.getEditorState, this.onChange);
 
     // TODO consider triggering an onChange here to make sure the editorState is in sync
@@ -57,11 +68,6 @@ export default class PluginEditor extends Component {
   };
 
   getEditorState = () => this.editorState;
-
-  // Put the keyboard focus on the editor
-  focus = () => {
-    this.refs.editor.focus();
-  };
 
   createHandleHooks = (name, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
@@ -142,3 +148,5 @@ export default class PluginEditor extends Component {
     );
   }
 }
+
+export default PluginEditor;
