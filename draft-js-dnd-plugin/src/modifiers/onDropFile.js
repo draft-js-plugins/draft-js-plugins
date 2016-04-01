@@ -37,9 +37,7 @@ function getBlocksWhereEntityData(state, query) {
 }
 
 export default function onDropFile(config) {
-  return function onDropFileInner(event) {
-    const { selection, files, getEditorState, updateEditorState } = event;
-
+  return function onDropFileInner(selection, files, getEditorState, updateEditorState) {
     // Get upload function from config or editor props
     const upload = config.upload;
     const progress = config.progress || (percent => config.emitter.emit('progress', percent));
