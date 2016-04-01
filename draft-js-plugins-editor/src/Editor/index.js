@@ -242,11 +242,11 @@ export default class PluginEditor extends Component {
     // bind random onListeners and handleListeners
     this.plugins.forEach((plug) => {
       Object.keys(plug).forEach((attrName) => {
-        if (attrName.indexOf('on') === 0 && keepHandlers.indexOf(attrName !== -1)) {
+        if (attrName.indexOf('on') === 0 && keepHandlers.indexOf(attrName) === -1) {
           listeners[attrName] = this.createOnListener(attrName);
         }
 
-        if (attrName.indexOf('handle') === 0 && keepHandlers.indexOf(attrName !== -1)) {
+        if (attrName.indexOf('handle') === 0 && keepHandlers.indexOf(attrName) === -1) {
           listeners[attrName] = this.createHandleListener(attrName);
         }
       });
