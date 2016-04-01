@@ -18,9 +18,13 @@ class PluginEditor extends Component {
     editorState: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
     plugins: React.PropTypes.array,
+    defaultKeyBindings: React.PropTypes.bool,
   };
 
-  static defaultProps = { plugins: [] };
+  static defaultProps = {
+    defaultKeyBindings: true,
+    plugins: [],
+  };
 
   constructor(props) {
     super(props);
@@ -103,8 +107,8 @@ class PluginEditor extends Component {
 
   createPluginHooks = () => {
     const pluginHooks = {};
-    const plugins = this.props.plugins.slice(0);
-    plugins.push(defaultKeyBindingPlugin);
+    const plugins = this.resolvePlugins();
+
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
         if (attrName === 'onChange') return;
@@ -124,6 +128,15 @@ class PluginEditor extends Component {
       });
     });
     return pluginHooks;
+  };
+
+  resolvePlugins = () => {
+    const plugins = this.props.plugins.slice(0);
+    if (this.props.defaultKeyBindings) {
+      plugins.push(defaultKeyBindingPlugin);
+    }
+
+    return plugins;
   };
 
   render() {
