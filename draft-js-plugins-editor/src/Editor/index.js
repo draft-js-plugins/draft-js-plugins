@@ -91,7 +91,6 @@ export default class PluginEditor extends Component {
   };
 
   keyBindingFn = (keyboardEvent) => {
-    // TODO optimize to break after the first one
     let command = this.plugins
       .map((plugin) => {
         if (plugin.keyBindingFn) {
@@ -112,8 +111,6 @@ export default class PluginEditor extends Component {
         command = 'plugin-editor-move-to-end';
       }
     }
-
-    // TODO allow to provide a custom handleKeyCommand
 
     return command !== undefined ? command : getDefaultKeyBinding(keyboardEvent);
   };
@@ -141,87 +138,21 @@ export default class PluginEditor extends Component {
       .find((result) => result !== undefined);
   };
 
-  handleDroppedFiles = (selection, files) => {
-    if (this.props.handleDroppedFiles) {
-      const result = this.props.handleDroppedFiles({
-        selection,
-        files,
-        getEditorState: this.getEditorState,
-        updateEditorState: this.onChange,
-        props: this.props,
-      });
-      if (result) {
-        return result;
-      }
-    }
-
-    return this.plugins
-        .map((plugin) => {
-          if (plugin.handleDroppedFiles) {
-            const result = plugin.handleDroppedFiles({
-              selection,
-              files,
-              getEditorState: this.getEditorState,
-              updateEditorState: this.onChange,
-              props: this.props,
-            });
-            if (result) {
-              return result;
-            }
-          }
-
-          return undefined;
-        })
-        .find((result) => result !== undefined);
-  };
-
-  handleDrop = (selection, dataTransfer, isInternal) => {
-    if (this.props.handleDrop) {
-      const result = this.props.handleDrop({
-        selection,
-        dataTransfer,
-        isInternal,
-        getEditorState: this.getEditorState,
-        updateEditorState: this.onChange,
-        props: this.props,
-      });
-      if (result) {
-        return result;
-      }
-    }
-
-    return this.plugins
-        .map((plugin) => {
-          if (plugin.handleDrop) {
-            const result = plugin.handleDrop({
-              selection,
-              dataTransfer,
-              isInternal,
-              getEditorState: this.getEditorState,
-              updateEditorState: this.onChange,
-              props: this.props,
-            });
-            if (result) {
-              return result;
-            }
-          }
-
-          return undefined;
-        })
-        .find((result) => result !== undefined);
-  };
-
   // Put the keyboard focus on the editor
   focus = () => {
     this.refs.editor.focus();
   };
 
-  createHandleListener = (name) => (event) => (
-    this.plugins
-      .filter((plug) => plug[name])
-      .map((plugin) => plugin[name](event))
-      .find((result) => result === true) === true
-  );
+  createHandleListener = (name) => (...args) => {
+    const newArgs = [].slice.apply(args);
+    newArgs.push(this.getEditorState);
+    newArgs.push(this.onChange);
+
+    return this.plugins
+      .filter((plugin) => plugin[name])
+      .map((plugin) => plugin[name](...newArgs))
+      .find((result) => result === true) === true;
+  };
 
   createOnListener = (name) => (event) => (
     this.plugins
@@ -230,18 +161,12 @@ export default class PluginEditor extends Component {
   );
 
   createEventListeners = () => {
-    const listeners = {
-      onChange: this.onChange,
-      handleKeyCommand: this.handleKeyCommand,
-      keyBindingFn: this.keyBindingFn,
-      handleReturn: this.handleReturn,
-    };
-
+    const listeners = {};
     const keepHandlers = ['onChange', 'handleKeyCommand'];
 
     // bind random onListeners and handleListeners
-    this.plugins.forEach((plug) => {
-      Object.keys(plug).forEach((attrName) => {
+    this.plugins.forEach((plugin) => {
+      Object.keys(plugin).forEach((attrName) => {
         if (attrName.indexOf('on') === 0 && keepHandlers.indexOf(attrName !== -1)) {
           listeners[attrName] = this.createOnListener(attrName);
         }
@@ -276,8 +201,9 @@ export default class PluginEditor extends Component {
         {...pluginProps}
         {...this.props}
         {...listeners}
-        handleDroppedFiles={ this.handleDroppedFiles }
-        handleDrop={ this.handleDrop }
+        onChange={ this.onChange }
+        handleKeyCommand={ this.handleKeyCommand }
+        keyBindingFn={ this.keyBindingFn }
         editorState={this.editorState}
         blockRendererFn={this.blockRendererFn}
         ref="editor"
