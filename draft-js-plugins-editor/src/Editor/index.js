@@ -4,10 +4,9 @@ import {
   EditorState,
 } from 'draft-js';
 
-import createCompositeDecorator from '../utils/createCompositeDecorator';
-import moveSelectionToEnd from '../utils/moveSelectionToEnd';
-import * as defaultKeyBindingPlugin from '../utils/defaultKeyBindingPlugin';
-import { List } from 'immutable';
+import createCompositeDecorator from './createCompositeDecorator';
+import moveSelectionToEnd from './moveSelectionToEnd';
+import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
 
 /**
  * The main editor component
@@ -22,12 +21,11 @@ export default class PluginEditor extends Component {
 
   constructor(props) {
     super(props);
-    this.plugins = List(props.plugins).toArray();
-    const compositeDecorator = createCompositeDecorator(this.plugins, this.getEditorState, this.onChange);
+    const compositeDecorator = createCompositeDecorator(props.plugins, this.getEditorState, this.onChange);
 
     // TODO consider triggering an onChange here to make sure the editorState is in sync
     // with the outer Editor context
-    const editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
+    const editorState = EditorState.set(props.editorState, { decorator: compositeDecorator });
     this.editorState = moveSelectionToEnd(editorState);
   }
 
@@ -47,7 +45,7 @@ export default class PluginEditor extends Component {
   // changed (or didn't)
   onChange = (editorState) => {
     let newEditorState = editorState;
-    this.plugins.forEach((plugin) => {
+    this.props.plugins.forEach((plugin) => {
       if (plugin.onChange) {
         newEditorState = plugin.onChange(newEditorState);
       }
@@ -65,27 +63,27 @@ export default class PluginEditor extends Component {
     this.refs.editor.focus();
   };
 
-  createHandleHooks = (name) => (...args) => {
+  createHandleHooks = (name, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
-    return this.plugins
+    return plugins
       .filter((plugin) => typeof plugin[name] === 'function')
       .map((plugin) => plugin[name](...newArgs))
       .find((result) => result === true) === true;
   };
 
-  createOnHooks = (name) => (event) => (
-    this.plugins
+  createOnHooks = (name, plugins) => (event) => (
+    plugins
       .filter((plugin) => typeof plugin[name] === 'function')
       .forEach((plugin) => plugin[name](event))
   );
 
-  createFnHooks = (name) => (...args) => {
+  createFnHooks = (name, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
-    return this.plugins
+    return plugins
       .filter((plugin) => typeof plugin[name] === 'function')
       .map((plugin) => plugin[name](...newArgs))
       .find((result) => result !== undefined);
@@ -93,22 +91,23 @@ export default class PluginEditor extends Component {
 
   createPluginHooks = () => {
     const pluginHooks = {};
-    this.plugins.push(defaultKeyBindingPlugin);
-    this.plugins.forEach((plugin) => {
+    const plugins = this.props.plugins.slice(0);
+    plugins.push(defaultKeyBindingPlugin);
+    plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
         if (attrName === 'onChange') return;
 
         if (attrName.indexOf('on') === 0) {
-          pluginHooks[attrName] = this.createOnHooks(attrName);
+          pluginHooks[attrName] = this.createOnHooks(attrName, plugins);
         }
 
         if (attrName.indexOf('handle') === 0) {
-          pluginHooks[attrName] = this.createHandleHooks(attrName);
+          pluginHooks[attrName] = this.createHandleHooks(attrName, plugins);
         }
 
         // checks if the function ends with Fn
         if (attrName.length - 2 === attrName.indexOf('Fn')) {
-          pluginHooks[attrName] = this.createFnHooks(attrName);
+          pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
         }
       });
     });
@@ -121,7 +120,7 @@ export default class PluginEditor extends Component {
     // This puts pluginProps and the object inside getEditorProps
     // on the Editor component (main use case is for aria props right now)
     // Last plugin wins right now (not ideal)
-    this.plugins.forEach((plugin) => {
+    this.props.plugins.forEach((plugin) => {
       if (plugin.getEditorProps) {
         pluginProps = {
           ...pluginProps,
