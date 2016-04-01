@@ -50,24 +50,24 @@ describe('Editor', () => {
     });
   });
 
-  describe('calls the hooks of plugins', () => {
-    const onChange = sinon.spy();
+  describe('with a plugin', () => {
+    let onChange;
     let editorState;
-    let plugins;
 
     beforeEach(() => {
       editorState = EditorState.createEmpty();
-      const createCustomPlugin = () => ({
-        onUpArrow: sinon.spy(),
-        onDragEnter: sinon.spy(),
-        onEscape: sinon.spy(),
-        onTab: sinon.spy(),
-      });
-      const customPlugin = createCustomPlugin();
-      plugins = [customPlugin];
+      onChange = sinon.spy();
     });
 
-    it.only('with a plugin provided', () => {
+    it('calls the on-hooks of the plugin', () => {
+      const plugins = [
+        {
+          onUpArrow: sinon.spy(),
+          onDragEnter: sinon.spy(),
+          onEscape: sinon.spy(),
+          onTab: sinon.spy(),
+        },
+      ];
       const result = shallow(
         <PluginEditor
           editorState={ editorState }
@@ -84,8 +84,35 @@ describe('Editor', () => {
       expect(plugins[0].onEscape).has.been.calledOnce();
       result.node.props.onTab();
       expect(plugins[0].onTab).has.been.calledOnce();
-      result.node.props.onChange(editorState);
-      expect(plugins[0].onChange).has.been.calledOnce();
+      // result.node.props.onChange(editorState);
+      // expect(onChange).has.been.calledOnce();
+    });
+
+    it('calls the handle-hooks of the plugin', () => {
+      const plugins = [
+        {
+          handleKeyCommand: sinon.spy(),
+          handlePastedText: sinon.spy(),
+          handleReturn: sinon.spy(),
+          handleDrop: sinon.spy(),
+        },
+      ];
+      const result = shallow(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+
+      result.node.props.handleKeyCommand();
+      expect(plugins[0].handleKeyCommand).has.been.calledOnce();
+      result.node.props.handlePastedText();
+      expect(plugins[0].handlePastedText).has.been.calledOnce();
+      result.node.props.handleReturn();
+      expect(plugins[0].handleReturn).has.been.calledOnce();
+      result.node.props.handleDrop();
+      expect(plugins[0].handleDrop).has.been.calledOnce();
     });
   });
 });
