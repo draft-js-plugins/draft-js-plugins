@@ -111,7 +111,9 @@ describe('Editor', () => {
       draftEditor.props.onTab();
       expect(plugin.onTab).has.been.calledOnce();
       draftEditor.props.onChange(editorState);
-      expect(plugin.onChange).has.been.calledOnce();
+
+      // is called twice since componentWillMount injects the decorators and calls onChange again
+      expect(plugin.onChange).has.been.calledTwice();
     });
 
     it('calls the handle-hooks of the plugin', () => {
