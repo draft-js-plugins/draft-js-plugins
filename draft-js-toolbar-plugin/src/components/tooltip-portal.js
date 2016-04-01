@@ -56,9 +56,9 @@ export default function (WrappedComponent) {
       const { group } = this.props;
       if (portalNodes[group]) {
 
+        // Other tooltip was active, switching
         if (portalNodes[group].tips.length > 1) {
           this.removeThisGroupTip();
-          // Other tooltip was active, switching
           const item = portalNodes[group].tips[portalNodes[group].tips.length - 1];
           return item.renderPortal(item.props);
         }
@@ -68,11 +68,10 @@ export default function (WrappedComponent) {
 
         // Timeout to switch to next tooltip if necessary
         portalNodes[group].timeout = setTimeout(() => {
-          if (portalNodes[group].tips.length === 1) {
+          if (portalNodes[group].tips.length === 0) {
             ReactDOM.unmountComponentAtNode(portalNodes[group].el);
             delete portalNodes[group];
           } else {
-            this.removeThisGroupTip();
             const item = portalNodes[group].tips[portalNodes[group].tips.length - 1];
             item.renderPortal(item.props);
           }
@@ -100,10 +99,14 @@ export default function (WrappedComponent) {
         portalNodes[group].timeout = null;
       }
 
-      portalNodes[group].tips = clearAll ? [this] : [
-        ...this.removeThisGroupTip(),
-        this,
-      ];
+      if (props.active) {
+        portalNodes[group].tips = clearAll ? [this] : [
+          ...this.removeThisGroupTip(),
+          this,
+        ];
+      } else {
+        this.removeThisGroupTip();
+      }
 
       ReactDOM.render(<WrappedComponent {...other} />, portalNodes[group].el);
     }
