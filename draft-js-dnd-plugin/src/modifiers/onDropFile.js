@@ -37,7 +37,7 @@ function getBlocksWhereEntityData(state, query) {
 }
 
 export default function onDropFile(config) {
-  return function onDropFileInner(selection, files, getEditorState, updateEditorState) {
+  return function onDropFileInner(selection, files, getEditorState, setEditorState) {
     // Get upload function from config or editor props
     const upload = config.upload;
     const progress = config.progress || (percent => config.emitter.emit('progress', percent));
@@ -62,7 +62,7 @@ export default function onDropFile(config) {
         previews.forEach(preview => {
           state = addBlock(state, selection, 'image', { ...preview, progress: 1 });
         });
-        updateEditorState(state);
+        setEditorState(state);
 
         // Perform upload
         upload(data, uploadedFiles => {
@@ -80,7 +80,7 @@ export default function onDropFile(config) {
 
           // Propagate progress
           if (progress) progress(null);
-          updateEditorState(newEditorState);
+          setEditorState(newEditorState);
         }, () => {
           // console.error(err);
         }, (percent) => {
@@ -92,7 +92,7 @@ export default function onDropFile(config) {
               newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
             }
           });
-          updateEditorState(newEditorState);
+          setEditorState(newEditorState);
 
           // Propagate progress
           if (progress) progress(percent);

@@ -2,7 +2,7 @@ import { Entity } from 'draft-js';
 import removeBlock from './modifiers/removeBlock';
 import refreshEditorState from './modifiers/refreshEditorState';
 
-export default (config) => (contentBlock, getEditorState, updateEditorState) => {
+export default (config) => (contentBlock, getEditorState, setEditorState) => {
   const type = contentBlock.getType();
   if (type === 'image') {
     const entityKey = contentBlock.getEntityAt(0);
@@ -11,10 +11,10 @@ export default (config) => (contentBlock, getEditorState, updateEditorState) => 
       component: config.Image,
       props: {
         ...data,
-        remove: () => updateEditorState(removeBlock(getEditorState(), contentBlock.key)),
+        remove: () => setEditorState(removeBlock(getEditorState(), contentBlock.key)),
 
         // This is for block-alignment-wrapper, only temporarily living here
-        refreshEditorState: () => updateEditorState(refreshEditorState(getEditorState())),
+        refreshEditorState: () => setEditorState(refreshEditorState(getEditorState())),
       },
     };
   }

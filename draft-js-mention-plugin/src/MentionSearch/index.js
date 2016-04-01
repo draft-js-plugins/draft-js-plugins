@@ -25,7 +25,7 @@ export default class MentionSearch extends Component {
     this.updateAriaCloseDropdown();
 
     // Note: to force a re-render of the outer component to change the aria props
-    this.props.updateEditorState(this.props.getEditorState());
+    this.props.setEditorState(this.props.getEditorState());
   }
 
   componentDidUpdate = () => {
@@ -88,7 +88,7 @@ export default class MentionSearch extends Component {
   onMentionSelect = (mention) => {
     this.closeDropdown();
     const newEditorState = addMention(this.props.getEditorState(), mention);
-    this.props.updateEditorState(newEditorState);
+    this.props.setEditorState(newEditorState);
   };
 
   onDownArrow = (keyboardEvent) => {
@@ -116,7 +116,7 @@ export default class MentionSearch extends Component {
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
-    this.props.updateEditorState(this.props.getEditorState());
+    this.props.setEditorState(this.props.getEditorState());
   };
 
   onMentionFocus = (index) => {
@@ -127,7 +127,7 @@ export default class MentionSearch extends Component {
     });
 
     // to force a re-render of the outer component to change the aria props
-    this.props.updateEditorState(this.props.getEditorState());
+    this.props.setEditorState(this.props.getEditorState());
   };
 
   // Get the first 5 mentions that match
