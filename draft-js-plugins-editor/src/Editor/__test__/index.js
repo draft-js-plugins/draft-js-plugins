@@ -73,7 +73,7 @@ describe('Editor', () => {
     });
   });
 
-  describe('with a plugin', () => {
+  describe('with plugins', () => {
     let onChange;
     let editorState;
 
@@ -238,6 +238,42 @@ describe('Editor', () => {
       draftEditor.props.keyBindingFn('command');
       expect(plugin.keyBindingFn).has.been.calledOnce();
       expect(plugin.keyBindingFn).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+    });
+
+    it('combines the customStyleMaps from all plugins', () => {
+      const plugins = [
+        {
+          customStyleMap: {
+            orange: {
+              color: 'rgba(255, 127, 0, 1.0)',
+            },
+          },
+        },
+        {
+          customStyleMap: {
+            yellow: {
+              color: 'rgba(180, 180, 0, 1.0)',
+            },
+          },
+        },
+      ];
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+      const expected = {
+        orange: {
+          color: 'rgba(255, 127, 0, 1.0)',
+        },
+        yellow: {
+          color: 'rgba(180, 180, 0, 1.0)',
+        },
+      };
+      const pluginEditor = result.instance();
+      expect(pluginEditor.resolveCustomStyleMap()).to.deep.equal(expected);
     });
   });
 
