@@ -2,7 +2,7 @@ import { Entity } from 'draft-js';
 import removeBlock from './modifiers/removeBlock';
 import refreshEditorState from './modifiers/refreshEditorState';
 
-export default (config) => (contentBlock, getEditorState, setEditorState) => {
+export default (config) => (contentBlock, { getEditorState, setEditorState }) => {
   const type = contentBlock.getType();
   if (type === 'image') {
     const entityKey = contentBlock.getEntityAt(0);

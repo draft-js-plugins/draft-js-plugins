@@ -4,7 +4,7 @@ import { Entity } from 'draft-js';
 import { DRAFTJS_BLOCK_KEY, DRAFTJS_BLOCK_TYPE } from '../constants';
 
 export default function onDropBlock() {
-  return function onDropBlockInner(selection, dataTransfer, isInternal, getEditorState, setEditorState) {
+  return function onDropBlockInner(selection, dataTransfer, isInternal, { getEditorState, setEditorState }) {
     const state = getEditorState();
 
     // Get data 'text' (anything else won't move the cursor) and expecting kind of data (text/key)
