@@ -116,6 +116,19 @@ class PluginEditor extends Component {
     return plugins;
   };
 
+  resolveCustomStyleMap = () => {
+    let styles = {};
+    for (const plugin of this.props.plugins) {
+      if (!plugin.customStyleMap) continue;
+      styles = {
+        ...styles,
+        ...plugin.customStyleMap,
+      };
+    }
+
+    return styles;
+  };
+
   render() {
     let pluginProps = {};
 
@@ -132,12 +145,13 @@ class PluginEditor extends Component {
     });
 
     const pluginHooks = this.createPluginHooks();
-
+    const customStyleMap = this.resolveCustomStyleMap();
     return (
       <Editor
-        {...pluginProps}
-        {...pluginHooks}
-        {...this.props}
+        { ...pluginProps }
+        { ...pluginHooks }
+        { ...this.props }
+        customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }
         ref="editor"

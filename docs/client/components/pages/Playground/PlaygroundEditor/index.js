@@ -9,9 +9,10 @@ import {
   Modifier,
   RichUtils,
 } from 'draft-js';
+import * as colorPlugin from './colorPlugin';
 
 const hashtagPlugin = createHashtagPlugin();
-const plugins = [hashtagPlugin];
+const plugins = [hashtagPlugin, colorPlugin];
 const text = `#TIL: This editor can have all sorts of #hashtags. Pretty #cool :)
 Try it yourself by starting a word with a # (hash character) …
 `;
@@ -72,7 +73,6 @@ export default class SimpleHashtagEditor extends Component {
     return (
       <div className={ editorStyles.editor } onClick={ this.focus }>
         <Editor
-          customStyleMap={colorStyleMap}
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
