@@ -150,6 +150,70 @@ describe('Editor', () => {
       expect(plugin.handleDrop).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
     });
 
+    it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {
+      const plugins = [
+        {
+          handleKeyCommand: sinon.stub().returns(true),
+          onUpArrow: sinon.stub().returns(true),
+        },
+        {
+          handleKeyCommand: sinon.spy(),
+          onUpArrow: sinon.spy(),
+        },
+      ];
+      const result = shallow(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+
+      const draftEditor = result.node;
+      draftEditor.props.handleKeyCommand('command');
+      expect(plugins[0].handleKeyCommand).has.been.calledOnce();
+      expect(plugins[1].handleKeyCommand).has.not.been.called();
+
+      draftEditor.props.onUpArrow();
+      expect(plugins[0].onUpArrow).has.been.calledOnce();
+      expect(plugins[1].onUpArrow).has.not.been.called();
+    });
+
+    it('calls the handle- and on-hooks of all plugins in case none handeles the command', () => {
+      const plugins = [
+        {
+          handleKeyCommand: sinon.spy(),
+          onUpArrow: sinon.spy(),
+        },
+        {
+          handleKeyCommand: sinon.spy(),
+          onUpArrow: sinon.spy(),
+        },
+        {
+          handleKeyCommand: sinon.spy(),
+          onUpArrow: sinon.spy(),
+        },
+      ];
+      const result = shallow(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+
+      const draftEditor = result.node;
+      draftEditor.props.handleKeyCommand('command');
+      expect(plugins[0].handleKeyCommand).has.been.calledOnce();
+      expect(plugins[1].handleKeyCommand).has.been.calledOnce();
+      expect(plugins[2].handleKeyCommand).has.been.calledOnce();
+
+      draftEditor.props.onUpArrow();
+      expect(plugins[0].onUpArrow).has.been.calledOnce();
+      expect(plugins[1].onUpArrow).has.been.calledOnce();
+      expect(plugins[2].onUpArrow).has.been.calledOnce();
+    });
+
     it('calls the fn-hooks of the plugin', () => {
       const plugins = [
         {

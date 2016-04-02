@@ -60,7 +60,7 @@ class PluginEditor extends Component {
 
   getEditorState = () => this.props.editorState;
 
-  createHandleHooks = (methodName, plugins) => (...args) => {
+  createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getEditorState);
     newArgs.push(this.onChange);
@@ -72,12 +72,6 @@ class PluginEditor extends Component {
 
     return false;
   };
-
-  createOnHooks = (methodName, plugins) => (event) => (
-    plugins
-      .filter((plugin) => typeof plugin[methodName] === 'function')
-      .forEach((plugin) => plugin[methodName](event))
-  );
 
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
@@ -100,12 +94,8 @@ class PluginEditor extends Component {
       Object.keys(plugin).forEach((attrName) => {
         if (attrName === 'onChange') return;
 
-        if (attrName.indexOf('on') === 0) {
-          pluginHooks[attrName] = this.createOnHooks(attrName, plugins);
-        }
-
-        if (attrName.indexOf('handle') === 0) {
-          pluginHooks[attrName] = this.createHandleHooks(attrName, plugins);
+        if (attrName.indexOf('on') === 0 || attrName.indexOf('handle') === 0) {
+          pluginHooks[attrName] = this.createEventHooks(attrName, plugins);
         }
 
         // checks if the function ends with Fn
