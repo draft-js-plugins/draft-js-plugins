@@ -136,18 +136,22 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
+      const expectedSecondArgument = {
+        getEditorState: pluginEditor.getEditorState,
+        setEditorState: pluginEditor.onChange,
+      };
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
-      expect(plugin.handleKeyCommand).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+      expect(plugin.handleKeyCommand).has.been.calledWith('command', expectedSecondArgument);
       draftEditor.props.handlePastedText('command');
       expect(plugin.handlePastedText).has.been.calledOnce();
-      expect(plugin.handlePastedText).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+      expect(plugin.handlePastedText).has.been.calledWith('command', expectedSecondArgument);
       draftEditor.props.handleReturn('command');
       expect(plugin.handleReturn).has.been.calledOnce();
-      expect(plugin.handleReturn).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+      expect(plugin.handleReturn).has.been.calledWith('command', expectedSecondArgument);
       draftEditor.props.handleDrop('command');
       expect(plugin.handleDrop).has.been.calledOnce();
-      expect(plugin.handleDrop).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+      expect(plugin.handleDrop).has.been.calledWith('command', expectedSecondArgument);
     });
 
     it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {
@@ -232,12 +236,16 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
+      const expectedSecondArgument = {
+        getEditorState: pluginEditor.getEditorState,
+        setEditorState: pluginEditor.onChange,
+      };
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
-      expect(plugin.blockRendererFn).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+      expect(plugin.blockRendererFn).has.been.calledWith('command', expectedSecondArgument);
       draftEditor.props.keyBindingFn('command');
       expect(plugin.keyBindingFn).has.been.calledOnce();
-      expect(plugin.keyBindingFn).has.been.calledWith('command', pluginEditor.getEditorState, pluginEditor.onChange);
+      expect(plugin.keyBindingFn).has.been.calledWith('command', expectedSecondArgument);
     });
 
     it('combines the customStyleMaps from all plugins', () => {

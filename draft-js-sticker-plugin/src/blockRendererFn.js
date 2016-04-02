@@ -1,6 +1,6 @@
 import removeSticker from './modifiers/removeSticker';
 
-export default (config) => (contentBlock, getEditorState, setEditorState) => {
+export default (config) => (contentBlock, { getEditorState, setEditorState }) => {
   const type = contentBlock.getType();
   if (type === 'sticker') {
     return {

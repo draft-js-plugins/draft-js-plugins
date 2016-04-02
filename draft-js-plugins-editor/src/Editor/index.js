@@ -62,8 +62,10 @@ class PluginEditor extends Component {
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
-    newArgs.push(this.getEditorState);
-    newArgs.push(this.onChange);
+    newArgs.push({
+      getEditorState: this.getEditorState,
+      setEditorState: this.onChange,
+    });
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
@@ -75,8 +77,10 @@ class PluginEditor extends Component {
 
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
-    newArgs.push(this.getEditorState);
-    newArgs.push(this.onChange);
+    newArgs.push({
+      getEditorState: this.getEditorState,
+      setEditorState: this.onChange,
+    });
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
