@@ -71,6 +71,10 @@ export default class App extends Component {
               <div className={ styles.subParam }><span className={ styles.subParamName }>link:</span> CSS class to be applied to link text</div>
             </div>
           </div>
+          <div className={ styles.param }>
+            <span className={ styles.paramName }>target</span>
+            <span>String value for the target attribute. (Default value is _self)</span>
+          </div>
       </Container>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
