@@ -7,12 +7,12 @@ export default class Link extends Component {
   render() {
     /* eslint-disable no-use-before-define */
     const {
-      decoratedText,
+      decoratedText = '',
       theme = Map(),
       prefix,
       target,
       className,
-      ...props
+      ...props,
       } = this.props;
     /* eslint-enable */
     const combinedClassName = unionClassNames(theme.get('link'), className);
