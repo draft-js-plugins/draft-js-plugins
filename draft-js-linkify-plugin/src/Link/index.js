@@ -16,7 +16,7 @@ export default class Link extends Component {
       } = this.props;
     /* eslint-enable */
     const combinedClassName = unionClassNames(theme.get('link'), className);
-    const href = decoratedText.startsWith(prefix) ? decoratedText : prefix + decoratedText;
+    const href = decoratedText.indexOf(prefix) === 0 ? decoratedText : prefix + decoratedText;
     return (
       <a
         { ...props }
