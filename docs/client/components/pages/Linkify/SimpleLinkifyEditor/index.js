@@ -4,7 +4,10 @@ import Editor from 'draft-js-plugins-editor';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import editorStyles from './editorStyles.css';
 
-const linkifyPlugin = createLinkifyPlugin();
+const linkifyPlugin = createLinkifyPlugin({
+  prefix: 'http://',
+  target: '_blank',
+});
 const plugins = [linkifyPlugin];
 
 export default class SimpleMentionEditor extends Component {

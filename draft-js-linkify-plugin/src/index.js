@@ -16,11 +16,13 @@ const linkPlugin = (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
+  const prefix = config.prefix ? config.prefix : null;
+  const target = config.target ? config.target : null;
   return {
     decorators: [
       {
         strategy: linkStrategy,
-        component: decorateComponentWithProps(Link, { theme }),
+        component: decorateComponentWithProps(Link, { theme, prefix, target }),
       },
     ],
   };
