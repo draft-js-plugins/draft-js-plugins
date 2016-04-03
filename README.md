@@ -102,20 +102,7 @@ Join the channel #plugin-editor after signing into the DraftJS [Slack organizati
 
 ## Development
 
-You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins.
-
-```sh
-npm install
-cd docs
-npm install
-npm start
-```
-
-## Publishing Github Pages
-
-Run `./script/publishGithubPages.sh`
-
-The `build` script renames the .babelrc files of all plugins to avoid issues with the build. In the future we might be able to remove this again.
+Check out our [Contribution Guide](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/CONTRIBUTING.md).
 
 ## License
 
