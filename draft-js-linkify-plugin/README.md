@@ -12,12 +12,11 @@ import createLinkifyPlugin from 'draft-js-linkify-plugin';
 const linkifyPlugin = createLinkifyPlugin();
 ```
 
-You may also optionally set a prefix or define the target value for the resulting `<a>` tag:
+You may also optionally set the target value for the resulting `<a>` tag:
 
 ```js
 const linkifyPlugin = createLinkifyPlugin({
-  prefix: 'https://',   // default is 'http://'
-  target: '_blank'      // default is '_self'
+  target: '_blank'  // default is '_self'
 });
 ```
 
