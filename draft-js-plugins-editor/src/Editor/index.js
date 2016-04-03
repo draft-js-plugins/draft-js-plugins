@@ -96,7 +96,7 @@ class PluginEditor extends Component {
 
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
-        if (attrName === 'onChange') return;
+        if (pluginHooks[attrName] || attrName === 'onChange') return;
 
         if (attrName.indexOf('on') === 0 || attrName.indexOf('handle') === 0) {
           pluginHooks[attrName] = this.createEventHooks(attrName, plugins);
