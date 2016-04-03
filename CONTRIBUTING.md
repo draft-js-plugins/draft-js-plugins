@@ -47,7 +47,7 @@ Independent improvements to the documentation are very welcome. I (Nik) would ev
 
 We are also happy about updates to the documentation in combination with changes.
 
-## Publishing Github Pages
+## Publishing Github Pages (for the core team)
 
 Run `./script/publishGithubPages.sh`
 
