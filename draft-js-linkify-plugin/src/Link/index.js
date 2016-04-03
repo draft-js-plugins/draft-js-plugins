@@ -14,7 +14,7 @@ export default class Link extends Component {
     const {
       decoratedText = '',
       theme = Map(),
-      target,
+      target = '_self',
       className,
       ...props,
       } = this.props;
