@@ -4,9 +4,7 @@ import { Entity } from 'draft-js';
 import { DRAFTJS_BLOCK_KEY, DRAFTJS_BLOCK_TYPE } from '../constants';
 
 export default function onDropBlock() {
-  return function onDropBlockInner(event) {
-    const { selection, dataTransfer, getEditorState, updateEditorState } = event;
-
+  return function onDropBlockInner(selection, dataTransfer, isInternal, { getEditorState, setEditorState }) {
     const state = getEditorState();
 
     // Get data 'text' (anything else won't move the cursor) and expecting kind of data (text/key)
@@ -24,7 +22,7 @@ export default function onDropBlock() {
       // Get content, selection, block
       const block = state.getCurrentContent().getBlockForKey(blockKey);
       const editorStateAfterInsert = addBlock(state, selection, block.getType(), Entity.get(block.getEntityAt(0)).data);
-      updateEditorState(removeBlock(editorStateAfterInsert, blockKey));
+      setEditorState(removeBlock(editorStateAfterInsert, blockKey));
     }
 
     // New block dropped
@@ -33,7 +31,7 @@ export default function onDropBlock() {
 
       // Get content, selection, block
       const editorStateAfterInsert = addBlock(state, selection, blockType, {});
-      updateEditorState(editorStateAfterInsert);
+      setEditorState(editorStateAfterInsert);
     }
 
     return true;
