@@ -12,6 +12,15 @@ import createLinkifyPlugin from 'draft-js-linkify-plugin';
 const linkifyPlugin = createLinkifyPlugin();
 ```
 
+You may also optionally set a prefix or define the target value for the resulting `<a>` tag:
+
+```js
+const linkifyPlugin = createLinkifyPlugin({
+  prefix: 'https://',   // default is 'http://'
+  target: '_blank'      // default is '_self'
+});
+```
+
 ## Importing the default styles
 
 The plugin ships with a default styling available at this location in the installed package:
