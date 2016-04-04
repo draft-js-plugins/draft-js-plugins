@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import containsFiles from '../utils/containsFiles';
+import { containsFiles } from '../utils/file';
 
 export default function WrapComponent(WrappedComponent, plugin) {
   class Wrapper extends Component {
@@ -10,16 +10,14 @@ export default function WrapComponent(WrappedComponent, plugin) {
       this.DOMNode.addEventListener('dragover', this.onDragOver);
       this.DOMNode.addEventListener('dragleave', this.onDragLeave);
       this.DOMNode.addEventListener('drop', this.onDragDrop);
-
-      plugin.addListener('progress', this.onProgress);
+      // document.addEventListener('dnd-plugin-progress', this.onProgress, false);
     }
 
     componentWillUnmount() {
       this.DOMNode.removeEventListener('dragover', this.onDragOver);
       this.DOMNode.removeEventListener('dragleave', this.onDragLeave);
       this.DOMNode.removeEventListener('drop', this.onDragDrop);
-
-      plugin.removeListener('progress', this.onProgress);
+      // document.removeEventListener('dnd-plugin-progress', this.onProgress, false);
     }
 
     onDragOver = (event) => {
@@ -41,14 +39,15 @@ export default function WrapComponent(WrappedComponent, plugin) {
     };
 
     onProgress = (event) => {
-      this.setState({ progress: event, isDragging: false });
+      const { progress } = event;
+      this.setState({ progress, isDragging: false });
     };
 
     render() {
       const { isDragging, progress } = this.state;
       return <WrappedComponent ref="com" isDragging={isDragging} progress={progress} />;
     }
-    }
+  }
 
   return (props) => <Wrapper {...props} />;
 }
