@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { EditorState, Entity } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createDndPlugin from 'draft-js-dnd-plugin';
+import createToolbarPlugin from 'draft-js-toolbar-plugin';
 import styles from './styles.css';
 import mockUpload from '../utils/mockUpload';
 import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock';
+import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
-import PreviewGithub from '../components/preview-github';
+import PlaceholderGithub from '../components/placeholder-github';
 import BlockImage from '../components/block-image';
 import BlockText from '../components/block-text';
 import cleanupEmpty from '../utils/cleanupEmpty';
 
+const toolbarPlugin = createToolbarPlugin({});
 const dndPlugin = createDndPlugin({
   allowDrop: true,
   handleUpload: (data, success, failed, progress) =>
@@ -20,7 +23,7 @@ const dndPlugin = createDndPlugin({
     if (type.indexOf('image/') === 0) {
       return addBlock(state, state.getSelection(), 'block-image', data);
     } else if (type.indexOf('text/') === 0 || type === 'application/json') {
-      return addBlock(state, state.getSelection(), 'preview-github', data);
+      return addBlock(state, state.getSelection(), 'placeholder-github', data);
     } return state;
   }, handleBlock: (state, selection, data) => {
     const { type } = data;
@@ -63,11 +66,11 @@ class SimpleDndEditor extends Component {
 
   blockRendererFn = (contentBlock) => {
     const type = contentBlock.getType();
-    if (type === 'preview-github') {
+    if (type === 'placeholder-github') {
       const entityKey = contentBlock.getEntityAt(0);
       const data = entityKey ? Entity.get(entityKey).data : {};
       return {
-        component: PreviewGithub,
+        component: PlaceholderGithub,
         props: { ...data },
       };
     } else if (type === 'block-text') {
@@ -84,6 +87,7 @@ class SimpleDndEditor extends Component {
         component: BlockImage,
         props: {
           ...data,
+          toolbarTheme: toolbarPlugin.theme,
           refreshEditorState: () => {
             const { editorState } = this.state;
             this.onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter()));
@@ -105,9 +109,10 @@ class SimpleDndEditor extends Component {
         <Editor editorState={editorState}
           onChange={this.onChange}
           blockRendererFn={this.blockRendererFn}
-          plugins={[dndPlugin]}
+          plugins={[dndPlugin, toolbarPlugin]}
           ref="editor"
         />
+        <TextToolbar editorState={ editorState } plugin={toolbarPlugin} onChange={this.onChange} />
       </div>
     );
   }

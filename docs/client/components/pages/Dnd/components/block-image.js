@@ -1,65 +1,52 @@
 import React, { Component } from 'react';
 import Draggable from 'draft-js-dnd-plugin/components/block-draggable-wrapper';
 import Alignment from 'draft-js-dnd-plugin/components/block-alignment-wrapper';
+import Toolbar from 'draft-js-toolbar-plugin/components/hover-toolbar';
 import imageStyles from './image.css';
 
 class BlockImage extends Component {
-  remove = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.props.blockProps.onRemove(this.props.block.getKey());
-  };
-
-  alignLeft = () => {
-    this.props.align('left');
-  };
-
-  alignCenter = () => {
-    this.props.align('center');
-  };
-
-  alignRight = () => {
-    this.props.align('right');
-  };
+  renderProgress = progress => {
+    if (progress >= 0) {
+      return (
+        <div className={imageStyles.imageLoader} style={{ width: `${100 - progress}%` }} />
+      );
+    } return null;
+  }
 
   render() {
     const { blockProps, block, alignment, onDragStart, draggable } = this.props;
 
-    const buttons = [
-      <span className={ imageStyles.imageButton }
-        onClick={this.alignLeft}
-        style={{ marginLeft: '-2.4em' }}
-        role="button" key={'left'}
-      >
-        L
-      </span>,
-      <span className={ imageStyles.imageButton }
-        onClick={this.alignCenter}
-        role="button" key={'center'}
-      >
-        C
-      </span>,
-      <span className={ imageStyles.imageButton }
-        onClick={this.alignRight}
-        style={{ marginLeft: '0.9em' }}
-        role="button" key={'right'}
-      >
-        R
-      </span>,
+    const actions = [
+      {
+        active: alignment === 'left',
+        button: <span>L</span>,
+        toggle: () => this.props.align('left'),
+        label: 'Align left',
+      }, {
+        active: !alignment || alignment === 'center',
+        button: <span>C</span>,
+        toggle: () => this.props.align('center'),
+        label: 'Align center',
+      }, {
+        active: alignment === 'right',
+        button: <span>R</span>,
+        toggle: () => this.props.align('right'),
+        label: 'Align right',
+      },
     ];
 
     const className = `${imageStyles.imageWrapper} ${imageStyles[alignment || 'center']}`;
 
+    const key = `${block.get('key')}-0-0`;
     return (
         <figure className={ className }
           contentEditable={false}
-          data-offset-key={ `${block.get('key')}-0-0` }
+          data-offset-key={ key }
           onDragStart={onDragStart} draggable={draggable}
         >
           <img src={blockProps.src || blockProps.url} width="100%" height="auto" className={ imageStyles.image } />
-          {blockProps.progress >= 0 ? <div className={imageStyles.imageLoader} style={{ width: `${100 - blockProps.progress}%` }} /> : null}
-          {buttons}
+          {this.renderProgress(blockProps.progress)}
+          <Toolbar parent={ `figure[data-offset-key="${key}"]` } theme={blockProps.toolbarTheme} actions={actions} />
         </figure>
     );
   }
