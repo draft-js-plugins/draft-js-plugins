@@ -112,6 +112,7 @@ class SimpleDndEditor extends Component {
           plugins={[dndPlugin, toolbarPlugin]}
           ref="editor"
         />
+
         <TextToolbar editorState={ editorState } plugin={toolbarPlugin} onChange={this.onChange} />
       </div>
     );
