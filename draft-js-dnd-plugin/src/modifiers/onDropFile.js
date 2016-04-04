@@ -4,7 +4,7 @@ import modifyBlockData from './modifyBlockData';
 import { readFiles } from '../utils/file';
 import { getBlocksWhereEntityData } from '../utils/block';
 
-function defaultHandlePreview(state, selection, data, defaultBlockType) {
+function defaultHandlePlaceholder(state, selection, data, defaultBlockType) {
   return addBlock(state, state.getSelection(), defaultBlockType, data);
 }
 
@@ -15,7 +15,7 @@ function defaultHandleBlock(state, selection, data, defaultBlockType) {
 export default function onDropFile(config) {
   return function onDropFileInner(selection, files, { getEditorState, setEditorState }) {
     // Get upload function from config or editor props
-    const { handleUpload, handlePreview, handleBlock, defaultBlockType, handleProgress } = config;
+    const { handleUpload, handlePlaceholder, handleBlock, defaultBlockType, handleProgress } = config;
     if (handleUpload) {
       const formData = new FormData();
 
@@ -31,13 +31,13 @@ export default function onDropFile(config) {
       data.formData = data;
 
       // Read files on client side
-      readFiles(data.files).then(previews => {
+      readFiles(data.files).then(placeholders => {
         // Add blocks for each image before uploading
         let state = getEditorState();
-        previews.forEach(preview => {
-          state = handlePreview
-            ? handlePreview(state, selection, { ...preview, progress: 1 })
-            : defaultHandlePreview(state, selection, { ...preview, progress: 1 }, defaultBlockType);
+        placeholders.forEach(placeholder => {
+          state = handlePlaceholder
+            ? handlePlaceholder(state, selection, { ...placeholder, progress: 1 })
+            : defaultHandlePlaceholder(state, selection, { ...placeholder, progress: 1 }, defaultBlockType);
         });
         setEditorState(state);
 
@@ -64,8 +64,8 @@ export default function onDropFile(config) {
         }, (percent) => {
           // On progress, set entity data's progress field
           let newEditorState = getEditorState();
-          previews.forEach(preview => {
-            const blocks = getBlocksWhereEntityData(newEditorState, preview2 => preview2.src === preview.src && preview2.progress !== undefined);
+          placeholders.forEach(placeholder => {
+            const blocks = getBlocksWhereEntityData(newEditorState, p => p.src === placeholder.src && p.progress !== undefined);
             if (blocks.size) {
               newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
             }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PreviewGithub extends Component {
+class PlaceholderGithub extends Component {
   render() {
     const { blockProps, block } = this.props;
 
@@ -12,4 +12,4 @@ class PreviewGithub extends Component {
   }
 }
 
-export default PreviewGithub;
+export default PlaceholderGithub;

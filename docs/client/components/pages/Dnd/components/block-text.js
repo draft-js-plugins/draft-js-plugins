@@ -18,5 +18,5 @@ class BlockText extends Component {
 }
 
 export default Draggable(BlockText, {
-  useDiv: true
+  useDiv: true,
 });

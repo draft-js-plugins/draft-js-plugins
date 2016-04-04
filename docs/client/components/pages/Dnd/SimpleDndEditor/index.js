@@ -15,7 +15,7 @@ const dndPlugin = createDndPlugin({
   allowDrop: true,
   handleUpload: (data, success, failed, progress) =>
     mockUpload(data, success, failed, progress),
-  handlePreview: (state, selection, data) => {
+  handlePlaceholder: (state, selection, data) => {
     const { type } = data;
     if (type.indexOf('image/') === 0) {
       return addBlock(state, state.getSelection(), 'block-image', data);
