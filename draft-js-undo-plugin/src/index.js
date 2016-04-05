@@ -8,6 +8,8 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 const defaultTheme = Map({
   redo: styles.button,
   undo: styles.button,
+  historyItem: styles.historyItem,
+  historyItemActive: styles.historyItemActive,
 });
 
 const historyPlugin = (config = {}) => {
