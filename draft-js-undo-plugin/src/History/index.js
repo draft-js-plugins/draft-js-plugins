@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { EditorState } from 'draft-js';
 
 import HistoryEntry from './HistoryEntry';
 
@@ -32,6 +33,10 @@ class History extends Component {
 
 History.propTypes = {
   editorState: PropTypes.any.isRequired,
+};
+
+History.defaultProps = {
+  editorState: EditorState.createEmpty(),
 };
 
 export default History;

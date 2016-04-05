@@ -1,5 +1,6 @@
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
+import History from './History';
 import { Map } from 'immutable';
 import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -23,6 +24,7 @@ const historyPlugin = (config = {}) => {
   return {
     UndoButton: decorateComponentWithProps(UndoButton, { theme, children: undoContent }),
     RedoButton: decorateComponentWithProps(RedoButton, { theme, children: redoContent }),
+    History: decorateComponentWithProps(History, { theme }),
   };
 };
 
