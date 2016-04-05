@@ -15,7 +15,7 @@ const undoPlugin = createUndoPlugin({
   redoContent: 'Redo',
   theme,
 });
-const { UndoButton, RedoButton } = undoPlugin;
+const { UndoButton, RedoButton, History } = undoPlugin;
 
 export default class CustomUndoEditor extends Component {
 
@@ -52,6 +52,7 @@ export default class CustomUndoEditor extends Component {
             editorState={ this.state.editorState }
             onChange={ this.onChange }
           />
+          <History editorState={ this.state.editorState } />
         </div>
       </div>
     );
