@@ -36,3 +36,11 @@
   background-color: #F5F5F5;
   color: #ccc;
 }
+
+.historyItem {
+  color: rgba(0,0,0,0.5);
+}
+
+.historyItemActive {
+  color: rgba(0,0,0,1);
+}
