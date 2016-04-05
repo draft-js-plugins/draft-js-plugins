@@ -60,9 +60,17 @@ export default class EmojiSearch extends Component {
 
     // identify the start & end positon of the search-text
     const { blockKey, decoratorKey, leafKey } = decodeOffsetKey(this.props.offsetKey);
-    const { start, end } = editorState
+
+    const leave = editorState
       .getBlockTree(blockKey)
       .getIn([decoratorKey, 'leaves', leafKey]);
+
+    // the leave can be empty when it is removed due e.g. using backspace
+    if (leave === undefined) {
+      return editorState;
+    }
+
+    const { start, end } = leave;
 
     // get the current selection
     const selection = editorState.getSelection();

@@ -55,9 +55,16 @@ export default class MentionSearch extends Component {
 
     // identify the start & end positon of the search-text
     const { blockKey, decoratorKey, leafKey } = decodeOffsetKey(this.props.offsetKey);
-    const { start, end } = editorState
+
+    // the leave can be empty when it is removed due e.g. using backspace
+    const leave = editorState
       .getBlockTree(blockKey)
       .getIn([decoratorKey, 'leaves', leafKey]);
+    if (leave === undefined) {
+      return editorState;
+    }
+
+    const { start, end } = leave;
 
     // get the current selection
     const selection = editorState.getSelection();
