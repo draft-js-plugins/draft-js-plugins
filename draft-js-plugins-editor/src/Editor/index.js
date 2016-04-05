@@ -92,22 +92,38 @@ class PluginEditor extends Component {
 
   createPluginHooks = () => {
     const pluginHooks = {};
+    const eventHookKeys = [];
+    const fnHookKeys = [];
     const plugins = this.resolvePlugins();
 
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
         if (attrName === 'onChange') return;
 
-        if (attrName.indexOf('on') === 0 || attrName.indexOf('handle') === 0) {
-          pluginHooks[attrName] = this.createEventHooks(attrName, plugins);
+        // if `attrName` has been added as a hook key already, ignore this one
+        if (eventHookKeys.indexOf(attrName) !== -1 || fnHookKeys.indexOf(attrName) !== -1) return;
+
+        const isEventHookKey = attrName.indexOf('on') === 0 || attrName.indexOf('handle') === 0;
+        if (isEventHookKey) {
+          eventHookKeys.push(attrName);
+          return;
         }
 
-        // checks if the function ends with Fn
-        if (attrName.length - 2 === attrName.indexOf('Fn')) {
-          pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
+        // checks if `attrName` ends with 'Fn'
+        const isFnHookKey = (attrName.length - 2 === attrName.indexOf('Fn'));
+        if (isFnHookKey) {
+          fnHookKeys.push(attrName);
         }
       });
     });
+
+    eventHookKeys.forEach((attrName) => {
+      pluginHooks[attrName] = this.createEventHooks(attrName, plugins);
+    });
+    fnHookKeys.forEach((attrName) => {
+      pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
+    });
+
     return pluginHooks;
   };
 
