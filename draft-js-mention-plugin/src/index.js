@@ -45,6 +45,7 @@ const store = {
   focusedOptionIndex: undefined,
   forceRenderOfMentionSearch: undefined,
   filteredMentions: undefined,
+  offsetKey: undefined,
 };
 
 const createMentionPlugin = (config = {}) => {

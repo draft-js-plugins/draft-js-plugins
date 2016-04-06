@@ -15,19 +15,7 @@ export default class MentionSearch extends Component {
 
   componentWillMount() {
     this.key = genKey();
-
-    // TODO
-    // this.props.callbacks.onChange = this.props.callbacks.onChange.set(this.key, this.onEditorStateChange);
-  }
-
-  componentDidMount() {
-    // since the initial state is false we have to set the proper aria states
-    // for a closed popover
-    this.updateAriaCloseDropdown();
-
-    // Note: to force a re-render of the outer component to change the aria props
-    // TODO
-    // this.props.store.setEditorState(this.props.store.getEditorState());
+    this.props.callbacks.onChange = this.props.callbacks.onChange.set(this.key, this.onEditorStateChange);
   }
 
   componentWillUpdate = (nextProps) => {
@@ -67,16 +55,18 @@ export default class MentionSearch extends Component {
   };
 
   onEditorStateChange = (editorState) => {
-    const removeList = () => {
-      if (this.state.isOpen) {
-        this.closeDropdown();
-      }
+    // only do the checks once the searchStrategy matches and a offsetKey is defined
+    if (this.props.store.offsetKey === undefined) {
+      return editorState;
+    }
 
+    const removeList = () => {
+      this.closeDropdown();
       return editorState;
     };
 
     // identify the start & end positon of the search-text
-    const { blockKey, decoratorKey, leafKey } = decodeOffsetKey(this.props.offsetKey);
+    const { blockKey, decoratorKey, leafKey } = decodeOffsetKey(this.props.store.offsetKey);
 
     // the leave can be empty when it is removed due e.g. using backspace
     const leave = editorState
@@ -106,10 +96,9 @@ export default class MentionSearch extends Component {
 
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
-    // input field and then comes back: the dropwdown will again.
-    if (!this.state.isOpen) {
-      this.openDropdown();
-    }
+    // input field and then comes back: the dropdown will again.
+    // TODO
+    // this.openDropdown();
 
     return editorState;
   };
@@ -143,28 +132,21 @@ export default class MentionSearch extends Component {
     return filteredValues.setSize(size);
   };
 
-  updateAriaCloseDropdown = () => {
-    this.props.ariaProps.ariaHasPopup = this.props.ariaProps.ariaHasPopup.delete(this.key);
-    this.props.ariaProps.ariaExpanded = this.props.ariaProps.ariaExpanded.delete(this.key);
-    this.props.ariaProps.ariaActiveDescendantID = this.props.ariaProps.ariaActiveDescendantID.delete(this.key);
-    this.props.ariaProps.ariaOwneeID = this.props.ariaProps.ariaOwneeID.delete(this.key);
-  };
-
   closeDropdown = () => {
     // make sure none of these callbacks are triggered
     this.props.callbacks.onDownArrow = this.props.callbacks.onDownArrow.delete(this.key);
     this.props.callbacks.onUpArrow = this.props.callbacks.onUpArrow.delete(this.key);
     this.props.callbacks.onEscape = this.props.callbacks.onEscape.delete(this.key);
     this.props.callbacks.handleReturn = this.props.callbacks.handleReturn.delete(this.key);
-    this.updateAriaCloseDropdown();
-    this.setState({
-      isOpen: false,
-    });
+    this.props.ariaProps.ariaHasPopup = this.props.ariaProps.ariaHasPopup.delete(this.key);
+    this.props.ariaProps.ariaExpanded = this.props.ariaProps.ariaExpanded.delete(this.key);
+    this.props.ariaProps.ariaActiveDescendantID = this.props.ariaProps.ariaActiveDescendantID.delete(this.key);
+    this.props.ariaProps.ariaOwneeID = this.props.ariaProps.ariaOwneeID.delete(this.key);
+    this.props.store.searchActive = false;
   };
 
   render() {
     if (!this.props.store.searchActive) {
-      // TODO change this to null
       return null;
     }
 

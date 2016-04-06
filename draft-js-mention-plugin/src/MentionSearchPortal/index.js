@@ -8,6 +8,7 @@ export default class MentionSearchPortal extends Component {
     this.props.store.setEditorState = this.props.setEditorState;
     this.props.store.searchActive = true;
     this.props.store.focusedOptionIndex = 0;
+    this.props.store.offsetKey = this.props.offsetKey;
     this.openDropdown();
   }
 
@@ -16,6 +17,7 @@ export default class MentionSearchPortal extends Component {
     this.props.store.setEditorState = undefined;
     this.props.store.searchActive = false;
     this.props.store.focusedOptionIndex = undefined;
+    this.props.store.offsetKey = undefined;
   }
 
   onDownArrow = (keyboardEvent) => {
@@ -75,17 +77,11 @@ export default class MentionSearchPortal extends Component {
     this.props.callbacks.onUpArrow = this.props.callbacks.onUpArrow.delete(this.key);
     this.props.callbacks.onEscape = this.props.callbacks.onEscape.delete(this.key);
     this.props.callbacks.handleReturn = this.props.callbacks.handleReturn.delete(this.key);
-    this.updateAriaCloseDropdown();
-    this.setState({
-      isOpen: false,
-    });
-  };
-
-  updateAriaCloseDropdown = () => {
     this.props.ariaProps.ariaHasPopup = this.props.ariaProps.ariaHasPopup.delete(this.key);
     this.props.ariaProps.ariaExpanded = this.props.ariaProps.ariaExpanded.delete(this.key);
     this.props.ariaProps.ariaActiveDescendantID = this.props.ariaProps.ariaActiveDescendantID.delete(this.key);
     this.props.ariaProps.ariaOwneeID = this.props.ariaProps.ariaOwneeID.delete(this.key);
+    this.props.store.searchActive = false;
   };
 
   openDropdown = () => {
