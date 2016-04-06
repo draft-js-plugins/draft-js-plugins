@@ -13,7 +13,6 @@ const defaultTheme = Map({
   mention: mentionStyles.mention,
 
   autocomplete: autocompleteStyles.autocomplete,
-  autocompletePopover: autocompleteStyles.autocompletePopover,
 
   autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
   autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
@@ -43,6 +42,9 @@ const store = {
   getEditorState: undefined,
   setEditorState: undefined,
   searchActive: false,
+  focusedOptionIndex: undefined,
+  forceRenderOfMentionSearch: undefined,
+  filteredMentions: undefined,
 };
 
 const createMentionPlugin = (config = {}) => {
@@ -69,7 +71,7 @@ const createMentionPlugin = (config = {}) => {
       },
       {
         strategy: mentionSearchStrategy,
-        component: decorateComponentWithProps(MentionSearchPortal, { store }),
+        component: decorateComponentWithProps(MentionSearchPortal, { store, callbacks, ariaProps }),
       },
     ],
     getEditorProps: () => {
