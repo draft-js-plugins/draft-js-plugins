@@ -38,7 +38,7 @@ const ariaProps = {
   ariaActiveDescendantID: Map(),
 };
 
-const mentionPlugin = (config = {}) => {
+const createMentionPlugin = (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
@@ -98,4 +98,4 @@ const mentionPlugin = (config = {}) => {
   };
 };
 
-export default mentionPlugin;
+export default createMentionPlugin;
