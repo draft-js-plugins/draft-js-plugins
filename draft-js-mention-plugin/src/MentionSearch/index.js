@@ -16,7 +16,9 @@ export default class MentionSearch extends Component {
 
   componentWillMount() {
     this.key = genKey();
-    this.props.callbacks.onChange = this.props.callbacks.onChange.set(this.key, this.onEditorStateChange);
+
+    // TODO
+    // this.props.callbacks.onChange = this.props.callbacks.onChange.set(this.key, this.onEditorStateChange);
   }
 
   componentDidMount() {
@@ -25,19 +27,21 @@ export default class MentionSearch extends Component {
     this.updateAriaCloseDropdown();
 
     // Note: to force a re-render of the outer component to change the aria props
-    this.props.setEditorState(this.props.getEditorState());
+    // TODO
+    // this.props.store.setEditorState(this.props.store.getEditorState());
   }
 
   componentDidUpdate = () => {
     // In case the list shrinks there should be still an option focused.
     // Note: this might run multiple times and deduct 1 until the condition is
     // not fullfilled anymore.
-    const size = this.filteredMentions.size;
-    if (size > 0 && this.state.focusedOptionIndex >= size) {
-      this.setState({
-        focusedOptionIndex: this.filteredMentions.size - 1,
-      });
-    }
+    // TODO
+    // const size = this.filteredMentions.size;
+    // if (size > 0 && this.state.focusedOptionIndex >= size) {
+    //   this.setState({
+    //     focusedOptionIndex: this.filteredMentions.size - 1,
+    //   });
+    // }
   };
 
   componentWillUnmount = () => {
@@ -94,8 +98,8 @@ export default class MentionSearch extends Component {
 
   onMentionSelect = (mention) => {
     this.closeDropdown();
-    const newEditorState = addMention(this.props.getEditorState(), mention);
-    this.props.setEditorState(newEditorState);
+    const newEditorState = addMention(this.props.store.getEditorState(), mention);
+    this.props.store.setEditorState(newEditorState);
   };
 
   onDownArrow = (keyboardEvent) => {
@@ -123,7 +127,7 @@ export default class MentionSearch extends Component {
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
-    this.props.setEditorState(this.props.getEditorState());
+    this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
   onMentionFocus = (index) => {
@@ -134,13 +138,13 @@ export default class MentionSearch extends Component {
     });
 
     // to force a re-render of the outer component to change the aria props
-    this.props.setEditorState(this.props.getEditorState());
+    this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
   // Get the first 5 mentions that match
   getMentionsForFilter = () => {
-    const selection = this.props.getEditorState().getSelection();
-    const { word } = getSearchText(this.props.getEditorState(), selection);
+    const selection = this.props.store.getEditorState().getSelection();
+    const { word } = getSearchText(this.props.store.getEditorState(), selection);
     const mentionValue = word.substring(1, word.length).toLowerCase();
     const mentions = this.props.mentions ? this.props.mentions : List([]);
     const filteredValues = mentions.filter((mention) => (
@@ -197,11 +201,16 @@ export default class MentionSearch extends Component {
   };
 
   render() {
+    if (!this.props.store.searchActive) {
+      // TODO change this to null
+      return null;
+    }
+
     this.filteredMentions = this.getMentionsForFilter();
     const { theme } = this.props;
+
     return (
-      <span {...this.props} className={ theme.get('autocomplete') } spellCheck={ false }>
-        { this.state.isOpen && this.filteredMentions.size > 0 ?
+      <span {...this.props} className={ theme.get('autocomplete') }>
         <div
           className={ theme.get('autocompletePopover') }
           contentEditable={ false }
@@ -223,8 +232,6 @@ export default class MentionSearch extends Component {
             ))
           }
         </div>
-        : null}
-        { this.props.children }
       </span>
     );
   }

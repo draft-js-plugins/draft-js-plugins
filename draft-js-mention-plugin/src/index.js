@@ -1,5 +1,6 @@
 import Mention from './Mention';
 import MentionSearch from './MentionSearch';
+import MentionSearchPortal from './MentionSearchPortal';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -38,6 +39,12 @@ const ariaProps = {
   ariaActiveDescendantID: Map(),
 };
 
+const store = {
+  getEditorState: undefined,
+  setEditorState: undefined,
+  searchActive: false,
+};
+
 const createMentionPlugin = (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
@@ -51,8 +58,10 @@ const createMentionPlugin = (config = {}) => {
     callbacks,
     mentions: config.mentions,
     theme,
+    store,
   };
   return {
+    MentionSearch: decorateComponentWithProps(MentionSearch, mentionSearchProps),
     decorators: [
       {
         strategy: mentionStrategy,
@@ -60,7 +69,7 @@ const createMentionPlugin = (config = {}) => {
       },
       {
         strategy: mentionSearchStrategy,
-        component: decorateComponentWithProps(MentionSearch, mentionSearchProps),
+        component: decorateComponentWithProps(MentionSearchPortal, { store }),
       },
     ],
     getEditorProps: () => {
