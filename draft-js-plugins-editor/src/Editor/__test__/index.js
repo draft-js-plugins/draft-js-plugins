@@ -358,8 +358,38 @@ describe('Editor', () => {
       );
       const draftEditor = result.node;
       draftEditor.props.blockRendererFn();
-      expect(plugin.blockRendererFn).has.not.been.called();
+      expect(plugin.blockRendererFn).has.been.called();
       expect(customHook).has.been.called();
+    });
+
+    it('blockRendererFnWithDecorator', () => {
+      const decorator = (Component) => (props) => <Component {...props} />;
+      const component = () => null;
+      const plugin = {
+        blockRendererFn: () => ({
+          decorators: [decorator],
+          props: { pluginProp: true },
+        }),
+      };
+      customHook = () => ({
+        component,
+        props: { editorProp: true },
+      });
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ [plugin] }
+          blockRendererFn={ customHook }
+        />
+      );
+      /*
+      should result in blockRendererFn returning {
+        component: <decorator><component/></decorator>,
+        props: { pluginProp: true, editorProps: true }
+      }
+       */
+      expect(!!result);
     });
   });
 });

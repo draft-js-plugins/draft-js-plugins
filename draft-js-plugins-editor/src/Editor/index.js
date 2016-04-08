@@ -82,15 +82,17 @@ class PluginEditor extends Component {
       setEditorState: this.onChange,
     });
     if (methodName === 'blockRendererFn') {
-      let block = { };
+      let block = { props: {} };
       let decorators = [];
       for (const plugin of plugins) {
         if (typeof plugin[methodName] !== 'function') continue;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined) {
-          const { decorators: pluginDecorators, props, ...rest } = result; // eslint-disable-line no-use-before-define
+          const { decorators: pluginDecorators, props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
+          const { props, ...rest } = block; // eslint-disable-line no-use-before-define
           if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
-          block = { ...block, ...rest, props: { ...block.props, ...props } };
+          console.log(props, pluginProps);
+          block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
       }
 
