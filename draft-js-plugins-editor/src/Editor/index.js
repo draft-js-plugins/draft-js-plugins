@@ -91,7 +91,6 @@ class PluginEditor extends Component {
           const { decorators: pluginDecorators, props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
           if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
-          console.log(props, pluginProps);
           block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
       }
