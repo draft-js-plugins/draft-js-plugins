@@ -94,7 +94,7 @@ class PluginEditor extends Component {
     const pluginHooks = {};
     const eventHookKeys = [];
     const fnHookKeys = [];
-    const plugins = this.resolvePlugins();
+    const plugins = [this.props, ...this.resolvePlugins()];
 
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
@@ -168,9 +168,9 @@ class PluginEditor extends Component {
     const customStyleMap = this.resolveCustomStyleMap();
     return (
       <Editor
+        { ...this.props }
         { ...pluginProps }
         { ...pluginHooks }
-        { ...this.props }
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }
