@@ -81,13 +81,39 @@ class PluginEditor extends Component {
       getEditorState: this.getEditorState,
       setEditorState: this.onChange,
     });
-    for (const plugin of plugins) {
-      if (typeof plugin[methodName] !== 'function') continue;
-      const result = plugin[methodName](...newArgs);
-      if (result !== undefined) return result;
-    }
-
-    return false;
+    if (methodName === 'blockRendererFn') {
+      let block = { };
+      let decorators = [];
+      for (const plugin of plugins) {
+        if (typeof plugin[methodName] !== 'function') continue;
+        const result = plugin[methodName](...newArgs);
+        if (result !== undefined) {
+          const { decorators: pluginDecorators, props, ...rest } = result;
+          if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
+          block = { ...block, ...rest, props: { ...block.props, ...props } };
+        }
+      } if (block.component) {
+        decorators.forEach(decorator => { block.component = decorator(block.component); });
+        return block;
+      } return false;
+    } else if (methodName === 'blockStyleFn') {
+      let styles;
+      for (const plugin of plugins) {
+        if (typeof plugin[methodName] !== 'function') continue;
+        const result = plugin[methodName](...newArgs);
+        if (result !== undefined) {
+          styles = (styles ? (`${styles} `) : '') + result;
+        }
+      } return styles || false;
+    } else {
+      for (const plugin of plugins) {
+        if (typeof plugin[methodName] !== 'function') continue;
+        const result = plugin[methodName](...newArgs);
+        if (result !== undefined) {
+          return result;
+        }
+      }
+    } return false;
   };
 
   createPluginHooks = () => {
