@@ -49,13 +49,14 @@ class Image extends Component {
     ];
 
     const className = `${theme.get('imageWrapper')} ${theme.get(alignment || 'center')}`;
+    const fixedBlockUrl = blockProps.src.split('<blockFixed>')[0];
     return (
         <figure className={ className }
           contentEditable={false}
           data-offset-key={ `${block.get('key')}-0-0` }
           onDragStart={onDragStart} draggable={draggable}
         >
-          <img src={blockProps.src || blockProps.url} width="100%" height="auto" className={ theme.get('image') } />
+          <img src={fixedBlockUrl || blockProps.url} width="100%" height="auto" className={ theme.get('image') } />
           {blockProps.progress >= 0 ? <div className={theme.get('imageLoader')} style={{ width: `${100 - blockProps.progress}%` }} /> : null}
           { attachButtons ? buttons : null }
         </figure>

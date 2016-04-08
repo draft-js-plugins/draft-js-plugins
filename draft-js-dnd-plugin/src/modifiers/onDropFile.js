@@ -5,7 +5,7 @@ import { Entity } from 'draft-js';
 function readFile(file) {
   return new Promise(resolve => {
     const reader = new FileReader();
-
+    const time = new Date();
     // This is called when finished reading
     reader.onload = event => {
       // Return an array with one image
@@ -14,7 +14,7 @@ function readFile(file) {
         ...file,
 
         // This is the files content as base64
-        src: event.target.result,
+        src: `${event.target.result}<blockFixed>${time.getTime()}`,
 
         // No URL, since nothing on server
         url: null,
