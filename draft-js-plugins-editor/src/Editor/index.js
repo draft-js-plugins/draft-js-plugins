@@ -88,14 +88,18 @@ class PluginEditor extends Component {
         if (typeof plugin[methodName] !== 'function') continue;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined) {
-          const { decorators: pluginDecorators, props, ...rest } = result;
+          const { decorators: pluginDecorators, props, ...rest } = result; // eslint-disable-line no-use-before-define
           if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
           block = { ...block, ...rest, props: { ...block.props, ...props } };
         }
-      } if (block.component) {
+      }
+
+      if (block.component) {
         decorators.forEach(decorator => { block.component = decorator(block.component); });
         return block;
-      } return false;
+      }
+
+      return false;
     } else if (methodName === 'blockStyleFn') {
       let styles;
       for (const plugin of plugins) {
@@ -105,15 +109,17 @@ class PluginEditor extends Component {
           styles = (styles ? (`${styles} `) : '') + result;
         }
       } return styles || false;
-    } else {
-      for (const plugin of plugins) {
-        if (typeof plugin[methodName] !== 'function') continue;
-        const result = plugin[methodName](...newArgs);
-        if (result !== undefined) {
-          return result;
-        }
+    }
+
+    for (const plugin of plugins) {
+      if (typeof plugin[methodName] !== 'function') continue;
+      const result = plugin[methodName](...newArgs);
+      if (result !== undefined) {
+        return result;
       }
-    } return false;
+    }
+
+    return false;
   };
 
   createPluginHooks = () => {
