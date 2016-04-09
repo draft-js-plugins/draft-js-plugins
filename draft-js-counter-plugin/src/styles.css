@@ -1,3 +1,7 @@
 .counter {
-  color: blue;
+  color: inherit;
+}
+
+.overLimit {
+  color: red;
 }

@@ -6,9 +6,8 @@ import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = Map({
-  charCounter: styles.counter,
-  wordCounter: styles.counter,
-  lineCounter: styles.counter,
+  counter: styles.counter,
+  overLimit: styles.overLimit,
 });
 
 const counterPlugin = (config = {}) => {

@@ -6,10 +6,13 @@ import editorStyles from './editorStyles.css';
 const counterPlugin = createCounterPlugin();
 const { CharCounter, WordCounter, LineCounter } = counterPlugin;
 const plugins = [counterPlugin];
-const text = `#TIL: This editor has a counter!
-Try typing here and watch the numbers go up below!
+const text = `This editor has counters below!
+Try typing here and watch the numbers go up.
 
-Note the 140 character limit.
+Note that the color changes when you pass one of the following limits:
+- 200 characters
+- 30 words
+- 10 lines
 `;
 
 export default class SimpleCounterEditor extends Component {
@@ -39,9 +42,9 @@ export default class SimpleCounterEditor extends Component {
             ref="editor"
           />
         </div>
-        <div>Characters: <CharCounter editorState={ this.state.editorState } /></div>
-        <div>Words: <WordCounter editorState={ this.state.editorState } /></div>
-        <div>Lines: <LineCounter editorState={ this.state.editorState } /></div>
+        <div>Characters: <CharCounter editorState={ this.state.editorState } limit={200} /></div>
+        <div>Words: <WordCounter editorState={ this.state.editorState } limit={30} /></div>
+        <div>Lines: <LineCounter editorState={ this.state.editorState } limit={10} /></div>
       </div>
     );
   }

@@ -14,12 +14,19 @@ class LineCounter extends Component {
     return blockArray ? blockArray.length : null;
   }
 
-  render() {
-    const { theme = Map(), editorState, className, ...props } = this.props; // eslint-disable-line no-use-before-define
-    const combinedClassName = unionClassNames(theme.get('charCounter'), className);
-    const count = this.getLineCount(editorState);
+  getClassNames(count, limit) {
+    const { theme = Map(), className } = this.props;
+    const defaultStyle = unionClassNames(theme.get('counter'), className);
+    const overLimitStyle = unionClassNames(theme.get('overLimit'), className);
+    return count > limit ? overLimitStyle : defaultStyle;
+  }
 
-    return <span className={ combinedClassName }>{count}</span>;
+  render() {
+    const { editorState, limit, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const count = this.getLineCount(editorState);
+    const classNames = this.getClassNames(count, limit);
+
+    return <span className={ classNames }>{count}</span>;
   }
 }
 

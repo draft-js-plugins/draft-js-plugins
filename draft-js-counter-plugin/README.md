@@ -14,24 +14,23 @@ import createCounterPlugin from 'draft-js-counter-plugin';
 const counterPlugin = createCounterPlugin();
 ```
 
-Now get the `CharCounter` and the `WordCounter` components from the instance:
+Now get the `CharCounter`, `WordCounter`, and `LineCounter` components from the instance:
 
 ```JS
-const { CharCounter, WordCounter } = undoPlugin;
+const { CharCounter, WordCounter, LineCounter } = undoPlugin;
 ```
 
 Which take two props:
 
-1. `editorState`: the current editor state.
-2. `options`: a configuration object with the following options:
-  - `limit`: the character or word limit that will cause the counter to change color
-  - `limitColor`: the special color that will be applied when the character or word limit has been reached
+1. `editorState`: the current editor state
+2. `limit`: a number in which the style of the text will change to reflect that the user is over the limit
 
 Render them with those props and your editor now has counting functionality!
 
 ```HTML
-<CharCounter editorState={ this.state.editorState } />
-<WordCounter editorState={ this.state.editorState } />
+<CharCounter editorState={ this.state.editorState } limit={200} />
+<WordCounter editorState={ this.state.editorState } limit={30} />
+<LineCounter editorState={ this.state.editorState } limit={10} />
 ```
 
 ## Importing the default styles
