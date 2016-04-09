@@ -17,13 +17,13 @@ const counterPlugin = createCounterPlugin();
 Now get the `CharCounter`, `WordCounter`, and `LineCounter` components from the instance:
 
 ```JS
-const { CharCounter, WordCounter, LineCounter } = undoPlugin;
+const { CharCounter, WordCounter, LineCounter } = counterPlugin;
 ```
 
 Which take two props:
 
 1. `editorState`: the current editor state
-2. `limit`: a number in which the style of the text will change to reflect that the user is over the limit
+2. `limit` (optional): a number in which the style of the text will change to reflect that the user is over the limit
 
 Render them with those props and your editor now has counting functionality!
 
