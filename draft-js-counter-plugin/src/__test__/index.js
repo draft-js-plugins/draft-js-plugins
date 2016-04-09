@@ -1,7 +1,6 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import createCounterPlugin from '../index';
-import { Map } from 'immutable';
 import { expect } from 'chai';
 import { EditorState, ContentState } from 'draft-js';
 
@@ -10,6 +9,7 @@ describe('CounterPlugin Config', () => {
     const contentState = ContentState.createFromText(text);
     return EditorState.createWithContent(contentState);
   };
+
   let counterPlugin;
 
   beforeEach(() => {
