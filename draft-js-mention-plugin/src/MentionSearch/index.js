@@ -9,10 +9,6 @@ import { List } from 'immutable';
 
 export default class MentionSearch extends Component {
 
-  state = {
-    isOpen: false,
-  };
-
   componentWillMount() {
     this.key = genKey();
     this.props.callbacks.onChange = this.props.callbacks.onChange.set(this.key, this.onEditorStateChange);
@@ -97,8 +93,8 @@ export default class MentionSearch extends Component {
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will again.
-    // TODO
     // this.openDropdown();
+    console.log('select');
 
     return editorState;
   };

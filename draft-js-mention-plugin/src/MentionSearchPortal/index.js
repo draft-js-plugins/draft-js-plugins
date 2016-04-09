@@ -40,6 +40,7 @@ export default class MentionSearchPortal extends Component {
   };
 
   onEscape = (keyboardEvent) => {
+    console.log('onEscape');
     keyboardEvent.preventDefault();
 
     this.closeDropdown();
