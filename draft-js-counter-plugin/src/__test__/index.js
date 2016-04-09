@@ -1,67 +1,51 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import createUndoPlugin from '../index';
+import createCounterPlugin from '../index';
 import { Map } from 'immutable';
 import { expect } from 'chai';
-import { EditorState } from 'draft-js';
+import { EditorState, ContentState } from 'draft-js';
 
-describe('UndoPlugin Config', () => {
-  const onChange = () => undefined;
-  let editorState;
+describe('CounterPlugin Config', () => {
+  const createEditorStateFromText = (text) => {
+    const contentState = ContentState.createFromText(text);
+    return EditorState.createWithContent(contentState);
+  };
+  let counterPlugin;
 
   beforeEach(() => {
-    editorState = EditorState.createEmpty();
+    counterPlugin = createCounterPlugin();
   });
 
-  it('instantiates plugin with undoContent config', () => {
-    const undoPlugin = createUndoPlugin({
-      undoContent: 'custom-child',
-    });
-    const UndoButton = undoPlugin.UndoButton;
-    const result = shallow(
-      <UndoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
+  it('instantiates plugin and counts 12 characters', () => {
+    const { CharCounter } = counterPlugin;
+
+    const text = 'Hello World!';
+    const editorState = createEditorStateFromText(text);
+    const result = mount(
+      <CharCounter editorState={ editorState } />
     );
-    expect(result).to.have.prop('children', 'custom-child');
+    expect(result).to.have.text('12');
   });
 
-  it('instantiates plugin with redoContent config', () => {
-    const undoPlugin = createUndoPlugin({
-      redoContent: 'custom-child',
-    });
-    const RedoButton = undoPlugin.RedoButton;
-    const result = shallow(
-      <RedoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
+  it('instantiates plugin and counts 5 words', () => {
+    const { WordCounter } = counterPlugin;
+
+    const text = 'Hello there, how are you?';
+    const editorState = createEditorStateFromText(text);
+    const result = mount(
+      <WordCounter editorState={ editorState } />
     );
-    expect(result).to.have.prop('children', 'custom-child');
+    expect(result).to.have.text('5');
   });
 
-  it('instantiates plugin with theme config', () => {
-    const theme = Map({
-      redo: 'custom-class-name',
-      undo: 'custom-class-name',
-    });
-    const undoPlugin = createUndoPlugin({ theme });
-    const RedoButton = undoPlugin.RedoButton;
-    const UndoButton = undoPlugin.UndoButton;
-    const redoResult = mount(
-      <RedoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
+  it('instantiates plugin and counts 3 lines', () => {
+    const { LineCounter } = counterPlugin;
+
+    const text = 'One\nTwo\nThree';
+    const editorState = createEditorStateFromText(text);
+    const result = mount(
+      <LineCounter editorState={ editorState } />
     );
-    const undoResult = mount(
-      <UndoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
-    );
-    expect(redoResult.find('button')).to.have.prop('className').to.contain('custom-class-name');
-    expect(undoResult.find('button')).to.have.prop('className').to.contain('custom-class-name');
+    expect(result).to.have.text('3');
   });
 });
