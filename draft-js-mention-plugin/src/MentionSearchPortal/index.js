@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import addMention from '../modifiers/addMention';
+import { genKey } from 'draft-js';
 
 export default class MentionSearchPortal extends Component {
 
   componentWillMount() {
     this.props.store.getEditorState = this.props.getEditorState;
     this.props.store.setEditorState = this.props.setEditorState;
-    this.props.store.searchActive = true;
-    this.props.store.focusedOptionIndex = 0;
-    this.props.store.offsetKey = this.props.offsetKey;
-    this.openDropdown();
+
+    // this.props.store.searchActive = true;
+    // this.props.store.focusedOptionIndex = 0;
+    // this.props.store.offsetKey = this.props.offsetKey;
+    // this.openDropdown();
+
+    this.key = genKey();
+    this.props.store.register(this.key, this.props.offsetKey);
   }
 
   componentWillUnmount() {
-    this.props.store.getEditorState = undefined;
-    this.props.store.setEditorState = undefined;
-    this.props.store.searchActive = false;
-    this.props.store.focusedOptionIndex = undefined;
-    this.props.store.offsetKey = undefined;
+    // this.props.store.getEditorState = undefined;
+    // this.props.store.setEditorState = undefined;
+    // this.props.store.searchActive = false;
+    // this.props.store.focusedOptionIndex = undefined;
+    // this.props.store.offsetKey = undefined;
+
+    this.props.store.unregister(this.key);
   }
 
   onDownArrow = (keyboardEvent) => {
@@ -107,7 +114,7 @@ export default class MentionSearchPortal extends Component {
 
   render() {
     return (
-      <span>
+      <span className={this.key}>
         { this.props.children }
       </span>
     );

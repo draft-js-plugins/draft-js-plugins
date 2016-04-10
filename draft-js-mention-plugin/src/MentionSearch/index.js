@@ -11,18 +11,20 @@ export default class MentionSearch extends Component {
 
   componentWillMount() {
     this.key = genKey();
+
+    // TODO simplify this (there should be only one mention search on the page)
     this.props.callbacks.onChange = this.props.callbacks.onChange.set(this.key, this.onEditorStateChange);
   }
 
   componentWillUpdate = (nextProps) => {
-    if (nextProps.store.searchActive) {
-      // TODO avoid double binding
-      this.props.store.forceRenderOfMentionSearch = this.forceUpdate.bind(this);
-      this.props.store.filteredMentions = this.getMentionsForFilter();
-    } else {
-      this.props.store.forceRenderOfMentionSearch = undefined;
-      this.props.store.filteredMentions = undefined;
-    }
+    // if (nextProps.store.searchActive) {
+    //   // TODO avoid double binding
+    //   this.props.store.forceRenderOfMentionSearch = this.forceUpdate.bind(this);
+    //   this.props.store.filteredMentions = this.getMentionsForFilter();
+    // } else {
+    //   this.props.store.forceRenderOfMentionSearch = undefined;
+    //   this.props.store.filteredMentions = undefined;
+    // }
   };
 
   componentDidUpdate = () => {
@@ -47,12 +49,16 @@ export default class MentionSearch extends Component {
   };
 
   componentWillUnmount = () => {
+    // TODO simplify this (there should be only one mention search on the page)
     this.props.callbacks.onChange = this.props.callbacks.onChange.delete(this.key);
   };
 
   onEditorStateChange = (editorState) => {
-    // only do the checks once the searchStrategy matches and a offsetKey is defined
-    if (this.props.store.offsetKey === undefined) {
+    const searches = this.props.store.getAll();
+
+    // if no search portal is active there is no need to show the popover
+    if (searches.size === 0) {
+      // TODO if open close the popover
       return editorState;
     }
 
@@ -61,28 +67,26 @@ export default class MentionSearch extends Component {
       return editorState;
     };
 
-    // identify the start & end positon of the search-text
-    const { blockKey, decoratorKey, leafKey } = decodeOffsetKey(this.props.store.offsetKey);
-
-    // the leave can be empty when it is removed due e.g. using backspace
-    const leave = editorState
-      .getBlockTree(blockKey)
-      .getIn([decoratorKey, 'leaves', leafKey]);
-    if (leave === undefined) {
-      return editorState;
-    }
-
-    const { start, end } = leave;
-
     // get the current selection
     const selection = editorState.getSelection();
 
     // the list should not be visible if a range is selected or the editor has no focus
     if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
 
-    // only show the search component for the current block
-    const sameBlock = selection.getAnchorKey() === blockKey;
-    if (!sameBlock) return removeList();
+    // identify the start & end positon of each search-text
+    const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
+
+    // a leave can be empty when it is removed due e.g. using backspace
+    const leaves = offsetDetails.map(({ blockKey, decoratorKey, leafKey }) => (
+      editorState
+        .getBlockTree(blockKey)
+        .getIn([decoratorKey, 'leaves', leafKey])
+    ));
+
+    // if all leaves are undefined the popover should be removed
+    if (leaves.every((leave) => leave === undefined)) {
+      return removeList();
+    }
 
     // Checks that the cursor is after the @ character but still somewhere in
     // the word (search term). Setting it to allow the cursor to be left of

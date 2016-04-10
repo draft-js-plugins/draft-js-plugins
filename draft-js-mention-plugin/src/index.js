@@ -38,6 +38,8 @@ const ariaProps = {
   ariaActiveDescendantID: Map(),
 };
 
+let searches = Map();
+
 const store = {
   getEditorState: undefined,
   setEditorState: undefined,
@@ -46,6 +48,18 @@ const store = {
   forceRenderOfMentionSearch: undefined,
   filteredMentions: undefined,
   offsetKey: undefined,
+
+  register: (key, offsetKey) => {
+    // console.log('register', key, offsetKey);
+    searches = searches.set(key, offsetKey);
+  },
+
+  unregister: (key) => {
+    // console.log('unregister', key);
+    searches = searches.delete(key);
+  },
+
+  getAll: () => searches,
 };
 
 const createMentionPlugin = (config = {}) => {
