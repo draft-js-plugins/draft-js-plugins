@@ -37,8 +37,16 @@
     "lint:jscs:examples": "jscs examples --max-old-space-size=4096",
     "lint:jscs:docs": "jscs docs",
     "lint:flow": "flow status",
-    "alex": "alex README.md"
+    "alex": "alex README.md",
+    "eslint-staged": "eslint-staged",
+    "jscs-staged": "jscs-staged",
+    "flow-staged": "flow-staged"
   },
+  "pre-commit": [
+    "eslint-staged",
+    "jscs-staged",
+    "flow-staged"
+  ],
   "devDependencies": {
     "alex": "^2.0.1",
     "autoprefixer": "^6.3.4",
@@ -70,8 +78,10 @@
     "jest-cli": "^0.9.2",
     "jscs": "^2.11.0",
     "jsdom": "^8.1.0",
+    "lint-staged": "^0.2.1",
     "mocha": "^2.4.5",
     "postcss-loader": "^0.8.2",
+    "pre-commit": "^1.1.2",
     "react": "^15.0.0-rc.2",
     "react-addons-test-utils": "^15.0.0-rc.2",
     "react-dom": "^15.0.0-rc.2",
