@@ -81,10 +81,43 @@ class PluginEditor extends Component {
       getEditorState: this.getEditorState,
       setEditorState: this.onChange,
     });
+    if (methodName === 'blockRendererFn') {
+      let block = { props: {} };
+      let decorators = [];
+      for (const plugin of plugins) {
+        if (typeof plugin[methodName] !== 'function') continue;
+        const result = plugin[methodName](...newArgs);
+        if (result !== undefined) {
+          const { decorators: pluginDecorators, props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
+          const { props, ...rest } = block; // eslint-disable-line no-use-before-define
+          if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
+          block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
+        }
+      }
+
+      if (block.component) {
+        decorators.forEach(decorator => { block.component = decorator(block.component); });
+        return block;
+      }
+
+      return false;
+    } else if (methodName === 'blockStyleFn') {
+      let styles;
+      for (const plugin of plugins) {
+        if (typeof plugin[methodName] !== 'function') continue;
+        const result = plugin[methodName](...newArgs);
+        if (result !== undefined) {
+          styles = (styles ? (`${styles} `) : '') + result;
+        }
+      } return styles || false;
+    }
+
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
-      if (result !== undefined) return result;
+      if (result !== undefined) {
+        return result;
+      }
     }
 
     return false;
@@ -94,7 +127,7 @@ class PluginEditor extends Component {
     const pluginHooks = {};
     const eventHookKeys = [];
     const fnHookKeys = [];
-    const plugins = this.resolvePlugins();
+    const plugins = [this.props, ...this.resolvePlugins()];
 
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
@@ -168,9 +201,9 @@ class PluginEditor extends Component {
     const customStyleMap = this.resolveCustomStyleMap();
     return (
       <Editor
+        { ...this.props }
         { ...pluginProps }
         { ...pluginHooks }
-        { ...this.props }
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }
