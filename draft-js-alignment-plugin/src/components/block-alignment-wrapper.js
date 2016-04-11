@@ -25,10 +25,31 @@ export default function WrapComponent(WrappedComponent) {
 
     render() {
       const { blockProps } = this.props;
+
+      const actions = [
+        {
+          active: blockProps.alignment === 'left',
+          button: <span>L</span>,
+          toggle: () => this.align('left'),
+          label: 'Align left',
+        }, {
+          active: !blockProps.alignment || blockProps.alignment === 'center',
+          button: <span>C</span>,
+          toggle: () => this.align('center'),
+          label: 'Align center',
+        }, {
+          active: blockProps.alignment === 'right',
+          button: <span>R</span>,
+          toggle: () => this.align('right'),
+          label: 'Align right',
+        },
+      ];
+
       return (
           <WrappedComponent {...this.props}
             alignment={blockProps.alignment}
             align={this.align}
+            actions={actions}
           />
       );
     }

@@ -171,6 +171,7 @@ class PluginEditor extends Component {
   };
 
   fireMethod = (methodName, ...args) => {
+    console.log('Method', methodName);
     if (this.pluginHooks[methodName]) {
       this.pluginHooks[methodName](...args);
     }
@@ -202,11 +203,14 @@ class PluginEditor extends Component {
     return styles;
   };
 
-  renderInDecorators = (InnerElement, decorators, editor) => {
+  renderInDecorators = (InnerElement, decorators, editor = InnerElement) => {
     if (decorators && decorators.length > 0) {
-      const [decoratorCreator, ...rest] = decorators;
-      const Decorated = decoratorCreator(InnerElement, this);
-      return this.renderInDecorators(Decorated, rest);
+      const [Decorator, ...rest] = decorators;
+      return (
+        <Decorator pluginEditor={this} {...editor.props}>
+          {this.renderInDecorators(InnerElement, rest, editor)}
+        </Decorator>
+      );
     } return InnerElement;
   }
 
@@ -231,9 +235,8 @@ class PluginEditor extends Component {
 
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
-    const DecoratedComponent = this.renderInDecorators(Editor, decorators);
-    return (
-      <DecoratedComponent
+    return this.renderInDecorators(
+      <Editor
         { ...this.props }
         { ...rest }
         { ...pluginProps }
@@ -243,7 +246,7 @@ class PluginEditor extends Component {
         editorState={ editorState }
         ref="editor"
         readOnly={readOnly || pluginProps.readOnly || this.state.readOnly}
-      />
+      />, decorators
     );
   }
 }

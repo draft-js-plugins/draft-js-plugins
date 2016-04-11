@@ -5,16 +5,17 @@ import createStatePlugin from 'draft-js-state-plugin';
 import createDndPlugin from 'draft-js-dnd-plugin';
 import createToolbarPlugin from 'draft-js-toolbar-plugin';
 import createClickEventsPlugin from 'draft-js-click-events-plugin';
+import createImagePlugin from 'draft-js-image-plugin';
 import styles from './styles.css';
 import mockUpload from '../utils/mockUpload';
 import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock';
 import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
 import PlaceholderGithub from '../components/placeholder-github';
-import BlockImage from '../components/block-image';
 import BlockText from '../components/block-text';
 import cleanupEmpty from '../utils/cleanupEmpty';
 
+const imagePlugin = createImagePlugin({});
 const toolbarPlugin = createToolbarPlugin({});
 const clickEventsPlugin = createClickEventsPlugin({});
 const statePlugin = createStatePlugin({});
@@ -113,7 +114,7 @@ class SimpleDndEditor extends Component {
         <Editor editorState={editorState}
           onChange={this.onChange}
           blockRendererFn={this.blockRendererFn}
-          plugins={[dndPlugin, toolbarPlugin, statePlugin, clickEventsPlugin]}
+          plugins={[dndPlugin, toolbarPlugin, statePlugin, clickEventsPlugin, imagePlugin]}
           ref="editor"
         />
 

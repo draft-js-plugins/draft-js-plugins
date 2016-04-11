@@ -4,6 +4,7 @@ import linkStrategy from './linkStrategy';
 import Link from './Link';
 import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
+import hoverToolbar from './components/hover-toolbar';
 
 const defaultTheme = Map({
   ...styles,
@@ -12,6 +13,11 @@ const defaultTheme = Map({
 const toolbarPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   return {
+    blockRendererFn: (contentBlock, { }) => ({
+      props: {
+        HoverToolbar: hoverToolbar,
+      },
+    }),
     decorators: [
       {
         strategy: linkStrategy,
@@ -20,10 +26,8 @@ const toolbarPlugin = (config = {}) => {
     ],
     TextToolbar: decorateComponentWithProps(TextToolbar, { theme }),
     theme,
-
-    // State
   };
 };
 
 export default toolbarPlugin;
-export HoverToolbar from './components/hover-toolbar';
+export const HoverToolbar = hoverToolbar;

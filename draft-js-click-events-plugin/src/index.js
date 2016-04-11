@@ -2,7 +2,7 @@ import wrapper from './components/click-events-wrapper';
 
 const clickEventPlugin = () => {
   return {
-    editorDecorators: [wrapper],
+    editorDecorators: [wrapper, wrapper],
   };
 };
 

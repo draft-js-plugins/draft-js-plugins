@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
-import { Entity } from 'draft-js';
 import ReactDOM from 'react-dom';
 
-const getDisplayName = (WrappedComponent) => (
-    WrappedComponent.displayName || WrappedComponent.name || 'Component'
-);
-
 export default class Wrapper extends Component {
-  static displayName = `Decorated(${getDisplayName(WrappedComponent)})`;
-
   componentDidMount() {
-    const node = ReactDOM.findDOMNode(editor);
-    node.addEventListener('mousedown', event => editor.fireMethod('onMouseDown', event));
-    node.addEventListener('mouseup', event => editor.fireMethod('onMouseUp', event));
+    const { pluginEditor } = this.props;
+    const node = ReactDOM.findDOMNode(this);
+    node.addEventListener('mousedown', event => pluginEditor.fireMethod('onMouseDown', event));
+    node.addEventListener('mouseup', event => pluginEditor.fireMethod('onMouseUp', event));
   }
 
   render() {
-    console.log('CLICK');
-    return (
-      <WrappedComponent {...this.props} />
-    );
+    const { children } = this.props;
+    return React.Children.only(children);
   }
-};
+}
