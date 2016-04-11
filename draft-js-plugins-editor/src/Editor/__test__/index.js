@@ -344,7 +344,7 @@ describe('Editor', () => {
       expect(customHook).has.been.calledOnce();
     });
 
-    it('blockRendererFn', () => {
+    it('renders block component using blockRenderFn prop', () => {
       const plugin = {
         blockRendererFn: sinon.spy(),
       };
@@ -358,8 +358,38 @@ describe('Editor', () => {
       );
       const draftEditor = result.node;
       draftEditor.props.blockRendererFn();
-      expect(plugin.blockRendererFn).has.not.been.called();
+      expect(plugin.blockRendererFn).has.been.called();
       expect(customHook).has.been.called();
+    });
+
+    it('renders block component using blockRenderFn prop and decorators', () => {
+      const decorator = (Component) => (props) => <div className="decorator"><Component {...props} /></div>;
+      const component = () => null;
+
+      const plugin = {
+        blockRendererFn: () => ({
+          decorators: [decorator],
+          props: { pluginProp: true },
+        }),
+      };
+
+      customHook = () => ({
+        component,
+        props: { editorProp: true },
+      });
+
+      const wrapper = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ [plugin] }
+          blockRendererFn={ customHook }
+        />
+      );
+
+      const decorators = wrapper.findWhere(n => n.hasClass('decorator'));
+      expect(decorators.length).to.equal(1);
+      expect(wrapper.find(component).length).to.equal(1);
     });
   });
 });
