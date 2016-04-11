@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import PluginEditor from '../index';
 import { expect } from 'chai';
-import { EditorState } from 'draft-js';
+import { EditorState, ContentState } from 'draft-js';
 import sinon from 'sinon';
 
 describe('Editor', () => {
@@ -390,6 +390,41 @@ describe('Editor', () => {
       const decorators = wrapper.findWhere(n => n.hasClass('decorator'));
       expect(decorators.length).to.equal(1);
       expect(wrapper.find(component).length).to.equal(1);
+    });
+  });
+
+  describe('decorators prop', () => {
+    let editorState;
+
+    beforeEach(() => {
+      editorState = EditorState.createWithContent(ContentState.createFromText('yo'));
+    });
+
+    it.only('calls strategy of a decorator passed in through the editor decorators props', () => {
+      const strategy = sinon.spy();
+      const decorator = {
+        strategy: () => strategy,
+        component: (content) => <div className="decorator">{content}</div>,
+      };
+
+      const plugin = {
+        decorators: [
+          {
+            strategy,
+            component: (content) => <div className="plugin">{content}</div>,
+          },
+        ],
+      };
+
+      mount(
+        <PluginEditor
+          plugins={ [plugin] }
+          decorators={ [decorator] }
+          editorState={ editorState }
+        />
+      );
+
+      expect(strategy).has.been.called();
     });
   });
 });
