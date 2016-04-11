@@ -13,7 +13,6 @@ import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
  * The main editor component
  */
 class PluginEditor extends Component {
-
   static propTypes = {
     editorState: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
@@ -36,6 +35,8 @@ class PluginEditor extends Component {
       );
     }
   }
+
+  state = {};
 
   componentWillMount() {
     const compositeDecorator = createCompositeDecorator(this.props.plugins, this.getEditorState, this.onChange);
@@ -65,6 +66,8 @@ class PluginEditor extends Component {
     newArgs.push({
       getEditorState: this.getEditorState,
       setEditorState: this.onChange,
+      fireMethod: this.fireMethod,
+      setReadOnly: this.setReadOnly,
     });
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
@@ -80,6 +83,8 @@ class PluginEditor extends Component {
     newArgs.push({
       getEditorState: this.getEditorState,
       setEditorState: this.onChange,
+      fireMethod: this.fireMethod,
+      setReadOnly: this.setReadOnly,
     });
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
@@ -132,6 +137,10 @@ class PluginEditor extends Component {
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
         if (attrName === 'onChange') return;
+        if (attrName === 'decorators') {
+
+          return;
+        }
 
         // if `attrName` has been added as a hook key already, ignore this one
         if (eventHookKeys.indexOf(attrName) !== -1 || fnHookKeys.indexOf(attrName) !== -1) return;
@@ -157,8 +166,19 @@ class PluginEditor extends Component {
       pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
     });
 
+    this.pluginHooks = pluginHooks;
     return pluginHooks;
   };
+
+  fireMethod = (methodName, ...args) => {
+    if (this.pluginHooks[methodName]) {
+      this.pluginHooks[methodName](...args);
+    }
+  }
+
+  setReadOnly = (readOnly) => {
+    this.setState({ readOnly });
+  }
 
   resolvePlugins = () => {
     const plugins = this.props.plugins.slice(0);
@@ -182,32 +202,47 @@ class PluginEditor extends Component {
     return styles;
   };
 
+  renderInDecorators = (InnerElement, decorators, editor) => {
+    if (decorators && decorators.length > 0) {
+      const [decoratorCreator, ...rest] = decorators;
+      const Decorated = decoratorCreator(InnerElement, this);
+      return this.renderInDecorators(Decorated, rest);
+    } return InnerElement;
+  }
+
   render() {
+    const { editorState, readOnly, plugins, ...rest } = this.props;
     let pluginProps = {};
+    const decorators = [];
 
     // This puts pluginProps and the object inside getEditorProps
     // on the Editor component (main use case is for aria props right now)
     // Last plugin wins right now (not ideal)
-    this.props.plugins.forEach((plugin) => {
+    plugins.forEach((plugin) => {
       if (plugin.getEditorProps) {
         pluginProps = {
           ...pluginProps,
           ...plugin.getEditorProps(),
         };
+      } if (plugin.editorDecorators) {
+        decorators.push(...plugin.editorDecorators);
       }
     });
 
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
+    const DecoratedComponent = this.renderInDecorators(Editor, decorators);
     return (
-      <Editor
+      <DecoratedComponent
         { ...this.props }
+        { ...rest }
         { ...pluginProps }
         { ...pluginHooks }
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
-        editorState={ this.props.editorState }
+        editorState={ editorState }
         ref="editor"
+        readOnly={readOnly || pluginProps.readOnly || this.state.readOnly}
       />
     );
   }

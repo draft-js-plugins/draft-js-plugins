@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Draggable from 'draft-js-dnd-plugin/components/block-draggable-wrapper';
-import Alignment from 'draft-js-dnd-plugin/components/block-alignment-wrapper';
-import Toolbar from 'draft-js-toolbar-plugin/components/hover-toolbar';
+import { AlignmentDecorator } from 'draft-js-alignment-plugin';
+import { HoverToolbar } from 'draft-js-toolbar-plugin';
 import imageStyles from './image.css';
 
 class BlockImage extends Component {
@@ -14,7 +13,7 @@ class BlockImage extends Component {
   }
 
   render() {
-    const { blockProps, block, alignment, onDragStart, draggable } = this.props;
+    const { blockProps, alignment, onDragStart, draggable } = this.props;
 
     const actions = [
       {
@@ -37,19 +36,16 @@ class BlockImage extends Component {
 
     const className = `${imageStyles.imageWrapper} ${imageStyles[alignment || 'center']}`;
 
-    const key = `${block.get('key')}-0-0`;
     return (
-        <figure className={ className }
-          contentEditable={false}
-          data-offset-key={ key }
-          onDragStart={onDragStart} draggable={draggable}
+        <figure className={className} contentEditable={false} onDragStart={onDragStart} draggable={draggable}
+          onClick={ blockProps.focus }
         >
           <img src={blockProps.src || blockProps.url} width="100%" height="auto" className={ imageStyles.image } />
           {this.renderProgress(blockProps.progress)}
-          <Toolbar parent={ `figure[data-offset-key="${key}"]` } theme={blockProps.toolbarTheme} actions={actions} />
+          <HoverToolbar parent={ this } theme={blockProps.toolbarTheme} actions={actions} />
         </figure>
     );
   }
 }
 
-export default Draggable(Alignment(BlockImage));
+export default AlignmentDecorator(BlockImage);

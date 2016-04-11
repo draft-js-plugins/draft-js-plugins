@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { EditorState, Entity } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
+import createStatePlugin from 'draft-js-state-plugin';
 import createDndPlugin from 'draft-js-dnd-plugin';
 import createToolbarPlugin from 'draft-js-toolbar-plugin';
+import createClickEventsPlugin from 'draft-js-click-events-plugin';
 import styles from './styles.css';
 import mockUpload from '../utils/mockUpload';
 import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock';
@@ -14,6 +16,8 @@ import BlockText from '../components/block-text';
 import cleanupEmpty from '../utils/cleanupEmpty';
 
 const toolbarPlugin = createToolbarPlugin({});
+const clickEventsPlugin = createClickEventsPlugin({});
+const statePlugin = createStatePlugin({});
 const dndPlugin = createDndPlugin({
   allowDrop: true,
   handleUpload: (data, success, failed, progress) =>
@@ -109,7 +113,7 @@ class SimpleDndEditor extends Component {
         <Editor editorState={editorState}
           onChange={this.onChange}
           blockRendererFn={this.blockRendererFn}
-          plugins={[dndPlugin, toolbarPlugin]}
+          plugins={[dndPlugin, toolbarPlugin, statePlugin, clickEventsPlugin]}
           ref="editor"
         />
 

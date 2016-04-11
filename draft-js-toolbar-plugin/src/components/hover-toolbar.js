@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM  from 'react-dom';
 import Toolbar from './toolbar';
 
 export default class HoverToolbar extends Component {
@@ -9,7 +10,7 @@ export default class HoverToolbar extends Component {
 
   componentDidMount() {
     if (this.props.parent) {
-      const parentEl = document.querySelector(this.props.parent);
+      const parentEl = ReactDOM.findDOMNode(this);
 
       if (!parentEl) {
         return;
@@ -58,8 +59,7 @@ export default class HoverToolbar extends Component {
   render() {
     const { hover } = this.state;
     return (
-      <Toolbar {...this.props}
-        active={hover}
+      <Toolbar {...this.props} active={hover}
         onMouseOver={ this.onMouseOverToolbar }
         onMouseLeave={ this.onMouseLeaveToolbar }
       />

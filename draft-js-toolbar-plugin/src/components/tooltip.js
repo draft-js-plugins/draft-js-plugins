@@ -10,11 +10,14 @@ class Tooltip extends Component {
 
   componentDidMount() {
     let { left, top, width } = this.props;
-    const { forceLeft, position } = this.props;
+    const { forceLeft, position, parent } = this.props;
 
     // Was props.parent set? Query parent element and get its rect
-    if (this.props.parent) {
-      const parentEl = document.querySelector(this.props.parent);
+    if (parent) {
+      console.log(parent);
+      const parentEl = typeof parent === 'string'
+        ? document.querySelector(parent)
+        : ReactDOM.findDOMNode(parent);
 
       if (!parentEl) {
         return;

@@ -13,6 +13,8 @@ export default class Sticker extends Component {
 
   render() {
     const { block, stickers, theme } = this.props;
+
+    console.log('Sticker', this.props.blockProps);
     const removeButton = (
       <span
         className={ theme.get('stickerRemoveButton') }
@@ -29,6 +31,7 @@ export default class Sticker extends Component {
         contentEditable={ false }
         data-offset-key={ `${block.get('key')}-0-0` }
         className={ theme.get('sticker') }
+        style={this.props.blockProps.focused ? { border: '1px solid red' } : {}}
       >
         <img
           className={ theme.get('stickerImage') }

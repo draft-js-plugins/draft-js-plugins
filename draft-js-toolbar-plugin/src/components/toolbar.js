@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tooltip from './tooltip';
 
+
 export default class DraftToolbar extends Component {
   static defaultProps = {
     actions: [],
@@ -41,7 +42,7 @@ export default class DraftToolbar extends Component {
     if (!active) return null;
 
     return (
-      <Tooltip {...this.props} active={this.props.active} group="toolbar">
+      <Tooltip {...this.props} active={active} group="toolbar">
         <div className={theme.get('toolbar')} onMouseDown={this.preventDefault}>
           {actions.map(this.renderAction)}
         </div>

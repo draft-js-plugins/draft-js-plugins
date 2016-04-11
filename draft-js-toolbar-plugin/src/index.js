@@ -26,3 +26,4 @@ const toolbarPlugin = (config = {}) => {
 };
 
 export default toolbarPlugin;
+export HoverToolbar from './components/hover-toolbar';

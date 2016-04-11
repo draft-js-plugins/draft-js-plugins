@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DRAFTJS_BLOCK_KEY } from '../constants';
 
 // Export
-export default function WrapComponent(component, options) {
+export default function WrapComponent(WrappedComponent, options) {
   const { useDiv } = options || {};
 
   class Wrapper extends Component {
@@ -23,8 +23,8 @@ export default function WrapComponent(component, options) {
     }
 
     render() {
-      const { draggable, WrappedComponent } = this.props;
-      if (useDiv) {
+      const { draggable } = this.props;
+      if (true) {
         return (
           <div onDragStart={::this.startDrag} draggable={draggable}>
             <WrappedComponent {...this.props} />
@@ -36,5 +36,5 @@ export default function WrapComponent(component, options) {
     }
   }
 
-  return props => <Wrapper {...props} WrappedComponent={component} />;
+  return Wrapper;
 }
