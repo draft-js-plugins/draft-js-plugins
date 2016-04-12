@@ -228,7 +228,9 @@ class PluginEditor extends Component {
           ...pluginProps,
           ...plugin.getEditorProps(),
         };
-      } if (plugin.editorDecorators) {
+      }
+
+      if (plugin.editorDecorators) {
         decorators.push(...plugin.editorDecorators);
       }
     });

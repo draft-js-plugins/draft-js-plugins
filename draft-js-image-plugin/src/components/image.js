@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import imageStyles from '../style.css';
 
 class Image extends Component {
   renderProgress = progress => {
@@ -10,9 +11,9 @@ class Image extends Component {
   }
 
   render() {
-    const { blockProps, alignment, onDragStart, draggable } = this.props;
-    const { HoverToolbar } = this.props;
-    const className = `${ imageStyles.imageWrapper } ${ imageStyles[alignment || 'center'] }`;
+    const { blockProps, alignment, onDragStart, draggable, actions } = this.props;
+    const { HoverToolbar } = blockProps;
+    const className = `${imageStyles.imageWrapper} ${imageStyles[alignment || 'center']}`;
 
     return (
         <figure className={className} contentEditable={false} onDragStart={onDragStart} draggable={draggable}

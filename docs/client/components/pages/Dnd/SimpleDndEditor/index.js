@@ -1,56 +1,58 @@
 import React, { Component } from 'react';
 import { EditorState, Entity } from 'draft-js';
+
+// Plugin-Editor
 import Editor from 'draft-js-plugins-editor';
-import createStatePlugin from 'draft-js-state-plugin';
+import createCleanupEmptyPlugin from 'draft-js-cleanup-empty-plugin';
+import createEntityPropsPlugin from 'draft-js-entity-props-plugin';
+import createFocusPlugin from 'draft-js-focus-plugin';
 import createDndPlugin from 'draft-js-dnd-plugin';
 import createToolbarPlugin from 'draft-js-toolbar-plugin';
 import createClickEventsPlugin from 'draft-js-click-events-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
-import styles from './styles.css';
-import mockUpload from '../utils/mockUpload';
-import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock';
 import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
+// Components
 import PlaceholderGithub from '../components/placeholder-github';
 import BlockText from '../components/block-text';
-import cleanupEmpty from '../utils/cleanupEmpty';
 
-const imagePlugin = createImagePlugin({});
-const toolbarPlugin = createToolbarPlugin({});
-const clickEventsPlugin = createClickEventsPlugin({});
-const statePlugin = createStatePlugin({});
-const dndPlugin = createDndPlugin({
-  allowDrop: true,
-  handleUpload: (data, success, failed, progress) =>
-    mockUpload(data, success, failed, progress),
-  handlePlaceholder: (state, selection, data) => {
-    const { type } = data;
-    if (type.indexOf('image/') === 0) {
-      return addBlock(state, state.getSelection(), 'block-image', data);
-    } else if (type.indexOf('text/') === 0 || type === 'application/json') {
-      return addBlock(state, state.getSelection(), 'placeholder-github', data);
-    } return state;
-  }, handleBlock: (state, selection, data) => {
-    const { type } = data;
-    if (type.indexOf('image/') === 0) {
-      return addBlock(state, state.getSelection(), 'block-image', data);
-    } else if (type.indexOf('text/') === 0 || type === 'application/json') {
-      return addBlock(state, state.getSelection(), 'block-text', data);
-    } return state;
-  }, // This would be a real file upload to server
-  /* superagent.post('/upload')
-   .accept('application/json')
-   .send(data.formData)
-   .on('progress', ({ percent }) => {
-   progress(percent);
-   })
-   .end((err, res) => {
-   if (err) {
-   return failed(err);
-   }
-   success(res.body.files, 'image');
-   });*/
-});
+// Utils
+import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock';
+import mockUpload from '../utils/mockUpload';
+
+import styles from './styles.css';
+
+// Init Plugins
+const plugins = [
+  createCleanupEmptyPlugin({
+    types: ['block-image', 'block-text'],
+  }),
+  createToolbarPlugin({}),
+  createFocusPlugin({}),
+  createClickEventsPlugin({}),
+  createImagePlugin({}),
+  createEntityPropsPlugin({}),
+  createDndPlugin({
+    allowDrop: true,
+    handleUpload: (data, success, failed, progress) =>
+      mockUpload(data, success, failed, progress),
+    handlePlaceholder: (state, selection, data) => {
+      const { type } = data;
+      if (type.indexOf('image/') === 0) {
+        return addBlock(state, state.getSelection(), 'block-image', data);
+      } else if (type.indexOf('text/') === 0 || type === 'application/json') {
+        return addBlock(state, state.getSelection(), 'placeholder-github', data);
+      } return state;
+    }, handleBlock: (state, selection, data) => {
+      const { type } = data;
+      if (type.indexOf('image/') === 0) {
+        return addBlock(state, state.getSelection(), 'block-image', data);
+      } else if (type.indexOf('text/') === 0 || type === 'application/json') {
+        return addBlock(state, state.getSelection(), 'block-text', data);
+      } return state;
+    },
+  }),
+];
 
 class SimpleDndEditor extends Component {
   state = {
@@ -60,9 +62,7 @@ class SimpleDndEditor extends Component {
 
   onChange = (editorState) => {
     // console.log(convertToRaw(editorState.getCurrentContent()));
-    this.setState({
-      editorState: cleanupEmpty(editorState, ['block-image', 'block-text']),
-    });
+    this.setState({ editorState });
   };
 
   focus = () => {
@@ -72,33 +72,9 @@ class SimpleDndEditor extends Component {
   blockRendererFn = (contentBlock) => {
     const type = contentBlock.getType();
     if (type === 'placeholder-github') {
-      const entityKey = contentBlock.getEntityAt(0);
-      const data = entityKey ? Entity.get(entityKey).data : {};
-      return {
-        component: PlaceholderGithub,
-        props: { ...data },
-      };
+      return { component: PlaceholderGithub };
     } else if (type === 'block-text') {
-      const entityKey = contentBlock.getEntityAt(0);
-      const data = entityKey ? Entity.get(entityKey).data : {};
-      return {
-        component: BlockText,
-        props: { ...data },
-      };
-    } else if (type === 'block-image') {
-      const entityKey = contentBlock.getEntityAt(0);
-      const data = entityKey ? Entity.get(entityKey).data : {};
-      return {
-        component: BlockImage,
-        props: {
-          ...data,
-          toolbarTheme: toolbarPlugin.theme,
-          refreshEditorState: () => {
-            const { editorState } = this.state;
-            this.onChange(EditorState.forceSelection(editorState, editorState.getCurrentContent().getSelectionAfter()));
-          },
-        },
-      };
+      return { component: BlockText };
     } return undefined;
   }
 
@@ -114,11 +90,9 @@ class SimpleDndEditor extends Component {
         <Editor editorState={editorState}
           onChange={this.onChange}
           blockRendererFn={this.blockRendererFn}
-          plugins={[dndPlugin, toolbarPlugin, statePlugin, clickEventsPlugin, imagePlugin]}
+          plugins={plugins}
           ref="editor"
         />
-
-        <TextToolbar editorState={ editorState } plugin={toolbarPlugin} onChange={this.onChange} />
       </div>
     );
   }

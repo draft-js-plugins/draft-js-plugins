@@ -18,6 +18,7 @@ const toolbarPlugin = (config = {}) => {
         HoverToolbar: hoverToolbar,
       },
     }),
+    editorDecorators: [],
     decorators: [
       {
         strategy: linkStrategy,
@@ -31,3 +32,5 @@ const toolbarPlugin = (config = {}) => {
 
 export default toolbarPlugin;
 export const HoverToolbar = hoverToolbar;
+
+// <TextToolbar editorState={editorState} plugin={toolbarPlugin} onChange={this.onChange} />

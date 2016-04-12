@@ -1,7 +1,7 @@
 {
-  "name": "draft-js-state-pluin",
+  "name": "draft-js-image-pluin",
   "version": "0.0.0",
-  "description": "Upload Plugin for DraftJS",
+  "description": "Image Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
     "email": "bkniffler@me.com"
