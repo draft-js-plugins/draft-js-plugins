@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
-import PluginEditor from '../index';
+import PluginEditor, { createEditorStateWithText } from '../../index';
 import { expect } from 'chai';
 import { EditorState } from 'draft-js';
 import sinon from 'sinon';
+
+/* For use in integration tests, as in where you need to test the
+ * Editor component as well */
+class TestEditor extends Component {
+  state = { };
+
+  componentWillMount() {
+    this.state.editorState = createEditorStateWithText(this.props.text);
+  }
+
+  onChange = (editorState) => {
+    this.setState({
+      editorState,
+    });
+  };
+
+  render() {
+    return (
+      <PluginEditor
+        {...this.props}
+        editorState={ this.state.editorState }
+        onChange={ this.onChange }
+      />
+    );
+  }
+}
 
 describe('Editor', () => {
   describe('renders the Editor', () => {
@@ -363,7 +389,7 @@ describe('Editor', () => {
     });
 
     it('renders block component using blockRenderFn prop and decorators', () => {
-      const decorator = (Component) => (props) => <div className="decorator"><Component {...props} /></div>;
+      const decorator = (Comp) => (props) => <div className="decorator"><Comp {...props} /></div>;
       const component = () => null;
 
       const plugin = {
@@ -390,6 +416,59 @@ describe('Editor', () => {
       const decorators = wrapper.findWhere(n => n.hasClass('decorator'));
       expect(decorators.length).to.equal(1);
       expect(wrapper.find(component).length).to.equal(1);
+    });
+  });
+
+  describe('decorators prop', () => {
+    let text;
+    let decorator;
+    let plugin;
+    let plugins;
+    let decorators;
+
+    before(() => {
+      text = "Hello there how's it going fella";
+
+      decorator = {
+        strategy: (block, cb) => cb(1, 3),
+        component: () => <span className="decorator" />,
+      };
+
+      plugin = {
+        decorators: [
+          {
+            strategy: (block, cb) => cb(4, 7),
+            component: () => <span className="plugin" />,
+          },
+        ],
+      };
+
+      plugins = [plugin];
+      decorators = [decorator];
+    });
+
+    it('uses strategies from both decorators and plugins together', () => {
+      const pluginStrategy = sinon.spy(plugin.decorators[0], 'strategy');
+      const decoratorStrategy = sinon.spy(decorator, 'strategy');
+
+      mount(<TestEditor { ...{ plugins, decorators, text } } />);
+
+      expect(decoratorStrategy).has.been.called();
+      expect(pluginStrategy).has.been.called();
+    });
+
+    it('uses components from both decorators and plugins together', () => {
+      const pluginComponent = sinon.spy(plugin.decorators[0], 'component');
+      const decoratorComponent = sinon.spy(decorator, 'component');
+
+      const wrapper = mount(<TestEditor { ...{ plugins, decorators, text } } />);
+      const decoratorComponents = wrapper.findWhere(n => n.hasClass('decorator'));
+      const pluginComponents = wrapper.findWhere(n => n.hasClass('plugin'));
+
+      expect(decoratorComponent).has.been.called();
+      expect(pluginComponent).has.been.called();
+      expect(decoratorComponents.length).to.equal(1);
+      expect(pluginComponents.length).to.equal(1);
     });
   });
 });
