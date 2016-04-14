@@ -439,7 +439,7 @@ describe('Editor', () => {
         }
       }
 
-      const wrapper = mount(<PluginWrapper/>);
+      const wrapper = mount(<PluginWrapper />);
       const decoratorComponents = wrapper.findWhere(n => n.hasClass('decorator'));
       const pluginComponents = wrapper.findWhere(n => n.hasClass('plugin'));
 
