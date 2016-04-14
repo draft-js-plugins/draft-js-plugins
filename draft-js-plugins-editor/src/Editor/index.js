@@ -19,10 +19,12 @@ class PluginEditor extends Component {
     onChange: React.PropTypes.func.isRequired,
     plugins: React.PropTypes.array,
     defaultKeyBindings: React.PropTypes.bool,
+    customStyleMap: React.PropTypes.object,
   };
 
   static defaultProps = {
     defaultKeyBindings: true,
+    customStyleMap: {},
     plugins: [],
   };
 
@@ -169,18 +171,18 @@ class PluginEditor extends Component {
     return plugins;
   };
 
-  resolveCustomStyleMap = () => {
-    let styles = {};
-    for (const plugin of this.props.plugins) {
-      if (!plugin.customStyleMap) continue;
-      styles = {
-        ...styles,
-        ...plugin.customStyleMap,
-      };
-    }
-
-    return styles;
-  };
+  resolveCustomStyleMap = () => (
+    this.props.plugins
+     .filter(plug => plug.customStyleMap !== undefined)
+     .map(plug => plug.customStyleMap)
+     .concat([this.props.customStyleMap])
+     .reduce((styles, style) => (
+       {
+         ...styles,
+         ...style,
+       }
+     ), {})
+  );
 
   render() {
     let pluginProps = {};
