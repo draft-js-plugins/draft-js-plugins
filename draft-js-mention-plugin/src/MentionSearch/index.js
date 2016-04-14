@@ -11,39 +11,36 @@ export default class MentionSearch extends Component {
 
   state = {
     isActive: false,
-    focusedOptionIndex: undefined,
+    focusedOptionIndex: 0,
   };
 
   componentWillMount() {
     this.key = genKey();
-
-    // TODO simplify this (there should be only one mention search on the page)
-    this.props.callbacks.onChange = this.props.callbacks.onChange.set(this.key, this.onEditorStateChange);
+    this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
   componentDidUpdate = () => {
     if (this.refs.popover) {
+      // In case the list shrinks there should be still an option focused.
+      // Note: this might run multiple times and deduct 1 until the condition is
+      // not fullfilled anymore.
+      const size = this.filteredMentions.size;
+      if (size > 0 && this.state.focusedOptionIndex >= size) {
+        this.setState({
+          focusedOptionIndex: size - 1,
+        });
+      }
+
       const visibleRect = getVisibleSelectionRect(window);
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
       this.refs.popover.style.top = `${visibleRect.top + scrollTop}px`;
       this.refs.popover.style.left = `${visibleRect.left + scrollLeft}px`;
     }
-
-    // In case the list shrinks there should be still an option focused.
-    // Note: this might run multiple times and deduct 1 until the condition is
-    // not fullfilled anymore.
-    const size = this.filteredMentions.size;
-    if (size > 0 && this.state.focusedOptionIndex >= size) {
-      this.setState({
-        focusedOptionIndex: size - 1,
-      });
-    }
   };
 
   componentWillUnmount = () => {
-    // TODO simplify this (there should be only one mention search on the page)
-    this.props.callbacks.onChange = this.props.callbacks.onChange.delete(this.key);
+    this.props.callbacks.onChange = undefined;
   };
 
   onEditorStateChange = (editorState) => {
@@ -98,7 +95,8 @@ export default class MentionSearch extends Component {
       this.openDropdown();
     }
 
-    // makes sure the focused index is reseted every time a new selection opens
+    // makes sure the focused index is initialized one the popover opens and
+    // reseted every time a new selection opens
     // or the selection was moved to another mention search
     if (this.lastSelectionIsInsideWord === undefined ||
         !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
@@ -148,8 +146,7 @@ export default class MentionSearch extends Component {
 
   onMentionFocus = (index) => {
     const descendant = `mention-option-${this.key}-${index}`;
-    this.props.ariaProps.ariaActiveDescendantID = this.props.ariaProps.ariaActiveDescendantID.set(this.key, descendant);
-
+    this.props.ariaProps.ariaActiveDescendantID = descendant;
     this.state.focusedOptionIndex = index;
 
     // to force a re-render of the outer component to change the aria props
@@ -179,18 +176,17 @@ export default class MentionSearch extends Component {
     // It assumes that the keyFunctions object will not loose its reference and
     // by this we can replace inner parameters spread over different modules.
     // This better be some registering & unregistering logic. PRs are welcome :)
-    this.props.callbacks.onDownArrow = this.props.callbacks.onDownArrow.set(this.key, this.onDownArrow);
-    this.props.callbacks.onUpArrow = this.props.callbacks.onUpArrow.set(this.key, this.onUpArrow);
-    this.props.callbacks.onEscape = this.props.callbacks.onEscape.set(this.key, this.onEscape);
-    this.props.callbacks.handleReturn = this.props.callbacks.handleReturn.set(this.key, this.commitSelection);
-    this.props.callbacks.onTab = this.props.callbacks.onTab.set(this.key, this.onTab);
+    this.props.callbacks.onDownArrow = this.onDownArrow;
+    this.props.callbacks.onUpArrow = this.onUpArrow;
+    this.props.callbacks.onEscape = this.onEscape;
+    this.props.callbacks.handleReturn = this.commitSelection;
+    this.props.callbacks.onTab = this.onTab;
 
     const descendant = `mention-option-${this.key}-${this.state.focusedOptionIndex}`;
-    this.props.ariaProps.ariaActiveDescendantID = this.props.ariaProps.ariaActiveDescendantID.set(this.key, descendant);
-    const owneeId = `mentions-list-${this.key}`;
-    this.props.ariaProps.ariaOwneeID = this.props.ariaProps.ariaOwneeID.set(this.key, owneeId);
-    this.props.ariaProps.ariaHasPopup = this.props.ariaProps.ariaHasPopup.set(this.key, true);
-    this.props.ariaProps.ariaExpanded = this.props.ariaProps.ariaExpanded.set(this.key, true);
+    this.props.ariaProps.ariaActiveDescendantID = descendant;
+    this.props.ariaProps.ariaOwneeID = `mentions-list-${this.key}`;
+    this.props.ariaProps.ariaHasPopup = 'true';
+    this.props.ariaProps.ariaExpanded = 'true';
     this.setState({
       isActive: true,
     });
@@ -198,14 +194,14 @@ export default class MentionSearch extends Component {
 
   closeDropdown = () => {
     // make sure none of these callbacks are triggered
-    this.props.callbacks.onDownArrow = this.props.callbacks.onDownArrow.delete(this.key);
-    this.props.callbacks.onUpArrow = this.props.callbacks.onUpArrow.delete(this.key);
-    this.props.callbacks.onEscape = this.props.callbacks.onEscape.delete(this.key);
-    this.props.callbacks.handleReturn = this.props.callbacks.handleReturn.delete(this.key);
-    this.props.ariaProps.ariaHasPopup = this.props.ariaProps.ariaHasPopup.delete(this.key);
-    this.props.ariaProps.ariaExpanded = this.props.ariaProps.ariaExpanded.delete(this.key);
-    this.props.ariaProps.ariaActiveDescendantID = this.props.ariaProps.ariaActiveDescendantID.delete(this.key);
-    this.props.ariaProps.ariaOwneeID = this.props.ariaProps.ariaOwneeID.delete(this.key);
+    this.props.callbacks.onDownArrow = undefined;
+    this.props.callbacks.onUpArrow = undefined;
+    this.props.callbacks.onEscape = undefined;
+    this.props.callbacks.handleReturn = undefined;
+    this.props.ariaProps.ariaHasPopup = 'false';
+    this.props.ariaProps.ariaExpanded = 'false';
+    this.props.ariaProps.ariaActiveDescendantID = undefined;
+    this.props.ariaProps.ariaOwneeID = undefined;
     this.setState({
       isActive: false,
     });
@@ -223,7 +219,6 @@ export default class MentionSearch extends Component {
       <div
         {...this.props}
         className={ theme.get('autocomplete') }
-        contentEditable={ false }
         role="listbox"
         id={ `mentions-list-${this.key}` }
         ref="popover"
