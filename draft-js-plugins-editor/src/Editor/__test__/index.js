@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
-import PluginEditor from '../index';
+import PluginEditor, { createEditorStateWithText } from '../../index';
 import { expect } from 'chai';
-import { EditorState, ContentState } from 'draft-js';
+import { EditorState } from 'draft-js';
 import sinon from 'sinon';
 
 describe('Editor', () => {
@@ -363,7 +363,7 @@ describe('Editor', () => {
     });
 
     it('renders block component using blockRenderFn prop and decorators', () => {
-      const decorator = (Component) => (props) => <div className="decorator"><Component {...props} /></div>;
+      const decorator = (Comp) => (props) => <div className="decorator"><Comp {...props} /></div>;
       const component = () => null;
 
       const plugin = {
@@ -394,37 +394,61 @@ describe('Editor', () => {
   });
 
   describe('decorators prop', () => {
-    let editorState;
+    it('calls strategy of a decorator passed in through the editor decorators props', () => {
+      const text = "Hello there how's it going fella";
 
-    beforeEach(() => {
-      editorState = EditorState.createWithContent(ContentState.createFromText('yo'));
-    });
-
-    it.only('calls strategy of a decorator passed in through the editor decorators props', () => {
-      const strategy = sinon.spy();
       const decorator = {
-        strategy: () => strategy,
-        component: (content) => <div className="decorator">{content}</div>,
+        strategy: (block, cb) => cb(1, 3),
+        component: () => <span className="decorator" />,
       };
 
       const plugin = {
         decorators: [
           {
-            strategy,
-            component: (content) => <div className="plugin">{content}</div>,
+            strategy: (block, cb) => cb(4, 7),
+            component: () => <span className="plugin" />,
           },
         ],
       };
 
-      mount(
-        <PluginEditor
-          plugins={ [plugin] }
-          decorators={ [decorator] }
-          editorState={ editorState }
-        />
-      );
+      const pluginStrategy = sinon.spy(plugin.decorators[0], 'strategy');
+      const decoratorStrategy = sinon.spy(decorator, 'strategy');
+      const pluginComponent = sinon.spy(plugin.decorators[0], 'component');
+      const decoratorComponent = sinon.spy(decorator, 'component');
 
-      expect(strategy).has.been.called();
+      class PluginWrapper extends Component {
+        state = {
+          editorState: createEditorStateWithText(text),
+        };
+
+        onChange = (editorState) => {
+          this.setState({
+            editorState,
+          });
+        };
+
+        render() {
+          return (
+            <PluginEditor
+              plugins={ [plugin] }
+              decorators={ [decorator] }
+              onChange={ this.onChange }
+              editorState={ this.state.editorState }
+            />
+          );
+        }
+      }
+
+      const wrapper = mount(<PluginWrapper/>);
+      const decoratorComponents = wrapper.findWhere(n => n.hasClass('decorator'));
+      const pluginComponents = wrapper.findWhere(n => n.hasClass('plugin'));
+
+      expect(decoratorStrategy).has.been.called();
+      expect(pluginStrategy).has.been.called();
+      expect(decoratorComponent).has.been.called();
+      expect(pluginComponent).has.been.called();
+      expect(decoratorComponents.length).to.equal(1);
+      expect(pluginComponents.length).to.equal(1);
     });
   });
 });
