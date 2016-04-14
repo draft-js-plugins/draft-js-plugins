@@ -8,6 +8,7 @@ import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import proxies from './proxies';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
+import { List } from 'immutable';
 
 /**
  * The main editor component
@@ -41,7 +42,7 @@ class PluginEditor extends Component {
 
   componentWillMount() {
     const compositeDecorator = createCompositeDecorator(
-      this.getPluginsAndDecorators(),
+      this.resolveDecorators(),
       this.getEditorState,
       this.onChange);
     const _editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
@@ -52,7 +53,7 @@ class PluginEditor extends Component {
   // changed (or didn't)
   onChange = (editorState) => {
     let newEditorState = editorState;
-    this.getPluginsAndDecorators().forEach((plugin) => {
+    this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
         newEditorState = plugin.onChange(newEditorState);
       }
@@ -64,11 +65,6 @@ class PluginEditor extends Component {
   };
 
   getEditorState = () => this.props.editorState;
-
-  getPluginsAndDecorators = () => {
-    const { decorators, plugins } = this.props;
-    return [{ decorators }, ...plugins];
-  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
@@ -180,6 +176,13 @@ class PluginEditor extends Component {
     }
 
     return plugins;
+  };
+
+  resolveDecorators = () => {
+    const { decorators, plugins } = this.props;
+    return List([{ decorators }, ...plugins])
+      .filter((plugin) => plugin.decorators !== undefined)
+      .flatMap((plugin) => plugin.decorators);
   };
 
   resolveCustomStyleMap = () => {
