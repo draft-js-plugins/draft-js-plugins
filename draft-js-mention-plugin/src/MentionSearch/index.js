@@ -44,7 +44,7 @@ export default class MentionSearch extends Component {
   };
 
   onEditorStateChange = (editorState) => {
-    const searches = this.props.store.getAll();
+    const searches = this.props.store.getAllSearches();
 
     // if no search portal is active there is no need to show the popover
     if (searches.size === 0) {
@@ -91,12 +91,19 @@ export default class MentionSearch extends Component {
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will again.
-    if (!this.state.isActive) {
+
+    console.log(selectionIsInsideWord.filter(value => value === true).keySeq().first());
+    const activeOffsetKey = selectionIsInsideWord
+      .filter(value => value === true)
+      .keySeq()
+      .first();
+
+    // console.log(!this.props.store.isEscaped(activeOffsetKey));
+    if (!this.state.isActive && !this.props.store.isEscaped(activeOffsetKey)) {
       this.openDropdown();
     }
 
-    // makes sure the focused index is initialized one the popover opens and
-    // reseted every time a new selection opens
+    // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another mention search
     if (this.lastSelectionIsInsideWord === undefined ||
         !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
@@ -132,6 +139,13 @@ export default class MentionSearch extends Component {
   onEscape = (keyboardEvent) => {
     keyboardEvent.preventDefault();
 
+    const activeOffsetKey = this.lastSelectionIsInsideWord
+      .filter(value => value === true)
+      .keySeq()
+      .first();
+
+    console.log(activeOffsetKey);
+    this.props.store.escapeSearch(activeOffsetKey);
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
