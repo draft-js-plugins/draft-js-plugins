@@ -309,6 +309,54 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       expect(pluginEditor.resolveCustomStyleMap()).to.deep.equal(expected);
     });
+
+    it('combines customStyleMap props from plugins and the editor', () => {
+      const plugins = [
+        {
+          customStyleMap: {
+            orange: {
+              color: 'rgba(255, 127, 0, 1.0)',
+            },
+          },
+        },
+        {
+          customStyleMap: {
+            yellow: {
+              color: 'rgba(180, 180, 0, 1.0)',
+            },
+          },
+        },
+      ];
+
+      const customStyleMap = {
+        blue: {
+          color: 'blue',
+        },
+      };
+
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          customStyleMap={ customStyleMap }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+
+      const expected = {
+        orange: {
+          color: 'rgba(255, 127, 0, 1.0)',
+        },
+        yellow: {
+          color: 'rgba(180, 180, 0, 1.0)',
+        },
+        blue: {
+          color: 'blue',
+        },
+      };
+      const pluginEditor = result.instance();
+      expect(pluginEditor.resolveCustomStyleMap()).to.deep.equal(expected);
+    });
   });
 
   describe('passed proxy to DraftEditor', () => {
