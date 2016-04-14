@@ -5,6 +5,32 @@ import { expect } from 'chai';
 import { EditorState } from 'draft-js';
 import sinon from 'sinon';
 
+/* For use in integration tests, as in where you need to test the
+ * Editor component as well */
+class TestEditor extends Component {
+  state = { };
+
+  componentWillMount() {
+    this.state.editorState = createEditorStateWithText(this.props.text);
+  }
+
+  onChange = (editorState) => {
+    this.setState({
+      editorState,
+    });
+  };
+
+  render() {
+    return (
+      <PluginEditor
+        {...this.props}
+        editorState={ this.state.editorState }
+        onChange={ this.onChange }
+      />
+    );
+  }
+}
+
 describe('Editor', () => {
   describe('renders the Editor', () => {
     const onChange = sinon.spy();
@@ -394,15 +420,21 @@ describe('Editor', () => {
   });
 
   describe('decorators prop', () => {
-    it('calls strategy of a decorator passed in through the editor decorators props', () => {
-      const text = "Hello there how's it going fella";
+    let text;
+    let decorator;
+    let plugin;
+    let plugins;
+    let decorators;
 
-      const decorator = {
+    before(() => {
+      text = "Hello there how's it going fella";
+
+      decorator = {
         strategy: (block, cb) => cb(1, 3),
         component: () => <span className="decorator" />,
       };
 
-      const plugin = {
+      plugin = {
         decorators: [
           {
             strategy: (block, cb) => cb(4, 7),
@@ -411,40 +443,28 @@ describe('Editor', () => {
         ],
       };
 
+      plugins = [plugin];
+      decorators = [decorator];
+    });
+
+    it('uses strategies from both decorators and plugins together', () => {
       const pluginStrategy = sinon.spy(plugin.decorators[0], 'strategy');
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
-      const pluginComponent = sinon.spy(plugin.decorators[0], 'component');
-      const decoratorComponent = sinon.spy(decorator, 'component');
 
-      class PluginWrapper extends Component {
-        state = {
-          editorState: createEditorStateWithText(text),
-        };
-
-        onChange = (editorState) => {
-          this.setState({
-            editorState,
-          });
-        };
-
-        render() {
-          return (
-            <PluginEditor
-              plugins={ [plugin] }
-              decorators={ [decorator] }
-              onChange={ this.onChange }
-              editorState={ this.state.editorState }
-            />
-          );
-        }
-      }
-
-      const wrapper = mount(<PluginWrapper />);
-      const decoratorComponents = wrapper.findWhere(n => n.hasClass('decorator'));
-      const pluginComponents = wrapper.findWhere(n => n.hasClass('plugin'));
+      mount(<TestEditor { ...{ plugins, decorators, text } } />);
 
       expect(decoratorStrategy).has.been.called();
       expect(pluginStrategy).has.been.called();
+    });
+
+    it('uses components from both decorators and plugins together', () => {
+      const pluginComponent = sinon.spy(plugin.decorators[0], 'component');
+      const decoratorComponent = sinon.spy(decorator, 'component');
+
+      const wrapper = mount(<TestEditor { ...{ plugins, decorators, text } } />);
+      const decoratorComponents = wrapper.findWhere(n => n.hasClass('decorator'));
+      const pluginComponents = wrapper.findWhere(n => n.hasClass('plugin'));
+
       expect(decoratorComponent).has.been.called();
       expect(pluginComponent).has.been.called();
       expect(decoratorComponents.length).to.equal(1);
