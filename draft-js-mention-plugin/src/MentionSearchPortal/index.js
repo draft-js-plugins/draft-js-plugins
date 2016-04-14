@@ -11,8 +11,6 @@ export default class MentionSearchPortal extends Component {
   }
 
   componentWillUnmount() {
-    // this.props.store.getEditorState = undefined;
-    // this.props.store.setEditorState = undefined;
     this.props.store.unregister(this.key);
   }
 
