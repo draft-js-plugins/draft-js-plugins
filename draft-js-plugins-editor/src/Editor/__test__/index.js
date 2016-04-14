@@ -390,7 +390,7 @@ describe('Editor', () => {
     });
   });
 
-  describe('custom prop overwrites plugin hook', () => {
+  describe('custom prop comes before plugin hook', () => {
     const onChange = sinon.spy();
     let editorState;
     let customHook;
