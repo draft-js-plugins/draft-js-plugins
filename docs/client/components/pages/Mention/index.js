@@ -32,6 +32,17 @@ export default class App extends Component {
         <Separator />
         <Container>
           <Heading level={ 2 }>Mention</Heading>
+          <p>
+            Mentions for everyone!
+          </p>
+          <Heading level={ 3 }>Escape Behaviour</Heading>
+          <p>
+            While the suggestion popover is open, the user can close it by pressing ESC.
+            This will be stored for as long as the the selection stays inside
+            the word that triggered the search. After the selection left this word once the escape behaviour will be reset.
+            The suggestions will appear again once the user selects the word that
+            that triggered the selection.
+          </p>
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
