@@ -6,7 +6,6 @@ import editorStyles from './editorStyles.css';
 
 const mentionPlugin = createMentionPlugin();
 
-
 // the MentionSearch becomes a component that lies outside of the Editor,
 // but will be positioned correctly by using a portal approach.
 // filterMentions is just a utility function and not needed depending on how
@@ -29,7 +28,7 @@ export default class RemoteMentionEditor extends Component {
 
   onSearchChange = (event) => {
     this.setState({
-      mentionSuggestions: filterMentions(mentions, event.value),
+      mentionSuggestions: filterMentions([], event.value),
     });
 
     // Note: instead using the provided filterMentions utility someone could
