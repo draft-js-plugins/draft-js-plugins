@@ -9,61 +9,61 @@ import mentionStyles from './mentionStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
 
-const defaultTheme = Map({
-  mention: mentionStyles.mention,
-
-  autocomplete: autocompleteStyles.autocomplete,
-
-  autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
-  autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
-  autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
-  autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
-});
-
-const callbacks = {
-  keyBindingFn: undefined,
-  handleKeyCommand: undefined,
-  onDownArrow: undefined,
-  onUpArrow: undefined,
-  onTab: undefined,
-  onEscape: undefined,
-  handleReturn: undefined,
-  onChange: undefined,
-};
-
-const ariaProps = {
-  ariaHasPopup: 'false',
-  ariaExpanded: 'false',
-  ariaOwneeID: undefined,
-  ariaActiveDescendantID: undefined,
-};
-
-let searches = Map();
-let escapedSearch = undefined;
-
-const store = {
-  getEditorState: undefined,
-  setEditorState: undefined,
-  getAllSearches: () => searches,
-  isEscaped: (offsetKey) => escapedSearch === offsetKey,
-  escapeSearch: (offsetKey) => {
-    escapedSearch = offsetKey;
-  },
-
-  resetEscapedSearch: () => {
-    escapedSearch = undefined;
-  },
-
-  register: (offsetKey) => {
-    searches = searches.set(offsetKey, offsetKey);
-  },
-
-  unregister: (offsetKey) => {
-    searches = searches.delete(offsetKey);
-  },
-};
-
 const createMentionPlugin = (config = {}) => {
+  const defaultTheme = Map({
+    mention: mentionStyles.mention,
+
+    autocomplete: autocompleteStyles.autocomplete,
+
+    autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
+    autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
+    autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
+    autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
+  });
+
+  const callbacks = {
+    keyBindingFn: undefined,
+    handleKeyCommand: undefined,
+    onDownArrow: undefined,
+    onUpArrow: undefined,
+    onTab: undefined,
+    onEscape: undefined,
+    handleReturn: undefined,
+    onChange: undefined,
+  };
+
+  const ariaProps = {
+    ariaHasPopup: 'false',
+    ariaExpanded: 'false',
+    ariaOwneeID: undefined,
+    ariaActiveDescendantID: undefined,
+  };
+
+  let searches = Map();
+  let escapedSearch = undefined;
+
+  const store = {
+    getEditorState: undefined,
+    setEditorState: undefined,
+    getAllSearches: () => searches,
+    isEscaped: (offsetKey) => escapedSearch === offsetKey,
+    escapeSearch: (offsetKey) => {
+      escapedSearch = offsetKey;
+    },
+
+    resetEscapedSearch: () => {
+      escapedSearch = undefined;
+    },
+
+    register: (offsetKey) => {
+      searches = searches.set(offsetKey, offsetKey);
+    },
+
+    unregister: (offsetKey) => {
+      searches = searches.delete(offsetKey);
+    },
+  };
+
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
