@@ -1,3 +1,4 @@
+mv $(pwd)/../draft-js-counter-plugin/tmpBabelrc $(pwd)/../draft-js-counter-plugin/.babelrc
 mv $(pwd)/../draft-js-emoji-plugin/tmpBabelrc $(pwd)/../draft-js-emoji-plugin/.babelrc
 mv $(pwd)/../draft-js-hashtag-plugin/tmpBabelrc $(pwd)/../draft-js-hashtag-plugin/.babelrc
 mv $(pwd)/../draft-js-linkify-plugin/tmpBabelrc $(pwd)/../draft-js-linkify-plugin/.babelrc
