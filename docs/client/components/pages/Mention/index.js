@@ -12,6 +12,9 @@ import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?langu
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
 import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
+import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
+import remoteExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor/mentions.js';
+import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
@@ -29,6 +32,17 @@ export default class App extends Component {
         <Separator />
         <Container>
           <Heading level={ 2 }>Mention</Heading>
+          <p>
+            Mentions for everyone!
+          </p>
+          <Heading level={ 3 }>Escape Behaviour</Heading>
+          <p>
+            While the suggestion popover is open, the user can close it by pressing ESC.
+            This will be stored for as long as the the selection stays inside
+            the word that triggered the search. After the selection left this word once the escape behaviour will be reset.
+            The suggestions will appear again once the user selects the word that
+            that triggered the selection.
+          </p>
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
@@ -97,6 +111,12 @@ export default class App extends Component {
           <Code code={ customExampleCode } name="CustomMentionEditor.js" />
           <Code code={ customExampleMentionsCode } name="mentions.js" />
           <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Remote Data Mention Example</Heading>
+          <Code code={ remoteExampleCode } name="CustomMentionEditor.js" />
+          <Code code={ remoteExampleMentionsCode } name="mentions.js" />
+          <Code code={ remoteExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>

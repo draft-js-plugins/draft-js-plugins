@@ -1,5 +1,6 @@
 import Mention from './Mention';
 import MentionSearch from './MentionSearch';
+import MentionSearchPortal from './MentionSearchPortal';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -8,37 +9,61 @@ import mentionStyles from './mentionStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
 
-const defaultTheme = Map({
-  mention: mentionStyles.mention,
+const createMentionPlugin = (config = {}) => {
+  const defaultTheme = Map({
+    mention: mentionStyles.mention,
 
-  autocomplete: autocompleteStyles.autocomplete,
-  autocompletePopover: autocompleteStyles.autocompletePopover,
+    autocomplete: autocompleteStyles.autocomplete,
 
-  autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
-  autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
-  autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
-  autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
-});
+    autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
+    autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
+    autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
+    autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
+  });
 
-const callbacks = {
-  keyBindingFn: Map(),
-  handleKeyCommand: Map(),
-  onDownArrow: Map(),
-  onUpArrow: Map(),
-  onTab: Map(),
-  onEscape: Map(),
-  handleReturn: Map(),
-  onChange: Map(),
-};
+  const callbacks = {
+    keyBindingFn: undefined,
+    handleKeyCommand: undefined,
+    onDownArrow: undefined,
+    onUpArrow: undefined,
+    onTab: undefined,
+    onEscape: undefined,
+    handleReturn: undefined,
+    onChange: undefined,
+  };
 
-const ariaProps = {
-  ariaHasPopup: Map(),
-  ariaExpanded: Map(),
-  ariaOwneeID: Map(),
-  ariaActiveDescendantID: Map(),
-};
+  const ariaProps = {
+    ariaHasPopup: 'false',
+    ariaExpanded: 'false',
+    ariaOwneeID: undefined,
+    ariaActiveDescendantID: undefined,
+  };
 
-const mentionPlugin = (config = {}) => {
+  let searches = Map();
+  let escapedSearch = undefined;
+
+  const store = {
+    getEditorState: undefined,
+    setEditorState: undefined,
+    getAllSearches: () => searches,
+    isEscaped: (offsetKey) => escapedSearch === offsetKey,
+    escapeSearch: (offsetKey) => {
+      escapedSearch = offsetKey;
+    },
+
+    resetEscapedSearch: () => {
+      escapedSearch = undefined;
+    },
+
+    register: (offsetKey) => {
+      searches = searches.set(offsetKey, offsetKey);
+    },
+
+    unregister: (offsetKey) => {
+      searches = searches.delete(offsetKey);
+    },
+  };
+
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
@@ -51,8 +76,10 @@ const mentionPlugin = (config = {}) => {
     callbacks,
     mentions: config.mentions,
     theme,
+    store,
   };
   return {
+    MentionSearch: decorateComponentWithProps(MentionSearch, mentionSearchProps),
     decorators: [
       {
         strategy: mentionStrategy,
@@ -60,42 +87,30 @@ const mentionPlugin = (config = {}) => {
       },
       {
         strategy: mentionSearchStrategy,
-        component: decorateComponentWithProps(MentionSearch, mentionSearchProps),
+        component: decorateComponentWithProps(MentionSearchPortal, { store, callbacks, ariaProps }),
       },
     ],
-    getEditorProps: () => {
-      const ariaHasPopup = ariaProps.ariaHasPopup.some((entry) => entry);
-      const ariaExpanded = ariaProps.ariaExpanded.some((entry) => entry);
-      return {
+    getEditorProps: () => (
+      {
         role: 'combobox',
         ariaAutoComplete: 'list',
-        ariaHasPopup: ariaHasPopup ? 'true' : 'false',
-        ariaExpanded: ariaExpanded ? 'true' : 'false',
-        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID.first(),
-        ariaOwneeID: ariaProps.ariaOwneeID.first(),
-      };
-    },
-
-    onDownArrow: (keyboardEvent) => callbacks.onDownArrow.forEach((onDownArrow) => onDownArrow(keyboardEvent)),
-    onTab: (keyboardEvent) => callbacks.onTab.forEach((onTab) => onTab(keyboardEvent)),
-    onUpArrow: (keyboardEvent) => callbacks.onUpArrow.forEach((onUpArrow) => onUpArrow(keyboardEvent)),
-    onEscape: (keyboardEvent) => callbacks.onEscape.forEach((onEscape) => onEscape(keyboardEvent)),
-    handleReturn: (keyboardEvent) => (
-      callbacks.handleReturn
-        .map((handleReturn) => handleReturn(keyboardEvent))
-        .find((result) => result === true)
-    ),
-    onChange: (editorState) => {
-      let newEditorState = editorState;
-      if (callbacks.onChange.size !== 0) {
-        callbacks.onChange.forEach((onChange) => {
-          newEditorState = onChange(editorState);
-        });
+        ariaHasPopup: ariaProps.ariaHasPopup,
+        ariaExpanded: ariaProps.ariaExpanded,
+        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
+        ariaOwneeID: ariaProps.ariaOwneeID,
       }
+    ),
 
-      return newEditorState;
+    onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
+    onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
+    onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
+    onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
+    handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
+    onChange: (editorState) => {
+      if (callbacks.onChange) return callbacks.onChange(editorState);
+      return editorState;
     },
   };
 };
 
-export default mentionPlugin;
+export default createMentionPlugin;

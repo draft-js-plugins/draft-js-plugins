@@ -1,8 +1,4 @@
 .autocomplete {
-  display: inline-block;
-}
-
-.autocompletePopover {
   border: 1px solid #ddd;
   margin-top: 1.75em;
   min-width: 240px;

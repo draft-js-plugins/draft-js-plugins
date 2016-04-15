@@ -6,6 +6,7 @@ import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
 const mentionPlugin = createMentionPlugin({ mentions });
+const { MentionSearch } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 export default class SimpleMentionEditor extends Component {
@@ -33,6 +34,7 @@ export default class SimpleMentionEditor extends Component {
           plugins={plugins}
           ref="editor"
         />
+        <MentionSearch />
       </div>
     );
   }
