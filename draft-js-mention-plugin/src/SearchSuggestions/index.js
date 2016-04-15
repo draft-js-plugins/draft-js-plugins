@@ -6,7 +6,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey, getVisibleSelectionRect } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-export default class MentionSearch extends Component {
+export default class SearchSuggestions extends Component {
 
   static propTypes = {
     entityMutability: PropTypes.oneOf([

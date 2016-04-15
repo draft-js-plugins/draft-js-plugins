@@ -6,7 +6,7 @@ import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
 const mentionPlugin = createMentionPlugin({ mentions, entityMutability: 'IMMUTABLE' });
-const { MentionSearch } = mentionPlugin;
+const { SearchSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 export default class CustomMentionEditor extends Component {
@@ -41,7 +41,7 @@ export default class CustomMentionEditor extends Component {
           plugins={plugins}
           ref="editor"
         />
-        <MentionSearch
+        <SearchSuggestions
           onSearchChange={ this.onSearchChange }
           suggestions={ this.state.suggestions }
         />

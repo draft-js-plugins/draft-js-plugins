@@ -1,6 +1,6 @@
 import Mention from './Mention';
-import MentionSearch from './MentionSearch';
-import MentionSearchPortal from './MentionSearchPortal';
+import SearchSuggestions from './SearchSuggestions';
+import SearchSuggestionsPortal from './SearchSuggestionsPortal';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -80,7 +80,7 @@ const createMentionPlugin = (config = {}) => {
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
   };
   return {
-    MentionSearch: decorateComponentWithProps(MentionSearch, mentionSearchProps),
+    SearchSuggestions: decorateComponentWithProps(SearchSuggestions, mentionSearchProps),
     decorators: [
       {
         strategy: mentionStrategy,
@@ -88,7 +88,7 @@ const createMentionPlugin = (config = {}) => {
       },
       {
         strategy: mentionSearchStrategy,
-        component: decorateComponentWithProps(MentionSearchPortal, { store, callbacks, ariaProps }),
+        component: decorateComponentWithProps(SearchSuggestionsPortal, { store, callbacks, ariaProps }),
       },
     ],
     getEditorProps: () => (
