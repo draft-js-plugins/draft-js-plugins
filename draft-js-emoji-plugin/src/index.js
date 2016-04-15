@@ -85,9 +85,9 @@ const emojiPlugin = (config = {}) => {
     onUpArrow: (keyboardEvent) => callbacks.onUpArrow.forEach((onUpArrow) => onUpArrow(keyboardEvent)),
     onEscape: (keyboardEvent) => callbacks.onEscape.forEach((onEscape) => onEscape(keyboardEvent)),
     handleReturn: (keyboardEvent) => (
-     callbacks.handleReturn
-     .map((handleReturn) => handleReturn(keyboardEvent))
-     .find((result) => result === true)
+      callbacks.handleReturn
+      .map((handleReturn) => handleReturn(keyboardEvent))
+      .find((result) => result === true)
     ),
     onChange: (editorState) => {
       let newEditorState = editorState;
