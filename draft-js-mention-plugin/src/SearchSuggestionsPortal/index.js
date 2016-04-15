@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-export default class MentionSearchPortal extends Component {
+export default class SearchSuggestionsPortal extends Component {
 
   componentWillMount() {
     this.props.store.getEditorState = this.props.getEditorState;
     this.props.store.setEditorState = this.props.setEditorState;
     this.props.store.register(this.props.offsetKey);
 
-    // trigger a re-render so the MentionSearch becomes active
+    // trigger a re-render so the SearchSuggestions becomes active
     this.props.setEditorState(this.props.getEditorState());
   }
 
@@ -24,4 +24,4 @@ export default class MentionSearchPortal extends Component {
   }
 }
 
-export default MentionSearchPortal;
+export default SearchSuggestionsPortal;

@@ -6,11 +6,11 @@ import editorStyles from './editorStyles.css';
 
 const mentionPlugin = createMentionPlugin();
 
-// the MentionSearch becomes a component that lies outside of the Editor,
+// the SearchSuggestions becomes a component that lies outside of the Editor,
 // but will be positioned correctly by using a portal approach.
 // filterMentions is just a utility function and not needed depending on how
 // the developers want to update the suggestions
-const { MentionSearch, filterMentions } = mentionPlugin;
+const { SearchSuggestions, filterMentions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 export default class RemoteMentionEditor extends Component {
@@ -54,7 +54,7 @@ export default class RemoteMentionEditor extends Component {
           plugins={plugins}
           ref="editor"
         />
-        <MentionSearch
+        <SearchSuggestions
           mentionSuggestions={ this.state.mentionSuggestions }
           onSearchChange={ this.onSearchChange }
         />

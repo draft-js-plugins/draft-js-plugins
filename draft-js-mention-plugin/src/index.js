@@ -1,6 +1,6 @@
 import Mention from './Mention';
-import MentionSearch from './MentionSearch';
-import MentionSearchPortal from './MentionSearchPortal';
+import SearchSuggestions from './SearchSuggestions';
+import SearchSuggestionsPortal from './SearchSuggestionsPortal';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -8,6 +8,7 @@ import { Map } from 'immutable';
 import mentionStyles from './mentionStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
+import suggestionsFilter from './utils/defaultSuggestionsFilter';
 
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = Map({
@@ -74,13 +75,12 @@ const createMentionPlugin = (config = {}) => {
   const mentionSearchProps = {
     ariaProps,
     callbacks,
-    mentions: config.mentions,
     theme,
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
   };
   return {
-    MentionSearch: decorateComponentWithProps(MentionSearch, mentionSearchProps),
+    SearchSuggestions: decorateComponentWithProps(SearchSuggestions, mentionSearchProps),
     decorators: [
       {
         strategy: mentionStrategy,
@@ -88,7 +88,7 @@ const createMentionPlugin = (config = {}) => {
       },
       {
         strategy: mentionSearchStrategy,
-        component: decorateComponentWithProps(MentionSearchPortal, { store, callbacks, ariaProps }),
+        component: decorateComponentWithProps(SearchSuggestionsPortal, { store, callbacks, ariaProps }),
       },
     ],
     getEditorProps: () => (
@@ -115,3 +115,5 @@ const createMentionPlugin = (config = {}) => {
 };
 
 export default createMentionPlugin;
+
+export const defaultSuggestionsFilter = suggestionsFilter;
