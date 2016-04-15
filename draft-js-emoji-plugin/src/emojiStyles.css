@@ -5,4 +5,12 @@
   background-repeat: no-repeat;
   /* move it a bit further down to align it nicer with the text */
   vertical-align: middle;
+
+  /* we need to make contain the emoji because it can be 2 chars
+   * long if it is a 32bit unicode */
+  display: inline-block;
+  overflow: hidden;
+  max-width: 2ch;
+  line-height: inherit;
+  max-height: 2ex;
 }

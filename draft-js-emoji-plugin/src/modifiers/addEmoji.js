@@ -1,4 +1,4 @@
-import { Modifier, EditorState } from 'draft-js';
+import { Modifier, EditorState, Entity } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 import emojioneList from '../utils/emojioneList';
 import convertShortNameToUnicode from '../utils/convertShortNameToUnicode';
@@ -15,10 +15,14 @@ const addEmoji = (editorState, emojiShortName) => {
 
   const unicode = emojioneList[emojiShortName][0];
   const emoji = convertShortNameToUnicode(unicode);
+  const entityKey = Entity.create('emoji', 'IMMUTABLE', { emojiUnicode: emoji });
+
   let emojiReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
     emojiTextSelection,
     emoji,
+    null,
+    entityKey
   );
 
   // If the emoji is inserted at the end, a space is appended right after for
