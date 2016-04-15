@@ -48,17 +48,18 @@ export default class MentionSearch extends Component {
 
     // if no search portal is active there is no need to show the popover
     if (searches.size === 0) {
-      // TODO if open close the popover
       return editorState;
     }
 
     const removeList = () => {
+      this.props.store.resetEscapedSearch();
       this.closeDropdown();
       return editorState;
     };
 
     // get the current selection
     const selection = editorState.getSelection();
+    const anchorOffset = selection.getAnchorOffset();
 
     // the list should not be visible if a range is selected or the editor has no focus
     if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
@@ -78,27 +79,31 @@ export default class MentionSearch extends Component {
       return removeList();
     }
 
-    const anchorOffset = selection.getAnchorOffset();
-
     // Checks that the cursor is after the @ character but still somewhere in
     // the word (search term). Setting it to allow the cursor to be left of
     // the @ causes troubles due selection confusion.
-    const selectionIsInsideWord = leaves.map(({ start, end }) => (
-      anchorOffset > start + 1 && anchorOffset <= end
-    ));
+    const selectionIsInsideWord = leaves
+      .filter((leave) => leave !== undefined)
+      .map(({ start, end }) => (
+        anchorOffset > start + 1 && anchorOffset <= end
+      ));
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will again.
 
-    console.log(selectionIsInsideWord.filter(value => value === true).keySeq().first());
     const activeOffsetKey = selectionIsInsideWord
       .filter(value => value === true)
       .keySeq()
       .first();
 
-    // console.log(!this.props.store.isEscaped(activeOffsetKey));
+    // make sure the escaped search is reseted in the cursor since the user
+    // already switched to another mention search
+    if (!this.props.store.isEscaped(activeOffsetKey)) {
+      this.props.store.resetEscapedSearch();
+    }
+
     if (!this.state.isActive && !this.props.store.isEscaped(activeOffsetKey)) {
       this.openDropdown();
     }
@@ -143,8 +148,6 @@ export default class MentionSearch extends Component {
       .filter(value => value === true)
       .keySeq()
       .first();
-
-    console.log(activeOffsetKey);
     this.props.store.escapeSearch(activeOffsetKey);
     this.closeDropdown();
 

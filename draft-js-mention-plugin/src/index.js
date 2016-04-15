@@ -39,29 +39,27 @@ const ariaProps = {
 };
 
 let searches = Map();
-let escapedSearches = Map();
+let escapedSearch = undefined;
 
 const store = {
   getEditorState: undefined,
   setEditorState: undefined,
   getAllSearches: () => searches,
-  isEscaped: (offsetKey) => {
-    console.log('escapedSearches', escapedSearches.toJS());
-    return escapedSearches.get(offsetKey);
+  isEscaped: (offsetKey) => escapedSearch === offsetKey,
+  escapeSearch: (offsetKey) => {
+    escapedSearch = offsetKey;
   },
 
-  escapeSearch: (offsetKey) => {
-    escapedSearches = escapedSearches.set(offsetKey, true);
+  resetEscapedSearch: () => {
+    escapedSearch = undefined;
   },
 
   register: (offsetKey) => {
     searches = searches.set(offsetKey, offsetKey);
-    escapedSearches = escapedSearches.set(offsetKey, false);
   },
 
   unregister: (offsetKey) => {
     searches = searches.delete(offsetKey);
-    escapedSearches = escapedSearches.delete(offsetKey);
   },
 };
 
