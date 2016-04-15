@@ -2,10 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
-import getSearchText from '../utils/getSearchText';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey, getVisibleSelectionRect } from 'draft-js';
-import { List } from 'immutable';
+import getSearchText from '../utils/getSearchText';
 
 export default class MentionSearch extends Component {
 
@@ -32,7 +31,7 @@ export default class MentionSearch extends Component {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
       // not fullfilled anymore.
-      const size = this.filteredMentions.size;
+      const size = this.props.suggestions.size;
       if (size > 0 && this.state.focusedOptionIndex >= size) {
         this.setState({
           focusedOptionIndex: size - 1,
@@ -106,6 +105,8 @@ export default class MentionSearch extends Component {
       .keySeq()
       .first();
 
+    this.onSearchChange(editorState, selection);
+
     // make sure the escaped search is reseted in the cursor since the user
     // already switched to another mention search
     if (!this.props.store.isEscaped(activeOffsetKey)) {
@@ -130,10 +131,19 @@ export default class MentionSearch extends Component {
     return editorState;
   };
 
+  onSearchChange = (editorState, selection) => {
+    const { word } = getSearchText(editorState, selection);
+    const searchValue = word.substring(1, word.length);
+    if (this.lastSearchValue !== searchValue) {
+      this.lastSearchValue = searchValue;
+      this.props.onSearchChange({ value: searchValue });
+    }
+  };
+
   onDownArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
-    this.onMentionFocus(newIndex >= this.filteredMentions.size ? 0 : newIndex);
+    this.onMentionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
   };
 
   onTab = (keyboardEvent) => {
@@ -143,7 +153,7 @@ export default class MentionSearch extends Component {
 
   onUpArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
-    if (this.filteredMentions.size > 0) {
+    if (this.props.suggestions.size > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
       this.onMentionFocus(Math.max(newIndex, 0));
     }
@@ -182,21 +192,8 @@ export default class MentionSearch extends Component {
     this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
-  // Get the first 5 mentions that match
-  getMentionsForFilter = () => {
-    const selection = this.props.store.getEditorState().getSelection();
-    const { word } = getSearchText(this.props.store.getEditorState(), selection);
-    const mentionValue = word.substring(1, word.length).toLowerCase();
-    const mentions = this.props.mentions ? this.props.mentions : List([]);
-    const filteredValues = mentions.filter((mention) => (
-      !mentionValue || mention.get('name').toLowerCase().indexOf(mentionValue) > -1
-    ));
-    const size = filteredValues.size < 5 ? filteredValues.size : 5;
-    return filteredValues.setSize(size);
-  };
-
   commitSelection = () => {
-    this.onMentionSelect(this.filteredMentions.get(this.state.focusedOptionIndex));
+    this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
     return true;
   };
 
@@ -241,8 +238,6 @@ export default class MentionSearch extends Component {
       return null;
     }
 
-    this.filteredMentions = this.getMentionsForFilter();
-
     const { theme } = this.props;
     return (
       <div
@@ -253,7 +248,7 @@ export default class MentionSearch extends Component {
         ref="popover"
       >
         {
-          this.filteredMentions.map((mention, index) => (
+          this.props.suggestions.map((mention, index) => (
             <MentionOption
               key={ mention.get('name') }
               onMentionSelect={ this.onMentionSelect }

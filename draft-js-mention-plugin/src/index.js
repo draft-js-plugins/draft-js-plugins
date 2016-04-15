@@ -8,6 +8,7 @@ import { Map } from 'immutable';
 import mentionStyles from './mentionStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
+import suggestionsFilter from './utils/defaultSuggestionsFilter';
 
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = Map({
@@ -74,7 +75,6 @@ const createMentionPlugin = (config = {}) => {
   const mentionSearchProps = {
     ariaProps,
     callbacks,
-    mentions: config.mentions,
     theme,
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
@@ -115,3 +115,5 @@ const createMentionPlugin = (config = {}) => {
 };
 
 export default createMentionPlugin;
+
+export const defaultSuggestionsFilter = suggestionsFilter;
