@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
-import { genKey, getVisibleSelectionRect } from 'draft-js';
+import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
 export default class SearchSuggestions extends Component {
@@ -38,7 +38,7 @@ export default class SearchSuggestions extends Component {
         });
       }
 
-      const visibleRect = getVisibleSelectionRect(window);
+      const visibleRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
       this.refs.popover.style.top = `${visibleRect.top + scrollTop}px`;
@@ -96,11 +96,7 @@ export default class SearchSuggestions extends Component {
       ));
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
-    // If none of the above triggered to close the window, it's safe to assume
-    // the dropdown should be open. This is useful when a user focuses on another
-    // input field and then comes back: the dropdown will again.
-
-    const activeOffsetKey = selectionIsInsideWord
+    this.activeOffsetKey = selectionIsInsideWord
       .filter(value => value === true)
       .keySeq()
       .first();
@@ -109,11 +105,14 @@ export default class SearchSuggestions extends Component {
 
     // make sure the escaped search is reseted in the cursor since the user
     // already switched to another mention search
-    if (!this.props.store.isEscaped(activeOffsetKey)) {
+    if (!this.props.store.isEscaped(this.activeOffsetKey)) {
       this.props.store.resetEscapedSearch();
     }
 
-    if (!this.state.isActive && !this.props.store.isEscaped(activeOffsetKey)) {
+    // If none of the above triggered to close the window, it's safe to assume
+    // the dropdown should be open. This is useful when a user focuses on another
+    // input field and then comes back: the dropdown will again.
+    if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey)) {
       this.openDropdown();
     }
 
