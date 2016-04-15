@@ -23,7 +23,7 @@
     "react-component"
   ],
   "peerDependencies": {
-    "draft-js": ">=0.3.0",
+    "draft-js": ">=0.5.0",
     "immutable": ">=3.7.6",
     "react": ">=0.14.0 || 15.0.0-rc",
     "react-dom": ">=0.14.0 || 15.0.0-rc"
@@ -40,6 +40,6 @@
     "decorate-component-with-props": "^1.0.2",
     "union-class-names": "^1.0.0",
     "linkify-it": "1.2.0",
-    "tlds": "1.99.0"
+    "tlds": "1.108.0"
   }
 }
