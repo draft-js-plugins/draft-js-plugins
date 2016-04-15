@@ -114,7 +114,6 @@ export default class App extends Component {
         </Container>
         <Container>
           <Heading level={ 2 }>Remote Data Mention Example</Heading>
-          <CustomMentionEditor />
           <Code code={ remoteExampleCode } name="CustomMentionEditor.js" />
           <Code code={ remoteExampleMentionsCode } name="mentions.js" />
           <Code code={ remoteExampleEditorStylesCode } name="editorStyles.css" />
