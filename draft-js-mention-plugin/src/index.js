@@ -42,10 +42,12 @@ const createMentionPlugin = (config = {}) => {
 
   let searches = Map();
   let escapedSearch = undefined;
+  let clientRectFunctions = Map();
 
   const store = {
     getEditorState: undefined,
     setEditorState: undefined,
+    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
     getAllSearches: () => searches,
     isEscaped: (offsetKey) => escapedSearch === offsetKey,
     escapeSearch: (offsetKey) => {
@@ -60,8 +62,13 @@ const createMentionPlugin = (config = {}) => {
       searches = searches.set(offsetKey, offsetKey);
     },
 
+    updatePortalClientRect: (offsetKey, func) => {
+      clientRectFunctions = clientRectFunctions.set(offsetKey, func);
+    },
+
     unregister: (offsetKey) => {
       searches = searches.delete(offsetKey);
+      clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
   };
 
