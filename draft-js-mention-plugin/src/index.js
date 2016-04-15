@@ -77,6 +77,7 @@ const createMentionPlugin = (config = {}) => {
     mentions: config.mentions,
     theme,
     store,
+    entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
   };
   return {
     MentionSearch: decorateComponentWithProps(MentionSearch, mentionSearchProps),
