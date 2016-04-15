@@ -97,6 +97,16 @@ export default class App extends Component {
             <span className={ styles.paramName }>mentions</span>
             <span>Immutable.js List of mentions.</span>
           </div>
+          <div className={ styles.param }>
+            <span className={ styles.paramName }>entityMutability</span>
+            <span>Can be one of: "IMMUTABLE", "SEGMENTED" or "MUTABLE". Read in detail about it
+            <ExternalLink
+              href="https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability"
+            >
+              &nbsp;here
+            </ExternalLink>
+            </span>
+          </div>
         </Container>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
