@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import MentionOption from './MentionOption';
 import addMention from '../modifiers/addMention';
@@ -8,6 +8,14 @@ import { genKey, getVisibleSelectionRect } from 'draft-js';
 import { List } from 'immutable';
 
 export default class MentionSearch extends Component {
+
+  static propTypes = {
+    entityMutability: PropTypes.oneOf([
+      'SEGMENTED',
+      'IMMUTABLE',
+      'MUTABLE',
+    ]),
+  };
 
   state = {
     isActive: false,
@@ -157,7 +165,11 @@ export default class MentionSearch extends Component {
 
   onMentionSelect = (mention) => {
     this.closeDropdown();
-    const newEditorState = addMention(this.props.store.getEditorState(), mention);
+    const newEditorState = addMention(
+      this.props.store.getEditorState(),
+      mention,
+      this.props.entityMutability,
+    );
     this.props.store.setEditorState(newEditorState);
   };
 

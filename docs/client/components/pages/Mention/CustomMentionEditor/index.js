@@ -5,7 +5,7 @@ import createMentionPlugin from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin({ mentions });
+const mentionPlugin = createMentionPlugin({ mentions, entityMutability: 'IMMUTABLE' });
 const { MentionSearch } = mentionPlugin;
 const plugins = [mentionPlugin];
 
