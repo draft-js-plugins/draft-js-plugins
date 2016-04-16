@@ -11,7 +11,8 @@ class WordCounter extends Component {
 
   getWordCount(editorState) {
     const plainText = editorState.getCurrentContent().getPlainText('');
-    const cleanString = plainText.replace(/(?:\r\n|\r|\n)/g, '').trim();
+    const regex = /(?:\r\n|\r|\n)/g;  // new line, carriage return, line feed
+    const cleanString = plainText.replace(regex, '').trim();
     const wordArray = cleanString.match(/\S+/g);
     return wordArray ? wordArray.length : 0;
   }

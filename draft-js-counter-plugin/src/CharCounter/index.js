@@ -11,7 +11,8 @@ class CharCounter extends Component {
 
   getCharCount(editorState) {
     const plainText = editorState.getCurrentContent().getPlainText('');
-    const cleanString = plainText.replace(/(?:\r\n|\r|\n)/g, '').trim();
+    const regex = /(?:\r\n|\r|\n)/g;  // new line, carriage return, line feed
+    const cleanString = plainText.replace(regex, '').trim();
     return cleanString.length;
   }
 
