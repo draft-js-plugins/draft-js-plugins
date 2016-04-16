@@ -19,7 +19,6 @@ export default function replaceUnicodeWithEntities(editorState: EditorState): Ed
     let match;
 
     while (match = unicodeRegex.exec(plainText)) { // eslint-disable-line
-      console.log('boom');
       const selection = SelectionState.createEmpty(blockKey)
         .set('anchorOffset', match.index)
         .set('focusOffset', match.index + match[0].length);
