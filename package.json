@@ -41,7 +41,6 @@
   },
   "pre-commit": [
     "eslint-staged",
-    "jscs-staged",
     "flow-staged"
   ],
   "devDependencies": {
