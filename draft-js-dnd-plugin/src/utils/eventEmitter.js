@@ -12,7 +12,7 @@ export default class EventEmitter {
     const listeners = this.listeners.get(label);
 
     if (listeners && listeners.length) {
-      const index = listeners.reduce((i, listener, x) =>
+      const index = listeners.reduce((i, listener, x) => // eslint-disable-line
           (typeof listener === 'function' && listener === callback) ? x : i, -1);
 
       if (index > -1) {

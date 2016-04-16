@@ -20,7 +20,11 @@ export default class StickerOption extends Component {
         type="button"
         className={ theme.get('selectSticker') }
       >
-        <img className={ theme.get('selectStickerImage') } src={ url } />
+        <img
+          className={ theme.get('selectStickerImage') }
+          src={ url }
+          role="presentation"
+        />
       </button>
     );
   }

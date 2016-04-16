@@ -153,7 +153,7 @@ export default class App extends Component {
           <div className={ styles.demoWrapper }>
             <Heading level={ 2 }>Gif Demo</Heading>
             <br /><br />
-            <img src="/images/demo.gif" width="175" height="250" className={ styles.demo } />
+            <img src="/images/demo.gif" role="presentation" width="175" height="250" className={ styles.demo } />
           </div>
         </Container>
         <AlternateContainer>
@@ -183,37 +183,37 @@ export default class App extends Component {
           <div className={ styles.teamSection }>
             <div className={ styles.teamMember }>
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" />
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" role="presentation" />
                 <div>Jyoti Puri</div>
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" />
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" role="presentation" />
                 <div>Julian Krispel-Samsel</div>
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mrussell247">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/517863945/mattsailing_200x200.jpg" />
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/517863945/mattsailing_200x200.jpg" role="presentation" />
                 <div>Matthew Russell</div>
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/psbrandt">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_200x200.png" />
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_200x200.png" role="presentation" />
                 <div>Pascal Brandt</div>
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" />
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" role="presentation" />
                 <div>Nik Graf</div>
               </ExternalLink>
             </div>
             <div className={ styles.teamMember }>
               <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" />
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" role="presentation" />
                 <div>Max Stoiber</div>
               </ExternalLink>
             </div>

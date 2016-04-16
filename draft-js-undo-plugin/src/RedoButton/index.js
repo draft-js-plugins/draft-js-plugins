@@ -17,7 +17,7 @@ class RedoButton extends Component {
   };
 
   render() {
-    const { theme = Map(), children, className, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { theme = Map(), children, className } = this.props;
     const combinedClassName = unionClassNames(theme.get('redo'), className);
     return (
       <button

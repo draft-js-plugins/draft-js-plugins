@@ -33,6 +33,7 @@ export default class Sticker extends Component {
         <img
           className={ theme.get('stickerImage') }
           src={ stickers.getIn(['data', data.id, 'url']) }
+          role="presentation"
         />
         { this.props.attachRemoveButton ? removeButton : null }
       </figure>
