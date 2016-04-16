@@ -8,6 +8,7 @@ import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import proxies from './proxies';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
+import { List } from 'immutable';
 
 /**
  * The main editor component
@@ -18,11 +19,15 @@ class PluginEditor extends Component {
     onChange: React.PropTypes.func.isRequired,
     plugins: React.PropTypes.array,
     defaultKeyBindings: React.PropTypes.bool,
+    customStyleMap: React.PropTypes.object,
+    decorators: React.PropTypes.array,
   };
 
   static defaultProps = {
     defaultKeyBindings: true,
+    customStyleMap: {},
     plugins: [],
+    decorators: [],
   };
 
   constructor(props) {
@@ -39,16 +44,19 @@ class PluginEditor extends Component {
   state = {};
 
   componentWillMount() {
-    const compositeDecorator = createCompositeDecorator(this.props.plugins, this.getEditorState, this.onChange);
-    const editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
-    this.onChange(moveSelectionToEnd(editorState));
+    const compositeDecorator = createCompositeDecorator(
+      this.resolveDecorators(),
+      this.getEditorState,
+      this.onChange);
+    const _editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
+    this.onChange(moveSelectionToEnd(_editorState));
   }
 
   // Cycle through the plugins, changing the editor state with what the plugins
   // changed (or didn't)
   onChange = (editorState) => {
     let newEditorState = editorState;
-    this.props.plugins.forEach((plugin) => {
+    this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
         newEditorState = plugin.onChange(newEditorState);
       }
@@ -80,12 +88,14 @@ class PluginEditor extends Component {
 
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
+
     newArgs.push({
       getEditorState: this.getEditorState,
       setEditorState: this.onChange,
       fireMethod: this.fireMethod,
       setReadOnly: this.setReadOnly,
     });
+
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
       let decorators = [];
@@ -162,6 +172,7 @@ class PluginEditor extends Component {
     eventHookKeys.forEach((attrName) => {
       pluginHooks[attrName] = this.createEventHooks(attrName, plugins);
     });
+
     fnHookKeys.forEach((attrName) => {
       pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
     });
@@ -190,17 +201,11 @@ class PluginEditor extends Component {
     return plugins;
   };
 
-  resolveCustomStyleMap = () => {
-    let styles = {};
-    for (const plugin of this.props.plugins) {
-      if (!plugin.customStyleMap) continue;
-      styles = {
-        ...styles,
-        ...plugin.customStyleMap,
-      };
-    }
-
-    return styles;
+  resolveDecorators = () => {
+    const { decorators, plugins } = this.props;
+    return List([{ decorators }, ...plugins])
+      .filter((plugin) => plugin.decorators !== undefined)
+      .flatMap((plugin) => plugin.decorators);
   };
 
   renderInDecorators = (InnerElement, decorators, editor = InnerElement) => {
@@ -213,6 +218,19 @@ class PluginEditor extends Component {
       );
     } return InnerElement;
   }
+
+  resolveCustomStyleMap = () => (
+    this.props.plugins
+     .filter(plug => plug.customStyleMap !== undefined)
+     .map(plug => plug.customStyleMap)
+     .concat([this.props.customStyleMap])
+     .reduce((styles, style) => (
+       {
+         ...styles,
+         ...style,
+       }
+     ), {})
+  );
 
   render() {
     const { editorState, readOnly, plugins, ...rest } = this.props;

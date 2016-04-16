@@ -6,7 +6,7 @@ import unionClassNames from 'union-class-names';
 export default class Container extends Component {
 
   render() {
-    const { className, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { className } = this.props;
     const combinedClassName = unionClassNames(styles.root, className);
     return (
       <div className={ combinedClassName }>

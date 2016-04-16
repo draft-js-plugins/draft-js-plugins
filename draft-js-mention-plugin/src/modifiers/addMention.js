@@ -1,9 +1,8 @@
 import { Modifier, EditorState, Entity } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-const addMention = (editorState, mention) => {
-  // TODO allow the user to override if the mentions are SEGMENTED, IMMUTABLE or MUTABLE
-  const entityKey = Entity.create('mention', 'SEGMENTED', { mention });
+const addMention = (editorState, mention, entityMutability) => {
+  const entityKey = Entity.create('mention', entityMutability, { mention });
 
   const currentSelectionState = editorState.getSelection();
   const { begin, end } = getSearchText(editorState, currentSelectionState);

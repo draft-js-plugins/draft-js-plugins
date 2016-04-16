@@ -52,7 +52,11 @@ export default class EmojiOption extends Component {
         onMouseEnter={ this.onMouseEnter }
         role="option"
       >
-        <img src={imagePath} className={ theme.get('autocompleteEntryIcon') } />
+        <img
+          src={imagePath}
+          className={ theme.get('autocompleteEntryIcon') }
+          role="presentation"
+        />
         <span className={ theme.get('autocompleteEntryText') }>
           { this.props.emoji }
         </span>

@@ -11,7 +11,8 @@ class CharCounter extends Component {
 
   getCharCount(editorState) {
     const plainText = editorState.getCurrentContent().getPlainText('');
-    const cleanString = plainText.replace(/(?:\r\n|\r|\n)/g, '').trim();
+    const regex = /(?:\r\n|\r|\n)/g;  // new line, carriage return, line feed
+    const cleanString = plainText.replace(regex, '').trim();  // replace above characters w/ nothing
     return cleanString.length;
   }
 
@@ -23,7 +24,7 @@ class CharCounter extends Component {
   }
 
   render() {
-    const { editorState, limit, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { editorState, limit } = this.props;
     const count = this.getCharCount(editorState);
     const classNames = this.getClassNames(count, limit);
 

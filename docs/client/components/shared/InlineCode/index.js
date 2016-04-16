@@ -13,7 +13,7 @@ export default class InlineCode extends Component {
   shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
-    const { className, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { className } = this.props;
     const combinedRootClassName = unionClassNames(styles.root, className);
     return (
       <span className={ combinedRootClassName }>

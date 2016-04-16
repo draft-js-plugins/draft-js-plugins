@@ -11,8 +11,9 @@ class WordCounter extends Component {
 
   getWordCount(editorState) {
     const plainText = editorState.getCurrentContent().getPlainText('');
-    const cleanString = plainText.replace(/(?:\r\n|\r|\n)/g, '').trim();
-    const wordArray = cleanString.match(/\S+/g);
+    const regex = /(?:\r\n|\r|\n)/g;  // new line, carriage return, line feed
+    const cleanString = plainText.replace(regex, ' ').trim(); // replace above characters w/ space
+    const wordArray = cleanString.match(/\S+/g);  // matches words according to whitespace
     return wordArray ? wordArray.length : 0;
   }
 
@@ -24,7 +25,7 @@ class WordCounter extends Component {
   }
 
   render() {
-    const { editorState, limit, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { editorState, limit } = this.props;
     const count = this.getWordCount(editorState);
     const classNames = this.getClassNames(count, limit);
 

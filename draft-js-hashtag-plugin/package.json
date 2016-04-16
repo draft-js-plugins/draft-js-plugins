@@ -1,6 +1,6 @@
 {
   "name": "draft-js-hashtag-plugin",
-  "version": "0.0.4",
+  "version": "1.0.0-beta1",
   "description": "Hashtag Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
@@ -23,7 +23,7 @@
     "react-component"
   ],
   "peerDependencies": {
-    "draft-js": ">=0.3.0",
+    "draft-js": ">=0.5.0",
     "immutable": ">=3.7.6",
     "react": ">=0.14.0 || 15.0.0-rc",
     "react-dom": ">=0.14.0 || 15.0.0-rc"

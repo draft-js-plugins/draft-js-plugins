@@ -7,6 +7,7 @@ import { Map } from 'immutable';
 import emojiStyles from './emojiStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
+import replaceUnicodeWithEmojis from './modifiers/replaceUnicodeWithEmojis';
 
 // TODO provide an imagePath url via config
 // TODO activate/deactivate different the conversion or search part
@@ -85,12 +86,12 @@ const emojiPlugin = (config = {}) => {
     onUpArrow: (keyboardEvent) => callbacks.onUpArrow.forEach((onUpArrow) => onUpArrow(keyboardEvent)),
     onEscape: (keyboardEvent) => callbacks.onEscape.forEach((onEscape) => onEscape(keyboardEvent)),
     handleReturn: (keyboardEvent) => (
-     callbacks.handleReturn
-     .map((handleReturn) => handleReturn(keyboardEvent))
-     .find((result) => result === true)
+      callbacks.handleReturn
+      .map((handleReturn) => handleReturn(keyboardEvent))
+      .find((result) => result === true)
     ),
     onChange: (editorState) => {
-      let newEditorState = editorState;
+      let newEditorState = replaceUnicodeWithEmojis(editorState);
       if (callbacks.onChange.size !== 0) {
         callbacks.onChange.forEach((onChange) => {
           newEditorState = onChange(editorState);
