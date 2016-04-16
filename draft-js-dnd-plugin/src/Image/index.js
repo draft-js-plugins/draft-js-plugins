@@ -55,7 +55,7 @@ class Image extends Component {
           data-offset-key={ `${block.get('key')}-0-0` }
           onDragStart={onDragStart} draggable={draggable}
         >
-          <img src={blockProps.src || blockProps.url} width="100%" height="auto" className={ theme.get('image') } />
+          <img src={blockProps.src || blockProps.url} width="100%" height="auto" className={ theme.get('image') } role="presentation" />
           {blockProps.progress >= 0 ? <div className={theme.get('imageLoader')} style={{ width: `${100 - blockProps.progress}%` }} /> : null}
           { attachButtons ? buttons : null }
         </figure>

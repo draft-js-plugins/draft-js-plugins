@@ -13,7 +13,7 @@ export default class Code extends Component {
   shouldComponentUpdate = shouldComponentUpdate;
 
   render() {
-    const { className, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { className } = this.props;
     const combinedRootClassName = unionClassNames(styles.root, className);
     const nameClassname = this.props.name ? styles.name : styles.hiddenName;
     return (

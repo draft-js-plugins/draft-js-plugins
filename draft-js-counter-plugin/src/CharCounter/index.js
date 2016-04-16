@@ -23,7 +23,7 @@ class CharCounter extends Component {
   }
 
   render() {
-    const { editorState, limit, ...props } = this.props; // eslint-disable-line no-use-before-define
+    const { editorState, limit } = this.props;
     const count = this.getCharCount(editorState);
     const classNames = this.getClassNames(count, limit);
 

@@ -19,4 +19,4 @@ module.name_mapper='draft-js' -> 'Draft'
 module.system=haste
 
 [version]
-0.22.1
+0.23.0
