@@ -7,7 +7,7 @@ import { Map } from 'immutable';
 import emojiStyles from './emojiStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
-import replaceUnicodeWithEmojis from './modifiers/replaceUnicodeWithEmojis';
+import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 
 // TODO provide an imagePath url via config
 // TODO activate/deactivate different the conversion or search part
@@ -91,7 +91,7 @@ const emojiPlugin = (config = {}) => {
       .find((result) => result === true)
     ),
     onChange: (editorState) => {
-      let newEditorState = replaceUnicodeWithEmojis(editorState);
+      let newEditorState = attachImmutableEntitiesToEmojis(editorState);
       if (callbacks.onChange.size !== 0) {
         callbacks.onChange.forEach((onChange) => {
           newEditorState = onChange(editorState);
