@@ -8,7 +8,6 @@ import createEntityPropsPlugin from 'draft-js-entity-props-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createDndPlugin from 'draft-js-dnd-plugin';
 import createToolbarPlugin from 'draft-js-toolbar-plugin';
-import createClickEventsPlugin from 'draft-js-click-events-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
@@ -29,7 +28,6 @@ const plugins = [
   }),
   createToolbarPlugin({}),
   createFocusPlugin({}),
-  createClickEventsPlugin({}),
   createImagePlugin({}),
   createEntityPropsPlugin({}),
   createDndPlugin({

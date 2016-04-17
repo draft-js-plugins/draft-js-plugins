@@ -18,7 +18,6 @@ const toolbarPlugin = (config = {}) => {
         HoverToolbar: hoverToolbar,
       },
     }),
-    editorDecorators: [],
     decorators: [
       {
         strategy: linkStrategy,

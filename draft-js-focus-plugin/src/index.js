@@ -35,15 +35,14 @@ function setSelection(getEditorState, setEditorState, previousActiveBlock, mode)
 const statePlugin = () => {
   let activeBlock = null;
   return {
-    onMouseUp: (event, { getEditorState, setEditorState }) => {
-      if (!activeBlock) return;
-      setTimeout(() => {
-        const editorState = getEditorState();
-        const selection = editorState.getSelection();
-        const actualActiveBlock = editorState.getCurrentContent().getBlockForKey(selection.getAnchorKey());
+    onChange: (editorState) => {
+      const selection = editorState.getSelection();
+      const actualActiveBlock = editorState.getCurrentContent().getBlockForKey(selection.getAnchorKey());
+      if(!activeBlock || !actualActiveBlock || activeBlock.get('key') !== actualActiveBlock.get('key')){
         activeBlock = actualActiveBlock;
-        setEditorState(EditorState.forceSelection(editorState, selection));
-      }, 1);
+        return EditorState.forceSelection(editorState, selection);
+      }
+      return editorState;
     }, blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => ({
       decorators: [wrapper],
       props: {

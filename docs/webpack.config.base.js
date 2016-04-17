@@ -51,7 +51,6 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-counter-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-focus-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-alignment-plugin', 'src'),
-          path.join(__dirname, '..', 'draft-js-click-events-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-image-plugin', 'src'),
         ],
       }, {
@@ -72,7 +71,6 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-counter-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-focus-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-alignment-plugin', 'src'),
-          path.join(__dirname, '..', 'draft-js-click-events-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-image-plugin', 'src'),
           path.join(__dirname, 'client/components'),
         ],
