@@ -26,4 +26,15 @@ describe('CounterPlugin Character Counter', () => {
     );
     expect(result).to.have.text('12');
   });
+
+  it('instantiates plugin and counts 3 unicode characters', () => {
+    const { CharCounter } = counterPlugin;
+
+    const text = '😁😂😃';
+    const editorState = createEditorStateFromText(text);
+    const result = mount(
+      <CharCounter editorState={ editorState } />
+    );
+    expect(result).to.have.text('3');
+  });
 });
