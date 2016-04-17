@@ -4,7 +4,7 @@ import createCounterPlugin from 'draft-js-counter-plugin';
 import editorStyles from './editorStyles.css';
 
 const counterPlugin = createCounterPlugin();
-const { CharCounter, WordCounter, LineCounter } = counterPlugin;
+const { CharCounter, WordCounter, LineCounter, CustomCounter } = counterPlugin;
 const plugins = [counterPlugin];
 const text = `This editor has counters below!
 Try typing here and watch the numbers go up.
@@ -31,6 +31,11 @@ export default class SimpleCounterEditor extends Component {
     this.refs.editor.focus();
   };
 
+  customCountFunction(str) {
+    const wordArray = str.match(/\S+/g);  // matches words according to whitespace
+    return wordArray ? wordArray.length : 0;
+  }
+
   render() {
     return (
       <div>
@@ -45,6 +50,13 @@ export default class SimpleCounterEditor extends Component {
         <div>Characters: <CharCounter editorState={ this.state.editorState } limit={200} /></div>
         <div>Words: <WordCounter editorState={ this.state.editorState } limit={30} /></div>
         <div>Lines: <LineCounter editorState={ this.state.editorState } limit={10} /></div>
+        <div><span>Custom (words): </span>
+          <CustomCounter
+            editorState={ this.state.editorState }
+            limit={40}
+            countFunction={ this.customCountFunction }
+          />
+        </div>
       </div>
     );
   }
