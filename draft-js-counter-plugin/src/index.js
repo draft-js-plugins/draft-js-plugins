@@ -1,6 +1,7 @@
 import CharCounter from './CharCounter';
 import WordCounter from './WordCounter';
 import LineCounter from './LineCounter';
+import CustomCounter from './CustomCounter';
 import { Map } from 'immutable';
 import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -22,6 +23,7 @@ const counterPlugin = (config = {}) => {
     CharCounter: decorateComponentWithProps(CharCounter, { theme }),
     WordCounter: decorateComponentWithProps(WordCounter, { theme }),
     LineCounter: decorateComponentWithProps(LineCounter, { theme }),
+    CustomCounter: decorateComponentWithProps(CustomCounter, { theme }),
   };
 };
 
