@@ -38,8 +38,8 @@ describe('CounterPlugin Line Counter', () => {
 
     // a function that takes a string and returns the number of number characters
     const countFunction = (str) => {
-      const wordArray = str.match(/\d/g);  // matches only number characters
-      return wordArray ? wordArray.length : 0;
+      const numArray = str.match(/\d/g);  // matches only number characters
+      return numArray ? numArray.length : 0;
     };
 
     const text = 'I am a 1337 h4x0r';
