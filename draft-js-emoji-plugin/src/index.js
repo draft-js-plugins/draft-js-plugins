@@ -8,6 +8,7 @@ import emojiStyles from './emojiStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
+import { EditorState } from 'draft-js';
 
 // TODO provide an imagePath url via config
 // TODO activate/deactivate different the conversion or search part
@@ -92,6 +93,12 @@ const emojiPlugin = (config = {}) => {
     ),
     onChange: (editorState) => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
+
+      // Forcing the current selection ensures that it will be at it's right place.
+      // This solves the issue where inserting an Emoji on OSX with Apple's Emoji
+      // selector led to the right selection the data, but wrong position in
+      // the contenteditable.
+      newEditorState = EditorState.forceSelection(newEditorState, newEditorState.getSelection());
       if (callbacks.onChange.size !== 0) {
         callbacks.onChange.forEach((onChange) => {
           newEditorState = onChange(editorState);
