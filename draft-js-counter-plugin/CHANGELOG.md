@@ -6,4 +6,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## To Be Released
 
 ## 1.0.0 - 2016-04-18
-### Released the first version of DraftJS Counter Plugin
+### Released the first working version of DraftJS Counter Plugin
