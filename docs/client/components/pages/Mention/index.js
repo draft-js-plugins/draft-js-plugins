@@ -108,6 +108,11 @@ export default class App extends Component {
             </ExternalLink>
             </span>
           </div>
+          <Heading level={ 3 }>Additional Exports</Heading>
+          <div>
+            In addition to the plugin the module exports `defaultSuggestionsFilter`. As first argument it takes the search term as a String. The second argument is the Immutable list of mentions. The function returns the filter list based on substring matches.
+            <Code code="import { defaultSuggestionsFilter } from 'draft-js-mention-plugin';" />
+          </div>
         </Container>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>

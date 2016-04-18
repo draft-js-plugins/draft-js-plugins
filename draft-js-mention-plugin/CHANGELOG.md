@@ -19,12 +19,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - The config now takes a property entityMutability. A developer can choose between 'IMMUTABLE', 'SEGMENTED' & 'MUTABLE'. Read in detail about it [here](https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability).
+
+```
+const mentionPlugin = createMentionPlugin({ entityMutability: 'IMMUTABLE' });
+```
+
 - The `SearchSuggestions` component now takes a property `onSearchChange` which will trigger whenever the search value of changes.
-
-```
-const mentionPlugin = createMentionPlugin({ mentions, entityMutability: 'IMMUTABLE' });
-```
-
+- The module now exports `defaultSuggestionsFilter` for convenience. As first argument it takes the search term as a String. The second argument is the Immutable list of mentions. The function returns the filter list based on substring matches.
 
 ## 0.0.4 - 2016-03-29
 
