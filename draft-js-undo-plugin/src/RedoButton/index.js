@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
 import unionClassNames from 'union-class-names';
-import { Map } from 'immutable';
 
 class RedoButton extends Component {
 
@@ -17,8 +16,8 @@ class RedoButton extends Component {
   };
 
   render() {
-    const { theme = Map(), children, className } = this.props;
-    const combinedClassName = unionClassNames(theme.get('redo'), className);
+    const { theme = {}, children, className } = this.props;
+    const combinedClassName = unionClassNames(theme.redo, className);
     return (
       <button
         disabled={ this.props.editorState.getRedoStack().isEmpty() }

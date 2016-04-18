@@ -4,13 +4,12 @@ import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
 import blockRendererFn from './blockRendererFn';
 import Sticker from './Sticker';
 import StickerSelect from './StickerSelect';
-import { Map } from 'immutable';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import stickerStyles from './stickerStyles.css';
 import selectStyles from './selectStyles.css';
 import selectStickerStyles from './selectStickerStyles.css';
 
-const defaultTheme = Map({
+const defaultTheme = {
   sticker: stickerStyles.sticker,
   stickerImage: stickerStyles.stickerImage,
   stickerRemoveButton: stickerStyles.stickerRemoveButton,
@@ -25,7 +24,7 @@ const defaultTheme = Map({
 
   selectSticker: selectStickerStyles.selectSticker,
   selectStickerImage: selectStickerStyles.selectStickerImage,
-});
+};
 
 const stickerPlugin = (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.

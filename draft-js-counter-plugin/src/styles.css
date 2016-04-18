@@ -2,6 +2,6 @@
   color: inherit;
 }
 
-.overLimit {
-  color: red;
+.counterOverLimit {
+  color: #d86262;
 }

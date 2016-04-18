@@ -1,12 +1,11 @@
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
-import { Map } from 'immutable';
 import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
-const defaultTheme = Map({
+const defaultTheme = {
   hashtag: styles.hashtag,
-});
+};
 
 const hashtagPlugin = (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.

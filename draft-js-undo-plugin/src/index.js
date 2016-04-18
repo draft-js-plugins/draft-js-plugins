@@ -1,13 +1,12 @@
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
-import { Map } from 'immutable';
 import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
-const defaultTheme = Map({
+const defaultTheme = {
   redo: styles.button,
   undo: styles.button,
-});
+};
 
 const historyPlugin = (config = {}) => {
   const undoContent = config.undoContent ? config.undoContent : '↺';

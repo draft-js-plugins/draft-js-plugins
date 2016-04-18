@@ -7,8 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Move to a flat configuration. Instead of plugin properties (decorators & hooks) being stored within pluginProps they now moved to the root object. See the changes here [#150](https://github.com/draft-js-plugins/draft-js-plugins/pull/150/files) as well as the initial discussion here [#143](https://github.com/draft-js-plugins/draft-js-plugins/issues/143)
+- Moved to a flat configuration. Instead of plugin properties (decorators & hooks) being stored within pluginProps they now moved to the root object. See the changes here [#150](https://github.com/draft-js-plugins/draft-js-plugins/pull/150/files) as well as the initial discussion here [#143](https://github.com/draft-js-plugins/draft-js-plugins/issues/143)
 - Improved the regex and now test for a whitespace in front of the `:` to make sure it doesn't match on normal text like a link [#104](https://github.com/draft-js-plugins/draft-js-plugins/issues/104)
+- Moved the option `theme` from an Immutable Map to a JavaScript object. This is more likely to become a standard.
 
 ### Fixed
 
@@ -21,6 +22,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - When typing ahead to 0 results and then back the first item must be still selected. [#149](https://github.com/draft-js-plugins/draft-js-plugins/pull/149)
 
 ## 0.0.3 - 2016-03-25
-### Released the first working of DraftJS Emoji Plugin
+### Released the first working version of DraftJS Emoji Plugin
 
 It's not recommended to use the version 0.0.0 - 0.0.2

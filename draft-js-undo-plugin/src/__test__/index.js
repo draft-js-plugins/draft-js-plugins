@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import createUndoPlugin from '../index';
-import { Map } from 'immutable';
 import { expect } from 'chai';
 import { EditorState } from 'draft-js';
 
@@ -42,10 +41,10 @@ describe('UndoPlugin Config', () => {
   });
 
   it('instantiates plugin with theme config', () => {
-    const theme = Map({
+    const theme = {
       redo: 'custom-class-name',
       undo: 'custom-class-name',
-    });
+    };
     const undoPlugin = createUndoPlugin({ theme });
     const RedoButton = undoPlugin.RedoButton;
     const UndoButton = undoPlugin.UndoButton;

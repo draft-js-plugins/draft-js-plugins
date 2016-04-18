@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
 import unionClassNames from 'union-class-names';
-import { Map } from 'immutable';
 
 class UndoButton extends Component {
 
@@ -17,8 +16,8 @@ class UndoButton extends Component {
   };
 
   render() {
-    const { theme = Map(), children, className } = this.props;
-    const combinedClassName = unionClassNames(theme.get('undo'), className);
+    const { theme = {}, children, className } = this.props;
+    const combinedClassName = unionClassNames(theme.undo, className);
     return (
       <button
         disabled={ this.props.editorState.getUndoStack().isEmpty() }

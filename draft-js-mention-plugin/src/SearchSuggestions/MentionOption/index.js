@@ -34,8 +34,8 @@ export default class MentionOption extends Component {
   };
 
   render() {
-    const { theme } = this.props;
-    const className = this.props.isFocused ? theme.get('autocompleteEntryFocused') : theme.get('autocompleteEntry');
+    const { theme = {} } = this.props;
+    const className = this.props.isFocused ? theme.autocompleteEntryFocused : theme.autocompleteEntry;
     return (
       <div
         className={ className }
@@ -45,7 +45,7 @@ export default class MentionOption extends Component {
         role="option"
       >
         <Avatar mention={ this.props.mention } theme={ theme } />
-        <span className={ theme.get('autocompleteEntryText') }>{ this.props.mention.get('name') }</span>
+        <span className={ theme.autocompleteEntryText }>{ this.props.mention.get('name') }</span>
       </div>
     );
   }

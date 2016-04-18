@@ -2,7 +2,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Redo from '../index';
-import { Map } from 'immutable';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
@@ -18,8 +17,8 @@ describe('RedoButton', () => {
     editorState = EditorState.createEmpty();
   });
 
-  it('applies the className based on the theme property `hashtag`', () => {
-    const theme = Map({ redo: 'custom-class-name' });
+  it('applies the className based on the theme property `redo`', () => {
+    const theme = { redo: 'custom-class-name' };
     const result = shallow(
       <Redo
         editorState={ editorState }
@@ -43,7 +42,7 @@ describe('RedoButton', () => {
   });
 
   it('applies a custom className as well as the theme', () => {
-    const theme = Map({ redo: 'custom-class-name' });
+    const theme = { redo: 'custom-class-name' };
     const result = shallow(
       <Redo
         editorState={ editorState }

@@ -13,7 +13,7 @@ import { EditorState } from 'draft-js';
 // TODO provide an imagePath url via config
 // TODO activate/deactivate different the conversion or search part
 
-const defaultTheme = Map({
+const defaultTheme = {
   emoji: emojiStyles.emoji,
 
   autocomplete: autocompleteStyles.autocomplete,
@@ -24,7 +24,7 @@ const defaultTheme = Map({
   autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
   autocompleteEntryIcon: autocompleteEntryStyles.autocompleteEntryIcon,
   autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
-});
+};
 
 const callbacks = {
   keyBindingFn: Map(),

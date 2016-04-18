@@ -2,7 +2,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Undo from '../index';
-import { Map } from 'immutable';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
@@ -18,8 +17,8 @@ describe('UndoButton', () => {
     editorState = EditorState.createEmpty();
   });
 
-  it('applies the className based on the theme property `hashtag`', () => {
-    const theme = Map({ undo: 'custom-class-name' });
+  it('applies the className based on the theme property `undo`', () => {
+    const theme = { undo: 'custom-class-name' };
     const result = shallow(
       <Undo
         editorState={ editorState }
@@ -43,7 +42,7 @@ describe('UndoButton', () => {
   });
 
   it('applies a custom className as well as the theme', () => {
-    const theme = Map({ undo: 'custom-class-name' });
+    const theme = { undo: 'custom-class-name' };
     const result = shallow(
       <Undo
         editorState={ editorState }

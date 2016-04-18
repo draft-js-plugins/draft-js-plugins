@@ -12,10 +12,10 @@ export default class Sticker extends Component {
   };
 
   render() {
-    const { block, stickers, theme } = this.props;
+    const { block, stickers, theme = {} } = this.props;
     const removeButton = (
       <span
-        className={ theme.get('stickerRemoveButton') }
+        className={ theme.stickerRemoveButton }
         onClick={ this.remove }
         role="button"
       >
@@ -28,10 +28,10 @@ export default class Sticker extends Component {
       <figure
         contentEditable={ false }
         data-offset-key={ `${block.get('key')}-0-0` }
-        className={ theme.get('sticker') }
+        className={ theme.sticker }
       >
         <img
-          className={ theme.get('stickerImage') }
+          className={ theme.stickerImage }
           src={ stickers.getIn(['data', data.id, 'url']) }
           role="presentation"
         />

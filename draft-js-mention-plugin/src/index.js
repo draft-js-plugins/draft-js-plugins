@@ -11,7 +11,7 @@ import autocompleteEntryStyles from './autocompleteEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 
 const createMentionPlugin = (config = {}) => {
-  const defaultTheme = Map({
+  const defaultTheme = {
     mention: mentionStyles.mention,
 
     autocomplete: autocompleteStyles.autocomplete,
@@ -20,7 +20,7 @@ const createMentionPlugin = (config = {}) => {
     autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
     autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
     autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
-  });
+  };
 
   const callbacks = {
     keyBindingFn: undefined,

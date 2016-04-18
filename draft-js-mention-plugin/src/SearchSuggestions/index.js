@@ -237,11 +237,11 @@ export default class SearchSuggestions extends Component {
       return null;
     }
 
-    const { theme } = this.props;
+    const { theme = {} } = this.props;
     return (
       <div
         {...this.props}
-        className={ theme.get('autocomplete') }
+        className={ theme.autocomplete }
         role="listbox"
         id={ `mentions-list-${this.key}` }
         ref="popover"

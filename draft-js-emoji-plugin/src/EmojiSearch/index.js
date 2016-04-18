@@ -203,12 +203,12 @@ export default class EmojiSearch extends Component {
 
   render() {
     this.filteredEmojis = this.getEmojisForFilter();
-    const { theme } = this.props;
+    const { theme = {} } = this.props;
     return (
-      <span {...this.props} className={ theme.get('autocomplete') } spellCheck={ false }>
+      <span {...this.props} className={ theme.autocomplete } spellCheck={ false }>
         { this.state.isOpen && this.filteredEmojis.size > 0 ?
         <div
-          className={ theme.get('autocompletePopover') }
+          className={ theme.autocompletePopover }
           contentEditable={ false }
           role="listbox"
           id={ `emojis-list-${this.key}` }

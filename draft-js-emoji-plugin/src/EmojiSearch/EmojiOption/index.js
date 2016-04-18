@@ -36,8 +36,8 @@ export default class EmojiOption extends Component {
   };
 
   render() {
-    const { theme } = this.props;
-    const className = this.props.isFocused ? theme.get('autocompleteEntryFocused') : theme.get('autocompleteEntry');
+    const { theme = {} } = this.props;
+    const className = this.props.isFocused ? theme.autocompleteEntryFocused : theme.autocompleteEntry;
     const unicode = emojioneList[this.props.emoji][0].toUpperCase();
     const emoji = convertShortNameToUnicode(unicode);
     const unicodeForImage = escapeMap[emoji];
@@ -54,10 +54,10 @@ export default class EmojiOption extends Component {
       >
         <img
           src={imagePath}
-          className={ theme.get('autocompleteEntryIcon') }
+          className={ theme.autocompleteEntryIcon }
           role="presentation"
         />
-        <span className={ theme.get('autocompleteEntryText') }>
+        <span className={ theme.autocompleteEntryText }>
           { this.props.emoji }
         </span>
       </div>
