@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import unionClassNames from 'union-class-names';
-import { Map } from 'immutable';
 
 class WordCounter extends Component {
 
@@ -18,9 +17,9 @@ class WordCounter extends Component {
   }
 
   getClassNames(count, limit) {
-    const { theme = Map(), className } = this.props;
-    const defaultStyle = unionClassNames(theme.get('counter'), className);
-    const overLimitStyle = unionClassNames(theme.get('overLimit'), className);
+    const { theme = {}, className } = this.props;
+    const defaultStyle = unionClassNames(theme.counter, className);
+    const overLimitStyle = unionClassNames(theme.counterOverLimit, className);
     return count > limit ? overLimitStyle : defaultStyle;
   }
 
