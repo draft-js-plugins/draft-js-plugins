@@ -1,9 +1,8 @@
+import React, { Component } from 'react';
+
 /**
  * Showcases a sticker one can then pick to add to the editor
  */
-
-import React, { Component } from 'react';
-
 export default class StickerOption extends Component {
 
   onClick = () => {
@@ -12,16 +11,16 @@ export default class StickerOption extends Component {
 
   render() {
     const { id, url } = this.props;
-    const { theme } = this.props;
+    const { theme = {} } = this.props;
     return (
       <button
         onClick={ this.onClick }
         key={ id }
         type="button"
-        className={ theme.get('selectSticker') }
+        className={ theme.selectSticker }
       >
         <img
-          className={ theme.get('selectStickerImage') }
+          className={ theme.selectStickerImage }
           src={ url }
           role="presentation"
         />
