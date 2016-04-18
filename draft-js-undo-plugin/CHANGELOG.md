@@ -6,6 +6,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## To Be Released
 
 ## 0.0.5 - 2016-03-25
-### Released the first working of DraftJS Undo Plugin
+### Released the first working version of DraftJS Undo Plugin
 
 It's not recommended to use the version 0.0.0 - 0.0.4

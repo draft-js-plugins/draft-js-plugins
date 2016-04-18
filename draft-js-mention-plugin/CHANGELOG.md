@@ -34,6 +34,6 @@ const mentionPlugin = createMentionPlugin({ entityMutability: 'IMMUTABLE' });
 - When typing ahead to 0 results and then back the first item must be still selected. [#149](https://github.com/draft-js-plugins/draft-js-plugins/pull/149)
 
 ## 0.0.3 - 2016-03-25
-### Released the first working of DraftJS Mention Plugin
+### Released the first working version of DraftJS Mention Plugin
 
 It's not recommended to use the version 0.0.0 - 0.0.2

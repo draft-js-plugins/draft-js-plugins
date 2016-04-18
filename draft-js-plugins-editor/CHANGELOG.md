@@ -25,4 +25,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Allow to provide a custom handleKeyCommand to the Editor.
 
 ## 0.0.0 - 2016-03-23
-### Released the first working of DraftJS Plugins Editor
+### Released the first working version of DraftJS Plugins Editor
