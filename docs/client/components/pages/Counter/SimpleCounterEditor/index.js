@@ -7,7 +7,7 @@ const counterPlugin = createCounterPlugin();
 const { CharCounter, WordCounter, LineCounter, CustomCounter } = counterPlugin;
 const plugins = [counterPlugin];
 const text = `This editor has counters below!
-Try typing here and watch the numbers go up.
+Try typing here and watch the numbers go up. 🙌
 
 Note that the color changes when you pass one of the following limits:
 - 200 characters
@@ -57,6 +57,8 @@ export default class SimpleCounterEditor extends Component {
             countFunction={ this.customCountFunction }
           />
         </div>
+        <br />
+        <br />
       </div>
     );
   }
