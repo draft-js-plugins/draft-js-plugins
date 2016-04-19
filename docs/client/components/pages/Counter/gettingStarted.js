@@ -7,14 +7,21 @@ import React from 'react';
 // as an argument.
 const counterPlugin = createCounterPlugin();
 
-// The Editor accepts an array of plugins. In this case, only the emojiPlugin is
+// Extract a counter from the plugin.
+const { CharCounter } = counterPlugin;
+
+// The Editor accepts an array of plugins. In this case, only the counterPlugin is
 // passed in, although it is possible to pass in multiple plugins.
+// The Counter is placed after the Editor.
 const MyEditor = ({ editorState, onChange }) => (
-  <Editor
-    editorState={ editorState }
-    onChange={ onChange }
-    plugins={ [counterPlugin] }
-  />
+  <div>
+    <Editor
+      editorState={ editorState }
+      onChange={ onChange }
+      plugins={ [counterPlugin] }
+    />
+    <CharCounter editorState={ this.state.editorState } limit={200} />
+  </div>
 );
 
 export default MyEditor;
