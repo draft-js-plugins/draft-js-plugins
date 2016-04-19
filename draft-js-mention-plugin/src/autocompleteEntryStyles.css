@@ -1,5 +1,5 @@
 .autocompleteEntry {
-  padding: 5px;
+  padding: 7px 10px 3px 10px;
 }
 
 .autocompleteEntry:active {
@@ -14,11 +14,15 @@
 .autocompleteEntryText {
   display: inline-block;
   margin-left: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 368px;
 }
 
 .autocompleteEntryAvatar {
+  display: inline-block;
   width: 24px;
   height: 24px;
   border-radius: 12px;
-  vertical-align: middle;
 }
