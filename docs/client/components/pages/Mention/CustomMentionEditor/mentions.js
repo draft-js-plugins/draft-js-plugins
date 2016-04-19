@@ -32,7 +32,7 @@ const mentions = fromJS([
     avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
   },
   {
-    name: 'Hubert Blaine Franz Herbert von Wolfeschlegelsteinhausenbergerdorff',
+    name: 'Adolph Blaine Charles David Earl Frederick Gerald Hubert Wolfeschlegelsteinhausenbergerdorff',
     link: 'https://twitter.com/',
     avatar: 'https://upload.wikimedia.org/wikipedia/en/d/df/Hubert_Blaine_Wolfeschlegelsteinhausenbergerdorff%2C_Sr.png',
   },
