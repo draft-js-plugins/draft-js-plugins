@@ -217,6 +217,12 @@ export default class App extends Component {
                 <div>Max Stoiber</div>
               </ExternalLink>
             </div>
+            <div className={ styles.teamMember }>
+              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/adrianmcli">
+                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/720415599696941056/-lvaKPKw_200x200.jpg" role="presentation" />
+                <div>Adrian Li</div>
+              </ExternalLink>
+            </div>
           </div>
           <p className={ styles.specialThanks }>
             Special thanks to all the people from Stripe for their invaluable feedback and funding Nik's efforts during the&nbsp;
