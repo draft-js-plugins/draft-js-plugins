@@ -9,6 +9,7 @@ import mentionStyles from './mentionStyles.css';
 import autocompleteStyles from './autocompleteStyles.css';
 import autocompleteEntryStyles from './autocompleteEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
+import positionPopover from './utils/positionPopover';
 
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = {
@@ -85,6 +86,7 @@ const createMentionPlugin = (config = {}) => {
     theme,
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
+    positionPopover: config.positionPopover ? config.positionPopover : positionPopover,
   };
   return {
     SearchSuggestions: decorateComponentWithProps(SearchSuggestions, mentionSearchProps),

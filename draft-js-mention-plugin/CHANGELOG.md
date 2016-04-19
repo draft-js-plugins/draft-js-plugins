@@ -19,7 +19,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- The config now takes a property entityMutability. A developer can choose between 'IMMUTABLE', 'SEGMENTED' & 'MUTABLE'. Read in detail about it [here](https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability).
+- The config now takes a property `entityMutability`. A developer can choose between 'IMMUTABLE', 'SEGMENTED' & 'MUTABLE'. Read in detail about it [here](https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability).
+- The config now takes a property `positionPopover`. The function can be used to manipulate the position of the popover containing the suggestions. It receives one argument: the visible rectangle surrounding the decorated search string including the @. An object should be returned which optionally can contain the properties `left`, `right`, `width`. Only the defined properties are taken into account.
 
 ```
 const mentionPlugin = createMentionPlugin({ entityMutability: 'IMMUTABLE' });
