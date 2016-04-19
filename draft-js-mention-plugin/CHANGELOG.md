@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Moved to a flat configuration. Instead of plugin properties (decorators & hooks) being stored within pluginProps they now moved to the root object. See the changes here [#150](https://github.com/draft-js-plugins/draft-js-plugins/pull/150/files) as well as the initial discussion here [#143](https://github.com/draft-js-plugins/draft-js-plugins/issues/143)
 - Improved the regex and now test for a whitespace in front of the `@` to make sure it doesn't match on normal text like an email [#104](https://github.com/draft-js-plugins/draft-js-plugins/issues/104)
 - Moved the option `theme` from an Immutable Map to a JavaScript object. This is more likely to become a standard.
+- Improved styling and added animations for the Suggestions overlay as well as the hover on a single suggestion.
 
 ### Fixed
 
@@ -20,7 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - The config now takes a property `entityMutability`. A developer can choose between 'IMMUTABLE', 'SEGMENTED' & 'MUTABLE'. Read in detail about it [here](https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability).
-- The config now takes a property `positionPopover`. The function can be used to manipulate the position of the popover containing the suggestions. It receives one argument: the visible rectangle surrounding the decorated search string including the @. An object should be returned which optionally can contain the properties `left`, `right`, `width`. Only the defined properties are taken into account.
+- The config now takes a property `positionPopover`. The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.
 
 ```
 const mentionPlugin = createMentionPlugin({ entityMutability: 'IMMUTABLE' });

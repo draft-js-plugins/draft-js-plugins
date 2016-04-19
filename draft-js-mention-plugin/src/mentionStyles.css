@@ -2,7 +2,7 @@
   color: #333;
   cursor: pointer;
   display: inline-block;
-  background: #DEF0F7;
+  background: #e6f3ff;
   padding-left: 2px;
   padding-right: 2px;
   border-radius: 2px;
@@ -10,12 +10,12 @@
 }
 
 .mention:hover, .mention:focus {
-  color: #555;
-  background: #E5F2F7;
+  color: #444;
+  background: #edf5fd;
   outline: 0; /* reset for :focus */
 }
 
 .mention:active {
   color: #222;
-  background: #BBE3F3;
+  background: #cce7ff;
 }

@@ -26,7 +26,7 @@ export default class SearchSuggestions extends Component {
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentDidUpdate = () => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (this.refs.popover) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
@@ -39,18 +39,16 @@ export default class SearchSuggestions extends Component {
       }
 
       const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
-      const { top, left, width } = this.props.positionPopover(decoratorRect);
-      if (top) {
-        this.refs.popover.style.top = top;
-      }
-
-      if (left) {
-        this.refs.popover.style.left = left;
-      }
-
-      if (width) {
-        this.refs.popover.style.width = width;
-      }
+      const newStyles = this.props.positionPopover({
+        decoratorRect,
+        prevProps,
+        prevState,
+        props: this.props,
+        state: this.state,
+      });
+      Object.keys(newStyles).forEach((key) => {
+        this.refs.popover.style[key] = newStyles[key];
+      });
     }
   };
 
@@ -241,7 +239,7 @@ export default class SearchSuggestions extends Component {
   };
 
   render() {
-    if (!this.state.isActive || this.props.suggestions.isEmpty()) {
+    if (!this.state.isActive) {
       return null;
     }
 
