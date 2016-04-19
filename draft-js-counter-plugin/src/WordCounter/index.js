@@ -6,6 +6,7 @@ class WordCounter extends Component {
   static propTypes = {
     editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
+    limit: PropTypes.number,
   };
 
   getWordCount(editorState) {

@@ -6,6 +6,7 @@ class LineCounter extends Component {
   static propTypes = {
     editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
+    limit: PropTypes.number,
   };
 
   getLineCount(editorState) {

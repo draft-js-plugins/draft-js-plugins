@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import editorStyles from './editorStyles.css';
+import counterStyles from './counterStyles.css';
 
-const counterPlugin = createCounterPlugin();
+const theme = {
+  counter: counterStyles.counter,
+  counterOverLimit: counterStyles.counterOverLimit,
+};
+const counterPlugin = createCounterPlugin({ theme });
 const { CharCounter, WordCounter, LineCounter, CustomCounter } = counterPlugin;
 const plugins = [counterPlugin];
 const text = `This editor has counters below!
@@ -15,7 +20,7 @@ Note that the color changes when you pass one of the following limits:
 - 10 lines
 `;
 
-export default class SimpleCounterEditor extends Component {
+export default class CustomCounterEditor extends Component {
 
   state = {
     editorState: createEditorStateWithText(text),
