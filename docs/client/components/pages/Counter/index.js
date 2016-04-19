@@ -85,7 +85,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div className={ styles.param }>
             <div className={ styles.paramName }>theme</div>
-            <div>Immutable.js Map of CSS classes with the following keys.
+            <div>Javascript object of CSS classes with the following keys.
               <div className={ styles.subParams }>
                 <div className={ styles.subParam }><span className={ styles.subParamName }>counter:</span> CSS class to be applied to the number displayed when not over the specified limit</div>
                 <div className={ styles.subParam }><span className={ styles.subParamName }>counterOverLimit:</span> CSS class to be applied to the number displayed when over the specified limit</div>
