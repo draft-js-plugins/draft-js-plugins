@@ -98,7 +98,7 @@ Feel free to copy any of the existing plugins as a starting point. Feel free to 
 More documentation is coming soon…
 
 ## Discussion and Support
-Join the channel #plugin-editor after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
+Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
 
 ## Development
 
