@@ -1,11 +1,11 @@
-const positionPopover = ({ decoratorRect, state }) => {
+const positionPopover = ({ decoratorRect, state, props }) => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
   let width;
   let left;
   let transform;
-  let transformOrigin;
+  let transition;
   if (window.innerWidth <= 480) {
     left = '20px';
     width = `${window.innerWidth - 40}px`;
@@ -13,9 +13,12 @@ const positionPopover = ({ decoratorRect, state }) => {
     left = `${decoratorRect.left + scrollLeft}px`;
   }
 
-  if (state.isActive) {
-    transform = 'scaleY(1)';
-    transformOrigin = '50% 0%';
+  if (state.isActive & props.suggestions.size > 0) {
+    transform = 'scale(1)';
+    transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
+  } else if (state.isActive) {
+    transform = 'scale(0)';
+    transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
   }
 
   return {
@@ -23,8 +26,8 @@ const positionPopover = ({ decoratorRect, state }) => {
     left,
     top: `${decoratorRect.top + scrollTop}px`,
     transform,
-    transformOrigin,
-    transition: 'all 0.25s cubic-bezier(.3,1.2,.2,1)',
+    transformOrigin: '0% 0%',
+    transition,
   };
 };
 

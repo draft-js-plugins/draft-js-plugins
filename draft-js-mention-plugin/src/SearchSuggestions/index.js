@@ -239,7 +239,7 @@ export default class SearchSuggestions extends Component {
   };
 
   render() {
-    if (!this.state.isActive || this.props.suggestions.isEmpty()) {
+    if (!this.state.isActive) {
       return null;
     }
 
