@@ -6,6 +6,7 @@ class CustomCounter extends Component {
   static propTypes = {
     editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
+    limit: PropTypes.number,
     countFunction: PropTypes.function,
   };
 
