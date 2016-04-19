@@ -39,18 +39,10 @@ export default class SearchSuggestions extends Component {
       }
 
       const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
-      const { top, left, width } = this.props.positionPopover(decoratorRect);
-      if (top) {
-        this.refs.popover.style.top = top;
-      }
-
-      if (left) {
-        this.refs.popover.style.left = left;
-      }
-
-      if (width) {
-        this.refs.popover.style.width = width;
-      }
+      const newStyles = this.props.positionPopover(decoratorRect);
+      Object.keys(newStyles).forEach((key) => {
+        this.refs.popover.style[key] = newStyles[key];
+      });
     }
   };
 
