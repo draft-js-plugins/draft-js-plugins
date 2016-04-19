@@ -95,8 +95,8 @@ export default class App extends Component {
             </div>
           </div>
           <div className={ styles.param }>
-            <span className={ styles.paramName }>mentions</span>
-            <span>Immutable.js List of mentions.</span>
+            <span className={ styles.paramName }>positionPopover</span>
+            <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one argument: the visible rectangle surrounding the decorated search string including the @. An object should be returned which optionally can contain the properties `left`, `right`, `width`. Only the defined properties are taken into account.</span>
           </div>
           <div className={ styles.param }>
             <span className={ styles.paramName }>entityMutability</span>
