@@ -16,6 +16,10 @@ import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!
 
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleCounterEditor';
 import simpleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleCounterEditor/editorStyles.css';
+import CustomCounterEditor from './CustomCounterEditor';
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomCounterEditor';
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomCounterEditor/editorStyles.css';
+import customExampleCounterStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomCounterEditor/counterStyles.css';
 import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
 import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
 
@@ -103,6 +107,13 @@ export default class App extends Component {
           <SimpleCounterEditor />
           <Code code={ simpleExampleCode } name="SimpleEmojiEditor.js" />
           <Code code={ simpleEditorStylesCode } name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={ 2 }>Themed Example</Heading>
+          <CustomCounterEditor />
+          <Code code={ customExampleCode } name="CustomCounterEditor.js" />
+          <Code code={ customExampleCounterStylesCode } name="counterStyles.css" />
+          <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>

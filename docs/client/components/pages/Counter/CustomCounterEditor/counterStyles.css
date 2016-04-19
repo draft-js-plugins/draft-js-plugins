@@ -1,0 +1,9 @@
+.counter {
+  color: white;
+  background-color: grey;
+}
+
+.counterOverLimit {
+  color: tomato;
+  background-color: grey;
+}
