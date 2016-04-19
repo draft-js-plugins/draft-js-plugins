@@ -3,12 +3,12 @@
 }
 
 .autocompleteEntry:active {
-  background-color: #C8EAF7;
+  background-color: #cce7ff;
 }
 
 .autocompleteEntryFocused {
   composes: autocompleteEntry;
-  background-color: #DEF0F7;
+  background-color: #e6f3ff;
 }
 
 .autocompleteEntryText {

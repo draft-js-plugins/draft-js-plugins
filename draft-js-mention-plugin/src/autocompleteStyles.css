@@ -1,5 +1,5 @@
 .autocomplete {
-  border: 1px solid #ddd;
+  border: 1px solid #eee;
   margin-top: 1.75em;
   position: absolute;
   min-width: 220px;
@@ -14,4 +14,5 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  transform: scaleY(0);
 }
