@@ -45,15 +45,16 @@ export default class SimpleCounterEditor extends Component {
             ref="editor"
           />
         </div>
-        <div>Characters: <CharCounter editorState={ this.state.editorState } limit={200} /></div>
-        <div>Words: <WordCounter editorState={ this.state.editorState } limit={30} /></div>
-        <div>Lines: <LineCounter editorState={ this.state.editorState } limit={10} /></div>
-        <div><span>Custom (words): </span>
+        <div><CharCounter editorState={ this.state.editorState } limit={200} /> characters</div>
+        <div><WordCounter editorState={ this.state.editorState } limit={30} /> words</div>
+        <div><LineCounter editorState={ this.state.editorState } limit={10} /> lines</div>
+        <div>
           <CustomCounter
             editorState={ this.state.editorState }
             limit={40}
             countFunction={ this.customCountFunction }
           />
+          <span> words (custom function)</span>
         </div>
         <br />
         <br />
