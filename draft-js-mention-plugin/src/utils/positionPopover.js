@@ -26,7 +26,7 @@ const positionPopover = ({ decoratorRect, state, props }) => {
     left,
     top: `${decoratorRect.top + scrollTop}px`,
     transform,
-    transformOrigin: '0% 0%',
+    transformOrigin: '1em 0%',
     transition,
   };
 };
