@@ -7,7 +7,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import emojiShortNames from '../utils/shortNames';
 
-export default class EmojiSearch extends Component {
+export default class EmojiSuggestions extends Component {
 
   state = {
     focusedOptionIndex: 0,

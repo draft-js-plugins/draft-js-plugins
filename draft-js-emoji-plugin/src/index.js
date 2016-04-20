@@ -1,12 +1,13 @@
 import Emoji from './Emoji';
-import EmojiSearch from './EmojiSearch';
+import EmojiSuggestions from './EmojiSuggestions';
+// import EmojiSuggestionsPortal from './EmojiSuggestionsPortal';
 import emojiStrategy from './emojiStrategy';
-import emojiSearchStrategy from './emojiSearchStrategy';
+import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { Map } from 'immutable';
 import emojiStyles from './emojiStyles.css';
-import autocompleteStyles from './autocompleteStyles.css';
-import autocompleteEntryStyles from './autocompleteEntryStyles.css';
+import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
+import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import { EditorState } from 'draft-js';
 
@@ -16,14 +17,14 @@ import { EditorState } from 'draft-js';
 const defaultTheme = {
   emoji: emojiStyles.emoji,
 
-  autocomplete: autocompleteStyles.autocomplete,
-  autocompletePopover: autocompleteStyles.autocompletePopover,
+  autocomplete: emojiSuggestionsStyles.autocomplete,
+  autocompletePopover: emojiSuggestionsStyles.autocompletePopover,
 
-  autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
-  autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
-  autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
-  autocompleteEntryIcon: autocompleteEntryStyles.autocompleteEntryIcon,
-  autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
+  autocompleteEntry: emojiSuggestionsEntryStyles.autocompleteEntry,
+  autocompleteEntryFocused: emojiSuggestionsEntryStyles.autocompleteEntryFocused,
+  autocompleteEntryText: emojiSuggestionsEntryStyles.autocompleteEntryText,
+  autocompleteEntryIcon: emojiSuggestionsEntryStyles.autocompleteEntryIcon,
+  autocompleteEntryAvatar: emojiSuggestionsEntryStyles.autocompleteEntryAvatar,
 };
 
 const callbacks = {
@@ -64,8 +65,8 @@ const emojiPlugin = (config = {}) => {
         component: decorateComponentWithProps(Emoji, { theme }),
       },
       {
-        strategy: emojiSearchStrategy,
-        component: decorateComponentWithProps(EmojiSearch, emojiSearchProps),
+        strategy: emojiSuggestionsStrategy,
+        component: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
       },
     ],
 
