@@ -2,12 +2,12 @@ import Mention from './Mention';
 import MentionSuggestions from './MentionSuggestions';
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import mentionStrategy from './mentionStrategy';
-import mentionSearchStrategy from './mentionSearchStrategy';
+import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { Map } from 'immutable';
 import mentionStyles from './mentionStyles.css';
-import autocompleteStyles from './autocompleteStyles.css';
-import autocompleteEntryStyles from './autocompleteEntryStyles.css';
+import mentionSuggestionsStyles from './mentionSuggestionsStyles.css';
+import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import positionPopover from './utils/positionPopover';
 
@@ -15,12 +15,12 @@ const createMentionPlugin = (config = {}) => {
   const defaultTheme = {
     mention: mentionStyles.mention,
 
-    autocomplete: autocompleteStyles.autocomplete,
+    mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
 
-    autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
-    autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
-    autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
-    autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
+    mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
+    mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
+    mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
+    mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
   };
 
   const callbacks = {
@@ -96,7 +96,7 @@ const createMentionPlugin = (config = {}) => {
         component: decorateComponentWithProps(Mention, { theme }),
       },
       {
-        strategy: mentionSearchStrategy,
+        strategy: mentionSuggestionsStrategy,
         component: decorateComponentWithProps(MentionSuggestionsPortal, { store, callbacks, ariaProps }),
       },
     ],
