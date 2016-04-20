@@ -3,7 +3,7 @@ import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import createMentionPlugin from 'draft-js-mention-plugin';
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import createUndoPlugin from 'draft-js-undo-plugin';
 import styles from './styles.css';
@@ -20,13 +20,12 @@ import initialState from './initialState';
 const emojiPlugin = createEmojiPlugin();
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
-const mentionPlugin = createMentionPlugin({
-  mentions,
-});
+const mentionPlugin = createMentionPlugin();
 const undoPlugin = createUndoPlugin();
 const stickerPlugin = createStickerPlugin({
   stickers,
 });
+const { MentionSuggestions } = mentionPlugin;
 const { StickerSelect } = stickerPlugin;
 const { UndoButton, RedoButton } = undoPlugin;
 
@@ -44,7 +43,7 @@ export default class UnicornEditor extends Component {
 
   state = {
     editorState: EditorState.createWithContent(contentState),
-    showState: false,
+    suggestions: mentions,
   };
 
   onChange = (editorState) => {
@@ -53,6 +52,12 @@ export default class UnicornEditor extends Component {
     });
 
     // console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+  };
+
+  onMentionSearchChange = ({ value }) => {
+    this.setState({
+      suggestions: defaultSuggestionsFilter(value, mentions),
+    });
   };
 
   focus = () => {
@@ -72,6 +77,10 @@ export default class UnicornEditor extends Component {
           />
         </div>
         <div>
+          <MentionSuggestions
+            onSearchChange={ this.onMentionSearchChange }
+            suggestions={ this.state.suggestions }
+          />
           <div className={ styles.stickerSelect }>
             <StickerSelect editor={ this } />
           </div>
