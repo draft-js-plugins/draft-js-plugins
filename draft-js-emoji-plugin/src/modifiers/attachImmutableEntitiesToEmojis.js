@@ -43,9 +43,13 @@ export default function attachImmutableEntitiesToEmojis(editorState: EditorState
     findWithRegex(unicodeRegex, block, addEntityToEmoji);
   });
 
-  return EditorState.push(
-    editorState,
-    newContentState,
-    'convert-to-immutable-emojis',
-  );
+  if (!newContentState.equals(contentState)) {
+    return EditorState.push(
+      editorState,
+      newContentState,
+      'convert-to-immutable-emojis',
+    );
+  }
+
+  return editorState;
 }
