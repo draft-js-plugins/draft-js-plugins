@@ -11,6 +11,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 - [Hashtags](https://www.draft-js-plugins.com/plugin/hashtag)
 - [Linkify](https://www.draft-js-plugins.com/plugin/linkify)
 - [Mentions](https://www.draft-js-plugins.com/plugin/mention)
+- [Counter](https://www.draft-js-plugins.com/plugin/counter)
 - [Undo](https://www.draft-js-plugins.com/plugin/undo)
 - or build your own … :)
 
