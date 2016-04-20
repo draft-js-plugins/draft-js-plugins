@@ -1,7 +1,8 @@
 .selectSticker {
   border: 0;
-  border-radius: 2px;
+  border-radius: 4px;
   background: #fff;
+  margin: 0 auto;
 }
 
 .selectSticker:hover, .root:focus {
@@ -14,6 +15,6 @@
 }
 
 .selectStickerImage {
-  height: 85px;
-  width: 85px;
+  height: 80px;
+  width: 80px;
 }

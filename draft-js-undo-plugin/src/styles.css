@@ -1,19 +1,17 @@
 .button {
-  border: 1px solid #bbb;
-  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  height: 1.5em;
   color: #888;
-  border-radius: 20px;
+  border-radius: 1.5em;
   line-height: 1.2em;
   cursor: pointer;
-  position: relative;
   background-color: #fff;
-  width: 40px;
+  width: 2.5em;
   font-weight: bold;
   font-size: 1.5em;
   padding: 0;
-  top: 0;
   margin: 0;
-  margin-right: 10px;
 }
 
 .button:focus {
