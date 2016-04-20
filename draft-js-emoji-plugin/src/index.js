@@ -69,7 +69,7 @@ const emojiPlugin = (config = {}) => {
       },
     ],
 
-    getEditorProps: () => {
+    getAccessibilityProps: () => {
       const ariaHasPopup = ariaProps.ariaHasPopup.some((entry) => entry);
       const ariaExpanded = ariaProps.ariaExpanded.some((entry) => entry);
       return {

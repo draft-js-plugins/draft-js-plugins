@@ -100,7 +100,7 @@ const createMentionPlugin = (config = {}) => {
         component: decorateComponentWithProps(MentionSuggestionsPortal, { store, callbacks, ariaProps }),
       },
     ],
-    getEditorProps: () => (
+    getAccessibilityProps: () => (
       {
         role: 'combobox',
         ariaAutoComplete: 'list',
