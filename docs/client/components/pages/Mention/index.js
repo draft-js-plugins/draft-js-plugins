@@ -6,6 +6,7 @@ import styles from './styles.css';
 import Code from '../../shared/Code';
 import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
+import RemoteMentionEditor from './RemoteMentionEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor';
 import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js';
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
@@ -14,7 +15,6 @@ import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
 import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
 import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
-import remoteExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor/mentions.js';
 import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
@@ -149,8 +149,8 @@ export default class App extends Component {
         </Container>
         <Container>
           <Heading level={ 2 }>Remote Data Mention Example</Heading>
-          <Code code={ remoteExampleCode } name="CustomMentionEditor.js" />
-          <Code code={ remoteExampleMentionsCode } name="mentions.js" />
+          <RemoteMentionEditor />
+          <Code code={ remoteExampleCode } name="RemoteMentionEditor.js" />
           <Code code={ remoteExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />
