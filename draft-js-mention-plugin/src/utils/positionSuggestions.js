@@ -18,7 +18,7 @@ const positionSuggestions = ({ decoratorRect, state, props }) => {
     transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
   } else if (state.isActive) {
     transform = 'scale(0)';
-    transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
+    transition = 'all 0.35s cubic-bezier(.3,1,.2,1)';
   }
 
   return {

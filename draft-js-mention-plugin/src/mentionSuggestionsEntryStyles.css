@@ -19,6 +19,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 368px;
+  font-size: 0.9em;
+  margin-bottom: 0.2em;
 }
 
 .mentionSuggestionsEntryAvatar {

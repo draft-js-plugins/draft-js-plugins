@@ -198,7 +198,7 @@ export default class EmojiSuggestions extends Component {
     const filteredValues = emojiShortNames.filter((emojiShortName) => (
       !emojiValue || emojiShortName.indexOf(emojiValue) > -1
     ));
-    const size = filteredValues.size < 6 ? filteredValues.size : 6;
+    const size = filteredValues.size < 9 ? filteredValues.size : 9;
     return filteredValues.setSize(size);
   };
 
