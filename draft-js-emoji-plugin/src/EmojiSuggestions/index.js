@@ -92,7 +92,8 @@ export default class EmojiSuggestions extends Component {
     const selectionIsInsideWord = leaves
       .filter((leave) => leave !== undefined)
       .map(({ start, end }) => (
-        anchorOffset > start + 1 && anchorOffset <= end
+        start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
+        anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
       ));
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
