@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - The config now takes a property `entityMutability`. A developer can choose between 'IMMUTABLE', 'SEGMENTED' & 'MUTABLE'. Read in detail about it [here](https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability).
 - The config now takes a property `positionSuggestions`. The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.
+- Introduce a new config property: `mentionPrefix`. By default it is an empty String. For Twitter or Slack like mention behaviour you can provide an `@`.
 
 ```
 const mentionPlugin = createMentionPlugin({ entityMutability: 'IMMUTABLE' });

@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Added propTypes to the Editor
+- Added `initialize` hook. This hook receives one object as argument. The object contains `getEditorState` & `setEditorState`.
 
 ## 0.2.0 - 2016-03-25
 

@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Moved the option `theme` from an Immutable Map to a JavaScript object. This is more likely to become a standard.
+- Instead of passing in the `editorState` and the `onChange` function is not necessary anymore. This is now handled by the plugin itself via a shared reference passed to the components.
 
 ## 0.0.5 - 2016-03-25
 ### Released the first working version of DraftJS Undo Plugin

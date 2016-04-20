@@ -128,7 +128,7 @@ export default class App extends Component {
           </div>
           <div className={ styles.param }>
             <span className={ styles.paramName }>mentionPrefix</span>
-            <span>By default this is an empty String. For Twitter or Slack like mention behaviour you can provide an `@`</span>
+            <span>By default it is an empty String. For Twitter or Slack like mention behaviour you can provide an `@`</span>
           </div>
           <Heading level={ 3 }>Additional Exports</Heading>
           <div>
