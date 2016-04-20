@@ -6,13 +6,11 @@ class UndoButton extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
-    onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
   };
 
   onClick = () => {
-    this.props.onChange(EditorState.undo(this.props.editorState));
+    this.props.store.setEditorState(EditorState.undo(this.props.store.getEditorState()));
   };
 
   render() {
@@ -20,7 +18,7 @@ class UndoButton extends Component {
     const combinedClassName = unionClassNames(theme.undo, className);
     return (
       <button
-        disabled={ this.props.editorState.getUndoStack().isEmpty() }
+        disabled={ this.props.store.getEditorState().getUndoStack().isEmpty() }
         onClick={ this.onClick }
         className={ combinedClassName }
       >

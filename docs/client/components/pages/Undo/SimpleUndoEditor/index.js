@@ -6,6 +6,7 @@ import editorStyles from './editorStyles.css';
 
 const undoPlugin = createUndoPlugin();
 const { UndoButton, RedoButton } = undoPlugin;
+const plugins = [undoPlugin];
 
 export default class SimpleUndoEditor extends Component {
 
@@ -30,18 +31,13 @@ export default class SimpleUndoEditor extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
+            plugins={ plugins }
             ref="editor"
           />
         </div>
         <div className={ editorStyles.options }>
-          <UndoButton
-            editorState={ this.state.editorState }
-            onChange={ this.onChange }
-          />
-          <RedoButton
-            editorState={ this.state.editorState }
-            onChange={ this.onChange }
-          />
+          <UndoButton />
+          <RedoButton />
         </div>
       </div>
     );

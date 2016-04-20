@@ -34,6 +34,15 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
+    const plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of plugins) {
+      if (typeof plugin.initialize !== 'function') continue;
+      plugin.initialize({
+        getEditorState: this.getEditorState,
+        setEditorState: this.onChange,
+      });
+    }
+
     // attach proxy methods like `focus` or `blur`
     for (const method of proxies) {
       this[method] = (...args) => (
@@ -119,7 +128,9 @@ class PluginEditor extends Component {
         if (result !== undefined) {
           styles = (styles ? (`${styles} `) : '') + result;
         }
-      } return styles || false;
+      }
+
+      return styles || false;
     }
 
     for (const plugin of plugins) {

@@ -35,6 +35,7 @@ const plugins = [
   stickerPlugin,
   linkifyPlugin,
   mentionPlugin,
+  undoPlugin,
 ];
 
 const contentState = ContentState.createFromBlockArray(convertFromRaw(initialState));
@@ -84,14 +85,8 @@ export default class UnicornEditor extends Component {
           <div className={ styles.stickerSelect }>
             <StickerSelect editor={ this } />
           </div>
-          <UndoButton
-            editorState={ this.state.editorState }
-            onChange={ this.onChange }
-          />
-          <RedoButton
-            editorState={ this.state.editorState }
-            onChange={ this.onChange }
-          />
+          <UndoButton />
+          <RedoButton />
         </div>
       </div>
     );
