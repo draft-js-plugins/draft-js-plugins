@@ -12,6 +12,7 @@ import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?langu
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
 import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
+import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
 import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
 import remoteExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor/mentions.js';
 import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
@@ -112,7 +113,7 @@ export default class App extends Component {
             </div>
           </div>
           <div className={ styles.param }>
-            <span className={ styles.paramName }>positionPopover</span>
+            <span className={ styles.paramName }>positionSuggestions</span>
             <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span>
           </div>
           <div className={ styles.param }>
@@ -142,6 +143,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Themed Mention Example</Heading>
           <CustomMentionEditor />
           <Code code={ customExampleCode } name="CustomMentionEditor.js" />
+          <Code code={ customExampleMentionsStylesCode } name="mentionsStyles.js" />
           <Code code={ customExampleMentionsCode } name="mentions.js" />
           <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
