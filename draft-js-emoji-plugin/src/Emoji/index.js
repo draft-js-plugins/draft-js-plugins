@@ -10,13 +10,14 @@ const Emoji = ({ theme = {}, className, decoratedText, ...props }) => {
   const unicode = escapeMap[decoratedText];
   const imagePath = `url(${imagePathSVG}${unicode}.svg${cacheBustParam})`;
   const combinedClassName = unionClassNames(theme.emoji, className);
+  const characterClassName = unionClassNames(theme.emojiCharacter);
   return (
     <span
       className={ combinedClassName }
       title={ mappedUnicode[unicode] }
       style={{ backgroundImage: imagePath }}
     >
-      { props.children }
+      <span className={ characterClassName }>{ props.children }</span>
     </span>
   );
 };

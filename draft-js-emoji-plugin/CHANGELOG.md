@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Fix using backspace to close the autocomplete suggestions after typing a `:` [#153](https://github.com/draft-js-plugins/draft-js-plugins/issues/153)
+- Fix issues with hiding the real Emoji on iOS by introducing an extra span with opacity 0.
 
 ### Added
 
