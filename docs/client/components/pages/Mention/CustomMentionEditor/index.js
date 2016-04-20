@@ -29,6 +29,7 @@ const mentionPlugin = createMentionPlugin({
   entityMutability: 'IMMUTABLE',
   theme: mentionsStyles,
   positionSuggestions,
+  mentionPrefix: '@',
 });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
