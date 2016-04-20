@@ -79,7 +79,7 @@ const createMentionPlugin = (config = {}) => {
   // styles which needs a deep dive into the code. Merging also makes it prone to
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
-  const theme = config.theme ? config.theme : defaultTheme;
+  const { mentionPrefix = '', theme = defaultTheme } = config;
   const mentionSearchProps = {
     ariaProps,
     callbacks,
@@ -93,7 +93,7 @@ const createMentionPlugin = (config = {}) => {
     decorators: [
       {
         strategy: mentionStrategy,
-        component: decorateComponentWithProps(Mention, { theme }),
+        component: decorateComponentWithProps(Mention, { theme, mentionPrefix }),
       },
       {
         strategy: mentionSuggestionsStrategy,
@@ -110,6 +110,11 @@ const createMentionPlugin = (config = {}) => {
         ariaOwneeID: ariaProps.ariaOwneeID,
       }
     ),
+
+    initialize: ({ getEditorState, setEditorState }) => {
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
+    },
 
     onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
     onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),

@@ -12,7 +12,7 @@ const Mention = (props) => {
         className={ theme.mention }
         spellCheck={ false }
       >
-        { props.children }
+        { props.mentionPrefix }{ props.children }
       </a>
     );
   }
@@ -22,7 +22,7 @@ const Mention = (props) => {
       className={ theme.mention }
       spellCheck={ false }
     >
-      { props.children }
+      { props.mentionPrefix }{ props.children }
     </span>
   );
 };
