@@ -1,22 +1,22 @@
-.autocompleteEntry {
+.emojiSuggestionsEntry {
   padding: 5px;
 }
 
-.autocompleteEntry:active {
+.emojiSuggestionsEntry:active {
   background-color: #C8EAF7;
 }
 
-.autocompleteEntryFocused {
-  composes: autocompleteEntry;
+.emojiSuggestionsEntryFocused {
+  composes: emojiSuggestionsEntry;
   background-color: #DEF0F7;
 }
 
-.autocompleteEntryText {
+.emojiSuggestionsEntryText {
   display: inline-block;
   margin-left: 8px;
 }
 
-.autocompleteEntryIcon {
+.emojiSuggestionsEntryIcon {
   width: 1em;
   height: 1em;
   margin-left: 0.5em;

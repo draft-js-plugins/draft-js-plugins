@@ -9,7 +9,7 @@ import mentionStyles from './mentionStyles.css';
 import mentionSuggestionsStyles from './mentionSuggestionsStyles.css';
 import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
-import positionSuggestions from './utils/positionSuggestions';
+import defaultPositionSuggestions from './utils/positionSuggestions';
 
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = {
@@ -79,14 +79,18 @@ const createMentionPlugin = (config = {}) => {
   // styles which needs a deep dive into the code. Merging also makes it prone to
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
-  const { mentionPrefix = '', theme = defaultTheme } = config;
+  const {
+    mentionPrefix = '',
+    theme = defaultTheme,
+    positionSuggestions = defaultPositionSuggestions,
+  } = config;
   const mentionSearchProps = {
     ariaProps,
     callbacks,
     theme,
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
-    positionSuggestions: config.positionSuggestions ? config.positionSuggestions : positionSuggestions,
+    positionSuggestions,
   };
   return {
     MentionSuggestions: decorateComponentWithProps(MentionSuggestions, mentionSearchProps),
@@ -97,7 +101,7 @@ const createMentionPlugin = (config = {}) => {
       },
       {
         strategy: mentionSuggestionsStrategy,
-        component: decorateComponentWithProps(MentionSuggestionsPortal, { store, callbacks, ariaProps }),
+        component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
       },
     ],
     getAccessibilityProps: () => (

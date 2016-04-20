@@ -4,6 +4,7 @@ import createEmojiPlugin from 'draft-js-emoji-plugin';
 import editorStyles from './editorStyles.css';
 
 const emojiPlugin = createEmojiPlugin();
+const { EmojiSuggestions } = emojiPlugin;
 const plugins = [emojiPlugin];
 const text = `Cool, we can have all sorts of Emojis here. 🙌
 🌿☃️🎉🙈 aaaand maybe a few more here 🐲☀️🗻 Quite fun!`;
@@ -33,6 +34,7 @@ export default class CustomEmojiEditor extends Component {
           plugins={plugins}
           ref="editor"
         />
+        <EmojiSuggestions />
       </div>
     );
   }

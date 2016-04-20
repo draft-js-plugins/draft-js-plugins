@@ -1,6 +1,6 @@
 import Emoji from './Emoji';
 import EmojiSuggestions from './EmojiSuggestions';
-// import EmojiSuggestionsPortal from './EmojiSuggestionsPortal';
+import EmojiSuggestionsPortal from './EmojiSuggestionsPortal';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -9,56 +9,94 @@ import emojiStyles from './emojiStyles.css';
 import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
+import defaultPositionSuggestions from './utils/positionSuggestions';
 import { EditorState } from 'draft-js';
 
 // TODO provide an imagePath url via config
 // TODO activate/deactivate different the conversion or search part
 
-const defaultTheme = {
-  emoji: emojiStyles.emoji,
+const createEmojiPlugin = (config = {}) => {
+  const defaultTheme = {
+    emoji: emojiStyles.emoji,
 
-  autocomplete: emojiSuggestionsStyles.autocomplete,
-  autocompletePopover: emojiSuggestionsStyles.autocompletePopover,
+    emojiSuggestions: emojiSuggestionsStyles.emojiSuggestions,
 
-  autocompleteEntry: emojiSuggestionsEntryStyles.autocompleteEntry,
-  autocompleteEntryFocused: emojiSuggestionsEntryStyles.autocompleteEntryFocused,
-  autocompleteEntryText: emojiSuggestionsEntryStyles.autocompleteEntryText,
-  autocompleteEntryIcon: emojiSuggestionsEntryStyles.autocompleteEntryIcon,
-  autocompleteEntryAvatar: emojiSuggestionsEntryStyles.autocompleteEntryAvatar,
-};
+    emojiSuggestionsEntry: emojiSuggestionsEntryStyles.emojiSuggestionsEntry,
+    emojiSuggestionsEntryFocused: emojiSuggestionsEntryStyles.emojiSuggestionsEntryFocused,
+    emojiSuggestionsEntryText: emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
+    emojiSuggestionsEntryIcon: emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
+    emojiSuggestionsEntryAvatar: emojiSuggestionsEntryStyles.emojiSuggestionsEntryAvatar,
+  };
 
-const callbacks = {
-  keyBindingFn: Map(),
-  handleKeyCommand: Map(),
-  onDownArrow: Map(),
-  onUpArrow: Map(),
-  onTab: Map(),
-  onEscape: Map(),
-  handleReturn: Map(),
-  onChange: Map(),
-};
+  const callbacks = {
+    keyBindingFn: undefined,
+    handleKeyCommand: undefined,
+    onDownArrow: undefined,
+    onUpArrow: undefined,
+    onTab: undefined,
+    onEscape: undefined,
+    handleReturn: undefined,
+    onChange: undefined,
+  };
 
-const ariaProps = {
-  ariaHasPopup: Map(),
-  ariaExpanded: Map(),
-  ariaOwneeID: Map(),
-  ariaActiveDescendantID: Map(),
-};
+  const ariaProps = {
+    ariaHasPopup: 'false',
+    ariaExpanded: 'false',
+    ariaOwneeID: undefined,
+    ariaActiveDescendantID: undefined,
+  };
 
-const emojiPlugin = (config = {}) => {
+  let searches = Map();
+  let escapedSearch = undefined;
+  let clientRectFunctions = Map();
+
+  const store = {
+    getEditorState: undefined,
+    setEditorState: undefined,
+    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
+    getAllSearches: () => searches,
+    isEscaped: (offsetKey) => escapedSearch === offsetKey,
+    escapeSearch: (offsetKey) => {
+      escapedSearch = offsetKey;
+    },
+
+    resetEscapedSearch: () => {
+      escapedSearch = undefined;
+    },
+
+    register: (offsetKey) => {
+      searches = searches.set(offsetKey, offsetKey);
+    },
+
+    updatePortalClientRect: (offsetKey, func) => {
+      clientRectFunctions = clientRectFunctions.set(offsetKey, func);
+    },
+
+    unregister: (offsetKey) => {
+      searches = searches.delete(offsetKey);
+      clientRectFunctions = clientRectFunctions.delete(offsetKey);
+    },
+  };
+
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
   // styles which needs a deep dive into the code. Merging also makes it prone to
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
-  const theme = config.theme ? config.theme : defaultTheme;
+  const {
+    theme = defaultTheme,
+    positionSuggestions = defaultPositionSuggestions,
+  } = config;
   const emojiSearchProps = {
     ariaProps,
     callbacks,
     theme,
+    store,
+    positionSuggestions,
   };
   return {
+    EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
     decorators: [
       {
         strategy: emojiStrategy,
@@ -66,32 +104,30 @@ const emojiPlugin = (config = {}) => {
       },
       {
         strategy: emojiSuggestionsStrategy,
-        component: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
+        component: decorateComponentWithProps(EmojiSuggestionsPortal, { store }),
       },
     ],
-
-    getAccessibilityProps: () => {
-      const ariaHasPopup = ariaProps.ariaHasPopup.some((entry) => entry);
-      const ariaExpanded = ariaProps.ariaExpanded.some((entry) => entry);
-      return {
+    getAccessibilityProps: () => (
+      {
         role: 'combobox',
         ariaAutoComplete: 'list',
-        ariaHasPopup: ariaHasPopup ? 'true' : 'false',
-        ariaExpanded: ariaExpanded ? 'true' : 'false',
-        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID.first(),
-        ariaOwneeID: ariaProps.ariaOwneeID.first(),
-      };
+        ariaHasPopup: ariaProps.ariaHasPopup,
+        ariaExpanded: ariaProps.ariaExpanded,
+        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
+        ariaOwneeID: ariaProps.ariaOwneeID,
+      }
+    ),
+
+    initialize: ({ getEditorState, setEditorState }) => {
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
     },
 
-    onDownArrow: (keyboardEvent) => callbacks.onDownArrow.forEach((onDownArrow) => onDownArrow(keyboardEvent)),
-    onTab: (keyboardEvent) => callbacks.onTab.forEach((onTab) => onTab(keyboardEvent)),
-    onUpArrow: (keyboardEvent) => callbacks.onUpArrow.forEach((onUpArrow) => onUpArrow(keyboardEvent)),
-    onEscape: (keyboardEvent) => callbacks.onEscape.forEach((onEscape) => onEscape(keyboardEvent)),
-    handleReturn: (keyboardEvent) => (
-      callbacks.handleReturn
-      .map((handleReturn) => handleReturn(keyboardEvent))
-      .find((result) => result === true)
-    ),
+    onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
+    onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
+    onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
+    onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
+    handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
 
@@ -106,15 +142,10 @@ const emojiPlugin = (config = {}) => {
         );
       }
 
-      if (callbacks.onChange.size !== 0) {
-        callbacks.onChange.forEach((onChange) => {
-          newEditorState = onChange(editorState);
-        });
-      }
-
+      if (callbacks.onChange) return callbacks.onChange(newEditorState);
       return newEditorState;
     },
   };
 };
 
-export default emojiPlugin;
+export default createEmojiPlugin;
