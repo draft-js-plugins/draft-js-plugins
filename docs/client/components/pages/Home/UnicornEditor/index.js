@@ -26,6 +26,7 @@ const stickerPlugin = createStickerPlugin({
   stickers,
 });
 const { MentionSuggestions } = mentionPlugin;
+const { EmojiSuggestions } = emojiPlugin;
 const { StickerSelect } = stickerPlugin;
 const { UndoButton, RedoButton } = undoPlugin;
 
@@ -82,6 +83,7 @@ export default class UnicornEditor extends Component {
             onSearchChange={ this.onMentionSearchChange }
             suggestions={ this.state.suggestions }
           />
+          <EmojiSuggestions />
           <div className={ styles.stickerSelect }>
             <StickerSelect editor={ this } />
           </div>

@@ -6,7 +6,7 @@ import emojioneList from '../../utils/emojioneList';
 import convertShortNameToUnicode from '../../utils/convertShortNameToUnicode';
 import escapeMap from '../../utils/escapeMap';
 
-export default class EmojiOption extends Component {
+export default class Entry extends Component {
 
   constructor(props) {
     super(props);
@@ -37,7 +37,7 @@ export default class EmojiOption extends Component {
 
   render() {
     const { theme = {} } = this.props;
-    const className = this.props.isFocused ? theme.autocompleteEntryFocused : theme.autocompleteEntry;
+    const className = this.props.isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
     const unicode = emojioneList[this.props.emoji][0].toUpperCase();
     const emoji = convertShortNameToUnicode(unicode);
     const unicodeForImage = escapeMap[emoji];
@@ -54,10 +54,10 @@ export default class EmojiOption extends Component {
       >
         <img
           src={imagePath}
-          className={ theme.autocompleteEntryIcon }
+          className={ theme.emojiSuggestionsEntryIcon }
           role="presentation"
         />
-        <span className={ theme.autocompleteEntryText }>
+        <span className={ theme.emojiSuggestionsEntryText }>
           { this.props.emoji }
         </span>
       </div>

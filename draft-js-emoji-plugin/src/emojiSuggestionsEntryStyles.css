@@ -1,18 +1,18 @@
-.mentionSuggestionsEntry {
-  padding: 7px 10px 3px 10px;
+.emojiSuggestionsEntry {
+  padding: 5px 10px 1px 10px;
   transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
 }
 
-.mentionSuggestionsEntry:active {
+.emojiSuggestionsEntry:active {
   background-color: #cce7ff;
 }
 
-.mentionSuggestionsEntryFocused {
-  composes: mentionSuggestionsEntry;
+.emojiSuggestionsEntryFocused {
+  composes: emojiSuggestionsEntry;
   background-color: #e6f3ff;
 }
 
-.mentionSuggestionsEntryText {
+.emojiSuggestionsEntryText {
   display: inline-block;
   margin-left: 8px;
   white-space: nowrap;
@@ -20,12 +20,12 @@
   text-overflow: ellipsis;
   max-width: 368px;
   font-size: 0.9em;
-  margin-bottom: 0.2em;
 }
 
-.mentionSuggestionsEntryAvatar {
+.emojiSuggestionsEntryIcon {
+  width: 1em;
+  height: 1em;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
   display: inline-block;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
 }

@@ -1,4 +1,4 @@
-const positionSuggestions = ({ decoratorRect, state, props }) => {
+const positionSuggestions = ({ decoratorRect, state, filteredEmojis }) => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
@@ -13,7 +13,7 @@ const positionSuggestions = ({ decoratorRect, state, props }) => {
     left = `${decoratorRect.left + scrollLeft}px`;
   }
 
-  if (state.isActive & props.suggestions.size > 0) {
+  if (state.isActive & filteredEmojis.size > 0) {
     transform = 'scale(1)';
     transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
   } else if (state.isActive) {
