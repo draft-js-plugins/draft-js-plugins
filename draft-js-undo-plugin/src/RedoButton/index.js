@@ -6,13 +6,11 @@ class RedoButton extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
-    onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
   };
 
   onClick = () => {
-    this.props.onChange(EditorState.redo(this.props.editorState));
+    this.props.store.setEditorState(EditorState.redo(this.props.store.getEditorState()));
   };
 
   render() {
@@ -20,7 +18,7 @@ class RedoButton extends Component {
     const combinedClassName = unionClassNames(theme.redo, className);
     return (
       <button
-        disabled={ this.props.editorState.getRedoStack().isEmpty() }
+        disabled={ this.props.store.getEditorState().getRedoStack().isEmpty() }
         onClick={ this.onClick }
         className={ combinedClassName }
       >

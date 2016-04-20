@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createUndoPlugin from 'draft-js-undo-plugin';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 
-const theme = Map({
+const theme = {
   undo: buttonStyles.button,
   redo: buttonStyles.button,
-});
+};
 const undoPlugin = createUndoPlugin({
   undoContent: 'Undo',
   redoContent: 'Redo',
   theme,
 });
 const { UndoButton, RedoButton } = undoPlugin;
+const plugins = [undoPlugin];
 
 export default class CustomUndoEditor extends Component {
 
@@ -40,18 +40,13 @@ export default class CustomUndoEditor extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
+            plugins={ plugins }
             ref="editor"
           />
         </div>
         <div className={ editorStyles.options }>
-          <UndoButton
-            editorState={ this.state.editorState }
-            onChange={ this.onChange }
-          />
-          <RedoButton
-            editorState={ this.state.editorState }
-            onChange={ this.onChange }
-          />
+          <UndoButton />
+          <RedoButton />
         </div>
       </div>
     );
