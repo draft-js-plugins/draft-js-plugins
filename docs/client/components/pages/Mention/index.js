@@ -33,7 +33,7 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Mention</Heading>
           <p>
-            Mentions for everyone!
+            Mentions for everyone! This plugin allows the user to choose an entry from a list. After selection an entry the search text will be replace with the selected entity. The list of suggestions mentions needs to contain at least a name to display. If desired a link and/or an avatar image can be provided.
           </p>
           <Heading level={ 3 }>Escape Behaviour</Heading>
           <p>
@@ -85,13 +85,30 @@ export default class App extends Component {
             <span className={ styles.paramName }>theme</span>
             <span>Immutable.js Map of CSS classes with the following keys.</span>
             <div className={ styles.subParams }>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>mention:</span> CSS class for mention text.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocomplete:</span> CSS class for mention autocomplete.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompletePopover:</span> CSS class for autocomplete popover.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntry:</span> CSS class for an entry in autocomplete.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntryFocused:</span> CSS class for focused autocomplete entry.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntryText:</span> CSS class for autocomplete entry text.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntryAvatar:</span> CSS class for autocomplete entry image.</div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mention:</span>
+                CSS class for mention text.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestions:</span>
+                CSS class for suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntry:</span>
+                CSS class for an entry in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntryFocused:</span>
+                CSS class for the focused entry in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntryText:</span>
+                CSS class for an entry’s text in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntryAvatar:</span>
+                CSS class for an entry’s avatar image in the suggestions component.
+              </div>
             </div>
           </div>
           <div className={ styles.param }>

@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Improved the regex and now test for a whitespace in front of the `@` to make sure it doesn't match on normal text like an email [#104](https://github.com/draft-js-plugins/draft-js-plugins/issues/104)
 - Moved the option `theme` from an Immutable Map to a JavaScript object. This is more likely to become a standard.
 - Improved styling and added animations for the Suggestions overlay as well as the hover on a single suggestion.
+- Updated the theme properties.
 
 ### Fixed
 
