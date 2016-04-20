@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Improved the regex and now test for a whitespace in front of the `@` to make sure it doesn't match on normal text like an email [#104](https://github.com/draft-js-plugins/draft-js-plugins/issues/104)
 - Moved the option `theme` from an Immutable Map to a JavaScript object. This is more likely to become a standard.
 - Improved styling and added animations for the Suggestions overlay as well as the hover on a single suggestion.
+- Updated the theme properties.
 
 ### Fixed
 
@@ -21,7 +22,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - The config now takes a property `entityMutability`. A developer can choose between 'IMMUTABLE', 'SEGMENTED' & 'MUTABLE'. Read in detail about it [here](https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability).
-- The config now takes a property `positionPopover`. The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.
+- The config now takes a property `positionSuggestions`. The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.
 
 ```
 const mentionPlugin = createMentionPlugin({ entityMutability: 'IMMUTABLE' });

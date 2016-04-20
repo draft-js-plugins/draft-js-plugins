@@ -6,14 +6,15 @@ import styles from './styles.css';
 import Code from '../../shared/Code';
 import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
+import RemoteMentionEditor from './RemoteMentionEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor';
 import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js';
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
 import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js';
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
+import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
 import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
-import remoteExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor/mentions.js';
 import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
@@ -33,7 +34,7 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Mention</Heading>
           <p>
-            Mentions for everyone!
+            Mentions for everyone! This plugin allows the user to choose an entry from a list. After selection an entry the search text will be replace with the selected entity. The list of suggestions mentions needs to contain at least a name to display. If desired a link and/or an avatar image can be provided.
           </p>
           <Heading level={ 3 }>Escape Behaviour</Heading>
           <p>
@@ -85,17 +86,34 @@ export default class App extends Component {
             <span className={ styles.paramName }>theme</span>
             <span>Immutable.js Map of CSS classes with the following keys.</span>
             <div className={ styles.subParams }>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>mention:</span> CSS class for mention text.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocomplete:</span> CSS class for mention autocomplete.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompletePopover:</span> CSS class for autocomplete popover.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntry:</span> CSS class for an entry in autocomplete.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntryFocused:</span> CSS class for focused autocomplete entry.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntryText:</span> CSS class for autocomplete entry text.</div>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>autocompleteEntryAvatar:</span> CSS class for autocomplete entry image.</div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mention:</span>
+                CSS class for mention text.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestions:</span>
+                CSS class for suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntry:</span>
+                CSS class for an entry in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntryFocused:</span>
+                CSS class for the focused entry in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntryText:</span>
+                CSS class for an entry’s text in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>mentionSuggestionsEntryAvatar:</span>
+                CSS class for an entry’s avatar image in the suggestions component.
+              </div>
             </div>
           </div>
           <div className={ styles.param }>
-            <span className={ styles.paramName }>positionPopover</span>
+            <span className={ styles.paramName }>positionSuggestions</span>
             <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span>
           </div>
           <div className={ styles.param }>
@@ -125,13 +143,14 @@ export default class App extends Component {
           <Heading level={ 2 }>Themed Mention Example</Heading>
           <CustomMentionEditor />
           <Code code={ customExampleCode } name="CustomMentionEditor.js" />
+          <Code code={ customExampleMentionsStylesCode } name="mentionsStyles.js" />
           <Code code={ customExampleMentionsCode } name="mentions.js" />
           <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Remote Data Mention Example</Heading>
-          <Code code={ remoteExampleCode } name="CustomMentionEditor.js" />
-          <Code code={ remoteExampleMentionsCode } name="mentions.js" />
+          <RemoteMentionEditor />
+          <Code code={ remoteExampleCode } name="RemoteMentionEditor.js" />
           <Code code={ remoteExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <SocialBar />

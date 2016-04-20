@@ -3,9 +3,33 @@ import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
+import mentionsStyles from './mentionsStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin({ mentions, entityMutability: 'IMMUTABLE' });
+const positionSuggestions = ({ state, props }) => {
+  let transform;
+  let transition;
+
+  if (state.isActive & props.suggestions.size > 0) {
+    transform = 'scaleY(1)';
+    transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
+  } else if (state.isActive) {
+    transform = 'scaleY(0)';
+    transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
+  }
+
+  return {
+    transform,
+    transition,
+  };
+};
+
+const mentionPlugin = createMentionPlugin({
+  mentions,
+  entityMutability: 'IMMUTABLE',
+  theme: mentionsStyles,
+  positionSuggestions,
+});
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 

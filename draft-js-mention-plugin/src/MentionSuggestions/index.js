@@ -39,7 +39,7 @@ export default class MentionSuggestions extends Component {
       }
 
       const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
-      const newStyles = this.props.positionPopover({
+      const newStyles = this.props.positionSuggestions({
         decoratorRect,
         prevProps,
         prevState,

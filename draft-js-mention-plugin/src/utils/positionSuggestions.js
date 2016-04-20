@@ -1,4 +1,4 @@
-const positionPopover = ({ decoratorRect, state, props }) => {
+const positionSuggestions = ({ decoratorRect, state, props }) => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
@@ -31,4 +31,4 @@ const positionPopover = ({ decoratorRect, state, props }) => {
   };
 };
 
-export default positionPopover;
+export default positionSuggestions;
