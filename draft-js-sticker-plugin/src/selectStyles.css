@@ -8,7 +8,7 @@
   background: #FFF;
   position: absolute;
   height: 250px;
-  width: 215px;
+  width: 230px;
   border-radius: 2px;
   padding: 10px;
   box-shadow: 0px 4px 30px 0px rgba(220,220,220,1);
@@ -72,5 +72,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-content: flex-start;
 }
