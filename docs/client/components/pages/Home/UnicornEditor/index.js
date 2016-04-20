@@ -84,11 +84,15 @@ export default class UnicornEditor extends Component {
             suggestions={ this.state.suggestions }
           />
           <EmojiSuggestions />
-          <div className={ styles.stickerSelect }>
+          <div className={ styles.editorButton }>
             <StickerSelect editor={ this } />
           </div>
-          <UndoButton />
-          <RedoButton />
+          <div className={ styles.editorButton }>
+            <UndoButton />
+          </div>
+          <div className={ styles.editorButton }>
+            <RedoButton />
+          </div>
         </div>
       </div>
     );
