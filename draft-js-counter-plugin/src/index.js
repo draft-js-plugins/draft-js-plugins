@@ -11,6 +11,10 @@ const defaultTheme = {
 };
 
 const counterPlugin = (config = {}) => {
+  const store = {
+    getEditorState: undefined,
+    setEditorState: undefined,
+  };
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
@@ -19,10 +23,14 @@ const counterPlugin = (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
   return {
-    CharCounter: decorateComponentWithProps(CharCounter, { theme }),
-    WordCounter: decorateComponentWithProps(WordCounter, { theme }),
-    LineCounter: decorateComponentWithProps(LineCounter, { theme }),
-    CustomCounter: decorateComponentWithProps(CustomCounter, { theme }),
+    CharCounter: decorateComponentWithProps(CharCounter, { theme, store }),
+    WordCounter: decorateComponentWithProps(WordCounter, { theme, store }),
+    LineCounter: decorateComponentWithProps(LineCounter, { theme, store }),
+    CustomCounter: decorateComponentWithProps(CustomCounter, { theme, store }),
+    initialize: ({ getEditorState, setEditorState }) => {
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
+    },
   };
 };
 

@@ -5,7 +5,6 @@ import punycode from 'punycode';
 class CharCounter extends Component {
 
   static propTypes = {
-    editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
   };
 
@@ -25,8 +24,8 @@ class CharCounter extends Component {
   }
 
   render() {
-    const { editorState, limit } = this.props;
-    const count = this.getCharCount(editorState);
+    const { store, limit } = this.props;
+    const count = this.getCharCount(store.getEditorState());
     const classNames = this.getClassNames(count, limit);
 
     return <span className={ classNames }>{count}</span>;

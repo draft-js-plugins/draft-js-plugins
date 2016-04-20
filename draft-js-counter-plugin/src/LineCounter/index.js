@@ -4,7 +4,6 @@ import unionClassNames from 'union-class-names';
 class LineCounter extends Component {
 
   static propTypes = {
-    editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
     limit: PropTypes.number,
   };
@@ -22,8 +21,8 @@ class LineCounter extends Component {
   }
 
   render() {
-    const { editorState, limit } = this.props;
-    const count = this.getLineCount(editorState);
+    const { store, limit } = this.props;
+    const count = this.getLineCount(store.getEditorState());
     const classNames = this.getClassNames(count, limit);
 
     return <span className={ classNames }>{count}</span>;
