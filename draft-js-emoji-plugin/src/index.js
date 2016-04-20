@@ -18,6 +18,7 @@ import { EditorState } from 'draft-js';
 const createEmojiPlugin = (config = {}) => {
   const defaultTheme = {
     emoji: emojiStyles.emoji,
+    emojiCharacter: emojiStyles.emojiCharacter,
 
     emojiSuggestions: emojiSuggestionsStyles.emojiSuggestions,
 

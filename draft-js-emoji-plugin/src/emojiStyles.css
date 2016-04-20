@@ -1,6 +1,4 @@
 .emoji {
-  /* Hide the original Emoji icon no matter what system it is. */
-  color: transparent;
   /* make sure the background the image is only shown once */
   background-repeat: no-repeat;
   /* move it a bit further down to align it nicer with the text */
@@ -14,6 +12,19 @@
   */
   display: inline-block;
   overflow: hidden;
-  max-width: 1.85ch;
+  max-width: 1.95ch;
+  /*
+  Needed for iOS rendering to avoid some icons using a lot of height without
+  actually needing it.
+  */
+  max-height: 1em;
   line-height: inherit;
+}
+
+.emojiCharacter {
+  /*
+  Hide the original Emoji icon no matter what system it is. color: transparent
+  would have been nice to avoid the extra span, but it doesn't work on iOS.
+  */
+  opacity: 0;
 }
