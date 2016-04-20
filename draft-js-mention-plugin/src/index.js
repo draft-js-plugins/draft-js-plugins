@@ -1,6 +1,6 @@
 import Mention from './Mention';
-import SearchSuggestions from './SearchSuggestions';
-import SearchSuggestionsPortal from './SearchSuggestionsPortal';
+import MentionSuggestions from './MentionSuggestions';
+import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import mentionStrategy from './mentionStrategy';
 import mentionSearchStrategy from './mentionSearchStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -89,7 +89,7 @@ const createMentionPlugin = (config = {}) => {
     positionPopover: config.positionPopover ? config.positionPopover : positionPopover,
   };
   return {
-    SearchSuggestions: decorateComponentWithProps(SearchSuggestions, mentionSearchProps),
+    MentionSuggestions: decorateComponentWithProps(MentionSuggestions, mentionSearchProps),
     decorators: [
       {
         strategy: mentionStrategy,
@@ -97,7 +97,7 @@ const createMentionPlugin = (config = {}) => {
       },
       {
         strategy: mentionSearchStrategy,
-        component: decorateComponentWithProps(SearchSuggestionsPortal, { store, callbacks, ariaProps }),
+        component: decorateComponentWithProps(MentionSuggestionsPortal, { store, callbacks, ariaProps }),
       },
     ],
     getEditorProps: () => (

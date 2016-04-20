@@ -6,7 +6,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-export default class SearchSuggestions extends Component {
+export default class MentionSuggestions extends Component {
 
   static propTypes = {
     entityMutability: PropTypes.oneOf([
