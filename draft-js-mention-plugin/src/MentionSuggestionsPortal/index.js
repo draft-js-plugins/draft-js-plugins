@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 export default class MentionSuggestionsPortal extends Component {
 
   componentWillMount() {
-    this.props.store.getEditorState = this.props.getEditorState;
-    this.props.store.setEditorState = this.props.setEditorState;
     this.props.store.register(this.props.offsetKey);
     this.updatePortalClientRect(this.props);
 

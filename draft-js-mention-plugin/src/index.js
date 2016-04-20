@@ -111,6 +111,11 @@ const createMentionPlugin = (config = {}) => {
       }
     ),
 
+    initialize: ({ getEditorState, setEditorState }) => {
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
+    },
+
     onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
     onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
     onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
