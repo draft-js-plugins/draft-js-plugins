@@ -1,10 +1,9 @@
 import React, {
-  // PropTypes,
   Component,
 } from 'react';
 import Avatar from './Avatar';
 
-export default class MentionOption extends Component {
+export default class Entry extends Component {
 
   constructor(props) {
     super(props);
@@ -35,7 +34,7 @@ export default class MentionOption extends Component {
 
   render() {
     const { theme = {} } = this.props;
-    const className = this.props.isFocused ? theme.autocompleteEntryFocused : theme.autocompleteEntry;
+    const className = this.props.isFocused ? theme.mentionSuggestionsEntryFocused : theme.mentionSuggestionsEntry;
     return (
       <div
         className={ className }
@@ -45,7 +44,7 @@ export default class MentionOption extends Component {
         role="option"
       >
         <Avatar mention={ this.props.mention } theme={ theme } />
-        <span className={ theme.autocompleteEntryText }>{ this.props.mention.get('name') }</span>
+        <span className={ theme.mentionSuggestionsEntryText }>{ this.props.mention.get('name') }</span>
       </div>
     );
   }

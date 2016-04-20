@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
-import MentionOption from './MentionOption';
+import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-export default class SearchSuggestions extends Component {
+export default class MentionSuggestions extends Component {
 
   static propTypes = {
     entityMutability: PropTypes.oneOf([
@@ -247,14 +247,14 @@ export default class SearchSuggestions extends Component {
     return (
       <div
         {...this.props}
-        className={ theme.autocomplete }
+        className={ theme.mentionSuggestions }
         role="listbox"
         id={ `mentions-list-${this.key}` }
         ref="popover"
       >
         {
           this.props.suggestions.map((mention, index) => (
-            <MentionOption
+            <Entry
               key={ mention.get('name') }
               onMentionSelect={ this.onMentionSelect }
               onMentionFocus={ this.onMentionFocus }

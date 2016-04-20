@@ -1,18 +1,18 @@
-.autocompleteEntry {
+.mentionSuggestionsEntry {
   padding: 7px 10px 3px 10px;
   transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
 }
 
-.autocompleteEntry:active {
+.mentionSuggestionsEntry:active {
   background-color: #cce7ff;
 }
 
-.autocompleteEntryFocused {
-  composes: autocompleteEntry;
+.mentionSuggestionsEntryFocused {
+  composes: mentionSuggestionsEntry;
   background-color: #e6f3ff;
 }
 
-.autocompleteEntryText {
+.mentionSuggestionsEntryText {
   display: inline-block;
   margin-left: 8px;
   white-space: nowrap;
@@ -21,7 +21,7 @@
   max-width: 368px;
 }
 
-.autocompleteEntryAvatar {
+.mentionSuggestionsEntryAvatar {
   display: inline-block;
   width: 24px;
   height: 24px;
