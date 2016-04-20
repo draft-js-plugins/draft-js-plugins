@@ -28,7 +28,7 @@
     width: 33.33%;
   }
 
-  .plugin:nth-child(4) {
+  .plugin:nth-child(3n+1) {
     border-left: 1px solid #eee;
   }
 }
