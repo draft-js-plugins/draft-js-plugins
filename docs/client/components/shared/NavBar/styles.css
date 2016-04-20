@@ -28,14 +28,14 @@
     width: 33.33%;
   }
 
-  .plugin:nth-child(4) {
+  .plugin:nth-child(3n+1) {
     border-left: 1px solid #eee;
   }
 }
 
 @media (min-width: 481px) {
   .plugin {
-    width: 16.66%;
+    width: 14%;
   }
 }
 

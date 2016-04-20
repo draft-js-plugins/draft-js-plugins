@@ -17,6 +17,11 @@ describe('CounterPlugin Line Counter', () => {
   });
 
   it('instantiates plugin with word counter and counts 5 words', () => {
+    const text = 'Hello there, how are you?';
+    const editorState = createEditorStateFromText(text);
+    counterPlugin.initialize({
+      getEditorState: () => editorState,
+    });
     const { CustomCounter } = counterPlugin;
 
     // a function that takes a string and returns the number of words
@@ -25,15 +30,18 @@ describe('CounterPlugin Line Counter', () => {
       return wordArray ? wordArray.length : 0;
     };
 
-    const text = 'Hello there, how are you?';
-    const editorState = createEditorStateFromText(text);
     const result = mount(
-      <CustomCounter editorState={ editorState } countFunction={ countFunction } />
+      <CustomCounter countFunction={ countFunction } />
     );
     expect(result).to.have.text('5');
   });
 
   it('instantiates plugin with number counter and counts 6 number characters', () => {
+    const text = 'I am a 1337 h4x0r';
+    const editorState = createEditorStateFromText(text);
+    counterPlugin.initialize({
+      getEditorState: () => editorState,
+    });
     const { CustomCounter } = counterPlugin;
 
     // a function that takes a string and returns the number of number characters
@@ -42,10 +50,8 @@ describe('CounterPlugin Line Counter', () => {
       return numArray ? numArray.length : 0;
     };
 
-    const text = 'I am a 1337 h4x0r';
-    const editorState = createEditorStateFromText(text);
     const result = mount(
-      <CustomCounter editorState={ editorState } countFunction={ countFunction } />
+      <CustomCounter countFunction={ countFunction } />
     );
     expect(result).to.have.text('6');
   });

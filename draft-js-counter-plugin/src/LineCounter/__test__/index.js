@@ -17,12 +17,14 @@ describe('CounterPlugin Line Counter', () => {
   });
 
   it('instantiates plugin and counts 3 lines', () => {
+    const editorState = createEditorStateFromText('One\nTwo\nThree');
+    counterPlugin.initialize({
+      getEditorState: () => editorState,
+    });
     const { LineCounter } = counterPlugin;
 
-    const text = 'One\nTwo\nThree';
-    const editorState = createEditorStateFromText(text);
     const result = mount(
-      <LineCounter editorState={ editorState } />
+      <LineCounter />
     );
     expect(result).to.have.text('3');
   });
