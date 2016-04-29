@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { containsFiles } from '../utils/file';
 
-export default function WrapComponent(WrappedComponent, plugin) {
+export default function WrapComponent(WrappedComponent) {
   class Wrapper extends Component {
+    static pluginOptions = WrappedComponent.pluginOptions;
+    static WrappedComponent = WrappedComponent;
     state = {};
     componentDidMount() {
       this.DOMNode = ReactDOM.findDOMNode(this.refs.com);
@@ -49,5 +51,5 @@ export default function WrapComponent(WrappedComponent, plugin) {
     }
   }
 
-  return (props) => <Wrapper {...props} />;
+  return Wrapper;
 }
