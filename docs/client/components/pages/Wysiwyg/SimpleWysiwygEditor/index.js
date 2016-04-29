@@ -9,7 +9,8 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 import createDndPlugin from 'draft-js-dnd-plugin';
 import createToolbarPlugin from 'draft-js-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
-import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
+import createAlignmentPlugin from 'draft-js-alignment-plugin';
+// import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
 // Components
 import PlaceholderGithub from '../components/placeholder-github';
@@ -30,6 +31,9 @@ const plugins = [
   createFocusPlugin({}),
   createImagePlugin({}),
   createEntityPropsPlugin({}),
+  createAlignmentPlugin({
+    types: ['block-image'],
+  }),
   createDndPlugin({
     allowDrop: true,
     handleUpload: (data, success, failed, progress) =>
@@ -52,7 +56,7 @@ const plugins = [
   }),
 ];
 
-class SimpleDndEditor extends Component {
+class SimpleWysiwygEditor extends Component {
   state = {
     editorState: EditorState.createEmpty(),
     draggingOver: false,
@@ -96,4 +100,4 @@ class SimpleDndEditor extends Component {
   }
 }
 
-export default SimpleDndEditor;
+export default SimpleWysiwygEditor;
