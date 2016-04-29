@@ -6,6 +6,8 @@ export default function WrapComponent(WrappedComponent, options) {
   const { useDiv } = options || {};
 
   class Wrapper extends Component {
+    static pluginOptions = WrappedComponent.pluginOptions;
+    static WrappedComponent = WrappedComponent;
     static defaultProps = {
       draggable: true,
       readOnly: false,

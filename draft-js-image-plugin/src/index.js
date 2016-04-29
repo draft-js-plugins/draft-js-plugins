@@ -1,7 +1,14 @@
 import Image from './components/image';
 import { EditorState, Entity } from 'draft-js';
+import styles from './style.css';
+import decorateComponentWithProps from './utils/decorateWithProps';
 
-const imagePlugin = () => {
+const defaultTheme = {
+  ...styles,
+};
+
+const imagePlugin = config => {
+  const theme = config.theme ? config.theme : defaultTheme;
   return {
     blockRendererFn: (contentBlock) => {
       const type = contentBlock.getType();
@@ -9,7 +16,7 @@ const imagePlugin = () => {
         const entityKey = contentBlock.getEntityAt(0);
         const data = entityKey ? Entity.get(entityKey).data : {};
         return {
-          component: Image,
+          component: decorateComponentWithProps(Image, { theme }),
           props: {
             ...data,
           },

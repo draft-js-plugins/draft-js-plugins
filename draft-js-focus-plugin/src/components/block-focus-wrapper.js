@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-export default function (WrappedComponent) {
+export default theme => WrappedComponent => {
   class BlockFocusWrapper extends Component {
     static pluginOptions = WrappedComponent.pluginOptions;
     static WrappedComponent = WrappedComponent;
@@ -25,14 +25,14 @@ export default function (WrappedComponent) {
 
     render() {
       if (WrappedComponent.pluginOptions && WrappedComponent.pluginOptions.customFocusedStyle) {
-        return <WrappedComponent ref="component" {...this.props} />;
+        return <WrappedComponent ref="component" focusedStyle={theme} {...this.props} />;
       }
 
-      return (
-        <div style={this.props.blockProps.focused ? { border: '1px solid blue' } : null}>
+      return this.props.blockProps.focused ? (
+        <div className={theme.focused}>
           <WrappedComponent ref="component" {...this.props} />
         </div>
-      );
+      ) : <WrappedComponent ref="component" {...this.props} />;
     }
   }
   return BlockFocusWrapper;

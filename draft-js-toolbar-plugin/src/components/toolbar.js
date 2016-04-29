@@ -21,9 +21,9 @@ export default class Toolbar extends Component {
 
   renderAction = (action) => {
     const { theme } = this.props;
-    const classNames = [theme.get('toolbar-item')];
+    const classNames = [theme['toolbar-item']];
     if (action.active) {
-      classNames.push(theme.get('toolbar-item-active'));
+      classNames.push(theme['toolbar-item-active']);
     }
 
     const toggle = () => this.toggleAction(action);
@@ -45,7 +45,7 @@ export default class Toolbar extends Component {
 
     return (
       <Tooltip {...this.props} active={active} group="toolbar">
-        <div className={theme.get('toolbar')} onMouseDown={this.preventDefault}>
+        <div className={theme['toolbar']} onMouseDown={this.preventDefault}>
           {actions.map(this.renderAction)}
         </div>
       </Tooltip>

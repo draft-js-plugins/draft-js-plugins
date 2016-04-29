@@ -5,7 +5,8 @@ const getDisplayName = (WrappedComponent) => (
     WrappedComponent.displayName || WrappedComponent.name || 'Component'
 );
 
-export default (setEditorState, getEditorState) => function WrapComponent(WrappedComponent) {
+export default (setEditorState, getEditorState, theme) => function WrapComponent(WrappedComponent) {
+  const { pluginOptions } = WrappedComponent;
   class Wrapper extends Component {
     static displayName = `Decorated(${getDisplayName(WrappedComponent)})`;
     static pluginOptions = WrappedComponent.pluginOptions;
@@ -52,13 +53,34 @@ export default (setEditorState, getEditorState) => function WrapComponent(Wrappe
         },
       ];
 
-      return (
-          <WrappedComponent {...this.props}
-            alignment={blockProps.alignment}
-            align={this.align}
-            actions={actions}
-          />
+      const className = `${theme[blockProps.alignment || 'center']}`;
+
+      const inner = (
+        <WrappedComponent {...this.props}
+          alignment={blockProps.alignment}
+          align={this.align}
+          alignmentStyles={theme}
+          actions={actions}
+        />
       );
+
+      if(pluginOptions && pluginOptions.customAlignmentStyle){
+        return inner;
+      } else if (!blockProps.alignment || blockProps.alignment === 'center') {
+        return (
+          <div className={theme.centerWrapper}>
+            <div className={className}>
+              {inner}
+            </div>
+          </div>
+        )
+      } else {
+        return (
+          <div className={className}>
+            {inner}
+          </div>
+        )
+      }
     }
   };
   return Wrapper;

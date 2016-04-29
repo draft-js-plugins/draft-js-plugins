@@ -57,8 +57,6 @@ const Portal = {
       props,
     ];
 
-    console.log(store.portals);
-
     const {Element, ...actualProps} = props;
     ReactDOM.render(<Element {...actualProps} />, store.el);
   }

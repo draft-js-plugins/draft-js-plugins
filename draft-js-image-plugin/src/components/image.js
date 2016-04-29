@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-import imageStyles from '../style.css';
+import decorateComponentWithProps from 'decorate-component-with-props';
 
 class Image extends Component {
   static pluginOptions = {
     customFocusedStyle: true,
+    customAlignmentStyle: true,
+    customUploadProgress: true
   }
 
-  renderProgress = progress => progress >= 0
-    ? <div className={ imageStyles.imageLoader } style={{ width: `${100 - progress}%` }} />
+  renderProgress = (progress, theme) => progress >= 0
+    ? <div className={ theme.imageLoader } style={{ width: `${100 - progress}%` }} />
     : null;
 
   render() {
-    const { blockProps, alignment, onDragStart, draggable } = this.props;
+    const { blockProps, alignment, onDragStart, draggable, theme, focusedStyle } = this.props;
     const { focused, progress, src, url } = blockProps;
-    const className = `${imageStyles.imageWrapper} ${imageStyles[alignment || 'center']}`;
+    const className = `${theme.imageWrapper} ${theme[alignment || 'center']}`;
+    const imageClassName = theme.image + (focused ? ` ${focusedStyle.focused}` : '');
 
-    const style = focused ? { outline: '1px solid blue' } : null;
     return (
       <figure className={className} contentEditable={false} onDragStart={onDragStart} draggable={draggable}>
-        <img src={src || url} width="100%" height="auto" className={imageStyles.image} style={style} />
-        {this.renderProgress(progress)}
+        <img src={src || url} width="100%" height="auto" className={imageClassName} />
+        {this.renderProgress(progress, theme)}
       </figure>
     );
   }

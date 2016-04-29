@@ -1,3 +1,21 @@
-.active {
-  border: 1px solid red;
+.centerWrapper {
+  text-align: center;
+}
+
+.center {
+  display: inline-block;
+}
+
+.center {
+  display: inline-block;
+}
+
+.left {
+  float: left;
+  margin-right: 10px;
+}
+
+.right {
+  float: right;
+  margin-left: 10px;
 }

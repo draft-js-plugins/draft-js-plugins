@@ -1,15 +1,14 @@
 import TextToolbar, { renderTextToolbar } from './components/text-toolbar';
 import React from 'react';
 import Wrapper from './decorators/hover-toolbar';
-import { Map } from 'immutable';
 import linkStrategy from './linkStrategy';
 import Link from './Link';
 import styles from './styles.css';
-import decorateComponentWithProps from 'decorate-component-with-props';
+import decorateComponentWithProps from './utils/decorateWithProps';
 
-const defaultTheme = Map({
+const defaultTheme = {
   ...styles,
-});
+};
 
 const toolbarPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;

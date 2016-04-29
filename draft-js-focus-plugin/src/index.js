@@ -1,7 +1,9 @@
 import refreshState from './modifiers/refreshState';
-import wrapper from './components/block-focus-wrapper';
+import Wrapper from './components/block-focus-wrapper';
 import { SelectionState, EditorState } from 'draft-js';
-import './style.css';
+import styles from './style.css';
+
+const defaultTheme = { ...styles };
 
 function setSelection(getEditorState, setEditorState, previousActiveBlock, mode){
   const selection = getEditorState().getSelection();
@@ -32,7 +34,8 @@ function setSelection(getEditorState, setEditorState, previousActiveBlock, mode)
   return activeBlock;
 }
 
-const focusPlugin = () => {
+const focusPlugin = config => {
+  const theme = config.theme ? config.theme : defaultTheme;
   let activeBlock = null;
   return {
     onChange: (editorState) => {
@@ -43,7 +46,7 @@ const focusPlugin = () => {
         return EditorState.forceSelection(editorState, selection);
       } return editorState;
     }, blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => ({
-      decorators: [wrapper],
+      decorators: [Wrapper(theme)],
       props: {
         focused: activeBlock && contentBlock.get('key') === activeBlock.get('key'),
         focus: () => {
