@@ -168,7 +168,7 @@ export default class App extends Component {
             <ul>
               <li>Stickers</li>
               <li>Hashtags</li>
-              <li>Linkfiy (automatically turns links into a-tags)</li>
+              <li>Linkify (automatically turns links into a-tags)</li>
               <li>Mentions</li>
               <li>Emojis</li>
             </ul>
