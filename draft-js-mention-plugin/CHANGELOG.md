@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.0.1 - 2016-04-29
+
+- Make sure there is no autocomplete on tab after deleting a mention [#234](https://github.com/draft-js-plugins/draft-js-plugins/issues/234)
+
 ## 1.0.0 - 2016-04-20
 
 ### Changed
