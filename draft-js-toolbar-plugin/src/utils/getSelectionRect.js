@@ -1,3 +1,4 @@
+// Get selection text's client rectangle
 export default function getSelectionRect(selected) {
   if (!selected || !selected.rangeCount || selected.isCollapsed) return null;
 

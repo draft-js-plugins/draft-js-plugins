@@ -1,3 +1,4 @@
+// Check if drag event contains files (not text)
 export function containsFiles(event) {
   if (event.dataTransfer.types) {
     for (let i = 0; i < event.dataTransfer.types.length; i++) {
@@ -10,6 +11,8 @@ export function containsFiles(event) {
   return false;
 }
 
+// Read file contents intelligently as plain text/json, image as dataUrl or
+// anything else as binary
 export function readFile(file) {
   return new Promise(resolve => {
     const reader = new FileReader();
@@ -43,6 +46,7 @@ export function readFile(file) {
   });
 }
 
+// Read multiple files using above function
 export function readFiles(files) {
   return Promise.all(files.map(readFile));
 }

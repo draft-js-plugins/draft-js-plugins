@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import { Entity, EditorState } from 'draft-js';
 
-const getDisplayName = (WrappedComponent) => (
-    WrappedComponent.displayName || WrappedComponent.name || 'Component'
-);
+// Get a component's display name
+const getDisplayName = WrappedComponent => {
+  const component = WrappedComponent.WrappedComponent || WrappedComponent;
+  return component.displayName || component.name || 'Component';
+};
 
-export default (setEditorState, getEditorState, theme) => function WrapComponent(WrappedComponent) {
+export default (setEditorState, getEditorState, theme) => WrappedComponent => {
   const { pluginOptions } = WrappedComponent;
-  class Wrapper extends Component {
-    static displayName = `Decorated(${getDisplayName(WrappedComponent)})`;
+  return class BlockAlignmentDecorator extends Component {
+    // Statics
+    static displayName = `BlockAlignment(${getDisplayName(WrappedComponent)})`;
     static pluginOptions = WrappedComponent.pluginOptions;
-    static WrappedComponent = WrappedComponent;
+    static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
+
+    // Default props
     static defaultProps = {
       draggable: true,
       readOnly: false,
     };
+
+    // Perform alignment
     align = alignment => {
       const entityKey = this.props.block.getEntityAt(0);
       if (entityKey) {
+        // Store alignment in entity
         Entity.mergeData(entityKey, { alignment });
 
         // Force refresh
@@ -31,9 +39,11 @@ export default (setEditorState, getEditorState, theme) => function WrapComponent
       }
     };
 
+    // Render
     render() {
       const { blockProps } = this.props;
 
+      // Compose actions for the toolbar
       const actions = [
         {
           active: blockProps.alignment === 'left',
@@ -53,8 +63,10 @@ export default (setEditorState, getEditorState, theme) => function WrapComponent
         },
       ];
 
+      // Get the className
       const className = `${theme[blockProps.alignment || 'center']}`;
 
+      // Get the wrapped component and pass alignment props
       const inner = (
         <WrappedComponent {...this.props}
           alignment={blockProps.alignment}
@@ -64,9 +76,13 @@ export default (setEditorState, getEditorState, theme) => function WrapComponent
         />
       );
 
+      // If the wrapped component defines pluginOptions.customAlignmentStyle
+      // don't bother about alignment here
       if(pluginOptions && pluginOptions.customAlignmentStyle){
         return inner;
-      } else if (!blockProps.alignment || blockProps.alignment === 'center') {
+      }
+      // If it doesn't and centered, put 2 divs around
+      else if (!blockProps.alignment || blockProps.alignment === 'center') {
         return (
           <div className={theme.centerWrapper}>
             <div className={className}>
@@ -74,7 +90,9 @@ export default (setEditorState, getEditorState, theme) => function WrapComponent
             </div>
           </div>
         )
-      } else {
+      }
+      // If left/right aligned, one div with float will be sufficient
+      else {
         return (
           <div className={className}>
             {inner}
@@ -83,5 +101,4 @@ export default (setEditorState, getEditorState, theme) => function WrapComponent
       }
     }
   };
-  return Wrapper;
 }

@@ -1,3 +1,4 @@
+// Get browser selection
 export default function getSelection() {
   if (window.getSelection) {
     return window.getSelection();

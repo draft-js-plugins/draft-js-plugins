@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 
-const getDisplayName = (WrappedComponent) => (
-  WrappedComponent.displayName || WrappedComponent.name || 'Component'
-);
+// Get a component's display name
+const getDisplayName = WrappedComponent => {
+  const component = WrappedComponent.WrappedComponent || WrappedComponent;
+  return component.displayName || component.name || 'Component';
+};
 
+// Improved decorateWithProps will respect pluginOptions
 /* eslint-disable space-before-keywords */
-export default (EmbeddedComponent, props) => (class extends Component {
-
-  static displayName = `Decorated(${getDisplayName(EmbeddedComponent)})`;
-  static pluginOptions = EmbeddedComponent.pluginOptions;
-  static WrappedComponent = EmbeddedComponent;
+export default (WrappedComponent, props) => class extends Component {
+  static displayName = `Decorated(${getDisplayName(WrappedComponent)})`;
+  static pluginOptions = WrappedComponent.pluginOptions;
+  static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
   render() {
     return (
-      <EmbeddedComponent { ...this.props } { ...props } />
+      <WrappedComponent { ...this.props } { ...props } />
     );
   }
-});
+};

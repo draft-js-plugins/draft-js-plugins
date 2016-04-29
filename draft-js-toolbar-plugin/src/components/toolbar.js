@@ -9,17 +9,20 @@ export default class Toolbar extends Component {
     active: true,
   };
 
-  preventDefault = (event) => {
+  // PreventDefault helper to swallow clicks on toolbar to not loose focus
+  preventDefault = event => {
     event.preventDefault();
   };
 
-  toggleAction = (action) => {
+  // Action toggle
+  toggleAction = action => {
     if (action.toggle) {
       action.toggle(action, !action.active);
     }
   };
 
-  renderAction = (action) => {
+  // Render single action buttons
+  renderAction = action => {
     const { theme } = this.props;
     const classNames = [theme['toolbar-item']];
     if (action.active) {
@@ -36,15 +39,12 @@ export default class Toolbar extends Component {
     );
   };
 
+  // Render
   render() {
-    const { theme, blockProps, active } = this.props;
-
-    const actions = (blockProps && blockProps.actions ? blockProps.actions : this.props.actions) || [];
-
-    if (!active) return null;
+    const { theme, blockProps, active, actions } = this.props;
 
     return (
-      <Tooltip {...this.props} active={active} group="toolbar">
+      <Tooltip {...this.props} active={active}>
         <div className={theme['toolbar']} onMouseDown={this.preventDefault}>
           {actions.map(this.renderAction)}
         </div>
@@ -53,6 +53,7 @@ export default class Toolbar extends Component {
   }
 }
 
+// Render the Toolbar or Component with provided props using the Portal
 export const renderToolbar = function (props, Component) {
   const method = props.active === false ? Portal.removePortal : Portal.renderPortal
   method({

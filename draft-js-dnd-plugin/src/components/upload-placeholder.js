@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PlaceholderGithub extends Component {
+class UploadPlaceholder extends Component {
   render() {
     const { blockProps, block } = this.props;
 
@@ -12,4 +12,4 @@ class PlaceholderGithub extends Component {
   }
 }
 
-export default PlaceholderGithub;
+export default UploadPlaceholder;

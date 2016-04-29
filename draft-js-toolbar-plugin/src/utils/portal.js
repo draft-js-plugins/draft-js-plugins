@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+// Store active portals and the portal dom element here
 let store;
-
 const Portal = {
-  removePortalFromList: props => {
+  // Remove a portal from the list of portals safely
+  removePortalFromList: (portals, props) => {
     if(!props) {
-      return store.portals;
+      return portals;
     }
-    return store.portals.filter(portal => {
+    return portals.filter(portal => {
       if (props.uid) {
         return portal.uid !== props.uid;
       } else if (props.parent) {
@@ -17,9 +18,21 @@ const Portal = {
     });
   },
 
+  // Add a portal to the list of portals safely
+  addPortalToList: (portals, props) => {
+    if(!props) {
+      return portals;
+    }
+    return [
+      ...Portal.removePortalFromList(portals, props),
+      props,
+    ]
+  },
+
+  // Remove a portal
   removePortal: props => {
     if (props && store) {
-      store.portals = Portal.removePortalFromList(props);
+      store.portals = Portal.removePortalFromList(store.portals, props);
       // Other tooltip was active, switching
       if (store.portals.length > 0) {
         const item = store.portals[store.portals.length - 1];
@@ -35,6 +48,7 @@ const Portal = {
     } return undefined;
   },
 
+  // Create the store and the dom element div
   createPortalNode: () => {
     store = {
       portals: [],
@@ -43,6 +57,7 @@ const Portal = {
     document.body.appendChild(store.el);
   },
 
+  // Render a portal
   renderPortal: props => {
     if(!props){
       return;
@@ -52,10 +67,7 @@ const Portal = {
       Portal.createPortalNode();
     }
 
-    store.portals = [
-      ...Portal.removePortalFromList(props),
-      props,
-    ];
+    store.portals = Portal.addPortalToList(store.portals, props);
 
     const {Element, ...actualProps} = props;
     ReactDOM.render(<Element {...actualProps} />, store.el);

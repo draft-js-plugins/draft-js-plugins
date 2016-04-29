@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Draggable from 'draft-js-dnd-plugin/components/block-draggable-wrapper';
 
 class BlockText extends Component {
   render() {
@@ -17,6 +16,4 @@ class BlockText extends Component {
   }
 }
 
-export default Draggable(BlockText, {
-  useDiv: true,
-});
+export default BlockText;

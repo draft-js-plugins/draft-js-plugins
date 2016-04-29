@@ -7,81 +7,83 @@ import getSelection from '../utils/getSelection';
 import getSelectionRect from '../utils/getSelectionRect';
 
 export default class DraftToolbar extends Component {
-  constructor() {
-    super();
-    this.state = { active: true };
-  }
-
-  toggleAction(action, state) {
+  // Toggle custom actions, like make selected text a link
+  toggleAction(action) {
+    const { editorState, setEditorState } = this.props;
     if (action.toggle) {
-      action.toggle(action, state, this.props.editorState, this.props.setEditorState);
+      action.toggle(action, editorState, setEditorState);
     }
   }
 
+  // Toggle the block type
   toggleBlockType(blockType) {
-    this.props.setEditorState(
-      RichUtils.toggleBlockType(
-        this.props.editorState,
-        blockType
-      )
-    );
+    const { editorState, setEditorState } = this.props;
+    setEditorState(RichUtils.toggleBlockType(
+      editorState,
+      blockType
+    ));
   }
 
+  // Toggle the inline style
   toggleInlineStyle(inlineStyle) {
-    this.props.setEditorState(
-      RichUtils.toggleInlineStyle(
-        this.props.editorState,
-        inlineStyle
-      )
-    );
+    const { editorState, setEditorState } = this.props;
+    setEditorState(RichUtils.toggleInlineStyle(
+      editorState,
+      inlineStyle
+    ));
   }
 
   render() {
     const { editorState } = this.props;
     const inlineStyles = this.props.inlineStyles || defaultInlineStyles;
-    const actions = this.props.actions || defaultActions;
+    const customActions = this.props.actions || defaultActions;
     const selectionState = editorState.getSelection();
-
-    // Get current selection (natively)
-    const selected = getSelection();
 
     // Nothing selected? No toolbar please.
     if (!shouldRenderToolbar(this.props)) {
       return null;
     }
 
+    // Get current style to check what actions are toggled
+    const currentStyle = editorState.getCurrentInlineStyle();
+    // Get current block
     const block = editorState
       .getCurrentContent()
       .getBlockForKey(editorState.getSelection().getStartKey());
-    const currentStyle = editorState.getCurrentInlineStyle();
 
-    const items = [
-      ...inlineStyles.map(x => ({
-        icon: x.icon,
-        button: x.button,
-        label: x.label,
-        active: currentStyle.has(x.style),
-        toggle: () => this.toggleInlineStyle(x.style),
+    // Compose final actions
+    const actions = [
+      ...inlineStyles.map(action => ({
+        icon: action.icon,
+        button: action.button,
+        label: action.label,
+        active: currentStyle.has(action.style),
+        toggle: () => this.toggleInlineStyle(action.style),
       })),
-      ...actions.map(x => ({
-        icon: x.icon, button: x.button, label: x.label,
-        active: typeof x.active === 'function' ? x.active(block, this.state, this.props.editorState) : x.active,
-        toggle: (state) => this.toggleAction(x, state),
+      ...customActions.map(action => ({
+        icon: action.icon,
+        button: action.button,
+        label: action.label,
+        active: typeof action.active === 'function'
+          ? action.active(block, editorState)
+          : action.active,
+        toggle: state => this.toggleAction(action, state),
       })),
     ];
 
     return (
       <Toolbar
         uid={'text-toolbar'}
-        rectGetter={()=>getSelectionRect(selected)}
+        rectGetter={()=>getSelectionRect(getSelection())}
         {...this.props}
-        actions={items}
+        actions={actions}
         active={true}
       />
     );
   }
 }
 
+// Export renderTextToolbar function to allow rendering the toolbar
 export const renderTextToolbar = function (props) {
   renderToolbar({
     ...props,
@@ -90,6 +92,7 @@ export const renderTextToolbar = function (props) {
   }, DraftToolbar);
 };
 
+// Helper function, is toolbar necessary / is a text selected?
 const shouldRenderToolbar = props => {
   const { editorState } = props;
   const selected = getSelection();

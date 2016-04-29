@@ -1,12 +1,11 @@
 import { EditorState } from 'draft-js';
 
-const refreshState = (setEditorState, editorState) => {
+// Refresh editor state forcefully
+export default (setEditorState, editorState) => {
   setEditorState(
     EditorState.forceSelection(
       editorState,
       editorState.getCurrentContent().getSelectionAfter()
     )
   );
-}
-
-export default refreshState;
+};

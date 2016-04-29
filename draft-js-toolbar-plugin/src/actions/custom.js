@@ -6,7 +6,7 @@ export default [
     label: 'Link',
     button: <span>Link</span>,
     style: 'link',
-    active: (block, state, editorState) => {
+    active: (block, editorState) => {
       let active;
       const selection = editorState.getSelection();
       block.findEntityRanges(

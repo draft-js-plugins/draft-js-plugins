@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import decorateComponentWithProps from 'decorate-component-with-props';
 
 class Image extends Component {
+  // Set pluginOptions
   static pluginOptions = {
+    // Handle focused style manually
     customFocusedStyle: true,
+    // Handle alignment style manually
     customAlignmentStyle: true,
-    customUploadProgress: true
+    // Handle upload progress style manually
+    customUploadProgress: true,
+    // Handle dnd onDragStart/draggable manually
+    customHandleDnd: true
   }
 
   renderProgress = (progress, theme) => progress >= 0
@@ -13,10 +18,13 @@ class Image extends Component {
     : null;
 
   render() {
-    const { blockProps, alignment, onDragStart, draggable, theme, focusedStyle } = this.props;
-    const { focused, progress, src, url } = blockProps;
+    const { alignment, onDragStart, draggable, theme, focusedStyle, isFocused,
+      progress, src, url } = this.props;
+
+    // Compose figure classNames
     const className = `${theme.imageWrapper} ${theme[alignment || 'center']}`;
-    const imageClassName = theme.image + (focused ? ` ${focusedStyle.focused}` : '');
+    // Compose image classNames
+    const imageClassName = theme.image + (isFocused ? ` ${focusedStyle.focused}` : '');
 
     return (
       <figure className={className} contentEditable={false} onDragStart={onDragStart} draggable={draggable}>
