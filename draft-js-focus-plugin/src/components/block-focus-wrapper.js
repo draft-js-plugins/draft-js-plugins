@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-export default function(WrappedComponent) {
-  class BlockStateWrapper extends Component {
+export default function (WrappedComponent) {
+  class BlockFocusWrapper extends Component {
+    static pluginOptions = WrappedComponent.pluginOptions;
+    static WrappedComponent = WrappedComponent;
     componentDidMount() {
       if (this.refs.component) {
         this.DOMNode = ReactDOM.findDOMNode(this.refs.component);
@@ -22,6 +24,10 @@ export default function(WrappedComponent) {
     };
 
     render() {
+      if (WrappedComponent.pluginOptions && WrappedComponent.pluginOptions.customFocusedStyle) {
+        return <WrappedComponent ref="component" {...this.props} />;
+      }
+
       return (
         <div style={this.props.blockProps.focused ? { border: '1px solid blue' } : null}>
           <WrappedComponent ref="component" {...this.props} />
@@ -29,5 +35,5 @@ export default function(WrappedComponent) {
       );
     }
   }
-  return BlockStateWrapper;
+  return BlockFocusWrapper;
 }

@@ -1,5 +1,5 @@
 import refreshState from './modifiers/refreshState';
-import wrapper from './components/block-state-wrapper';
+import wrapper from './components/block-focus-wrapper';
 import { SelectionState, EditorState } from 'draft-js';
 import './style.css';
 
@@ -10,9 +10,9 @@ function setSelection(getEditorState, setEditorState, previousActiveBlock, mode)
     ? editorState.getCurrentContent().getBlockBefore(selection.getAnchorKey())
     : editorState.getCurrentContent().getBlockAfter(selection.getAnchorKey());
 
-  if (!activeBlock) return;
+  if (!activeBlock) return undefined;
   if (previousActiveBlock && activeBlock.get('key') === previousActiveBlock.get('key')) {
-    return;
+    return undefined;
   }
 
   setTimeout(() => {
@@ -32,30 +32,31 @@ function setSelection(getEditorState, setEditorState, previousActiveBlock, mode)
   return activeBlock;
 }
 
-const statePlugin = () => {
+const focusPlugin = () => {
   let activeBlock = null;
   return {
     onChange: (editorState) => {
       const selection = editorState.getSelection();
       const actualActiveBlock = editorState.getCurrentContent().getBlockForKey(selection.getAnchorKey());
-      if(!activeBlock || !actualActiveBlock || activeBlock.get('key') !== actualActiveBlock.get('key')){
+      if (!activeBlock || !actualActiveBlock || activeBlock.get('key') !== actualActiveBlock.get('key')) {
         activeBlock = actualActiveBlock;
         return EditorState.forceSelection(editorState, selection);
-      }
-      return editorState;
+      } return editorState;
     }, blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => ({
       decorators: [wrapper],
       props: {
         focused: activeBlock && contentBlock.get('key') === activeBlock.get('key'),
         focus: () => {
           activeBlock = contentBlock;
-          setEditorState(EditorState.forceSelection(getEditorState(), new SelectionState({
-            anchorKey: activeBlock.get('key'),
-            anchorOffset: activeBlock.get('length') || 0,
-            focusKey: activeBlock.get('key'),
-            focusOffset: activeBlock.get('length') || 0,
-            isBackward: false,
-          })));
+          setEditorState(
+            EditorState.forceSelection(getEditorState(), new SelectionState({
+              anchorKey: activeBlock.get('key'),
+              anchorOffset: activeBlock.get('length') || 0,
+              focusKey: activeBlock.get('key'),
+              focusOffset: activeBlock.get('length') || 0,
+              isBackward: false,
+            }))
+          );
         },
       },
     }), onDownArrow: (event, { getEditorState, setEditorState }) => {
@@ -66,4 +67,4 @@ const statePlugin = () => {
   };
 };
 
-export default statePlugin;
+export default focusPlugin;
