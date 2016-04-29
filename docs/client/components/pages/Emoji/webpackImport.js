@@ -1,1 +1,1 @@
-import 'draft-js-hashtag-plugin/lib/plugin.css';
+import 'draft-js-emoji-plugin/lib/plugin.css';
