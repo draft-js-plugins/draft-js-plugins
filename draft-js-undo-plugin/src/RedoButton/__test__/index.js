@@ -48,11 +48,11 @@ describe('RedoButton', () => {
         editorState={ editorState }
         onChange={ onChange }
         theme={ theme }
-        className="hashtag"
+        className="redo"
         children="redo"
       />
     );
-    expect(result).to.have.prop('className').to.contain('hashtag');
+    expect(result).to.have.prop('className').to.contain('redo');
     expect(result).to.have.prop('className').to.contain('custom-class-name');
   });
 

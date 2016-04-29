@@ -48,11 +48,11 @@ describe('UndoButton', () => {
         editorState={ editorState }
         onChange={ onChange }
         theme={ theme }
-        className="hashtag"
+        className="undo"
         children="undo"
       />
     );
-    expect(result).to.have.prop('className').to.contain('hashtag');
+    expect(result).to.have.prop('className').to.contain('undo');
     expect(result).to.have.prop('className').to.contain('custom-class-name');
   });
 
