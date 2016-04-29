@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Tooltip from './tooltip';
+import ReactDOM from 'react-dom';
+import Tooltip from '../utils/tooltip';
+import Portal from '../utils/portal';
 
-
-export default class DraftToolbar extends Component {
+export default class Toolbar extends Component {
   static defaultProps = {
     actions: [],
     active: true,
@@ -36,9 +37,10 @@ export default class DraftToolbar extends Component {
   };
 
   render() {
-    const { theme, actions, active } = this.props;
+    const { theme, blockProps, active } = this.props;
 
-    // const current = toolbars.indexOf(this) === (toolbars.length - 1);
+    const actions = (blockProps && blockProps.actions ? blockProps.actions : this.props.actions) || [];
+
     if (!active) return null;
 
     return (
@@ -50,3 +52,11 @@ export default class DraftToolbar extends Component {
     );
   }
 }
+
+export const renderToolbar = function (props, Component) {
+  const method = props.active === false ? Portal.removePortal : Portal.renderPortal
+  method({
+    ...props,
+    Element: Component ? Component : Toolbar
+  });
+};

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RichUtils, Entity } from 'draft-js';
-import Toolbar from './toolbar';
+import Toolbar, { renderToolbar } from './toolbar';
 import defaultInlineStyles from '../actions/inlineStyles';
 import defaultActions from '../actions/custom';
 import getSelection from '../utils/getSelection';
@@ -12,32 +12,14 @@ export default class DraftToolbar extends Component {
     this.state = { active: true };
   }
 
-  componentDidMount() {
-    const { plugin } = this.props;
-    plugin.onBlur = () => this.setState({ active: false });
-    plugin.onFocus = () => this.setState({ active: true });
-
-    // I'm getting catched by shouldComponentUpdate
-    // TODO find cleaner way
-    setInterval(() => {
-      this.setState({ });
-    }, 200);
-  }
-
-  shouldComponentUpdate(props, state) {
-    this.browserSelection = getSelection();
-    this.editorSelection = props.editorState.getSelection();
-    return this.browserSelection.isCollapsed === this.editorSelection.isCollapsed() || state.active !== this.state.active;
-  }
-
   toggleAction(action, state) {
     if (action.toggle) {
-      action.toggle(action, state, this.props.editorState, this.props.onChange);
+      action.toggle(action, state, this.props.editorState, this.props.setEditorState);
     }
   }
 
   toggleBlockType(blockType) {
-    this.props.onChange(
+    this.props.setEditorState(
       RichUtils.toggleBlockType(
         this.props.editorState,
         blockType
@@ -46,7 +28,7 @@ export default class DraftToolbar extends Component {
   }
 
   toggleInlineStyle(inlineStyle) {
-    this.props.onChange(
+    this.props.setEditorState(
       RichUtils.toggleInlineStyle(
         this.props.editorState,
         inlineStyle
@@ -55,25 +37,23 @@ export default class DraftToolbar extends Component {
   }
 
   render() {
-    const { active } = this.state;
-    const { editorState, plugin } = this.props;
+    const { editorState } = this.props;
     const inlineStyles = this.props.inlineStyles || defaultInlineStyles;
     const actions = this.props.actions || defaultActions;
+    const selectionState = editorState.getSelection();
 
-    if (!active) return null;
+    // Get current selection (natively)
+    const selected = getSelection();
 
-    const rect = getSelectionRect(this.browserSelection);
+    // Nothing selected? No toolbar please.
+    if (!shouldRenderToolbar(this.props)) {
+      return null;
+    }
 
-    if (!rect || this.editorSelection.isCollapsed()) return null;
-
-    const info = { left: rect.left, top: rect.top, width: rect.width };
-    const currentStyle = editorState.getCurrentInlineStyle();
     const block = editorState
       .getCurrentContent()
       .getBlockForKey(editorState.getSelection().getStartKey());
-
-    // const blockType = block.getType();
-    // ...blockTypes.map(x => ({ icon: x.icon, button: x.button, label: x.label, active: blockType === x.style, toggle: () => this.toggleBlockType(x.style) })),
+    const currentStyle = editorState.getCurrentInlineStyle();
 
     const items = [
       ...inlineStyles.map(x => ({
@@ -93,13 +73,26 @@ export default class DraftToolbar extends Component {
     return (
       <Toolbar
         uid={'text-toolbar'}
-        clearAll={true}
-        {...info}
+        rectGetter={()=>getSelectionRect(selected)}
         {...this.props}
         actions={items}
-        theme={plugin.theme}
         active={true}
       />
     );
   }
+}
+
+export const renderTextToolbar = function (props) {
+  renderToolbar({
+    ...props,
+    uid: 'text-toolbar',
+    active: shouldRenderToolbar(props)
+  }, DraftToolbar);
+};
+
+const shouldRenderToolbar = props => {
+  const { editorState } = props;
+  const selected = getSelection();
+  const selectionState = editorState.getSelection();
+  return selected.rangeCount && !selectionState.isCollapsed();
 }

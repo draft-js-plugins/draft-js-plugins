@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Portal from './tooltip-portal';
 
 class Tooltip extends Component {
   constructor(props) {
@@ -10,14 +9,18 @@ class Tooltip extends Component {
 
   componentDidMount() {
     let { left, top, width } = this.props;
-    const { forceLeft, position, parent } = this.props;
+    const { forceLeft, position, rectGetter, parent } = this.props;
 
     // Was props.parent set? Query parent element and get its rect
-    if (parent) {
-      console.log(parent);
-      const parentEl = typeof parent === 'string'
-        ? document.querySelector(parent)
-        : ReactDOM.findDOMNode(parent);
+    if (rectGetter) {
+      const rect = rectGetter();
+      if (rect) {
+        left = rect.left;
+        top = rect.top;
+        width = rect.width;
+      }
+    } else if (parent) {
+      const parentEl = typeof parent === 'string' ? document.querySelector(parent) : parent;
 
       if (!parentEl) {
         return;
@@ -43,6 +46,7 @@ class Tooltip extends Component {
       this.setState({ // eslint-disable-line react/no-did-mount-set-state
         top: top - (position === 'left' ? 0 : refRect.height) + scrollY,
         left: forceLeft || (left - (refRect.width / 2) + (width / 2) + scrollX),
+        width,
       });
     }
   }
@@ -89,7 +93,7 @@ class Tooltip extends Component {
     }
 
     const left = `${this.state.left}px`;
-    const top = `${this.state.top+1}px`;
+    const top = `${this.state.top + 1}px`;
 
     const style = {
       transition: 'all .3s ease-in-out, visibility .3s ease-in-out',
@@ -112,4 +116,4 @@ class Tooltip extends Component {
   }
 }
 
-export default Portal(Tooltip);
+export default Tooltip;

@@ -1,10 +1,11 @@
-import TextToolbar from './components/text-toolbar';
+import TextToolbar, { renderTextToolbar } from './components/text-toolbar';
+import React from 'react';
+import Wrapper from './decorators/hover-toolbar';
 import { Map } from 'immutable';
 import linkStrategy from './linkStrategy';
 import Link from './Link';
 import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
-import hoverToolbar from './components/hover-toolbar';
 
 const defaultTheme = Map({
   ...styles,
@@ -13,12 +14,15 @@ const defaultTheme = Map({
 const toolbarPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   return {
-    blockRendererFn: (contentBlock, { }) => ({
+    onChange: (editorState, { setEditorState }) => {
+      renderTextToolbar({ editorState, active: true, setEditorState, theme });
+      return editorState;
+    }, blockRendererFn: (contentBlock, { }) => ({
+      decorators: [Wrapper],
       props: {
-        HoverToolbar: hoverToolbar,
+        toolbarTheme: theme,
       },
-    }),
-    decorators: [
+    }), decorators: [
       {
         strategy: linkStrategy,
         component: Link,
@@ -30,6 +34,3 @@ const toolbarPlugin = (config = {}) => {
 };
 
 export default toolbarPlugin;
-export const HoverToolbar = hoverToolbar;
-
-// <TextToolbar editorState={editorState} plugin={toolbarPlugin} onChange={this.onChange} />
