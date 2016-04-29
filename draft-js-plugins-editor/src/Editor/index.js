@@ -64,14 +64,19 @@ class PluginEditor extends Component {
   // changed (or didn't)
   onChange = (editorState) => {
     let newEditorState = editorState;
+    const editorFns = {
+      getEditorState: this.getEditorState,
+      setEditorState: this.onChange,
+    };
+
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
-        newEditorState = plugin.onChange(newEditorState);
+        newEditorState = plugin.onChange(newEditorState, editorFns);
       }
     });
 
     if (this.props.onChange) {
-      this.props.onChange(newEditorState);
+      this.props.onChange(newEditorState, editorFns);
     }
   };
 
