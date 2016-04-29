@@ -105,7 +105,7 @@ export default class App extends Component {
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
           <SimpleCounterEditor />
-          <Code code={ simpleExampleCode } name="SimpleEmojiEditor.js" />
+          <Code code={ simpleExampleCode } name="SimpleCounterEditor.js" />
           <Code code={ simpleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
