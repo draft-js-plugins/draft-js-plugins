@@ -17,13 +17,28 @@ describe('CounterPlugin Character Counter', () => {
   });
 
   it('instantiates plugin and counts 12 characters', () => {
+    const editorState = createEditorStateFromText('Hello World!');
+    counterPlugin.initialize({
+      getEditorState: () => editorState,
+    });
     const { CharCounter } = counterPlugin;
 
-    const text = 'Hello World!';
-    const editorState = createEditorStateFromText(text);
     const result = mount(
-      <CharCounter editorState={ editorState } />
+      <CharCounter />
     );
     expect(result).to.have.text('12');
+  });
+
+  it('instantiates plugin and counts 3 unicode characters', () => {
+    const editorState = createEditorStateFromText('😁😂😃');
+    counterPlugin.initialize({
+      getEditorState: () => editorState,
+    });
+    const { CharCounter } = counterPlugin;
+
+    const result = mount(
+      <CharCounter />
+    );
+    expect(result).to.have.text('3');
   });
 });

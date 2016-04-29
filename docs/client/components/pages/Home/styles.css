@@ -98,7 +98,7 @@
 .teamMember {
   display: flex;
   flex-direction: column;
-  flex-basis: 90px;
+  flex-basis: 130px;
 }
 
 .specialThanks {

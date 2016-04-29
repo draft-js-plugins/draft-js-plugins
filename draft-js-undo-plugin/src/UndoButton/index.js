@@ -1,27 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
 import unionClassNames from 'union-class-names';
-import { Map } from 'immutable';
 
 class UndoButton extends Component {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
-    onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
   };
 
   onClick = () => {
-    this.props.onChange(EditorState.undo(this.props.editorState));
+    this.props.store.setEditorState(EditorState.undo(this.props.store.getEditorState()));
   };
 
   render() {
-    const { theme = Map(), children, className } = this.props;
-    const combinedClassName = unionClassNames(theme.get('undo'), className);
+    const { theme = {}, children, className } = this.props;
+    const combinedClassName = unionClassNames(theme.undo, className);
     return (
       <button
-        disabled={ this.props.editorState.getUndoStack().isEmpty() }
+        disabled={ this.props.store.getEditorState().getUndoStack().isEmpty() }
         onClick={ this.onClick }
         className={ combinedClassName }
       >

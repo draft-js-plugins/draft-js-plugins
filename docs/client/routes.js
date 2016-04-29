@@ -11,7 +11,7 @@ import Linkify from './components/pages/Linkify';
 import Sticker from './components/pages/Sticker';
 import Undo from './components/pages/Undo';
 import Mention from './components/pages/Mention';
-import Wysiwyg from './components/pages/Dnd';
+import Wysiwyg from './components/pages/Wysiwyg';
 import Counter from './components/pages/Counter';
 import Playground from './components/pages/Playground';
 

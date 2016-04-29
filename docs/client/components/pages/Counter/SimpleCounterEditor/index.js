@@ -4,10 +4,10 @@ import createCounterPlugin from 'draft-js-counter-plugin';
 import editorStyles from './editorStyles.css';
 
 const counterPlugin = createCounterPlugin();
-const { CharCounter, WordCounter, LineCounter } = counterPlugin;
+const { CharCounter, WordCounter, LineCounter, CustomCounter } = counterPlugin;
 const plugins = [counterPlugin];
 const text = `This editor has counters below!
-Try typing here and watch the numbers go up.
+Try typing here and watch the numbers go up. 🙌
 
 Note that the color changes when you pass one of the following limits:
 - 200 characters
@@ -22,14 +22,17 @@ export default class SimpleCounterEditor extends Component {
   };
 
   onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+    this.setState({ editorState });
   };
 
   focus = () => {
     this.refs.editor.focus();
   };
+
+  customCountFunction(str) {
+    const wordArray = str.match(/\S+/g);  // matches words according to whitespace
+    return wordArray ? wordArray.length : 0;
+  }
 
   render() {
     return (
@@ -42,9 +45,15 @@ export default class SimpleCounterEditor extends Component {
             ref="editor"
           />
         </div>
-        <div>Characters: <CharCounter editorState={ this.state.editorState } limit={200} /></div>
-        <div>Words: <WordCounter editorState={ this.state.editorState } limit={30} /></div>
-        <div>Lines: <LineCounter editorState={ this.state.editorState } limit={10} /></div>
+        <div><CharCounter limit={200} /> characters</div>
+        <div><WordCounter limit={30} /> words</div>
+        <div><LineCounter limit={10} /> lines</div>
+        <div>
+          <CustomCounter limit={40} countFunction={ this.customCountFunction } />
+          <span> words (custom function)</span>
+        </div>
+        <br />
+        <br />
       </div>
     );
   }

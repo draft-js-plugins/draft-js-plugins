@@ -1,6 +1,6 @@
 {
   "name": "draft-js-counter-plugin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Counter Plugin for DraftJS",
   "author": {
     "name": "Adrian Li",
@@ -38,6 +38,7 @@
   "license": "MIT",
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
+    "punycode": "^1.4.1",
     "union-class-names": "^1.0.0"
   }
 }

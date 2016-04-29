@@ -1,9 +1,3 @@
-// TODO allow to take a promise for mentions data as well
-// TODO change handle to name? not sure
-// TODO add profilepics/icons
-// TODO only show/use images if all mentions have images
-// TODO use unicorns for the unicorn editor
-
 import { fromJS } from 'immutable';
 
 const mentions = fromJS([

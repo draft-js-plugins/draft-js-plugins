@@ -39,6 +39,11 @@ export default class NavBar extends Component {
                 Undo
               </Link>
             </li>
+            <li className={ styles.plugin }>
+              <Link to="/plugin/counter" className={ styles.link }>
+                Counter
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

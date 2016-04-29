@@ -11,6 +11,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 - [Hashtags](https://www.draft-js-plugins.com/plugin/hashtag)
 - [Linkify](https://www.draft-js-plugins.com/plugin/linkify)
 - [Mentions](https://www.draft-js-plugins.com/plugin/mention)
+- [Counter](https://www.draft-js-plugins.com/plugin/counter)
 - [Undo](https://www.draft-js-plugins.com/plugin/undo)
 - or build your own … :)
 
@@ -98,7 +99,7 @@ Feel free to copy any of the existing plugins as a starting point. Feel free to 
 More documentation is coming soon…
 
 ## Discussion and Support
-Join the channel #plugin-editor after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
+Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
 
 ## Development
 

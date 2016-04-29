@@ -9,6 +9,7 @@ const compiler = webpack(config);
 
 app.use('/css', express.static('publicTemplate/css'));
 app.use('/images', express.static('publicTemplate/images'));
+app.use('/data', express.static('publicTemplate/data'));
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,

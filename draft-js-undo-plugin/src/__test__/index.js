@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import createUndoPlugin from '../index';
-import { Map } from 'immutable';
 import { expect } from 'chai';
 import { EditorState } from 'draft-js';
 
@@ -19,10 +18,7 @@ describe('UndoPlugin Config', () => {
     });
     const UndoButton = undoPlugin.UndoButton;
     const result = shallow(
-      <UndoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
+      <UndoButton />
     );
     expect(result).to.have.prop('children', 'custom-child');
   });
@@ -33,33 +29,27 @@ describe('UndoPlugin Config', () => {
     });
     const RedoButton = undoPlugin.RedoButton;
     const result = shallow(
-      <RedoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
+      <RedoButton />
     );
     expect(result).to.have.prop('children', 'custom-child');
   });
 
   it('instantiates plugin with theme config', () => {
-    const theme = Map({
+    const theme = {
       redo: 'custom-class-name',
       undo: 'custom-class-name',
-    });
+    };
     const undoPlugin = createUndoPlugin({ theme });
-    const RedoButton = undoPlugin.RedoButton;
-    const UndoButton = undoPlugin.UndoButton;
+    undoPlugin.initialize({
+      getEditorState: () => editorState,
+      setEditorState: onChange,
+    });
+    const { UndoButton, RedoButton } = undoPlugin;
     const redoResult = mount(
-      <RedoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
+      <RedoButton />
     );
     const undoResult = mount(
-      <UndoButton
-        editorState={ editorState }
-        onChange={ onChange }
-      />
+      <UndoButton />
     );
     expect(redoResult.find('button')).to.have.prop('className').to.contain('custom-class-name');
     expect(undoResult.find('button')).to.have.prop('className').to.contain('custom-class-name');

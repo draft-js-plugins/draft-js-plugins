@@ -1,26 +1,27 @@
 import Mention from './Mention';
-import SearchSuggestions from './SearchSuggestions';
-import SearchSuggestionsPortal from './SearchSuggestionsPortal';
+import MentionSuggestions from './MentionSuggestions';
+import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import mentionStrategy from './mentionStrategy';
-import mentionSearchStrategy from './mentionSearchStrategy';
+import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { Map } from 'immutable';
 import mentionStyles from './mentionStyles.css';
-import autocompleteStyles from './autocompleteStyles.css';
-import autocompleteEntryStyles from './autocompleteEntryStyles.css';
+import mentionSuggestionsStyles from './mentionSuggestionsStyles.css';
+import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
+import defaultPositionSuggestions from './utils/positionSuggestions';
 
 const createMentionPlugin = (config = {}) => {
-  const defaultTheme = Map({
+  const defaultTheme = {
     mention: mentionStyles.mention,
 
-    autocomplete: autocompleteStyles.autocomplete,
+    mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
 
-    autocompleteEntry: autocompleteEntryStyles.autocompleteEntry,
-    autocompleteEntryFocused: autocompleteEntryStyles.autocompleteEntryFocused,
-    autocompleteEntryText: autocompleteEntryStyles.autocompleteEntryText,
-    autocompleteEntryAvatar: autocompleteEntryStyles.autocompleteEntryAvatar,
-  });
+    mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
+    mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
+    mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
+    mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
+  };
 
   const callbacks = {
     keyBindingFn: undefined,
@@ -78,27 +79,32 @@ const createMentionPlugin = (config = {}) => {
   // styles which needs a deep dive into the code. Merging also makes it prone to
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
-  const theme = config.theme ? config.theme : defaultTheme;
+  const {
+    mentionPrefix = '',
+    theme = defaultTheme,
+    positionSuggestions = defaultPositionSuggestions,
+  } = config;
   const mentionSearchProps = {
     ariaProps,
     callbacks,
     theme,
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
+    positionSuggestions,
   };
   return {
-    SearchSuggestions: decorateComponentWithProps(SearchSuggestions, mentionSearchProps),
+    MentionSuggestions: decorateComponentWithProps(MentionSuggestions, mentionSearchProps),
     decorators: [
       {
         strategy: mentionStrategy,
-        component: decorateComponentWithProps(Mention, { theme }),
+        component: decorateComponentWithProps(Mention, { theme, mentionPrefix }),
       },
       {
-        strategy: mentionSearchStrategy,
-        component: decorateComponentWithProps(SearchSuggestionsPortal, { store, callbacks, ariaProps }),
+        strategy: mentionSuggestionsStrategy,
+        component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
       },
     ],
-    getEditorProps: () => (
+    getAccessibilityProps: () => (
       {
         role: 'combobox',
         ariaAutoComplete: 'list',
@@ -108,6 +114,11 @@ const createMentionPlugin = (config = {}) => {
         ariaOwneeID: ariaProps.ariaOwneeID,
       }
     ),
+
+    initialize: ({ getEditorState, setEditorState }) => {
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
+    },
 
     onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
     onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),

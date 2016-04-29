@@ -32,8 +32,8 @@ export default class App extends Component {
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
-          <Code code="npm install draft-js-plugins-editor@1.0.0-beta1 --save" />
-          <Code code="npm install draft-js-sticker-plugin@1.0.0-beta1 --save" />
+          <Code code="npm install draft-js-plugins-editor --save" />
+          <Code code="npm install draft-js-sticker-plugin --save" />
           <Code code={ gettingStarted } name="gettingStarted.js" />
           <Heading level={ 3 }>Importing the default styles</Heading>
           <p>
@@ -69,7 +69,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Configuration Parameters</Heading>
           <div className={ styles.param }>
             <span className={ styles.paramName }>theme</span>
-            <span>Immutable.js Map of CSS classes with the following keys.</span>
+            <span>Object of CSS classes with the following keys.</span>
             <div className={ styles.subParams }>
               <div className={ styles.subParam }><span className={ styles.subParamName }>sticker:</span> CSS class for sticker.</div>
               <div className={ styles.subParam }><span className={ styles.subParamName }>stickerImage:</span> CSS class for </div>

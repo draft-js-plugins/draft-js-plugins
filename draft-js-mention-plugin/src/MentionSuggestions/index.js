@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
-import MentionOption from './MentionOption';
+import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-export default class SearchSuggestions extends Component {
+export default class MentionSuggestions extends Component {
 
   static propTypes = {
     entityMutability: PropTypes.oneOf([
@@ -26,7 +26,7 @@ export default class SearchSuggestions extends Component {
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentDidUpdate = () => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (this.refs.popover) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
@@ -38,11 +38,17 @@ export default class SearchSuggestions extends Component {
         });
       }
 
-      const visibleRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-      this.refs.popover.style.top = `${visibleRect.top + scrollTop}px`;
-      this.refs.popover.style.left = `${visibleRect.left + scrollLeft}px`;
+      const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
+      const newStyles = this.props.positionSuggestions({
+        decoratorRect,
+        prevProps,
+        prevState,
+        props: this.props,
+        state: this.state,
+      });
+      Object.keys(newStyles).forEach((key) => {
+        this.refs.popover.style[key] = newStyles[key];
+      });
     }
   };
 
@@ -92,8 +98,10 @@ export default class SearchSuggestions extends Component {
     const selectionIsInsideWord = leaves
       .filter((leave) => leave !== undefined)
       .map(({ start, end }) => (
-        anchorOffset > start + 1 && anchorOffset <= end
+        start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
+        anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
       ));
+
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
     this.activeOffsetKey = selectionIsInsideWord
@@ -233,22 +241,22 @@ export default class SearchSuggestions extends Component {
   };
 
   render() {
-    if (!this.state.isActive || this.props.suggestions.isEmpty()) {
+    if (!this.state.isActive) {
       return null;
     }
 
-    const { theme } = this.props;
+    const { theme = {} } = this.props;
     return (
       <div
         {...this.props}
-        className={ theme.get('autocomplete') }
+        className={ theme.mentionSuggestions }
         role="listbox"
         id={ `mentions-list-${this.key}` }
         ref="popover"
       >
         {
           this.props.suggestions.map((mention, index) => (
-            <MentionOption
+            <Entry
               key={ mention.get('name') }
               onMentionSelect={ this.onMentionSelect }
               onMentionFocus={ this.onMentionFocus }

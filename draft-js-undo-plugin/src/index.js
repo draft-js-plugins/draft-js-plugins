@@ -1,17 +1,20 @@
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
-import { Map } from 'immutable';
 import styles from './styles.css';
 import decorateComponentWithProps from 'decorate-component-with-props';
 
-const defaultTheme = Map({
+const defaultTheme = {
   redo: styles.button,
   undo: styles.button,
-});
+};
 
 const historyPlugin = (config = {}) => {
   const undoContent = config.undoContent ? config.undoContent : '↺';
   const redoContent = config.redoContent ? config.redoContent : '↻';
+  const store = {
+    getEditorState: undefined,
+    setEditorState: undefined,
+  };
 
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
@@ -21,8 +24,12 @@ const historyPlugin = (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
   return {
-    UndoButton: decorateComponentWithProps(UndoButton, { theme, children: undoContent }),
-    RedoButton: decorateComponentWithProps(RedoButton, { theme, children: redoContent }),
+    UndoButton: decorateComponentWithProps(UndoButton, { theme, store, children: undoContent }),
+    RedoButton: decorateComponentWithProps(RedoButton, { theme, store, children: redoContent }),
+    initialize: ({ getEditorState, setEditorState }) => {
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
+    },
   };
 };
 

@@ -6,7 +6,7 @@
   border: 1px solid #ddd;
   cursor: text;
   padding: 16px;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-bottom: 10px;
   box-shadow: inset 0px 1px 8px -3px #ABABAB;
   background: #fefefe;
@@ -48,7 +48,7 @@
   background-color: #ededed;
 }
 
-.stickerSelect {
+.editorButton {
   margin-right: 10px;
   display: inline-block;
 }

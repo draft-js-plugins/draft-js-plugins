@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import unionClassNames from 'union-class-names';
-import { Map } from 'immutable';
 
 class WordCounter extends Component {
 
   static propTypes = {
-    editorState: PropTypes.any.isRequired,
     theme: PropTypes.any,
+    limit: PropTypes.number,
   };
 
   getWordCount(editorState) {
@@ -18,15 +17,15 @@ class WordCounter extends Component {
   }
 
   getClassNames(count, limit) {
-    const { theme = Map(), className } = this.props;
-    const defaultStyle = unionClassNames(theme.get('counter'), className);
-    const overLimitStyle = unionClassNames(theme.get('overLimit'), className);
+    const { theme = {}, className } = this.props;
+    const defaultStyle = unionClassNames(theme.counter, className);
+    const overLimitStyle = unionClassNames(theme.counterOverLimit, className);
     return count > limit ? overLimitStyle : defaultStyle;
   }
 
   render() {
-    const { editorState, limit } = this.props;
-    const count = this.getWordCount(editorState);
+    const { store, limit } = this.props;
+    const count = this.getWordCount(store.getEditorState());
     const classNames = this.getClassNames(count, limit);
 
     return <span className={ classNames }>{count}</span>;

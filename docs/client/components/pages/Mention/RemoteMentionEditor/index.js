@@ -3,21 +3,17 @@ import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
+import { fromJS } from 'immutable';
 
 const mentionPlugin = createMentionPlugin();
-
-// the SearchSuggestions becomes a component that lies outside of the Editor,
-// but will be positioned correctly by using a portal approach.
-// filterMentions is just a utility function and not needed depending on how
-// the developers want to update the suggestions
-const { SearchSuggestions, filterMentions } = mentionPlugin;
+const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-export default class RemoteMentionEditor extends Component {
+export default class SimpleMentionEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(),
-    mentionSuggestions: [],
+    suggestions: fromJS([]),
   };
 
   onChange = (editorState) => {
@@ -26,19 +22,25 @@ export default class RemoteMentionEditor extends Component {
     });
   };
 
-  onSearchChange = (event) => {
-    this.setState({
-      mentionSuggestions: filterMentions([], event.value),
-    });
+  onSearchChange = ({ value }) => {
+    require('whatwg-fetch');
 
-    // Note: instead using the provided filterMentions utility someone could
-    // use their own logic to retrieve & update the mentions here e.g.
-    // myAsyncLib.fetch(`/search?q=${event.value}`)
-    //   .then((result) => {
-    //     this.setState({
-    //       mentionSuggestions: filterMentions(mentions, event.value),
-    //     });
-    //   });
+    // while you normally would have a dynamic server that takes the value as
+    // a workaround we use this workaround to show different results
+    let url = '/data/mentionsA.json';
+    if (value.length === 1) {
+      url = '/data/mentionsB.json';
+    } else if (value.length > 1) {
+      url = '/data/mentionsC.json';
+    }
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          suggestions: fromJS(data),
+        });
+      });
   };
 
   focus = () => {
@@ -49,14 +51,14 @@ export default class RemoteMentionEditor extends Component {
     return (
       <div className={ editorStyles.editor } onClick={ this.focus }>
         <Editor
-          editorState={this.state.editorState}
+          editorState={ this.state.editorState }
           onChange={this.onChange}
           plugins={plugins}
           ref="editor"
         />
-        <SearchSuggestions
-          mentionSuggestions={ this.state.mentionSuggestions }
+        <MentionSuggestions
           onSearchChange={ this.onSearchChange }
+          suggestions={ this.state.suggestions }
         />
       </div>
     );

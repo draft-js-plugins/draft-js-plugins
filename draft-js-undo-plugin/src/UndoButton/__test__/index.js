@@ -2,7 +2,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Undo from '../index';
-import { Map } from 'immutable';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
@@ -13,17 +12,20 @@ chai.use(sinonChai);
 describe('UndoButton', () => {
   const onChange = () => sinon.spy();
   let editorState;
+  let store = {
+    getEditorState: () => editorState,
+    setEditorState: onChange,
+  };
 
   beforeEach(() => {
     editorState = EditorState.createEmpty();
   });
 
-  it('applies the className based on the theme property `hashtag`', () => {
-    const theme = Map({ undo: 'custom-class-name' });
+  it('applies the className based on the theme property `undo`', () => {
+    const theme = { undo: 'custom-class-name' };
     const result = shallow(
       <Undo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         theme={ theme }
         children={ 'undo' }
       />
@@ -34,8 +36,7 @@ describe('UndoButton', () => {
   it('renders the passed in children', () => {
     const result = shallow(
       <Undo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         children="undo"
       />
     );
@@ -43,11 +44,10 @@ describe('UndoButton', () => {
   });
 
   it('applies a custom className as well as the theme', () => {
-    const theme = Map({ undo: 'custom-class-name' });
+    const theme = { undo: 'custom-class-name' };
     const result = shallow(
       <Undo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         theme={ theme }
         className="hashtag"
         children="undo"
@@ -60,8 +60,7 @@ describe('UndoButton', () => {
   it('adds disabled attribute to button if the getUndoStack is empty', () => {
     const result = shallow(
       <Undo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         children="redo"
       />
     );
@@ -77,10 +76,13 @@ describe('UndoButton', () => {
       'hello'
     );
     const newEditorState = EditorState.push(editorState, newContent, 'insert-text');
+    store = {
+      getEditorState: () => newEditorState,
+      setEditorState: onChange,
+    };
     const result = shallow(
       <Undo
-        editorState={ newEditorState }
-        onChange={ onChange }
+        store={ store }
         children="redo"
       />
     );
@@ -90,8 +92,7 @@ describe('UndoButton', () => {
   it('triggers an update with undo when the button is clicked', () => {
     const result = shallow(
       <Undo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         children="redo"
       />
     );

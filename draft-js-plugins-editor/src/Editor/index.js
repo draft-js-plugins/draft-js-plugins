@@ -14,6 +14,7 @@ import { List } from 'immutable';
  * The main editor component
  */
 class PluginEditor extends Component {
+
   static propTypes = {
     editorState: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
@@ -33,6 +34,15 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
+    const plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of plugins) {
+      if (typeof plugin.initialize !== 'function') continue;
+      plugin.initialize({
+        getEditorState: this.getEditorState,
+        setEditorState: this.onChange,
+      });
+    }
+
     // attach proxy methods like `focus` or `blur`
     for (const method of proxies) {
       this[method] = (...args) => (
@@ -40,8 +50,6 @@ class PluginEditor extends Component {
       );
     }
   }
-
-  state = {};
 
   componentWillMount() {
     const compositeDecorator = createCompositeDecorator(
@@ -74,8 +82,6 @@ class PluginEditor extends Component {
     newArgs.push({
       getEditorState: this.getEditorState,
       setEditorState: this.onChange,
-      fireMethod: this.fireMethod,
-      setReadOnly: this.setReadOnly,
     });
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
@@ -92,8 +98,6 @@ class PluginEditor extends Component {
     newArgs.push({
       getEditorState: this.getEditorState,
       setEditorState: this.onChange,
-      fireMethod: this.fireMethod,
-      setReadOnly: this.setReadOnly,
     });
 
     if (methodName === 'blockRendererFn') {
@@ -124,7 +128,9 @@ class PluginEditor extends Component {
         if (result !== undefined) {
           styles = (styles ? (`${styles} `) : '') + result;
         }
-      } return styles || false;
+      }
+
+      return styles || false;
     }
 
     for (const plugin of plugins) {
@@ -147,10 +153,6 @@ class PluginEditor extends Component {
     plugins.forEach((plugin) => {
       Object.keys(plugin).forEach((attrName) => {
         if (attrName === 'onChange') return;
-        if (attrName === 'decorators') {
-
-          return;
-        }
 
         // if `attrName` has been added as a hook key already, ignore this one
         if (eventHookKeys.indexOf(attrName) !== -1 || fnHookKeys.indexOf(attrName) !== -1) return;
@@ -177,20 +179,8 @@ class PluginEditor extends Component {
       pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
     });
 
-    this.pluginHooks = pluginHooks;
     return pluginHooks;
   };
-
-  fireMethod = (methodName, ...args) => {
-    console.log('Method', methodName);
-    if (this.pluginHooks[methodName]) {
-      this.pluginHooks[methodName](...args);
-    }
-  }
-
-  setReadOnly = (readOnly) => {
-    this.setState({ readOnly });
-  }
 
   resolvePlugins = () => {
     const plugins = this.props.plugins.slice(0);
@@ -208,17 +198,6 @@ class PluginEditor extends Component {
       .flatMap((plugin) => plugin.decorators);
   };
 
-  renderInDecorators = (InnerElement, decorators, editor = InnerElement) => {
-    if (decorators && decorators.length > 0) {
-      const [Decorator, ...rest] = decorators;
-      return (
-        <Decorator pluginEditor={this} {...editor.props}>
-          {this.renderInDecorators(InnerElement, rest, editor)}
-        </Decorator>
-      );
-    } return InnerElement;
-  }
-
   resolveCustomStyleMap = () => (
     this.props.plugins
      .filter(plug => plug.customStyleMap !== undefined)
@@ -232,41 +211,50 @@ class PluginEditor extends Component {
      ), {})
   );
 
+  resolveAccessibilityProps = () => {
+    let accessibilityProps = {};
+    const plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of plugins) {
+      if (typeof plugin.getAccessibilityProps !== 'function') continue;
+      const props = plugin.getAccessibilityProps();
+      const popupProps = {};
+
+      if (accessibilityProps.ariaHasPopup === undefined) {
+        popupProps.ariaHasPopup = props.ariaHasPopup;
+      } else if (props.ariaHasPopup === 'true') {
+        popupProps.ariaHasPopup = 'true';
+      }
+
+      if (accessibilityProps.ariaExpanded === undefined) {
+        popupProps.ariaExpanded = props.ariaExpanded;
+      } else if (props.ariaExpanded === 'true') {
+        popupProps.ariaExpanded = 'true';
+      }
+
+      accessibilityProps = {
+        ...accessibilityProps,
+        ...props,
+        ...popupProps,
+      };
+    }
+
+    return accessibilityProps;
+  };
+
   render() {
-    const { editorState, readOnly, plugins, ...rest } = this.props;
-    let pluginProps = {};
-    const decorators = [];
-
-    // This puts pluginProps and the object inside getEditorProps
-    // on the Editor component (main use case is for aria props right now)
-    // Last plugin wins right now (not ideal)
-    plugins.forEach((plugin) => {
-      if (plugin.getEditorProps) {
-        pluginProps = {
-          ...pluginProps,
-          ...plugin.getEditorProps(),
-        };
-      }
-
-      if (plugin.editorDecorators) {
-        decorators.push(...plugin.editorDecorators);
-      }
-    });
-
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
-    return this.renderInDecorators(
+    const accessibilityProps = this.resolveAccessibilityProps();
+    return (
       <Editor
         { ...this.props }
-        { ...rest }
-        { ...pluginProps }
+        { ...accessibilityProps }
         { ...pluginHooks }
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
-        editorState={ editorState }
+        editorState={ this.props.editorState }
         ref="editor"
-        readOnly={readOnly || pluginProps.readOnly || this.state.readOnly}
-      />, decorators
+      />
     );
   }
 }

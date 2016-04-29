@@ -48,8 +48,8 @@ export default class App extends Component {
         </Container>
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
-          <Code code="npm install draft-js-plugins-editor@1.0.0-beta1 --save" />
-          <Code code="npm install draft-js-emoji-plugin@1.0.0-beta1 --save" />
+          <Code code="npm install draft-js-plugins-editor --save" />
+          <Code code="npm install draft-js-emoji-plugin --save" />
           <Code code={ gettingStarted } name="gettingStarted.js" />
           <Heading level={ 3 }>Importing the default styles</Heading>
           <p>
@@ -83,17 +83,44 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Configuration Parameters</Heading>
-          <div>
-            <div className={ styles.paramName }>theme</div>
-            <span>Immutable.js Map of CSS classes with the following keys.</span>
-            <table className={ styles.themeTable }>
-              <tbody>
-                <tr>
-                  <td className={ styles.themeProperty }>Emoji</td>
-                  <td>CSS class to be applied to emoji</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className={ styles.param }>
+            <span className={ styles.paramName }>theme</span>
+            <span>Object of CSS classes with the following keys.</span>
+            <div className={ styles.subParams }>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>emoji:</span>
+                CSS class for the emoji wrapper.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>emojiCharacter:</span>
+                CSS class for the emoji wrapper. This should have opacity 0 to
+                hide the Emoji rendering of the native platform.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>emojiSuggestions:</span>
+                CSS class for suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>emojiSuggestionsEntry:</span>
+                CSS class for an entry in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>emojiSuggestionsEntryFocused:</span>
+                CSS class for the focused entry in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>emojiSuggestionsEntryText:</span>
+                CSS class for an entry’s text in the suggestions component.
+              </div>
+              <div className={ styles.subParam }>
+                <span className={ styles.subParamName }>emojiSuggestionsEntryAvatar:</span>
+                CSS class for an entry’s avatar image in the suggestions component.
+              </div>
+            </div>
+          </div>
+          <div className={ styles.param }>
+            <span className={ styles.paramName }>positionSuggestions</span>
+            <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span>
           </div>
         </Container>
         <Container>

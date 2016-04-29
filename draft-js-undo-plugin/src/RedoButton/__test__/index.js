@@ -2,7 +2,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Redo from '../index';
-import { Map } from 'immutable';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
@@ -13,17 +12,20 @@ chai.use(sinonChai);
 describe('RedoButton', () => {
   const onChange = () => sinon.spy();
   let editorState;
+  let store = {
+    getEditorState: () => editorState,
+    setEditorState: onChange,
+  };
 
   beforeEach(() => {
     editorState = EditorState.createEmpty();
   });
 
-  it('applies the className based on the theme property `hashtag`', () => {
-    const theme = Map({ redo: 'custom-class-name' });
+  it('applies the className based on the theme property `redo`', () => {
+    const theme = { redo: 'custom-class-name' };
     const result = shallow(
       <Redo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         theme={ theme }
         children={ 'redo' }
       />
@@ -34,8 +36,7 @@ describe('RedoButton', () => {
   it('renders the passed in children', () => {
     const result = shallow(
       <Redo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         children="redo"
       />
     );
@@ -43,11 +44,10 @@ describe('RedoButton', () => {
   });
 
   it('applies a custom className as well as the theme', () => {
-    const theme = Map({ redo: 'custom-class-name' });
+    const theme = { redo: 'custom-class-name' };
     const result = shallow(
       <Redo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         theme={ theme }
         className="hashtag"
         children="redo"
@@ -60,8 +60,7 @@ describe('RedoButton', () => {
   it('adds disabled attribute to button if the getRedoStack is empty', () => {
     const result = shallow(
       <Redo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         children="redo"
       />
     );
@@ -78,10 +77,13 @@ describe('RedoButton', () => {
     );
     const newEditorState = EditorState.push(editorState, newContent, 'insert-text');
     const undoEditorState = EditorState.undo(newEditorState);
+    store = {
+      getEditorState: () => undoEditorState,
+      setEditorState: onChange,
+    };
     const result = shallow(
       <Redo
-        editorState={ undoEditorState }
-        onChange={ onChange }
+        store={ store }
         children="redo"
       />
     );
@@ -91,8 +93,7 @@ describe('RedoButton', () => {
   it('triggers an update with redo when the button is clicked', () => {
     const result = shallow(
       <Redo
-        editorState={ editorState }
-        onChange={ onChange }
+        store={ store }
         children="redo"
       />
     );

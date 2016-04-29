@@ -17,12 +17,15 @@ describe('CounterPlugin Word Counter', () => {
   });
 
   it('instantiates plugin and counts 5 words', () => {
-    const { WordCounter } = counterPlugin;
-
     const text = 'Hello there, how are you?';
     const editorState = createEditorStateFromText(text);
+    counterPlugin.initialize({
+      getEditorState: () => editorState,
+    });
+    const { WordCounter } = counterPlugin;
+
     const result = mount(
-      <WordCounter editorState={ editorState } />
+      <WordCounter />
     );
     expect(result).to.have.text('5');
   });
