@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Entity } from 'draft-js';
+import { Entity, EditorState } from 'draft-js';
 
 const getDisplayName = (WrappedComponent) => (
     WrappedComponent.displayName || WrappedComponent.name || 'Component'
 );
 
-// Export
-export default function WrapComponent(WrappedComponent) {
-  return class Wrapper extends Component {
+export default (setEditorState, getEditorState) => function WrapComponent(WrappedComponent) {
+  class Wrapper extends Component {
     static displayName = `Decorated(${getDisplayName(WrappedComponent)})`;
+    static pluginOptions = WrappedComponent.pluginOptions;
+    static WrappedComponent = WrappedComponent;
     static defaultProps = {
       draggable: true,
       readOnly: false,
@@ -19,7 +20,13 @@ export default function WrapComponent(WrappedComponent) {
         Entity.mergeData(entityKey, { alignment });
 
         // Force refresh
-        this.props.blockProps.refreshEditorState();
+        const editorState = getEditorState();
+        setEditorState(
+          EditorState.forceSelection(
+            editorState,
+            editorState.getCurrentContent().getSelectionAfter()
+          )
+        );
       }
     };
 
@@ -54,4 +61,5 @@ export default function WrapComponent(WrappedComponent) {
       );
     }
   };
+  return Wrapper;
 }
