@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { renderToolbar } from '../components/toolbar';
 import ReactDOM from 'react-dom';
 
-export default function WrapComponent(WrappedComponent) {
+var number = 0;
+export default defaultTheme => WrappedComponent => {
   class Wrapper extends Component {
     static pluginOptions = WrappedComponent.pluginOptions;
     static WrappedComponent = WrappedComponent;
@@ -12,6 +13,7 @@ export default function WrapComponent(WrappedComponent) {
     };
 
     componentDidMount() {
+      number = this.number = number++;
       const parentEl = ReactDOM.findDOMNode(this);
 
       if (!parentEl) {
@@ -62,16 +64,13 @@ export default function WrapComponent(WrappedComponent) {
     };
 
     _renderToolbar = (active) => {
-      const actualActions = WrappedComponent.getActions ? WrappedComponent.getActions(this.props)
-        : (this.props.actions || undefined);
-
       renderToolbar({
         ...this.props,
-        actions: actualActions,
-        theme: this.props.blockProps.toolbarTheme,
+        theme: this.props.theme || defaultTheme,
         onMouseOver: this.onMouseOverToolbar,
         onMouseLeave: this.onMouseLeaveToolbar,
         parent: this.DOMNode,
+        uid: 'toolbar'+this.number,
         active,
       });
     }

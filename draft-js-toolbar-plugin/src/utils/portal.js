@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 let store;
 
-const cooltip = {
+const Portal = {
   removePortalFromList: props => {
     if(!props) {
       return store.portals;
@@ -19,11 +19,11 @@ const cooltip = {
 
   removePortal: props => {
     if (props && store) {
-      store.portals = cooltip.removePortalFromList(props);
+      store.portals = Portal.removePortalFromList(props);
       // Other tooltip was active, switching
       if (store.portals.length > 0) {
         const item = store.portals[store.portals.length - 1];
-        return item ? cooltip.renderPortal(item) : null;
+        return item ? Portal.renderPortal(item) : null;
       }
 
       ReactDOM.unmountComponentAtNode(store.el);
@@ -49,16 +49,18 @@ const cooltip = {
     }
 
     if (!store) {
-      cooltip.createPortalNode();
+      Portal.createPortalNode();
     }
 
     store.portals = [
-      ...cooltip.removePortalFromList(props),
+      ...Portal.removePortalFromList(props),
       props,
     ];
+
+    console.log(store.portals);
 
     const {Element, ...actualProps} = props;
     ReactDOM.render(<Element {...actualProps} />, store.el);
   }
 }
-export default cooltip;
+export default Portal;

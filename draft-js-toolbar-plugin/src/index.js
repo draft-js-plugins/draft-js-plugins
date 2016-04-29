@@ -18,10 +18,7 @@ const toolbarPlugin = (config = {}) => {
       renderTextToolbar({ editorState, active: true, setEditorState, theme });
       return editorState;
     }, blockRendererFn: (contentBlock, { }) => ({
-      decorators: [Wrapper],
-      props: {
-        toolbarTheme: theme,
-      },
+      decorators: [Wrapper(theme)]
     }), decorators: [
       {
         strategy: linkStrategy,
