@@ -16,10 +16,10 @@ const shouldRenderToolbar = props => {
 
 export default class DraftToolbar extends Component {
   // Toggle custom actions, like make selected text a link
-  toggleAction(action) {
+  toggleAction(action, state) {
     const { editorState, setEditorState } = this.props;
     if (action.toggle) {
-      action.toggle(action, editorState, setEditorState);
+      action.toggle(action, state, editorState, setEditorState);
     }
   }
 
