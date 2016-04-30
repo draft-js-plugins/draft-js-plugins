@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.0.1 - 2016-04-29
+
+### Fix
+
+- Linkify link email addresses or websites when they are placed inside parenthesis [#244](https://github.com/draft-js-plugins/draft-js-plugins/issues/244)
+
 ## 1.0.0 - 2016-04-20
 
 ### Changed
