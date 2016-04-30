@@ -2,7 +2,7 @@
 
 *This is a plugin for the `draft-js-plugins-editor`.*
 
-This plugin highlights hashtags in the text!
+This plugin provides consistent Emoji display across all platforms, independent of the host system.
 
 ## Usage
 

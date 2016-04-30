@@ -1,1 +1,1 @@
-import 'draft-js-hashtag-plugin/lib/plugin.css';
+import 'draft-js-sticker-plugin/lib/plugin.css';

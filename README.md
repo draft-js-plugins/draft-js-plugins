@@ -4,6 +4,8 @@
 
 High quality plugins with great UX on top of [DraftJS](https://github.com/facebook/draft-js).
 
+[![Build Status](https://travis-ci.org/draft-js-plugins/draft-js-plugins.svg?branch=master)](https://travis-ci.org/draft-js-plugins/draft-js-plugins)
+
 ## Available Plugins
 
 - [Emoji](https://www.draft-js-plugins.com/plugin/emoji)
@@ -15,7 +17,9 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 - [Undo](https://www.draft-js-plugins.com/plugin/undo)
 - or build your own … :)
 
-[![Build Status](https://travis-ci.org/draft-js-plugins/draft-js-plugins.svg?branch=master)](https://travis-ci.org/draft-js-plugins/draft-js-plugins)
+### Built by the community
+
+- [Autolist](https://github.com/icelab/draft-js-autolist-plugin) by [Max Wheeler](https://github.com/makenosound)
 
 ## Live Example & Documentation
 

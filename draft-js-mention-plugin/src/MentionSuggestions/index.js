@@ -229,6 +229,7 @@ export default class MentionSuggestions extends Component {
     // make sure none of these callbacks are triggered
     this.props.callbacks.onDownArrow = undefined;
     this.props.callbacks.onUpArrow = undefined;
+    this.props.callbacks.onTab = undefined;
     this.props.callbacks.onEscape = undefined;
     this.props.callbacks.handleReturn = undefined;
     this.props.ariaProps.ariaHasPopup = 'false';

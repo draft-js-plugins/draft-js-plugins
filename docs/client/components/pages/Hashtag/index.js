@@ -61,7 +61,7 @@ export default class App extends Component {
           </ul>
           <Heading level={ 4 }>Browserify Usage</Heading>
           <p>
-            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Hashtag/index.js">documention</ExternalLink>.
+            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Hashtag/index.js">documentation</ExternalLink>.
           </p>
         </AlternateContainer>
         <Container>

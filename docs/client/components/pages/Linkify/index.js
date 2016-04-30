@@ -37,7 +37,7 @@ export default class App extends Component {
           <p>
             The plugin ships with a default styling available at this location in the installed package:
             &nbsp;
-            <InlineCode code={ 'node_modules/draft-js-hashtag-plugin/lib/plugin.css' } />
+            <InlineCode code={ 'node_modules/draft-js-linkify-plugin/lib/plugin.css' } />
           </p>
           <Heading level={ 4 }>Webpack Usage</Heading>
           <ul className={ styles.list }>
@@ -60,7 +60,7 @@ export default class App extends Component {
           </ul>
           <Heading level={ 4 }>Browserify Usage</Heading>
           <p>
-            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Hashtag/index.js">documention</ExternalLink>.
+            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Linkify/index.js">documentation</ExternalLink>.
           </p>
         </AlternateContainer>
         <Container>
