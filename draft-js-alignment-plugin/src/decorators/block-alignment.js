@@ -76,29 +76,27 @@ export default (setEditorState, getEditorState, theme) => WrappedComponent => {
         />
       );
 
-      // If the wrapped component defines pluginOptions.customAlignmentStyle
-      // don't bother about alignment here
-      if(pluginOptions && pluginOptions.customAlignmentStyle){
+      if (pluginOptions && pluginOptions.customAlignmentStyle) {
+        // If the wrapped component defines pluginOptions.customAlignmentStyle
+        // don't bother about alignment here
         return inner;
-      }
-      // If it doesn't and centered, put 2 divs around
-      else if (!blockProps.alignment || blockProps.alignment === 'center') {
+      } else if (!blockProps.alignment || blockProps.alignment === 'center') {
+        // If it doesn't and centered, put 2 divs around
         return (
           <div className={theme.centerWrapper}>
             <div className={className}>
               {inner}
             </div>
           </div>
-        )
+        );
       }
+
       // If left/right aligned, one div with float will be sufficient
-      else {
-        return (
-          <div className={className}>
-            {inner}
-          </div>
-        )
-      }
+      return (
+        <div className={className}>
+          {inner}
+        </div>
+      );
     }
   };
-}
+};

@@ -1,5 +1,5 @@
 import Image from './components/image';
-import { EditorState, Entity } from 'draft-js';
+import { Entity } from 'draft-js';
 import styles from './style.css';
 import decorateComponentWithProps from './utils/decorateWithProps';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EditorState, Entity } from 'draft-js';
+import { EditorState } from 'draft-js';
 
 // Plugin-Editor
 import Editor from 'draft-js-plugins-editor';

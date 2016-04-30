@@ -8,8 +8,7 @@ const getDisplayName = WrappedComponent => {
 };
 
 // Export
-export default (WrappedComponent, options) => {
-  const { useDiv } = options || {};
+export default WrappedComponent => {
   const { pluginOptions } = WrappedComponent;
 
   return class BlockDraggableDecorator extends Component {
@@ -28,9 +27,7 @@ export default (WrappedComponent, options) => {
     startDrag = event => {
       const allow = this.props.draggable && !this.props.readOnly;
       if (!allow) return;
-
       event.dataTransfer.dropEffect = 'move'; // eslint-disable-line no-param-reassign
-
       // Declare data and give info that its an existing key and a block needs to be moved
       event.dataTransfer.setData('text', `${DRAFTJS_BLOCK_KEY}:${this.props.block.key}`);
     }
@@ -39,7 +36,7 @@ export default (WrappedComponent, options) => {
       const { draggable } = this.props;
 
       // Check if pluginOptions.customHandleDnd != true and add a div to markup
-      if (!pluginOptions || pluginOptions.customHandleDnd !== true) {
+      if (!pluginOptions || pluginOptions.customHandleDnd !== true) {
         return (
           <div onDragStart={this.startDrag} draggable={draggable}>
             <WrappedComponent {...this.props} />
@@ -50,5 +47,5 @@ export default (WrappedComponent, options) => {
       // In case pluginOptions.customHandleDnd == true let component handle onDragStart
       return <WrappedComponent {...this.props} onDragStart={this.startDrag} draggable={draggable} />;
     }
-  }
-}
+  };
+};

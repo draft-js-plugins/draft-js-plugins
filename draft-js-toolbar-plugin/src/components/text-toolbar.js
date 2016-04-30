@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { RichUtils, Entity } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import Toolbar, { renderToolbar } from './toolbar';
 import defaultInlineStyles from '../actions/inlineStyles';
 import defaultActions from '../actions/custom';
 import getSelection from '../utils/getSelection';
 import getSelectionRect from '../utils/getSelectionRect';
+
+// Helper function, is toolbar necessary / is a text selected?
+const shouldRenderToolbar = props => {
+  const { editorState } = props;
+  const selected = getSelection();
+  const selectionState = editorState.getSelection();
+  return selected.rangeCount && !selectionState.isCollapsed();
+};
 
 export default class DraftToolbar extends Component {
   // Toggle custom actions, like make selected text a link
@@ -37,7 +45,6 @@ export default class DraftToolbar extends Component {
     const { editorState } = this.props;
     const inlineStyles = this.props.inlineStyles || defaultInlineStyles;
     const customActions = this.props.actions || defaultActions;
-    const selectionState = editorState.getSelection();
 
     // Get current style to check what actions are toggled
     const currentStyle = editorState.getCurrentInlineStyle();
@@ -80,19 +87,11 @@ export default class DraftToolbar extends Component {
 }
 
 // Export renderTextToolbar function to allow rendering the toolbar
-export const renderTextToolbar = function (props) {
+export const renderTextToolbar = props => {
   renderToolbar({
     ...props,
     uid: 'text-toolbar',
-    rectGetter: ()=>getSelectionRect(getSelection()),
+    rectGetter: () => getSelectionRect(getSelection()),
     active: shouldRenderToolbar(props)
   }, DraftToolbar);
 };
-
-// Helper function, is toolbar necessary / is a text selected?
-const shouldRenderToolbar = props => {
-  const { editorState } = props;
-  const selected = getSelection();
-  const selectionState = editorState.getSelection();
-  return selected.rangeCount && !selectionState.isCollapsed();
-}

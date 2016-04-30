@@ -1,4 +1,3 @@
-import refreshState from './modifiers/refreshState';
 import setSelection from './modifiers/setSelection';
 import decorator from './decorators/block-focus';
 import { SelectionState, EditorState } from 'draft-js';

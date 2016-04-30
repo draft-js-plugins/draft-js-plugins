@@ -1,10 +1,8 @@
-import TextToolbar, { renderTextToolbar } from './components/text-toolbar';
-import React from 'react';
+import { renderTextToolbar } from './components/text-toolbar';
 import Decorator from './decorators/hover-toolbar';
 import linkStrategy from './linkStrategy';
 import Link from './Link';
 import styles from './styles.css';
-import decorateComponentWithProps from './utils/decorateWithProps';
 
 const defaultTheme = {
   ...styles,

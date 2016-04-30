@@ -7,7 +7,7 @@ class BlockText extends Component {
       backgroundColor: '#f3f3f3',
       border: '1px solid rgba(220,220,220,1)',
       padding: '20px',
-    }
+    };
     return (
         <pre contentEditable={false} style={style}>
           {blockProps.src}

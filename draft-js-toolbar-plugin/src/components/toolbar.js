@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Portal from '../utils/portal';
 
 export default class Toolbar extends Component {
@@ -40,21 +39,21 @@ export default class Toolbar extends Component {
 
   // Render
   render() {
-    const { theme, actions, ...rest } = this.props;
+    const { theme, actions } = this.props; // eslint-disable-line no-use-before-define
 
     return (
-      <div className={theme['toolbar']} onMouseDown={this.preventDefault}>
+      <div className={theme.toolbar} onMouseDown={this.preventDefault}>
         {actions.map(this.renderAction)}
       </div>
     );
   }
 }
 
-// Render the Toolbar or Component with provided props using the Portal
-export const renderToolbar = function (props, Component) {
-  const method = props.active === false ? Portal.removePortal : Portal.renderPortal
+// Render the Toolbar or Element with provided props using the Portal
+export const renderToolbar = (props, Element) => {
+  const method = props.active === false ? Portal.removePortal : Portal.renderPortal;
   method({
     ...props,
-    Element: Component ? Component : Toolbar
+    Element: Element || Toolbar
   });
 };

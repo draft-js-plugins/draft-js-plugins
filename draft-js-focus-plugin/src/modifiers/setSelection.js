@@ -1,4 +1,5 @@
 import { SelectionState, EditorState } from 'draft-js';
+import refreshState from './refreshState';
 
 // Set selection of editor to next/previous block
 export default (getEditorState, setEditorState, previousActiveBlock, mode) => {
@@ -28,4 +29,4 @@ export default (getEditorState, setEditorState, previousActiveBlock, mode) => {
     }
   });
   return activeBlock;
-}
+};

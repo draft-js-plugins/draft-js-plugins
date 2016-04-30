@@ -47,7 +47,7 @@ export default function (editorState, selection, type, data, text = '') {
       key: genKey(),
       type,
       text,
-      characterList: List(Repeat(charData, text.length||1)), // eslint-disable-line new-cap
+      characterList: List(Repeat(charData, text.length || 1)), // eslint-disable-line new-cap
     }),
 
     // new contentblock so we can continue wrting right away after inserting the block

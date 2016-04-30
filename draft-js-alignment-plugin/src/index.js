@@ -1,5 +1,3 @@
-import React from 'react';
-import { Entity } from 'draft-js';
 import Decorator from './decorators/block-alignment';
 import styles from './style.css';
 

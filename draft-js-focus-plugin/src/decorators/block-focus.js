@@ -42,13 +42,11 @@ export default (theme, isFocused, setFocus) => WrappedComponent => {
         );
       }
       // If is focused, add a div and apply className
-      else {
-        return (
-          <div className={theme.focused}>
-            <WrappedComponent ref="component" {...this.props} isFocused={isFocused} setFocus={setFocus} />
-          </div>
-        );
-      }
+      return (
+        <div className={theme.focused}>
+          <WrappedComponent ref="component" {...this.props} isFocused={isFocused} setFocus={setFocus} />
+        </div>
+      );
     }
-  }
-}
+  };
+};

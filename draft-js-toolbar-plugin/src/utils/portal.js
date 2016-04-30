@@ -19,9 +19,8 @@ class Tooltip extends Component {
         top = rect.top;
         width = rect.width;
       }
-    }
-    // Was props.parent set? Query parent element and get its rect
-    else if (parent) {
+    } else if (parent) {
+      // Was props.parent set? Query parent element and get its rect
       const parentEl = typeof parent === 'string' ? document.querySelector(parent) : parent;
 
       if (!parentEl) {
@@ -55,14 +54,15 @@ class Tooltip extends Component {
 
   componentDidUpdate() {
     // skip componentDidUpdate if necessary
-    if (this._skip){
-      return this._skip = false;
+    if (this._skip) {
+      this._skip = false;
+    } else {
+      this.componentDidMount();
     }
-    this.componentDidMount();
   }
 
   render() {
-    const {onMouseOver, onMouseLeave, active} = this.props;
+    const { onMouseOver, onMouseLeave, active } = this.props;
 
     // Is server?
     if (typeof window === 'undefined') {
@@ -80,7 +80,7 @@ class Tooltip extends Component {
       position: 'absolute',
       left,
       top,
-    }
+    };
 
     // If !active => opacity = 0
     if (active === false) {
@@ -101,7 +101,7 @@ let store;
 const Portal = {
   // Remove a portal from the list of portals safely
   removePortalFromList: (portals, props) => {
-    if(!props) {
+    if (!props) {
       return portals;
     }
     return portals.filter(portal => props.uid !== portal.uid);
@@ -109,13 +109,13 @@ const Portal = {
 
   // Add a portal to the list of portals safely
   addPortalToList: (portals, props) => {
-    if(!props) {
+    if (!props) {
       return portals;
     }
     return [
       ...Portal.removePortalFromList(portals, props),
       props,
-    ]
+    ];
   },
 
   // Create the store and the dom element div
@@ -136,43 +136,43 @@ const Portal = {
       if (store.portals.length > 0) {
         const item = store.portals[store.portals.length - 1];
         return item ? Portal.renderPortal(item, true) : null;
-      } else {
-        Portal.renderPortal({ ...props, active: false }, true);
-        store.timeout = setTimeout(()=> {
-          if (store.portals.length > 0) {
-            const item = store.portals[store.portals.length - 1];
-            return item ? Portal.renderPortal(item, true) : null;
-          } else {
-            ReactDOM.unmountComponentAtNode(store.el);
-            if (store.el.parentNode) {
-              store.el.parentNode.removeChild(store.el);
-            }
-            store = null;
-          }
-        }, 500);
       }
+      Portal.renderPortal({ ...props, active: false }, true);
+      store.timeout = setTimeout(() => {
+        if (store.portals.length > 0 && store.portals[store.portals.length - 1]) {
+          const item = store.portals[store.portals.length - 1];
+          Portal.renderPortal(item, true);
+        } else {
+          ReactDOM.unmountComponentAtNode(store.el);
+          if (store.el.parentNode) {
+            store.el.parentNode.removeChild(store.el);
+          }
+          store = null;
+        }
+      }, 500);
     } return undefined;
   },
 
   // Render a portal
   renderPortal: (props, renderOnly) => {
-    if(!props){
+    const { Element, ...actualProps } = props; // eslint-disable-line no-use-before-define
+
+    if (!props) {
       return;
     }
 
-    if (!renderOnly){
+    if (!renderOnly) {
       if (!store) {
         Portal.createPortalNode();
       } else if (store.timeout) {
-        //clearTimeout(store.timeout);
-        //store.timeout = null;
+        clearTimeout(store.timeout);
+        store.timeout = null;
       }
       store.portals = Portal.addPortalToList(store.portals, props);
     }
 
-    const {Element, ...actualProps} = props;
     ReactDOM.render(<Tooltip {...actualProps}><Element {...actualProps} /></Tooltip>, store.el);
   }
-}
+};
 
 export default Portal;

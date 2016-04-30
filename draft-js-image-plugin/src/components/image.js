@@ -13,12 +13,12 @@ class Image extends Component {
     customHandleDnd: true
   }
 
-  renderProgress = (progress, theme) => progress >= 0
+  renderProgress = (progress, theme) => progress >= 0 // eslint-disable-line no-confusing-arrow
     ? <div className={ theme.imageLoader } style={{ width: `${100 - progress}%` }} />
     : null;
 
   render() {
-    const { alignment, onDragStart, draggable, theme, focusedStyle, isFocused,
+    const { alignment, theme, focusedStyle, isFocused,
       progress, src, url } = this.props;
 
     // Compose figure classNames
@@ -28,7 +28,7 @@ class Image extends Component {
 
     return (
       <figure className={className} contentEditable={false}>
-        <img {...this.props} src={src || url} width="100%" height="auto" className={imageClassName} />
+        <img {...this.props} src={src || url} alt="" width="100%" height="auto" className={imageClassName} />
         {this.renderProgress(progress, theme)}
       </figure>
     );
