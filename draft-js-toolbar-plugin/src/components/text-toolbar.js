@@ -39,11 +39,6 @@ export default class DraftToolbar extends Component {
     const customActions = this.props.actions || defaultActions;
     const selectionState = editorState.getSelection();
 
-    // Nothing selected? No toolbar please.
-    if (!shouldRenderToolbar(this.props)) {
-      return null;
-    }
-
     // Get current style to check what actions are toggled
     const currentStyle = editorState.getCurrentInlineStyle();
     // Get current block
@@ -71,14 +66,15 @@ export default class DraftToolbar extends Component {
       })),
     ];
 
+    // Nothing selected? No toolbar please.
+    if (!shouldRenderToolbar(this.props)) {
+      return (
+        <Toolbar {...this.props} actions={actions} />
+      );
+    }
+
     return (
-      <Toolbar
-        uid={'text-toolbar'}
-        rectGetter={()=>getSelectionRect(getSelection())}
-        {...this.props}
-        actions={actions}
-        active={true}
-      />
+      <Toolbar {...this.props} actions={actions} />
     );
   }
 }
@@ -88,6 +84,7 @@ export const renderTextToolbar = function (props) {
   renderToolbar({
     ...props,
     uid: 'text-toolbar',
+    rectGetter: ()=>getSelectionRect(getSelection()),
     active: shouldRenderToolbar(props)
   }, DraftToolbar);
 };

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Tooltip from '../utils/tooltip';
 import Portal from '../utils/portal';
 
 export default class Toolbar extends Component {
@@ -41,14 +40,12 @@ export default class Toolbar extends Component {
 
   // Render
   render() {
-    const { theme, blockProps, active, actions } = this.props;
+    const { theme, actions, ...rest } = this.props;
 
     return (
-      <Tooltip {...this.props} active={active}>
-        <div className={theme['toolbar']} onMouseDown={this.preventDefault}>
-          {actions.map(this.renderAction)}
-        </div>
-      </Tooltip>
+      <div className={theme['toolbar']} onMouseDown={this.preventDefault}>
+        {actions.map(this.renderAction)}
+      </div>
     );
   }
 }

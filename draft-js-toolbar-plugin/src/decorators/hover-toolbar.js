@@ -12,6 +12,7 @@ var number = 0;
 
 // HoverToolbar decorator will render a toolbar on hovering the WrappedComponent
 export default defaultTheme => WrappedComponent => {
+  const { pluginOptions } = WrappedComponent;
   return class HoverToolbarDecorator extends Component {
     // Statics
     static displayName = `HoverToolbar(${getDisplayName(WrappedComponent)})`;
