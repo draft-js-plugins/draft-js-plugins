@@ -36,6 +36,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
     this.DOMNode = element;
     this.DOMNode.addEventListener('mouseover', this.showToolbar);
     this.DOMNode.parentElement.addEventListener('mouseover', this.hideToolbar);
+    this.DOMNode.parentElement.parentElement.addEventListener('mouseover', this.hideToolbar);
     this.DOMNode.addEventListener('mouseleave', this.hideToolbarDelayed);
   }
 
@@ -44,6 +45,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
     if (this.DOMNode) {
       this.DOMNode.removeEventListener('mouseover', this.showToolbar);
       this.DOMNode.parentElement.removeEventListener('mouseover', this.hideToolbar);
+      this.DOMNode.parentElement.parentElement.removeEventListener('mouseover', this.hideToolbar);
       this.DOMNode.removeEventListener('mouseleave', this.hideToolbarDelayed);
     }
   }

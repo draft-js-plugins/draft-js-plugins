@@ -1,5 +1,6 @@
 import { shouldRenderToolbar, getToolbarPosition, getToolbarActions } from './utils/textToolbar';
-import Decorator from './decorators/hover-toolbar';
+import DecoratorHover from './decorators/hover-toolbar';
+import DecoratorFocused from './decorators/focused-toolbar';
 import linkStrategy from './linkStrategy';
 import Link from './Link';
 import styles from './styles.css';
@@ -24,7 +25,7 @@ const toolbarPlugin = config => {
         setEditorState,
         theme
       };
-      if (shouldRenderToolbar(editorState)) {
+      if (toolbarHandler.textMode !== 'select' || shouldRenderToolbar(editorState)) {
         toolbarHandler.add(props);
       } else {
         toolbarHandler.remove(props);
@@ -33,7 +34,10 @@ const toolbarPlugin = config => {
     },
     // Wrap all block-types in hover-toolbar decorator
     blockRendererFn: (contentBlock, { }) => ({
-      decorators: [Decorator(theme, toolbarHandler)]
+      decorators: [(toolbarHandler.blockMode === 'hover' ? DecoratorHover : DecoratorFocused)(
+        theme,
+        toolbarHandler
+      )],
     }),
     // Add linkStrategy decorator to draft ediotr
     decorators: [{

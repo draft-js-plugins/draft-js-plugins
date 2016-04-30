@@ -14,13 +14,6 @@ export const shouldRenderToolbar = editorState => {
 // Helper function, is toolbar necessary / is a text selected?
 export const getToolbarPosition = () => getSelectionRect(getSelection());
 
-// Toggle custom actions, like make selected text a link
-function toggleAction(editorState, setEditorState, action, state) {
-  if (action.toggle) {
-    action.toggle(action, state, editorState, setEditorState);
-  }
-}
-
 // Toggle the block type
 /* function toggleBlockType(editorState, setEditorState, blockType) {
   setEditorState(RichUtils.toggleBlockType(
@@ -28,14 +21,6 @@ function toggleAction(editorState, setEditorState, action, state) {
     blockType
   ));
 } */
-
-// Toggle the inline style
-function toggleInlineStyle(editorState, setEditorState, inlineStyle) {
-  setEditorState(RichUtils.toggleInlineStyle(
-    editorState,
-    inlineStyle
-  ));
-}
 
 export const getToolbarActions = (config, editorState, setEditorState) => {
   const inlineStyles = config.inlineStyles || defaultInlineStyles;
@@ -56,7 +41,10 @@ export const getToolbarActions = (config, editorState, setEditorState) => {
       button: action.button,
       label: action.label,
       active: currentStyle.has(action.style),
-      toggle: () => toggleInlineStyle(editorState, setEditorState, action.style),
+      toggle: () => setEditorState(RichUtils.toggleInlineStyle(
+        editorState,
+        action.style
+      )),
     })),
     ...customActions.map(action => ({
       icon: action.icon,
@@ -65,7 +53,7 @@ export const getToolbarActions = (config, editorState, setEditorState) => {
       active: typeof action.active === 'function'
         ? action.active(block, editorState)
         : action.active,
-      toggle: state => toggleAction(editorState, setEditorState, action, state),
+      toggle: () => action.toggle(block, action, editorState, setEditorState),
     })),
   ];
 };

@@ -26,18 +26,18 @@ export default [
       return active;
     },
 
-    toggle: (action, state, editorState, onChange) => {
+    toggle: (block, action, editorState, setEditorState) => {
       const selection = editorState.getSelection();
       if (selection.isCollapsed()) {
         return;
       }
 
-      if (state.active) {
-        onChange(RichUtils.toggleLink(editorState, selection, null));
+      if (action.active(block, editorState)) {
+        setEditorState(RichUtils.toggleLink(editorState, selection, null));
       } else {
         const href = window.prompt('Enter a URL'); // eslint-disable-line no-alert
         const entityKey = Entity.create('link', 'MUTABLE', { href });
-        onChange(RichUtils.toggleLink(editorState, selection, entityKey));
+        setEditorState(RichUtils.toggleLink(editorState, selection, entityKey));
       }
     },
   },
