@@ -27,7 +27,17 @@ const plugins = [
   createCleanupEmptyPlugin({
     types: ['block-image', 'block-text'],
   }),
-  createToolbarPlugin({}),
+  createToolbarPlugin({
+    __toolbarHandler: {
+      add: props => console.log('Add toolbar', props),
+      remove: props => console.log('Remove toolbar', props),
+    }, textActions: [{
+      button: <span>Hello World</span>,
+      label: 'Log Hello World!',
+      active: (block, editorState) => editorState.getSelection().isCollapsed(),
+      toggle: state => console.log('Hello World!', state),
+    }]
+  }),
   createFocusPlugin({}),
   createImagePlugin({}),
   createEntityPropsPlugin({}),

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { renderToolbar } from '../components/toolbar';
 import ReactDOM from 'react-dom';
 
 // Get a component's display name
@@ -11,7 +10,7 @@ const getDisplayName = WrappedComponent => {
 let number = 0;
 
 // HoverToolbar decorator will render a toolbar on hovering the WrappedComponent
-export default defaultTheme => WrappedComponent => class HoverToolbarDecorator extends Component {
+export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverToolbarDecorator extends Component {
   // Statics
   static displayName = `HoverToolbar(${getDisplayName(WrappedComponent)})`;
   static pluginOptions = WrappedComponent.pluginOptions;
@@ -81,16 +80,20 @@ export default defaultTheme => WrappedComponent => class HoverToolbarDecorator e
   };
 
   // Render the actual toolbar
-  doRenderToolbar = (active) => {
-    renderToolbar({
+  doRenderToolbar = active => {
+    const props = {
       ...this.props,
       theme: this.props.theme || defaultTheme,
       onMouseOver: this.mouseOverToolbar,
       onMouseLeave: this.mouseLeaveToolbar,
-      parent: this.DOMNode,
-      uid: `toolbar ${this.number}`,
-      active,
-    });
+      getTargetRectangle: () => this.DOMNode.getBoundingClientRect(),
+      uid: `toolbar-${this.number}`,
+    };
+    if (active) {
+      toolbarStore.add(props);
+    } else {
+      toolbarStore.remove(props);
+    }
   }
 
   render() {

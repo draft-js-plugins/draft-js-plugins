@@ -9,11 +9,11 @@ class Tooltip extends Component {
 
   componentDidMount() {
     let { left, top, width } = this.props;
-    const { forceLeft, position, rectGetter, parent } = this.props;
+    const { forceLeft, position, getTargetRectangle, parent } = this.props;
 
-    // rectGetter? Get rect!
-    if (rectGetter) {
-      const rect = rectGetter();
+    // getTargetRectangle defined? Get rect!
+    if (getTargetRectangle) {
+      const rect = getTargetRectangle();
       if (rect) {
         left = rect.left;
         top = rect.top;

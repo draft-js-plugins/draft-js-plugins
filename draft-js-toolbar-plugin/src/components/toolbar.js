@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Portal from '../utils/portal';
 
 export default class Toolbar extends Component {
   static defaultProps = {
@@ -48,12 +47,3 @@ export default class Toolbar extends Component {
     );
   }
 }
-
-// Render the Toolbar or Element with provided props using the Portal
-export const renderToolbar = (props, Element) => {
-  const method = props.active === false ? Portal.removePortal : Portal.renderPortal;
-  method({
-    ...props,
-    Element: Element || Toolbar
-  });
-};
