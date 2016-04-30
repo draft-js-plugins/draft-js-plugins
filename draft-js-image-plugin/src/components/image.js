@@ -27,8 +27,8 @@ class Image extends Component {
     const imageClassName = theme.image + (isFocused ? ` ${focusedStyle.focused}` : '');
 
     return (
-      <figure className={className} contentEditable={false} onDragStart={onDragStart} draggable={draggable}>
-        <img src={src || url} width="100%" height="auto" className={imageClassName} />
+      <figure className={className} contentEditable={false}>
+        <img {...this.props} src={src || url} width="100%" height="auto" className={imageClassName} />
         {this.renderProgress(progress, theme)}
       </figure>
     );
