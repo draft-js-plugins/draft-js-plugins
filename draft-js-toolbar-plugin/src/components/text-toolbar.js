@@ -11,7 +11,7 @@ const shouldRenderToolbar = props => {
   const { editorState } = props;
   const selected = getSelection();
   const selectionState = editorState.getSelection();
-  return selected.rangeCount && !selectionState.isCollapsed();
+  return !!selected.rangeCount && !selectionState.isCollapsed();
 };
 
 export default class DraftToolbar extends Component {
