@@ -13,6 +13,15 @@ class Image extends Component {
     customHandleDnd: true
   }
 
+  componentDidMount() {
+    /* this.props.addActions([{
+      button: <span>Hello World</span>,
+      label: 'Log Hello World!',
+      active: (block, editorState) => editorState.getSelection().isCollapsed(),
+      toggle: state => console.log('Hello World!', state),
+    }]); */
+  }
+
   renderProgress = (progress, theme) => progress >= 0 // eslint-disable-line no-confusing-arrow
     ? <div className={ theme.imageLoader } style={{ width: `${100 - progress}%` }} />
     : null;

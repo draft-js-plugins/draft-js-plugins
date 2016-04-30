@@ -39,6 +39,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class Focused
   doRenderToolbar = active => {
     const props = {
       ...this.props,
+      actions: [...(this.props.actions || []), ...(this._componentActions || [])],
       theme: this.props.theme || defaultTheme,
       getTargetRectangle: () => this.DOMNode.getBoundingClientRect(),
       uid: `toolbar-${this.number}`,
@@ -50,9 +51,13 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class Focused
     }
   }
 
+  addActions = actions => {
+    this._componentActions = actions;
+  }
+
   render() {
     return (
-      <WrappedComponent {...this.props} />
+      <WrappedComponent {...this.props} addActions={this.addActions} />
     );
   }
 };

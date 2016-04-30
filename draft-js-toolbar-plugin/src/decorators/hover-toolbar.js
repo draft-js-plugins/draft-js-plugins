@@ -85,6 +85,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
   doRenderToolbar = active => {
     const props = {
       ...this.props,
+      actions: [...(this.props.actions || []), ...(this._componentActions || [])],
       theme: this.props.theme || defaultTheme,
       onMouseOver: this.mouseOverToolbar,
       onMouseLeave: this.mouseLeaveToolbar,
@@ -98,9 +99,13 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
     }
   }
 
+  addActions = actions => {
+    this._componentActions = actions;
+  }
+
   render() {
     return (
-      <WrappedComponent {...this.props} />
+      <WrappedComponent {...this.props} addActions={this.addActions} />
     );
   }
 };
