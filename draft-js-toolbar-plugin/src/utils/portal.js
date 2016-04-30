@@ -62,7 +62,7 @@ class Tooltip extends Component {
   }
 
   render() {
-    const { onMouseOver, onMouseLeave, active } = this.props;
+    const { onMouseOver, onMouseLeave, active, animations } = this.props;
 
     // Is server?
     if (typeof window === 'undefined') {
@@ -75,7 +75,7 @@ class Tooltip extends Component {
 
     // Style
     const style = {
-      transition: 'all .3s ease-in-out, visibility .3s ease-in-out',
+      transition: animations ? 'all .3s ease-in-out, visibility .3s ease-in-out' : '',
       zIndex: 3,
       position: 'absolute',
       left,
@@ -155,7 +155,7 @@ const Portal = {
 
   // Render a portal
   renderPortal: (props, renderOnly) => {
-    const { Element, ...actualProps } = props; // eslint-disable-line no-use-before-define
+    const { Element, toolbarAnimations, ...actualProps } = props; // eslint-disable-line no-use-before-define
 
     if (!props) {
       return;
@@ -171,7 +171,11 @@ const Portal = {
       store.portals = Portal.addPortalToList(store.portals, props);
     }
 
-    ReactDOM.render(<Tooltip {...actualProps}><Element {...actualProps} /></Tooltip>, store.el);
+    ReactDOM.render(
+      <Tooltip animations={toolbarAnimations} {...actualProps}>
+        <Element {...actualProps} />
+      </Tooltip>, store.el
+    );
   }
 };
 
