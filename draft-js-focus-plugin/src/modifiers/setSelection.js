@@ -1,5 +1,4 @@
 import { SelectionState, EditorState } from 'draft-js';
-import refreshState from './refreshState';
 
 // Set selection of editor to next/previous block
 export default (getEditorState, setEditorState, previousActiveBlock, mode) => {
@@ -9,24 +8,30 @@ export default (getEditorState, setEditorState, previousActiveBlock, mode) => {
     ? editorState.getCurrentContent().getBlockBefore(selection.getAnchorKey())
     : editorState.getCurrentContent().getBlockAfter(selection.getAnchorKey());
 
-  if (!activeBlock) return undefined;
-  if (previousActiveBlock && activeBlock.get('key') === previousActiveBlock.get('key')) {
-    return undefined;
-  }
-
   setTimeout(() => {
-    const actualActiveBlock = editorState.getCurrentContent().getBlockForKey(selection.getAnchorKey());
+    const newEditorState = getEditorState();
+    const newSelection = newEditorState.getSelection();
+    const selectedBlock = newEditorState.getCurrentContent().getBlockForKey(newSelection.getAnchorKey());
+    const actualActiveBlock = newEditorState.getCurrentContent().getBlockForKey(newSelection.getAnchorKey());
+
+    if (!activeBlock) {
+      return selectedBlock;
+    } else if (previousActiveBlock && selectedBlock.get('key') === previousActiveBlock.get('key')) {
+      return selectedBlock;
+    } else if (previousActiveBlock && activeBlock.get('key') === previousActiveBlock.get('key')) {
+      return activeBlock;
+    }
+
     if (activeBlock.get('key') !== actualActiveBlock.get('key')) {
-      setEditorState(EditorState.forceSelection(editorState, new SelectionState({
+      // Hack
+      setEditorState(EditorState.forceSelection(newEditorState, selection));
+      setEditorState(EditorState.forceSelection(newEditorState, new SelectionState({
         anchorKey: activeBlock.get('key'),
         anchorOffset: activeBlock.get('length') || 0,
         focusKey: activeBlock.get('key'),
         focusOffset: activeBlock.get('length') || 0,
         isBackward: false,
       })));
-    } else {
-      refreshState(setEditorState, editorState);
-    }
+    } return undefined;
   });
-  return activeBlock;
 };

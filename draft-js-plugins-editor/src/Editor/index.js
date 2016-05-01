@@ -49,6 +49,8 @@ class PluginEditor extends Component {
         this.refs.editor[method](...args)
       );
     }
+
+    this.state = {};
   }
 
   componentWillMount() {
@@ -64,30 +66,28 @@ class PluginEditor extends Component {
   // changed (or didn't)
   onChange = (editorState) => {
     let newEditorState = editorState;
-    const editorFns = {
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    };
 
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
-        newEditorState = plugin.onChange(newEditorState, editorFns);
+        newEditorState = plugin.onChange(newEditorState, this);
       }
     });
 
     if (this.props.onChange) {
-      this.props.onChange(newEditorState, editorFns);
+      this.props.onChange(newEditorState, this);
     }
   };
 
+  setEditorState = this.onChange;
   getEditorState = () => this.props.editorState;
+
+  setReadOnly = (readOnly) => {
+    this.setState({ readOnly });
+  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push({ ...this });
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
@@ -100,10 +100,7 @@ class PluginEditor extends Component {
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
 
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push({ ...this });
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
@@ -255,6 +252,7 @@ class PluginEditor extends Component {
         { ...this.props }
         { ...accessibilityProps }
         { ...pluginHooks }
+        readOnly={this.props.readOnly || this.state.readOnly}
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }

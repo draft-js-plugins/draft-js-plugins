@@ -7,7 +7,14 @@ const getDisplayName = WrappedComponent => {
   return component.displayName || component.name || 'Component';
 };
 
-export default (theme, isFocused, setFocus) => WrappedComponent => {
+const findParentNode = (node, filter) => {
+  if (!node) return null;
+  return node.parentElement && filter(node.parentElement)
+    ? node.parentElement
+    : findParentNode(node.parentElement, filter);
+};
+
+export default (theme, isFocused, setFocus, setReadOnly, removeBlock) => WrappedComponent => {
   const { pluginOptions } = WrappedComponent;
   return class BlockFocusDecorator extends Component {
     // Statics
@@ -18,13 +25,44 @@ export default (theme, isFocused, setFocus) => WrappedComponent => {
     componentDidMount() {
       if (this.refs.component) {
         this.DOMNode = ReactDOM.findDOMNode(this.refs.component);
-        this.DOMNode.addEventListener('mouseup', this.click);
+        this.DOMNode.addEventListener('click', this.click);
+        this.DraftNode = findParentNode(this.DOMNode, node => node.className.indexOf('public-DraftEditor-content') !== -1);
+        this.DraftNode.addEventListener('mousedown', this.release);
+
+        if (isFocused) {
+          document.addEventListener('keydown', this.releaseOnArrowKey);
+        }
       }
+    }
+
+    componentDidUpdate() {
+      document.removeEventListener('keydown', this.releaseOnArrowKey);
+      document.addEventListener('keydown', this.releaseOnArrowKey);
     }
 
     componentWillUnmount() {
       if (this.DOMNode) {
-        this.DOMNode.removeEventListener('mouseup', this.click);
+        this.DOMNode.removeEventListener('click', this.click);
+        document.removeEventListener('keydown', this.releaseOnArrowKey);
+        this.DraftNode.removeEventListener('mousedown', this.release);
+      }
+    }
+
+    release = () => {
+      setReadOnly(false);
+    }
+
+    releaseOnArrowKey = event => {
+      if (event.keyCode === 38) {
+        event.stopPropagation();
+        this.release();
+      } else if (event.keyCode === 40) {
+        event.stopPropagation();
+        this.release();
+      } else if (event.keyCode === 8) {
+        event.stopPropagation();
+        event.preventDefault();
+        removeBlock();
       }
     }
 
@@ -43,7 +81,7 @@ export default (theme, isFocused, setFocus) => WrappedComponent => {
       }
       // If is focused, add a div and apply className
       return (
-        <div className={theme.focused}>
+        <div className={theme.focused} onKeyDown={this.releaseOnArrowKey}>
           <WrappedComponent ref="component" {...this.props} isFocused={isFocused} setFocus={setFocus} />
         </div>
       );
