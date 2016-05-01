@@ -23,6 +23,7 @@ const focusPlugin = config => {
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, setReadOnly }) => {
       const isFocused = activeBlock && contentBlock.get('key') === activeBlock.get('key');
       const setFocus = () => {
+        setReadOnly(true);
         // Set active block to current block
         activeBlock = contentBlock;
         // Force selection to move to current block
