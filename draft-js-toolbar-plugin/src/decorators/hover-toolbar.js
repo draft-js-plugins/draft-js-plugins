@@ -92,7 +92,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
       getTargetRectangle: () => this.DOMNode.getBoundingClientRect(),
       uid: `toolbar-${this.number}`,
     };
-    if (active) {
+    if (active && props.actions.length > 0) {
       toolbarStore.add(props);
     } else {
       toolbarStore.remove(props);

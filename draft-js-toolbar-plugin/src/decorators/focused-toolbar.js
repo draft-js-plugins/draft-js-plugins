@@ -19,7 +19,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class Focused
   // Bind listeners on mount
   componentDidMount() {
     // Set this.number to a unique value
-    this.number = number = number++;
+    this.number = number++;
 
     // Get this domNode
     const element = ReactDOM.findDOMNode(this);
@@ -42,7 +42,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class Focused
       actions: [...(this.props.actions || []), ...(this._componentActions || [])],
       theme: this.props.theme || defaultTheme,
       getTargetRectangle: () => this.DOMNode.getBoundingClientRect(),
-      uid: `toolbar-${this.number}`,
+      uid: this.DOMNode,
     };
     if (active) {
       toolbarStore.add(props);

@@ -11,12 +11,9 @@ const defaultTheme = {
 };
 
 const toolbarPlugin = config => {
-  const theme = config.theme ? config.theme : defaultTheme;
-  const toolbarHandler = config.toolbarHandler || airToolbarHandler;
-
-  if (config.animations === false) {
-    airToolbarHandler.animations = false;
-  }
+  let { theme, ...handlerConfig } = config;
+  theme = theme || defaultTheme;
+  const toolbarHandler = config.toolbarHandler || { ...airToolbarHandler, ...handlerConfig };
 
   return {
     // Re-Render the text-toolbar onChange (on selection change)
