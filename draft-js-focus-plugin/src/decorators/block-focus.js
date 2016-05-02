@@ -76,7 +76,7 @@ export default (theme, isFocused, setFocus, setReadOnly, removeBlock) => Wrapped
       // or if not focused, do nothing
       if ((pluginOptions && pluginOptions.customFocusedStyle) || !isFocused) {
         return (
-          <WrappedComponent ref="component" {...this.props} focusedStyle={theme} isFocused={isFocused} setFocus={setFocus} />
+          <WrappedComponent ref="component" {...this.props} focusedClassName={isFocused ? theme.focused : ''} focusedStyle={theme} isFocused={isFocused} setFocus={setFocus} />
         );
       }
       // If is focused, add a div and apply className
