@@ -162,10 +162,7 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
-      const expectedSecondArgument = {
-        getEditorState: pluginEditor.getEditorState,
-        setEditorState: pluginEditor.onChange,
-      };
+      const expectedSecondArgument = pluginEditor;
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
       expect(plugin.handleKeyCommand).has.been.calledWith('command', expectedSecondArgument);
@@ -262,10 +259,7 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
-      const expectedSecondArgument = {
-        getEditorState: pluginEditor.getEditorState,
-        setEditorState: pluginEditor.onChange,
-      };
+      const expectedSecondArgument = pluginEditor;
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
       expect(plugin.blockRendererFn).has.been.calledWith('command', expectedSecondArgument);
