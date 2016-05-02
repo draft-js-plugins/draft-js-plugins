@@ -2,23 +2,8 @@
   height: auto;
   position: relative;
   display: block;
-  width: 200px;
-  margin: 0;
   z-index: 1;
-}
-
-.center {
-  margin: 0px auto;
-}
-
-.left {
-  float: left;
-  margin-right: 10px;
-}
-
-.right {
-  float: right;
-  margin-left: 10px;
+  margin: 0;
 }
 
 .imageButton {

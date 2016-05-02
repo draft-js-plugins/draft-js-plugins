@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 class Image extends Component {
   // Set pluginOptions
   static pluginOptions = {
+    resizeable: true,
+    caption: true,
     // Handle focused style manually
     customFocusedStyle: true,
     // Handle alignment style manually
@@ -27,17 +29,18 @@ class Image extends Component {
     : null;
 
   render() {
-    const { alignment, theme, focusedStyle, isFocused,
-      progress, src, url } = this.props;
+    const { theme, alignmentClassName, focusedClassName, progress, src, url, style, ...other } = this.props;
 
     // Compose figure classNames
-    const className = `${theme.imageWrapper} ${theme[alignment || 'center']}`;
+    let className = theme.imageWrapper;
+    if (alignmentClassName) className += ` ${alignmentClassName}`;
     // Compose image classNames
-    const imageClassName = theme.image + (isFocused ? ` ${focusedStyle.focused}` : '');
+    let imageClassName = theme.image;
+    if (focusedClassName) imageClassName += ` ${focusedClassName}`;
 
     return (
-      <figure className={className} contentEditable={false}>
-        <img {...this.props} src={src || url} alt="" width="100%" height="auto" className={imageClassName} />
+      <figure className={className} contentEditable={false} style={{ width: '200px', ...style }}>
+        <img {...other} src={src || url} alt="" width="100%" height="auto" className={imageClassName} />
         {this.renderProgress(progress, theme)}
       </figure>
     );

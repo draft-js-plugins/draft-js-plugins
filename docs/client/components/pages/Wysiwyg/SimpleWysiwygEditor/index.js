@@ -10,6 +10,7 @@ import createDndPlugin from 'draft-js-dnd-plugin';
 import createToolbarPlugin from 'draft-js-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
+import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
 // Components
@@ -64,6 +65,7 @@ const plugins = [
       } return state;
     },
   }),
+  createResizeablePlugin({}),
 ];
 
 class SimpleWysiwygEditor extends Component {
@@ -73,7 +75,7 @@ class SimpleWysiwygEditor extends Component {
   };
 
   onChange = (editorState) => {
-    // console.log(convertToRaw(editorState.getCurrentContent()));
+    // console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
     this.setState({ editorState });
   };
 
