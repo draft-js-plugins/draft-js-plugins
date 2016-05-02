@@ -1,13 +1,27 @@
+.centerWrapper2 > .center > * {
+  display:block;
+  float:left;
+  list-style:none;
+  margin:0;
+  padding:0;
+  position:relative;
+  right:50%;
+}
+
 .centerWrapper {
   text-align: center;
+  width: 100%;
+}
+
+.centerWrapper > .center {
+  display: inline-block;
+  width: 100%;
 }
 
 .center {
-  display: inline-block;
-}
-
-.center {
-  display: inline-block;
+  display: block;
+  height: auto;
+  margin: 0px auto!important;
 }
 
 .left {

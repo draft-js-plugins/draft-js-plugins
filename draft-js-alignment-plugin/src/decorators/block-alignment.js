@@ -69,6 +69,7 @@ export default (setEditorState, getEditorState, theme) => WrappedComponent => {
       // Get the wrapped component and pass alignment props
       const inner = (
         <WrappedComponent {...this.props}
+          alignmentClassName={className}
           alignment={blockProps.alignment}
           align={this.align}
           alignmentStyles={theme}
@@ -80,16 +81,16 @@ export default (setEditorState, getEditorState, theme) => WrappedComponent => {
         // If the wrapped component defines pluginOptions.customAlignmentStyle
         // don't bother about alignment here
         return inner;
-      } else if (!blockProps.alignment || blockProps.alignment === 'center') {
+      } /* else if (!blockProps.alignment || blockProps.alignment === 'center') {
         // If it doesn't and centered, put 2 divs around
         return (
-          <div className={theme.centerWrapper}>
+          <div className={theme.centerWrapper2}>
             <div className={className}>
               {inner}
             </div>
           </div>
         );
-      }
+      }*/
 
       // If left/right aligned, one div with float will be sufficient
       return (
