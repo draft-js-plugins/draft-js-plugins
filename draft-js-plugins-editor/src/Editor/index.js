@@ -81,7 +81,7 @@ class PluginEditor extends Component {
   getEditorState = () => this.props.editorState;
 
   setReadOnly = (readOnly) => {
-    if(readOnly !== this.state.readOnly) this.setState({ readOnly });
+    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
   };
 
   createEventHooks = (methodName, plugins) => (...args) => {
