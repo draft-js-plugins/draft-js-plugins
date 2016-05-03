@@ -34,13 +34,10 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
-    const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
+    this.plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of this.plugins) {
       if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize({
-        getEditorState: this.getEditorState,
-        setEditorState: this.onChange,
-      });
+      plugin.initialize(this);
     }
 
     // attach proxy methods like `focus` or `blur`
@@ -65,6 +62,8 @@ class PluginEditor extends Component {
   // Cycle through the plugins, changing the editor state with what the plugins
   // changed (or didn't)
   onChange = (editorState) => {
+    if (this.state.readOnly) return;
+
     let newEditorState = editorState;
 
     this.resolvePlugins().forEach((plugin) => {
@@ -82,7 +81,7 @@ class PluginEditor extends Component {
   getEditorState = () => this.props.editorState;
 
   setReadOnly = (readOnly) => {
-    this.setState({ readOnly });
+    if(readOnly !== this.state.readOnly) this.setState({ readOnly });
   };
 
   createEventHooks = (methodName, plugins) => (...args) => {
@@ -247,6 +246,7 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
+
     return (
       <Editor
         { ...this.props }
