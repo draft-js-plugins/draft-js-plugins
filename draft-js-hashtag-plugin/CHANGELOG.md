@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.0.1
+
+### Changed
+
+- Deprecated the old regex approach and replaced it with Twitter's hashtag detection strategy.
+
 ## 1.0.0 - 2016-04-20
 
 ### Changed
