@@ -251,7 +251,7 @@ export default class EmojiSuggestions extends Component {
     }
 
     this.filteredEmojis = this.getEmojisForFilter();
-    const { theme = {} } = this.props;
+    const { theme = {}, cacheBustParam, imagePath } = this.props;
     return (
       <div
         {...this.props}
@@ -271,6 +271,8 @@ export default class EmojiSuggestions extends Component {
               index={ index }
               id={ `emoji-option-${this.key}-${index}` }
               theme={ theme }
+              imagePath={ imagePath }
+              cacheBustParam={ cacheBustParam }
             />
           ))
         }

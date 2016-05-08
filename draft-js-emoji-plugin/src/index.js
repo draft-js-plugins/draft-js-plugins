@@ -12,9 +12,9 @@ import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntities
 import defaultPositionSuggestions from './utils/positionSuggestions';
 import { EditorState } from 'draft-js';
 
-const defaultimagePathSvg = '//cdn.jsdelivr.net/emojione/assets/svg/';
+const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
+const cacheBustParam = '?v=2.1.2';
 
-// TODO provide an imagePath url via config
 // TODO activate/deactivate different the conversion or search part
 
 const createEmojiPlugin = (config = {}) => {
@@ -90,11 +90,13 @@ const createEmojiPlugin = (config = {}) => {
   const {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
-    imagePathSvg = defaultimagePathSvg
+    imagePath = defaultImagePath,
   } = config;
   const emojiSearchProps = {
     ariaProps,
+    cacheBustParam,
     callbacks,
+    imagePath,
     theme,
     store,
     positionSuggestions,
@@ -104,7 +106,7 @@ const createEmojiPlugin = (config = {}) => {
     decorators: [
       {
         strategy: emojiStrategy,
-        component: decorateComponentWithProps(Emoji, { theme, imagePathSvg }),
+        component: decorateComponentWithProps(Emoji, { theme, imagePath, cacheBustParam }),
       },
       {
         strategy: emojiSuggestionsStrategy,

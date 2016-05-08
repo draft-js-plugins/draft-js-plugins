@@ -3,18 +3,16 @@ import escapeMap from '../utils/escapeMap';
 import unionClassNames from 'union-class-names';
 import mappedUnicode from '../utils/mappedUnicode';
 
-const cacheBustParam = '?v=2.1.2';
-
-const Emoji = ({ theme = {}, imagePathSvg, className, decoratedText, ...props }) => {
+const Emoji = ({ theme = {}, cacheBustParam, imagePath, className, decoratedText, ...props }) => {
   const unicode = escapeMap[decoratedText];
-  const imagePath = `url(${imagePathSvg}${unicode}.svg${cacheBustParam})`;
+  const backgroundImage = `url(${imagePath}${unicode}.svg${cacheBustParam})`;
   const combinedClassName = unionClassNames(theme.emoji, className);
   const characterClassName = unionClassNames(theme.emojiCharacter);
   return (
     <span
       className={ combinedClassName }
       title={ mappedUnicode[unicode] }
-      style={{ backgroundImage: imagePath }}
+      style={{ backgroundImage }}
     >
       <span className={ characterClassName }>{ props.children }</span>
     </span>
