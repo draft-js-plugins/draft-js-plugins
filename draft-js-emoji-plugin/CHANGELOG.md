@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.1.0 - 2016-05-08
+
+### Added
+
+- Extended configuration parameters to accept `imagePath`. The full path is constructed of multiple parts like this: `${imagePath}${unicode}.svg${cacheBustParam}` while the imagePath can be overwritten from now on. The default imagePath was and still is: '//cdn.jsdelivr.net/emojione/assets/svg/'. [#249](https://github.com/draft-js-plugins/draft-js-plugins/pull/249)
+
 ## 1.0.1 - 2016-04-29
 
 ### Fixed
