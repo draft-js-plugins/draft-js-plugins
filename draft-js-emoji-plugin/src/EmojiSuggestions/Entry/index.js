@@ -36,14 +36,12 @@ export default class Entry extends Component {
   };
 
   render() {
-    const { theme = {} } = this.props;
+    const { theme = {}, imagePath, cacheBustParam } = this.props;
     const className = this.props.isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
     const unicode = emojioneList[this.props.emoji][0].toUpperCase();
     const emoji = convertShortNameToUnicode(unicode);
     const unicodeForImage = escapeMap[emoji];
-    const imagePathSVG = '//cdn.jsdelivr.net/emojione/assets/svg/';
-    const cacheBustParam = '?v=2.1.2';
-    const imagePath = `${imagePathSVG}${unicodeForImage}.svg${cacheBustParam}`;
+    const fullImagePath = `${imagePath}${unicodeForImage}.svg${cacheBustParam}`;
     return (
       <div
         className={ className }
@@ -53,7 +51,7 @@ export default class Entry extends Component {
         role="option"
       >
         <img
-          src={imagePath}
+          src={fullImagePath}
           className={ theme.emojiSuggestionsEntryIcon }
           role="presentation"
         />

@@ -120,7 +120,11 @@ export default class App extends Component {
           </div>
           <div className={ styles.param }>
             <span className={ styles.paramName }>positionSuggestions</span>
-            <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span>
+            <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the colon. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span>
+          </div>
+          <div className={ styles.param }>
+            <span className={ styles.paramName }>imagePath</span>
+            <span>The Emojis are displayed using SVGs. The full path is constructed of multiple parts like this: { '`${imagePath}${unicode}.svg${cacheBustParam}`' }. The default imagePath is: '//cdn.jsdelivr.net/emojione/assets/svg/', but can be overwritten with this config.</span>
           </div>
         </Container>
         <Container>
