@@ -3,10 +3,9 @@ import escapeMap from '../utils/escapeMap';
 import unionClassNames from 'union-class-names';
 import mappedUnicode from '../utils/mappedUnicode';
 
-const imagePathSVG = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const cacheBustParam = '?v=2.1.2';
 
-const Emoji = ({ theme = {}, className, decoratedText, ...props }) => {
+const Emoji = ({ theme = {}, imagePathSVG, className, decoratedText, ...props }) => {
   const unicode = escapeMap[decoratedText];
   const imagePath = `url(${imagePathSVG}${unicode}.svg${cacheBustParam})`;
   const combinedClassName = unionClassNames(theme.emoji, className);
