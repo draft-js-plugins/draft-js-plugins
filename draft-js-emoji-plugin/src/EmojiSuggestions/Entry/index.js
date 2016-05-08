@@ -41,9 +41,9 @@ export default class Entry extends Component {
     const unicode = emojioneList[this.props.emoji][0].toUpperCase();
     const emoji = convertShortNameToUnicode(unicode);
     const unicodeForImage = escapeMap[emoji];
-    const imagePathSVG = '//cdn.jsdelivr.net/emojione/assets/svg/';
+    const imagePathSvg = '//cdn.jsdelivr.net/emojione/assets/svg/';
     const cacheBustParam = '?v=2.1.2';
-    const imagePath = `${imagePathSVG}${unicodeForImage}.svg${cacheBustParam}`;
+    const imagePath = `${imagePathSvg}${unicodeForImage}.svg${cacheBustParam}`;
     return (
       <div
         className={ className }
