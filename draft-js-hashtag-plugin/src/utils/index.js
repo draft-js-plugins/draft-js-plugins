@@ -23,14 +23,3 @@ export function extractHashtagsWithIndices(text) {
 
   return tags;
 }
-
-export function extractHashtags(text) {
-  var hashtagsOnly = [];
-  const hashtagsWithIndices = extractHashtagsWithIndices(text);
-
-  for (let i = 0; i < hashtagsWithIndices.length; i++) {
-    hashtagsOnly.push(hashtagsWithIndices[i].hashtag);
-  }
-
-  return hashtagsOnly;
-}
