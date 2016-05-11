@@ -2,15 +2,16 @@ import completionSuggestionsCreator from './CompletionSuggestions';
 import CompletionSuggestionsPortal from './CompletionSuggestionsPortal';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { Map } from 'immutable';
-import completionSuggestionsStyles from './completionSuggestionsStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 
-const createCompletionPlugin = (completionSuggestionsStrategy, addModifier, SuggestionEntry) => (config = {}) => {
-  const defaultTheme = {
-    completionSuggestions: completionSuggestionsStyles.completionSuggestions,
-  };
-
+const createCompletionPlugin = (
+  completionSuggestionsStrategy,
+  addModifier,
+  SuggestionEntry,
+  suggestionsThemeKey = 'completionSuggestions',
+  additionalDecorators = [],
+) => (config = {}) => {
   const callbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
@@ -61,14 +62,8 @@ const createCompletionPlugin = (completionSuggestionsStrategy, addModifier, Sugg
     },
   };
 
-  // Styles are overwritten instead of merged as merging causes a lot of confusion.
-  //
-  // Why? Because when merging a developer needs to know all of the underlying
-  // styles which needs a deep dive into the code. Merging also makes it prone to
-  // errors when upgrading as basically every styling change would become a major
-  // breaking change. 1px of an increased padding can break a whole layout.
   const {
-    theme = defaultTheme,
+    theme = {},
     positionSuggestions = defaultPositionSuggestions,
   } = config;
   const completionSearchProps = {
@@ -79,7 +74,7 @@ const createCompletionPlugin = (completionSuggestionsStrategy, addModifier, Sugg
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
     positionSuggestions,
   };
-  const CompletionSuggestions = completionSuggestionsCreator(addModifier, SuggestionEntry);
+  const CompletionSuggestions = completionSuggestionsCreator(addModifier, SuggestionEntry, suggestionsThemeKey);
   return {
     CompletionSuggestions: decorateComponentWithProps(CompletionSuggestions, completionSearchProps),
     decorators: [
@@ -87,6 +82,7 @@ const createCompletionPlugin = (completionSuggestionsStrategy, addModifier, Sugg
         strategy: completionSuggestionsStrategy,
         component: decorateComponentWithProps(CompletionSuggestionsPortal, { store }),
       },
+      ...additionalDecorators,
     ],
     getAccessibilityProps: () => (
       {

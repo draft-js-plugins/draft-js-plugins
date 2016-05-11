@@ -4,7 +4,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
-export default function (addModifier, Entry) {
+export default function (addModifier, Entry, suggestionsThemeKey) {
   return class CompletionSuggestions extends Component {
 
     static propTypes = {
@@ -249,7 +249,7 @@ export default function (addModifier, Entry) {
       return (
         <div
           {...this.props}
-          className={ theme.completionSuggestions }
+          className={ theme[suggestionsThemeKey] }
           role="listbox"
           id={ `completions-list-${this.key}` }
           ref="popover"
