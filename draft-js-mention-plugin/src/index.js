@@ -11,6 +11,42 @@ import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 
+import createCompletionPlugin from 'draft-js-complete-plugin-creator';
+import addMention from './modifiers/addMention';
+import Entry from './MentionSuggestions/Entry';
+
+export const createMentionCompletionPlugin = createCompletionPlugin(
+  mentionSuggestionsStrategy,
+  addMention,
+  Entry,
+);
+
+export const createMentionPlugin = (config = {}) => {
+  const defaultTheme = {
+    mention: mentionStyles.mention,
+
+    mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
+
+    mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
+    mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
+    mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
+    mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
+  };
+  const {
+    mentionPrefix = '',
+    theme = defaultTheme,
+  } = config;
+  return {
+    decorators: [
+      {
+        strategy: mentionStrategy,
+        component: decorateComponentWithProps(Mention, { theme, mentionPrefix }),
+      },
+    ],
+  };
+};
+
+/*
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = {
     mention: mentionStyles.mention,
@@ -131,6 +167,7 @@ const createMentionPlugin = (config = {}) => {
     },
   };
 };
+*/
 
 export default createMentionPlugin;
 

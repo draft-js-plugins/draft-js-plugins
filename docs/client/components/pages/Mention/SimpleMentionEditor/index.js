@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, { createMentionCompletionPlugin, defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
 const mentionPlugin = createMentionPlugin();
-const { MentionSuggestions } = mentionPlugin;
-const plugins = [mentionPlugin];
+const completionPlugin = createMentionCompletionPlugin();
+console.log(completionPlugin, mentionPlugin);
+const { CompletionSuggestions: MentionSuggestions } = completionPlugin;
+const plugins = [mentionPlugin, completionPlugin];
 
 export default class SimpleMentionEditor extends Component {
 

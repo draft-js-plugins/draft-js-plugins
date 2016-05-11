@@ -138,14 +138,14 @@ export default class App extends Component {
         </Container>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
-          <SimpleMentionEditor />
+           <SimpleMentionEditor />
           <Code code={ simpleExampleCode } name="SimpleMentionEditor.js" />
           <Code code={ simpleExampleMentionsCode } name="mentions.js" />
           <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
         </Container>
         <Container>
           <Heading level={ 2 }>Themed Mention Example</Heading>
-          <CustomMentionEditor />
+          {/* <CustomMentionEditor /> */}
           <Code code={ customExampleCode } name="CustomMentionEditor.js" />
           <Code code={ customExampleMentionsStylesCode } name="mentionsStyles.js" />
           <Code code={ customExampleMentionsCode } name="mentions.js" />
@@ -153,7 +153,7 @@ export default class App extends Component {
         </Container>
         <Container>
           <Heading level={ 2 }>Remote Data Mention Example</Heading>
-          <RemoteMentionEditor />
+          {/* <RemoteMentionEditor / >*/}
           <Code code={ remoteExampleCode } name="RemoteMentionEditor.js" />
           <Code code={ remoteExampleEditorStylesCode } name="editorStyles.css" />
         </Container>

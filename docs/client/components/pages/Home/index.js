@@ -162,7 +162,7 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={ 2 }>Try it yourself</Heading>
-          <UnicornEditor />
+          {/* <UnicornEditor /> */}
           <Heading level={ 3 }>Plugins used in this Editor</Heading>
           <div className={ styles.flexCenteredDisplay }>
             <ul>

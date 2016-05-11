@@ -149,7 +149,7 @@ export default function (addModifier, Entry) {
     onDownArrow = (keyboardEvent) => {
       keyboardEvent.preventDefault();
       const newIndex = this.state.focusedOptionIndex + 1;
-      this.oncompletionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
+      this.onCompletionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
     };
 
     onTab = (keyboardEvent) => {
@@ -161,7 +161,7 @@ export default function (addModifier, Entry) {
       keyboardEvent.preventDefault();
       if (this.props.suggestions.size > 0) {
         const newIndex = this.state.focusedOptionIndex - 1;
-        this.oncompletionFocus(Math.max(newIndex, 0));
+        this.onCompletionFocus(Math.max(newIndex, 0));
       }
     };
 
@@ -179,7 +179,7 @@ export default function (addModifier, Entry) {
       this.props.store.setEditorState(this.props.store.getEditorState());
     };
 
-    oncompletionSelect = (completion) => {
+    onCompletionSelect = (completion) => {
       this.closeDropdown();
       const newEditorState = addModifier(
         this.props.store.getEditorState(),
@@ -189,7 +189,7 @@ export default function (addModifier, Entry) {
       this.props.store.setEditorState(newEditorState);
     };
 
-    oncompletionFocus = (index) => {
+    onCompletionFocus = (index) => {
       const descendant = `completion-option-${this.key}-${index}`;
       this.props.ariaProps.ariaActiveDescendantID = descendant;
       this.state.focusedOptionIndex = index;
@@ -199,7 +199,7 @@ export default function (addModifier, Entry) {
     };
 
     commitSelection = () => {
-      this.oncompletionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
+      this.onCompletionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
       return true;
     };
 
@@ -258,8 +258,8 @@ export default function (addModifier, Entry) {
             this.props.suggestions.map((completion, index) => (
               <Entry
                 key={ completion.get('name') }
-                oncompletionSelect={ this.oncompletionSelect }
-                oncompletionFocus={ this.oncompletionFocus }
+                onCompletionSelect={ this.onCompletionSelect }
+                onCompletionFocus={ this.onCompletionFocus }
                 isFocused={ this.state.focusedOptionIndex === index }
                 completion={ completion }
                 index={ index }
