@@ -138,7 +138,7 @@ export default class App extends Component {
         </Container>
         <Container>
           <Heading level={ 2 }>Simple Example</Heading>
-           <SimpleMentionEditor />
+          <SimpleMentionEditor />
           <Code code={ simpleExampleCode } name="SimpleMentionEditor.js" />
           <Code code={ simpleExampleMentionsCode } name="mentions.js" />
           <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
