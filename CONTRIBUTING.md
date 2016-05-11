@@ -49,6 +49,6 @@ We are also happy about updates to the documentation in combination with changes
 
 ## Publishing Github Pages (for the core team)
 
-Run `./script/publishGithubPages.sh`
+Run `./scripts/publishGithubPages.sh`
 
 The `build` script renames the .babelrc files of all plugins to avoid issues with the build. In the future we might be able to remove this again.

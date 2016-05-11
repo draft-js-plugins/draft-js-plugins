@@ -107,7 +107,7 @@ class PluginEditor extends Component {
       for (const plugin of plugins) {
         if (typeof plugin[methodName] !== 'function') continue;
         const result = plugin[methodName](...newArgs);
-        if (result !== undefined) {
+        if (result !== undefined && result !== null) {
           const { decorators: pluginDecorators, props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
           if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
