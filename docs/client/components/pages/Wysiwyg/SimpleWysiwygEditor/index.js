@@ -11,6 +11,7 @@ import createToolbarPlugin from 'draft-js-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
+import createTablePlugin from 'draft-js-table-plugin';
 // import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
 // Components
@@ -26,8 +27,9 @@ import styles from './styles.css';
 // Init Plugins
 const plugins = [
   createCleanupEmptyPlugin({
-    types: ['block-image', 'block-text'],
+    types: 'image'
   }),
+  createTablePlugin({ }),
   createToolbarPlugin({
     __toolbarHandler: {
       add: props => console.log('Add toolbar', props),
@@ -36,7 +38,7 @@ const plugins = [
       button: <span>Hello World</span>,
       label: 'Log Hello World!',
       active: (block, editorState) => editorState.getSelection().isCollapsed(),
-      toggle: state => console.log('Hello World!', state),
+      toggle: (block, action, editorState, setEditorState) => setEditorState(addBlock(editorState, editorState.getSelection(), 'table', {})),
     }]
   }),
   createFocusPlugin({}),
@@ -73,6 +75,11 @@ class SimpleWysiwygEditor extends Component {
     editorState: EditorState.createEmpty(),
     draggingOver: false,
   };
+
+  componentDidMount() {
+    // const { editorState } = this.state;
+    // this.setState({ editorState: addBlock(editorState, editorState.getSelection(), 'table', {}) });
+  }
 
   onChange = (editorState) => {
     // console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
