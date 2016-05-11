@@ -25,7 +25,7 @@ const undoPlugin = createUndoPlugin();
 const stickerPlugin = createStickerPlugin({
   stickers,
 });
-const { MentionSuggestions } = mentionPlugin;
+const { CompletionSuggestions: MentionSuggestions } = mentionPlugin;
 const { EmojiSuggestions } = emojiPlugin;
 const { StickerSelect } = stickerPlugin;
 const { UndoButton, RedoButton } = undoPlugin;
