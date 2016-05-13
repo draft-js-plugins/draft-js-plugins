@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
+import { FocusDecorator } from 'draft-js-focus-plugin';
+import { DraggableDecorator } from 'draft-js-dnd-plugin';
+import { ResizeableDecorator } from 'draft-js-resizeable-plugin';
+import { ToolbarDecorator } from 'draft-js-toolbar-plugin';
+import { AlignmentDecorator } from 'draft-js-alignment-plugin';
 
-class Image extends Component {
-  // Set pluginOptions
-  static pluginOptions = {
-    resizeable: true,
-    caption: true,
-    // Handle focused style manually
-    customFocusedStyle: true,
-    // Handle alignment style manually
-    customAlignmentStyle: true,
-    // Handle upload progress style manually
-    customUploadProgress: true,
-    // Handle dnd onDragStart/draggable manually
-    customHandleDnd: true
-  }
-
+const ImageComponent = ({ theme }) => class Image extends Component {
   componentDidMount() {
     /* this.props.addActions([{
       button: <span>Hello World</span>,
@@ -24,27 +15,42 @@ class Image extends Component {
     }]); */
   }
 
-  renderProgress = (progress, theme) => progress >= 0 // eslint-disable-line no-confusing-arrow
+  renderProgress = progress => progress >= 0 // eslint-disable-line no-confusing-arrow
     ? <div className={ theme.imageLoader } style={{ width: `${100 - progress}%` }} />
     : null;
 
   render() {
-    const { theme, alignmentClassName, focusedClassName, progress, src, url, style, ...other } = this.props;
+    const { alignmentClassName, focusClassName, blockProps, style, ...other } = this.props;
+    const { progress, src, url } = blockProps;
 
     // Compose figure classNames
     let className = theme.imageWrapper;
-    if (alignmentClassName) className += ` ${alignmentClassName}`;
+    if (alignmentClassName) className = `${alignmentClassName} ${className}`;
     // Compose image classNames
     let imageClassName = theme.image;
-    if (focusedClassName) imageClassName += ` ${focusedClassName}`;
+    if (focusClassName) imageClassName += ` ${focusClassName}`;
 
     return (
-      <figure className={className} contentEditable={false} style={{ width: '200px', ...style }}>
+      <div className={className} contentEditable={false} style={style}>
         <img {...other} src={src || url} alt="" width="100%" height="auto" className={imageClassName} />
         {this.renderProgress(progress, theme)}
-      </figure>
+      </div>
     );
   }
-}
+};
 
-export default Image;
+export default options => ResizeableDecorator({
+  resizeSteps: 10,
+  handles: true,
+  vertical: 'auto'
+})(
+  DraggableDecorator(
+    FocusDecorator(
+      AlignmentDecorator(
+        ToolbarDecorator()(
+          ImageComponent(options)
+        )
+      )
+    )
+  )
+);

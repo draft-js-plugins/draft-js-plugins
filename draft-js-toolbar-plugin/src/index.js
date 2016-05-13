@@ -1,20 +1,13 @@
 import { shouldRenderToolbar, getToolbarPosition, getToolbarActions } from './utils/textToolbar';
-import DecoratorHover from './decorators/hover-toolbar';
-import DecoratorFocused from './decorators/focused-toolbar';
+import Decorator from './decorators/toolbar';
 import linkStrategy from './linkStrategy';
 import Link from './Link';
 import styles from './styles.css';
 import airToolbarHandler from './air-toolbar';
 
-const defaultTheme = {
-  ...styles,
-};
-
 const toolbarPlugin = config => {
-  let { theme, ...handlerConfig } = config;
-  theme = theme || defaultTheme;
-  const toolbarHandler = config.toolbarHandler || { ...airToolbarHandler, ...handlerConfig };
-
+  const theme = config.theme || styles;
+  const toolbarHandler = config.toolbarHandler || { ...airToolbarHandler, ...config };
   return {
     // Re-Render the text-toolbar onChange (on selection change)
     onChange: (editorState, { setEditorState }) => {
@@ -35,12 +28,10 @@ const toolbarPlugin = config => {
     },
     // Wrap all block-types in hover-toolbar decorator
     blockRendererFn: (contentBlock, { }) => ({
-      decorators: [(toolbarHandler.blockMode === 'hover' ? DecoratorHover : DecoratorFocused)(
-        theme,
+      props: {
         toolbarHandler
-      )],
+      }
     }),
-    // Add linkStrategy decorator to draft ediotr
     decorators: [{
       strategy: linkStrategy,
       component: Link,
@@ -49,3 +40,5 @@ const toolbarPlugin = config => {
 };
 
 export default toolbarPlugin;
+
+export const ToolbarDecorator = (options = {}) => Decorator({ theme: options.theme || styles });

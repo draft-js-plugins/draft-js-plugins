@@ -27,9 +27,10 @@ import styles from './styles.css';
 // Init Plugins
 const plugins = [
   createCleanupEmptyPlugin({
-    types: 'image'
+    types: ['block-image', 'block-table']
   }),
   createTablePlugin({ }),
+  createEntityPropsPlugin({ }),
   createToolbarPlugin({
     __toolbarHandler: {
       add: props => console.log('Add toolbar', props),
@@ -38,15 +39,12 @@ const plugins = [
       button: <span>Hello World</span>,
       label: 'Log Hello World!',
       active: (block, editorState) => editorState.getSelection().isCollapsed(),
-      toggle: (block, action, editorState, setEditorState) => setEditorState(addBlock(editorState, editorState.getSelection(), 'table', {})),
+      toggle: (block, action, editorState, setEditorState) => setEditorState(addBlock(editorState, editorState.getSelection(), 'block-table', {})),
     }]
   }),
   createFocusPlugin({}),
   createImagePlugin({}),
-  createEntityPropsPlugin({}),
-  createAlignmentPlugin({
-    types: ['block-image'],
-  }),
+  createAlignmentPlugin({}),
   createDndPlugin({
     allowDrop: true,
     handleUpload: (data, success, failed, progress) =>
@@ -54,17 +52,17 @@ const plugins = [
     handlePlaceholder: (state, selection, data) => {
       const { type } = data;
       if (type.indexOf('image/') === 0) {
-        return addBlock(state, state.getSelection(), 'block-image', data);
+        return 'block-image';
       } else if (type.indexOf('text/') === 0 || type === 'application/json') {
-        return addBlock(state, state.getSelection(), 'placeholder-github', data);
-      } return state;
+        return 'placeholder-github';
+      } return undefined;
     }, handleBlock: (state, selection, data) => {
       const { type } = data;
       if (type.indexOf('image/') === 0) {
-        return addBlock(state, state.getSelection(), 'block-image', data);
+        return 'block-image';
       } else if (type.indexOf('text/') === 0 || type === 'application/json') {
-        return addBlock(state, state.getSelection(), 'block-text', data);
-      } return state;
+        return 'block-text';
+      } return undefined;
     },
   }),
   createResizeablePlugin({}),

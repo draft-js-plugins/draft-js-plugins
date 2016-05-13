@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 export default class Toolbar extends Component {
+  static contextTypes = {
+    toolbarTheme: React.PropTypes.object
+  }
+
   static defaultProps = {
     actions: [],
     active: true,
@@ -20,10 +24,13 @@ export default class Toolbar extends Component {
 
   // Render single action buttons
   renderAction = action => {
+    const { toolbarTheme } = this.context;
     const { theme } = this.props;
-    const classNames = [theme['toolbar-item']];
+    const styles = toolbarTheme || theme;
+
+    const classNames = [styles['toolbar-item']];
     if (action.active) {
-      classNames.push(theme['toolbar-item-active']);
+      classNames.push(styles['toolbar-item-active']);
     }
 
     const toggle = () => this.toggleAction(action);
@@ -39,9 +46,11 @@ export default class Toolbar extends Component {
   // Render
   render() {
     const { theme, actions } = this.props; // eslint-disable-line no-use-before-define
+    const { toolbarTheme } = this.context;
+    const styles = toolbarTheme || theme;
 
     return (
-      <div className={theme.toolbar} onMouseDown={this.preventDefault}>
+      <div className={styles.toolbar} onMouseDown={this.preventDefault}>
         {actions.map(this.renderAction)}
       </div>
     );

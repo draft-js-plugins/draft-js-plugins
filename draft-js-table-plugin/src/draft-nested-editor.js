@@ -3,16 +3,10 @@ import PluginsEditor from 'draft-js-plugins-editor';
 import { EditorState, ContentState, convertFromRaw, convertToRaw } from 'draft-js';
 import ReactDOM from 'react-dom';
 
-function findAncestor(el, cls) {
-  while ((el = el.parentElement) && !el.classList.contains(cls)); // eslint-disable-line
-  return el;
-}
-
 export default class DraftEditorBlock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      readOnly: true,
       editorState: props.editorState
         ? EditorState.createWithContent(ContentState.createFromBlockArray(convertFromRaw(props.editorState)))
         : EditorState.createWithContent(ContentState.createFromText('Insert text ...'))
@@ -20,52 +14,49 @@ export default class DraftEditorBlock extends Component {
   }
 
   componentDidMount() {
-    this.DOMNode = ReactDOM.findDOMNode(this);
+    this.DOMNode = ReactDOM.findDOMNode(this.refs.editor);
+    this.DOMNode.addEventListener('mousedown', this.mouseDown, false);
+    this.DOMNode.addEventListener('keydown', this.stopPropagation, false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.listener, false);
-    this.props.setReadOnly(false);
+    this.DOMNode.removeEventListener('mousedown', this.listener, false);
+    this.DOMNode.removeEventListener('keydown', this.stopPropagation, false);
   }
 
   onChange = editorState => {
-    if (this.state.readOnly) return;
+    const { readOnly } = this.props;
+    if (readOnly) return;
     this.setState({ editorState });
     this.props.onChange(convertToRaw(editorState.getCurrentContent()));
   }
 
-  mouseDown = () => {
-    if (this.state.readOnly === false) {
+  mouseDown = event => {
+    const { readOnly, setFocus } = this.props;
+    event.stopPropagation();
+    if (readOnly === false) {
       return;
     }
 
-    setTimeout(() => {
-      this.props.setReadOnly(true);
-      this.setState({ readOnly: false });
-    }, 1);
-    document.removeEventListener('mousedown', this.listener, false);
-    document.addEventListener('mousedown', this.listener, false);
+    setFocus();
   }
 
-  listener = e => {
-    const editor = findAncestor(this.DOMNode, 'DraftEditor-root');
-
-    if (e.target === this.DOMNode || this.DOMNode.contains(e.target) || !editor.contains(e.target)) {
-      return;
+  stopPropagation = event => {
+    if (event.keyCode === 38) {
+      event.stopPropagation();
+    } else if (event.keyCode === 40) {
+      event.stopPropagation();
+    } else if (event.keyCode === 8) {
+      event.stopPropagation();
     }
-
-    document.removeEventListener('mousedown', this.listener, false);
-    this.setState({ readOnly: true });
-    this.props.setReadOnly(false);
   }
 
   render() {
-    const { editorState, readOnly } = this.state;
+    const { editorState } = this.state;
+    const { readOnly } = this.props;
 
     return (
-      <div onMouseDown={this.mouseDown} style={{ position: 'relative' }}>
-        <PluginsEditor {...this.props} ref="editor" editorState={editorState} onChange={this.onChange} readOnly={readOnly} />
-      </div>
+      <PluginsEditor {...this.props} ref="editor" editorState={editorState} onChange={this.onChange} readOnly={readOnly} />
     );
   }
 }

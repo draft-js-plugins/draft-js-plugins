@@ -1,88 +1,102 @@
 import React, { Component } from 'react';
-import Wrapper from '../decorators/generic';
+import { FocusDecorator } from 'draft-js-focus-plugin';
+import { DraggableDecorator } from 'draft-js-dnd-plugin';
+import { ToolbarDecorator } from 'draft-js-toolbar-plugin';
 
-export default Wrapper(
-  class Table extends Component {
-    state = { cells: 2 };
-    // Set pluginOptions
-    static pluginOptions = {
-      // Handle focused style manually
-      customFocusedStyle: true,
-      // Handle alignment style manually
-      customAlignmentStyle: true,
-      // Handle upload progress style manually
-      customUploadProgress: true,
-      // Handle dnd onDragStart/draggable manually
-      customHandleDnd: true
+const TableComponent = ({ theme, renderNestedEditor }) => class Table extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      rows: props.blockProps.rows || [[]],
+      numberOfColumns: props.blockProps.numberOfColumns || 1,
+      focusedEdit: null
+    };
+  }
+
+  componentDidMount() {
+    const { addActions } = this.props;
+    if (addActions) {
+      addActions([{
+        button: <span>+ Row</span>,
+        label: 'Add a row',
+        active: false,
+        toggle: () => this.addRow(),
+      }, {
+        button: <span>+ Column</span>,
+        label: 'Add a column',
+        active: false,
+        toggle: () => this.addColumn(),
+      }]);
     }
+  }
 
-    componentDidMount() {
-      const { addActions } = this.props;
-      if (addActions) {
-        addActions([{
-          button: <span>+ Row</span>,
-          label: 'Add a row',
-          active: false,
-          toggle: () => this.addRow(),
-        }, {
-          button: <span>+ Column</span>,
-          label: 'Add a column',
-          active: false,
-          toggle: () => this.addColumn(),
-        }]);
-      }
+  setFocus = (row, column) => {
+    const { setFocus } = this.props;
+    setFocus();
+    this.setState({ focusedEdit: { row, column } });
+  }
+
+  addRow = () => {
+    const { setEntityData } = this.props.blockProps;
+    const { rows } = this.state;
+    const newRows = [...rows, []];
+    setEntityData({ rows: newRows });
+    this.setState({ rows: newRows });
+  }
+
+  addColumn = () => {
+    const { setEntityData } = this.props.blockProps;
+    const { numberOfColumns } = this.state;
+    const newNumberOfColumns = (numberOfColumns || 1) + 1;
+    setEntityData({ numberOfColumns: newNumberOfColumns });
+    this.setState({ numberOfColumns: newNumberOfColumns });
+  }
+
+  updateEntityData = (editorState, row, column) => {
+    const { setEntityData } = this.props.blockProps;
+    const { rows, numberOfColumns } = this.state;
+    const newRows = rows || [{}];
+    while (newRows[row].length < (numberOfColumns || 1)) {
+      newRows[row].push(null);
     }
+    newRows[row][column] = editorState;
+    setEntityData({ rows: newRows });
+    this.setState({ rows: newRows });
+  }
 
-    addRow = () => {
-      const { saveEntityData, entityData } = this.props;
-      const rows = entityData.rows || [{}];
-      saveEntityData({ ...entityData, rows: [...rows, []] });
-    }
+  render() {
+    const { rows, numberOfColumns, focusedEdit } = this.state;
+    const { style, className, blockProps } = this.props;
+    const { isFocused } = blockProps;
 
-    addColumn = () => {
-      const { saveEntityData, entityData } = this.props;
-      const numberOfColumns = (entityData.numberOfColumns || 1) + 1;
-      saveEntityData({ ...entityData, numberOfColumns });
-    }
+    const classNames = [className, theme.table].filter(p => p);
 
-    updateEntityData = (editorState, row, column) => {
-      const { saveEntityData, entityData } = this.props;
-      const rows = entityData.rows || [[]];
-      while (rows[row].length < (entityData.numberOfColumns || 1)) {
-        rows[row].push(null);
-      }
-      rows[row][column] = editorState;
-      saveEntityData({ ...entityData, rows });
-    }
+    return (
+      <table className={classNames.join(' ')} cellSpacing="0" style={style}>
+        <tbody>
+        {rows.map((row, rowI) =>
+          <tr key={rowI}>
+            {Array.from(new Array(numberOfColumns), (x, i) => i).map((column, columnI) =>
+              <td key={columnI}>{renderNestedEditor(
+                this,
+                row[columnI],
+                (editorState) => this.updateEntityData(editorState, rowI, columnI),
+                () => this.setFocus(rowI, columnI),
+                isFocused && focusedEdit && focusedEdit.row === rowI && focusedEdit.column === columnI
+              )}</td>
+            )}
+          </tr>
+        )}
+        </tbody>
+      </table>
+    );
+  }
+};
 
-    render() {
-      const { theme, renderNestedEditor, entityData } = this.props;
-
-      const rows = entityData.rows || [[]];
-      const columns = entityData && entityData.numberOfColumns ? entityData.numberOfColumns : 1;
-
-      return (
-        <table className={theme.table} cellSpacing="0">
-          {/* <thead>
-           <tr>
-           <th>1</th>
-           <th>2</th>
-           </tr>
-           </thead>*/}
-          <tbody>
-          {rows.map((row, rowI) =>
-            <tr key={rowI}>
-              {Array.from(new Array(columns), (x, i) => i).map((column, columnI) =>
-                <td key={columnI}>{renderNestedEditor(
-                  this,
-                  row[columnI],
-                  (editorState) => this.updateEntityData(editorState, rowI, columnI))
-                }</td>
-              )}
-            </tr>
-          )}
-          </tbody>
-        </table>
-      );
-    }
-  });
+export default (options) => FocusDecorator(
+  DraggableDecorator(
+    ToolbarDecorator()(
+      TableComponent(options)
+    )
+  )
+);

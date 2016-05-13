@@ -36,13 +36,13 @@ export default WrappedComponent => {
       const { draggable } = this.props;
 
       // Check if pluginOptions.customHandleDnd != true and add a div to markup
-      if (!pluginOptions || pluginOptions.customHandleDnd !== true) {
+      /* if (!pluginOptions || pluginOptions.customHandleDnd !== true) {
         return (
           <div onDragStart={this.startDrag} draggable={draggable}>
             <WrappedComponent {...this.props} />
           </div>
         );
-      }
+      }*/
 
       // In case pluginOptions.customHandleDnd == true let component handle onDragStart
       return <WrappedComponent {...this.props} onDragStart={this.startDrag} draggable={draggable} />;

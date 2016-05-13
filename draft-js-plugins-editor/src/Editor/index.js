@@ -103,24 +103,17 @@ class PluginEditor extends Component {
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
-      let decorators = [];
       for (const plugin of plugins) {
         if (typeof plugin[methodName] !== 'function') continue;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
-          const { decorators: pluginDecorators, props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
+          const { props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
-          if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
           block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
       }
 
-      if (block.component) {
-        decorators.forEach(decorator => { block.component = decorator(block.component); });
-        return block;
-      }
-
-      return false;
+      return block.component ? block : false;
     } else if (methodName === 'blockStyleFn') {
       let styles;
       for (const plugin of plugins) {

@@ -14,77 +14,105 @@ const findParentNode = (node, filter) => {
     : findParentNode(node.parentElement, filter);
 };
 
-export default (theme, isFocused, setFocus, setReadOnly, removeBlock) => WrappedComponent => {
-  const { pluginOptions } = WrappedComponent;
-  return class BlockFocusDecorator extends Component {
-    // Statics
-    static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
-    static pluginOptions = WrappedComponent.pluginOptions;
-    static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
+export default ({ theme, isFocused, setFocus, unsetFocus, removeBlock }) => WrappedComponent => class BlockFocusDecorator extends Component {
+  // Statics
+  static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
+  static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
-    componentDidMount() {
-      if (this.refs.component) {
-        this.DOMNode = ReactDOM.findDOMNode(this.refs.component);
-        this.DOMNode.addEventListener('click', this.click);
-        this.DraftNode = findParentNode(this.DOMNode, node => node.className.indexOf('public-DraftEditor-content') !== -1);
-        this.DraftNode.addEventListener('mousedown', this.release);
+  setFocus = () => {
+    const { blockProps } = this.props;
+    (setFocus || blockProps.setFocus)();
+  }
 
-        if (isFocused) {
-          document.addEventListener('keydown', this.releaseOnArrowKey);
-        }
-      }
-    }
+  unsetFocus = (direction, event) => {
+    const { blockProps } = this.props;
+    (unsetFocus || blockProps.unsetFocus)(direction, event);
+  }
 
-    componentDidUpdate() {
-      document.removeEventListener('keydown', this.releaseOnArrowKey);
-      document.addEventListener('keydown', this.releaseOnArrowKey);
-    }
+  removeBlock = () => {
+    const { blockProps } = this.props;
+    (removeBlock || blockProps.removeBlock)();
+  }
 
-    componentWillUnmount() {
+  componentDidMount() {
+    if (this.refs.component) {
+      this.DOMNode = ReactDOM.findDOMNode(this.refs.component);
       if (this.DOMNode) {
-        this.DOMNode.removeEventListener('click', this.click);
-        document.removeEventListener('keydown', this.releaseOnArrowKey);
-        this.DraftNode.removeEventListener('mousedown', this.release);
+        this.DraftNode = findParentNode(this.DOMNode, node => node.className.indexOf('public-DraftEditor-content') !== -1);
+      }
+      this.componentDidUpdate();
+    }
+  }
+
+  componentWillUpdate() {
+    if (this.DOMNode) {
+      this.DOMNode.removeEventListener('mousedown', this.mouseDown);
+      // document.removeEventListener('keydown', this.releaseOnArrowKey);
+      // document.removeEventListener('mousedown', this.releaseOnMouseDown);
+      document.removeEventListener('keydown', this.releaseOnArrowKey);
+      this.DraftNode.removeEventListener('mousedown', this.releaseOnMouseDown);
+    }
+  }
+
+  componentDidUpdate() {
+    const { blockProps } = this.props;
+    const focused = (isFocused || blockProps.isFocused);
+
+    if (this.DOMNode) {
+      this.DOMNode.addEventListener('mousedown', this.mouseDown);
+      if (focused) {
+        // document.addEventListener('keydown', this.releaseOnArrowKey);
+        // document.addEventListener('mousedown', this.releaseOnMouseDown);
+        document.addEventListener('keydown', this.releaseOnArrowKey);
+        this.DraftNode.addEventListener('mousedown', this.releaseOnMouseDown);
       }
     }
+  }
 
-    release = () => {
-      setReadOnly(false);
+  componentWillUnmount() {
+    const { blockProps } = this.props;
+    const focused = (isFocused || blockProps.isFocused);
+    this.componentWillUpdate();
+    if (focused) {
+      this.unsetFocus();
     }
+  }
 
-    releaseOnArrowKey = event => {
-      if (event.keyCode === 38) {
-        event.stopPropagation();
-        this.release();
-      } else if (event.keyCode === 40) {
-        event.stopPropagation();
-        this.release();
-      } else if (event.keyCode === 8) {
-        event.stopPropagation();
-        event.preventDefault();
-        removeBlock();
-      }
-    }
-
-    click = event => {
-      setFocus();
+  releaseOnArrowKey = event => {
+    if (event.keyCode === 38) {
       event.stopPropagation();
-    };
-
-    render() {
-      // If pluginOptions.customFocusedStyle let wrapped component handle itself
-      // or if not focused, do nothing
-      if ((pluginOptions && pluginOptions.customFocusedStyle) || !isFocused) {
-        return (
-          <WrappedComponent ref="component" {...this.props} focusedClassName={isFocused ? theme.focused : ''} focusedStyle={theme} isFocused={isFocused} setFocus={setFocus} />
-        );
-      }
-      // If is focused, add a div and apply className
-      return (
-        <div className={theme.focused} onKeyDown={this.releaseOnArrowKey}>
-          <WrappedComponent ref="component" {...this.props} isFocused={isFocused} setFocus={setFocus} />
-        </div>
-      );
+      this.unsetFocus('up', event);
+    } else if (event.keyCode === 40) {
+      event.stopPropagation();
+      this.unsetFocus('down', event);
+    } else if (event.keyCode === 8) {
+      event.stopPropagation();
+      event.preventDefault();
+      this.unsetFocus('down', event);
+      this.removeBlock();
     }
+  }
+
+  releaseOnMouseDown = () => {
+    this.unsetFocus();
+  }
+
+  mouseDown = event => {
+    event.stopPropagation();
+    const { blockProps } = this.props;
+    const focused = (isFocused || blockProps.isFocused);
+    if (focused) return;
+    this.setFocus();
   };
+
+  render() {
+    const { blockProps, className } = this.props;
+    const focused = (isFocused || blockProps.isFocused);
+
+    const newClassName = [className, (focused ? theme.focused : null)].filter(p => p);
+
+    return (
+      <WrappedComponent ref="component" {...this.props} className={newClassName.join(' ')} isFocused={focused} setFocus={this.setFocus} focusClassName={focused ? theme.focused : ''} />
+    );
+  }
 };

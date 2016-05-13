@@ -1,44 +1,34 @@
 import React from 'react';
 import Table from './components/table';
-import { Entity, EditorState } from 'draft-js';
 import styles from './style.css';
-import decorateComponentWithProps from './utils/decorateWithProps';
 import NestedEditor from './draft-nested-editor';
 
 const defaultTheme = {
   ...styles,
 };
 
+const renderNestedEditor = (block, editorState, onChange, setFocus, active) => {
+  const { pluginEditor } = block.props.blockProps;
+  return (
+    <NestedEditor {...pluginEditor.props} setFocus={setFocus} setReadOnly={pluginEditor.setReadOnly} readOnly={!active} editorState={editorState} onChange={onChange} />
+  );
+};
+
 const tablePlugin = config => {
+  const type = config.type || 'block-table';
   const theme = config.theme ? config.theme : defaultTheme;
 
-  const renderNestedEditor = (block, editorState, onChange) => {
-    const { pluginEditor } = block.props;
-    return (
-      <NestedEditor {...pluginEditor.props} setReadOnly={pluginEditor.setReadOnly} readOnly={false} editorState={editorState} onChange={onChange} />
-    );
-  };
-  const component = decorateComponentWithProps(Table, { theme, renderNestedEditor });
+  const component = Table({ theme, renderNestedEditor });
 
   return {
     // Handle 'block-image' block-type with Image component
-    blockRendererFn: (contentBlock, pluginEditor) => {
-      const type = contentBlock.getType();
-      if (type === 'table') {
-        const entityKey = contentBlock.getEntityAt(0);
-        const entityData = entityKey ? Entity.get(entityKey).data : {};
-        const saveEntityData = data => {
-          const editorState = pluginEditor.getEditorState();
-          Entity.mergeData(entityKey, data);
-          pluginEditor.setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
-        };
+    blockRendererFn: (contentBlock) => {
+      const blockType = contentBlock.getType();
+      if (blockType === type) {
         return {
           component,
           props: {
-            pluginEditor,
-            entityKey,
-            saveEntityData,
-            entityData
+            renderNestedEditor
           }
         };
       } return undefined;
@@ -47,3 +37,4 @@ const tablePlugin = config => {
 };
 
 export default tablePlugin;
+export const TableBlock = Table({ theme: styles });

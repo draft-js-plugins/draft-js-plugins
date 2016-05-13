@@ -10,10 +10,9 @@ const getDisplayName = WrappedComponent => {
 let number = 0;
 
 // HoverToolbar decorator will render a toolbar on hovering the WrappedComponent
-export default (defaultTheme, toolbarStore) => WrappedComponent => class FocusedToolbarDecorator extends Component {
+export default ({ theme, toolbarHandler, customRender }) => WrappedComponent => class FocusedToolbarDecorator extends Component {
   // Statics
   static displayName = `FocusedToolbar(${getDisplayName(WrappedComponent)})`;
-  static pluginOptions = WrappedComponent.pluginOptions;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
   // Bind listeners on mount
@@ -28,26 +27,43 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class Focused
     }
     // Bind listeners
     this.DOMNode = element;
-    this.doRenderToolbar(this.props.isFocused);
+    this.componentDidUpdate();
   }
 
   componentDidUpdate() {
-    this.doRenderToolbar(this.props.isFocused);
+    if (!customRender) {
+      this.renderToolbar(
+        [...(this.props.actions || []), ...(this._componentActions || [])],
+        this.props.blockProps.isFocused
+      );
+    }
+  }
+
+  componentWillUnmount() {
+    if (!customRender) {
+      this.renderToolbar(
+        [...(this.props.actions || []), ...(this._componentActions || [])],
+        false
+      );
+    }
   }
 
   // Render the actual toolbar
-  doRenderToolbar = active => {
+  renderToolbar = (actions, active) => {
+    const { blockProps } = this.props;
+    const handler = toolbarHandler || blockProps.toolbarHandler;
+
     const props = {
       ...this.props,
-      actions: [...(this.props.actions || []), ...(this._componentActions || [])],
-      theme: this.props.theme || defaultTheme,
+      actions,
+      theme,
       getTargetRectangle: () => this.DOMNode.getBoundingClientRect(),
       uid: this.DOMNode,
     };
     if (active) {
-      toolbarStore.add(props);
+      handler.add(props);
     } else {
-      toolbarStore.remove(props);
+      handler.remove(props);
     }
   }
 
@@ -57,7 +73,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class Focused
 
   render() {
     return (
-      <WrappedComponent {...this.props} addActions={this.addActions} />
+      <WrappedComponent {...this.props} addActions={this.addActions} renderToolbar={this.renderToolbar} />
     );
   }
 };

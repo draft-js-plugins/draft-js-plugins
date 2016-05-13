@@ -1,37 +1,62 @@
 import { SelectionState, EditorState } from 'draft-js';
 
+// Get selection text's client rectangle
+function getSelectionRect(selected) {
+  if (!selected) return null;
+
+  const range = selected.getRangeAt ? selected.getRangeAt(0) : selected;
+
+  const _rect = range.getBoundingClientRect();
+  let rect = _rect && _rect.top ? _rect : range.getClientRects()[0];// selected.getRangeAt(0).getBoundingClientRect()
+  if (!rect) {
+    if (selected.anchorNode && selected.anchorNode.getBoundingClientRect) {
+      rect = selected.anchorNode.getBoundingClientRect();
+      rect.isEmptyline = true;
+    } else if (selected.startContainer && selected.startContainer.getBoundingClientRect) {
+      rect = selected.startContainer.getBoundingClientRect();
+      rect.isEmptyline = true;
+    } else {
+      return null;
+    }
+  }
+
+  return rect;
+}
+
 // Set selection of editor to next/previous block
-export default (getEditorState, setEditorState, previousActiveBlock, mode) => {
+export default (getEditorState, setEditorState, previousActiveBlock, mode, event) => {
   const selection = getEditorState().getSelection();
   const editorState = getEditorState();
   const activeBlock = mode === 'previous'
     ? editorState.getCurrentContent().getBlockBefore(selection.getAnchorKey())
     : editorState.getCurrentContent().getBlockAfter(selection.getAnchorKey());
 
-  setTimeout(() => {
-    const newEditorState = getEditorState();
-    const newSelection = newEditorState.getSelection();
-    const selectedBlock = newEditorState.getCurrentContent().getBlockForKey(newSelection.getAnchorKey());
-    const actualActiveBlock = newEditorState.getCurrentContent().getBlockForKey(newSelection.getAnchorKey());
-
-    if (!activeBlock) {
-      return selectedBlock;
-    } else if (previousActiveBlock && selectedBlock.get('key') === previousActiveBlock.get('key')) {
-      return selectedBlock;
-    } else if (previousActiveBlock && activeBlock.get('key') === previousActiveBlock.get('key')) {
-      return activeBlock;
+  if (event) {
+    const range = window.getSelection().getRangeAt(0);
+    const postRange = document.createRange();
+    postRange.selectNodeContents(event.target);
+    if (mode === 'previous') {
+      postRange.setEnd(range.startContainer, range.startOffset);
+    } else {
+      postRange.setStart(range.endContainer, range.endOffset);
     }
 
-    if (activeBlock.get('key') !== actualActiveBlock.get('key')) {
-      // Hack
-      setEditorState(EditorState.forceSelection(newEditorState, selection));
-      setEditorState(EditorState.forceSelection(newEditorState, new SelectionState({
+    const rect = getSelectionRect(range);
+    const rectPost = getSelectionRect(postRange);
+
+    const hasTopChanged = rect.top === rectPost.top;
+    const nextIsDiv = (mode === 'previous' ? postRange.startContainer : postRange.endContainer).nodeName.toLowerCase() === 'div';
+
+    if (activeBlock && (hasTopChanged || nextIsDiv)) {
+      event.preventDefault();
+      setEditorState(EditorState.forceSelection(editorState, new SelectionState({
         anchorKey: activeBlock.get('key'),
         anchorOffset: activeBlock.get('length') || 0,
         focusKey: activeBlock.get('key'),
         focusOffset: activeBlock.get('length') || 0,
         isBackward: false,
       })));
-    } return undefined;
-  });
+      return activeBlock;
+    }
+  } return undefined;
 };
