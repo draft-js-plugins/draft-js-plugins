@@ -20,15 +20,13 @@ export default function onDropFile(config) {
       const formData = new FormData();
 
       // Set data {files: [Array of files], formData: FormData}
-      const data = { files: [] };
+      const data = { files: [], formData };
       for (const key in files) {
         if (files[key]) {
-          formData.append('files', files[key]);
+          data.formData.append('files', files[key]);
           data.files.push(files[key]);
         }
       }
-
-      data.formData = data;
 
       // Read files on client side
       readFiles(data.files).then(placeholders => {
