@@ -1,6 +1,6 @@
 {
   "name": "draft-js-entity-props-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Entity Props Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",

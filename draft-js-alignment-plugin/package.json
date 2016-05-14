@@ -1,6 +1,6 @@
 {
   "name": "draft-js-alignment-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Alignment Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
