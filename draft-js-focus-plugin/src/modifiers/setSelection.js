@@ -8,7 +8,7 @@ const findParentNode = (node, filter) => {
 };
 
 // Set selection of editor to next/previous block
-export default (getEditorState, setEditorState, previousActiveBlock, mode, event) => {
+export default (store, getEditorState, setEditorState, previousActiveBlock, mode, event) => {
   const selection = getEditorState().getSelection();
   const editorState = getEditorState();
   const activeBlock = mode === 'previous'
@@ -48,7 +48,7 @@ export default (getEditorState, setEditorState, previousActiveBlock, mode, event
       info.atEnd = (testRange.text === '');
     }*/
 
-    if (activeBlock && activeBlock.get('type') !== 'unstyled' && atLimit) {
+    if (activeBlock && store.types[activeBlock.get('type')] && atLimit) {
       event.preventDefault();
       setEditorState(EditorState.forceSelection(editorState, new SelectionState({
         anchorKey: activeBlock.get('key'),

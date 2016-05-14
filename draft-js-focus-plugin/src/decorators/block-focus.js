@@ -14,7 +14,7 @@ const findParentNode = (node, filter) => {
     : findParentNode(node.parentElement, filter);
 };
 
-export default ({ theme, isFocused, setFocus, unsetFocus, removeBlock }) => WrappedComponent => class BlockFocusDecorator extends Component {
+export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) => WrappedComponent => class BlockFocusDecorator extends Component {
   // Statics
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -35,6 +35,7 @@ export default ({ theme, isFocused, setFocus, unsetFocus, removeBlock }) => Wrap
   }
 
   componentDidMount() {
+    store.addType(this.props.block.type);
     if (this.refs.component) {
       this.DOMNode = ReactDOM.findDOMNode(this.refs.component);
       if (this.DOMNode) {

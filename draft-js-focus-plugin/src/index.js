@@ -4,6 +4,12 @@ import { SelectionState, EditorState } from 'draft-js';
 import styles from './style.css';
 
 const defaultTheme = { ...styles };
+const store = {
+  types: {},
+  addType: type => {
+    store.types[type] = true;
+  }
+};
 
 const focusPlugin = config => {
   const theme = config.theme ? config.theme : defaultTheme;
@@ -34,7 +40,7 @@ const focusPlugin = config => {
         activeBlock = undefined;
         setReadOnly(false);
         if (direction && activeBlock && activeBlock.get('key') === contentBlock.get('key')) {
-          activeBlock = setSelection(getEditorState, setEditorState, contentBlock, direction === 'up' ? 'previous' : 'next', event);
+          activeBlock = setSelection(store, getEditorState, setEditorState, contentBlock, direction === 'up' ? 'previous' : 'next', event);
         } else {
           setEditorState(EditorState.forceSelection(getEditorState(), getEditorState().getSelection()));
         }
@@ -50,15 +56,15 @@ const focusPlugin = config => {
     },
     // Handle down/up arrow events and set activeBlock/selection if necessary
     onDownArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
-      activeBlock = setSelection(getEditorState, setEditorState, activeBlock, 'next', event);
+      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'next', event);
       setReadOnly(activeBlock && activeBlock.get('type') !== 'unstyled');
     }, onUpArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
-      activeBlock = setSelection(getEditorState, setEditorState, activeBlock, 'previous', event);
+      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'previous', event);
       setReadOnly(activeBlock && activeBlock.get('type') !== 'unstyled');
     },
   };
 };
 
 export default focusPlugin;
-export const FocusDecorator = Decorator({ theme: styles });
+export const FocusDecorator = Decorator({ theme: styles, store });
 export const FocusDecoratorStyles = styles;
