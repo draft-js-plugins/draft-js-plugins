@@ -3,7 +3,7 @@ import removeBlock from './removeBlock';
 import { Entity } from 'draft-js';
 import { DRAFTJS_BLOCK_KEY, DRAFTJS_BLOCK_TYPE } from '../constants';
 
-export default function onDropBlock() {
+export default function onDropBlock({ handleDefaultData }) {
   return function onDropBlockInner(selection, dataTransfer, isInternal, { getEditorState, setEditorState }) {
     const state = getEditorState();
 
@@ -30,7 +30,7 @@ export default function onDropBlock() {
       const blockType = data[1];
 
       // Get content, selection, block
-      const editorStateAfterInsert = addBlock(state, selection, blockType, {});
+      const editorStateAfterInsert = addBlock(state, selection, blockType, handleDefaultData ? handleDefaultData(blockType) : {});
       setEditorState(editorStateAfterInsert);
     }
 
