@@ -1,24 +1,29 @@
 import React from 'react';
 import Table from './components/table';
+import nestedEditorCreator from './components/nested-editor';
 import styles from './style.css';
-import NestedEditor from './draft-nested-editor';
 
 const defaultTheme = {
   ...styles,
 };
 
-const renderNestedEditor = (block, editorState, onChange, setFocus, active) => {
-  const { pluginEditor } = block.props.blockProps;
-  return (
-    <NestedEditor {...pluginEditor.props} setFocus={setFocus} setReadOnly={pluginEditor.setReadOnly} readOnly={!active} editorState={editorState} onChange={onChange} />
-  );
+const createRenderer = Editor => {
+  const NestedEditor = nestedEditorCreator(Editor);
+  return ({ block, editorState, onChange, setFocus, active }) => {
+    const { pluginEditor } = block.props.blockProps;
+    return (
+      <NestedEditor {...pluginEditor.props} setFocus={setFocus} setReadOnly={pluginEditor.setReadOnly} readOnly={!active} editorState={editorState} onChange={onChange} />
+    );
+  };
 };
 
 const tablePlugin = config => {
   const type = config.type || 'block-table';
   const theme = config.theme ? config.theme : defaultTheme;
+  const Editor = config.Editor;
+  const renderNestedEditor = createRenderer(Editor);
 
-  const component = Table({ theme, renderNestedEditor });
+  const component = config.component || Table({ theme });
 
   return {
     // Handle 'block-image' block-type with Image component
@@ -31,10 +36,15 @@ const tablePlugin = config => {
             renderNestedEditor
           }
         };
-      } return undefined;
+      } return {
+        props: {
+          renderNestedEditor
+        }
+      };
     }
   };
 };
 
 export default tablePlugin;
-export const TableBlock = Table({ theme: styles });
+export const tableCreator = Table;
+export const tableStyles = styles;

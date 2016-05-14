@@ -4,7 +4,7 @@ import styles from './style.css';
 const imagePlugin = config => {
   const type = config.type || 'block-image';
   const theme = config.theme ? config.theme : styles;
-  const component = Image({ theme });
+  const component = config.component || Image({ theme });
   return {
     // Handle 'block-image' block-type with Image component
     blockRendererFn: (contentBlock) => {
@@ -19,4 +19,5 @@ const imagePlugin = config => {
 };
 
 export default imagePlugin;
-export const ImageBlock = Image({ theme: styles });
+export const imageCreator = Image;
+export const imageStyles = styles;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { FocusDecorator } from 'draft-js-focus-plugin';
+/* import { FocusDecorator } from 'draft-js-focus-plugin';
 import { DraggableDecorator } from 'draft-js-dnd-plugin';
 import { ResizeableDecorator } from 'draft-js-resizeable-plugin';
 import { ToolbarDecorator } from 'draft-js-toolbar-plugin';
-import { AlignmentDecorator } from 'draft-js-alignment-plugin';
+import { AlignmentDecorator } from 'draft-js-alignment-plugin'; */
 
 const ImageComponent = ({ theme }) => class Image extends Component {
   componentDidMount() {
@@ -39,7 +39,8 @@ const ImageComponent = ({ theme }) => class Image extends Component {
   }
 };
 
-export default options => ResizeableDecorator({
+export default ImageComponent;
+/* export default options => ResizeableDecorator({
   resizeSteps: 10,
   handles: true,
   vertical: 'auto'
@@ -53,4 +54,4 @@ export default options => ResizeableDecorator({
       )
     )
   )
-);
+); */

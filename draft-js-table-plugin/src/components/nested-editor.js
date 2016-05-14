@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PluginsEditor from 'draft-js-plugins-editor';
 import { EditorState, ContentState, convertFromRaw, convertToRaw } from 'draft-js';
 import ReactDOM from 'react-dom';
 
-export default class DraftEditorBlock extends Component {
+export default PluginEditor => class NestedEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,7 +55,7 @@ export default class DraftEditorBlock extends Component {
     const { readOnly } = this.props;
 
     return (
-      <PluginsEditor {...this.props} ref="editor" editorState={editorState} onChange={this.onChange} readOnly={readOnly} />
+      <PluginEditor {...this.props} ref="editor" editorState={editorState} onChange={this.onChange} readOnly={readOnly} />
     );
   }
-}
+};

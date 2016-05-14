@@ -5,13 +5,38 @@ import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createCleanupEmptyPlugin from 'draft-js-cleanup-empty-plugin';
 import createEntityPropsPlugin from 'draft-js-entity-props-plugin';
-import createFocusPlugin from 'draft-js-focus-plugin';
-import createDndPlugin from 'draft-js-dnd-plugin';
-import createToolbarPlugin from 'draft-js-toolbar-plugin';
-import createImagePlugin from 'draft-js-image-plugin';
-import createAlignmentPlugin from 'draft-js-alignment-plugin';
-import createResizeablePlugin from 'draft-js-resizeable-plugin';
-import createTablePlugin from 'draft-js-table-plugin';
+import createFocusPlugin, { FocusDecorator } from 'draft-js-focus-plugin';
+import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin';
+import createToolbarPlugin, { ToolbarDecorator } from 'draft-js-toolbar-plugin';
+import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin';
+import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin';
+// Blocks
+import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin';
+import createTablePlugin, { tableCreator, tableStyles } from 'draft-js-table-plugin';
+
+const image = ResizeableDecorator({
+  resizeSteps: 10,
+  handles: true,
+  vertical: 'auto'
+})(
+  DraggableDecorator(
+    FocusDecorator(
+      AlignmentDecorator(
+        ToolbarDecorator()(
+          imageCreator({ theme: imageStyles })
+        )
+      )
+    )
+  )
+);
+const table = FocusDecorator(
+  DraggableDecorator(
+    ToolbarDecorator()(
+      tableCreator({ theme: tableStyles, Editor })
+    )
+  )
+);
+
 // import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
 // Components
@@ -29,21 +54,19 @@ const plugins = [
   createCleanupEmptyPlugin({
     types: ['block-image', 'block-table']
   }),
-  createTablePlugin({ }),
   createEntityPropsPlugin({ }),
   createToolbarPlugin({
     __toolbarHandler: {
       add: props => console.log('Add toolbar', props),
       remove: props => console.log('Remove toolbar', props),
     }, textActions: [{
-      button: <span>Hello World</span>,
-      label: 'Log Hello World!',
+      button: <span>Table</span>,
+      label: 'Create a table',
       active: (block, editorState) => editorState.getSelection().isCollapsed(),
       toggle: (block, action, editorState, setEditorState) => setEditorState(addBlock(editorState, editorState.getSelection(), 'block-table', {})),
     }]
   }),
   createFocusPlugin({}),
-  createImagePlugin({}),
   createAlignmentPlugin({}),
   createDndPlugin({
     allowDrop: true,
@@ -66,6 +89,9 @@ const plugins = [
     },
   }),
   createResizeablePlugin({}),
+  // Blocks
+  createImagePlugin({ component: image }),
+  createTablePlugin({ component: table, Editor }),
 ];
 
 class SimpleWysiwygEditor extends Component {

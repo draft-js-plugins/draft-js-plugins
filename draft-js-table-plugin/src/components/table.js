@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { FocusDecorator } from 'draft-js-focus-plugin';
+/* import { FocusDecorator } from 'draft-js-focus-plugin';
 import { DraggableDecorator } from 'draft-js-dnd-plugin';
-import { ToolbarDecorator } from 'draft-js-toolbar-plugin';
+import { ToolbarDecorator } from 'draft-js-toolbar-plugin'; */
 
-const TableComponent = ({ theme, renderNestedEditor }) => class Table extends Component {
+const TableComponent = ({ theme }) => class Table extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -67,7 +67,7 @@ const TableComponent = ({ theme, renderNestedEditor }) => class Table extends Co
   render() {
     const { rows, numberOfColumns, focusedEdit } = this.state;
     const { style, className, blockProps } = this.props;
-    const { isFocused } = blockProps;
+    const { isFocused, renderNestedEditor } = blockProps;
 
     const classNames = [className, theme.table].filter(p => p);
 
@@ -77,13 +77,13 @@ const TableComponent = ({ theme, renderNestedEditor }) => class Table extends Co
         {rows.map((row, rowI) =>
           <tr key={rowI}>
             {Array.from(new Array(numberOfColumns), (x, i) => i).map((column, columnI) =>
-              <td key={columnI}>{renderNestedEditor(
-                this,
-                row[columnI],
-                (editorState) => this.updateEntityData(editorState, rowI, columnI),
-                () => this.setFocus(rowI, columnI),
-                isFocused && focusedEdit && focusedEdit.row === rowI && focusedEdit.column === columnI
-              )}</td>
+              <td key={columnI}>{renderNestedEditor({
+                block: this,
+                editorState: row[columnI],
+                onChange: (editorState) => this.updateEntityData(editorState, rowI, columnI),
+                setFocus: () => this.setFocus(rowI, columnI),
+                active: isFocused && focusedEdit && focusedEdit.row === rowI && focusedEdit.column === columnI
+              })}</td>
             )}
           </tr>
         )}
@@ -93,10 +93,11 @@ const TableComponent = ({ theme, renderNestedEditor }) => class Table extends Co
   }
 };
 
-export default (options) => FocusDecorator(
+export default TableComponent;
+/* export default (options) => FocusDecorator(
   DraggableDecorator(
     ToolbarDecorator()(
       TableComponent(options)
     )
   )
-);
+); */
