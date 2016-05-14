@@ -1,27 +1,11 @@
 import { SelectionState, EditorState } from 'draft-js';
 
-// Get selection text's client rectangle
-function getSelectionRect(selected) {
-  if (!selected) return null;
-
-  const range = selected.getRangeAt ? selected.getRangeAt(0) : selected;
-
-  const _rect = range.getBoundingClientRect();
-  let rect = _rect && _rect.top ? _rect : range.getClientRects()[0];// selected.getRangeAt(0).getBoundingClientRect()
-  if (!rect) {
-    if (selected.anchorNode && selected.anchorNode.getBoundingClientRect) {
-      rect = selected.anchorNode.getBoundingClientRect();
-      rect.isEmptyline = true;
-    } else if (selected.startContainer && selected.startContainer.getBoundingClientRect) {
-      rect = selected.startContainer.getBoundingClientRect();
-      rect.isEmptyline = true;
-    } else {
-      return null;
-    }
-  }
-
-  return rect;
-}
+const findParentNode = (node, filter) => {
+  if (!node) return null;
+  return node.parentElement && filter(node.parentElement)
+    ? node.parentElement
+    : findParentNode(node.parentElement, filter);
+};
 
 // Set selection of editor to next/previous block
 export default (getEditorState, setEditorState, previousActiveBlock, mode, event) => {
@@ -32,22 +16,39 @@ export default (getEditorState, setEditorState, previousActiveBlock, mode, event
     : editorState.getCurrentContent().getBlockAfter(selection.getAnchorKey());
 
   if (event) {
-    const range = window.getSelection().getRangeAt(0);
-    const postRange = document.createRange();
-    postRange.selectNodeContents(event.target);
-    if (mode === 'previous') {
-      postRange.setEnd(range.startContainer, range.startOffset);
-    } else {
-      postRange.setStart(range.endContainer, range.endOffset);
-    }
+    let atLimit = false;
+    if (window.getSelection) {
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const selRange = sel.getRangeAt(0);
+        const testRange = selRange.cloneRange();
+        // Get parent node for orientation
+        const parent = findParentNode(sel.anchorNode, x => x.hasAttribute('data-block'));
+        testRange.selectNodeContents(parent);
 
-    const rect = getSelectionRect(range);
-    const rectPost = getSelectionRect(postRange);
+        if (mode === 'previous') {
+          testRange.setEnd(selRange.startContainer, selRange.startOffset);
+          atLimit = testRange.toString() === '' || testRange.getBoundingClientRect().top === selRange.getBoundingClientRect().top;
+        } else {
+          testRange.setStart(selRange.endContainer, selRange.endOffset);
+          atLimit = (testRange.toString() === '') || testRange.getBoundingClientRect().top === selRange.getBoundingClientRect().top;
+        }
+      }
+    }/* else if (document.selection && document.selection.type !== 'Control') {
+      const selRange = document.selection.createRange();
+      const testRange = selRange.duplicate();
+      const parent = findParentNode(selRange.anchorNode, x => x.hasAttribute('data-block'));
 
-    const hasTopChanged = rect.top === rectPost.top;
-    const nextIsDiv = (mode === 'previous' ? postRange.startContainer : postRange.endContainer).nodeName.toLowerCase() === 'div';
+      testRange.moveToElementText(parent);
+      testRange.setEndPoint('EndToStart', selRange);
+      info.atStart = (testRange.text === '');
 
-    if (activeBlock && (hasTopChanged || nextIsDiv)) {
+      testRange.moveToElementText(parent);
+      testRange.setEndPoint('StartToEnd', selRange);
+      info.atEnd = (testRange.text === '');
+    }*/
+
+    if (activeBlock && activeBlock.get('type') !== 'unstyled' && atLimit) {
       event.preventDefault();
       setEditorState(EditorState.forceSelection(editorState, new SelectionState({
         anchorKey: activeBlock.get('key'),
