@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+const resizeableRatioUtil = ratio => ({
+  ratioContainerStyle: {
+    position: 'relative'
+  }, ratioContentStyle: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  }, createRatioPlaceholder: () => <div style={{ display: 'block', width: '100%', paddingTop: `${ratio * 100}%` }}></div>
+});
+
 // Get a component's display name
 const getDisplayName = WrappedComponent => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -152,43 +164,47 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
   }
 
   render() {
-    const { blockProps, vertical, horizontal } = this.props;
+    const { blockProps, vertical, horizontal, ratio, style } = this.props;
     const { width, height, hoverPosition } = this.state;
     const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
-    const style = {};
+    const styles = { position: 'relative', ...style };
 
     if (horizontal === 'auto') {
-      style.width = 'auto';
+      styles.width = 'auto';
     } else if (horizontal === 'relative') {
-      style.width = `${(width || blockProps.width || 40)}%`;
+      styles.width = `${(width || blockProps.width || 40)}%`;
     } else if (horizontal === 'absolute') {
-      style.width = style.width = `${(width || blockProps.width || 40)}px`;
+      styles.width = styles.width = `${(width || blockProps.width || 40)}px`;
     }
 
     if (vertical === 'auto') {
-      style.height = 'auto';
+      styles.height = 'auto';
     } else if (vertical === 'relative') {
-      style.height = `${(height || blockProps.height || 40)}%`;
+      styles.height = `${(height || blockProps.height || 40)}%`;
     } else if (vertical === 'absolute') {
-      style.height = `${(height || blockProps.height || 40)}px`;
+      styles.height = `${(height || blockProps.height || 40)}px`;
     }
 
     // Handle cursor
     if (isRight && isBottom || isLeft && isTop) {
-      style.cursor = 'nwse-resize';
+      styles.cursor = 'nwse-resize';
     } else if (isRight && isTop || isBottom && isLeft) {
-      style.cursor = 'nesw-resize';
+      styles.cursor = 'nesw-resize';
     } else if (isRight || isLeft) {
-      style.cursor = 'ew-resize';
+      styles.cursor = 'ew-resize';
     } else if (isBottom || isTop) {
-      style.cursor = 'ns-resize';
+      styles.cursor = 'ns-resize';
     } else {
-      style.cursor = 'default';
+      styles.cursor = 'default';
+    }
+
+    if (ratio) {
+      return <WrappedComponent {...this.props} style={styles} {...resizeableRatioUtil(ratio)} />;
     }
 
     return (
-      <WrappedComponent {...this.props} style={style} />
+      <WrappedComponent {...this.props} style={styles} />
     );
   }
 };
