@@ -157,22 +157,21 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
     const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
     const style = {};
-    const innerstyle = {};
 
     if (horizontal === 'auto') {
       style.width = 'auto';
     } else if (horizontal === 'relative') {
       style.width = `${(width || blockProps.width || 40)}%`;
     } else if (horizontal === 'absolute') {
-      innerstyle.width = style.width = `${(width || blockProps.width || 40)}px`;
+      style.width = style.width = `${(width || blockProps.width || 40)}px`;
     }
 
     if (vertical === 'auto') {
-      innerstyle.height = 'auto';
+      style.height = 'auto';
     } else if (vertical === 'relative') {
-      innerstyle.height = `${(height || blockProps.height || 40)}%`;
+      style.height = `${(height || blockProps.height || 40)}%`;
     } else if (vertical === 'absolute') {
-      innerstyle.height = `${(height || blockProps.height || 40)}px`;
+      style.height = `${(height || blockProps.height || 40)}px`;
     }
 
     // Handle cursor
