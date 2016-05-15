@@ -6,15 +6,21 @@ import React from 'react';
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
 const emojiPlugin = createEmojiPlugin();
+const { EmojiSuggestions } = emojiPlugin;
 
 // The Editor accepts an array of plugins. In this case, only the emojiPlugin is
 // passed in, although it is possible to pass in multiple plugins.
+// The EmojiSuggestions component is internally connected to the editor and will
+// be updated & positioned once the user starts the autocompletion with a colon.
 const MyEditor = ({ editorState, onChange }) => (
-  <Editor
-    editorState={ editorState }
-    onChange={ onChange }
-    plugins={ [emojiPlugin] }
-  />
+  <div>
+    <Editor
+      editorState={ editorState }
+      onChange={ onChange }
+      plugins={ [emojiPlugin] }
+    />
+    <EmojiSuggestions />
+  </div>
 );
 
 export default MyEditor;

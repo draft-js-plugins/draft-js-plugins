@@ -235,6 +235,10 @@ export default class App extends Component {
           <Heading level={ 2 }>Discussion and Support</Heading>
           <p className={ styles.center }>
             Join the <b>#draft-js-plugins</b> channel after signing up to the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
+          &nbsp;or check out or collection of frequently asked questions here:&nbsp;
+            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md">
+              FAQ
+            </ExternalLink>.
           </p>
           <Heading level={ 2 }>Stay Informed</Heading>
             <p className={ styles.center }>

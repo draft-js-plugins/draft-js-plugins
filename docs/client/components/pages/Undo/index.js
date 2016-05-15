@@ -33,7 +33,7 @@ export default class App extends Component {
         <AlternateContainer>
           <Heading level={ 2 }>Getting Started</Heading>
           <Code code="npm install draft-js-plugins-editor --save" />
-          <Code code="npm install draft-js-history-plugin --save" />
+          <Code code="npm install draft-js-undo-plugin --save" />
           <Code code={ gettingStarted } name="gettingStarted.js" />
           <Heading level={ 3 }>Importing the default styles</Heading>
           <p>
