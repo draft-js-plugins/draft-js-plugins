@@ -16,7 +16,6 @@ import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?langu
 import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
 import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
 import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
-import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
@@ -49,7 +48,7 @@ export default class App extends Component {
           <Heading level={ 2 }>Getting Started</Heading>
           <Code code="npm install draft-js-plugins-editor --save" />
           <Code code="npm install draft-js-mention-plugin --save" />
-          <Code code={ gettingStarted } name="gettingStarted.js" />
+          <Code code="Please checkout the 'Simple Example' further down the page." />
           <Heading level={ 3 }>Importing the default styles</Heading>
           <p>
             The plugin ships with a default styling available at this location in the installed package:
