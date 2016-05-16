@@ -31,7 +31,7 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
         if (mode === 'previous') {
           testRange.setEnd(selRange.startContainer, selRange.startOffset);
           const toleranced = Math.abs(testRange.getBoundingClientRect().top - selRange.getBoundingClientRect().top);
-          atLimit = testRange.toString() === '' || toleranced;
+          atLimit = testRange.toString() === '' || toleranced < 10;
         } else {
           testRange.setStart(selRange.endContainer, selRange.endOffset);
           atLimit = (testRange.toString() === '') || testRange.getBoundingClientRect().top === selRange.getBoundingClientRect().top;
