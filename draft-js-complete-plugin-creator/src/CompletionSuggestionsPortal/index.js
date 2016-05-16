@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class MentionSuggestionsPortal extends Component {
+export default class CompletionSuggestionsPortal extends Component {
 
   componentWillMount() {
     this.props.store.register(this.props.offsetKey);

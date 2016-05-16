@@ -17,7 +17,7 @@ export default class Entry extends Component {
   onMouseUp = () => {
     if (this.mouseDown) {
       this.mouseDown = false;
-      this.props.onMentionSelect(this.props.mention);
+      this.props.onCompletionSelect(this.props.completion);
     }
   };
 
@@ -29,7 +29,7 @@ export default class Entry extends Component {
   };
 
   onMouseEnter = () => {
-    this.props.onMentionFocus(this.props.index);
+    this.props.onCompletionFocus(this.props.index);
   };
 
   render() {
@@ -43,8 +43,8 @@ export default class Entry extends Component {
         onMouseEnter={ this.onMouseEnter }
         role="option"
       >
-        <Avatar mention={ this.props.mention } theme={ theme } />
-        <span className={ theme.mentionSuggestionsEntryText }>{ this.props.mention.get('name') }</span>
+        <Avatar mention={ this.props.completion } theme={ theme } />
+        <span className={ theme.mentionSuggestionsEntryText }>{ this.props.completion.get('name') }</span>
       </div>
     );
   }

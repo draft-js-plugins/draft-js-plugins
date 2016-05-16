@@ -6,7 +6,7 @@ import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
 const mentionPlugin = createMentionPlugin();
-const { MentionSuggestions } = mentionPlugin;
+const { CompletionSuggestions: MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 export default class SimpleMentionEditor extends Component {

@@ -31,7 +31,7 @@ const mentionPlugin = createMentionPlugin({
   positionSuggestions,
   mentionPrefix: '@',
 });
-const { MentionSuggestions } = mentionPlugin;
+const { CompletionSuggestions: MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 export default class CustomMentionEditor extends Component {
