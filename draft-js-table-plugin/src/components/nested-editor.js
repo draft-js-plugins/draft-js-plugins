@@ -7,7 +7,7 @@ export default PluginEditor => class NestedEditor extends Component {
     super(props);
     this.state = {
       editorState: props.editorState
-        ? EditorState.createWithContent(ContentState.createFromBlockArray(convertFromRaw(props.editorState)))
+        ? EditorState.createWithContent(convertFromRaw(props.editorState))
         : EditorState.createWithContent(ContentState.createFromText('Insert text ...'))
     };
   }

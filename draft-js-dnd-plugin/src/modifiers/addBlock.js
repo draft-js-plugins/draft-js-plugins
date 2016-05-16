@@ -1,7 +1,7 @@
 import { List, Repeat } from 'immutable';
 import { Modifier, CharacterMetadata, BlockMapBuilder, EditorState, ContentBlock, Entity, genKey } from 'draft-js';
 
-export default function (editorState, selection, type, data, text = '') {
+export default function (editorState, selection, type, data, text = ' ') {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = selection;
 

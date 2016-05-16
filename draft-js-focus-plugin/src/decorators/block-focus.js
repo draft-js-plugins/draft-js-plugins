@@ -47,7 +47,7 @@ export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) 
 
   componentWillUpdate() {
     if (this.DOMNode) {
-      this.DOMNode.removeEventListener('mousedown', this.mouseDown);
+      this.DOMNode.removeEventListener('click', this.mouseDown);
       // document.removeEventListener('keydown', this.releaseOnArrowKey);
       // document.removeEventListener('mousedown', this.releaseOnMouseDown);
       document.removeEventListener('keydown', this.releaseOnArrowKey);
@@ -60,7 +60,7 @@ export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) 
     const focused = (isFocused || blockProps.isFocused);
 
     if (this.DOMNode) {
-      this.DOMNode.addEventListener('mousedown', this.mouseDown);
+      this.DOMNode.addEventListener('click', this.mouseDown);
       if (focused) {
         // document.addEventListener('keydown', this.releaseOnArrowKey);
         // document.addEventListener('mousedown', this.releaseOnMouseDown);
