@@ -25,10 +25,13 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
         // Get parent node for orientation
         const parent = findParentNode(sel.anchorNode, x => x.hasAttribute('data-block'));
         testRange.selectNodeContents(parent);
+        // const parentHolder = parent.parentElement;
+        // const prevParent = findParentNode(event.target, x => x.hasAttribute('data-block'));
 
         if (mode === 'previous') {
           testRange.setEnd(selRange.startContainer, selRange.startOffset);
-          atLimit = testRange.toString() === '' || testRange.getBoundingClientRect().top === selRange.getBoundingClientRect().top;
+          const toleranced = Math.abs(testRange.getBoundingClientRect().top - selRange.getBoundingClientRect().top);
+          atLimit = testRange.toString() === '' || toleranced;
         } else {
           testRange.setStart(selRange.endContainer, selRange.endOffset);
           atLimit = (testRange.toString() === '') || testRange.getBoundingClientRect().top === selRange.getBoundingClientRect().top;
