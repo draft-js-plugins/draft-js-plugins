@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const resizeableRatioUtil = ratio => ({
+const resizeableRatioUtil = (ratio, padding) => ({
   ratioContainerStyle: {
     position: 'relative'
   }, ratioContentStyle: {
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: padding ? `-${padding}px` : 0,
+    left: padding ? `-${padding}px` : 0,
     bottom: 0,
-    right: 0
+    right: 0,
+    padding: padding ? `${padding}px` : 0
   }, createRatioPlaceholder: () => <div style={{ display: 'block', width: '100%', paddingTop: `${ratio * 100}%` }}></div>
 });
 
@@ -200,7 +201,7 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
     }
 
     if (ratio) {
-      return <WrappedComponent {...this.props} style={styles} {...resizeableRatioUtil(ratio)} />;
+      return <WrappedComponent {...this.props} style={styles} {...resizeableRatioUtil(ratio, 3)} />;
     }
 
     return (
