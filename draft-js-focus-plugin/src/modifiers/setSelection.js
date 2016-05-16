@@ -23,18 +23,17 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
         const selRange = sel.getRangeAt(0);
         const testRange = selRange.cloneRange();
         // Get parent node for orientation
-        const parent = findParentNode(sel.anchorNode, x => x.hasAttribute('data-block'));
+        const parent = findParentNode(sel.anchorNode, node => node.hasAttribute('data-block'));
         testRange.selectNodeContents(parent);
-        // const parentHolder = parent.parentElement;
-        // const prevParent = findParentNode(event.target, x => x.hasAttribute('data-block'));
 
         if (mode === 'previous') {
           testRange.setEnd(selRange.startContainer, selRange.startOffset);
-          const toleranced = Math.abs(testRange.getBoundingClientRect().top - selRange.getBoundingClientRect().top);
+          const toleranced = Math.abs(selRange.getBoundingClientRect().top - parent.getBoundingClientRect().top);
           atLimit = testRange.toString() === '' || toleranced < 10;
         } else {
           testRange.setStart(selRange.endContainer, selRange.endOffset);
-          atLimit = (testRange.toString() === '') || testRange.getBoundingClientRect().top === selRange.getBoundingClientRect().top;
+          const toleranced = Math.abs(selRange.getBoundingClientRect().bottom - parent.getBoundingClientRect().bottom);
+          atLimit = testRange.toString() === '' || toleranced < 10;
         }
       }
     }/* else if (document.selection && document.selection.type !== 'Control') {
