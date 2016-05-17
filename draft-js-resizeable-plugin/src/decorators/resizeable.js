@@ -56,9 +56,23 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
     }
     // Bind listeners
     this.DOMNode = element;
-    this.DOMNode.addEventListener('mouseleave', this.mouseLeave);
-    this.DOMNode.addEventListener('mousemove', this.mouseMove);
-    this.DOMNode.addEventListener('mousedown', this.mouseDown);
+    this.componentDidUpdate();
+  }
+
+  componentWillUpdate() {
+    this.DOMNode.removeEventListener('mouseleave', this.mouseLeave);
+    this.DOMNode.removeEventListener('mousemove', this.mouseMove);
+    this.DOMNode.removeEventListener('mousedown', this.mouseDown);
+  }
+
+  componentDidUpdate() {
+    const readOnly = this.props.blockProps.pluginEditor.getReadOnly();
+
+    if (!readOnly) {
+      this.DOMNode.addEventListener('mouseleave', this.mouseLeave);
+      this.DOMNode.addEventListener('mousemove', this.mouseMove);
+      this.DOMNode.addEventListener('mousedown', this.mouseDown);
+    }
   }
 
   mouseLeave = () => {

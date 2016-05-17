@@ -80,6 +80,8 @@ class PluginEditor extends Component {
   setEditorState = this.onChange;
   getEditorState = () => this.props.editorState;
 
+  getReadOnly = () => this.props.readOnly;
+
   setReadOnly = (readOnly) => {
     if (readOnly !== this.state.readOnly) this.setState({ readOnly });
   };

@@ -17,8 +17,10 @@ const focusPlugin = config => {
   return {
     theme,
     // Wrap all block-types in block-focus decorator
-    blockRendererFn: (contentBlock, { getEditorState, setEditorState, setReadOnly }) => {
+    blockRendererFn: (contentBlock, { getEditorState, setEditorState, setReadOnly, getReadOnly }) => {
+      const readOnly = getReadOnly();
       const setFocus = () => {
+        if (readOnly) return;
         if (!activeBlock || activeBlock.get('key') !== contentBlock.get('key')) {
           // Set active block to current block
           activeBlock = contentBlock;
@@ -37,6 +39,7 @@ const focusPlugin = config => {
         }
       };
       const unsetFocus = (direction, event) => {
+        if (readOnly) return;
         activeBlock = undefined;
         setReadOnly(false);
         if (direction && activeBlock && activeBlock.get('key') === contentBlock.get('key')) {
@@ -45,7 +48,7 @@ const focusPlugin = config => {
           setEditorState(EditorState.forceSelection(getEditorState(), getEditorState().getSelection()));
         }
       };
-      const isFocused = activeBlock && contentBlock.get('key') === activeBlock.get('key');
+      const isFocused = !readOnly && activeBlock && contentBlock.get('key') === activeBlock.get('key');
 
       // Return the decorator and feed it theme and above properties
       return {

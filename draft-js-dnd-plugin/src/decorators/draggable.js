@@ -33,7 +33,8 @@ export default WrappedComponent => {
     }
 
     render() {
-      const { draggable } = this.props;
+      const { draggable, blockProps } = this.props;
+      const readOnly = blockProps.pluginEditor.getReadOnly();
 
       // Check if pluginOptions.customHandleDnd != true and add a div to markup
       /* if (!pluginOptions || pluginOptions.customHandleDnd !== true) {
@@ -45,7 +46,7 @@ export default WrappedComponent => {
       }*/
 
       // In case pluginOptions.customHandleDnd == true let component handle onDragStart
-      return <WrappedComponent {...this.props} onDragStart={this.startDrag} draggable={draggable} />;
+      return <WrappedComponent {...this.props} onDragStart={!readOnly ? this.startDrag : undefined} draggable={!readOnly && draggable} />;
     }
   };
 };

@@ -58,8 +58,9 @@ export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) 
   componentDidUpdate() {
     const { blockProps } = this.props;
     const focused = (isFocused || blockProps.isFocused);
+    const { getReadOnly } = blockProps.pluginEditor;
 
-    if (this.DOMNode) {
+    if (this.DOMNode && !getReadOnly()) {
       this.DOMNode.addEventListener('click', this.mouseDown);
       if (focused) {
         // document.addEventListener('keydown', this.releaseOnArrowKey);
@@ -95,14 +96,16 @@ export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) 
   }
 
   releaseOnMouseDown = () => {
-    this.unsetFocus();
+    if (!findParentNode(event.target, x => x === this.DOMNode)) {
+      this.unsetFocus();
+    }
   }
 
   mouseDown = event => {
-    event.stopPropagation();
     const { blockProps } = this.props;
     const focused = (isFocused || blockProps.isFocused);
     if (focused) return;
+    event.stopPropagation();
     this.setFocus();
   };
 
