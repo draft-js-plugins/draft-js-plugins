@@ -1,6 +1,6 @@
 {
   "name": "draft-js-table-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Table Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
