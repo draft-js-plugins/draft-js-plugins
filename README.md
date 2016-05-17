@@ -103,7 +103,7 @@ Feel free to copy any of the existing plugins as a starting point. Feel free to 
 More documentation is coming soon…
 
 ## Discussion and Support
-Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com)!
+Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com) or check out or collection of frequently asked questions here: [FAQ](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md).
 
 ## Development
 
