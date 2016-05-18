@@ -1,6 +1,6 @@
 {
   "name": "draft-js-image-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Image Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
