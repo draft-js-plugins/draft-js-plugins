@@ -60,15 +60,17 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
   }
 
   componentWillUpdate() {
-    this.DOMNode.removeEventListener('mouseleave', this.mouseLeave);
-    this.DOMNode.removeEventListener('mousemove', this.mouseMove);
-    this.DOMNode.removeEventListener('mousedown', this.mouseDown);
+    if (this.DOMNode) {
+      this.DOMNode.removeEventListener('mouseleave', this.mouseLeave);
+      this.DOMNode.removeEventListener('mousemove', this.mouseMove);
+      this.DOMNode.removeEventListener('mousedown', this.mouseDown);
+    }
   }
 
   componentDidUpdate() {
     const readOnly = this.props.blockProps.pluginEditor.getReadOnly();
 
-    if (!readOnly) {
+    if (!readOnly && this.DOMNode) {
       this.DOMNode.addEventListener('mouseleave', this.mouseLeave);
       this.DOMNode.addEventListener('mousemove', this.mouseMove);
       this.DOMNode.addEventListener('mousedown', this.mouseDown);
