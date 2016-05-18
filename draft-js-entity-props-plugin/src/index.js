@@ -15,16 +15,15 @@ const removeBlockFn = (contentBlock, { getEditorState, setEditorState }) => () =
 };
 
 const entityPropsPlugin = () => ({
-  blockRendererFn: (contentBlock, options) => {
+  blockRendererFn: (contentBlock, pluginEditor) => {
     const entityKey = contentBlock.getEntityAt(0);
-    const data = entityKey ? Entity.get(entityKey).data : {};
+    const entityData = entityKey ? Entity.get(entityKey).data : {};
     return {
       props: {
-        pluginEditor: options,
-        ...options,
-        ...data,
-        setEntityData: setEntityDataFn(contentBlock, options),
-        removeBlock: removeBlockFn(contentBlock, options)
+        pluginEditor,
+        entityData,
+        setEntityData: setEntityDataFn(contentBlock, pluginEditor),
+        removeBlock: removeBlockFn(contentBlock, pluginEditor)
       },
     };
   },

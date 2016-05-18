@@ -14,24 +14,24 @@ const findParentNode = (node, filter) => {
     : findParentNode(node.parentElement, filter);
 };
 
-export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) => WrappedComponent => class BlockFocusDecorator extends Component {
+export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorator extends Component {
   // Statics
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
   setFocus = () => {
     const { blockProps } = this.props;
-    (setFocus || blockProps.setFocus)();
+    blockProps.setFocus();
   }
 
   unsetFocus = (direction, event) => {
-    const { blockProps } = this.props;
-    (unsetFocus || blockProps.unsetFocus)(direction, event);
+    const { unsetFocus } = this.props.blockProps;
+    unsetFocus(direction, event);
   }
 
   removeBlock = () => {
-    const { blockProps } = this.props;
-    (removeBlock || blockProps.removeBlock)();
+    const { removeBlock } = this.props.blockProps;
+    removeBlock();
   }
 
   componentDidMount() {
@@ -56,13 +56,12 @@ export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) 
   }
 
   componentDidUpdate() {
-    const { blockProps } = this.props;
-    const focused = (isFocused || blockProps.isFocused);
-    const { getReadOnly } = blockProps.pluginEditor;
+    const { pluginEditor, isFocused } = this.props.blockProps;
+    const { getReadOnly } = pluginEditor;
 
     if (this.DOMNode && !getReadOnly()) {
       this.DOMNode.addEventListener('click', this.mouseDown);
-      if (focused) {
+      if (isFocused) {
         // document.addEventListener('keydown', this.releaseOnArrowKey);
         // document.addEventListener('mousedown', this.releaseOnMouseDown);
         document.addEventListener('keydown', this.releaseOnArrowKey);
@@ -72,10 +71,9 @@ export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) 
   }
 
   componentWillUnmount() {
-    const { blockProps } = this.props;
-    const focused = (isFocused || blockProps.isFocused);
+    const { isFocused } = this.props.blockProps;
     this.componentWillUpdate();
-    if (focused) {
+    if (isFocused) {
       this.unsetFocus();
     }
   }
@@ -102,21 +100,20 @@ export default ({ theme, store, isFocused, setFocus, unsetFocus, removeBlock }) 
   }
 
   mouseDown = event => {
-    const { blockProps } = this.props;
-    const focused = (isFocused || blockProps.isFocused);
-    if (focused) return;
+    const { isFocused } = this.props.blockProps;
+    if (isFocused) return;
     event.stopPropagation();
     this.setFocus();
   };
 
   render() {
     const { blockProps, className } = this.props;
-    const focused = (isFocused || blockProps.isFocused);
+    const { isFocused } = blockProps;
 
-    const newClassName = [className, (focused ? theme.focused : null)].filter(p => p);
+    const newClassName = [className, (isFocused ? theme.focused : null)].filter(p => p);
 
     return (
-      <WrappedComponent ref="component" {...this.props} className={newClassName.join(' ')} isFocused={focused} setFocus={this.setFocus} focusClassName={focused ? theme.focused : ''} />
+      <WrappedComponent ref="component" {...this.props} className={newClassName.join(' ')} isFocused={isFocused} setFocus={this.setFocus} focusClassName={isFocused ? theme.focused : ''} />
     );
   }
 };

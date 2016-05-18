@@ -25,7 +25,7 @@ function round(x, steps) {
 }
 
 // Export
-export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockResizeableDecorator extends Component {
+export default options => WrappedComponent => class BlockResizeableDecorator extends Component {
   // Statics
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -36,7 +36,7 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
     resizeSteps: 5,
     handles: false,
     caption: false,
-    ...rest
+    ...options
   };
   state = {
     hoverPosition: {},
@@ -44,8 +44,8 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
   };
 
   setEntityData = data => {
-    const { blockProps } = this.props;
-    (setEntityData || blockProps.setEntityData)(data);
+    const { setEntityData } = this.props.blockProps;
+    setEntityData(data);
   }
 
   componentDidMount() {
@@ -190,17 +190,17 @@ export default ({ setEntityData, ...rest }) => WrappedComponent => class BlockRe
     if (horizontal === 'auto') {
       styles.width = 'auto';
     } else if (horizontal === 'relative') {
-      styles.width = `${(width || blockProps.width || 40)}%`;
+      styles.width = `${(width || blockProps.entityData.width || 40)}%`;
     } else if (horizontal === 'absolute') {
-      styles.width = styles.width = `${(width || blockProps.width || 40)}px`;
+      styles.width = styles.width = `${(width || blockProps.entityData.width || 40)}px`;
     }
 
     if (vertical === 'auto') {
       styles.height = 'auto';
     } else if (vertical === 'relative') {
-      styles.height = `${(height || blockProps.height || 40)}%`;
+      styles.height = `${(height || blockProps.entityData.height || 40)}%`;
     } else if (vertical === 'absolute') {
-      styles.height = `${(height || blockProps.height || 40)}px`;
+      styles.height = `${(height || blockProps.entityData.height || 40)}px`;
     }
 
     // Handle cursor

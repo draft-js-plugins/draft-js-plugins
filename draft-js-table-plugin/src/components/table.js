@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-/* import { FocusDecorator } from 'draft-js-focus-plugin';
-import { DraggableDecorator } from 'draft-js-dnd-plugin';
-import { ToolbarDecorator } from 'draft-js-toolbar-plugin'; */
 
 const TableComponent = ({ theme }) => class Table extends Component {
   constructor(props) {
     super();
     this.state = {
-      rows: props.blockProps.rows || [[]],
-      numberOfColumns: props.blockProps.numberOfColumns || 1,
+      rows: props.blockProps.entityData.rows || [[]],
+      numberOfColumns: props.blockProps.entityData.numberOfColumns || 1,
       focusedEdit: null
     };
   }
@@ -94,10 +91,3 @@ const TableComponent = ({ theme }) => class Table extends Component {
 };
 
 export default TableComponent;
-/* export default (options) => FocusDecorator(
-  DraggableDecorator(
-    ToolbarDecorator()(
-      TableComponent(options)
-    )
-  )
-); */

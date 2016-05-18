@@ -6,7 +6,7 @@ const getDisplayName = WrappedComponent => {
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ theme, setEntityData }) => WrappedComponent => class BlockAlignmentDecorator extends Component {
+export default ({ theme }) => WrappedComponent => class BlockAlignmentDecorator extends Component {
   // Statics
   static displayName = `BlockAlignment(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -23,16 +23,16 @@ export default ({ theme, setEntityData }) => WrappedComponent => class BlockAlig
 
   // Perform alignment
   align = alignment => {
-    const { blockProps } = this.props;
+    const { setEntityData } = this.props.blockProps;
     this.setState({ alignment });
-    (setEntityData || blockProps.setEntityData)({ alignment });
+    setEntityData({ alignment });
   };
 
   // Render
   render() {
     const { blockProps, className } = this.props;
 
-    const alignment = this.state.alignment || blockProps.alignment || 'center';
+    const alignment = this.state.alignment || blockProps.entityData.alignment || 'center';
 
     // Compose actions for the toolbar
     const actions = [
