@@ -49,13 +49,6 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
   }
 
   componentDidMount() {
-    // Get this domNode
-    const element = ReactDOM.findDOMNode(this);
-    if (!element) {
-      return;
-    }
-    // Bind listeners
-    this.DOMNode = element;
     this.componentDidUpdate();
   }
 
@@ -68,6 +61,7 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
   }
 
   componentDidUpdate() {
+    this.DOMNode = ReactDOM.findDOMNode(this);
     const readOnly = this.props.blockProps.pluginEditor.getReadOnly();
 
     if (!readOnly && this.DOMNode) {

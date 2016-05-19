@@ -20,17 +20,12 @@ export default ({ theme, customRender }) => WrappedComponent => class FocusedToo
     // Set this.number to a unique value
     this.number = number++;
 
-    // Get this domNode
-    const element = ReactDOM.findDOMNode(this);
-    if (!element) {
-      return;
-    }
     // Bind listeners
-    this.DOMNode = element;
     this.componentDidUpdate();
   }
 
   componentDidUpdate() {
+    this.DOMNode = ReactDOM.findDOMNode(this);
     if (!customRender) {
       this.renderToolbar(
         [...(this.props.actions || []), ...(this._componentActions || [])],

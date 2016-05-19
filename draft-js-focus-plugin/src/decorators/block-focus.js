@@ -36,13 +36,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
 
   componentDidMount() {
     store.addType(this.props.block.type);
-    if (this.refs.component) {
-      this.DOMNode = ReactDOM.findDOMNode(this.refs.component);
-      if (this.DOMNode) {
-        this.DraftNode = findParentNode(this.DOMNode, node => node.className.indexOf('public-DraftEditor-content') !== -1);
-      }
-      this.componentDidUpdate();
-    }
+    this.componentDidUpdate();
   }
 
   componentWillUpdate() {
@@ -51,11 +45,12 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
       // document.removeEventListener('keydown', this.releaseOnArrowKey);
       // document.removeEventListener('mousedown', this.releaseOnMouseDown);
       document.removeEventListener('keydown', this.releaseOnArrowKey);
-      this.DraftNode.removeEventListener('mousedown', this.releaseOnMouseDown);
+      document.removeEventListener('mousedown', this.releaseOnMouseDown);
     }
   }
 
   componentDidUpdate() {
+    this.DOMNode = ReactDOM.findDOMNode(this);
     const { pluginEditor, isFocused } = this.props.blockProps;
     const { getReadOnly } = pluginEditor;
 
@@ -65,7 +60,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
         // document.addEventListener('keydown', this.releaseOnArrowKey);
         // document.addEventListener('mousedown', this.releaseOnMouseDown);
         document.addEventListener('keydown', this.releaseOnArrowKey);
-        this.DraftNode.addEventListener('mousedown', this.releaseOnMouseDown);
+        document.addEventListener('mousedown', this.releaseOnMouseDown);
       }
     }
   }
@@ -113,7 +108,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
     const newClassName = [className, (isFocused ? theme.focused : null)].filter(p => p);
 
     return (
-      <WrappedComponent ref="component" {...this.props} className={newClassName.join(' ')} isFocused={isFocused} setFocus={this.setFocus} focusClassName={isFocused ? theme.focused : ''} />
+      <WrappedComponent {...this.props} className={newClassName.join(' ')} isFocused={isFocused} setFocus={this.setFocus} focusClassName={isFocused ? theme.focused : ''} />
     );
   }
 };
