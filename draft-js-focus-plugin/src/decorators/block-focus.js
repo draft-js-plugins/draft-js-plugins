@@ -46,7 +46,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
       // document.removeEventListener('mousedown', this.releaseOnMouseDown);
     }
     if (this.ReactRoot) {
-      this.ReactRoot.removeEventListener('keydown', this.releaseOnArrowKey);
+      document.removeEventListener('keydown', this.releaseOnArrowKey);
       this.ReactRoot.removeEventListener('mousedown', this.releaseOnMouseDown);
     }
   }
@@ -62,7 +62,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
       if (isFocused && this.ReactRoot) {
         // document.addEventListener('keydown', this.releaseOnArrowKey);
         // document.addEventListener('mousedown', this.releaseOnMouseDown);
-        this.ReactRoot.addEventListener('keydown', this.releaseOnArrowKey);
+        document.addEventListener('keydown', this.releaseOnArrowKey);
         this.ReactRoot.addEventListener('mousedown', this.releaseOnMouseDown);
       }
     }
