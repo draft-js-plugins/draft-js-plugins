@@ -44,23 +44,26 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
       this.DOMNode.removeEventListener('click', this.mouseDown);
       // document.removeEventListener('keydown', this.releaseOnArrowKey);
       // document.removeEventListener('mousedown', this.releaseOnMouseDown);
-      document.removeEventListener('keydown', this.releaseOnArrowKey);
-      document.removeEventListener('mousedown', this.releaseOnMouseDown);
+    }
+    if (this.ReactRoot) {
+      this.ReactRoot.removeEventListener('keydown', this.releaseOnArrowKey);
+      this.ReactRoot.removeEventListener('mousedown', this.releaseOnMouseDown);
     }
   }
 
   componentDidUpdate() {
     this.DOMNode = ReactDOM.findDOMNode(this);
+    this.ReactRoot = document.querySelector('[data-reactroot]');
     const { pluginEditor, isFocused } = this.props.blockProps;
     const { getReadOnly } = pluginEditor;
 
     if (this.DOMNode && !getReadOnly()) {
       this.DOMNode.addEventListener('click', this.mouseDown);
-      if (isFocused) {
+      if (isFocused && this.ReactRoot) {
         // document.addEventListener('keydown', this.releaseOnArrowKey);
         // document.addEventListener('mousedown', this.releaseOnMouseDown);
-        document.addEventListener('keydown', this.releaseOnArrowKey);
-        document.addEventListener('mousedown', this.releaseOnMouseDown);
+        this.ReactRoot.addEventListener('keydown', this.releaseOnArrowKey);
+        this.ReactRoot.addEventListener('mousedown', this.releaseOnMouseDown);
       }
     }
   }
