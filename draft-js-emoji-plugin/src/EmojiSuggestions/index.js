@@ -274,7 +274,7 @@ export default class EmojiSuggestions extends Component {
               imagePath={ imagePath }
               cacheBustParam={ cacheBustParam }
             />
-          ))
+          )).toJS()
         }
       </div>
     );

@@ -267,7 +267,7 @@ export default class MentionSuggestions extends Component {
               id={ `mention-option-${this.key}-${index}` }
               theme={ theme }
             />
-          ))
+          )).toJS()
         }
       </div>
     );
