@@ -11,18 +11,20 @@ const toolbarPlugin = config => {
   return {
     // Re-Render the text-toolbar onChange (on selection change)
     onChange: (editorState, { setEditorState }) => {
-      const props = {
-        uid: 'text-toolbar',
-        actions: getToolbarActions(config, editorState, setEditorState),
-        editorState,
-        getTargetRectangle: getToolbarPosition,
-        setEditorState,
-        theme
-      };
-      if (toolbarHandler.textMode !== 'select' || shouldRenderToolbar(editorState)) {
-        toolbarHandler.add(props);
-      } else {
-        toolbarHandler.remove(props);
+      if (typeof window !== 'undefined') {
+        const props = {
+          uid: 'text-toolbar',
+          actions: getToolbarActions(config, editorState, setEditorState),
+          editorState,
+          getTargetRectangle: getToolbarPosition,
+          setEditorState,
+          theme
+        };
+        if (toolbarHandler.textMode !== 'select' || shouldRenderToolbar(editorState)) {
+          toolbarHandler.add(props);
+        } else {
+          toolbarHandler.remove(props);
+        }
       }
       return editorState;
     },
