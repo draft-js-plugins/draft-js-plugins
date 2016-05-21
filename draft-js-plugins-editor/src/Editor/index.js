@@ -46,6 +46,8 @@ class PluginEditor extends Component {
         this.refs.editor[method](...args)
       );
     }
+
+    this.state = {};
   }
 
   componentWillMount() {
@@ -74,6 +76,12 @@ class PluginEditor extends Component {
 
   setEditorState = this.onChange;
   getEditorState = () => this.props.editorState;
+
+  getReadOnly = () => this.props.readOnly;
+
+  setReadOnly = (readOnly) => {
+    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
+  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
@@ -235,6 +243,7 @@ class PluginEditor extends Component {
         { ...this.props }
         { ...accessibilityProps }
         { ...pluginHooks }
+        readOnly={this.props.readOnly || this.state.readOnly}
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }
