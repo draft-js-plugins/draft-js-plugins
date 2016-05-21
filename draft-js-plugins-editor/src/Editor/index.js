@@ -37,10 +37,7 @@ class PluginEditor extends Component {
     this.plugins = [this.props, ...this.resolvePlugins()];
     for (const plugin of this.plugins) {
       if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize({
-        getEditorState: this.getEditorState,
-        setEditorState: this.onChange,
-      });
+      plugin.initialize({ ...this });
     }
 
     // attach proxy methods like `focus` or `blur`
@@ -66,12 +63,12 @@ class PluginEditor extends Component {
     let newEditorState = editorState;
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
-        newEditorState = plugin.onChange(newEditorState);
+        newEditorState = plugin.onChange(newEditorState, { ...this });
       }
     });
 
     if (this.props.onChange) {
-      this.props.onChange(newEditorState);
+      this.props.onChange(newEditorState, { ...this });
     }
   };
 
@@ -79,10 +76,7 @@ class PluginEditor extends Component {
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push({ ...this });
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
@@ -95,10 +89,7 @@ class PluginEditor extends Component {
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
 
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push({ ...this });
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
