@@ -72,6 +72,7 @@ class PluginEditor extends Component {
     }
   };
 
+  setEditorState = this.onChange;
   getEditorState = () => this.props.editorState;
 
   createEventHooks = (methodName, plugins) => (...args) => {
