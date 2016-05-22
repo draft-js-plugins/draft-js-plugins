@@ -14,13 +14,17 @@ const linkPlugin = (config = {}) => {
   // styles which needs a deep dive into the code. Merging also makes it prone to
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
-  const theme = config.theme ? config.theme : defaultTheme;
-  const target = config.target ? config.target : '_self';
+  const {
+    theme = defaultTheme,
+    target = '_self',
+    linkProps = {},
+  } = config;
+
   return {
     decorators: [
       {
         strategy: linkStrategy,
-        component: decorateComponentWithProps(Link, { theme, target }),
+        component: decorateComponentWithProps(Link, { theme, target, ...linkProps }),
       },
     ],
   };
