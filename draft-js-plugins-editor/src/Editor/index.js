@@ -34,10 +34,10 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
-    this.plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of this.plugins) {
+    const plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of plugins) {
       if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize({ ...this });
+      plugin.initialize(this.getPluginMethods());
     }
 
     // attach proxy methods like `focus` or `blur`
@@ -65,27 +65,28 @@ class PluginEditor extends Component {
     let newEditorState = editorState;
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
-        newEditorState = plugin.onChange(newEditorState, { ...this });
+        newEditorState = plugin.onChange(newEditorState, this.getPluginMethods());
       }
     });
 
     if (this.props.onChange) {
-      this.props.onChange(newEditorState, { ...this });
+      this.props.onChange(newEditorState, this.getPluginMethods());
     }
   };
 
-  setEditorState = this.onChange;
   getEditorState = () => this.props.editorState;
-
-  getReadOnly = () => this.props.readOnly;
-
-  setReadOnly = (readOnly) => {
-    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
-  };
+  getPluginMethods = () => ({
+    getPlugins: () => this.props.plugins.slice(0),
+    getProps: () => ({ ...this.props }),
+    setEditorState: this.onChange,
+    getEditorState: this.getEditorState,
+    getReadOnly: () => this.props.readOnly,
+    setReadOnly: readOnly => readOnly !== this.state.readOnly ? this.setState({ readOnly }) : undefined, // eslint-disable-line no-confusing-arrow
+  });
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
-    newArgs.push({ ...this });
+    newArgs.push(this.getPluginMethods());
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
@@ -98,7 +99,7 @@ class PluginEditor extends Component {
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
 
-    newArgs.push({ ...this });
+    newArgs.push(this.getPluginMethods());
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
