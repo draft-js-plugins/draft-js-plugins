@@ -247,7 +247,7 @@ export default class EmojiSuggestions extends Component {
 
   render() {
     if (!this.state.isActive) {
-      return null;
+      return <noscript />;
     }
 
     this.filteredEmojis = this.getEmojisForFilter();
