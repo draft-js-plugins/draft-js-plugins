@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.0.2 - 2016-05-24
+
+### Fixed
+
+- Fix rendering the MentionSuggestions in IE11 by avoiding to render an Immutable List [#266](https://github.com/draft-js-plugins/draft-js-plugins/issues/266) [#270](https://github.com/draft-js-plugins/draft-js-plugins/pull/270)
+- Fix React 0.14.x support by returning `<noscript />` instead of `null` [#267](https://github.com/draft-js-plugins/draft-js-plugins/pull/267)
+
 ## 1.0.1 - 2016-04-29
 
 ### Fixed
