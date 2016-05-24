@@ -11,7 +11,7 @@ import Linkify from './components/pages/Linkify';
 import Sticker from './components/pages/Sticker';
 import Undo from './components/pages/Undo';
 import Mention from './components/pages/Mention';
-import Dnd from './components/pages/Dnd';
+import Wysiwyg from './components/pages/Wysiwyg';
 import Counter from './components/pages/Counter';
 import Playground from './components/pages/Playground';
 
@@ -25,7 +25,7 @@ export const routes = (
       <Route path="plugin/sticker" title="App - Sticker" component={Sticker} />
       <Route path="plugin/undo" title="App - Undo" component={Undo} />
       <Route path="plugin/mention" title="App - Mention" component={Mention} />
-      <Route path="plugin/dnd" title="App - Drag & Drop" component={Dnd} />
+      <Route path="plugin/wysiwyg" title="App - Wysiwyg" component={Wysiwyg} />
       <Route path="plugin/counter" title="App - Counter" component={Counter} />
     </Route>
     <Route path="playground" title="App - Development Playground" component={Playground} />

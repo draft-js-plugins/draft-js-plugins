@@ -34,13 +34,10 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
-    const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
+    this.plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of this.plugins) {
       if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize({
-        getEditorState: this.getEditorState,
-        setEditorState: this.onChange,
-      });
+      plugin.initialize(this);
     }
 
     // attach proxy methods like `focus` or `blur`
@@ -49,6 +46,8 @@ class PluginEditor extends Component {
         this.refs.editor[method](...args)
       );
     }
+
+    this.state = {};
   }
 
   componentWillMount() {
@@ -63,26 +62,33 @@ class PluginEditor extends Component {
   // Cycle through the plugins, changing the editor state with what the plugins
   // changed (or didn't)
   onChange = (editorState) => {
+    if (this.state.readOnly) return;
+
     let newEditorState = editorState;
+
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
-        newEditorState = plugin.onChange(newEditorState);
+        newEditorState = plugin.onChange(newEditorState, this);
       }
     });
 
     if (this.props.onChange) {
-      this.props.onChange(newEditorState);
+      this.props.onChange(newEditorState, this);
     }
   };
 
+  setEditorState = this.onChange;
   getEditorState = () => this.props.editorState;
+
+  getReadOnly = () => this.props.readOnly;
+
+  setReadOnly = (readOnly) => {
+    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
+  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push({ ...this });
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
@@ -95,31 +101,21 @@ class PluginEditor extends Component {
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
 
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push({ ...this });
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
-      let decorators = [];
       for (const plugin of plugins) {
         if (typeof plugin[methodName] !== 'function') continue;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
-          const { decorators: pluginDecorators, props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
+          const { props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
-          if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
           block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
       }
 
-      if (block.component) {
-        decorators.forEach(decorator => { block.component = decorator(block.component); });
-        return block;
-      }
-
-      return false;
+      return block.component ? block : false;
     } else if (methodName === 'blockStyleFn') {
       let styles;
       for (const plugin of plugins) {
@@ -245,11 +241,13 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
+
     return (
       <Editor
         { ...this.props }
         { ...accessibilityProps }
         { ...pluginHooks }
+        readOnly={this.props.readOnly || this.state.readOnly}
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }

@@ -162,10 +162,7 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
-      const expectedSecondArgument = {
-        getEditorState: pluginEditor.getEditorState,
-        setEditorState: pluginEditor.onChange,
-      };
+      const expectedSecondArgument = pluginEditor;
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
       expect(plugin.handleKeyCommand).has.been.calledWith('command', expectedSecondArgument);
@@ -262,10 +259,7 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
-      const expectedSecondArgument = {
-        getEditorState: pluginEditor.getEditorState,
-        setEditorState: pluginEditor.onChange,
-      };
+      const expectedSecondArgument = pluginEditor;
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
       expect(plugin.blockRendererFn).has.been.calledWith('command', expectedSecondArgument);
@@ -434,36 +428,6 @@ describe('Editor', () => {
       draftEditor.props.blockRendererFn();
       expect(plugin.blockRendererFn).has.been.called();
       expect(customHook).has.been.called();
-    });
-
-    it('renders block component using blockRenderFn prop and decorators', () => {
-      const decorator = (Comp) => (props) => <div className="decorator"><Comp {...props} /></div>;
-      const component = () => null;
-
-      const plugin = {
-        blockRendererFn: () => ({
-          decorators: [decorator],
-          props: { pluginProp: true },
-        }),
-      };
-
-      customHook = () => ({
-        component,
-        props: { editorProp: true },
-      });
-
-      const wrapper = mount(
-        <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ [plugin] }
-          blockRendererFn={ customHook }
-        />
-      );
-
-      const decorators = wrapper.findWhere(n => n.hasClass('decorator'));
-      expect(decorators.length).to.equal(1);
-      expect(wrapper.find(component).length).to.equal(1);
     });
   });
 
