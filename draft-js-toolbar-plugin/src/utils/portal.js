@@ -41,10 +41,8 @@ class Tooltip extends Component {
       const scrollX = window.scrollX ? window.scrollX : window.pageXOffset;
       const leftForVerticalCenter = left - (refRect.width / 2) + (width / 2) + scrollX; 
       // if tooltip overflow to window left(leftForVerticalCenter < 0),
-      // some parts of it become invisible, just simply set `state.left = 0`
-      // ____________________        _______
-      //|______tooltip_______|      |_______|
-      //  |___selecttion___|     => |___| 
+      // some parts of it become invisible,
+      // just simply set `state.left = 0` here
       const actualLeft = typeof forceLeft === 'number' ? forceLeft :
         leftForVerticalCenter > 0 ? leftForVerticalCenter : 0;
       const actualTop = top - (position === 'left' ? 0 : refRect.height) + scrollY;
