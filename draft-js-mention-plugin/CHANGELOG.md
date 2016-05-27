@@ -5,8 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.1.0 - 2016-05-27
+
 ### Added
-- `MentionSuggestions` now accepts `onOpen`and `onClose` props to receive notifications when the popover has opened or closed.
+
+- `MentionSuggestions` now accepts `onOpen`and `onClose` props. These callbacks are triggered when the popover has opened or closed.
 
 ## 1.0.2 - 2016-05-24
 
