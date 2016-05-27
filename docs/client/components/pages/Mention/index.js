@@ -129,6 +129,27 @@ export default class App extends Component {
             <span className={ styles.paramName }>mentionPrefix</span>
             <span>By default it is an empty String. For Twitter or Slack like mention behaviour you can provide an `@`</span>
           </div>
+          <Heading level={ 3 }>MentionSuggestions</Heading>
+          <div>
+            The MentionSuggestions component is part of the plugin and should placed somewhere in the
+            JSX after the Editor. It takes the following props:
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>onSearchChange</span>
+              <span>A callback which is triggered whenever the search term changes. The first argument is an object which constains the search term in the property value.</span>
+            </div>
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>suggestions</span>
+              <span>The list of suggestions to be shown.</span>
+            </div>
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>onOpen</span>
+              <span>A callback which is triggered whenever the suggestions popover opens.</span>
+            </div>
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>onClose</span>
+              <span>A callback which is triggered whenever the suggestions popover closes.</span>
+            </div>
+          </div>
           <Heading level={ 3 }>Additional Exports</Heading>
           <div>
             In addition to the plugin the module exports `defaultSuggestionsFilter`. As first argument it takes the search term as a String. The second argument is the Immutable list of mentions. The function returns the filter list based on substring matches.
