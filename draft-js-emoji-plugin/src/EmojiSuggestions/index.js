@@ -227,6 +227,10 @@ export default class EmojiSuggestions extends Component {
     this.setState({
       isActive: true,
     });
+
+    if (this.props.onOpen) {
+      this.props.onOpen();
+    }
   };
 
   closeDropdown = () => {
@@ -243,6 +247,10 @@ export default class EmojiSuggestions extends Component {
     this.setState({
       isActive: false,
     });
+
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   };
 
   render() {

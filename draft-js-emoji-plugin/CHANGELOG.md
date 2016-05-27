@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Added
+- `EmojiSuggestions` now accepts `onOpen`and `onClose` props to receive notifications when the popover has opened or closed.
+
+
 ## 1.1.1 - 2016-05-24
 
 ### Fixed
