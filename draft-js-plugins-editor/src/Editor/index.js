@@ -60,6 +60,17 @@ class PluginEditor extends Component {
     this.onChange(moveSelectionToEnd(_editorState));
   }
 
+  componentWillUnmount() {
+    this.resolvePlugins().forEach((plugin) => {
+      if (plugin.willUnmount) {
+        plugin.willUnmount({
+          getEditorState: this.getEditorState,
+          setEditorState: this.onChange,
+        });
+      }
+    });
+  }
+
   // Cycle through the plugins, changing the editor state with what the plugins
   // changed (or didn't)
   onChange = (editorState) => {
