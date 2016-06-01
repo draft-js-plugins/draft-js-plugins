@@ -1,5 +1,6 @@
 {
   "name": "draft-js-dnd-pluin",
+  "name": "draft-js-dnd-plugin",
   "version": "0.0.0",
   "description": "Upload Plugin for DraftJS",
   "author": {
@@ -22,7 +23,7 @@
     "react-component"
   ],
   "scripts": {
-    "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "build": "echo 'Ignore me'",
     "prepublish": "npm run build"
   },
   "license": "MIT",
