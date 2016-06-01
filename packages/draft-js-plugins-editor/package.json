@@ -22,12 +22,6 @@
     "widget",
     "react-component"
   ],
-  "peerDependencies": {
-    "draft-js": ">=0.5.0",
-    "immutable": ">=3.7.6",
-    "react": ">=0.14.0 || 15.0.0-rc",
-    "react-dom": ">=0.14.0 || 15.0.0-rc"
-  },
   "scripts": {
     "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
     "prepublish": "npm run build"
