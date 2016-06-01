@@ -18,3 +18,4 @@ npm-debug.log
 npm-debug.log*
 
 docs/public
+lerna-debug.log
