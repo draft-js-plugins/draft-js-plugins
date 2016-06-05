@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.1.1 - 2016-06-05
+
 ### Fixed
 
 - Close mention suggestions when suggestions filtered results are empty [#291](https://github.com/draft-js-plugins/draft-js-plugins/pull/291) [#265](https://github.com/draft-js-plugins/draft-js-plugins/issues/265)
