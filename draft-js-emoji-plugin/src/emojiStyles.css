@@ -21,11 +21,6 @@
   */
   max-height: 1em;
   line-height: inherit;
-  
-  /*
-  For making the emoji in the right size
-  */
-  background-size: 100%;
 }
 
 .emojiCharacter {
