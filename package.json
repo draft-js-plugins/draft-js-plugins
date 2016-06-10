@@ -27,9 +27,9 @@
     "react-dom": ">=0.14.0 || 15.0.0-rc.2"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js **/__test__/*.js",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
+    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js packages/*/src/**/__test__/*.js",
     "test:watch": "npm test -- --watch",
     "lint": "npm run lint:eslint && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
