@@ -22,7 +22,7 @@ export default function onDropFile(config) {
       // Set data {files: [Array of files], formData: FormData}
       const data = { files: [], formData };
       for (const key in files) {
-        if (files[key]) {
+        if (files[key] && files[key] instanceof File) {
           data.formData.append('files', files[key]);
           data.files.push(files[key]);
         }
