@@ -40,11 +40,18 @@ const focusPlugin = config => {
       };
       const unsetFocus = (direction, event) => {
         if (readOnly) return;
-        activeBlock = undefined;
+
         setReadOnly(false);
-        if (direction && activeBlock && activeBlock.get('key') === contentBlock.get('key')) {
-          activeBlock = setSelection(store, getEditorState, setEditorState, contentBlock, direction === 'up' ? 'previous' : 'next', event);
+        if (direction) {
+          activeBlock = setSelection(store, getEditorState, setEditorState, contentBlock, direction, event);
+          setEditorState(EditorState.forceSelection(getEditorState(), getEditorState().getSelection()));
+          if (activeBlock) {
+            setTimeout(() => {
+              setReadOnly(true);
+            }, 1);
+          }
         } else {
+          activeBlock = undefined;
           setEditorState(EditorState.forceSelection(getEditorState(), getEditorState().getSelection()));
         }
       };
@@ -59,11 +66,11 @@ const focusPlugin = config => {
     },
     // Handle down/up arrow events and set activeBlock/selection if necessary
     onDownArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
-      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'next', event);
-      setReadOnly(activeBlock && activeBlock.get('type') !== 'unstyled');
+      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'down', event);
+      setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
     }, onUpArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
-      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'previous', event);
-      setReadOnly(activeBlock && activeBlock.get('type') !== 'unstyled');
+      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'up', event);
+      setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
     },
   };
 };

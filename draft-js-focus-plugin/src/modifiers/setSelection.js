@@ -9,11 +9,15 @@ const findParentNode = (node, filter) => {
 
 // Set selection of editor to next/previous block
 export default (store, getEditorState, setEditorState, previousActiveBlock, mode, event) => {
-  const selection = getEditorState().getSelection();
+  const selectionKey = previousActiveBlock ? previousActiveBlock.get('key') : getEditorState().getSelection().getAnchorKey();
   const editorState = getEditorState();
-  const activeBlock = mode === 'previous'
-    ? editorState.getCurrentContent().getBlockBefore(selection.getAnchorKey())
-    : editorState.getCurrentContent().getBlockAfter(selection.getAnchorKey());
+  const activeBlock = mode === 'up'
+    ? editorState.getCurrentContent().getBlockBefore(selectionKey)
+    : editorState.getCurrentContent().getBlockAfter(selectionKey);
+
+  if (activeBlock && activeBlock.get('key') === selectionKey) {
+    return undefined;
+  }
 
   if (event) {
     let atLimit = false;
@@ -26,7 +30,7 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
         const parent = findParentNode(sel.anchorNode, node => node.hasAttribute('data-block'));
         testRange.selectNodeContents(parent);
 
-        if (mode === 'previous') {
+        if (mode === 'up') {
           testRange.setEnd(selRange.startContainer, selRange.startOffset);
           const toleranced = Math.abs(selRange.getBoundingClientRect().top - parent.getBoundingClientRect().top);
           atLimit = testRange.toString() === '' || toleranced < 10;
