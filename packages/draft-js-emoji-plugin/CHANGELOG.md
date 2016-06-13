@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 1.2.1 - 2016-06-05
+
+### Fixed
+
+- Emojis won't show up due broken background styles [#292](https://github.com/draft-js-plugins/draft-js-plugins/pull/292) [#293](https://github.com/draft-js-plugins/draft-js-plugins/issues/293) [#294](https://github.com/draft-js-plugins/draft-js-plugins/pull/294)
+
 ## 1.2.0 - 2016-05-27
 
 ### Added
