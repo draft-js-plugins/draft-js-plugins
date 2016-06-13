@@ -4,7 +4,7 @@
 node_modules
 
 # sources
-/src/
+/packages/draft-js-undo-plugin/src/
 webpack.config.js
 .babelrc
 .gitignore

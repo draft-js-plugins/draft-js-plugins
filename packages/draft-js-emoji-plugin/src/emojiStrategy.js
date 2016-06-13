@@ -1,9 +1,6 @@
-/* @flow */
-
 import findWithRegex from 'find-with-regex';
-
-const MENTION_REGEX = /(\s|^)@[\w]*/g;
+import unicodeRegex from './utils/unicodeRegex';
 
 export default (contentBlock: Object, callback: Function) => {
-  findWithRegex(MENTION_REGEX, contentBlock, callback);
+  findWithRegex(unicodeRegex, contentBlock, callback);
 };
