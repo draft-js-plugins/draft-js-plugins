@@ -1,5 +1,3 @@
-/* @flow */
-
 import findWithRegex from 'find-with-regex';
 
 const MENTION_REGEX = /(\s|^)@[\w]*/g;

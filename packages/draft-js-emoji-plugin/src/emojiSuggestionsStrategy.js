@@ -1,5 +1,3 @@
-/* @flow */
-
 import findWithRegex from 'find-with-regex';
 
 const EMOJI_REGEX = /(\s|^):[\w]*/g;

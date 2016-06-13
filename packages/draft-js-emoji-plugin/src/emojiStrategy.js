@@ -1,5 +1,3 @@
-/* @flow */
-
 import findWithRegex from 'find-with-regex';
 import unicodeRegex from './utils/unicodeRegex';
 
