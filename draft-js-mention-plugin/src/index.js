@@ -16,6 +16,7 @@ const createMentionPlugin = (config = {}) => {
     mention: mentionStyles.mention,
 
     mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
+    mentionSuggestionsHeading: mentionSuggestionsStyles.mentionSuggestionsHeading,
 
     mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
     mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,

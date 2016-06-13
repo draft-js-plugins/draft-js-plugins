@@ -16,3 +16,13 @@
   box-sizing: border-box;
   transform: scale(0);
 }
+
+.mentionSuggestionsHeading:global(.first) {
+  margin-top: -8px;
+}
+.mentionSuggestionsHeading {
+  padding: 5px 10px;
+  background: #fafafa;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+}
