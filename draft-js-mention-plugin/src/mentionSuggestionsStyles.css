@@ -1,7 +1,7 @@
 .mentionSuggestions {
   border: 1px solid #eee;
   margin-top: 1.75em;
-  position: absolute;
+  position: fixed;
   min-width: 220px;
   max-width: 440px;
   background: #fff;
