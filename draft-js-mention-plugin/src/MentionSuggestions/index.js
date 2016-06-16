@@ -49,6 +49,7 @@ export default class MentionSuggestions extends Component {
         decoratorRect,
         prevProps,
         prevState,
+        popover: this.refs.popover,
         props: this.props,
         state: this.state,
       });
