@@ -34,8 +34,8 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
-    this.plugins = [this.props, ...this.setReadOnlyPlugins()];
-    for (const plugin of this.plugins) {
+    const plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of plugins) {
       if (typeof plugin.initialize !== 'function') continue;
       plugin.initialize(this.getPluginMethods());
     }
