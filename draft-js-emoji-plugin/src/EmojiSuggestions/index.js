@@ -39,6 +39,7 @@ export default class EmojiSuggestions extends Component {
         props: this.props,
         state: this.state,
         filteredEmojis: this.filteredEmojis,
+        popover: this.refs.popover,
       });
       Object.keys(newStyles).forEach((key) => {
         this.refs.popover.style[key] = newStyles[key];

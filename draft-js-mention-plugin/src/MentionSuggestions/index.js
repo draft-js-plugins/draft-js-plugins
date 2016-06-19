@@ -49,9 +49,9 @@ export default class MentionSuggestions extends Component {
         decoratorRect,
         prevProps,
         prevState,
-        popover: this.refs.popover,
         props: this.props,
         state: this.state,
+        popover: this.refs.popover,
       });
       Object.keys(newStyles).forEach((key) => {
         this.refs.popover.style[key] = newStyles[key];
