@@ -1,6 +1,6 @@
 {
-  "name": "draft-js-plugins-editor-wysiwyg",
-  "version": "1.0.1",
+  "name": "draft-js-plugins-editor",
+  "version": "2.0.0-beta1",
   "description": "Editor for DraftJS Plugins",
   "author": {
     "name": "Nik Graf",

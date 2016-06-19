@@ -126,6 +126,23 @@ export default class App extends Component {
             <span className={ styles.paramName }>imagePath</span>
             <span>The Emojis are displayed using SVGs. The full path is constructed of multiple parts like this: { '`${imagePath}${unicode}.svg${cacheBustParam}`' }. The default imagePath is: '//cdn.jsdelivr.net/emojione/assets/svg/', but can be overwritten with this config.</span>
           </div>
+          <Heading level={ 3 }>EmojiSuggestions</Heading>
+          <div>
+            The EmojiSuggestions component is part of the plugin and should placed somewhere in the
+            JSX after the Editor. It takes the following props:
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>onSearchChange</span>
+              <span>A callback which is triggered whenever the search term changes. The first argument is an object which constains the search term in the property value.</span>
+            </div>
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>onOpen</span>
+              <span>A callback which is triggered whenever the suggestions popover opens.</span>
+            </div>
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>onClose</span>
+              <span>A callback which is triggered whenever the suggestions popover closes.</span>
+            </div>
+          </div>
         </Container>
         <Container>
           <Heading level={ 2 }>Simple Emoji Example</Heading>

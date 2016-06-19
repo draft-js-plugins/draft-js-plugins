@@ -162,7 +162,14 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
-      const expectedSecondArgument = pluginEditor;
+      const expectedSecondArgument = {
+        getEditorState: pluginEditor.getEditorState,
+        setEditorState: pluginEditor.onChange,
+        getPlugins: pluginEditor.getPlugins,
+        getProps: pluginEditor.getProps,
+        getReadOnly: pluginEditor.getReadOnly,
+        setReadOnly: pluginEditor.setReadOnly,
+      };
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
       expect(plugin.handleKeyCommand).has.been.calledWith('command', expectedSecondArgument);
@@ -175,6 +182,32 @@ describe('Editor', () => {
       draftEditor.props.handleDrop('command');
       expect(plugin.handleDrop).has.been.calledOnce();
       expect(plugin.handleDrop).has.been.calledWith('command', expectedSecondArgument);
+    });
+
+    it('calls willUnmount', () => {
+      const plugins = [
+        {
+          willUnmount: sinon.spy(),
+        },
+      ];
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+
+      const pluginEditor = result.node;
+      const plugin = plugins[0];
+      const expectedArgument = {
+        getEditorState: pluginEditor.getEditorState,
+        setEditorState: pluginEditor.onChange,
+      };
+      result.unmount();
+
+      expect(plugin.willUnmount).has.been.calledOnce();
+      expect(plugin.willUnmount).has.been.calledWith(expectedArgument);
     });
 
     it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {
@@ -259,7 +292,14 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       const draftEditor = result.node;
       const plugin = plugins[0];
-      const expectedSecondArgument = pluginEditor;
+      const expectedSecondArgument = {
+        getEditorState: pluginEditor.getEditorState,
+        setEditorState: pluginEditor.onChange,
+        getPlugins: pluginEditor.getPlugins,
+        getProps: pluginEditor.getProps,
+        getReadOnly: pluginEditor.getReadOnly,
+        setReadOnly: pluginEditor.setReadOnly,
+      };
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
       expect(plugin.blockRendererFn).has.been.calledWith('command', expectedSecondArgument);
