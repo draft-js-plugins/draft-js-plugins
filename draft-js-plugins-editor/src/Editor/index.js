@@ -37,10 +37,7 @@ class PluginEditor extends Component {
     const plugins = [this.props, ...this.resolvePlugins()];
     for (const plugin of plugins) {
       if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize({
-        getEditorState: this.getEditorState,
-        setEditorState: this.onChange,
-      });
+      plugin.initialize(this.getPluginMethods());
     }
 
     // attach proxy methods like `focus` or `blur`
@@ -49,6 +46,8 @@ class PluginEditor extends Component {
         this.refs.editor[method](...args)
       );
     }
+
+    this.state = {}; // TODO for Nik: ask ben why this is relevent
   }
 
   componentWillMount() {
@@ -77,23 +76,35 @@ class PluginEditor extends Component {
     let newEditorState = editorState;
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
-        newEditorState = plugin.onChange(newEditorState);
+        newEditorState = plugin.onChange(newEditorState, this.getPluginMethods());
       }
     });
 
     if (this.props.onChange) {
-      this.props.onChange(newEditorState);
+      this.props.onChange(newEditorState, this.getPluginMethods());
     }
   };
 
+  getPlugins = () => this.props.plugins.slice(0);
+  getProps = () => ({ ...this.props });
+
+  // TODO further down in render we use readOnly={this.props.readOnly || this.state.readOnly}. Ask Ben why readOnly is here just from the props? Why would plugins use this instead of just taking it from getProps?
+  getReadOnly = () => this.props.readOnly;
+  setReadOnly = (readOnly) => readOnly !== this.state.readOnly ? this.setState({ readOnly }) : undefined; // eslint-disable-line no-confusing-arrow
+
   getEditorState = () => this.props.editorState;
+  getPluginMethods = () => ({
+    getPlugins: this.getPlugins,
+    getProps: this.getProps,
+    setEditorState: this.onChange,
+    getEditorState: this.getEditorState,
+    getReadOnly: this.getReadOnly,
+    setReadOnly: this.setReadOnly,
+  });
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push(this.getPluginMethods());
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
@@ -106,31 +117,21 @@ class PluginEditor extends Component {
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
 
-    newArgs.push({
-      getEditorState: this.getEditorState,
-      setEditorState: this.onChange,
-    });
+    newArgs.push(this.getPluginMethods());
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
-      let decorators = [];
       for (const plugin of plugins) {
         if (typeof plugin[methodName] !== 'function') continue;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
-          const { decorators: pluginDecorators, props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
+          const { props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
-          if (pluginDecorators) decorators = [...decorators, ...pluginDecorators];
           block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
       }
 
-      if (block.component) {
-        decorators.forEach(decorator => { block.component = decorator(block.component); });
-        return block;
-      }
-
-      return false;
+      return block.component ? block : false;
     } else if (methodName === 'blockStyleFn') {
       let styles;
       for (const plugin of plugins) {
@@ -261,6 +262,7 @@ class PluginEditor extends Component {
         { ...this.props }
         { ...accessibilityProps }
         { ...pluginHooks }
+        readOnly={this.props.readOnly || this.state.readOnly}
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }
