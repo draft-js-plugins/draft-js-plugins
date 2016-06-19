@@ -34,7 +34,7 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
-    this.plugins = [this.props, ...this.resolvePlugins()];
+    this.plugins = [this.props, ...this.setReadOnlyPlugins()];
     for (const plugin of this.plugins) {
       if (typeof plugin.initialize !== 'function') continue;
       plugin.initialize(this.getPluginMethods());
@@ -73,10 +73,7 @@ class PluginEditor extends Component {
   // Cycle through the plugins, changing the editor state with what the plugins
   // changed (or didn't)
   onChange = (editorState) => {
-    if (this.state.readOnly) return;
-
     let newEditorState = editorState;
-
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange) {
         newEditorState = plugin.onChange(newEditorState, this.getPluginMethods());
@@ -93,7 +90,9 @@ class PluginEditor extends Component {
 
   // TODO further down in render we use readOnly={this.props.readOnly || this.state.readOnly}. Ask Ben why readOnly is here just from the props? Why would plugins use this instead of just taking it from getProps?
   getReadOnly = () => this.props.readOnly;
-  setReadOnly = (readOnly) => readOnly !== this.state.readOnly ? this.setState({ readOnly }) : undefined; // eslint-disable-line no-confusing-arrow
+  setReadOnly = (readOnly) => {
+    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
+  };
 
   getEditorState = () => this.props.editorState;
   getPluginMethods = () => ({
@@ -104,12 +103,6 @@ class PluginEditor extends Component {
     getReadOnly: this.getReadOnly,
     setReadOnly: this.setReadOnly,
   });
-
-  getReadOnly = () => this.props.readOnly;
-
-  setReadOnly = (readOnly) => {
-    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
-  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
@@ -266,7 +259,6 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
-
     return (
       <Editor
         { ...this.props }
