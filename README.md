@@ -6,6 +6,10 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 [![Build Status](https://travis-ci.org/draft-js-plugins/draft-js-plugins.svg?branch=master)](https://travis-ci.org/draft-js-plugins/draft-js-plugins)
 
+## Important Note
+
+We currently prepare for a 2.0 beta. The `master` branch already contains unpublished features & plugins.
+
 ## Available Plugins
 
 - [Emoji](https://www.draft-js-plugins.com/plugin/emoji)
