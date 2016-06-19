@@ -1,10 +1,10 @@
 {
-  "name": "draft-js-dnd-pluin",
-  "version": "0.0.0",
-  "description": "Upload Plugin for DraftJS",
+  "name": "draft-js-dnd-plugin",
+  "version": "1.0.7",
+  "description": "Dnd Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
-    "email": "bkniffler@me.com"
+    "email": "benjamin@kniffler.com"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,9 @@
     "react-dom": ">=0.14.0 || 15.0.0-rc"
   },
   "scripts": {
-    "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "clean": "../node_modules/.bin/rimraf lib",
+    "build": "npm run clean && npm run build:js",
+    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
     "prepublish": "npm run build"
   },
   "license": "MIT",

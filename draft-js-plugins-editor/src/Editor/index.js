@@ -90,7 +90,9 @@ class PluginEditor extends Component {
 
   // TODO further down in render we use readOnly={this.props.readOnly || this.state.readOnly}. Ask Ben why readOnly is here just from the props? Why would plugins use this instead of just taking it from getProps?
   getReadOnly = () => this.props.readOnly;
-  setReadOnly = (readOnly) => readOnly !== this.state.readOnly ? this.setState({ readOnly }) : undefined; // eslint-disable-line no-confusing-arrow
+  setReadOnly = (readOnly) => {
+    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
+  };
 
   getEditorState = () => this.props.editorState;
   getPluginMethods = () => ({

@@ -1,7 +1,7 @@
 import { List, Repeat } from 'immutable';
 import { Modifier, CharacterMetadata, BlockMapBuilder, EditorState, ContentBlock, Entity, genKey } from 'draft-js';
 
-export default function (editorState, selection, type, data) {
+export default function (editorState, selection, type, data, text = ' ') {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = selection;
 
@@ -46,8 +46,8 @@ export default function (editorState, selection, type, data) {
     new ContentBlock({
       key: genKey(),
       type,
-      text: '',
-      characterList: List(Repeat(charData, 1)), // eslint-disable-line new-cap
+      text,
+      characterList: List(Repeat(charData, text.length || 1)), // eslint-disable-line new-cap
     }),
 
     // new contentblock so we can continue wrting right away after inserting the block
