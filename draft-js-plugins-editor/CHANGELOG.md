@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Added
+
+- `onChange` & and all handlers now also receive: `getPlugins`, `getProps`, `getReadOnly`, `setReadOnly`.
+
+### Removed
+
+- `decorators` don't decorate plugins anymore.
+
 ## 1.0.1 - 2016-05-03
 
 ### Fixed
