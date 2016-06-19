@@ -5,6 +5,33 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Changed
+
+- `positionSuggestions` now works by default with non-static parents. Thanks to @Zhouzi
+[#309](https://github.com/draft-js-plugins/draft-js-plugins/pull/309)
+[#206](https://github.com/draft-js-plugins/draft-js-plugins/issues/206)
+[#283](https://github.com/draft-js-plugins/draft-js-plugins/issues/283)
+[#289](https://github.com/draft-js-plugins/draft-js-plugins/issues/289)
+
+## 1.1.1 - 2016-06-05
+
+### Fixed
+
+- Close mention suggestions when suggestions filtered results are empty [#291](https://github.com/draft-js-plugins/draft-js-plugins/pull/291) [#265](https://github.com/draft-js-plugins/draft-js-plugins/issues/265)
+
+## 1.1.0 - 2016-05-27
+
+### Added
+
+- `MentionSuggestions` now accepts `onOpen`and `onClose` props. These callbacks are triggered when the popover has opened or closed.
+
+## 1.0.2 - 2016-05-24
+
+### Fixed
+
+- Fix rendering the MentionSuggestions in IE11 by avoiding to render an Immutable List [#266](https://github.com/draft-js-plugins/draft-js-plugins/issues/266) [#270](https://github.com/draft-js-plugins/draft-js-plugins/pull/270)
+- Fix React 0.14.x support by returning `<noscript />` instead of `null` [#267](https://github.com/draft-js-plugins/draft-js-plugins/pull/267)
+
 ## 1.0.1 - 2016-04-29
 
 ### Fixed

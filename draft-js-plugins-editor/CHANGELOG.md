@@ -13,6 +13,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - `decorators` don't decorate plugins anymore.
 
+## 1.1.0 - 2016-05-30
+
+### Added
+
+- Added `willUnmount` hook. This hook receives one object as argument, which contains `getEditorState` & `setEditorState`. The hook will be executed once the Editor component is about to be unmounted.
+
 ## 1.0.1 - 2016-05-03
 
 ### Fixed
@@ -28,7 +34,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Added propTypes to the Editor
-- Added `initialize` hook. This hook receives one object as argument. The object contains `getEditorState` & `setEditorState`.
+- Added `initialize` hook. This hook receives one object as argument, which contains `getEditorState` & `setEditorState`.
 
 ## 0.2.0 - 2016-03-25
 

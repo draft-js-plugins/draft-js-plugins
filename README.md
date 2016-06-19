@@ -23,7 +23,10 @@ We currently prepare for a 2.0 beta. The `master` branch already contains unpubl
 
 ### Built by the community
 
-- [Autolist](https://github.com/icelab/draft-js-autolist-plugin) by [Max Wheeler](https://github.com/makenosound)
+- [Autolist](https://github.com/icelab/draft-js-autolist-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
+- [Block Breakout](https://github.com/icelab/draft-js-block-breakout-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
+- [Single Line](https://github.com/icelab/draft-js-single-line-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
+- [RichButtons](https://github.com/jasonphillips/draft-js-richbuttons-plugin) by [jasonphillips](https://github.com/jasonphillips)
 
 ## Live Example & Documentation
 

@@ -184,6 +184,32 @@ describe('Editor', () => {
       expect(plugin.handleDrop).has.been.calledWith('command', expectedSecondArgument);
     });
 
+    it('calls willUnmount', () => {
+      const plugins = [
+        {
+          willUnmount: sinon.spy(),
+        },
+      ];
+      const result = mount(
+        <PluginEditor
+          editorState={ editorState }
+          onChange={ onChange }
+          plugins={ plugins }
+        />
+      );
+
+      const pluginEditor = result.node;
+      const plugin = plugins[0];
+      const expectedArgument = {
+        getEditorState: pluginEditor.getEditorState,
+        setEditorState: pluginEditor.onChange,
+      };
+      result.unmount();
+
+      expect(plugin.willUnmount).has.been.calledOnce();
+      expect(plugin.willUnmount).has.been.calledWith(expectedArgument);
+    });
+
     it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {
       const plugins = [
         {

@@ -1,30 +1,53 @@
-const positionSuggestions = ({ decoratorRect, state, props }) => {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-  let width;
-  let left;
-  let transform;
-  let transition;
-  if (window.innerWidth <= 480) {
-    left = '20px';
-    width = `${window.innerWidth - 40}px`;
-  } else {
-    left = `${decoratorRect.left + scrollLeft}px`;
+const getRelativeParent = (element) => {
+  if (!element) {
+    return null;
   }
 
-  if (state.isActive & props.suggestions.size > 0) {
-    transform = 'scale(1)';
-    transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
-  } else if (state.isActive) {
-    transform = 'scale(0)';
-    transition = 'all 0.35s cubic-bezier(.3,1,.2,1)';
+  const position = window.getComputedStyle(element).getPropertyValue('position');
+  if (position !== 'static') {
+    return element;
+  }
+
+  return getRelativeParent(element.parentElement);
+};
+
+const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
+  const relativeParent = getRelativeParent(popover.parentElement);
+  const relativeRect = {};
+
+  if (relativeParent) {
+    relativeRect.scrollLeft = relativeParent.scrollLeft;
+    relativeRect.scrollTop = relativeParent.scrollTop;
+
+    const relativeParentRect = relativeParent.getBoundingClientRect();
+    relativeRect.left = decoratorRect.left - relativeParentRect.left;
+    relativeRect.top = decoratorRect.top - relativeParentRect.top;
+  } else {
+    relativeRect.scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    relativeRect.scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+    relativeRect.top = decoratorRect.top;
+    relativeRect.left = decoratorRect.left;
+  }
+
+  const left = relativeRect.left + relativeRect.scrollLeft;
+  const top = relativeRect.top + relativeRect.scrollTop;
+
+  let transform;
+  let transition;
+  if (state.isActive) {
+    if (props.suggestions.size > 0) {
+      transform = 'scale(1)';
+      transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
+    } else {
+      transform = 'scale(0)';
+      transition = 'all 0.35s cubic-bezier(.3,1,.2,1)';
+    }
   }
 
   return {
-    width,
-    left,
-    top: `${decoratorRect.top + scrollTop}px`,
+    left: `${left}px`,
+    top: `${top}px`,
     transform,
     transformOrigin: '1em 0%',
     transition,

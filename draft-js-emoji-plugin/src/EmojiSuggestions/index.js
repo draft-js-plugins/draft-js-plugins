@@ -39,6 +39,7 @@ export default class EmojiSuggestions extends Component {
         props: this.props,
         state: this.state,
         filteredEmojis: this.filteredEmojis,
+        popover: this.refs.popover,
       });
       Object.keys(newStyles).forEach((key) => {
         this.refs.popover.style[key] = newStyles[key];
@@ -227,6 +228,10 @@ export default class EmojiSuggestions extends Component {
     this.setState({
       isActive: true,
     });
+
+    if (this.props.onOpen) {
+      this.props.onOpen();
+    }
   };
 
   closeDropdown = () => {
@@ -243,11 +248,15 @@ export default class EmojiSuggestions extends Component {
     this.setState({
       isActive: false,
     });
+
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
   };
 
   render() {
     if (!this.state.isActive) {
-      return null;
+      return <noscript />;
     }
 
     this.filteredEmojis = this.getEmojisForFilter();
