@@ -39,6 +39,11 @@ class Tooltip extends Component {
       const refRect = ref.getBoundingClientRect();
       const scrollY = window.scrollY ? window.scrollY : window.pageYOffset;
       const scrollX = window.scrollX ? window.scrollX : window.pageXOffset;
+      const leftForVerticalCenter = left - (refRect.width / 2) + (width / 2) + scrollX;
+      // if tooltip overflow to window left(leftForVerticalCenter < 0),
+      // some parts of it become invisible,
+      // just simply set `state.left = 0` here
+      const adjustedLeft = leftForVerticalCenter > 0 ? leftForVerticalCenter : 0;
 
       // Skip next componentDidUpdate
       this._skip = true;
@@ -46,7 +51,7 @@ class Tooltip extends Component {
       // Set state
       this.setState({ // eslint-disable-line react/no-did-mount-set-state
         top: top - (position === 'left' ? 0 : refRect.height) + scrollY,
-        left: forceLeft || (left - (refRect.width / 2) + (width / 2) + scrollX),
+        left: typeof forceLeft === 'number' ? forceLeft : adjustedLeft,
         width,
       });
     }
