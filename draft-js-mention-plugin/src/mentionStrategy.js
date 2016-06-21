@@ -1,12 +1,20 @@
 import { Entity } from 'draft-js';
 
-const findMention = (character) => {
-  const entityKey = character.getEntity();
-  return (entityKey !== null && Entity.get(entityKey).getType() === 'mention');
-};
+const findMention = (trigger) => {
+  trigger = trigger || '@';
 
-const findMentionEntities = (contentBlock, callback) => {
-  contentBlock.findEntityRanges(findMention, callback);
+  return (character) => {
+    const entityKey = character.getEntity();
+    return (entityKey !== null && Entity.get(entityKey).getType() === 'mention-' + trigger);
+  }
+}
+
+const findMentionEntities = (trigger) => {
+  trigger = trigger || '@';
+
+  return (contentBlock, callback) => {
+    contentBlock.findEntityRanges(findMention(trigger), callback)
+  }
 };
 
 export default findMentionEntities;

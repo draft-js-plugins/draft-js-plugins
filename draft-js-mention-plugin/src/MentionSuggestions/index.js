@@ -7,7 +7,6 @@ import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
 export default class MentionSuggestions extends Component {
-
   static propTypes = {
     entityMutability: PropTypes.oneOf([
       'SEGMENTED',
@@ -192,6 +191,7 @@ export default class MentionSuggestions extends Component {
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
+      this.props.mentionTrigger,
       this.props.entityMutability,
     );
     this.props.store.setEditorState(newEditorState);

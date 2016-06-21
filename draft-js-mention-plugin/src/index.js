@@ -14,9 +14,7 @@ import defaultPositionSuggestions from './utils/positionSuggestions';
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = {
     mention: mentionStyles.mention,
-
     mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
-
     mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
     mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
     mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
@@ -92,12 +90,13 @@ const createMentionPlugin = (config = {}) => {
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
     positionSuggestions,
+    mentionTrigger,
   };
   return {
     MentionSuggestions: decorateComponentWithProps(MentionSuggestions, mentionSearchProps),
     decorators: [
       {
-        strategy: mentionStrategy,
+        strategy: mentionStrategy(mentionTrigger),
         component: decorateComponentWithProps(Mention, { theme, mentionPrefix }),
       },
       {
