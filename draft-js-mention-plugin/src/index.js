@@ -81,7 +81,7 @@ const createMentionPlugin = (config = {}) => {
     mentionPrefix = '',
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
-    mentionTrigger = '@'
+    mentionTrigger = '@',
   } = config;
   const mentionSearchProps = {
     ariaProps,

@@ -2,7 +2,7 @@ import { Modifier, EditorState, Entity } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 
 const addMention = (editorState, mention, mentionTrigger, entityMutability) => {
-  const entityKey = Entity.create('mention-' + mentionTrigger, entityMutability, { mention });
+  const entityKey = Entity.create(`mention-${mentionTrigger}`, entityMutability, { mention });
 
   const currentSelectionState = editorState.getSelection();
   const { begin, end } = getSearchText(editorState, currentSelectionState);
