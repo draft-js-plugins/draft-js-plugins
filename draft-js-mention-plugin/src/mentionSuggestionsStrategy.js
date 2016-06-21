@@ -1,9 +1,14 @@
 /* @flow */
 
 import findWithRegex from 'find-with-regex';
+import _ from 'lodash';
 
-const MENTION_REGEX = /(\s|^)@[\w]*/g;
+export default (trigger) => {
+  if (trigger.length === 0) {
+    trigger = '@';
+  }
 
-export default (contentBlock: Object, callback: Function) => {
-  findWithRegex(MENTION_REGEX, contentBlock, callback);
-};
+  return (contentBlock: Object, callback: Function) => {
+    findWithRegex(new RegExp('(\\s|^)' + _.escapeRegExp(trigger) + '[\\w]*', 'g'), contentBlock, callback);
+  };
+}
