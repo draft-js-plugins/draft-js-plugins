@@ -11,7 +11,7 @@ const store = {
   }
 };
 
-const focusPlugin = config => {
+const focusPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   let activeBlock = null;
   return {

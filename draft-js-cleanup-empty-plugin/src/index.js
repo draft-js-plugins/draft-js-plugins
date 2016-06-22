@@ -2,7 +2,7 @@ import onBackspace from './utils/onBackspace';
 
 // Block-Types to be handled will be stored here
 let types = [];
-const cleanupEmptyPlugin = options => {
+const cleanupEmptyPlugin = (options = {}) => {
   types = options.types || [];
   return {
     handleKeyCommand(command, { getEditorState, setEditorState }) {

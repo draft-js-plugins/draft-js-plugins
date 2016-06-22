@@ -17,7 +17,7 @@ const createRenderer = Editor => {
   };
 };
 
-const tablePlugin = config => {
+const tablePlugin = (config = {}) => {
   const type = config.type || 'block-table';
   const theme = config.theme ? config.theme : defaultTheme;
   const Editor = config.Editor;
