@@ -81,7 +81,7 @@ class Tooltip extends Component {
     // Style
     const style = {
       transition: animations ? 'all .3s ease-in-out, visibility .3s ease-in-out' : '',
-      zIndex: 100,
+      zIndex: 9999,
       position: 'absolute',
       left,
       top,
