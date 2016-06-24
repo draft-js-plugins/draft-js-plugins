@@ -18,6 +18,22 @@
   margin: -16px;
 }
 
+.mentionSuggestionsEntryContainer {
+  display: table;
+  width: 100%;
+}
+
+.mentionSuggestionsEntryContainerLeft,
+.mentionSuggestionsEntryContainerRight {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.mentionSuggestionsEntryContainerRight {
+  width: 100%;
+  padding-left: 8px;
+}
+
 .mentionSuggestionsEntry {
   padding: 7px 10px 3px 10px;
   transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
@@ -32,17 +48,24 @@
   background-color: #e6f3ff;
 }
 
-.mentionSuggestionsEntryText {
-  display: inline-block;
-  margin-left: 8px;
+.mentionSuggestionsEntryText,
+.mentionSuggestionsEntryTitle {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.mentionSuggestionsEntryText {
+}
+
+.mentionSuggestionsEntryTitle {
+  font-size: 80%;
+  color: #a7a7a7;
+}
+
 .mentionSuggestionsEntryAvatar {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
