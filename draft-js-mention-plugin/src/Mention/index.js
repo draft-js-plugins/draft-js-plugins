@@ -1,9 +1,10 @@
 import React from 'react';
 import { Entity } from 'draft-js';
+import { fromJS } from 'immutable';
 
 const Mention = (props) => {
   const { entityKey, theme = {} } = props;
-  const { mention } = Entity.get(entityKey).getData();
+  const mention = fromJS(Entity.get(entityKey).getData().mention);
 
   if (mention.has('link')) {
     return (
