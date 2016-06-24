@@ -2,8 +2,8 @@ import onBackspace from './utils/onBackspace';
 
 // Block-Types to be handled will be stored here
 let types = [];
-const cleanupEmptyPlugin = options => {
-  types = options.types || [];
+const cleanupEmptyPlugin = (config = {}) => {
+  types = config.types || [];
   return {
     handleKeyCommand(command, { getEditorState, setEditorState }) {
       const editorState = getEditorState();

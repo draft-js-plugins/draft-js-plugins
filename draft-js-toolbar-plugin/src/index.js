@@ -5,7 +5,7 @@ import Link from './Link';
 import styles from './styles.css';
 import airToolbarHandler from './air-toolbar';
 
-const toolbarPlugin = config => {
+const toolbarPlugin = (config = {}) => {
   const theme = config.theme || styles;
   const toolbarHandler = config.toolbarHandler || { ...airToolbarHandler, ...config };
   return {

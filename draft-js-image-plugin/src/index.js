@@ -1,7 +1,7 @@
 import Image from './components/image';
 import styles from './style.css';
 
-const imagePlugin = config => {
+const imagePlugin = (config = {}) => {
   const type = config.type || 'block-image';
   const theme = config.theme ? config.theme : styles;
   const component = config.component || Image({ theme });
