@@ -21,4 +21,11 @@ describe('Mention', () => {
     const result = render(<Mention entityKey={ entityKey } theme={ Map() } />);
     expect(result).to.have.tagName('span');
   });
+
+  it('can render when mention is an Object', () => {
+    const mention = {};
+    const entityKey = Entity.create('mention', 'SEGMENTED', { mention });
+    const result = render(<Mention entityKey={ entityKey } theme={ Map() } />);
+    expect(result).to.have.tagName('span');
+  });
 });
