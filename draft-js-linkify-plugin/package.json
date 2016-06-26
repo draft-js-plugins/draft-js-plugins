@@ -24,9 +24,9 @@
   ],
   "peerDependencies": {
     "draft-js": ">=0.7.0",
-    "immutable": ">=3.7.6",
-    "react": ">=0.14.0 || 15.0.0-rc",
-    "react-dom": ">=0.14.0 || 15.0.0-rc"
+    "immutable": ">=3.8.1",
+    "react": ">=15.1.0",
+    "react-dom": ">=15.1.0"
   },
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
@@ -39,7 +39,7 @@
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "union-class-names": "^1.0.0",
-    "linkify-it": "1.2.1",
-    "tlds": "1.108.0"
+    "linkify-it": "2.0.0",
+    "tlds": "1.132.0"
   }
 }

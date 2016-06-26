@@ -24,9 +24,9 @@
   ],
   "peerDependencies": {
     "draft-js": ">=0.7.0",
-    "immutable": ">=3.7.6",
-    "react": ">=0.14.0 || 15.1.0",
-    "react-dom": ">=0.14.0 || 15.0.0-rc"
+    "immutable": ">=3.8.1",
+    "react": ">=15.1.0",
+    "react-dom": ">=15.1.0"
   },
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
