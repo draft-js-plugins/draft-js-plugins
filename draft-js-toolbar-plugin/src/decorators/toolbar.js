@@ -28,7 +28,7 @@ export default ({ theme, customRender }) => WrappedComponent => class FocusedToo
     this.DOMNode = ReactDOM.findDOMNode(this);
     if (!customRender) {
       this.renderToolbar(
-        [...(this.props.actions || []), ...(this._componentActions || [])],
+        [...(this.props.actions || []), ...(this.componentActions || [])],
         this.props.blockProps.isFocused
       );
     }
@@ -37,7 +37,7 @@ export default ({ theme, customRender }) => WrappedComponent => class FocusedToo
   componentWillUnmount() {
     if (!customRender) {
       this.renderToolbar(
-        [...(this.props.actions || []), ...(this._componentActions || [])],
+        [...(this.props.actions || []), ...(this.componentActions || [])],
         false
       );
     }
@@ -63,7 +63,7 @@ export default ({ theme, customRender }) => WrappedComponent => class FocusedToo
   }
 
   addActions = actions => {
-    this._componentActions = actions;
+    this.componentActions = actions;
   }
 
   render() {

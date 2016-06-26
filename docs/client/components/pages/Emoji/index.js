@@ -10,12 +10,12 @@ import Code from '../../shared/Code';
 import SimpleEmojiEditor from './SimpleEmojiEditor';
 import AlternateContainer from '../../shared/AlternateContainer';
 
-import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted'; // eslint-disable-line import/no-unresolved
 
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleEmojiEditor';
-import simpleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleEmojiEditor/editorStyles.css';
-import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
-import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleEmojiEditor'; // eslint-disable-line import/no-unresolved
+import simpleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleEmojiEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig'; // eslint-disable-line import/no-unresolved
+import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport'; // eslint-disable-line import/no-unresolved
 import ExternalLink from '../../shared/Link';
 import InlineCode from '../../shared/InlineCode';
 

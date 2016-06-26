@@ -43,8 +43,9 @@ export default class MailchimpForm extends Component {
               <input type="text" name="b_26fff32ae6f0d587747d6953d_c72cf53297" tabIndex="-1" value="" />
             </div>
             <div className="clear">
-              <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" /></div>
+              <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" className="button" />
             </div>
+          </div>
         </form>
       </div>
     );

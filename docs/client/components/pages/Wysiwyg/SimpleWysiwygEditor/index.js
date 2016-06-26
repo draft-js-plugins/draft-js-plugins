@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 
 // Plugin-Editor
-import Editor from 'draft-js-plugins-editor';
-import createCleanupEmptyPlugin from 'draft-js-cleanup-empty-plugin';
-import createEntityPropsPlugin from 'draft-js-entity-props-plugin';
-import createFocusPlugin, { FocusDecorator } from 'draft-js-focus-plugin';
-import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin';
-import createToolbarPlugin, { ToolbarDecorator } from 'draft-js-toolbar-plugin';
-import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin';
-import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createCleanupEmptyPlugin from 'draft-js-cleanup-empty-plugin'; // eslint-disable-line import/no-unresolved
+import createEntityPropsPlugin from 'draft-js-entity-props-plugin'; // eslint-disable-line import/no-unresolved
+import createFocusPlugin, { FocusDecorator } from 'draft-js-focus-plugin'; // eslint-disable-line import/no-unresolved
+import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin'; // eslint-disable-line import/no-unresolved
+import createToolbarPlugin, { ToolbarDecorator } from 'draft-js-toolbar-plugin'; // eslint-disable-line import/no-unresolved
+import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin'; // eslint-disable-line import/no-unresolved
+import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin'; // eslint-disable-line import/no-unresolved
 // Blocks
-import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin';
-import createTablePlugin, { tableCreator, tableStyles } from 'draft-js-table-plugin';
+import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin'; // eslint-disable-line import/no-unresolved
+import createTablePlugin, { tableCreator, tableStyles } from 'draft-js-table-plugin'; // eslint-disable-line import/no-unresolved
 
 const image = ResizeableDecorator({
   resizeSteps: 10,
@@ -44,7 +44,7 @@ import PlaceholderGithub from '../components/placeholder-github';
 import BlockText from '../components/block-text';
 
 // Utils
-import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock';
+import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
 import mockUpload from '../utils/mockUpload';
 
 import styles from './styles.css';
@@ -57,8 +57,8 @@ const plugins = [
   createEntityPropsPlugin({ }),
   createToolbarPlugin({
     __toolbarHandler: {
-      add: props => console.log('Add toolbar', props),
-      remove: props => console.log('Remove toolbar', props),
+      add: props => console.log('Add toolbar', props), // eslint-disable-line no-console
+      remove: props => console.log('Remove toolbar', props), // eslint-disable-line no-console
     }, textActions: [{
       button: <span>Table</span>,
       label: 'Create a table',
@@ -132,7 +132,8 @@ class SimpleWysiwygEditor extends Component {
 
     return (
       <div className={classNames.join(' ')} onClick={this.focus}>
-        <Editor editorState={editorState}
+        <Editor
+          editorState={editorState}
           onChange={this.onChange}
           blockRendererFn={this.blockRendererFn}
           plugins={plugins}

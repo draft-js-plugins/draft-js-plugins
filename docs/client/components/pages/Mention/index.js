@@ -7,20 +7,20 @@ import Code from '../../shared/Code';
 import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
 import RemoteMentionEditor from './RemoteMentionEditor';
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor';
-import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js';
-import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
-import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js';
-import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
-import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
-import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
-import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor'; // eslint-disable-line import/no-unresolved
+import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js'; // eslint-disable-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor'; // eslint-disable-line import/no-unresolved
+import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js'; // eslint-disable-line import/no-unresolved
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css'; // eslint-disable-line import/no-unresolved
+import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor'; // eslint-disable-line import/no-unresolved
+import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
-import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
-import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
+import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig'; // eslint-disable-line import/no-unresolved
+import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport'; // eslint-disable-line import/no-unresolved
 import ExternalLink from '../../shared/Link';
 import InlineCode from '../../shared/InlineCode';
 
@@ -118,11 +118,11 @@ export default class App extends Component {
           <div className={styles.param}>
             <span className={styles.paramName}>entityMutability</span>
             <span>Can be one of: "IMMUTABLE", "SEGMENTED" or "MUTABLE". Read in detail about it
-            <ExternalLink
-              href="https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability"
-            >
-              &nbsp;here
-            </ExternalLink>
+              <ExternalLink
+                href="https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability"
+              >
+                &nbsp;here
+              </ExternalLink>
             </span>
           </div>
           <div className={styles.param}>

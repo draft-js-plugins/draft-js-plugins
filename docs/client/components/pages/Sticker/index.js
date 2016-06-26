@@ -6,18 +6,18 @@ import styles from './styles.css';
 import Code from '../../shared/Code';
 import SimpleStickerEditor from './SimpleStickerEditor';
 import CustomStickerEditor from './CustomStickerEditor';
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleStickerEditor';
-import simpleExampleStickersCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleStickerEditor/stickers.js';
-import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleStickerEditor/editorStyles.css';
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomStickerEditor';
-import customExampleStickersCode from '!!../../../loaders/prism-loader?language=javascript!./CustomStickerEditor/stickers.js';
-import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomStickerEditor/editorStyles.css';
-import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleStickerEditor'; // eslint-disable-line import/no-unresolved
+import simpleExampleStickersCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleStickerEditor/stickers.js'; // eslint-disable-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleStickerEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomStickerEditor'; // eslint-disable-line import/no-unresolved
+import customExampleStickersCode from '!!../../../loaders/prism-loader?language=javascript!./CustomStickerEditor/stickers.js'; // eslint-disable-line import/no-unresolved
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomStickerEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted'; // eslint-disable-line import/no-unresolved
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
-import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
-import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
+import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig'; // eslint-disable-line import/no-unresolved
+import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport'; // eslint-disable-line import/no-unresolved
 import ExternalLink from '../../shared/Link';
 import InlineCode from '../../shared/InlineCode';
 

@@ -21,7 +21,7 @@ export default function onDropFile(config) {
 
       // Set data {files: [Array of files], formData: FormData}
       const data = { files: [], formData };
-      for (const key in files) {
+      for (const key in files) { // eslint-disable-line no-restricted-syntax
         if (files[key] && files[key] instanceof File) {
           data.formData.append('files', files[key]);
           data.files.push(files[key]);

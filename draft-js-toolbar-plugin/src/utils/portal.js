@@ -46,7 +46,7 @@ class Tooltip extends Component {
       const adjustedLeft = leftForVerticalCenter > 0 ? leftForVerticalCenter : 0;
 
       // Skip next componentDidUpdate
-      this._skip = true;
+      this.skip = true;
 
       // Set state
       this.setState({ // eslint-disable-line react/no-did-mount-set-state
@@ -59,8 +59,8 @@ class Tooltip extends Component {
 
   componentDidUpdate() {
     // skip componentDidUpdate if necessary
-    if (this._skip) {
-      this._skip = false;
+    if (this.skip) {
+      this.skip = false;
     } else {
       this.componentDidMount();
     }

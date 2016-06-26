@@ -12,16 +12,16 @@ import Code from '../../shared/Code';
 import ExternalLink from '../../shared/Link';
 import InlineCode from '../../shared/InlineCode';
 
-import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted'; // eslint-disable-line import/no-unresolved
 
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleCounterEditor';
-import simpleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleCounterEditor/editorStyles.css';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleCounterEditor'; // eslint-disable-line import/no-unresolved
+import simpleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleCounterEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
 import CustomCounterEditor from './CustomCounterEditor';
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomCounterEditor';
-import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomCounterEditor/editorStyles.css';
-import customExampleCounterStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomCounterEditor/counterStyles.css';
-import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
-import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomCounterEditor'; // eslint-disable-line import/no-unresolved
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomCounterEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import customExampleCounterStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomCounterEditor/counterStyles.css'; // eslint-disable-line import/no-unresolved
+import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig'; // eslint-disable-line import/no-unresolved
+import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport'; // eslint-disable-line import/no-unresolved
 
 export default class App extends Component {
   render() {

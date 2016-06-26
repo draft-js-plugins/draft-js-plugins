@@ -20,7 +20,7 @@ export default class InlineCode extends Component {
         <code
           dangerouslySetInnerHTML={{ __html: this.props.code }}
         />
-    </span>
+      </span>
     );
   }
 }
