@@ -1,5 +1,3 @@
-// jscs:disable disallowArrayDestructuringReturn
-
 const decodeOffsetKey = (offsetKey) => {
   const [blockKey, decoratorKey, leafKey] = offsetKey.split('-');
   return {

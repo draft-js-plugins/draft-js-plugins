@@ -1,7 +1,5 @@
 /* eslint-disable */
 
-// jscs:disable
-
 // Original can be found here: https://github.com/Ranks/emojione
 const convertShortNameToUnicode = function(unicode) {
   if (unicode.indexOf("-") > -1) {

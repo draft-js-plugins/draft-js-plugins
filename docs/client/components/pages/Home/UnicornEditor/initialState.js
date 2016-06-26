@@ -1,4 +1,3 @@
-// jscs:disable
 /* eslint-disable quote-props */
 
 // const text = `Once upon a time there was a new Editor. It was all about unicorns and supported features like #hashtags. It's creators like Jyoti, Nik or Julian could mentioned. Of course it also supports unicorn stickers like this one:

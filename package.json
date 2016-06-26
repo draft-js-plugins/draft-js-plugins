@@ -28,10 +28,9 @@
     "lint": "npm run lint:eslint && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
-    "lint:jscs": "jscs ./",
     "lint:flow": "flow status",
     "lint:staged": "lint-staged",
-    "alex": "alex README.md",
+    "alex": "alex README.md"
   },
   "lint-staged": {
     "lint:eslint": "*.js"
@@ -67,7 +66,6 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "flow-bin": "^0.27.0",
     "jest-cli": "^13.0.0",
-    "jscs": "^3.0.5",
     "jsdom": "^9.2.1",
     "lint-staged": "^1.0.1",
     "mocha": "^2.5.3",
