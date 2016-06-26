@@ -26,12 +26,12 @@ export default class Code extends Component {
     const nameClassname = this.props.name ? styles.name : styles.hiddenName;
     const codeClassname = this.state.collapsed ? styles.collapsed : styles.expanded;
     return (
-      <div className={ styles.root }>
-        <div className={ nameClassname }>
-          <span>{ this.props.name }</span>
-          <span onClick={ this.onCodeClick } className={ styles.indicator }>{ this.state.collapsed ? '▼' : '▲' }</span>
+      <div className={styles.root}>
+        <div className={nameClassname}>
+          <span>{this.props.name}</span>
+          <span onClick={this.onCodeClick} className={styles.indicator}>{this.state.collapsed ? '▼' : '▲'}</span>
         </div>
-        <pre className={ codeClassname }>
+        <pre className={codeClassname}>
           <code
             dangerouslySetInnerHTML={{ __html: this.props.code }}
           />

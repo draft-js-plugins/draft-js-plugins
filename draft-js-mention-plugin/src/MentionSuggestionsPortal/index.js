@@ -30,7 +30,7 @@ export default class MentionSuggestionsPortal extends Component {
   render() {
     return (
       <span className={this.key} ref="searchPortal">
-        { this.props.children }
+        {this.props.children}
       </span>
     );
   }

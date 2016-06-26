@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
-import Editor from 'draft-js-plugins-editor';
-import createUndoPlugin from 'draft-js-undo-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createUndoPlugin from 'draft-js-undo-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 
 // Creates an Instance. At this step, a configuration object can be passed in
@@ -13,9 +13,9 @@ const { UndoButton, RedoButton } = undoPlugin;
 const MyEditor = ({ editorState, onChange }) => (
   <div>
     <Editor
-      editorState={ editorState }
-      onChange={ onChange }
-      plugins={ [undoPlugin] }
+      editorState={editorState}
+      onChange={onChange}
+      plugins={[undoPlugin]}
     />
     <UndoButton />
     <RedoButton />

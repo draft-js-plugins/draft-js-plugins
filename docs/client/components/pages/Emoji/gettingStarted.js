@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
-import Editor from 'draft-js-plugins-editor';
-import createEmojiPlugin from 'draft-js-emoji-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createEmojiPlugin from 'draft-js-emoji-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 
 // Creates an Instance. At this step, a configuration object can be passed in
@@ -15,9 +15,9 @@ const { EmojiSuggestions } = emojiPlugin;
 const MyEditor = ({ editorState, onChange }) => (
   <div>
     <Editor
-      editorState={ editorState }
-      onChange={ onChange }
-      plugins={ [emojiPlugin] }
+      editorState={editorState}
+      onChange={onChange}
+      plugins={[emojiPlugin]}
     />
     <EmojiSuggestions />
   </div>

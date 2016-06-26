@@ -44,19 +44,19 @@ export default class Entry extends Component {
     const fullImagePath = `${imagePath}${unicodeForImage}.svg${cacheBustParam}`;
     return (
       <div
-        className={ className }
-        onMouseDown={ this.onMouseDown }
-        onMouseUp={ this.onMouseUp }
-        onMouseEnter={ this.onMouseEnter }
+        className={className}
+        onMouseDown={this.onMouseDown}
+        onMouseUp={this.onMouseUp}
+        onMouseEnter={this.onMouseEnter}
         role="option"
       >
         <img
           src={fullImagePath}
-          className={ theme.emojiSuggestionsEntryIcon }
+          className={theme.emojiSuggestionsEntryIcon}
           role="presentation"
         />
-        <span className={ theme.emojiSuggestionsEntryText }>
-          { this.props.emoji }
+        <span className={theme.emojiSuggestionsEntryText}>
+          {this.props.emoji}
         </span>
       </div>
     );

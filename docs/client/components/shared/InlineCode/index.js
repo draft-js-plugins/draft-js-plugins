@@ -16,11 +16,11 @@ export default class InlineCode extends Component {
     const { className } = this.props;
     const combinedRootClassName = unionClassNames(styles.root, className);
     return (
-      <span className={ combinedRootClassName }>
+      <span className={combinedRootClassName}>
         <code
           dangerouslySetInnerHTML={{ __html: this.props.code }}
         />
-    </span>
+      </span>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createEmojiPlugin from 'draft-js-emoji-plugin';
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createEmojiPlugin from 'draft-js-emoji-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
 const emojiPlugin = createEmojiPlugin();
@@ -27,7 +27,7 @@ export default class CustomEmojiEditor extends Component {
 
   render() {
     return (
-      <div className={ editorStyles.editor } onClick={ this.focus }>
+      <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

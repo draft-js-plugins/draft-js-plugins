@@ -19,7 +19,7 @@ npm start
 
 ## Linting
 
-We follow the [Airbnb JavaScript Styleguide ](https://github.com/airbnb/javascript) with a few exeptions. Checkout the [.eslintrc](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/.eslintrc), [.jscsrc](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/.jscsrc) and [.flowconfig](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/.flowconfig) to see the rules. With running this command you can check if your code-changes comply to the style we chose:
+We follow the [Airbnb JavaScript Styleguide ](https://github.com/airbnb/javascript) with a few exeptions. Checkout the [.eslintrc](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/.eslintrc) and [.flowconfig](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/.flowconfig) to see the rules. With running this command you can check if your code-changes comply to the style we chose:
 
 ```sh
 npm run lint

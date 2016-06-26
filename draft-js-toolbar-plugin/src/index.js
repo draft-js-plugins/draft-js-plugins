@@ -29,7 +29,8 @@ const toolbarPlugin = (config = {}) => {
       return editorState;
     },
     // Wrap all block-types in hover-toolbar decorator
-    blockRendererFn: (contentBlock, { }) => ({
+    // TODO investigate if we can avoid this pattern
+    blockRendererFn: (contentBlock, {}) => ({ // eslint-disable-line no-empty-pattern
       props: {
         toolbarHandler
       }

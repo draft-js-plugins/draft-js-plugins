@@ -74,10 +74,10 @@ export default class StickerSelect extends Component {
       return (
         <StickerOption
           theme={this.props.theme}
-          key={ id }
-          onClick={ this.add }
-          id={ id }
-          url={ url }
+          key={id}
+          onClick={this.add}
+          id={id}
+          url={url}
         />
       );
     });
@@ -91,23 +91,23 @@ export default class StickerSelect extends Component {
       theme.selectButton;
 
     return (
-      <div className={ theme.select }>
+      <div className={theme.select}>
         <button
-          className={ buttonClassName }
-          onMouseUp={ this.openPopover }
+          className={buttonClassName}
+          onMouseUp={this.openPopover}
           type="button"
         >
-          { this.props.selectButtonContent }
+          {this.props.selectButtonContent}
         </button>
         <div
-          className={ popoverClassName }
-          onMouseEnter={ this.onMouseEnter }
-          onMouseLeave={ this.onMouseLeave }
+          className={popoverClassName}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
         >
-          <div className={ theme.selectStickerList }>
-            { stickerElements.toList().toJS() }
+          <div className={theme.selectStickerList}>
+            {stickerElements.toList().toJS()}
           </div>
-          <div className={ theme.selectBottomGradient }></div>
+          <div className={theme.selectBottomGradient}></div>
         </div>
       </div>
     );

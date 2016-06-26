@@ -15,7 +15,7 @@ export default (WrappedComponent, props) => class extends Component {
 
   render() {
     return (
-      <WrappedComponent { ...this.props } { ...props } />
+      <WrappedComponent {...this.props} {...props} />
     );
   }
 };

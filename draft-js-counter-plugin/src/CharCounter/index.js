@@ -28,7 +28,7 @@ class CharCounter extends Component {
     const count = this.getCharCount(store.getEditorState());
     const classNames = this.getClassNames(count, limit);
 
-    return <span className={ classNames }>{count}</span>;
+    return <span className={classNames}>{count}</span>;
   }
 }
 

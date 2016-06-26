@@ -59,7 +59,8 @@ export default ({ theme }) => WrappedComponent => class BlockAlignmentDecorator 
 
     // Get the wrapped component and pass alignment props
     return (
-      <WrappedComponent {...this.props}
+      <WrappedComponent
+        {...this.props}
         className={newClassName.join(' ')}
         alignmentClassName={`${theme[alignment]}`}
         alignment={alignment}

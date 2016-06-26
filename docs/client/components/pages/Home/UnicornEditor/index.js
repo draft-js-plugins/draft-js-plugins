@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import createStickerPlugin from 'draft-js-sticker-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
-import createEmojiPlugin from 'draft-js-emoji-plugin';
-import createUndoPlugin from 'draft-js-undo-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createHashtagPlugin from 'draft-js-hashtag-plugin'; // eslint-disable-line import/no-unresolved
+import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
+import createLinkifyPlugin from 'draft-js-linkify-plugin'; // eslint-disable-line import/no-unresolved
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin'; // eslint-disable-line import/no-unresolved
+import createEmojiPlugin from 'draft-js-emoji-plugin'; // eslint-disable-line import/no-unresolved
+import createUndoPlugin from 'draft-js-undo-plugin'; // eslint-disable-line import/no-unresolved
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
@@ -68,8 +68,8 @@ export default class UnicornEditor extends Component {
 
   render() {
     return (
-      <div className={ styles.root }>
-        <div className={ styles.editor } onClick={ this.focus }>
+      <div className={styles.root}>
+        <div className={styles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -80,17 +80,17 @@ export default class UnicornEditor extends Component {
         </div>
         <div>
           <MentionSuggestions
-            onSearchChange={ this.onMentionSearchChange }
-            suggestions={ this.state.suggestions }
+            onSearchChange={this.onMentionSearchChange}
+            suggestions={this.state.suggestions}
           />
           <EmojiSuggestions />
-          <div className={ styles.editorButton }>
-            <StickerSelect editor={ this } />
+          <div className={styles.editorButton}>
+            <StickerSelect editor={this} />
           </div>
-          <div className={ styles.editorButton }>
+          <div className={styles.editorButton}>
             <UndoButton />
           </div>
-          <div className={ styles.editorButton }>
+          <div className={styles.editorButton}>
             <RedoButton />
           </div>
         </div>

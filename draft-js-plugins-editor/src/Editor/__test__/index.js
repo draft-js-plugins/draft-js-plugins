@@ -24,8 +24,8 @@ class TestEditor extends Component {
     return (
       <PluginEditor
         {...this.props}
-        editorState={ this.state.editorState }
-        onChange={ this.onChange }
+        editorState={this.state.editorState}
+        onChange={this.onChange}
       />
     );
   }
@@ -43,9 +43,9 @@ describe('Editor', () => {
     it('with an empty plugins list provided', () => {
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ [] }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={[]}
         />
       );
       expect(result).to.have.ref('editor');
@@ -54,8 +54,8 @@ describe('Editor', () => {
     it('without the plugins property provided', () => {
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
+          editorState={editorState}
+          onChange={onChange}
         />
       );
       expect(result).to.have.ref('editor');
@@ -67,9 +67,9 @@ describe('Editor', () => {
       const plugins = [customPlugin];
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
       expect(result).to.have.ref('editor');
@@ -78,8 +78,8 @@ describe('Editor', () => {
     it('and by default adds the defaultKeyBindings plugin', () => {
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
+          editorState={editorState}
+          onChange={onChange}
         />
       );
       const pluginEditor = result.instance();
@@ -89,9 +89,9 @@ describe('Editor', () => {
     it('without the defaultKeyBindings plugin if deactivated', () => {
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          defaultKeyBindings={ false }
+          editorState={editorState}
+          onChange={onChange}
+          defaultKeyBindings={false}
         />
       );
       const pluginEditor = result.instance();
@@ -120,9 +120,9 @@ describe('Editor', () => {
       ];
       const result = shallow(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
 
@@ -153,9 +153,9 @@ describe('Editor', () => {
       ];
       const result = shallow(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
 
@@ -192,9 +192,9 @@ describe('Editor', () => {
       ];
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
 
@@ -223,9 +223,9 @@ describe('Editor', () => {
       ];
       const result = shallow(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
 
@@ -256,9 +256,9 @@ describe('Editor', () => {
       ];
       const result = shallow(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
 
@@ -283,9 +283,9 @@ describe('Editor', () => {
       ];
       const result = shallow(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
 
@@ -327,9 +327,9 @@ describe('Editor', () => {
       ];
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
       const expected = {
@@ -370,10 +370,10 @@ describe('Editor', () => {
 
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          customStyleMap={ customStyleMap }
-          onChange={ onChange }
-          plugins={ plugins }
+          editorState={editorState}
+          customStyleMap={customStyleMap}
+          onChange={onChange}
+          plugins={plugins}
         />
       );
 
@@ -402,9 +402,9 @@ describe('Editor', () => {
       const editorState = EditorState.createEmpty();
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ [] }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={[]}
         />
       );
       draftEditor = result.node;
@@ -440,10 +440,10 @@ describe('Editor', () => {
       };
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ [plugin] }
-          onUpArrow={ customHook }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={[plugin]}
+          onUpArrow={customHook}
         />
       );
       const draftEditor = result.node;
@@ -458,10 +458,10 @@ describe('Editor', () => {
       };
       const result = mount(
         <PluginEditor
-          editorState={ editorState }
-          onChange={ onChange }
-          plugins={ [plugin] }
-          blockRendererFn={ customHook }
+          editorState={editorState}
+          onChange={onChange}
+          plugins={[plugin]}
+          blockRendererFn={customHook}
         />
       );
       const draftEditor = result.node;
@@ -503,7 +503,7 @@ describe('Editor', () => {
       const pluginStrategy = sinon.spy(plugin.decorators[0], 'strategy');
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
 
-      mount(<TestEditor { ...{ plugins, decorators, text } } />);
+      mount(<TestEditor {...{ plugins, decorators, text }} />);
 
       expect(decoratorStrategy).has.been.called();
       expect(pluginStrategy).has.been.called();
@@ -513,7 +513,7 @@ describe('Editor', () => {
       const pluginComponent = sinon.spy(plugin.decorators[0], 'component');
       const decoratorComponent = sinon.spy(decorator, 'component');
 
-      const wrapper = mount(<TestEditor { ...{ plugins, decorators, text } } />);
+      const wrapper = mount(<TestEditor {...{ plugins, decorators, text }} />);
       const decoratorComponents = wrapper.findWhere(n => n.hasClass('decorator'));
       const pluginComponents = wrapper.findWhere(n => n.hasClass('plugin'));
 

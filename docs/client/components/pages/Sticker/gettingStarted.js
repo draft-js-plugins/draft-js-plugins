@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
-import Editor from 'draft-js-plugins-editor';
-import createStickerPlugin from 'draft-js-sticker-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 import { fromJS } from 'immutable';
 
@@ -25,9 +25,9 @@ const stickerPlugin = createStickerPlugin({ stickers });
 // is passed in, although it is possible to pass in multiple plugins.
 const MyEditor = ({ editorState, onChange }) => (
   <Editor
-    editorState={ editorState }
-    onChange={ onChange }
-    plugins={ [stickerPlugin] }
+    editorState={editorState}
+    onChange={onChange}
+    plugins={[stickerPlugin]}
   />
 );
 

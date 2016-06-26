@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/babel.*
+.*/node_modules/editions/.*
 .*/node_modules/fbjs/.*
 .*/node_modules/immutable/.*
 .*/node_modules/.*.json
@@ -19,4 +20,4 @@ module.name_mapper='draft-js' -> 'Draft'
 module.system=haste
 
 [version]
-0.23.0
+0.27.0

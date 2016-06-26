@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
-import createUndoPlugin from 'draft-js-undo-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createUndoPlugin from 'draft-js-undo-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
 const undoPlugin = createUndoPlugin();
@@ -27,15 +27,15 @@ export default class SimpleUndoEditor extends Component {
   render() {
     return (
       <div>
-        <div className={ editorStyles.editor } onClick={ this.focus }>
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            plugins={ plugins }
+            plugins={plugins}
             ref="editor"
           />
         </div>
-        <div className={ editorStyles.options }>
+        <div className={editorStyles.options}>
           <UndoButton />
           <RedoButton />
         </div>

@@ -1,7 +1,5 @@
 /* eslint-disable */
 
-// jscs:disable
-
 // Original can be found here: https://github.com/Ranks/emojione
 const emojioneList = {
   ':thumbsup:':["1f44d"],

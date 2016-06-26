@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createCounterPlugin from 'draft-js-counter-plugin';
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createCounterPlugin from 'draft-js-counter-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
 const counterPlugin = createCounterPlugin();
@@ -37,7 +37,7 @@ export default class SimpleCounterEditor extends Component {
   render() {
     return (
       <div>
-        <div className={ editorStyles.editor } onClick={ this.focus }>
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -49,7 +49,7 @@ export default class SimpleCounterEditor extends Component {
         <div><WordCounter limit={30} /> words</div>
         <div><LineCounter limit={10} /> lines</div>
         <div>
-          <CustomCounter limit={40} countFunction={ this.customCountFunction } />
+          <CustomCounter limit={40} countFunction={this.customCountFunction} />
           <span> words (custom function)</span>
         </div>
         <br />

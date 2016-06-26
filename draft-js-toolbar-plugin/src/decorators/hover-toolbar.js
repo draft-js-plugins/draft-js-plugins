@@ -63,19 +63,19 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
 
   // If mouse on toolbar
   mouseOverToolbar = () => {
-    this._mouseOverToolbar = true;
+    this.mouseOverToolbar = true;
   };
 
   // If mouse leaves toolbar
   mouseLeaveToolbar = () => {
-    this._mouseOverToolbar = false;
+    this.mouseOverToolbar = false;
     this.hideToolbar();
   };
 
   // Hide toolbar after delay and if mouse not on the toolbar
   hideToolbarDelayed = () => {
     setTimeout(() => {
-      if (!this._mouseOverToolbar) {
+      if (!this.mouseOverToolbar) {
         this.hideToolbar();
       }
     }, 1);
@@ -85,7 +85,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
   doRenderToolbar = active => {
     const props = {
       ...this.props,
-      actions: [...(this.props.actions || []), ...(this._componentActions || [])],
+      actions: [...(this.props.actions || []), ...(this.componentActions || [])],
       theme: this.props.theme || defaultTheme,
       onMouseOver: this.mouseOverToolbar,
       onMouseLeave: this.mouseLeaveToolbar,
@@ -100,7 +100,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
   }
 
   addActions = actions => {
-    this._componentActions = actions;
+    this.componentActions = actions;
   }
 
   render() {

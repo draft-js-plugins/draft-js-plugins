@@ -9,9 +9,9 @@ class BlockText extends Component {
       padding: '20px',
     };
     return (
-        <pre contentEditable={false} style={style}>
-          {blockProps.src}
-        </pre>
+      <pre contentEditable={false} style={style}>
+        {blockProps.src}
+      </pre>
     );
   }
 }

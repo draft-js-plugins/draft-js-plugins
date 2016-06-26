@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
-import createStickerPlugin from 'draft-js-sticker-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 import stickers from './stickers';
 
@@ -28,7 +28,7 @@ export default class SimpleMentionEditor extends Component {
   render() {
     return (
       <div>
-        <div className={ editorStyles.editor } onClick={ this.focus }>
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -36,8 +36,8 @@ export default class SimpleMentionEditor extends Component {
             ref="editor"
           />
         </div>
-        <div className={ editorStyles.options }>
-          <StickerSelect editor={ this } />
+        <div className={editorStyles.options}>
+          <StickerSelect editor={this} />
         </div>
       </div>
     );

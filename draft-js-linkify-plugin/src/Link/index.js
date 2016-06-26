@@ -23,10 +23,10 @@ export default class Link extends Component {
     const href = links && links[0] ? links[0].url : '';
     return (
       <a
-        { ...props }
-        href={ href }
-        className={ combinedClassName }
-        target={ target }
+        {...props}
+        href={href}
+        className={combinedClassName}
+        target={target}
       />
     );
   }

@@ -55,8 +55,8 @@ class PluginEditor extends Component {
       this.resolveDecorators(),
       this.getEditorState,
       this.onChange);
-    const _editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
-    this.onChange(moveSelectionToEnd(_editorState));
+    const editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
+    this.onChange(moveSelectionToEnd(editorState));
   }
 
   componentWillUnmount() {
@@ -261,13 +261,13 @@ class PluginEditor extends Component {
     const accessibilityProps = this.resolveAccessibilityProps();
     return (
       <Editor
-        { ...this.props }
-        { ...accessibilityProps }
-        { ...pluginHooks }
+        {...this.props}
+        {...accessibilityProps}
+        {...pluginHooks}
         readOnly={this.props.readOnly || this.state.readOnly}
-        customStyleMap={ customStyleMap }
-        onChange={ this.onChange }
-        editorState={ this.props.editorState }
+        customStyleMap={customStyleMap}
+        onChange={this.onChange}
+        editorState={this.props.editorState}
         ref="editor"
       />
     );

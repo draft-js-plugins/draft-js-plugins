@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 import mentionsStyles from './mentionsStyles.css';
 import mentions from './mentions';
@@ -59,16 +59,16 @@ export default class CustomMentionEditor extends Component {
 
   render() {
     return (
-      <div className={ editorStyles.editor } onClick={ this.focus }>
+      <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
-          editorState={ this.state.editorState }
+          editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
           ref="editor"
         />
         <MentionSuggestions
-          onSearchChange={ this.onSearchChange }
-          suggestions={ this.state.suggestions }
+          onSearchChange={this.onSearchChange}
+          suggestions={this.state.suggestions}
         />
       </div>
     );

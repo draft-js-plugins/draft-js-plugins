@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map } from 'immutable';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import createHashtagPlugin from 'draft-js-hashtag-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 import hashtagStyles from './hashtagStyles.css';
 
@@ -30,7 +30,7 @@ export default class CustomHashtagEditor extends Component {
 
   render() {
     return (
-      <div className={ editorStyles.editor } onClick={ this.focus }>
+      <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

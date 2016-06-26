@@ -15,9 +15,9 @@ export default class StatePreview extends Component {
     }
 
     return (
-      <div className={ styles.root }>
-        <pre className={ codeClassName }>
-          { code }
+      <div className={styles.root}>
+        <pre className={codeClassName}>
+          {code}
         </pre>
       </div>
     );

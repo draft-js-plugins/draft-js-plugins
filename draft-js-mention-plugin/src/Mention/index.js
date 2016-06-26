@@ -9,21 +9,21 @@ const Mention = (props) => {
   if (mention.has('link')) {
     return (
       <a
-        href={ mention.get('link') }
-        className={ theme.mention }
-        spellCheck={ false }
+        href={mention.get('link')}
+        className={theme.mention}
+        spellCheck={false}
       >
-        { props.mentionPrefix }{ props.children }
+        {props.mentionPrefix}{props.children}
       </a>
     );
   }
 
   return (
     <span
-      className={ theme.mention }
-      spellCheck={ false }
+      className={theme.mention}
+      spellCheck={false}
     >
-      { props.mentionPrefix }{ props.children }
+      {props.mentionPrefix}{props.children}
     </span>
   );
 };

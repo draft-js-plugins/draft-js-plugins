@@ -10,11 +10,11 @@ const Emoji = ({ theme = {}, cacheBustParam, imagePath, className, decoratedText
   const characterClassName = unionClassNames(theme.emojiCharacter);
   return (
     <span
-      className={ combinedClassName }
-      title={ mappedUnicode[unicode] }
+      className={combinedClassName}
+      title={mappedUnicode[unicode]}
       style={{ backgroundImage }}
     >
-      <span className={ characterClassName }>{ props.children }</span>
+      <span className={characterClassName}>{props.children}</span>
     </span>
   );
 };

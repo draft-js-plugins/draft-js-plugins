@@ -6,7 +6,7 @@ import { expect } from 'chai';
 describe('Hashtag', () => {
   it('applies the className based on the theme property `hashtag`', () => {
     const theme = { hashtag: 'custom-class-name' };
-    const result = shallow(<Hashtag theme={ theme } />);
+    const result = shallow(<Hashtag theme={theme} />);
     expect(result).to.have.prop('className', 'custom-class-name');
   });
 
@@ -22,7 +22,7 @@ describe('Hashtag', () => {
 
   it('applies a custom className as well as the theme', () => {
     const theme = { hashtag: 'custom-class-name' };
-    const result = shallow(<Hashtag theme={ theme } className="hashtag" />);
+    const result = shallow(<Hashtag theme={theme} className="hashtag" />);
     expect(result).to.have.prop('className').to.contain('hashtag');
     expect(result).to.have.prop('className').to.contain('custom-class-name');
   });
