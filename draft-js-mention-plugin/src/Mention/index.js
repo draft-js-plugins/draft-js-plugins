@@ -9,7 +9,7 @@ const Mention = (props) => {
   if (mention.has('link')) {
     return (
       <a
-        contentEditable: false,
+        contentEditable = {false}
         href={mention.get('link')}
         className={theme.mention}
         spellCheck={false}
