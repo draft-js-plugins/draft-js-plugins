@@ -264,24 +264,24 @@ export default class EmojiSuggestions extends Component {
     return (
       <div
         {...this.props}
-        className={ theme.emojiSuggestions }
+        className={theme.emojiSuggestions}
         role="listbox"
-        id={ `emojis-list-${this.key}` }
+        id={`emojis-list-${this.key}`}
         ref="popover"
       >
         {
           this.filteredEmojis.map((emoji, index) => (
             <Entry
-              key={ emoji }
-              onEmojiSelect={ this.onEmojiSelect }
-              onEmojiFocus={ this.onEmojiFocus }
-              isFocused={ this.state.focusedOptionIndex === index }
-              emoji={ emoji }
-              index={ index }
-              id={ `emoji-option-${this.key}-${index}` }
-              theme={ theme }
-              imagePath={ imagePath }
-              cacheBustParam={ cacheBustParam }
+              key={emoji}
+              onEmojiSelect={this.onEmojiSelect}
+              onEmojiFocus={this.onEmojiFocus}
+              isFocused={this.state.focusedOptionIndex === index}
+              emoji={emoji}
+              index={index}
+              id={`emoji-option-${this.key}-${index}`}
+              theme={theme}
+              imagePath={imagePath}
+              cacheBustParam={cacheBustParam}
             />
           )).toJS()
         }

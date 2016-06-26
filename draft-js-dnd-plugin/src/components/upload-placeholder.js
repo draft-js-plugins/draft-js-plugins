@@ -5,7 +5,7 @@ class UploadPlaceholder extends Component {
     const { blockProps, block } = this.props;
 
     return (
-        <span contentEditable={false} data-offset-key={ `${block.get('key')}-0-0` }>
+        <span contentEditable={false} data-offset-key={`${block.get('key')}-0-0`}>
           ![Uploading {blockProps.name}...](){' '}
         </span>
     );

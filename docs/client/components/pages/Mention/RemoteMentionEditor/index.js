@@ -49,16 +49,16 @@ export default class SimpleMentionEditor extends Component {
 
   render() {
     return (
-      <div className={ editorStyles.editor } onClick={ this.focus }>
+      <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
-          editorState={ this.state.editorState }
+          editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
           ref="editor"
         />
         <MentionSuggestions
-          onSearchChange={ this.onSearchChange }
-          suggestions={ this.state.suggestions }
+          onSearchChange={this.onSearchChange}
+          suggestions={this.state.suggestions}
         />
       </div>
     );

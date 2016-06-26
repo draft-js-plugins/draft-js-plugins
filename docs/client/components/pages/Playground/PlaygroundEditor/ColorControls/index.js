@@ -30,7 +30,7 @@ const ColorControls = (props) => {
           label={type.label}
           onToggle={props.onToggle}
           style={type.style}
-          key={ index }
+          key={index}
         />
       )}
     </div>

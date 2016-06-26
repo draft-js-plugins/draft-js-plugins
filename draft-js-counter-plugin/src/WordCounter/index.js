@@ -28,7 +28,7 @@ class WordCounter extends Component {
     const count = this.getWordCount(store.getEditorState());
     const classNames = this.getClassNames(count, limit);
 
-    return <span className={ classNames }>{count}</span>;
+    return <span className={classNames}>{count}</span>;
   }
 }
 

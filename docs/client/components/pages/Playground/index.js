@@ -12,7 +12,7 @@ export default class App extends Component {
         <NavBar />
         <Separator />
         <Container>
-          <Heading level={ 2 }>Development Playground</Heading>
+          <Heading level={2}>Development Playground</Heading>
         </Container>
         <Container>
           <PlaygroundEditor />

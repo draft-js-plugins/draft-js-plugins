@@ -9,9 +9,9 @@ export default class AlternateContainer extends Component {
     const { className } = this.props;
     const combinedClassName = unionClassNames(styles.root, className);
     return (
-      <div className={ combinedClassName }>
+      <div className={combinedClassName}>
         <ContainerBox>
-          { this.props.children }
+          {this.props.children}
         </ContainerBox>
       </div>
     );

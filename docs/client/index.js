@@ -8,7 +8,7 @@ import routes from './routes.js';
 // Only render in the browser
 if (typeof document !== 'undefined') {
   render(
-    <Router routes={ routes } history={ browserHistory } />,
+    <Router routes={routes} history={browserHistory} />,
     document.getElementById('root')
   );
 }

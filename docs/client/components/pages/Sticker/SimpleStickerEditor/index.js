@@ -28,7 +28,7 @@ export default class SimpleMentionEditor extends Component {
   render() {
     return (
       <div>
-        <div className={ editorStyles.editor } onClick={ this.focus }>
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -36,8 +36,8 @@ export default class SimpleMentionEditor extends Component {
             ref="editor"
           />
         </div>
-        <div className={ editorStyles.options }>
-          <StickerSelect editor={ this } />
+        <div className={editorStyles.options}>
+          <StickerSelect editor={this} />
         </div>
       </div>
     );

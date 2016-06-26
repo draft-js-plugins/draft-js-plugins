@@ -20,8 +20,8 @@ export default class Heading extends Component {
     }
 
     return (
-      <h2 className={ style }>
-        { this.props.children }
+      <h2 className={style}>
+        {this.props.children}
       </h2>
     );
   }

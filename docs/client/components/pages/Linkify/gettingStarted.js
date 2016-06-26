@@ -11,9 +11,9 @@ const linkifyPlugin = createLinkifyPlugin();
 // is passed in, although it is possible to pass in multiple plugins.
 const MyEditor = ({ editorState, onChange }) => (
   <Editor
-    editorState={ editorState }
-    onChange={ onChange }
-    plugins={ [linkifyPlugin] }
+    editorState={editorState}
+    onChange={onChange}
+    plugins={[linkifyPlugin]}
   />
 );
 

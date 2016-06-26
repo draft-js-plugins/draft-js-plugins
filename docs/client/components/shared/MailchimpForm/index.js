@@ -21,14 +21,14 @@ export default class MailchimpForm extends Component {
               defaultValue=""
               name="EMAIL"
               placeholder="Email"
-              className={ `required ${styles.email}` }
+              className={`required ${styles.email}`}
               id="mce-EMAIL"
             />
             <input
               type="text"
               defaultValue=""
               name="FNAME"
-              className={ `required ${styles.firstName}` }
+              className={`required ${styles.firstName}`}
               placeholder="First Name"
               id="mce-FNAME"
             />

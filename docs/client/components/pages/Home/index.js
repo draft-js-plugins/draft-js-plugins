@@ -81,9 +81,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div className={ styles.header }>
+        <div className={styles.header}>
           <ContainerBox>
-            <svg className={ this.state.logoClassName } viewBox="0 0 263 209" version="1.1">
+            <svg className={this.state.logoClassName} viewBox="0 0 263 209" version="1.1">
               <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="Pencil" transform="translate(177.000000, 1.000000)" stroke="#979797" strokeWidth="2" fill="#FFFFFF">
                     <path
@@ -123,9 +123,9 @@ export default class App extends Component {
                 </g>
               </g>
             </svg>
-            <div className={ styles.logoText }>DraftJS Plugins</div>
-            <p className={ styles.tagline }>High quality plugins with great UX</p>
-            <div className={ styles.githubWrapper } ref="githubWrapper">
+            <div className={styles.logoText}>DraftJS Plugins</div>
+            <p className={styles.tagline}>High quality plugins with great UX</p>
+            <div className={styles.githubWrapper} ref="githubWrapper">
               <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="mega" />
             </div>
           </ContainerBox>
@@ -133,11 +133,11 @@ export default class App extends Component {
         <NavBar />
         <Separator />
         <AlternateContainer>
-          <p className={ styles.whatText }>
+          <p className={styles.whatText}>
             Slack-like emoji autocompletion, Facebook-like stickers & mentions, and many more features out of the box to enhance your web application.
           </p>
-          <Heading level={ 2 }>Wait, but why?</Heading>
-          <p className={ styles.whyText }>
+          <Heading level={2}>Wait, but why?</Heading>
+          <p className={styles.whyText}>
             Facebook's rich-text editor framework
             <ExternalLink href="https://facebook.github.io/draft-js/">
               &nbsp;DraftJS&nbsp;
@@ -150,21 +150,21 @@ export default class App extends Component {
           </p>
         </AlternateContainer>
         <Container>
-          <div className={ styles.demoWrapper }>
-            <Heading level={ 2 }>Gif Demo</Heading>
+          <div className={styles.demoWrapper}>
+            <Heading level={2}>Gif Demo</Heading>
             <br /><br />
-            <img src="/images/demo.gif" role="presentation" width="175" height="250" className={ styles.demo } />
+            <img src="/images/demo.gif" role="presentation" width="175" height="250" className={styles.demo} />
           </div>
         </Container>
         <AlternateContainer>
-          <Heading level={ 2 }>Help spread the word …</Heading>
+          <Heading level={2}>Help spread the word …</Heading>
           <SocialBar />
         </AlternateContainer>
         <Container>
-          <Heading level={ 2 }>Try it yourself</Heading>
+          <Heading level={2}>Try it yourself</Heading>
           <UnicornEditor />
-          <Heading level={ 3 }>Plugins used in this Editor</Heading>
-          <div className={ styles.flexCenteredDisplay }>
+          <Heading level={3}>Plugins used in this Editor</Heading>
+          <div className={styles.flexCenteredDisplay}>
             <ul>
               <li>Stickers</li>
               <li>Hashtags</li>
@@ -173,58 +173,58 @@ export default class App extends Component {
               <li>Emojis</li>
             </ul>
           </div>
-          <Heading level={ 3 }>Why a UnicornEditor?</Heading>
-          <p className={ styles.center }>
+          <Heading level={3}>Why a UnicornEditor?</Heading>
+          <p className={styles.center}>
             Because Unicorns are cooler than cats 😜
           </p>
         </Container>
         <AlternateContainer>
-          <Heading level={ 2 }>Team</Heading>
-          <div className={ styles.teamSection }>
-            <div className={ styles.teamMember }>
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/jyopur">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" role="presentation" />
+          <Heading level={2}>Team</Heading>
+          <div className={styles.teamSection}>
+            <div className={styles.teamMember}>
+              <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/jyopur">
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_200x200.jpg" role="presentation" />
                 <div>Jyoti Puri</div>
               </ExternalLink>
             </div>
-            <div className={ styles.teamMember }>
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/juliandoesstuff">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" role="presentation" />
+            <div className={styles.teamMember}>
+              <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/juliandoesstuff">
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_200x200.png" role="presentation" />
                 <div>Julian Krispel-Samsel</div>
               </ExternalLink>
             </div>
-            <div className={ styles.teamMember }>
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mrussell247">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/517863945/mattsailing_200x200.jpg" role="presentation" />
+            <div className={styles.teamMember}>
+              <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/mrussell247">
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/517863945/mattsailing_200x200.jpg" role="presentation" />
                 <div>Matthew Russell</div>
               </ExternalLink>
             </div>
-            <div className={ styles.teamMember }>
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/psbrandt">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_200x200.png" role="presentation" />
+            <div className={styles.teamMember}>
+              <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/psbrandt">
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_200x200.png" role="presentation" />
                 <div>Pascal Brandt</div>
               </ExternalLink>
             </div>
-            <div className={ styles.teamMember }>
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/nikgraf">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" role="presentation" />
+            <div className={styles.teamMember}>
+              <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/nikgraf">
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_200x200.jpeg" role="presentation" />
                 <div>Nik Graf</div>
               </ExternalLink>
             </div>
-            <div className={ styles.teamMember }>
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/mxstbr">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" role="presentation" />
+            <div className={styles.teamMember}>
+              <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/mxstbr">
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/681114454029942784/PwhopfmU_200x200.jpg" role="presentation" />
                 <div>Max Stoiber</div>
               </ExternalLink>
             </div>
-            <div className={ styles.teamMember }>
-              <ExternalLink className={ styles.teamTwitterLink } href="https://twitter.com/adrianmcli">
-                <img className={ styles.teamImage } src="https://pbs.twimg.com/profile_images/728033627003625474/XY7U8ZP8_bigger.jpg" role="presentation" />
+            <div className={styles.teamMember}>
+              <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/adrianmcli">
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/728033627003625474/XY7U8ZP8_bigger.jpg" role="presentation" />
                 <div>Adrian Li</div>
               </ExternalLink>
             </div>
           </div>
-          <p className={ styles.specialThanks }>
+          <p className={styles.specialThanks}>
             Special thanks to all the people from Stripe for their invaluable feedback and funding Nik's efforts during the&nbsp;
             <ExternalLink href="https://stripe.com/blog/open-source-retreat-2016-grantees">
               Stripe Open Source Retreat
@@ -232,16 +232,16 @@ export default class App extends Component {
           </p>
         </AlternateContainer>
         <Container>
-          <Heading level={ 2 }>Discussion and Support</Heading>
-          <p className={ styles.center }>
+          <Heading level={2}>Discussion and Support</Heading>
+          <p className={styles.center}>
             Join the <b>#draft-js-plugins</b> channel after signing up to the <ExternalLink href="https://draftjs.herokuapp.com">DraftJS Slack organization</ExternalLink>
           &nbsp;or check out or collection of frequently asked questions here:&nbsp;
             <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md">
               FAQ
             </ExternalLink>.
           </p>
-          <Heading level={ 2 }>Stay Informed</Heading>
-            <p className={ styles.center }>
+          <Heading level={2}>Stay Informed</Heading>
+            <p className={styles.center}>
               by signing up to our newsletter
             </p>
           <MailchimpForm />

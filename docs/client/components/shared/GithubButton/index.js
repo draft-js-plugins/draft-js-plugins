@@ -31,13 +31,13 @@ export default class GithubStarButton extends Component {
         ref="githubButton"
         className="github-button"
         href="https://github.com/draft-js-plugins/draft-js-plugins"
-        data-style={ size }
+        data-style={size}
         data-count-href="/draft-js-plugins/draft-js-plugins/stargazers"
         data-count-api="/repos/draft-js-plugins/draft-js-plugins#stargazers_count"
         data-count-aria-label="# stargazers on GitHub"
         aria-label="Star draft-js-plugins/draft-js-plugins on GitHub"
       >
-        { text }
+        {text}
       </a>
     );
   }

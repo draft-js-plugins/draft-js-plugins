@@ -6,7 +6,7 @@ import { expect } from 'chai';
 describe('Link', () => {
   it('applies the className based on the theme property `link`', () => {
     const theme = { link: 'custom-class-name' };
-    const result = shallow(<Link theme={ theme } />);
+    const result = shallow(<Link theme={theme} />);
     expect(result).to.have.prop('className', 'custom-class-name');
   });
 
@@ -22,7 +22,7 @@ describe('Link', () => {
 
   it('applies a custom className as well as the theme', () => {
     const theme = { link: 'custom-class-name' };
-    const result = shallow(<Link theme={ theme } className="link" />);
+    const result = shallow(<Link theme={theme} className="link" />);
     expect(result).to.have.prop('className').to.contain('link');
     expect(result).to.have.prop('className').to.contain('custom-class-name');
   });

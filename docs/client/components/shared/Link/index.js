@@ -8,8 +8,8 @@ export default class Link extends Component {
     const { className, ...props } = this.props; // eslint-disable-line no-use-before-define
     const combinedClassName = unionClassNames(styles.root, className);
     return (
-      <a { ...props } className={ combinedClassName }>
-        { this.props.children }
+      <a {...props} className={combinedClassName}>
+        {this.props.children}
       </a>
     );
   }

@@ -11,9 +11,9 @@ const hashtagPlugin = createHashtagPlugin();
 // is passed in, although it is possible to pass in multiple plugins.
 const MyEditor = ({ editorState, onChange }) => (
   <Editor
-    editorState={ editorState }
-    onChange={ onChange }
-    plugins={ [hashtagPlugin] }
+    editorState={editorState}
+    onChange={onChange}
+    plugins={[hashtagPlugin]}
   />
 );
 

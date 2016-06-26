@@ -42,7 +42,7 @@ export default class CustomCounterEditor extends Component {
   render() {
     return (
       <div>
-        <div className={ editorStyles.editor } onClick={ this.focus }>
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -54,7 +54,7 @@ export default class CustomCounterEditor extends Component {
         <div><WordCounter limit={30} /> words</div>
         <div><LineCounter limit={10} /> lines</div>
         <div>
-          <CustomCounter limit={40} countFunction={ this.customCountFunction } />
+          <CustomCounter limit={40} countFunction={this.customCountFunction} />
           <span> words (custom function)</span>
         </div>
         <br />

@@ -37,14 +37,14 @@ export default class Entry extends Component {
     const className = this.props.isFocused ? theme.mentionSuggestionsEntryFocused : theme.mentionSuggestionsEntry;
     return (
       <div
-        className={ className }
-        onMouseDown={ this.onMouseDown }
-        onMouseUp={ this.onMouseUp }
-        onMouseEnter={ this.onMouseEnter }
+        className={className}
+        onMouseDown={this.onMouseDown}
+        onMouseUp={this.onMouseUp}
+        onMouseEnter={this.onMouseEnter}
         role="option"
       >
-        <Avatar mention={ this.props.mention } theme={ theme } />
-        <span className={ theme.mentionSuggestionsEntryText }>{ this.props.mention.get('name') }</span>
+        <Avatar mention={this.props.mention} theme={theme} />
+        <span className={theme.mentionSuggestionsEntryText}>{this.props.mention.get('name')}</span>
       </div>
     );
   }

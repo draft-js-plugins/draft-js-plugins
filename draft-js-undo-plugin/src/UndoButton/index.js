@@ -18,11 +18,11 @@ class UndoButton extends Component {
     const combinedClassName = unionClassNames(theme.undo, className);
     return (
       <button
-        disabled={ this.props.store.getEditorState().getUndoStack().isEmpty() }
-        onClick={ this.onClick }
-        className={ combinedClassName }
+        disabled={this.props.store.getEditorState().getUndoStack().isEmpty()}
+        onClick={this.onClick}
+        className={combinedClassName}
       >
-        { children }
+        {children}
       </button>
     );
   }

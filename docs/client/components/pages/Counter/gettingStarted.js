@@ -16,11 +16,11 @@ const { CharCounter } = counterPlugin;
 const MyEditor = ({ editorState, onChange }) => (
   <div>
     <Editor
-      editorState={ editorState }
-      onChange={ onChange }
-      plugins={ [counterPlugin] }
+      editorState={editorState}
+      onChange={onChange}
+      plugins={[counterPlugin]}
     />
-    <CharCounter editorState={ this.state.editorState } limit={200} />
+    <CharCounter editorState={this.state.editorState} limit={200} />
   </div>
 );
 

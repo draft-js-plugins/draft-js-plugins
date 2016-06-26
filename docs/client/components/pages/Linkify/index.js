@@ -26,68 +26,68 @@ export default class App extends Component {
         <NavBar />
         <Separator />
         <Container>
-          <Heading level={ 2 }>Linkify</Heading>
+          <Heading level={2}>Linkify</Heading>
         </Container>
         <AlternateContainer>
-          <Heading level={ 2 }>Getting Started</Heading>
+          <Heading level={2}>Getting Started</Heading>
           <Code code="npm install draft-js-plugins-editor --save" />
           <Code code="npm install draft-js-linkify-plugin --save" />
-          <Code code={ gettingStarted } name="gettingStarted.js" />
-          <Heading level={ 3 }>Importing the default styles</Heading>
+          <Code code={gettingStarted} name="gettingStarted.js" />
+          <Heading level={3}>Importing the default styles</Heading>
           <p>
             The plugin ships with a default styling available at this location in the installed package:
             &nbsp;
-            <InlineCode code={ 'node_modules/draft-js-linkify-plugin/lib/plugin.css' } />
+            <InlineCode code={'node_modules/draft-js-linkify-plugin/lib/plugin.css'} />
           </p>
-          <Heading level={ 4 }>Webpack Usage</Heading>
-          <ul className={ styles.list }>
-            <li className={ styles.listEntry }>
+          <Heading level={4}>Webpack Usage</Heading>
+          <ul className={styles.list}>
+            <li className={styles.listEntry}>
               1. Install Webpack loaders:
               &nbsp;
-              <InlineCode code={ 'npm i style-loader css-loader --save-dev' } />
+              <InlineCode code={'npm i style-loader css-loader --save-dev'} />
             </li>
-            <li className={ styles.listEntry }>
+            <li className={styles.listEntry}>
               2. Add the below section to Webpack config (if your config already has a loaders array, simply add the below loader object to your existing list.
-              <Code code={ webpackConfig } className={ styles.guideCodeBlock } />
+              <Code code={webpackConfig} className={styles.guideCodeBlock} />
             </li>
-            <li className={ styles.listEntry }>
+            <li className={styles.listEntry}>
               3. Add the below import line to your component to tell Webpack to inject the style to your component.
-              <Code code={ webpackImport } className={ styles.guideCodeBlock } />
+              <Code code={webpackImport} className={styles.guideCodeBlock} />
             </li>
-            <li className={ styles.listEntry }>
+            <li className={styles.listEntry}>
               4. Restart Webpack.
             </li>
           </ul>
-          <Heading level={ 4 }>Browserify Usage</Heading>
+          <Heading level={4}>Browserify Usage</Heading>
           <p>
             Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Linkify/index.js">documentation</ExternalLink>.
           </p>
         </AlternateContainer>
         <Container>
-          <Heading level={ 2 }>Configuration Parameters</Heading>
-          <div className={ styles.param }>
-            <span className={ styles.paramName }>theme</span>
+          <Heading level={2}>Configuration Parameters</Heading>
+          <div className={styles.param}>
+            <span className={styles.paramName}>theme</span>
             <span>Object of CSS classes with the following keys.</span>
-            <div className={ styles.subParams }>
-              <div className={ styles.subParam }><span className={ styles.subParamName }>link:</span> CSS class to be applied to link text</div>
+            <div className={styles.subParams}>
+              <div className={styles.subParam}><span className={styles.subParamName}>link:</span> CSS class to be applied to link text</div>
             </div>
           </div>
-          <div className={ styles.param }>
-            <span className={ styles.paramName }>target</span>
+          <div className={styles.param}>
+            <span className={styles.paramName}>target</span>
             <span>String value for the target attribute. (Default value is _self)</span>
           </div>
       </Container>
         <Container>
-          <Heading level={ 2 }>Simple Example</Heading>
+          <Heading level={2}>Simple Example</Heading>
           <SimpleLinkifyEditor />
-          <Code code={ simpleExampleCode } name="SimpleLinkifyEditor.js" />
-          <Code code={ simpleExampleEditorStylesCode } name="editorStyles.css" />
+          <Code code={simpleExampleCode} name="SimpleLinkifyEditor.js" />
+          <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={ 2 }>Themed Linkify Example</Heading>
+          <Heading level={2}>Themed Linkify Example</Heading>
           <CustomLinkifyEditor />
-          <Code code={ customExampleCode } name="CustomLinkifyEditor.js" />
-          <Code code={ customExampleEditorStylesCode } name="editorStyles.css" />
+          <Code code={customExampleCode} name="CustomLinkifyEditor.js" />
+          <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>

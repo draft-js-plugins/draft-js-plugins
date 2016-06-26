@@ -25,9 +25,9 @@ const stickerPlugin = createStickerPlugin({ stickers });
 // is passed in, although it is possible to pass in multiple plugins.
 const MyEditor = ({ editorState, onChange }) => (
   <Editor
-    editorState={ editorState }
-    onChange={ onChange }
-    plugins={ [stickerPlugin] }
+    editorState={editorState}
+    onChange={onChange}
+    plugins={[stickerPlugin]}
   />
 );
 

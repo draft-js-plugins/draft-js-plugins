@@ -261,13 +261,13 @@ class PluginEditor extends Component {
     const accessibilityProps = this.resolveAccessibilityProps();
     return (
       <Editor
-        { ...this.props }
-        { ...accessibilityProps }
-        { ...pluginHooks }
+        {...this.props}
+        {...accessibilityProps}
+        {...pluginHooks}
         readOnly={this.props.readOnly || this.state.readOnly}
-        customStyleMap={ customStyleMap }
-        onChange={ this.onChange }
-        editorState={ this.props.editorState }
+        customStyleMap={customStyleMap}
+        onChange={this.onChange}
+        editorState={this.props.editorState}
         ref="editor"
       />
     );

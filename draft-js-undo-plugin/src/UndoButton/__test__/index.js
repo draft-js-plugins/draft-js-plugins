@@ -25,9 +25,9 @@ describe('UndoButton', () => {
     const theme = { undo: 'custom-class-name' };
     const result = shallow(
       <Undo
-        store={ store }
-        theme={ theme }
-        children={ 'undo' }
+        store={store}
+        theme={theme}
+        children={'undo'}
       />
     );
     expect(result).to.have.prop('className', 'custom-class-name');
@@ -36,7 +36,7 @@ describe('UndoButton', () => {
   it('renders the passed in children', () => {
     const result = shallow(
       <Undo
-        store={ store }
+        store={store}
         children="undo"
       />
     );
@@ -47,8 +47,8 @@ describe('UndoButton', () => {
     const theme = { undo: 'custom-class-name' };
     const result = shallow(
       <Undo
-        store={ store }
-        theme={ theme }
+        store={store}
+        theme={theme}
         className="undo"
         children="undo"
       />
@@ -60,7 +60,7 @@ describe('UndoButton', () => {
   it('adds disabled attribute to button if the getUndoStack is empty', () => {
     const result = shallow(
       <Undo
-        store={ store }
+        store={store}
         children="redo"
       />
     );
@@ -82,7 +82,7 @@ describe('UndoButton', () => {
     };
     const result = shallow(
       <Undo
-        store={ store }
+        store={store}
         children="redo"
       />
     );
@@ -92,7 +92,7 @@ describe('UndoButton', () => {
   it('triggers an update with undo when the button is clicked', () => {
     const result = shallow(
       <Undo
-        store={ store }
+        store={store}
         children="redo"
       />
     );

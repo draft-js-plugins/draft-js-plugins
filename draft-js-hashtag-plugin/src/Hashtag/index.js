@@ -6,7 +6,7 @@ export default class Hashtag extends Component {
     const { theme = {}, className, ...props } = this.props; // eslint-disable-line no-use-before-define
     const combinedClassName = unionClassNames(theme.hashtag, className);
     return (
-      <span { ...props } className={ combinedClassName } />
+      <span {...props} className={combinedClassName} />
     );
   }
 }

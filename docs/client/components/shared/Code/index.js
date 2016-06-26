@@ -17,9 +17,9 @@ export default class Code extends Component {
     const combinedRootClassName = unionClassNames(styles.root, className);
     const nameClassname = this.props.name ? styles.name : styles.hiddenName;
     return (
-      <div className={ combinedRootClassName }>
-        <div className={ nameClassname }>{ this.props.name }</div>
-        <pre className={ styles.code }>
+      <div className={combinedRootClassName}>
+        <div className={nameClassname}>{this.props.name}</div>
+        <pre className={styles.code}>
           <code
             dangerouslySetInnerHTML={{ __html: this.props.code }}
           />

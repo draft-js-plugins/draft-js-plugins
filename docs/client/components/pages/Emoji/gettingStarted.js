@@ -15,9 +15,9 @@ const { EmojiSuggestions } = emojiPlugin;
 const MyEditor = ({ editorState, onChange }) => (
   <div>
     <Editor
-      editorState={ editorState }
-      onChange={ onChange }
-      plugins={ [emojiPlugin] }
+      editorState={editorState}
+      onChange={onChange}
+      plugins={[emojiPlugin]}
     />
     <EmojiSuggestions />
   </div>

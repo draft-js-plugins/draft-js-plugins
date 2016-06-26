@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const ImageComponent = ({ theme }) => class Image extends Component {
   renderProgress = progress => progress >= 0 // eslint-disable-line no-confusing-arrow
-    ? <div className={ theme.imageLoader } style={{ width: `${100 - progress}%` }} />
+    ? <div className={theme.imageLoader} style={{ width: `${100 - progress}%` }} />
     : null;
 
   render() {

@@ -13,9 +13,9 @@ const { UndoButton, RedoButton } = undoPlugin;
 const MyEditor = ({ editorState, onChange }) => (
   <div>
     <Editor
-      editorState={ editorState }
-      onChange={ onChange }
-      plugins={ [undoPlugin] }
+      editorState={editorState}
+      onChange={onChange}
+      plugins={[undoPlugin]}
     />
     <UndoButton />
     <RedoButton />

@@ -31,7 +31,7 @@ describe('CounterPlugin Line Counter', () => {
     };
 
     const result = mount(
-      <CustomCounter countFunction={ countFunction } />
+      <CustomCounter countFunction={countFunction} />
     );
     expect(result).to.have.text('5');
   });
@@ -51,7 +51,7 @@ describe('CounterPlugin Line Counter', () => {
     };
 
     const result = mount(
-      <CustomCounter countFunction={ countFunction } />
+      <CustomCounter countFunction={countFunction} />
     );
     expect(result).to.have.text('6');
   });

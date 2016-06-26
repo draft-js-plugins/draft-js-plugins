@@ -25,9 +25,9 @@ describe('RedoButton', () => {
     const theme = { redo: 'custom-class-name' };
     const result = shallow(
       <Redo
-        store={ store }
-        theme={ theme }
-        children={ 'redo' }
+        store={store}
+        theme={theme}
+        children={'redo'}
       />
     );
     expect(result).to.have.prop('className', 'custom-class-name');
@@ -36,7 +36,7 @@ describe('RedoButton', () => {
   it('renders the passed in children', () => {
     const result = shallow(
       <Redo
-        store={ store }
+        store={store}
         children="redo"
       />
     );
@@ -47,8 +47,8 @@ describe('RedoButton', () => {
     const theme = { redo: 'custom-class-name' };
     const result = shallow(
       <Redo
-        store={ store }
-        theme={ theme }
+        store={store}
+        theme={theme}
         className="redo"
         children="redo"
       />
@@ -60,7 +60,7 @@ describe('RedoButton', () => {
   it('adds disabled attribute to button if the getRedoStack is empty', () => {
     const result = shallow(
       <Redo
-        store={ store }
+        store={store}
         children="redo"
       />
     );
@@ -83,7 +83,7 @@ describe('RedoButton', () => {
     };
     const result = shallow(
       <Redo
-        store={ store }
+        store={store}
         children="redo"
       />
     );
@@ -93,7 +93,7 @@ describe('RedoButton', () => {
   it('triggers an update with redo when the button is clicked', () => {
     const result = shallow(
       <Redo
-        store={ store }
+        store={store}
         children="redo"
       />
     );

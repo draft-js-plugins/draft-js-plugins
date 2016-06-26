@@ -38,7 +38,7 @@ export default class FacebookLikeButton extends Component {
         id="fbbutton"
         ref="fbbutton"
         className="fb-like"
-        data-href={ this.props.url }
+        data-href={this.props.url}
         data-layout="standard"
         data-action="like"
         data-show-faces="true"

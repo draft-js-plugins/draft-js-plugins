@@ -36,15 +36,15 @@ export default class CustomUndoEditor extends Component {
   render() {
     return (
       <div>
-        <div className={ editorStyles.editor } onClick={ this.focus }>
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            plugins={ plugins }
+            plugins={plugins}
             ref="editor"
           />
         </div>
-        <div className={ editorStyles.options }>
+        <div className={editorStyles.options}>
           <UndoButton />
           <RedoButton />
         </div>

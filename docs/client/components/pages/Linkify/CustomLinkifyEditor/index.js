@@ -25,7 +25,7 @@ export default class CustomMentionEditor extends Component {
 
   render() {
     return (
-      <div className={ editorStyles.editor } onClick={ this.focus }>
+      <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

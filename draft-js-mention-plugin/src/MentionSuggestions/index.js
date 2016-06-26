@@ -265,22 +265,22 @@ export default class MentionSuggestions extends Component {
     return (
       <div
         {...this.props}
-        className={ theme.mentionSuggestions }
+        className={theme.mentionSuggestions}
         role="listbox"
-        id={ `mentions-list-${this.key}` }
+        id={`mentions-list-${this.key}`}
         ref="popover"
       >
         {
           this.props.suggestions.map((mention, index) => (
             <Entry
-              key={ mention.get('name') }
-              onMentionSelect={ this.onMentionSelect }
-              onMentionFocus={ this.onMentionFocus }
-              isFocused={ this.state.focusedOptionIndex === index }
-              mention={ mention }
-              index={ index }
-              id={ `mention-option-${this.key}-${index}` }
-              theme={ theme }
+              key={mention.get('name')}
+              onMentionSelect={this.onMentionSelect}
+              onMentionFocus={this.onMentionFocus}
+              isFocused={this.state.focusedOptionIndex === index}
+              mention={mention}
+              index={index}
+              id={`mention-option-${this.key}-${index}`}
+              theme={theme}
             />
           )).toJS()
         }

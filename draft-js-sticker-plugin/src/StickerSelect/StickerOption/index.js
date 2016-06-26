@@ -14,14 +14,14 @@ export default class StickerOption extends Component {
     const { theme = {} } = this.props;
     return (
       <button
-        onClick={ this.onClick }
-        key={ id }
+        onClick={this.onClick}
+        key={id}
         type="button"
-        className={ theme.selectSticker }
+        className={theme.selectSticker}
       >
         <img
-          className={ theme.selectStickerImage }
-          src={ url }
+          className={theme.selectStickerImage}
+          src={url}
           role="presentation"
         />
       </button>

@@ -68,8 +68,8 @@ export default class UnicornEditor extends Component {
 
   render() {
     return (
-      <div className={ styles.root }>
-        <div className={ styles.editor } onClick={ this.focus }>
+      <div className={styles.root}>
+        <div className={styles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
@@ -80,17 +80,17 @@ export default class UnicornEditor extends Component {
         </div>
         <div>
           <MentionSuggestions
-            onSearchChange={ this.onMentionSearchChange }
-            suggestions={ this.state.suggestions }
+            onSearchChange={this.onMentionSearchChange}
+            suggestions={this.state.suggestions}
           />
           <EmojiSuggestions />
-          <div className={ styles.editorButton }>
-            <StickerSelect editor={ this } />
+          <div className={styles.editorButton}>
+            <StickerSelect editor={this} />
           </div>
-          <div className={ styles.editorButton }>
+          <div className={styles.editorButton}>
             <UndoButton />
           </div>
-          <div className={ styles.editorButton }>
+          <div className={styles.editorButton}>
             <RedoButton />
           </div>
         </div>

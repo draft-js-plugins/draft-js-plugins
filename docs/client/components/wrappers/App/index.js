@@ -7,14 +7,14 @@ export default class Wrapper extends Component {
     return (
       <div>
         {this.props.children}
-        <footer className={ styles.footer }>
+        <footer className={styles.footer}>
           Built with&nbsp;
-          <span className={ styles.heart }>
+          <span className={styles.heart}>
             &#x2764;
           </span>
           &nbsp;on Planet Earth
 
-          <div className={ styles.emojiAttribution }>
+          <div className={styles.emojiAttribution}>
             Emoji art provided free by&nbsp;
             <ExternalLink href="http://emojione.com/">Emoji One</ExternalLink>
           </div>
