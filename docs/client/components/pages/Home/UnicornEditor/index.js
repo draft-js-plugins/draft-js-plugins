@@ -11,11 +11,11 @@ import stickers from './stickers';
 import mentions from './mentions';
 import {
   // convertToRaw,
-  convertFromRaw,
+  // convertFromRaw,
   ContentState,
   EditorState,
 } from 'draft-js';
-import initialState from './initialState';
+// import initialState from './initialState';
 
 const emojiPlugin = createEmojiPlugin();
 const hashtagPlugin = createHashtagPlugin();
@@ -39,7 +39,8 @@ const plugins = [
   undoPlugin,
 ];
 
-const contentState = ContentState.createFromBlockArray(convertFromRaw(initialState));
+// const contentState = ContentState.createFromBlockArray(convertFromRaw(initialState));
+const contentState = ContentState.createFromText('Initial text …');
 
 export default class UnicornEditor extends Component {
 
