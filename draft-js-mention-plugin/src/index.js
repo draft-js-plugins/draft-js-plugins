@@ -13,8 +13,11 @@ import defaultPositionSuggestions from './utils/positionSuggestions';
 
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = {
+    // CSS class for mention text
     mention: mentionStyles.mention,
+    // CSS class for suggestions component
     mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
+    // CSS classes for an entry in the suggestions component
     mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
     mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
     mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
