@@ -22,12 +22,6 @@
     "widget",
     "react-component"
   ],
-  "peerDependencies": {
-    "draft-js": ">=0.7.0",
-    "immutable": ">=3.8.1",
-    "react": ">=15.1.0",
-    "react-dom": ">=15.1.0"
-  },
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
     "build": "npm run clean && npm run build:js && npm run build:css",
@@ -40,6 +34,10 @@
     "decorate-component-with-props": "^1.0.2",
     "union-class-names": "^1.0.0",
     "linkify-it": "2.0.0",
-    "tlds": "1.132.0"
+    "tlds": "1.132.0",
+    "draft-js": ">=0.7.0",
+    "immutable": ">=3.8.1",
+    "react": ">=15.1.0",
+    "react-dom": ">=15.1.0"
   }
 }

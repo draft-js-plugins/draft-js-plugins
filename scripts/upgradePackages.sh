@@ -9,6 +9,5 @@ do
     echo $currentDirectory
     rm -rf node_modules
     ncu -u
-    npm install
     cd ..
 done

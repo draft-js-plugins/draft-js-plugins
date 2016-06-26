@@ -22,10 +22,6 @@
     "widget",
     "react-component"
   ],
-  "peerDependencies": {
-    "react": ">=15.1.0",
-    "react-dom": ">=15.1.0"
-  },
   "scripts": {
     "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js **/__test__/*.js",
     "test:watch": "npm test -- --watch",
@@ -101,6 +97,8 @@
     "immutable": "^3.8.1",
     "linkify-it": "2.0.0",
     "loader-utils": "^0.2.15",
+    "react": ">=15.1.0",
+    "react-dom": ">=15.1.0",
     "tlds": "1.132.0",
     "union-class-names": "^1.0.0",
     "webpack": "^1.13.1"
