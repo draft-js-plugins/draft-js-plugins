@@ -30,15 +30,13 @@
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:jscs": "jscs ./",
     "lint:flow": "flow status",
+    "lint:staged": "lint-staged",
     "alex": "alex README.md",
-    "eslint-staged": "eslint-staged",
-    "jscs-staged": "jscs-staged",
-    "flow-staged": "flow-staged"
   },
-  "pre-commit": [
-    "eslint-staged",
-    "flow-staged"
-  ],
+  "lint-staged": {
+    "lint:eslint": "*.js"
+  },
+  "pre-commit": "lint:staged",
   "devDependencies": {
     "alex": "^3.1.0",
     "autoprefixer": "^6.3.6",
