@@ -5,7 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
-### Changed
+## 1.2.2 - 2016-06-26
+
+### Fixed
 
 - `positionSuggestions` now works by default with non-static parents. Thanks to @Zhouzi
 [#309](https://github.com/draft-js-plugins/draft-js-plugins/pull/309)

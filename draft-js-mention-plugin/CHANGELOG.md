@@ -5,9 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
-### Changed
+## 1.1.2 - 2016-06-26
 
-- Accepts plain JavaScript Objects for mentions from now on. Until now it only accepted an `Immutable.Map`. This change would make it play nicer together with `convertFromRaw` by default. [#326](https://github.com/draft-js-plugins/draft-js-plugins/pull/326)
+### Fixed
+
+- Accepts plain JavaScript Objects for mentions from now on. Until now it only accepted an `Immutable.Map`. This change would make it play nicer together with `convertFromRaw` by default. Thanks to @anderslemke [#326](https://github.com/draft-js-plugins/draft-js-plugins/pull/326)
 - `positionSuggestions` now works by default with non-static parents. Thanks to @Zhouzi
 [#309](https://github.com/draft-js-plugins/draft-js-plugins/pull/309)
 [#206](https://github.com/draft-js-plugins/draft-js-plugins/issues/206)
