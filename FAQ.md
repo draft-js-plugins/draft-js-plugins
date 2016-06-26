@@ -71,8 +71,8 @@ No, you need to instantiation multiple plugins in case you use multiple editors.
 ```js
 const emojiPlugin = createEmojiPlugin();
 const emojiPlugin2 = createEmojiPlugin();
-const { EmojiSuggestions } = emojiPlugin;
-const { EmojiSuggestions2 } = emojiPlugin2;
+const EmojiSuggestions = emojiPlugin.EmojiSuggestions;
+const EmojiSuggestions2 = emojiPlugin2.EmojiSuggestions;
 
 // The Editor accepts an array of plugins. In this case, only the emojiPlugin is
 // passed in, although it is possible to pass in multiple plugins.
