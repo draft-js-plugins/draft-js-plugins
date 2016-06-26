@@ -44,6 +44,10 @@ export default class SimpleMentionEditor extends Component {
         <MentionSuggestions
           onSearchChange={ this.onSearchChange }
           suggestions={ this.state.suggestions }
+          groupTitles={{
+            engineering: 'Engineering',
+            marketing: 'Marketing',
+          }}
         />
       </div>
     );

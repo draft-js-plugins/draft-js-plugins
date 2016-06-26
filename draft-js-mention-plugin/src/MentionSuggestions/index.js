@@ -5,6 +5,7 @@ import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
+import Immutable from 'immutable';
 
 export default class MentionSuggestions extends Component {
 
@@ -262,6 +263,19 @@ export default class MentionSuggestions extends Component {
     }
 
     const { theme = {} } = this.props;
+    const groups = this.props.suggestions.reduce((data, value) => {
+      const type = value.get('type') || 'other';
+      let items = data.get(type);
+      if (!items) {
+        items = Immutable.OrderedSet();
+      }
+      items = items.add(value);
+      return data.set(type, items);
+    }, Immutable.OrderedMap());
+
+    const groupTitles = Object.assign({ other: 'Other' }, this.props.groupTitles);
+    let mentionIndex = 0;
+    let groupIndex = 0;
     return (
       <div
         {...this.props}
@@ -270,20 +284,29 @@ export default class MentionSuggestions extends Component {
         id={ `mentions-list-${this.key}` }
         ref="popover"
       >
-        {
-          this.props.suggestions.map((mention, index) => (
-            <Entry
-              key={ mention.get('name') }
-              onMentionSelect={ this.onMentionSelect }
-              onMentionFocus={ this.onMentionFocus }
-              isFocused={ this.state.focusedOptionIndex === index }
-              mention={ mention }
-              index={ index }
-              id={ `mention-option-${this.key}-${index}` }
-              theme={ theme }
-            />
-          )).toJS()
-        }
+      {
+        groups.map((group, key) => (
+          <div key={key}>
+            {groups.size > 1 &&
+              <div className={ theme.mentionSuggestionsHeading + (groupIndex++ === 0 ? ' first' : '') }>
+                {groupTitles[key] || key}
+              </div>}
+            {group.map(mention => {
+              const index = mentionIndex++;
+              return (<Entry
+                key={ mention.get('name') }
+                onMentionSelect={ this.onMentionSelect }
+                onMentionFocus={ this.onMentionFocus }
+                isFocused={ this.state.focusedOptionIndex === index }
+                mention={ mention }
+                index={ index }
+                id={ `mention-option-${this.key}-${index}` }
+                theme={ theme }
+              />);
+            }).toJS()}
+          </div>
+        )).toArray()
+      }
       </div>
     );
   }
