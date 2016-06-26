@@ -40,24 +40,6 @@ const positionSuggestions = ({ state, props }) => {
 const emojiPlugin = createEmojiPlugin({ positionSuggestions: positionSuggestions });
 ```
 
-## Why are mentions broken after using `convertFromRaw` and throwing an error?
-
-We design the API to accept an Immutable Map for a Mention. After saving your datastructure to the server and using `convertFromRaw` the mentions in there are plain objects. I (Nik) believe this is a flaw in our design and the mention data should be a plain object. Hint: We might fix this with v2.0.0 of the mentions plugin.
-
-What you can do now is fixing the datastructure before converting it:
-
-```JS
-import { fromJS} from 'immutable';
-import forEach from 'lodash/forEach';
-
-forEach(rawContent.entityMap, function(value, key) {
-  value.data.mention = fromJS(value.data.mention)
-})
-
-const contentState = Draft.convertFromRaw(rawContent)
-const editorState = Draft.EditorState.createWithContent(contentState)
-```
-
 ## My default styles are broken?
 
 The Draft framework includes a handful of CSS resources intended for use with the editor, available in a single file via the build, [DraftStyleDefault.css](https://github.com/facebook/draft-js/blob/master/src/component/utils/DraftStyleDefault.css)
