@@ -23,12 +23,15 @@ export const getToolbarPosition = () => getSelectionRect(getSelection());
 } */
 
 export const getToolbarActions = (config, editorState, setEditorState) => {
-  const inlineStyles = config.inlineStyles || defaultInlineStyles;
   const customActions = config.clearTextActions
     ? (config.textActions || [])
     : ([...defaultActions, ...(config.textActions || [])]);
 
-  // Get current style to check what actions are toggled
+  const inlineStyles = config.clearInlineActions
+    ? (config.inlineStyles || [])
+    : defaultInlineStyles;
+
+  // Get current style to check what actions alkldaskdasre toggled
   const currentStyle = editorState.getCurrentInlineStyle();
   // Get current block
   const block = editorState
