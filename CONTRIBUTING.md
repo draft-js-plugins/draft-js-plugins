@@ -52,3 +52,7 @@ We are also happy about updates to the documentation in combination with changes
 Run `./scripts/publishGithubPages.sh`
 
 The `build` script renames the .babelrc files of all plugins to avoid issues with the build. In the future we might be able to remove this again.
+
+## Publishing NPM Package as Beta
+
+Go into the package and run `npm publish --tag beta`

@@ -48,8 +48,8 @@ export default class App extends Component {
         </Container>
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>
-          <Code code="npm install draft-js-plugins-editor --save" />
-          <Code code="npm install draft-js-emoji-plugin --save" />
+          <Code code="npm install draft-js-plugins-editor@beta --save" />
+          <Code code="npm install draft-js-emoji-plugin@beta --save" />
           <Code code={gettingStarted} name="gettingStarted.js" />
           <Heading level={3}>Importing the default styles</Heading>
           <p>
