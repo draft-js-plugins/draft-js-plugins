@@ -258,7 +258,7 @@ export default class MentionSuggestions extends Component {
 
   render() {
     if (!this.state.isActive) {
-      return <noscript />;
+      return null;
     }
 
     const { theme = {} } = this.props;

@@ -11,7 +11,7 @@ const Avatar = ({ mention, theme = {} }) => {
     );
   }
 
-  return <noscript />;
+  return null;
 };
 
 export default Avatar;
