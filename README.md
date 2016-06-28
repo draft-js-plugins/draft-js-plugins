@@ -8,9 +8,9 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 ## Important Note
 
-We currently prepare for a 2.0 beta. The `master` branch already contains these features.
+We currently prepare for a 2.0 beta. The `master` branch already contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@beta --save`
 
-## Available Plugins
+## Available Plugins (incl. Docs)
 
 - [Emoji](https://www.draft-js-plugins.com/plugin/emoji)
 - [Stickers](https://www.draft-js-plugins.com/plugin/sticker)
