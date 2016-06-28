@@ -1,4 +1,4 @@
-# DraftJS Toolbar Plugin
+# DraftJS Link Plugin
 
 *This is a plugin for the `draft-js-plugins-editor`.*
 It exposes a LinkButton which toggles a link for the current selection
@@ -6,18 +6,10 @@ It exposes a LinkButton which toggles a link for the current selection
 Usage:
 
 ```js
-import createToolbarPlugin from 'draft-js-toolbar-plugin';
+import createLinkPlugin from 'draft-js-link-plugin';
 
-const toolbarPlugin = createToolbarPlugin(options);
+const linkPlugin = createLinkPlugin(options);
 
-const { LinkButton } = toolbarPlugin
+const { LinkButton } = linkPlugin
 
 ```
-
-## Options
-
-| Key | Description | Accepted Value(s) | Default Value |
-|---|---|---|---|
-| clearTextActions | clear the default menu items | *Boolean* | `false` |
-| textActions | An array of objects describing a text action. | *Array* | `null` |
-

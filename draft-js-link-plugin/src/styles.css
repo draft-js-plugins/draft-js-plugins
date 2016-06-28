@@ -27,30 +27,21 @@
   text-decoration: none;
 }
 
-.toolbar .toolbar-item {
-  float: left;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background-color: #000;
+/*
+ * Link
+*/
+
+.link, .link:visited {
+  color: #5e93c5;
+  text-decoration: none;
 }
 
-.toolbar .toolbar-item:first-child {
-  border-bottom-left-radius: 50px;
-  border-top-left-radius: 50px;
-  padding-left: 6px;
+.link:hover, .link:focus {
+  color: #7eadda;
+  outline: 0; /* reset for :focus */
+  cursor: pointer;
 }
 
-.toolbar .toolbar-item:last-child {
-  border-bottom-right-radius: 50px;
-  border-top-right-radius: 50px;
-  padding-right: 6px;
-}
-
-.toolbar .toolbar-item.toolbar-item-active {
-  background-color: #2f2f2f;
-}
-
-.toolbar .toolbar-item:hover{
-  background-color: #2f2f2f;
+.link:active {
+  color: #4a7bab;
 }
