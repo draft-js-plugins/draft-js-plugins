@@ -3,6 +3,7 @@ import linkStrategy from './linkStrategy';
 import Link from './Link';
 import LinkButton from './LinkButton'
 import styles from './styles.css';
+import { Entity } from 'draft-js'
 
 import decorateComponentWithProps from 'decorate-component-with-props';
 
@@ -21,7 +22,6 @@ const linkPlugin = (config = {}) => {
       /*
        * Determine active state of the current selection
       */
-     console.log('called onChange');
       const selection = editorState.getSelection();
       const block = editorState
         .getCurrentContent()
@@ -30,7 +30,6 @@ const linkPlugin = (config = {}) => {
       block.findEntityRanges(
         (character) => {
           const entityKey = character.getEntity();
-          console.log("value");
           store.active = entityKey !== null && Entity.get(entityKey).getType() === 'LINK';
         },
 
@@ -46,20 +45,17 @@ const linkPlugin = (config = {}) => {
       return editorState
     },
     initialize: ({getEditorState, setEditorState}) => {
-      console.log("initialize called...");
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;
-
-      console.log(store);
     },
     decorators: [{
       strategy: linkStrategy,
       component: (props) => <Link {...props} theme={theme} />,
     }],
-    // LinkButton: (props) => (
-    //     <LinkButton {...props} theme={theme} store={store}/>
-    //   ),
-    LinkButton: decorateComponentWithProps(LinkButton, { theme, store }),
+    LinkButton: (props) => (
+        <LinkButton {...props} theme={theme} store={store}/>
+      ),
+    // LinkButton: decorateComponentWithProps(LinkButton, { theme, store }),
   };
 };
 

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Entity } from 'draft-js';
+import { Entity, RichUtils } from 'draft-js';
 
 class LinkButton extends React.Component {
   constructor(props) {
@@ -21,9 +21,10 @@ class LinkButton extends React.Component {
       return;
     }
 
-    if (store.active(block, editorState)) {
-      setEditorState(RichUtils.toggleLink(editorState, selection, null));
+    if (store.active) {
+      store.setEditorState(RichUtils.toggleLink(editorState, selection, null));
     } else {
+      // TODO: use a DOM element instead - 2016-06-28
       const href = window.prompt('Enter a URL'); // eslint-disable-line no-alert
       const entityKey = Entity.create('LINK', 'MUTABLE', { href });
       store.setEditorState(RichUtils.toggleLink(editorState, selection, entityKey));
@@ -33,9 +34,11 @@ class LinkButton extends React.Component {
   render() {
     const { theme, store } = this.props
 
-    const classNames = [theme['toolbar-item']];
+    console.log(theme);
+
+    const classNames = [theme['link-button']];
     if (store.active) {
-      classNames.push(theme['toolbar-item-active']);
+      classNames.push(theme['link-button-active']);
     }
 
     return (

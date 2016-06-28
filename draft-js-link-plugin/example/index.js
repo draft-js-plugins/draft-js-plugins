@@ -26,8 +26,6 @@ class LinkEditor extends React.Component {
     };
 
     render() {
-        const {  } = this.props
-
         return (
             <div>
                 <LinkButton />
