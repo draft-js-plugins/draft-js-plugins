@@ -8,7 +8,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 ## Important Note
 
-We currently prepare for a 2.0 beta. The `master` branch already contains unpublished features & plugins.
+We currently prepare for a 2.0 beta. The `master` branch already contains these features.
 
 ## Available Plugins
 
@@ -40,7 +40,13 @@ First, install the editor with `npm`:
 $ npm install draft-js-plugins-editor --save
 ```
 
-and then import it somewhere in your code and you're ready to go!
+To try out the beta version of 2.0.0 run
+
+```
+$ npm install draft-js-plugins-editor@beta --save
+```
+
+Then import the editor somewhere in your code and you're ready to go!
 
 ```js
 import Editor from 'draft-js-plugins-editor';
