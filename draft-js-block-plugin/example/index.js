@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Editor from 'draft-js-plugins-editor';
-import createInlinePlugin from '../lib/index.js'
+import createBlockPlugin from '../lib/index.js'
 import { EditorState } from 'draft-js';
 
 import './styles.css';
 
-const inlinePlugin = createInlinePlugin()
-const { BoldButton, ItalicButton, UnderlineButton, MonospaceButton } = inlinePlugin
+const blockPlugin = createBlockPlugin()
+const { H1Button, H2Button, H3Button, H4Button, H5Button, H6Button, BlockquoteButton, UlButton, OlButton, CodeblockButton } = blockPlugin
 
-class InlineEditor extends React.Component {
+console.log(blockPlugin);
+
+class BlockEditor extends React.Component {
     constructor(props) {
         super(props)
         this.onChange = this.onChange.bind(this)
@@ -26,16 +28,23 @@ class InlineEditor extends React.Component {
     };
 
     render() {
+      console.log(<H1Button />);
         return (
             <div>
-                <BoldButton />
-                <ItalicButton />
-                <UnderlineButton />
-                <MonospaceButton />
+                <H1Button />
+                <H2Button />
+                <H3Button />
+                <H4Button />
+                <H5Button />
+                <H6Button />
+                <BlockquoteButton />
+                <UlButton />
+                <OlButton />
+                <CodeblockButton />
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}
-                    plugins={[inlinePlugin]}
+                    plugins={[blockPlugin]}
                     ref="editor"
                 />
             </div>
@@ -45,5 +54,5 @@ class InlineEditor extends React.Component {
 }
 
 ReactDOM.render((
-    <InlineEditor />
+    <BlockEditor />
 ), document.getElementById('target'));

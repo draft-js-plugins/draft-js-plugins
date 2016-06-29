@@ -44,7 +44,7 @@ class LinkButton extends React.Component {
     return (
       <div className={classNames.join(' ')}>
         <button onClick={this.confirmLink}>
-          Link!!!
+          Link
       </button>
     </div>
     );

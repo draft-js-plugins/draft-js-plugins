@@ -2,6 +2,9 @@
 
 *This is a plugin for the `draft-js-plugins-editor`.*
 
+This plugin is used in conjunction with "draft-js-toolbar-plugin".
+It provides a decorator to align the given selection left, center or right.
+
 Usage:
 
 ```js
