@@ -15,7 +15,7 @@ const toolbarPlugin = (config = {}) => {
       if (typeof window !== 'undefined') {
         const props = {
           uid: 'text-toolbar',
-          actions: getToolbarActions(config, editorState, setEditorState),
+          actions: config.actions,
           editorState,
           getTargetRectangle: getToolbarPosition,
           setEditorState,
@@ -35,10 +35,6 @@ const toolbarPlugin = (config = {}) => {
         toolbarHandler
       }
     }),
-    decorators: [{
-      strategy: linkStrategy,
-      component: Link,
-    }]
   };
 };
 
