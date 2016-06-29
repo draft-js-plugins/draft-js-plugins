@@ -79,6 +79,7 @@ export default class MentionSuggestions extends Component {
 
     // get the current selection
     const selection = editorState.getSelection();
+    const anchorKey = selection.getAnchorKey();
     const anchorOffset = selection.getAnchorOffset();
 
     // the list should not be visible if a range is selected or the editor has no focus
@@ -88,11 +89,13 @@ export default class MentionSuggestions extends Component {
     const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
 
     // a leave can be empty when it is removed due e.g. using backspace
-    const leaves = offsetDetails.map(({ blockKey, decoratorKey, leafKey }) => (
-      editorState
-        .getBlockTree(blockKey)
-        .getIn([decoratorKey, 'leaves', leafKey])
-    ));
+    const leaves = offsetDetails
+      .filter(({ blockKey }) => blockKey === anchorKey)
+      .map(({ blockKey, decoratorKey, leafKey }) => (
+        editorState
+          .getBlockTree(blockKey)
+          .getIn([decoratorKey, 'leaves', leafKey])
+      ));
 
     // if all leaves are undefined the popover should be removed
     if (leaves.every((leave) => leave === undefined)) {
