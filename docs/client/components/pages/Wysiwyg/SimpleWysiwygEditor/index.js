@@ -106,7 +106,6 @@ class SimpleWysiwygEditor extends Component {
   }
 
   onChange = (editorState) => {
-    // console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
     this.setState({ editorState });
   };
 

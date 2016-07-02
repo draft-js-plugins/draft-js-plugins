@@ -13,7 +13,6 @@ class LinkButton extends React.Component {
 
     const { store } = this.props;
 
-    console.log(store);
     const editorState = store.getEditorState();
 
     const selection = editorState.getSelection();
@@ -33,8 +32,6 @@ class LinkButton extends React.Component {
 
   render() {
     const { theme, store } = this.props
-
-    console.log(theme);
 
     const classNames = [theme['link-button']];
     if (store.active) {

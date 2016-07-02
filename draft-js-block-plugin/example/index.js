@@ -9,16 +9,14 @@ import './styles.css';
 const blockPlugin = createBlockPlugin()
 const { H1Button, H2Button, H3Button, H4Button, H5Button, H6Button, BlockquoteButton, UlButton, OlButton, CodeblockButton } = blockPlugin
 
-console.log(blockPlugin);
-
 class BlockEditor extends React.Component {
     constructor(props) {
         super(props)
-        this.onChange = this.onChange.bind(this)
 
         this.state = {
             editorState: EditorState.createEmpty()
         }
+        this.onChange = this.onChange.bind(this)
     }
 
     onChange = (editorState) => {
@@ -28,7 +26,6 @@ class BlockEditor extends React.Component {
     };
 
     render() {
-      console.log(<H1Button />);
         return (
             <div>
                 <H1Button />

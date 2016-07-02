@@ -1,7 +1,7 @@
 {
-  "name": "draft-js-link-plugin",
+  "name": "draft-js-inline-plugin",
   "version": "1.0.3",
-  "description": "Link Plugin for DraftJS",
+  "description": "Inline Plugin for DraftJS",
   "author": {
     "name": "Bryan Haakman",
     "email": "bryanhaakman@gmail.com"
