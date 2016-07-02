@@ -27,7 +27,7 @@ class InlineEditor extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'editor'}>
                 <BoldButton />
                 <ItalicButton />
                 <UnderlineButton />

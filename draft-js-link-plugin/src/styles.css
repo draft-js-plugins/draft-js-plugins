@@ -3,28 +3,21 @@
 */
 
 .link-button {
-  background-color: #000;
-  border: none;
-  border-radius: 50px;
-  font-size: 16px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #888;
+  cursor: pointer;
+  height: 1.5em;
+  width: 2.5em;
+  font-size: 1.5em;
+  line-height: 1.2em;
+  margin: 0;
+  text-decoration: none;
 }
 
 .link-button-active {
   background-color: #2f2f2f;
-}
-
-.link-button button {
-  background-color: transparent;
-  border: 0;
-  color: white;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: block;
-  font-size: 14px;
-  line-height: 1.33;
-  margin: 0;
-  padding: 15px;
-  text-decoration: none;
 }
 
 /*

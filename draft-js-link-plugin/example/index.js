@@ -4,10 +4,12 @@ import Editor from 'draft-js-plugins-editor';
 import createLinkPlugin from '../lib/index.js'
 import { EditorState } from 'draft-js';
 
-import './styles.css';
+import styles from './styles.css';
 
 const linkPlugin = createLinkPlugin()
 const { LinkButton } = linkPlugin
+
+console.log(styles);
 
 class LinkEditor extends React.Component {
     constructor(props) {
@@ -25,10 +27,14 @@ class LinkEditor extends React.Component {
         });
     };
 
+    focus =  () => {
+        this.refs.editor.focus()
+    }
+
     render() {
         return (
-            <div>
-                <LinkButton />
+            <div className={'editor'}>
+                <LinkButton editor={this}/>
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}

@@ -27,7 +27,7 @@ class BlockEditor extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="editor">
                 <H1Button />
                 <H2Button />
                 <H3Button />

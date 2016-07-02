@@ -39,11 +39,9 @@ class LinkButton extends React.Component {
     }
 
     return (
-      <div className={classNames.join(' ')}>
-        <button onClick={this.confirmLink}>
-          Link
-      </button>
-    </div>
+        <button className={classNames.join(' ')} onClick={this.confirmLink}>
+            Link
+        </button>
     );
 
   }
