@@ -1,0 +1,24 @@
+/*
+ * BlockButton
+*/
+
+
+.button {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #888;
+  cursor: pointer;
+  height: 2em;
+  line-height: 1.5em;
+  width: auto;
+  font-size: 1.1em;
+  padding: 5px 20px;
+  margin: 0;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.button-active {
+  background-color: #2f2f2f;
+}

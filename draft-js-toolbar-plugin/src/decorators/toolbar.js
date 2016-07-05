@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 
 // Get a component's display name
 const getDisplayName = WrappedComponent => {
-  const component = WrappedComponent.WrappedComponent || WrappedComponent;
-  return component.displayName || component.name || 'Component';
+  return WrappedComponent.displayName || WrappedComponent.name || 'WrappedComponent';
 };
 
 let number = 0;
@@ -12,8 +11,8 @@ let number = 0;
 // HoverToolbar decorator will render a toolbar on hovering the WrappedComponent
 export default ({ theme, customRender }) => WrappedComponent => class FocusedToolbarDecorator extends Component {
   // Statics
-  static displayName = `FocusedToolbar(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
+  static displayName = `FocusedToolbar(${getDisplayName(WrappedComponent)})`;
 
   // Bind listeners on mount
   componentDidMount() {

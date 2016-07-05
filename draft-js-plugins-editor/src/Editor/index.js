@@ -34,17 +34,17 @@ class PluginEditor extends Component {
   constructor(props) {
     super(props);
 
-    const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
-      if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize(this.getPluginMethods());
-    }
-
     // attach proxy methods like `focus` or `blur`
     for (const method of proxies) {
       this[method] = (...args) => (
         this.refs.editor[method](...args)
       );
+    }
+
+    const plugins = [this.props, ...this.resolvePlugins()];
+    for (const plugin of plugins) {
+      if (typeof plugin.initialize !== 'function') continue;
+      plugin.initialize(this.getPluginMethods());
     }
 
     this.state = {}; // TODO for Nik: ask ben why this is relevent
@@ -96,6 +96,7 @@ class PluginEditor extends Component {
 
   getEditorState = () => this.props.editorState;
   getPluginMethods = () => ({
+    focus: this.focus,
     getPlugins: this.getPlugins,
     getProps: this.getProps,
     setEditorState: this.onChange,

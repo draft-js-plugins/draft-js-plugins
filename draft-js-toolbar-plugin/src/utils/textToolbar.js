@@ -1,3 +1,4 @@
+import React from 'react'
 import { RichUtils } from 'draft-js';
 import defaultInlineStyles from '../actions/inlineStyles';
 import defaultActions from '../actions/custom';
@@ -22,38 +23,9 @@ export const getToolbarPosition = () => getSelectionRect(getSelection());
   ));
 } */
 
-export const getToolbarActions = (config, editorState, setEditorState) => {
-  const inlineStyles = config.inlineStyles || defaultInlineStyles;
-  const customActions = config.clearTextActions
-    ? (config.textActions || [])
-    : ([...defaultActions, ...(config.textActions || [])]);
+export const getToolbarActions = (config, editorState) => (
+    config.actions.map(ActionComponent => (
+        (props) => <ActionComponent getEditorState={() => editorState} {...props} />
+    )) 
+)
 
-  // Get current style to check what actions are toggled
-  const currentStyle = editorState.getCurrentInlineStyle();
-  // Get current block
-  const block = editorState
-    .getCurrentContent()
-    .getBlockForKey(editorState.getSelection().getStartKey());
-
-  return [
-    ...inlineStyles.map(action => ({
-      icon: action.icon,
-      button: action.button,
-      label: action.label,
-      active: currentStyle.has(action.style),
-      toggle: () => setEditorState(RichUtils.toggleInlineStyle(
-        editorState,
-        action.style
-      )),
-    })),
-    ...customActions.map(action => ({
-      icon: action.icon,
-      button: action.button,
-      label: action.label,
-      active: typeof action.active === 'function'
-        ? action.active(block, editorState)
-        : action.active,
-      toggle: () => action.toggle(block, action, editorState, setEditorState),
-    })),
-  ];
-};

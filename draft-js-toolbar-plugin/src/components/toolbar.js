@@ -7,7 +7,6 @@ export default class Toolbar extends Component {
 
   static defaultProps = {
     actions: [],
-    active: true,
   };
 
   // PreventDefault helper to swallow clicks on toolbar to not loose focus
@@ -15,30 +14,23 @@ export default class Toolbar extends Component {
     event.preventDefault();
   };
 
-  // Action toggle
-  toggleAction = action => {
-    if (action.toggle) {
-      action.toggle(action, !action.active);
-    }
-  };
-
   // Render single action buttons
-  renderAction = action => {
+  renderAction = (ActionComponent, index) => {
     const { toolbarTheme } = this.context;
-    const { theme } = this.props;
+    const { theme, editor } = this.props;
+
     const styles = toolbarTheme || theme;
 
     const classNames = [styles['toolbar-item']];
-    if (action.active) {
-      classNames.push(styles['toolbar-item-active']);
+
+    const buttonStyleMap = {
+        // 'button': styles['toolbar-item'],
+        'button-active': styles['toolbar-item-active'],
     }
 
-    const toggle = () => this.toggleAction(action);
     return (
-      <div key={action.label} className={classNames.join(' ')}>
-        <button onClick={toggle} data-tooltip={action.label}>
-          {action.icon ? <i className={`${action.icon} icon`}></i> : action.button}
-        </button>
+      <div key={index} className={classNames.join(' ')}>
+          <ActionComponent editor={editor} theme={buttonStyleMap}/>
       </div>
     );
   };
