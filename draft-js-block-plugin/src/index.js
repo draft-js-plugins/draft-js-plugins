@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.css';
-import { RichUtils, Entity } from 'draft-js'
+import { RichUtils, Entity, EditorState } from 'draft-js'
 
 import decorateComponentWithProps from 'decorate-component-with-props';
 
@@ -16,21 +16,21 @@ const inlinePlugin = (config = {}) => {
   };
 
   const toggleBlockType = (type) => {
+
+    const nextState = RichUtils.toggleBlockType(
+      store.getEditorState(),
+      type
+    )
+
     store.setEditorState(
-      RichUtils.toggleBlockType(
-        store.getEditorState(),
-        type
+      EditorState.forceSelection(
+        nextState, nextState.getCurrentContent().getSelectionAfter()
       )
-    );
+    )
   }
 
-  const isActive = (blockStyle) => {
-    if (!store.getEditorState) {
-      // not initialized yet
-      return false
-    }
-
-    const editorState = store.getEditorState()
+  const isActive = (editor, blockStyle) => {
+    const editorState = editor.getEditorState()
     const selection = editorState.getSelection();
     const blockType = editorState
       .getCurrentContent()

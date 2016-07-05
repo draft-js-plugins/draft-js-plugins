@@ -17,7 +17,10 @@ class InlineEditor extends React.Component {
         this.state = {
             editorState: EditorState.createEmpty()
         }
+        this.focus = () => this.refs.editor.focus();
     }
+
+    getEditorState = () => this.state.editorState
 
     onChange = (editorState) => {
         this.setState({
@@ -27,17 +30,19 @@ class InlineEditor extends React.Component {
 
     render() {
         return (
-            <div className={'editor'}>
-                <BoldButton />
-                <ItalicButton />
-                <UnderlineButton />
-                <MonospaceButton />
-                <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={[inlinePlugin]}
-                    ref="editor"
-                />
+            <div>
+                <BoldButton editor={this} />
+                <ItalicButton editor={this}/>
+                <UnderlineButton editor={this}/>
+                <MonospaceButton editor={this}/>
+                <div className={'editor'} onClick={this.focus}>
+                    <Editor
+                        editorState={this.state.editorState}
+                        onChange={this.onChange}
+                        plugins={[inlinePlugin]}
+                        ref="editor"
+                    />
+                </div>
             </div>
             
         )

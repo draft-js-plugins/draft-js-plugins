@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 
-export default function(type, style) {
+export default function(type) {
   const BlockStyleControls = (props) => {
     return (
         <BlockControlButton
             key={type.label}
-            active={props.isActive(style)}
+            active={props.isActive(props.editor, type.style)}
             label={type.label}
             onToggle={props.onToggle}
             style={type.style}
@@ -21,7 +21,7 @@ export class BlockControlButton extends React.Component {
     super();
 
     this.onToggle = (e) => {
-      e.preventDefault();
+      // e.preventDefault();
       this.props.onToggle(this.props.style);
     };
   }

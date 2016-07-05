@@ -17,7 +17,10 @@ class BlockEditor extends React.Component {
             editorState: EditorState.createEmpty()
         }
         this.onChange = this.onChange.bind(this)
+        this.focus = () => this.refs.editor.focus();
     }
+
+    getEditorState = () => this.state.editorState
 
     onChange = (editorState) => {
         this.setState({
@@ -27,23 +30,25 @@ class BlockEditor extends React.Component {
 
     render() {
         return (
-            <div className="editor">
-                <H1Button />
-                <H2Button />
-                <H3Button />
-                <H4Button />
-                <H5Button />
-                <H6Button />
-                <BlockquoteButton />
-                <UlButton />
-                <OlButton />
-                <CodeblockButton />
-                <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={[blockPlugin]}
-                    ref="editor"
-                />
+            <div>
+                <H1Button editor={this}/>
+                <H2Button editor={this}/>
+                <H3Button editor={this}/>
+                <H4Button editor={this}/>
+                <H5Button editor={this}/>
+                <H6Button editor={this}/>
+                <BlockquoteButton editor={this}/>
+                <UlButton editor={this}/>
+                <OlButton editor={this}/>
+                <CodeblockButton editor={this}/>
+                <div className="editor">
+                    <Editor
+                        editorState={this.state.editorState}
+                        onChange={this.onChange}
+                        plugins={[blockPlugin]}
+                        ref="editor"
+                    />
+                </div>
             </div>
             
         )

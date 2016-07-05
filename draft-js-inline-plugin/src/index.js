@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.css';
-import { RichUtils, Entity } from 'draft-js'
+import { RichUtils, Entity, EditorState } from 'draft-js'
 
 import decorateComponentWithProps from 'decorate-component-with-props';
 
@@ -16,19 +16,20 @@ const inlinePlugin = (config = {}) => {
   };
 
   const toggleInlineStyle = (inlineStyle) => {
-      store.setEditorState(
-          RichUtils.toggleInlineStyle(
-              store.getEditorState(),
-              inlineStyle
-          )
-      );
+    const nextState = RichUtils.toggleInlineStyle(
+      store.getEditorState(),
+      inlineStyle
+    )
+
+    store.setEditorState(
+      EditorState.forceSelection(
+        nextState, nextState.getCurrentContent().getSelectionAfter()
+      )
+    )
   }
 
-  const isActive = (inlineStyle) => {
-    if (!store.getEditorState) {
-      return false
-    }
-    return store.getEditorState().getCurrentInlineStyle().has(inlineStyle)
+  const isActive = (editor, inlineStyle) => {
+    return editor.getEditorState().getCurrentInlineStyle().has(inlineStyle)
   }
 
   const boldProps = { label: 'Bold', button: <b>B</b>, style: 'BOLD' }
@@ -46,10 +47,10 @@ const inlinePlugin = (config = {}) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;
     },
-    BoldButton: (props) => <BoldButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} />,
-    ItalicButton: (props) => <ItalicButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} />,
-    UnderlineButton: (props) => <UnderlineButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} />,
-    MonospaceButton: (props) => <MonospaceButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} />,
+    BoldButton: (props) => <BoldButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} {...props}/>,
+    ItalicButton: (props) => <ItalicButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} {...props}/>,
+    UnderlineButton: (props) => <UnderlineButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} {...props}/>,
+    MonospaceButton: (props) => <MonospaceButton store={store} theme={theme} onToggle={toggleInlineStyle} isActive={isActive} {...props}/>,
   };
 };
 
