@@ -1,35 +1,30 @@
-import React, { PropTypes } from 'react'
+import React from 'react';
 
-export default function(type) {
-  const BlockStyleControls = (props) => {
-    return (
-        <BlockControlButton
-            key={type.label}
-            active={props.isActive(props.getEditorState, type.style)}
-            label={type.label}
-            onToggle={props.onToggle}
-            style={type.style}
-            theme={props.theme}
-        />
-    );
-  };
-  return BlockStyleControls
-}
+export default (type) =>
+  (props) =>
+    <BlockControlButton
+      key={type.label}
+      active={props.isActive(props.getEditorState, type.style)}
+      label={type.label}
+      onToggle={props.onToggle}
+      style={type.style}
+      theme={props.theme}
+    />;
 
 export class BlockControlButton extends React.Component {
   constructor() {
     super();
 
-    this.onToggle = (e) => {
+    this.onToggle = () => {
       // e.preventDefault();
       this.props.onToggle(this.props.style);
     };
   }
 
   render() {
-    let className = [this.props.theme['button']]
+    const className = [this.props.theme.button];
     if (this.props.active) {
-      className.push(this.props.theme['button-active'])
+      className.push(this.props.theme['button-active']);
     }
 
     return (

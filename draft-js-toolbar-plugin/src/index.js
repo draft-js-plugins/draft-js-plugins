@@ -1,7 +1,5 @@
 import { shouldRenderToolbar, getToolbarPosition, getToolbarActions } from './utils/textToolbar';
 import Decorator from './decorators/toolbar';
-import linkStrategy from './linkStrategy';
-import Link from './Link';
 import styles from './styles.css';
 import airToolbarHandler from './air-toolbar';
 

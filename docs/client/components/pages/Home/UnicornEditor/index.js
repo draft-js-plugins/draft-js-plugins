@@ -52,7 +52,6 @@ export default class UnicornEditor extends Component {
     this.setState({
       editorState,
     });
-
   };
 
   onMentionSearchChange = ({ value }) => {

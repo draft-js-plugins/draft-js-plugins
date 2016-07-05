@@ -31,24 +31,23 @@ class LinkButton extends React.Component {
   }
 
   render() {
-    const { theme, store } = this.props
+    const { theme, store } = this.props;
 
-    const classNames = [theme['button']];
+    const classNames = [theme.button];
     if (store.active) {
       classNames.push(theme['button-active']);
     }
 
     return (
-        <button className={classNames.join(' ')} onClick={this.confirmLink}>
-            Link
-        </button>
+      <button className={classNames.join(' ')} onClick={this.confirmLink}>
+        Link
+      </button>
     );
-
   }
 }
 LinkButton.propTypes = {
   store: PropTypes.object.isRequired,
   theme: PropTypes.object,
-}
+};
 
 export default LinkButton;

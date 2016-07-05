@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
-  return WrappedComponent.displayName || WrappedComponent.name || 'WrappedComponent';
-};
+const getDisplayName = WrappedComponent =>
+  WrappedComponent.displayName || WrappedComponent.name || 'WrappedComponent';
 
 let number = 0;
 

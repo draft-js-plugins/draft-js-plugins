@@ -1,17 +1,15 @@
-import React from 'react'
+import React from 'react';
 import linkStrategy from './linkStrategy';
 import Link from './Link';
-import LinkButton from './LinkButton'
+import LinkButton from './LinkButton';
 import styles from './styles.css';
-import { Entity } from 'draft-js'
-
-import decorateComponentWithProps from 'decorate-component-with-props';
+import { Entity } from 'draft-js';
 
 const linkPlugin = (config = {}) => {
   const theme = config.theme || styles;
 
   // TODO: Can we somehow avoid global variables like these? this is pretty ugly - 2016-06-28
-  var store = {
+  const store = {
     getEditorState: undefined,
     setEditorState: undefined,
     active: false,
@@ -42,9 +40,9 @@ const linkPlugin = (config = {}) => {
         }
       );
 
-      return editorState
+      return editorState;
     },
-    initialize: ({getEditorState, setEditorState}) => {
+    initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;
     },
@@ -53,7 +51,7 @@ const linkPlugin = (config = {}) => {
       component: (props) => <Link {...props} theme={theme} />,
     }],
     LinkButton: (props) => (
-        <LinkButton {...props} theme={theme} store={store}/>
+        <LinkButton {...props} theme={theme} store={store} />
       ),
     // LinkButton: decorateComponentWithProps(LinkButton, { theme, store }),
   };

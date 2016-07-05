@@ -24,13 +24,13 @@ export default class Toolbar extends Component {
     const classNames = [styles['toolbar-item']];
 
     const buttonStyleMap = {
-        // 'button': styles['toolbar-item'],
-        'button-active': styles['toolbar-item-active'],
-    }
+      // 'button': styles['toolbar-item'],
+      'button-active': styles['toolbar-item-active'],
+    };
 
     return (
       <div key={index} className={classNames.join(' ')}>
-          <ActionComponent editor={editor} theme={buttonStyleMap}/>
+        <ActionComponent editor={editor} theme={buttonStyleMap} />
       </div>
     );
   };

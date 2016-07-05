@@ -1,7 +1,4 @@
-import React from 'react'
-import { RichUtils } from 'draft-js';
-import defaultInlineStyles from '../actions/inlineStyles';
-import defaultActions from '../actions/custom';
+import React from 'react';
 import getSelection from '../utils/getSelection';
 import getSelectionRect from '../utils/getSelectionRect';
 
@@ -23,9 +20,8 @@ export const getToolbarPosition = () => getSelectionRect(getSelection());
   ));
 } */
 
-export const getToolbarActions = (config, editorState) => (
-    config.actions.map(ActionComponent => (
-        (props) => <ActionComponent getEditorState={() => editorState} {...props} />
-    )) 
-)
+export const getToolbarActions = (config, editorState) =>
+  config.actions.map(ActionComponent =>
+    (props) => <ActionComponent getEditorState={() => editorState} {...props} />
+  );
 

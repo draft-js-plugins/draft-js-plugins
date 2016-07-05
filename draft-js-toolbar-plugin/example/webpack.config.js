@@ -1,7 +1,5 @@
-
-var webpack = require('webpack');
+/* eslint-disable no-var */
 var autoprefixer = require('autoprefixer');
-var plugins = [];
 
 module.exports = {
   entry: './index.js',
@@ -15,5 +13,4 @@ module.exports = {
     ]
   },
   postcss: [autoprefixer({ browsers: ['> 1%'] })],
-  plugins: plugins
 };
