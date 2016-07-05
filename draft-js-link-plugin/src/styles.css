@@ -2,7 +2,7 @@
  * LinkButton
 */
 
-.link-button {
+.button {
   box-sizing: border-box;
   background: #fff;
   border: 1px solid #ddd;
@@ -16,7 +16,7 @@
   text-decoration: none;
 }
 
-.link-button-active {
+.button-active {
   background-color: #2f2f2f;
 }
 

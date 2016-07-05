@@ -1,3 +1,4 @@
+import React from 'react'
 import { RichUtils } from 'draft-js';
 import defaultInlineStyles from '../actions/inlineStyles';
 import defaultActions from '../actions/custom';
@@ -21,4 +22,10 @@ export const getToolbarPosition = () => getSelectionRect(getSelection());
     blockType
   ));
 } */
+
+export const getToolbarActions = (config, editorState) => (
+    config.actions.map(ActionComponent => (
+        (props) => <ActionComponent getEditorState={() => editorState} {...props} />
+    )) 
+)
 

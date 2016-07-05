@@ -31,10 +31,12 @@ class LinkEditor extends React.Component {
         this.refs.editor.focus()
     }
 
+    getEditorState = () => this.state.editorState
+
     render() {
         return (
             <div className={'editor'}>
-                <LinkButton editor={this}/>
+                <LinkButton getEditorState={this.getEditorState}/>
                 <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}

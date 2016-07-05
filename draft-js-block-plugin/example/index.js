@@ -31,16 +31,16 @@ class BlockEditor extends React.Component {
     render() {
         return (
             <div>
-                <H1Button editor={this}/>
-                <H2Button editor={this}/>
-                <H3Button editor={this}/>
-                <H4Button editor={this}/>
-                <H5Button editor={this}/>
-                <H6Button editor={this}/>
-                <BlockquoteButton editor={this}/>
-                <UlButton editor={this}/>
-                <OlButton editor={this}/>
-                <CodeblockButton editor={this}/>
+                <H1Button getEditorState={this.getEditorState}/>
+                <H2Button getEditorState={this.getEditorState}/>
+                <H3Button getEditorState={this.getEditorState}/>
+                <H4Button getEditorState={this.getEditorState}/>
+                <H5Button getEditorState={this.getEditorState}/>
+                <H6Button getEditorState={this.getEditorState}/>
+                <BlockquoteButton getEditorState={this.getEditorState}/>
+                <UlButton getEditorState={this.getEditorState}/>
+                <OlButton getEditorState={this.getEditorState}/>
+                <CodeblockButton getEditorState={this.getEditorState}/>
                 <div className="editor">
                     <Editor
                         editorState={this.state.editorState}

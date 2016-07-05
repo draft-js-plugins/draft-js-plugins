@@ -31,10 +31,10 @@ class InlineEditor extends React.Component {
     render() {
         return (
             <div>
-                <BoldButton editor={this} />
-                <ItalicButton editor={this}/>
-                <UnderlineButton editor={this}/>
-                <MonospaceButton editor={this}/>
+                <BoldButton getEditorState={this.getEditorState} />
+                <ItalicButton getEditorState={this.getEditorState}/>
+                <UnderlineButton getEditorState={this.getEditorState}/>
+                <MonospaceButton getEditorState={this.getEditorState}/>
                 <div className={'editor'} onClick={this.focus}>
                     <Editor
                         editorState={this.state.editorState}

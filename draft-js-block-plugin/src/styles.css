@@ -3,7 +3,7 @@
 */
 
 
-.block-button {
+.button {
   box-sizing: border-box;
   background: #fff;
   border: 1px solid #ddd;
@@ -19,6 +19,6 @@
   vertical-align: middle;
 }
 
-.block-button-active {
+.button-active {
   background-color: #2f2f2f;
 }

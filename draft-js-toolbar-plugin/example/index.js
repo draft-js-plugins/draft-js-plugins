@@ -39,15 +39,19 @@ class ToolbarEditor extends React.Component {
         });
     };
 
+    getEditorState = () => this.state.editorState
+
     render() {
         return (
             <div>
-                <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={[inlinePlugin, blockPlugin, linkPlugin, toolbarPlugin]}
-                    ref="editor"
-                />
+                <div className="editor">
+                    <Editor
+                        editorState={this.state.editorState}
+                        onChange={this.onChange}
+                        plugins={[inlinePlugin, blockPlugin, linkPlugin, toolbarPlugin]}
+                        ref="editor"
+                    />
+                </div>
             </div>
             
         )

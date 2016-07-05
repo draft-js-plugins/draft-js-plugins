@@ -28,8 +28,8 @@ const inlinePlugin = (config = {}) => {
     )
   }
 
-  const isActive = (editor, inlineStyle) => {
-    return editor.getEditorState().getCurrentInlineStyle().has(inlineStyle)
+  const isActive = (getEditorState, inlineStyle) => {
+    return getEditorState().getCurrentInlineStyle().has(inlineStyle)
   }
 
   const boldProps = { label: 'Bold', button: <b>B</b>, style: 'BOLD' }

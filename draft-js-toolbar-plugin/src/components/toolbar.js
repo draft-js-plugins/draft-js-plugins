@@ -17,14 +17,20 @@ export default class Toolbar extends Component {
   // Render single action buttons
   renderAction = (ActionComponent, index) => {
     const { toolbarTheme } = this.context;
-    const { theme } = this.props;
+    const { theme, editor } = this.props;
+
     const styles = toolbarTheme || theme;
 
     const classNames = [styles['toolbar-item']];
 
+    const buttonStyleMap = {
+        // 'button': styles['toolbar-item'],
+        'button-active': styles['toolbar-item-active'],
+    }
+
     return (
       <div key={index} className={classNames.join(' ')}>
-          <ActionComponent />
+          <ActionComponent editor={editor} theme={buttonStyleMap}/>
       </div>
     );
   };

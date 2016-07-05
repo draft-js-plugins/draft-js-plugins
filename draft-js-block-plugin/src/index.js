@@ -29,8 +29,8 @@ const inlinePlugin = (config = {}) => {
     )
   }
 
-  const isActive = (editor, blockStyle) => {
-    const editorState = editor.getEditorState()
+  const isActive = (getEditorState, blockStyle) => {
+    const editorState = getEditorState()
     const selection = editorState.getSelection();
     const blockType = editorState
       .getCurrentContent()

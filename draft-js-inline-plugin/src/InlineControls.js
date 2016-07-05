@@ -5,7 +5,7 @@ export default function(type) {
     return (
         <InlineControlButton
             key={type.label}
-            active={props.isActive(props.editor, type.style)}
+            active={props.isActive(props.getEditorState, type.style)}
             label={type.label}
             onToggle={props.onToggle}
             style={type.style}
@@ -26,9 +26,9 @@ export class InlineControlButton extends React.Component {
   }
 
   render() {
-    let className = [this.props.theme['inline-button']]
+    let className = [this.props.theme['button']]
     if (this.props.active) {
-      className.push(this.props.theme['inline-button-active'])
+      className.push(this.props.theme['button-active'])
     }
 
     return (
