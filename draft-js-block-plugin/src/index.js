@@ -64,7 +64,7 @@ const inlinePlugin = (config = {}) => {
 
   const injectProps = (Component) => (
     (props) => (
-      <Component {...props} store={store} theme={theme} onToggle={toggleBlockType} isActive={isActive} />
+      <Component store={store} theme={theme} onToggle={toggleBlockType} isActive={isActive} {...props}/>
     )
   )
 

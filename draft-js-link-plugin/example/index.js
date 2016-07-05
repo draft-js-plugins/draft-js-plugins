@@ -9,8 +9,6 @@ import styles from './styles.css';
 const linkPlugin = createLinkPlugin()
 const { LinkButton } = linkPlugin
 
-console.log(styles);
-
 class LinkEditor extends React.Component {
     constructor(props) {
         super(props)

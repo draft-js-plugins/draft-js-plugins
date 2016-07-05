@@ -92,7 +92,7 @@
   padding-right: 6px;
 }
 
-.toolbar .toolbar-item.toolbar-item-active {
+.toolbar .toolbar-item button.toolbar-item-active {
   background-color: #2f2f2f;
 }
 
