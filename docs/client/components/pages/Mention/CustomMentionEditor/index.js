@@ -34,6 +34,34 @@ const mentionPlugin = createMentionPlugin({
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
+const Entry = (props) => {
+  const { mention, theme, ...parentProps } = props;
+
+  return (
+    <div {...parentProps}>
+      <div className={theme.mentionSuggestionsEntryContainer}>
+        <div className={theme.mentionSuggestionsEntryContainerLeft}>
+          <img
+            src={mention.get('avatar')}
+            className={theme.mentionSuggestionsEntryAvatar}
+            role="presentation"
+          />
+        </div>
+
+        <div className={theme.mentionSuggestionsEntryContainerRight}>
+          <div className={theme.mentionSuggestionsEntryText}>
+            {mention.get('name')}
+          </div>
+
+          <div className={theme.mentionSuggestionsEntryTitle}>
+            {mention.get('title')}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default class CustomMentionEditor extends Component {
 
   state = {
@@ -69,6 +97,7 @@ export default class CustomMentionEditor extends Component {
         <MentionSuggestions
           onSearchChange={this.onSearchChange}
           suggestions={this.state.suggestions}
+          entryComponent={Entry}
         />
       </div>
     );

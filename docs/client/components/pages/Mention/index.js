@@ -153,6 +153,10 @@ export default class App extends Component {
               <span className={styles.paramName}>onClose</span>
               <span>A callback which is triggered whenever the suggestions popover closes.</span>
             </div>
+            <div className={styles.param}>
+              <span className={styles.paramName}>entryComponent</span>
+              <span>Component to be used as the template for each of the suggestions' entry.</span>
+            </div>
           </div>
           <Heading level={3}>Additional Exports</Heading>
           <div>

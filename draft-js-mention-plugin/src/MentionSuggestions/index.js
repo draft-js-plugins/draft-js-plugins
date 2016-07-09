@@ -5,6 +5,7 @@ import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
+import defaultEntryComponent from './Entry/defaultEntryComponent';
 
 export default class MentionSuggestions extends Component {
   static propTypes = {
@@ -13,6 +14,11 @@ export default class MentionSuggestions extends Component {
       'IMMUTABLE',
       'MUTABLE',
     ]),
+    entryComponent: PropTypes.func,
+  };
+
+  static defaultProps = {
+    entryComponent: defaultEntryComponent,
   };
 
   state = {
@@ -265,9 +271,11 @@ export default class MentionSuggestions extends Component {
     }
 
     const { theme = {} } = this.props;
+    const { entryComponent, ...props } = this.props;
+
     return (
       <div
-        {...this.props}
+        {...props}
         className={theme.mentionSuggestions}
         role="listbox"
         id={`mentions-list-${this.key}`}
@@ -284,6 +292,7 @@ export default class MentionSuggestions extends Component {
               index={index}
               id={`mention-option-${this.key}-${index}`}
               theme={theme}
+              entryComponent={entryComponent}
             />
           )).toJS()
         }
