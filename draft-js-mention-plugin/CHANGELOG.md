@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Added
+
+- Introduced a new configuration option `mentionTrigger`. By default it is set to `@`. As before by default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered. [#320](https://github.com/draft-js-plugins/draft-js-plugins/pull/320) Thanks to @yjang1031
+
 ### Fixed
 
 - Mentions popover showed up when typing before a @ [#323](https://github.com/draft-js-plugins/draft-js-plugins/issues/323) Thanks to @nishp1
