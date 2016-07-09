@@ -20,18 +20,15 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
   setFocus = () => {
-    const { blockProps } = this.props;
-    blockProps.setFocus();
+    this.props.blockProps.setFocus();
   }
 
   unsetFocus = (direction, event) => {
-    const { unsetFocus } = this.props.blockProps;
-    unsetFocus(direction, event);
+    this.props.blockProps.unsetFocus(direction, event);
   }
 
   removeBlock = () => {
-    const { removeBlock } = this.props.blockProps;
-    removeBlock();
+    this.props.blockProps.removeBlock();
   }
 
   componentDidMount() {
