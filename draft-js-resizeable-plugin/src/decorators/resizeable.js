@@ -44,8 +44,7 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
   };
 
   setEntityData = data => {
-    const { setEntityData } = this.props.blockProps;
-    setEntityData(data);
+    this.props.blockProps.setEntityData(data);
   }
 
   componentDidMount() {

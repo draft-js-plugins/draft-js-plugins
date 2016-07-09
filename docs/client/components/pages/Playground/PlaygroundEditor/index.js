@@ -53,8 +53,8 @@ export default class SimpleHashtagEditor extends Component {
 
     // Unset style override for current color.
     if (selection.isCollapsed()) {
-      nextEditorState = currentStyle.reduce((state, color) => (
-        RichUtils.toggleInlineStyle(state, color)
+      nextEditorState = currentStyle.reduce((currentEditorState, color) => (
+        RichUtils.toggleInlineStyle(currentEditorState, color)
       ), nextEditorState);
     }
 

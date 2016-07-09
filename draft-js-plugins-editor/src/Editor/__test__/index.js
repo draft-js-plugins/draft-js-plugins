@@ -33,7 +33,7 @@ class TestEditor extends Component {
 
 describe('Editor', () => {
   describe('renders the Editor', () => {
-    const onChange = sinon.spy();
+    const changeSpy = sinon.spy();
     let editorState;
 
     beforeEach(() => {
@@ -44,7 +44,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={[]}
         />
       );
@@ -55,7 +55,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
         />
       );
       expect(result).to.have.ref('editor');
@@ -68,7 +68,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -79,7 +79,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
         />
       );
       const pluginEditor = result.instance();
@@ -90,7 +90,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           defaultKeyBindings={false}
         />
       );
@@ -100,12 +100,12 @@ describe('Editor', () => {
   });
 
   describe('with plugins', () => {
-    let onChange;
+    let changeSpy;
     let editorState;
 
     beforeEach(() => {
       editorState = EditorState.createEmpty();
-      onChange = sinon.spy();
+      changeSpy = sinon.spy();
     });
 
     it('calls the on-hooks of the plugin', () => {
@@ -121,7 +121,7 @@ describe('Editor', () => {
       const result = shallow(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -154,7 +154,7 @@ describe('Editor', () => {
       const result = shallow(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -193,7 +193,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -224,7 +224,7 @@ describe('Editor', () => {
       const result = shallow(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -257,7 +257,7 @@ describe('Editor', () => {
       const result = shallow(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -284,7 +284,7 @@ describe('Editor', () => {
       const result = shallow(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -328,7 +328,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -372,7 +372,7 @@ describe('Editor', () => {
         <PluginEditor
           editorState={editorState}
           customStyleMap={customStyleMap}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={plugins}
         />
       );
@@ -398,12 +398,12 @@ describe('Editor', () => {
     let pluginEditor;
 
     beforeEach(() => {
-      const onChange = sinon.spy();
+      const changeSpy = sinon.spy();
       const editorState = EditorState.createEmpty();
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={[]}
         />
       );
@@ -425,7 +425,7 @@ describe('Editor', () => {
   });
 
   describe('custom prop comes before plugin hook', () => {
-    const onChange = sinon.spy();
+    const changeSpy = sinon.spy();
     let editorState;
     let customHook;
 
@@ -441,7 +441,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={[plugin]}
           onUpArrow={customHook}
         />
@@ -459,7 +459,7 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          onChange={onChange}
+          onChange={changeSpy}
           plugins={[plugin]}
           blockRendererFn={customHook}
         />

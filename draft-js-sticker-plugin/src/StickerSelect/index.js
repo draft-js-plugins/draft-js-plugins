@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StickerOption from './StickerOption';
-import add from '../modifiers/addSticker';
+import addSticker from '../modifiers/addSticker';
 
 /**
  * Sets the CSS overflow value to newValue
@@ -63,7 +63,7 @@ export default class StickerSelect extends Component {
   // Add a sticker to the editor
   add = (id) => {
     const { editor } = this.props;
-    editor.onChange(add(editor.state.editorState, id));
+    editor.onChange(addSticker(editor.state.editorState, id));
   };
 
   render() {

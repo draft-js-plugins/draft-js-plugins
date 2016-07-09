@@ -28,8 +28,7 @@ const TableComponent = ({ theme }) => class Table extends Component {
   }
 
   setFocus = (row, column) => {
-    const { setFocus } = this.props;
-    setFocus();
+    this.props.setFocus();
     this.setState({ focusedEdit: { row, column } });
   }
 

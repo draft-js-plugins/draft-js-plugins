@@ -13,7 +13,7 @@ export default class Code extends Component {
     collapsed: true,
   };
 
-  shouldComponentUpdate = shouldComponentUpdate;
+  shouldComponentUpdate = shouldComponentUpdate; // eslint-disable-line no-redeclare
 
   onCodeClick = () => {
     const collapsed = !this.state.collapsed;

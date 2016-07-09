@@ -14,7 +14,9 @@ export default WrappedComponent => {
   return class BlockDraggableDecorator extends Component {
     // Statics
     static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
+    // eslint-disable-next-line no-redeclare
     static pluginOptions = pluginOptions;
+    // eslint-disable-next-line no-redeclare
     static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
     // Default props

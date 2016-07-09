@@ -10,7 +10,7 @@ export default class Code extends Component {
     code: PropTypes.string,
   };
 
-  shouldComponentUpdate = shouldComponentUpdate;
+  shouldComponentUpdate = shouldComponentUpdate; // eslint-disable-line no-redeclare
 
   render() {
     const { className } = this.props;

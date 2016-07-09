@@ -4,7 +4,7 @@ import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
 
 export default class StatePreview extends Component {
 
-  shouldComponentUpdate = shouldComponentUpdate;
+  shouldComponentUpdate = shouldComponentUpdate; // eslint-disable-line no-redeclare
 
   render() {
     const codeClassName = this.props.collapsed ? styles.collapsedCode : styles.expandedCode;
