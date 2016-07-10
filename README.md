@@ -43,7 +43,7 @@ $ npm install draft-js-plugins-editor --save
 To try out the beta version of 2.0.0 run
 
 ```
-$ npm install draft-js-plugins-editor@beta --save
+$ npm install draft-js-plugins-editor@2.0.0-beta1 --save
 ```
 
 Then import the editor somewhere in your code and you're ready to go!
