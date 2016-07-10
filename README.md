@@ -8,7 +8,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 ## Important Note
 
-We currently prepare for a 2.0 beta. The `master` branch already contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@beta --save`
+We currently prepare for a 2.0 beta. The `master` branch already contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-beta1 --save`
 
 ## Available Plugins (incl. Docs)
 
