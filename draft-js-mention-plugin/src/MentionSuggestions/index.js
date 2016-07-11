@@ -8,6 +8,7 @@ import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
 export default class MentionSuggestions extends Component {
+
   static propTypes = {
     entityMutability: PropTypes.oneOf([
       'SEGMENTED',
@@ -284,7 +285,7 @@ export default class MentionSuggestions extends Component {
         {
           this.props.suggestions.map((mention, index) => (
             <Entry
-              key={mention.get('name')}
+              key={mention.has('id') ? mention.get('id') : mention.get('name')}
               onMentionSelect={this.onMentionSelect}
               onMentionFocus={this.onMentionFocus}
               isFocused={this.state.focusedOptionIndex === index}
