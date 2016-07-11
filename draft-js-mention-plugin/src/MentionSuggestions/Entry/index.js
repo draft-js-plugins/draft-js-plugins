@@ -7,6 +7,7 @@ export default class Entry extends Component {
 
   static propTypes = {
     entryComponent: PropTypes.func.isRequired,
+    searchValue: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -37,7 +38,7 @@ export default class Entry extends Component {
   };
 
   render() {
-    const { theme = {} } = this.props;
+    const { theme = {}, searchValue } = this.props;
     const className = this.props.isFocused ? theme.mentionSuggestionsEntryFocused : theme.mentionSuggestionsEntry;
     const EntryComponent = this.props.entryComponent;
     return (
@@ -49,6 +50,7 @@ export default class Entry extends Component {
         role="option"
         theme={theme}
         mention={this.props.mention}
+        searchValue={searchValue}
       />
     );
   }
