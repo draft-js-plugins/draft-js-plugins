@@ -32,12 +32,6 @@ export default class MentionSuggestions extends Component {
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.suggestions.size === 0 && this.state.isActive) {
-      this.closeDropdown();
-    }
-  }
-
   componentDidUpdate = (prevProps, prevState) => {
     if (this.refs.popover) {
       // In case the list shrinks there should be still an option focused.
@@ -198,6 +192,10 @@ export default class MentionSuggestions extends Component {
 
   onMentionSelect = (mention) => {
     this.closeDropdown();
+
+    if (!mention) {
+      return;
+    }
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
