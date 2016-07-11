@@ -40,21 +40,26 @@ const mentions = fromJS([
 ]);
 
 describe('MentionSuggestions Component', () => {
-  it('Closes when suggestions is empty', () => {
-    const callbacks = {
-      onDownArrow: sinon.spy(),
-      onUpArrow: sinon.spy(),
-      onTab: sinon.spy(),
-      onEscape: sinon.spy(),
-      handleReturn: sinon.spy(),
-    };
-    const store = {
-      getAllSearches: sinon.spy(),
-      getPortalClientRect: sinon.spy(),
-      isEscaped: sinon.spy(),
-      resetEscapedSearch: sinon.spy(),
-      escapeSearch: sinon.spy(),
-    };
+  const mockCallbacks = () => ({
+    onDownArrow: sinon.spy(),
+    onUpArrow: sinon.spy(),
+    onTab: sinon.spy(),
+    onEscape: sinon.spy(),
+    handleReturn: sinon.spy()
+  });
+
+  const mockStore = () => ({
+    getAllSearches: sinon.spy(),
+    getPortalClientRect: sinon.spy(),
+    isEscaped: sinon.spy(),
+    resetEscapedSearch: sinon.spy(),
+    escapeSearch: sinon.spy(),
+    setEditorState: sinon.spy()
+  });
+
+  it('does not closes when suggestions is empty', () => {
+    const callbacks = mockCallbacks();
+    const store = mockStore();
     const ariaProps = {};
     const onSearchChange = sinon.spy();
     const positionSuggestions = sinon.stub().returns({});
@@ -76,6 +81,30 @@ describe('MentionSuggestions Component', () => {
     suggestions.setProps({
       suggestions: fromJS([]),
     });
-    expect(suggestions.state().isActive).to.equal(false);
+    expect(suggestions.state().isActive).to.equal(true);
+  });
+
+  it('closes dropdown on Enter when no mention is selected and does not throw', () => {
+    const callbacks = mockCallbacks();
+    const store = mockStore();
+    const ariaProps = {};
+    const onSearchChange = sinon.spy();
+    const positionSuggestions = sinon.stub().returns({});
+    const suggestions = mount(
+      <MentionSuggestions
+        ariaProps={ariaProps}
+        onSearchChange={onSearchChange}
+        positionSuggestions={positionSuggestions}
+        suggestions={mentions}
+        callbacks={callbacks}
+        store={store}
+        theme={{}}
+      />
+    );
+
+    const closeDropdownSpy = sinon.spy(suggestions.instance(), 'closeDropdown');
+    suggestions.instance().onMentionSelect(null);
+    expect(closeDropdownSpy).to.have.been.calledOnce();
+    expect(store.setEditorState).to.not.have.been.called();
   });
 });
