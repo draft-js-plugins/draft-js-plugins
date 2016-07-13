@@ -33,6 +33,7 @@ const createMentionPlugin = (config = {}) => {
     onEscape: undefined,
     handleReturn: undefined,
     onChange: undefined,
+    onSelect: config.onSelect ? config.onSelect : undefined
   };
 
   const ariaProps = {

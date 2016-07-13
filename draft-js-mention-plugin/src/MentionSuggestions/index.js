@@ -204,6 +204,7 @@ export default class MentionSuggestions extends Component {
       this.props.mentionTrigger,
       this.props.entityMutability,
     );
+    this.props.callbacks && this.props.callbacks.onSelect && this.props.callbacks.onSelect(mention);
     this.props.store.setEditorState(newEditorState);
   };
 
