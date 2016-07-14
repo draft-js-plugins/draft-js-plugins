@@ -198,13 +198,18 @@ export default class MentionSuggestions extends Component {
 
   onMentionSelect = (mention) => {
     this.closeDropdown();
+    const { callbacks } = this.props;
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
       this.props.mentionTrigger,
       this.props.entityMutability,
     );
-    this.props.callbacks && this.props.callbacks.onSelect && this.props.callbacks.onSelect(mention);
+
+    if (callbacks && callbacks.onSelect) {
+      callbacks.onSelect(mention);
+    }
+
     this.props.store.setEditorState(newEditorState);
   };
 
