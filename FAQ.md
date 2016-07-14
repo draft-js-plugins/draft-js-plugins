@@ -21,6 +21,24 @@ import { EditorState } from 'draft-js';
 this.setState({ editorState: EditorState.createEmpty() })
 ```
 
+## Why are mentions broken after using `convertFromRaw` and throwing an error?
+
+We design the API to accept an Immutable Map for a Mention. After saving your datastructure to the erver and using `convertFromRaw` the mentions in there are plain objects. I (Nik) believe this is a law in our design and the mention data should be a plain object. Hint: We might fix this with v2.0.0 f the mentions plugin.
+
+What you can do now is fixing the datastructure before converting it:
+
+```JS
+import { fromJS} from 'immutable';
+import forEach from 'lodash/forEach';
+
+forEach(rawContent.entityMap, function(value, key) {
+  value.data.mention = fromJS(value.data.mention)
+})
+
+const contentState = Draft.convertFromRaw(rawContent)
+const editorState = Draft.EditorState.createWithContent(contentState)
+```
+
 ## Why is there no Popover for Mentions/Emoji plugin?
 
 The MentionSuggestions/EmojiSuggestions component is internally connected to the
