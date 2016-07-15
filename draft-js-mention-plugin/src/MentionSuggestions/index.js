@@ -278,7 +278,8 @@ export default class MentionSuggestions extends Component {
 
     const { theme = {} } = this.props;
     const { entryComponent, ...props } = this.props;
-
+    let { suggestions } = this.props;
+    suggestions = suggestions.slice(0, 50);
     return (
       <div
         {...props}
@@ -288,7 +289,7 @@ export default class MentionSuggestions extends Component {
         ref="popover"
       >
         {
-          this.props.suggestions.map((mention, index) => (
+          suggestions.map((mention, index) => (
             <Entry
               key={mention.has('id') ? mention.get('id') : mention.get('name')}
               onMentionSelect={this.onMentionSelect}
