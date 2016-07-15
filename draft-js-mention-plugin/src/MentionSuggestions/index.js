@@ -71,7 +71,6 @@ export default class MentionSuggestions extends Component {
 
   onEditorStateChange = (editorState) => {
     const searches = this.props.store.getAllSearches();
-
     // if no search portal is active there is no need to show the popover
     if (searches.size === 0) {
       return editorState;
