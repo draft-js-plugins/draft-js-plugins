@@ -2,29 +2,40 @@ import React from 'react';
 import { Entity } from 'draft-js';
 import { fromJS } from 'immutable';
 
-const Mention = (props) => {
-  const { entityKey, theme = {} } = props;
+const MentionLink = ({ mention, theme, mentionPrefix, children }) =>
+  <a
+    href={mention.get('link')}
+    className={theme.mention}
+    spellCheck={false}
+  >
+    {mentionPrefix}{children}
+  </a>;
+
+const MentionText = ({ theme, mentionPrefix, children }) =>
+  <span
+    className={theme.mention}
+    spellCheck={false}
+  >
+    {mentionPrefix}{children}
+  </span>;
+
+const Mention = ({ entityKey, theme = {}, mentionComponent, mentionPrefix, children, decoratedText }) => {
   const mention = fromJS(Entity.get(entityKey).getData().mention);
 
-  if (mention.has('link')) {
-    return (
-      <a
-        href={mention.get('link')}
-        className={theme.mention}
-        spellCheck={false}
-      >
-        {props.mentionPrefix}{props.children}
-      </a>
-    );
-  }
+  const Component = (
+    mentionComponent || (mention.has('link') ? MentionLink : MentionText)
+  );
 
   return (
-    <span
-      className={theme.mention}
-      spellCheck={false}
+    <Component
+      entityKey={entityKey}
+      mention={mention}
+      theme={theme}
+      mentionPrefix={mentionPrefix}
+      decoratedText={decoratedText}
     >
-      {props.mentionPrefix}{props.children}
-    </span>
+      {children}
+    </Component>
   );
 };
 
