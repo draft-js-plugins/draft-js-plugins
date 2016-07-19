@@ -271,8 +271,18 @@ export default class MentionSuggestions extends Component {
       return null;
     }
 
-    const { theme = {} } = this.props;
-    const { entryComponent, ...props } = this.props;
+  const {
+      entryComponent,
+      onSearchChange,
+      suggestions,
+      ariaProps,
+      callbacks,
+      theme={},
+      store,
+      entityMutability,
+      positionSuggestions,
+      mentionTrigger,
+      ...props } = this.props;
 
     return (
       <div
