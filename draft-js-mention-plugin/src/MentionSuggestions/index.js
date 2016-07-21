@@ -271,8 +271,18 @@ export default class MentionSuggestions extends Component {
       return null;
     }
 
-    const { theme = {} } = this.props;
-    const { entryComponent, ...props } = this.props;
+    const {
+      entryComponent,
+      onSearchChange, // eslint-disable-line no-unused-vars
+      suggestions, // eslint-disable-line no-unused-vars
+      ariaProps, // eslint-disable-line no-unused-vars
+      callbacks, // eslint-disable-line no-unused-vars
+      theme = {},
+      store, // eslint-disable-line no-unused-vars
+      entityMutability, // eslint-disable-line no-unused-vars
+      positionSuggestions, // eslint-disable-line no-unused-vars
+      mentionTrigger, // eslint-disable-line no-unused-vars
+      ...props } = this.props;
 
     return (
       <div
