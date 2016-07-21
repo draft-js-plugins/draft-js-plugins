@@ -35,9 +35,7 @@ const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 const Entry = (props) => {
-  const { mention, theme, searchValue, ...parentProps } = props;
-
-  const htmlName = mention.get('name').replace(new RegExp(`(${searchValue})`, 'gi'), '<b style="color:red">$1</b>');
+  const { mention, theme, ...parentProps } = props;
 
   return (
     <div {...parentProps}>
@@ -51,7 +49,10 @@ const Entry = (props) => {
         </div>
 
         <div className={theme.mentionSuggestionsEntryContainerRight}>
-          <div className={theme.mentionSuggestionsEntryText} dangerouslySetInnerHTML={{ __html: htmlName }} />
+          <div className={theme.mentionSuggestionsEntryText}>
+            {mention.get('name')}
+          </div>
+
           <div className={theme.mentionSuggestionsEntryTitle}>
             {mention.get('title')}
           </div>
