@@ -71,7 +71,6 @@ export default class MentionSuggestions extends Component {
 
   onEditorStateChange = (editorState) => {
     const searches = this.props.store.getAllSearches();
-
     // if no search portal is active there is no need to show the popover
     if (searches.size === 0) {
       return editorState;
@@ -198,12 +197,18 @@ export default class MentionSuggestions extends Component {
 
   onMentionSelect = (mention) => {
     this.closeDropdown();
+    const { callbacks } = this.props;
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
       this.props.mentionTrigger,
       this.props.entityMutability,
     );
+
+    if (callbacks && callbacks.onSelect) {
+      callbacks.onSelect(mention);
+    }
+
     this.props.store.setEditorState(newEditorState);
   };
 
@@ -273,7 +278,8 @@ export default class MentionSuggestions extends Component {
 
     const { theme = {} } = this.props;
     const { entryComponent, ...props } = this.props;
-
+    let { suggestions } = this.props;
+    suggestions = suggestions.slice(0, 50);
     return (
       <div
         {...props}
@@ -283,7 +289,7 @@ export default class MentionSuggestions extends Component {
         ref="popover"
       >
         {
-          this.props.suggestions.map((mention, index) => (
+          suggestions.map((mention, index) => (
             <Entry
               key={mention.has('id') ? mention.get('id') : mention.get('name')}
               onMentionSelect={this.onMentionSelect}

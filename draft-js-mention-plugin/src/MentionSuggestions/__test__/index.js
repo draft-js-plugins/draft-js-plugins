@@ -47,13 +47,14 @@ describe('MentionSuggestions Component', () => {
       onTab: sinon.spy(),
       onEscape: sinon.spy(),
       handleReturn: sinon.spy(),
+      onSelect: sinon.spy()
     };
     const store = {
       getAllSearches: sinon.spy(),
       getPortalClientRect: sinon.spy(),
       isEscaped: sinon.spy(),
       resetEscapedSearch: sinon.spy(),
-      escapeSearch: sinon.spy(),
+      escapeSearch: sinon.spy()
     };
     const ariaProps = {};
     const onSearchChange = sinon.spy();
