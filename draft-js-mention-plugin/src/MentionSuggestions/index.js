@@ -293,6 +293,7 @@ export default class MentionSuggestions extends Component {
               index={index}
               id={`mention-option-${this.key}-${index}`}
               theme={theme}
+              searchValue={this.lastSearchValue}
               entryComponent={entryComponent}
             />
           )).toJS()
