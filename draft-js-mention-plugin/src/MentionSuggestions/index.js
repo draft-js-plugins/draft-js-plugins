@@ -6,6 +6,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
+import { List } from 'immutable';
 
 export default class MentionSuggestions extends Component {
 
@@ -16,6 +17,14 @@ export default class MentionSuggestions extends Component {
       'MUTABLE',
     ]),
     entryComponent: PropTypes.func,
+    suggestions: (props, propName, componentName) => {
+      if (!List.isList(props[propName])) {
+        return new Error(
+          'Invalid prop `' + propName + '` supplied to' +
+          ' `' + componentName + '`. should be instance of immutable list.'
+        );
+      }
+    },
   };
 
   static defaultProps = {
