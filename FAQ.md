@@ -64,6 +64,24 @@ The Draft framework includes a handful of CSS resources intended for use with th
 
 You most probably miss this file. See also the troubleshooting in the original [DraftJS documentation](https://facebook.github.io/draft-js/docs/advanced-topics-issues-and-pitfalls.html#missing-draft-css).
 
+## How can i use custom decorators alongside plugin Editor?
+draft-js-plugins-editor supports adding custom decorators from 1.0 release. `Editor` takes one more prop called `decorators` which will be combined with plugin decorators and composite decorator will be generated.
+```js
+const customDecorators = [
+            {
+              strategy: findLinkEntities,
+              component: Link,
+            },
+          ]
+// Editor accepts a prop called decorators. 
+    <Editor
+      editorState={ editorState }
+      onChange={ onChange }
+      decorators={customDecorators}
+      plugins={ [plugin1 plugin2] }
+    />
+```
+
 ## Can I use the same plugin for multiple plugin Editors?
 
 No, you need to instantiation multiple plugins in case you use multiple editors.
