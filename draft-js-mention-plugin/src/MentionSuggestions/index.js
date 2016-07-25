@@ -23,7 +23,7 @@ export default class MentionSuggestions extends Component {
           `Invalid prop \`${propName}\' supplied to \`${componentName}\`. should be an instance of immutable list.`
         );
       }
-      return;
+      return undefined;
     },
   };
 
