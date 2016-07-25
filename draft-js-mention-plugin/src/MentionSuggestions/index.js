@@ -20,10 +20,10 @@ export default class MentionSuggestions extends Component {
     suggestions: (props, propName, componentName) => {
       if (!List.isList(props[propName])) {
         return new Error(
-          'Invalid prop `' + propName + '` supplied to' +
-          ' `' + componentName + '`. should be instance of immutable list.'
+          `Invalid prop \`${propName}\' supplied to \`${componentName}\`. should be an instance of immutable list.`
         );
       }
+      return;
     },
   };
 
