@@ -111,9 +111,7 @@ export default class UnicornEditor extends Component {
 
 #### How to write a Plugin
 
-Feel free to copy any of the existing plugins as a starting point. Feel free to directly contact [@nikgraf](https://github.com/nikgraf) in case you need help or open a Github Issue!
-
-More documentation is coming soon…
+Feel free to copy any of the existing plugins as a starting point.In this repository you also can find a [Guide](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/HOW_TO_CREATE_A_PLUGIN.md) on how to create a plugin including a description of the supported features. In addition you can contact [@nikgraf](https://github.com/nikgraf) directly in case you need help or simply open a Github Issue!
 
 ## Discussion and Support
 Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com) or check out or collection of frequently asked questions here: [FAQ](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md).
