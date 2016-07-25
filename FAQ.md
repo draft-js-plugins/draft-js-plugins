@@ -64,29 +64,33 @@ The Draft framework includes a handful of CSS resources intended for use with th
 
 You most probably miss this file. See also the troubleshooting in the original [DraftJS documentation](https://facebook.github.io/draft-js/docs/advanced-topics-issues-and-pitfalls.html#missing-draft-css).
 
-## How can i use custom decorators alongside plugin Editor?
-draft-js-plugins-editor supports adding custom decorators from 1.0 release. `Editor` takes one more prop called `decorators` which will be combined with plugin decorators and composite decorator will be generated.
-```js
+## How can I use custom decorators with the plugin editor?
+
+`Editor` takes a prop called `decorators` which will be combined with plugin decorators and the provided decorators to a composite decorator.
+```jsx
 const customDecorators = [
-            {
-              strategy: findLinkEntities,
-              component: Link,
-            },
-          ]
+  {
+    strategy: findLinkEntities,
+    component: Link,
+  },
+];
+
 // Editor accepts a prop called decorators. 
-    <Editor
-      editorState={ editorState }
-      onChange={ onChange }
-      decorators={customDecorators}
-      plugins={ [plugin1 plugin2] }
-    />
+const MyEditor = ({ editorState, onChange }) => (
+  <Editor
+    editorState={editorState}
+    onChange={onChange}
+    decorators={customDecorators}
+    plugins={[plugin1, plugin2]}
+  />
+);
 ```
 
 ## Can I use the same plugin for multiple plugin Editors?
 
 No, you need to instantiation multiple plugins in case you use multiple editors.
 
-```js
+```jsx
 const emojiPlugin = createEmojiPlugin();
 const emojiPlugin2 = createEmojiPlugin();
 const EmojiSuggestions = emojiPlugin.EmojiSuggestions;
@@ -99,15 +103,15 @@ const EmojiSuggestions2 = emojiPlugin2.EmojiSuggestions;
 const MyEditor = ({ editorState, editorState2, onChange, onChange2 }) => (
   <div>
     <Editor
-      editorState={ editorState }
-      onChange={ onChange }
-      plugins={ [emojiPlugin] }
+      editorState={editorState}
+      onChange={onChange}
+      plugins={[emojiPlugin]}
     />
     <EmojiSuggestions />
     <Editor
-      editorState={ editorState2 }
-      onChange={ onChange2 }
-      plugins={ [emojiPlugin2] }
+      editorState={editorState2}
+      onChange={onChange2}
+      plugins={[emojiPlugin2]}
     />
     <EmojiSuggestions2 />
   </div>
