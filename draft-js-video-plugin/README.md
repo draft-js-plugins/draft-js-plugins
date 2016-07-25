@@ -17,3 +17,7 @@ const sources = [YOUTUBE_SOURCE];
 
 const videoPlugin = createVideoPlugin(sources);
 ```
+
+Dependencies:
+
+This plugin requires that the `draft-js-entity-props-plugin` is also applied to the `Editor`;
