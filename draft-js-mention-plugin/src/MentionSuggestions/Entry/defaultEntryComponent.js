@@ -2,7 +2,12 @@ import React from 'react';
 import Avatar from './Avatar';
 
 const defaultEntryComponent = (props) => {
-  const { mention, theme, ...parentProps } = props;
+  const {
+    mention,
+    theme,
+    searchValue, // eslint-disable-line no-unused-vars
+    ...parentProps
+    } = props;
 
   return (
     <div {...parentProps}>
