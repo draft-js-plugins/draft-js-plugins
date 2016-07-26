@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
+import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
 
 // Plugin-Editor
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
@@ -13,6 +13,8 @@ import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable
 // Blocks
 import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin'; // eslint-disable-line import/no-unresolved
 import createTablePlugin, { tableCreator, tableStyles } from 'draft-js-table-plugin'; // eslint-disable-line import/no-unresolved
+
+import { Map } from 'immutable';
 
 const image = ResizeableDecorator({
   resizeSteps: 10,
@@ -95,6 +97,12 @@ const plugins = [
 ];
 
 class SimpleWysiwygEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.blockRenderMap = DefaultDraftBlockRenderMap.merge(
+      this.customBlockRendering(props)
+    );
+  }
   state = {
     editorState: EditorState.createEmpty(),
     draggingOver: false,
@@ -120,7 +128,33 @@ class SimpleWysiwygEditor extends Component {
       return { component: PlaceholderGithub };
     } else if (type === 'block-text') {
       return { component: BlockText };
+    } else if (type === 'block-image') {
+      return { component: image };
     } return undefined;
+  }
+
+  customBlockRendering = props => {
+    const { blockTypes } = props;
+    const newObj = {
+      paragraph: {
+        element: 'div',
+      },
+      unstyled: {
+        element: 'div',
+      },
+      'block-image': {
+        element: 'div',
+      },
+      'block-table': {
+        element: 'div',
+      }
+    };
+    Object.keys(blockTypes).forEach(type => {
+      newObj[type] = {
+        element: 'div'
+      };
+    });
+    return Map(newObj);
   }
 
   render() {
@@ -136,6 +170,7 @@ class SimpleWysiwygEditor extends Component {
           editorState={editorState}
           onChange={this.onChange}
           blockRendererFn={this.blockRendererFn}
+          blockRenderMap={this.blockRenderMap}
           plugins={plugins}
           ref="editor"
         />
