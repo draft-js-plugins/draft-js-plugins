@@ -15,7 +15,7 @@ const YOUTUBE_SOURCE = {
 
 const sources = [YOUTUBE_SOURCE];
 
-const videoPlugin = createVideoPlugin(sources);
+const videoPlugin = createVideoPlugin({ sources });
 ```
 
 Dependencies:
