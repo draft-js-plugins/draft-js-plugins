@@ -48,7 +48,7 @@ export default function onDropFile(config) {
         setEditorState(state);
 
         // Perform upload
-        handleUpload(data, uploadedFiles => {
+        handleUpload(data, (uploadedFiles, { retainSrc }) => {
           // Success, remove 'progress' and 'src'
           let newEditorState = getEditorState();
           uploadedFiles.forEach(file => {
@@ -57,7 +57,16 @@ export default function onDropFile(config) {
               const newEditorStateOrBlockType = handleBlock
                 ? handleBlock(newEditorState, newEditorState.getSelection(), file)
                 : defaultBlockType;
-              newEditorState = replaceBlock(newEditorState, blocks.first().get('key'), newEditorStateOrBlockType);
+
+              newEditorState = replaceBlock(
+                modifyBlockData(
+                  newEditorState,
+                  blocks.first().get('key'),
+                  retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
+                ),
+                blocks.first().get('key'),
+                newEditorStateOrBlockType
+              );
             } /* else {
               const newEditorStateOrBlockType = handleBlock
                 ? handleBlock(newEditorState, newEditorState.getSelection(), file)
