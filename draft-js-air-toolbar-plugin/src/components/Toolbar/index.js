@@ -28,9 +28,9 @@ export default class Toolbar extends React.Component {
   }
 
   render() {
-    // if (!this.state.isVisible) {
-    //   return null;
-    // }
+    if (!this.state.isVisible) {
+      return null;
+    }
 
     return (
       <div
