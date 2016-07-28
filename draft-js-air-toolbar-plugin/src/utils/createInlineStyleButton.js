@@ -23,7 +23,7 @@ export default ({ style, children, theme }) => (
       const className = this.styleIsActive() ? unionClassNames(theme.button, theme.active) : theme.button;
       return (
         <div
-          className={theme.root}
+          className={theme.buttonWrapper}
           onMouseDown={this.preventBubblingUp}
         >
           <button

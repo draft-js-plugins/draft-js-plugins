@@ -12,6 +12,7 @@ import UnorderedListButton from './components/UnorderedListButton';
 import OrderedListButton from './components/OrderedListButton';
 import BlockquoteButton from './components/BlockquoteButton';
 import CodeBlockButton from './components/CodeBlockButton';
+import Separator from './components/Separator';
 
 const createAirToolbarPlugin = (config = {}) => {
   const store = createStore({
@@ -24,6 +25,7 @@ const createAirToolbarPlugin = (config = {}) => {
       BoldButton,
       CodeButton,
       UnderlineButton,
+      Separator,
       HeaderOneButton,
       HeaderTwoButton,
       HeaderThreeButton,
@@ -72,4 +74,5 @@ export {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton,
+  Separator,
 };

@@ -30,7 +30,7 @@ export default ({ blockType, children, theme }) => (
       const className = this.blockTypeIsActive() ? unionClassNames(theme.button, theme.active) : theme.button;
       return (
         <div
-          className={theme.root}
+          className={theme.buttonWrapper}
           onMouseDown={this.preventBubblingUp}
         >
           <button
