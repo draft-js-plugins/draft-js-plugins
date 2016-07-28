@@ -8,7 +8,7 @@ draft-js-focus-plugin/lib/**
 draft-js-image-plugin/lib/**
 draft-js-resizeable-plugin/lib/**
 draft-js-table-plugin/lib/**
-draft-js-toolbar-plugin/lib/**
+draft-js-air-toolbar-plugin/lib/**
 draft-js-hashtag-plugin/lib/**
 draft-js-linkify-plugin/lib/**
 draft-js-mention-plugin/lib/**

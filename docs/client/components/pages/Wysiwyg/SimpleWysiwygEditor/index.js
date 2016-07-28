@@ -8,13 +8,34 @@ import createEntityPropsPlugin from 'draft-js-entity-props-plugin'; // eslint-di
 // import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin'; // eslint-disable-line import/no-unresolved
 // import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin'; // eslint-disable-line import/no-unresolved
 // import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin'; // eslint-disable-line import/no-unresolved
-// Blocks
 // import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin'; // eslint-disable-line import/no-unresolved
 
 import { Map } from 'immutable';
 
-// import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
+// const image = ResizeableDecorator({
+//   resizeSteps: 10,
+//   handles: true,
+//   vertical: 'auto'
+// })(
+//   DraggableDecorator(
+//     FocusDecorator(
+//       AlignmentDecorator(
+//         ToolbarDecorator()(
+//           imageCreator({ theme: imageStyles })
+//         )
+//       )
+//     )
+//   )
+// );
+// const table = FocusDecorator(
+//   DraggableDecorator(
+//     ToolbarDecorator()(
+//       tableCreator({ theme: tableStyles, Editor })
+//     )
+//   )
+// );
 
+// import TextToolbar from 'draft-js-air-toolbar-plugin/components/text-toolbar';
 // import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
 
 // Components
