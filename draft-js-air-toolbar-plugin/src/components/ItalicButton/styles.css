@@ -1,0 +1,23 @@
+.button {
+  background: #333;
+  color: #fdfdfd;
+  border: 0;
+  font-style: italic;
+}
+
+.button:hover {
+  background: #444;
+  color: #fff;
+}
+
+.button:active {
+  background: #444;
+}
+
+.active {
+  color: #5e93c5;
+}
+
+.active:hover {
+  color: #7eadda;
+}

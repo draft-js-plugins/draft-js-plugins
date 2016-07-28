@@ -4,6 +4,7 @@ import createAirToolbarPlugin from 'draft-js-air-toolbar-plugin'; // eslint-disa
 import editorStyles from './editorStyles.css';
 
 const airToolbarPlugin = createAirToolbarPlugin();
+const { AirToolbar } = airToolbarPlugin;
 const plugins = [airToolbarPlugin];
 const text = 'This editor can have a toolbar …';
 
@@ -32,6 +33,7 @@ export default class SimpleAirToolbarEditor extends Component {
           plugins={plugins}
           ref="editor"
         />
+        <AirToolbar />
       </div>
     );
   }

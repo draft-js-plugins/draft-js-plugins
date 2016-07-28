@@ -7,7 +7,7 @@ import createCleanupEmptyPlugin from 'draft-js-cleanup-empty-plugin'; // eslint-
 import createEntityPropsPlugin from 'draft-js-entity-props-plugin'; // eslint-disable-line import/no-unresolved
 import createFocusPlugin, { FocusDecorator } from 'draft-js-focus-plugin'; // eslint-disable-line import/no-unresolved
 import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin'; // eslint-disable-line import/no-unresolved
-import createAirToolbarPlugin, { ToolbarDecorator } from 'draft-js-air-toolbar-plugin'; // eslint-disable-line import/no-unresolved
+import createAirToolbarPlugin from 'draft-js-air-toolbar-plugin'; // eslint-disable-line import/no-unresolved
 import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin'; // eslint-disable-line import/no-unresolved
 import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin'; // eslint-disable-line import/no-unresolved
 // Blocks
@@ -37,18 +37,14 @@ const image = ResizeableDecorator({
   DraggableDecorator(
     FocusDecorator(
       AlignmentDecorator(
-        ToolbarDecorator()(
-          imageCreator({ theme: imageStyles })
-        )
+        imageCreator({ theme: imageStyles })
       )
     )
   )
 );
 const table = FocusDecorator(
   DraggableDecorator(
-    ToolbarDecorator()(
-      tableCreator({ theme: tableStyles, Editor })
-    )
+    tableCreator({ theme: tableStyles, Editor })
   )
 );
 
