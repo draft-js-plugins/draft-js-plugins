@@ -1,8 +1,11 @@
+.root {
+  display: inline-block;
+}
+
 .button {
   background: #333;
   color: #fdfdfd;
   border: 0;
-  font-style: italic;
 }
 
 .button:hover {
