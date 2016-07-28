@@ -2,7 +2,7 @@ import styles from '../../buttonStyles.css';
 import createInlineStyleButton from '../../utils/createInlineStyleButton';
 
 export default createInlineStyleButton({
-  style: 'ITALIC',
+  style: 'CODE',
   theme: styles,
-  children: 'I',
+  children: 'Code',
 });

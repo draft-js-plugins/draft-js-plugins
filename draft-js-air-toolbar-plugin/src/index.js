@@ -2,6 +2,9 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import ItalicButton from './components/ItalicButton';
+import BoldButton from './components/BoldButton';
+import CodeButton from './components/CodeButton';
+import UnderlineButton from './components/UnderlineButton';
 
 const createAirToolbarPlugin = (config = {}) => {
   const store = createStore({
@@ -11,6 +14,9 @@ const createAirToolbarPlugin = (config = {}) => {
   const {
     structure = [
       ItalicButton,
+      BoldButton,
+      CodeButton,
+      UnderlineButton,
     ]
   } = config;
 
@@ -41,5 +47,8 @@ const createAirToolbarPlugin = (config = {}) => {
 export default createAirToolbarPlugin;
 
 export {
-  ItalicButton
+  ItalicButton,
+  BoldButton,
+  CodeButton,
+  UnderlineButton,
 };
