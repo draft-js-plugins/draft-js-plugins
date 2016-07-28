@@ -5,6 +5,13 @@ import ItalicButton from './components/ItalicButton';
 import BoldButton from './components/BoldButton';
 import CodeButton from './components/CodeButton';
 import UnderlineButton from './components/UnderlineButton';
+import HeaderOneButton from './components/HeaderOneButton';
+import HeaderTwoButton from './components/HeaderTwoButton';
+import HeaderThreeButton from './components/HeaderThreeButton';
+import UnorderedListButton from './components/UnorderedListButton';
+import OrderedListButton from './components/OrderedListButton';
+import BlockquoteButton from './components/BlockquoteButton';
+import CodeBlockButton from './components/CodeBlockButton';
 
 const createAirToolbarPlugin = (config = {}) => {
   const store = createStore({
@@ -17,6 +24,13 @@ const createAirToolbarPlugin = (config = {}) => {
       BoldButton,
       CodeButton,
       UnderlineButton,
+      HeaderOneButton,
+      HeaderTwoButton,
+      HeaderThreeButton,
+      UnorderedListButton,
+      OrderedListButton,
+      BlockquoteButton,
+      CodeBlockButton,
     ]
   } = config;
 
@@ -51,4 +65,11 @@ export {
   BoldButton,
   CodeButton,
   UnderlineButton,
+  HeaderOneButton,
+  HeaderTwoButton,
+  HeaderThreeButton,
+  UnorderedListButton,
+  OrderedListButton,
+  BlockquoteButton,
+  CodeBlockButton,
 };
