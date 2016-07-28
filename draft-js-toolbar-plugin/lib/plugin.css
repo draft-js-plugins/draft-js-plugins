@@ -1,0 +1,112 @@
+/* Tooltip */
+[data-tooltip] {
+  position: relative;
+  text-decoration: none;
+}
+
+[data-tooltip]:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 130%;
+  left: 0%;
+  background: #000000;
+  padding: 5px 15px;
+  color: #ffffff;
+  border-radius: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+[data-tooltip]:hover:after {
+  bottom: 110%;
+}
+
+[data-tooltip]:hover:after, a:hover:before {
+  opacity: 1;
+}
+
+/* Sidebar */
+.draftJsToolbar__draft-sidebar__iGLU3 {
+  background-color: transparent;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  width: 32px;
+}
+
+.draftJsToolbar__draft-sidebar__iGLU3 .draftJsToolbar__item__16yus button {
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,.6);
+  border-radius: 50px;
+  font-size: 16px;
+  color: rgba(0,0,0,.6);
+  height: 32px;
+  line-height: 31px;
+  padding: 0 14px;
+  font-size: 12px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.draftJsToolbar__draft-sidebar__iGLU3 .draftJsToolbar__item__16yus .draftJsToolbar__menu__2kTke {
+  display: none
+}
+
+.draftJsToolbar__draft-sidebar__iGLU3 .draftJsToolbar__item__16yus:hover .draftJsToolbar__menu__2kTke {
+  display: block
+}
+
+/* Toolbar */
+.draftJsToolbar__toolbar__2NV21 {
+  background-color: #000;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+}
+
+.draftJsToolbar__toolbar__2NV21 .draftJsToolbar__toolbar-item__ZQoML {
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+.draftJsToolbar__toolbar__2NV21 .draftJsToolbar__toolbar-item__ZQoML:first-child {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  padding-left: 6px;
+}
+
+.draftJsToolbar__toolbar__2NV21 .draftJsToolbar__toolbar-item__ZQoML:last-child {
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  padding-right: 6px;
+}
+
+.draftJsToolbar__toolbar__2NV21 .draftJsToolbar__toolbar-item__ZQoML.draftJsToolbar__toolbar-item-active__1MJoi {
+  background-color: #2f2f2f;
+}
+
+.draftJsToolbar__toolbar__2NV21 .draftJsToolbar__toolbar-item__ZQoML:hover{
+  background-color: #2f2f2f;
+}
+
+.draftJsToolbar__toolbar__2NV21 .draftJsToolbar__toolbar-item__ZQoML button {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  line-height: 1.33;
+  margin: 0;
+  padding: 15px;
+  text-decoration: none;
+}
