@@ -7,7 +7,7 @@ import createCleanupEmptyPlugin from 'draft-js-cleanup-empty-plugin'; // eslint-
 import createEntityPropsPlugin from 'draft-js-entity-props-plugin'; // eslint-disable-line import/no-unresolved
 import createFocusPlugin, { FocusDecorator } from 'draft-js-focus-plugin'; // eslint-disable-line import/no-unresolved
 import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin'; // eslint-disable-line import/no-unresolved
-import createToolbarPlugin, { ToolbarDecorator } from 'draft-js-toolbar-plugin'; // eslint-disable-line import/no-unresolved
+import createAirToolbarPlugin, { ToolbarDecorator } from 'draft-js-air-toolbar-plugin'; // eslint-disable-line import/no-unresolved
 import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin'; // eslint-disable-line import/no-unresolved
 import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin'; // eslint-disable-line import/no-unresolved
 // Blocks
@@ -52,13 +52,25 @@ const table = FocusDecorator(
   )
 );
 
+// import TextToolbar from 'draft-js-air-toolbar-plugin/components/text-toolbar';
+
+// Components
+import PlaceholderGithub from '../components/placeholder-github';
+import BlockText from '../components/block-text';
+
+// Utils
+import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
+import mockUpload from '../utils/mockUpload';
+
+import styles from './styles.css';
+
 // Init Plugins
 const plugins = [
   createCleanupEmptyPlugin({
     types: ['block-image', 'block-table']
   }),
   createEntityPropsPlugin({ }),
-  createToolbarPlugin({
+  createAirToolbarPlugin({
     __toolbarHandler: {
       add: (props) => console.log('Add toolbar', props), // eslint-disable-line no-console
       remove: (props) => console.log('Remove toolbar', props), // eslint-disable-line no-console
