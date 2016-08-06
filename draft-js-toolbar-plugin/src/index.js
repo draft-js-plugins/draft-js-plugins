@@ -7,7 +7,8 @@ import airToolbarHandler from './air-toolbar';
 
 const toolbarPlugin = (config = {}) => {
   const theme = config.theme || styles;
-  const toolbarHandler = config.toolbarHandler || { ...airToolbarHandler, ...config };
+  const defaultToolbarHandler = Object.assign(airToolbarHandler, config);
+  const toolbarHandler = config.toolbarHandler || defaultToolbarHandler;
   return {
     // Re-Render the text-toolbar onChange (on selection change)
     onChange: (editorState, { setEditorState }) => {
