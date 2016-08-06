@@ -18,4 +18,6 @@
 .selectStickerImage {
   height: 80px;
   width: 80px;
+  -webkit-user-drag: none;
+  user-drag: none;
 }
