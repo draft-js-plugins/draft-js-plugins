@@ -30,6 +30,7 @@ export default class SimpleMentionEditor extends Component {
       <div>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
+            blockRenderMap={DefaultDraftBlockRenderMap.merge(Map({'sticker':{ element: 'div'}}))}
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
