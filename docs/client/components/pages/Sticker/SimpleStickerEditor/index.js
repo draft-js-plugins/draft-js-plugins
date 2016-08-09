@@ -5,8 +5,6 @@ import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-lin
 import editorStyles from './editorStyles.css';
 import stickers from './stickers';
 
-
-
 const stickerPlugin = createStickerPlugin({ stickers });
 const plugins = [stickerPlugin];
 const StickerSelect = stickerPlugin.StickerSelect;
