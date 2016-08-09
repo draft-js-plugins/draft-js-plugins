@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
+import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 import stickers from './stickers';
-import { Map } from 'immutable';
+
 
 
 const stickerPlugin = createStickerPlugin({ stickers });
@@ -32,7 +32,6 @@ export default class SimpleMentionEditor extends Component {
       <div>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
-            blockRenderMap={DefaultDraftBlockRenderMap.merge(Map({ sticker: { element: 'div' } }))}
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
