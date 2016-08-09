@@ -271,7 +271,7 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
-    const blockRenderMap = this.resolveblockRenderMap();
+    const blockRenderMap = this.props.blockRenderMap ? this.props.blockRenderMap.merge(this.resolveblockRenderMap()) : this.resolveblockRenderMap();
     return (
       <Editor
         {...this.props}
