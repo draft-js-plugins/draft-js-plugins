@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {
   Editor,
   EditorState,
+  DefaultDraftBlockRenderMap,
 } from 'draft-js';
 
 import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import proxies from './proxies';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
-import { List } from 'immutable';
+import { List, Map } from 'immutable';
 
 /**
  * The main editor component
@@ -224,6 +225,17 @@ class PluginEditor extends Component {
        }
      ), {})
   );
+  
+  resolveblockRenderMap = () => {
+    const blockRenderMap = this.props.plugins
+      .filter(plug => plug.blockRenderMap !== undefined)
+      .reduce((maps, plug) => maps.merge(plug.blockRenderMap), Map({}));
+    if (blockRenderMap && blockRenderMap.size > 0) {
+      return DefaultDraftBlockRenderMap.merge(blockRenderMap);
+    }
+
+    return DefaultDraftBlockRenderMap;
+  }
 
   resolveAccessibilityProps = () => {
     let accessibilityProps = {};
@@ -259,6 +271,7 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
+    const blockRenderMap = this.resolveblockRenderMap();
     return (
       <Editor
         {...this.props}
@@ -266,6 +279,7 @@ class PluginEditor extends Component {
         {...pluginHooks}
         readOnly={this.props.readOnly || this.state.readOnly}
         customStyleMap={customStyleMap}
+        blockRenderMap={blockRenderMap}
         onChange={this.onChange}
         editorState={this.props.editorState}
         ref="editor"
