@@ -225,7 +225,7 @@ class PluginEditor extends Component {
        }
      ), {})
   );
-  
+
   resolveblockRenderMap = () => {
     const blockRenderMap = this.props.plugins
       .filter(plug => plug.blockRenderMap !== undefined)
