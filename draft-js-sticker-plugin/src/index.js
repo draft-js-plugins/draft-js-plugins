@@ -1,3 +1,4 @@
+import { Map } from 'immutable';
 import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
 import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
@@ -58,6 +59,7 @@ const stickerPlugin = (config = {}) => {
     onChange: cleanupEmptyStickers,
     add: addSticker,
     remove: removeSticker,
+    blockRenderMap: Map({ sticker: { element: 'div' } }),
     StickerSelect: decorateComponentWithProps(StickerSelect, stickerSelectProps),
   };
 };
