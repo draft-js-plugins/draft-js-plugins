@@ -4,6 +4,8 @@ import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-u
 import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 import stickers from './stickers';
+import { Map } from 'immutable';
+import { DefaultDraftBlockRenderMap } from 'draft-js';
 
 const stickerPlugin = createStickerPlugin({ stickers });
 const plugins = [stickerPlugin];
