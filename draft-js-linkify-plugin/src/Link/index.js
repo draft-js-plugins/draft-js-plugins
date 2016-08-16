@@ -11,7 +11,6 @@ export default class Link extends Component {
     /* eslint-disable no-use-before-define */
     const {
       decoratedText = '',
-      component,
       target = '_self',
       className,
       ...props,
@@ -20,7 +19,7 @@ export default class Link extends Component {
     const links = linkify.match(decoratedText);
     const href = links && links[0] ? links[0].url : '';
     return (
-      <component
+      <this.props.component
         {...props}
         href={href}
         className={className}
