@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import unionClassNames from 'union-class-names';
 import linkifyIt from 'linkify-it';
 import tlds from 'tlds';
 
@@ -12,20 +11,18 @@ export default class Link extends Component {
     /* eslint-disable no-use-before-define */
     const {
       decoratedText = '',
-      theme = {},
       target = '_self',
       className,
       ...props,
       } = this.props;
     /* eslint-enable */
-    const combinedClassName = unionClassNames(theme.link, className);
     const links = linkify.match(decoratedText);
     const href = links && links[0] ? links[0].url : '';
     return (
-      <a
+      <this.props.component
         {...props}
         href={href}
-        className={combinedClassName}
+        className={className}
         target={target}
       />
     );
