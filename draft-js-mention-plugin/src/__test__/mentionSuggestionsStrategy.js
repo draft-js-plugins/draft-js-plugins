@@ -81,10 +81,10 @@ describe('mentionSuggestionsStrategy', () => {
     it('should not match entities', () => {
       const key = genKey();
       whitespaceStrategy(getBlock(
-        '@the walking dead tv @the white house',
+        '@the walking dead tv the white house',
         [{
           key,
-          offset: 21,
+          offset: 20,
           length: 15,
         }],
         {
@@ -96,7 +96,7 @@ describe('mentionSuggestionsStrategy', () => {
         },
       ), callback);
       expect(callback.callCount).to.equal(1);
-      expect(callback.lastCall.args).to.deep.equal([0, 21]);
+      expect(callback.lastCall.args).to.deep.equal([0, 20]);
     });
   });
 });
