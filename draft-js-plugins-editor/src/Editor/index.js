@@ -21,11 +21,13 @@ class PluginEditor extends Component {
     onChange: React.PropTypes.func.isRequired,
     plugins: React.PropTypes.array,
     defaultKeyBindings: React.PropTypes.bool,
+    defaultBlockRenderMap: React.PropTypes.bool,
     customStyleMap: React.PropTypes.object,
     decorators: React.PropTypes.array,
   };
 
   static defaultProps = {
+    defaultBlockRenderMap: true,
     defaultKeyBindings: true,
     customStyleMap: {},
     plugins: [],
@@ -271,7 +273,8 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
-    const blockRenderMap = this.props.blockRenderMap ? this.props.blockRenderMap.merge(this.resolveblockRenderMap()) : this.resolveblockRenderMap();
+    const blockRenderMap = this.props.defaultBlockRenderMap ? this.resolveblockRenderMap() :
+    this.resolveblockRenderMap().merge(this.props.blockRenderMap);
     return (
       <Editor
         {...this.props}
