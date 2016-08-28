@@ -23,7 +23,7 @@ this.setState({ editorState: EditorState.createEmpty() })
 
 ## Why are mentions broken after using `convertFromRaw` and throwing an error?
 
-We design the API to accept an Immutable Map for a Mention. After saving your datastructure to the erver and using `convertFromRaw` the mentions in there are plain objects. I (Nik) believe this is a law in our design and the mention data should be a plain object. Hint: We might fix this with v2.0.0 f the mentions plugin.
+We design the API to accept an Immutable Map for a Mention. After saving your data structure to the server and using `convertFromRaw`, the mentions in there are plain objects. I (Nik) believe this is a law in our design and the mention data should be a plain object. Hint: we might fix this with v2.0.0 of the mentions plugin.
 
 What you can do now is fixing the datastructure before converting it:
 
