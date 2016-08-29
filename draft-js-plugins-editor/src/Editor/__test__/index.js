@@ -392,7 +392,7 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       expect(pluginEditor.resolveCustomStyleMap()).to.deep.equal(expected);
     });
-    
+
     it('combines customStyleMap props from plugins and the editor', () => {
       const plugins = [
         {
