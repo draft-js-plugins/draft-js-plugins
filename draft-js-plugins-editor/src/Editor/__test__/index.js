@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
 import PluginEditor, { createEditorStateWithText } from '../../index';
 import { expect } from 'chai';
-import { EditorState } from 'draft-js';
+import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
+import { Map } from 'immutable';
 import sinon from 'sinon';
 
 /* For use in integration tests, as in where you need to test the
@@ -390,6 +391,105 @@ describe('Editor', () => {
       };
       const pluginEditor = result.instance();
       expect(pluginEditor.resolveCustomStyleMap()).to.deep.equal(expected);
+    });
+    
+    it('combines customStyleMap props from plugins and the editor', () => {
+      const plugins = [
+        {
+          customStyleMap: {
+            orange: {
+              color: 'rgba(255, 127, 0, 1.0)',
+            },
+          },
+        },
+        {
+          customStyleMap: {
+            yellow: {
+              color: 'rgba(180, 180, 0, 1.0)',
+            },
+          },
+        },
+      ];
+
+      const customStyleMap = {
+        blue: {
+          color: 'blue',
+        },
+      };
+
+      const result = mount(
+        <PluginEditor
+          editorState={editorState}
+          customStyleMap={customStyleMap}
+          onChange={changeSpy}
+          plugins={plugins}
+        />
+      );
+
+      const expected = {
+        orange: {
+          color: 'rgba(255, 127, 0, 1.0)',
+        },
+        yellow: {
+          color: 'rgba(180, 180, 0, 1.0)',
+        },
+        blue: {
+          color: 'blue',
+        },
+      };
+      const pluginEditor = result.instance();
+      expect(pluginEditor.resolveCustomStyleMap()).to.deep.equal(expected);
+    });
+
+    it('combines the defaultBlockRenderMap from all plugins', () => {
+      const plugins = [
+        {
+          blockRenderMap: Map({ sticker: { element: 'div' } }),
+        },
+        {
+          blockRenderMap: Map({ test: { element: 'test' } }),
+        },
+      ];
+      const result = mount(
+        <PluginEditor
+          editorState={editorState}
+          onChange={changeSpy}
+          plugins={plugins}
+        />
+      );
+      const expected = DefaultDraftBlockRenderMap.merge(Map({
+        sticker: { element: 'div' },
+        test: { element: 'test' },
+      }));
+      const pluginEditor = result.instance();
+      expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
+    });
+
+    it('combines blockRenderMap props from plugins and the editor', () => {
+      const plugins = [
+        {
+          blockRenderMap: Map({ sticker: { element: 'div' } }),
+        },
+        {
+          blockRenderMap: Map({ test: { element: 'test' } }),
+        },
+      ];
+
+      const customBlockRenderMap = Map({ sticker: { element: 'customDiv' } });
+
+      const result = mount(
+        <PluginEditor
+          editorState={editorState}
+          defaultBlockRenderMap={false}
+          blockRenderMap={customBlockRenderMap}
+          onChange={changeSpy}
+          plugins={plugins}
+        />
+      );
+
+      const pluginEditor = result.instance();
+      const expected = pluginEditor.resolveblockRenderMap().merge(customBlockRenderMap);
+      expect(pluginEditor.refs.editor.props.blockRenderMap).to.deep.equal(expected);
     });
   });
 
