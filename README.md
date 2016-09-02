@@ -58,13 +58,15 @@ import Editor from 'draft-js-plugins-editor';
 
 #### Editor
 
-An editor component accepting plugins.
+An editor component accepting plugins. [see source](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/draft-js-plugins-editor/src/Editor/index.js#L16)
 
 | Props                                          | Description  | Required
 | -----------------------------------------------|:------------:| -------:|
 | editorState                                    | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content)| * |
 | onChange                                       | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onchange)| * |
 | plugins                                        | an array of plugins |  |
+| decorators                                     | an array of custom decorators |  |
+| defaultKeyBindings                             | bool |  |
 | all other props accepted by the DraftJS Editor | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#props) |  |
 
 Usage:
