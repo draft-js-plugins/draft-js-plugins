@@ -67,6 +67,7 @@ An editor component accepting plugins. [see source](https://github.com/draft-js-
 | plugins                                        | an array of plugins |  |
 | decorators                                     | an array of custom decorators |  |
 | defaultKeyBindings                             | bool |  |
+| defaultBlockRenderMap                          | bool |  |
 | all other props accepted by the DraftJS Editor | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#props) |  |
 
 Usage:
