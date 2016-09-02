@@ -6,7 +6,7 @@ const addMention = (editorState, mention, mentionTrigger, entityMutability) => {
   const entityKey = Entity.create(getTypeByTrigger(mentionTrigger), entityMutability, { mention });
 
   const currentSelectionState = editorState.getSelection();
-  const { begin, end } = getSearchText(editorState, currentSelectionState);
+  const { begin, end } = getSearchText(editorState, currentSelectionState, mentionTrigger);
 
   // get selection of the @mention search text
   const mentionTextSelection = currentSelectionState.merge({

@@ -30,6 +30,8 @@ const mentionPlugin = createMentionPlugin({
   theme: mentionsStyles,
   positionSuggestions,
   mentionPrefix: '@',
+  supportWhitespace: true,
+  maxSuggestionsCharacters: 20,
 });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
