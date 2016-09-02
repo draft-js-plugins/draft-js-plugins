@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Added
+
+- `blockRenderMap` for sticker custom block tyoe, the plugin should be responsible for its own block type rendering mapping.
+
 ## 1.0.0 - 2016-04-20
 
 ### Changed
