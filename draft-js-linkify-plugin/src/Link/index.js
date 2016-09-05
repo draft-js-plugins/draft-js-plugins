@@ -15,7 +15,6 @@ export default class Link extends Component {
       theme = {},
       target = '_self',
       className,
-      ...props,
       } = this.props;
     /* eslint-enable */
     const combinedClassName = unionClassNames(theme.link, className);
@@ -23,7 +22,6 @@ export default class Link extends Component {
     const href = links && links[0] ? links[0].url : '';
     return (
       <a
-        {...props}
         href={href}
         className={combinedClassName}
         target={target}
