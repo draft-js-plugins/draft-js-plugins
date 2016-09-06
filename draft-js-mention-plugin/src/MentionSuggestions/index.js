@@ -164,8 +164,8 @@ export default class MentionSuggestions extends Component {
   };
 
   onSearchChange = (editorState, selection) => {
-    const { word } = getSearchText(editorState, selection);
-    const searchValue = word.substring(1, word.length);
+    const { word } = getSearchText(editorState, selection, this.props.mentionTrigger);
+    const searchValue = word.replace(this.props.mentionTrigger, '');
     if (this.lastSearchValue !== searchValue) {
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ value: searchValue });
@@ -212,6 +212,7 @@ export default class MentionSuggestions extends Component {
       mention,
       this.props.mentionTrigger,
       this.props.entityMutability,
+      this.props.mentionTrigger,
     );
     this.props.store.setEditorState(newEditorState);
   };
