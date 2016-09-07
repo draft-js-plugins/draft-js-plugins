@@ -206,6 +206,9 @@ export default class MentionSuggestions extends Component {
   };
 
   onMentionSelect = (mention) => {
+    if (!mention) {
+      return;
+    }
     this.closeDropdown();
     const newEditorState = addMention(
       this.props.store.getEditorState(),
