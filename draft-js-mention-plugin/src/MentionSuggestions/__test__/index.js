@@ -49,7 +49,7 @@ describe('MentionSuggestions Component', () => {
       handleReturn: sinon.spy(),
     };
     const store = {
-      getAllSearches: sinon.spy(),
+      getAllSearches: sinon.spy(() => ({ has: () => false })),
       getPortalClientRect: sinon.spy(),
       isEscaped: sinon.spy(),
       resetEscapedSearch: sinon.spy(),
