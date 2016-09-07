@@ -58,7 +58,9 @@ export default class MentionSuggestions extends Component {
           focusedOptionIndex: size - 1,
         });
       }
-
+      if(!this.props.store.getAllSearches().has(this.activeOffsetKey)) {
+        return;
+      }
       const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
       const newStyles = this.props.positionSuggestions({
         decoratorRect,
