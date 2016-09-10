@@ -27,10 +27,6 @@ export default class MentionSuggestions extends Component {
     },
   };
 
-  static defaultProps = {
-    entryComponent: defaultEntryComponent,
-  };
-
   state = {
     isActive: false,
     focusedOptionIndex: 0,
@@ -313,7 +309,7 @@ export default class MentionSuggestions extends Component {
               id={`mention-option-${this.key}-${index}`}
               theme={theme}
               searchValue={this.lastSearchValue}
-              entryComponent={entryComponent}
+              entryComponent={entryComponent || defaultEntryComponent}
             />
           )).toJS()
         }
