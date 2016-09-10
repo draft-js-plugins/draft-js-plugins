@@ -133,6 +133,10 @@ export default class App extends Component {
             <span className={styles.paramName}>mentionTrigger</span>
             <span>By default it is set to `@`. By default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered.</span>
           </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>mentionComponent</span>
+            <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, theme, mentionPrefix & decoratedText</span>
+          </div>
           <Heading level={3}>MentionSuggestions</Heading>
           <div>
             The MentionSuggestions component is part of the plugin and should placed somewhere in the
