@@ -16,7 +16,7 @@ export default class Link extends Component {
       className,
       component,
       ...rest,
-      } = this.props;
+    } = this.props;
 
     const combinedClassName = unionClassNames(theme.link, className);
     const links = linkify.match(decoratedText);
