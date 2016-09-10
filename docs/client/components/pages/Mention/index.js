@@ -134,7 +134,7 @@ export default class App extends Component {
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>mentionTrigger</span>
-            <span>By default it is set to `@`. By default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered.</span>
+            <span>By default it is set to `@`. By default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered. Note: the implementation does not support a multi-character mentionTrigger.</span>
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>mentionComponent</span>

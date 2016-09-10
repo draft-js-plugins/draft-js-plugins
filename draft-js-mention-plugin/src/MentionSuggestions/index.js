@@ -54,9 +54,15 @@ export default class MentionSuggestions extends Component {
           focusedOptionIndex: size - 1,
         });
       }
+
+      // Note: this is a simple protection for the error when componentDidUpdate
+      // try to get new getPortalClientRect, but the key already was deleted by
+      // previous action. (right now, it only can happened when set the mention
+      // trigger to be multi-characters which not supported anyway!)
       if (!this.props.store.getAllSearches().has(this.activeOffsetKey)) {
         return;
       }
+
       const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
       const newStyles = this.props.positionSuggestions({
         decoratorRect,
@@ -204,6 +210,8 @@ export default class MentionSuggestions extends Component {
   };
 
   onMentionSelect = (mention) => {
+    // Note: This can happen in case a user typed @xxx (invalid mention) and
+    // then hit Enter. Then the mention will be undefined.
     if (!mention) {
       return;
     }
