@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Link from '../index';
 import { expect } from 'chai';
+import Link from '../index';
 
 describe('Link', () => {
   it('applies the className based on the theme property `link`', () => {

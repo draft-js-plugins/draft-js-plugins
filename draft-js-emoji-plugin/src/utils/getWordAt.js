@@ -1,6 +1,7 @@
 const getWordAt = (string, position) => {
   // Perform type conversions.
   const str = String(string);
+  // eslint-disable-next-line no-bitwise
   const pos = Number(position) >>> 0;
 
   // Search for the word's beginning and end.
