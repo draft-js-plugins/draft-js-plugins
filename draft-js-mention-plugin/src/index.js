@@ -84,6 +84,7 @@ const createMentionPlugin = (config = {}) => {
     mentionPrefix = '',
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
+    mentionComponent,
     mentionTrigger = '@',
   } = config;
   const mentionSearchProps = {
@@ -100,7 +101,7 @@ const createMentionPlugin = (config = {}) => {
     decorators: [
       {
         strategy: mentionStrategy(mentionTrigger),
-        component: decorateComponentWithProps(Mention, { theme, mentionPrefix }),
+        component: decorateComponentWithProps(Mention, { theme, mentionPrefix, mentionComponent }),
       },
       {
         strategy: mentionSuggestionsStrategy(mentionTrigger),
