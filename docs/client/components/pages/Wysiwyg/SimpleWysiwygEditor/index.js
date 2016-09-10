@@ -119,7 +119,7 @@ class SimpleWysiwygEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   blockRendererFn = (contentBlock) => {
@@ -172,7 +172,7 @@ class SimpleWysiwygEditor extends Component {
           blockRendererFn={this.blockRendererFn}
           blockRenderMap={this.blockRenderMap}
           plugins={plugins}
-          ref="editor"
+          ref={(element) => { this.editor = element; }}
         />
       </div>
     );

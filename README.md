@@ -105,7 +105,6 @@ export default class UnicornEditor extends Component {
         editorState={this.state.editorState}
         onChange={this.onChange}
         plugins={plugins}
-        ref="editor"
       />
     );
   }

@@ -64,7 +64,7 @@ export default class UnicornEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   render() {
@@ -76,7 +76,7 @@ export default class UnicornEditor extends Component {
             onChange={this.onChange}
             plugins={plugins}
             spellCheck
-            ref="editor"
+            ref={(element) => { this.editor = element; }}
           />
         </div>
         <div>

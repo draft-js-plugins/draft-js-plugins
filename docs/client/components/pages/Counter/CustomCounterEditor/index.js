@@ -31,7 +31,7 @@ export default class CustomCounterEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   customCountFunction(str) {
@@ -47,7 +47,7 @@ export default class CustomCounterEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref="editor"
+            ref={(element) => { this.editor = element; }}
           />
         </div>
         <div><CharCounter limit={200} /> characters</div>

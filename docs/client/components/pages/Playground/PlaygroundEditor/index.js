@@ -30,7 +30,7 @@ export default class SimpleHashtagEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   toggleColor = (toggledColor) => {
@@ -76,7 +76,7 @@ export default class SimpleHashtagEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref="editor"
+          ref={(element) => { this.editor = element; }}
         />
         <ColorControls
           editorState={this.state.editorState}

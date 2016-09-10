@@ -46,7 +46,7 @@ class PluginEditor extends Component {
     // attach proxy methods like `focus` or `blur`
     for (const method of proxies) {
       this[method] = (...args) => (
-        this.refs.editor[method](...args)
+        this.editor[method](...args)
       );
     }
 
@@ -285,7 +285,7 @@ class PluginEditor extends Component {
         blockRenderMap={blockRenderMap}
         onChange={this.onChange}
         editorState={this.props.editorState}
-        ref="editor"
+        ref={(element) => { this.editor = element; }}
       />
     );
   }
