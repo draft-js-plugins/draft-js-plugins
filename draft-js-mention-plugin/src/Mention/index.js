@@ -1,25 +1,37 @@
 import React from 'react';
 import { Entity } from 'draft-js';
 import { fromJS } from 'immutable';
+import unionClassNames from 'union-class-names';
 
-const MentionLink = ({ mention, theme, mentionPrefix, children }) =>
+const MentionLink = ({ mention, mentionPrefix, children, className }) =>
   <a
     href={mention.get('link')}
-    className={theme.mention}
+    className={className}
     spellCheck={false}
   >
     {mentionPrefix}{children}
   </a>;
 
-const MentionText = ({ theme, mentionPrefix, children }) =>
+const MentionText = ({ mentionPrefix, children, className }) =>
   <span
-    className={theme.mention}
+    className={className}
     spellCheck={false}
   >
     {mentionPrefix}{children}
   </span>;
 
-const Mention = ({ entityKey, theme = {}, mentionComponent, mentionPrefix, children, decoratedText }) => {
+const Mention = (props) => {
+  const {
+    entityKey,
+    theme = {},
+    mentionComponent,
+    mentionPrefix,
+    children,
+    decoratedText,
+    className,
+  } = props;
+
+  const combinedClassName = unionClassNames(theme.mention, className);
   const mention = fromJS(Entity.get(entityKey).getData().mention);
 
   const Component = (
@@ -31,6 +43,7 @@ const Mention = ({ entityKey, theme = {}, mentionComponent, mentionPrefix, child
       entityKey={entityKey}
       mention={mention}
       theme={theme}
+      className={combinedClassName}
       mentionPrefix={mentionPrefix}
       decoratedText={decoratedText}
     >
