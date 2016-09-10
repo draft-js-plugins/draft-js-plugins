@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import createUndoPlugin from '../index';
 import { expect } from 'chai';
 import { EditorState } from 'draft-js';
+import createUndoPlugin from '../index';
 
 describe('UndoPlugin Config', () => {
   const onChange = () => undefined;

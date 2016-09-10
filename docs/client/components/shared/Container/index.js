@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import unionClassNames from 'union-class-names';
 import styles from './styles.css';
 import ContainerBox from '../ContainerBox';
-import unionClassNames from 'union-class-names';
 
 export default class Container extends Component {
 
