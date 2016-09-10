@@ -29,8 +29,9 @@ export default class App extends Component {
   animateLogo = () => {
     // Only required in componentDidMount as it breaks server-side-rendering
     const animate = require('animateplus'); // eslint-disable-line global-require
+
     animate({
-      el: this.refs.drawnPath,
+      el: this.drawnPath,
       'stroke-dashoffset': [570, 1140],
       duration: 800,
       easing: 'easeOutSine',
@@ -38,7 +39,7 @@ export default class App extends Component {
     });
 
     animate({
-      el: this.refs.penTop,
+      el: this.penTop,
       'stroke-dashoffset': [85, 0],
       duration: 900,
       easing: 'linear',
@@ -46,7 +47,7 @@ export default class App extends Component {
     });
 
     animate({
-      el: this.refs.penRing,
+      el: this.penRing,
       'stroke-dashoffset': [48, 0],
       duration: 900,
       easing: 'linear',
@@ -54,7 +55,7 @@ export default class App extends Component {
     });
 
     animate({
-      el: this.refs.penHandle,
+      el: this.penHandle,
       'stroke-dashoffset': [228, 456],
       duration: 900,
       easing: 'linear',
@@ -62,7 +63,7 @@ export default class App extends Component {
     });
 
     animate({
-      el: this.refs.dot,
+      el: this.dot,
       rx: [0, 3.6743313],
       ry: [0, 1.73943662],
       duration: 600,
@@ -71,7 +72,7 @@ export default class App extends Component {
     });
 
     animate({
-      el: this.refs.githubWrapper,
+      el: this.githubWrapper,
       opacity: [0, 1],
       duration: 1600,
       easing: 'easeOutQuad',
@@ -92,40 +93,40 @@ export default class App extends Component {
                     id="Path-2"
                     strokeDasharray="228"
                     strokeDashoffset="228"
-                    ref="penHandle"
+                    ref={(element) => { this.penHandle = element; }}
                   />
                   <path
                     d="M27.0409545,85.9009649 C27.0409545,84.3313098 26.1525667,82.9025007 24.698475,81.8335735 C23.0842946,80.6469623 20.7729906,79.9038379 18.2059893,79.9038379 C13.3265727,79.9038379 9.37102405,82.5888431 9.37102405,85.9009649 C9.37102405,89.2130867 13.3265727,91.8980919 18.2059893,91.8980919 C23.0854058,91.8980919 27.0409545,89.2130867 27.0409545,85.9009649 Z" id="Oval-1" transform="translate(18.205989, 85.900965) rotate(14.000000) translate(-18.205989, -85.900965) "
                     strokeDasharray="48"
                     strokeDashoffset="48"
-                    ref="penRing"
+                    ref={(element) => { this.penRing = element; }}
                   />
                   <path
                     d="M0.014878413,113.951878 C1.78180994,108.545401 2.43334044,105.616394 2.43334044,95.9203125 C3.53217498,94.3115413 4.86453139,92.7130126 6.26188059,91.2345519 C9.7362174,87.5585412 12.0429116,84.7660539 13.7303754,84.2627016 C17.9673635,84.2627016 20.6406783,85.746119 22.9093963,86.9867691 C22.9093963,90.2466481 22.134279,93.848891 19.3059407,100.370564 C9.49146758,105.559173 5.55996694,109.67568 0.014878413,113.951878 Z"
                     id="Path-1"
                     strokeDasharray="85"
                     strokeDashoffset="85"
-                    ref="penTop"
+                    ref={(element) => { this.penTop = element; }}
                   />
                 </g>
                 <g id="Line" transform="translate(1.000000, 117.000000)" stroke="#979797">
                   <ellipse
                     id="Oval-1" fill="#979797" cx="174.040826" cy="1.73943662" rx="0" ry="0"
-                    ref="dot"
+                    ref={(element) => { this.dot = element; }}
                   />
                   <path
                     d="M173.726977,1.74286972 C173.726977,1.74286972 81.2371686,10.7928991 76.8796413,26.5927817 C72.522114,42.3926643 296.495571,20.2825558 256.053049,46.3454959 C215.610526,72.408436 0.0593251408,90.9481221 0.0593251408,90.9481221"
                     id="Path-5"
                     strokeDasharray="570"
                     strokeDashoffset="570"
-                    ref="drawnPath"
+                    ref={(element) => { this.drawnPath = element; }}
                   />
                 </g>
               </g>
             </svg>
             <div className={styles.logoText}>DraftJS Plugins</div>
             <p className={styles.tagline}>High quality plugins with great UX</p>
-            <div className={styles.githubWrapper} ref="githubWrapper">
+            <div className={styles.githubWrapper} ref={(element) => { this.githubWrapper = element; }}>
               <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="mega" />
             </div>
           </ContainerBox>

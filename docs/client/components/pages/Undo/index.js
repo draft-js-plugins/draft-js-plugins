@@ -1,5 +1,23 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
+
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleUndoEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleUndoEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomUndoEditor';
+// eslint-disable-next-line import/no-unresolved
+import customExampleButtonCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/buttonStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
+import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
+
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
@@ -7,19 +25,11 @@ import styles from './styles.css';
 import Code from '../../shared/Code';
 import SimpleUndoEditor from './SimpleUndoEditor';
 import CustomUndoEditor from './CustomUndoEditor';
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleUndoEditor'; // eslint-disable-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleUndoEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomUndoEditor'; // eslint-disable-line import/no-unresolved
-import customExampleButtonCSSCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/buttonStyles.css'; // eslint-disable-line import/no-unresolved
-import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomUndoEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
-import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted'; // eslint-disable-line import/no-unresolved
+import ExternalLink from '../../shared/Link';
+import InlineCode from '../../shared/InlineCode';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
-import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig'; // eslint-disable-line import/no-unresolved
-import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport'; // eslint-disable-line import/no-unresolved
-import ExternalLink from '../../shared/Link';
-import InlineCode from '../../shared/InlineCode';
 
 export default class App extends Component {
   render() {
