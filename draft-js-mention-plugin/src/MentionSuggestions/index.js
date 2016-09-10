@@ -54,7 +54,9 @@ export default class MentionSuggestions extends Component {
           focusedOptionIndex: size - 1,
         });
       }
-
+      if (!this.props.store.getAllSearches().has(this.activeOffsetKey)) {
+        return;
+      }
       const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
       const newStyles = this.props.positionSuggestions({
         decoratorRect,
@@ -202,6 +204,9 @@ export default class MentionSuggestions extends Component {
   };
 
   onMentionSelect = (mention) => {
+    if (!mention) {
+      return;
+    }
     this.closeDropdown();
     const newEditorState = addMention(
       this.props.store.getEditorState(),
