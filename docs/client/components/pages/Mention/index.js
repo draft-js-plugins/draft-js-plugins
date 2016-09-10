@@ -7,6 +7,7 @@ import Code from '../../shared/Code';
 import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
 import RemoteMentionEditor from './RemoteMentionEditor';
+import CustomComponentMentionEditor from './CustomComponentMentionEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor'; // eslint-disable-line import/no-unresolved
 import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js'; // eslint-disable-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
@@ -16,6 +17,8 @@ import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?langu
 import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css'; // eslint-disable-line import/no-unresolved
 import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor'; // eslint-disable-line import/no-unresolved
 import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import customComponentExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomComponentMentionEditor'; // eslint-disable-line import/no-unresolved
+import customComponentExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomComponentMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
@@ -133,6 +136,10 @@ export default class App extends Component {
             <span className={styles.paramName}>mentionTrigger</span>
             <span>By default it is set to `@`. By default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered.</span>
           </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>mentionComponent</span>
+            <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className, mentionPrefix & decoratedText</span>
+          </div>
           <Heading level={3}>MentionSuggestions</Heading>
           <div>
             The MentionSuggestions component is part of the plugin and should placed somewhere in the
@@ -172,7 +179,7 @@ export default class App extends Component {
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Themed Mention Example</Heading>
+          <Heading level={2}>Custom Themed Mention Example</Heading>
           <CustomMentionEditor />
           <Code code={customExampleCode} name="CustomMentionEditor.js" />
           <Code code={customExampleMentionsStylesCode} name="mentionsStyles.js" />
@@ -184,6 +191,12 @@ export default class App extends Component {
           <RemoteMentionEditor />
           <Code code={remoteExampleCode} name="RemoteMentionEditor.js" />
           <Code code={remoteExampleEditorStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>Custom Mention Component Example</Heading>
+          <CustomComponentMentionEditor />
+          <Code code={customComponentExampleCode} name="CustomComponentMentionEditor.js" />
+          <Code code={customComponentExampleStylesCode} name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>
