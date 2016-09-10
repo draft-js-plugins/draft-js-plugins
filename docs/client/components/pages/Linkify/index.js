@@ -6,10 +6,13 @@ import styles from './styles.css';
 import Code from '../../shared/Code';
 import SimpleLinkifyEditor from './SimpleLinkifyEditor';
 import CustomLinkifyEditor from './CustomLinkifyEditor';
+import CustomComponentLinkifyEditor from './CustomComponentLinkifyEditor';
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleLinkifyEditor'; // eslint-disable-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleLinkifyEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomLinkifyEditor'; // eslint-disable-line import/no-unresolved
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomLinkifyEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
+import customComponentExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomComponentLinkifyEditor'; // eslint-disable-line import/no-unresolved
+import customComponentExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomComponentLinkifyEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted'; // eslint-disable-line import/no-unresolved
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
@@ -76,6 +79,10 @@ export default class App extends Component {
             <span className={styles.paramName}>target</span>
             <span>String value for the target attribute. (Default value is _self)</span>
           </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>component</span>
+            <span>If provided this component will be rendered instead of the default Anchor tag. It receives the following props: target, href & className</span>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Example</Heading>
@@ -88,6 +95,12 @@ export default class App extends Component {
           <CustomLinkifyEditor />
           <Code code={customExampleCode} name="CustomLinkifyEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>Themed Linkify Example</Heading>
+          <CustomComponentLinkifyEditor />
+          <Code code={customComponentExampleCode} name="CustomComponentLinkifyEditor.js" />
+          <Code code={customComponentExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>
