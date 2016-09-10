@@ -1,7 +1,7 @@
 // Check if drag event contains files (not text)
 export function containsFiles(event) {
   if (event.dataTransfer.types) {
-    for (let i = 0; i < event.dataTransfer.types.length; i++) {
+    for (let i = 0; i < event.dataTransfer.types.length; i += 1) {
       if (event.dataTransfer.types[i] === 'Files') {
         return true;
       }

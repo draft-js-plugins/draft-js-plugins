@@ -34,9 +34,8 @@ class Tooltip extends Component {
     }
 
     // Get tooltip ref for width centering
-    const ref = ReactDOM.findDOMNode(this.refs.tooltip);
-    if (ref) {
-      const refRect = ref.getBoundingClientRect();
+    if (this.tooltip) {
+      const refRect = this.tooltip.getBoundingClientRect();
       const scrollY = window.scrollY ? window.scrollY : window.pageYOffset;
       const scrollX = window.scrollX ? window.scrollX : window.pageXOffset;
       const leftForVerticalCenter = (left + scrollX) - ((refRect.width / 2) + (width / 2));
@@ -93,7 +92,7 @@ class Tooltip extends Component {
     }
 
     return (
-      <div ref="tooltip" style={style} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+      <div ref={(element) => { this.tooltip = element; }} style={style} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
         {this.props.children}
         <div style={{ backgroundColor: 'transparent', height: '5px', width: '100%', clear: 'both' }} />
       </div>

@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-
+import { genKey } from 'draft-js';
+import { List } from 'immutable';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
-import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
-import { List } from 'immutable';
 
 export default class MentionSuggestions extends Component {
 
@@ -44,7 +43,7 @@ export default class MentionSuggestions extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    if (this.refs.popover) {
+    if (this.popover) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
       // not fullfilled anymore.
@@ -70,10 +69,10 @@ export default class MentionSuggestions extends Component {
         prevState,
         props: this.props,
         state: this.state,
-        popover: this.refs.popover,
+        popover: this.popover,
       });
       Object.keys(newStyles).forEach((key) => {
-        this.refs.popover.style[key] = newStyles[key];
+        this.popover.style[key] = newStyles[key];
       });
     }
   };
@@ -127,8 +126,8 @@ export default class MentionSuggestions extends Component {
     const selectionIsInsideWord = leaves
       .filter((leave) => leave !== undefined)
       .map(({ start, end }) => (
-        start === 0 && anchorOffset === 1 && anchorOffset <= end || // @ is the first character
-        anchorOffset > start + 1 && anchorOffset <= end // @ is in the text or at the end
+        (start === 0 && anchorOffset === 1 && anchorOffset <= end) || // @ is the first character
+        (anchorOffset > start + 1 && anchorOffset <= end) // @ is in the text or at the end
       ));
 
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
@@ -308,7 +307,7 @@ export default class MentionSuggestions extends Component {
         className={theme.mentionSuggestions}
         role="listbox"
         id={`mentions-list-${this.key}`}
-        ref="popover"
+        ref={(element) => { this.popover = element; }}
       >
         {
           this.props.suggestions.map((mention, index) => (

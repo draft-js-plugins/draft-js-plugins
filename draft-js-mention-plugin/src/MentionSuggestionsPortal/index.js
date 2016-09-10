@@ -22,14 +22,17 @@ export default class MentionSuggestionsPortal extends Component {
     this.props.store.updatePortalClientRect(
       props.offsetKey,
       () => (
-        this.refs.searchPortal.getBoundingClientRect()
+        this.searchPortal.getBoundingClientRect()
       ),
     );
   }
 
   render() {
     return (
-      <span className={this.key} ref="searchPortal">
+      <span
+        className={this.key}
+        ref={(element) => { this.searchPortal = element; }}
+      >
         {this.props.children}
       </span>
     );

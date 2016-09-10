@@ -1,15 +1,15 @@
+/* eslint-disable no-continue */
 import React, { Component } from 'react';
 import {
   Editor,
   EditorState,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
-
+import { List, Map } from 'immutable';
 import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import proxies from './proxies';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
-import { List, Map } from 'immutable';
 
 /**
  * The main editor component
