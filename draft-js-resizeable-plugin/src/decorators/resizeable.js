@@ -11,7 +11,7 @@ const resizeableRatioUtil = (ratio, padding) => ({
     bottom: 0,
     right: 0,
     padding: padding ? `${padding}px` : 0
-  }, createRatioPlaceholder: () => <div style={{ display: 'block', width: '100%', paddingTop: `${ratio * 100}%` }}></div>
+  }, createRatioPlaceholder: () => <div style={{ display: 'block', width: '100%', paddingTop: `${ratio * 100}%` }} />
 });
 
 // Get a component's display name

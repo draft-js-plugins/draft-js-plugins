@@ -33,8 +33,8 @@ export default class MailchimpForm extends Component {
               id="mce-FNAME"
             />
             <div id="mce-responses" className="clear">
-              <div className="response" id="mce-error-response" style={{ display: 'none' }}></div>
-              <div className="response" id="mce-success-response" style={{ display: 'none' }}></div>
+              <div className="response" id="mce-error-response" style={{ display: 'none' }} />
+              <div className="response" id="mce-success-response" style={{ display: 'none' }} />
             </div>
             <div
               style={{ position: 'absolute', left: '-5000px' }}

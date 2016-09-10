@@ -107,7 +107,7 @@ export default class StickerSelect extends Component {
           <div className={theme.selectStickerList}>
             {stickerElements.toList().toJS()}
           </div>
-          <div className={theme.selectBottomGradient}></div>
+          <div className={theme.selectBottomGradient} />
         </div>
       </div>
     );

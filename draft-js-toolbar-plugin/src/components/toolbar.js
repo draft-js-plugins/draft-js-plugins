@@ -37,7 +37,7 @@ export default class Toolbar extends Component {
     return (
       <div key={action.label} className={classNames.join(' ')}>
         <button onClick={toggle} data-tooltip={action.label}>
-          {action.icon ? <i className={`${action.icon} icon`}></i> : action.button}
+          {action.icon ? <i className={`${action.icon} icon`} /> : action.button}
         </button>
       </div>
     );
