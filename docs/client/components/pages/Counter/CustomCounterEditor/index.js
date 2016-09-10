@@ -34,6 +34,7 @@ export default class CustomCounterEditor extends Component {
     this.editor.focus();
   };
 
+  // eslint-disable-next-line class-methods-use-this
   customCountFunction(str) {
     const wordArray = str.match(/\S+/g);  // matches words according to whitespace
     return wordArray ? wordArray.length : 0;

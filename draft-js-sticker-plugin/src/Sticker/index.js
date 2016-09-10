@@ -14,6 +14,7 @@ export default class Sticker extends Component {
   render() {
     const { block, stickers, theme = {} } = this.props;
     const removeButton = (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <span
         className={theme.stickerRemoveButton}
         onClick={this.remove}

@@ -6,7 +6,7 @@ import editorStyles from './editorStyles.css';
 
 const linkifyPlugin = createLinkifyPlugin({
   component: (props) => (
-    // eslint-disable-next-line no-alert
+    // eslint-disable-next-line no-alert, jsx-a11y/anchor-has-content
     <a {...props} onClick={() => alert('Clicked on Link!')} />
   )
 });

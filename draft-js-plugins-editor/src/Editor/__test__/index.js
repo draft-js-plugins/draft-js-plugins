@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
-import PluginEditor, { createEditorStateWithText } from '../../index';
 import { expect } from 'chai';
 import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
 import { Map } from 'immutable';
 import sinon from 'sinon';
+import PluginEditor, { createEditorStateWithText } from '../../index';
 
 /* For use in integration tests, as in where you need to test the
  * Editor component as well */
