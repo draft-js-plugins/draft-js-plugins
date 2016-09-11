@@ -15,7 +15,7 @@ export default class Link extends Component {
       target = '_self',
       className,
       component,
-      ...rest,
+      children,
     } = this.props;
 
     const combinedClassName = unionClassNames(theme.link, className);
@@ -23,7 +23,7 @@ export default class Link extends Component {
     const href = links && links[0] ? links[0].url : '';
 
     const props = {
-      ...rest,
+      children,
       href,
       target,
       className: combinedClassName,

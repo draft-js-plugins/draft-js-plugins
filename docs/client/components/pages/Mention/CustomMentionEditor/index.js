@@ -35,7 +35,12 @@ const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 const Entry = (props) => {
-  const { mention, theme, ...parentProps } = props;
+  const {
+    mention,
+    theme,
+    searchValue, // eslint-disable-line no-unused-vars
+    ...parentProps
+  } = props;
 
   return (
     <div {...parentProps}>

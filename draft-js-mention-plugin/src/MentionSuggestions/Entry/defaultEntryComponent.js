@@ -7,7 +7,7 @@ const defaultEntryComponent = (props) => {
     theme,
     searchValue, // eslint-disable-line no-unused-vars
     ...parentProps
-    } = props;
+  } = props;
 
   return (
     <div {...parentProps}>

@@ -263,7 +263,6 @@ export default class EmojiSuggestions extends Component {
     const { theme = {}, cacheBustParam, imagePath } = this.props;
     return (
       <div
-        {...this.props}
         className={theme.emojiSuggestions}
         role="listbox"
         id={`emojis-list-${this.key}`}
