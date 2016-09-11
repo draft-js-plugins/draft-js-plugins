@@ -30,9 +30,6 @@ export function readFile(file) {
 
         // This is the files content as base64
         src: event.target.result,
-
-        // No URL, since nothing on server
-        url: null,
       });
     };
 
