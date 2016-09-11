@@ -40,7 +40,7 @@ const plugins = [
 ];
 
 // const contentState = ContentState.createFromBlockArray(convertFromRaw(initialState));
-const contentState = ContentState.createFromText('Initial text …');
+const contentState = ContentState.createFromText('You can add Emojis by typing colon : or mentions with an @. Add Stickers and undo your actions with the undo button below …');
 
 export default class UnicornEditor extends Component {
 

@@ -6,7 +6,7 @@ import React, {
 export default class Entry extends Component {
 
   static propTypes = {
-    entryComponent: PropTypes.func.isRequired,
+    entryComponent: PropTypes.any.isRequired,
     searchValue: PropTypes.string.isRequired
   };
 
