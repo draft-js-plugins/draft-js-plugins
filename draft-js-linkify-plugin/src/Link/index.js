@@ -15,7 +15,12 @@ export default class Link extends Component {
       target = '_self',
       className,
       component,
-      children,
+      dir, // eslint-disable-line no-unused-vars
+      entityKey, // eslint-disable-line no-unused-vars
+      getEditorState, // eslint-disable-line no-unused-vars
+      offsetKey, // eslint-disable-line no-unused-vars
+      setEditorState, // eslint-disable-line no-unused-vars
+      ...otherProps
     } = this.props;
 
     const combinedClassName = unionClassNames(theme.link, className);
@@ -23,7 +28,7 @@ export default class Link extends Component {
     const href = links && links[0] ? links[0].url : '';
 
     const props = {
-      children,
+      ...otherProps,
       href,
       target,
       className: combinedClassName,
