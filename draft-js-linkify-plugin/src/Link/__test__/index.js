@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+
 import React from 'react';
 import { shallow } from 'enzyme';
-import Link from '../index';
 import { expect } from 'chai';
+import Link from '../index';
 
 describe('Link', () => {
   it('applies the className based on the theme property `link`', () => {
@@ -58,6 +60,7 @@ describe('Link', () => {
   });
 
   it('applies custom target value', () => {
+    // eslint-disable-next-line react/jsx-no-target-blank
     const result = shallow(<Link target="_blank" />);
     expect(result).to.have.prop('target').to.contain('_blank');
   });

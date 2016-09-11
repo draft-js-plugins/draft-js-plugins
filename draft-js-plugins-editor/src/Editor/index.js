@@ -1,15 +1,15 @@
+/* eslint-disable no-continue */
 import React, { Component } from 'react';
 import {
   Editor,
   EditorState,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
-
+import { List, Map } from 'immutable';
 import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import proxies from './proxies';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
-import { List, Map } from 'immutable';
 
 /**
  * The main editor component
@@ -46,7 +46,7 @@ class PluginEditor extends Component {
     // attach proxy methods like `focus` or `blur`
     for (const method of proxies) {
       this[method] = (...args) => (
-        this.refs.editor[method](...args)
+        this.editor[method](...args)
       );
     }
 
@@ -229,14 +229,16 @@ class PluginEditor extends Component {
   );
 
   resolveblockRenderMap = () => {
-    const blockRenderMap = this.props.plugins
+    let blockRenderMap = this.props.plugins
       .filter(plug => plug.blockRenderMap !== undefined)
       .reduce((maps, plug) => maps.merge(plug.blockRenderMap), Map({}));
-    if (blockRenderMap && blockRenderMap.size > 0) {
-      return DefaultDraftBlockRenderMap.merge(blockRenderMap);
+    if (this.props.defaultBlockRenderMap) {
+      blockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
     }
-
-    return DefaultDraftBlockRenderMap;
+    if (this.props.blockRenderMap) {
+      blockRenderMap = blockRenderMap.merge(this.props.blockRenderMap);
+    }
+    return blockRenderMap;
   }
 
   resolveAccessibilityProps = () => {
@@ -273,8 +275,7 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
-    const blockRenderMap = this.props.defaultBlockRenderMap ? this.resolveblockRenderMap() :
-    this.resolveblockRenderMap().merge(this.props.blockRenderMap);
+    const blockRenderMap = this.resolveblockRenderMap();
     return (
       <Editor
         {...this.props}
@@ -285,7 +286,7 @@ class PluginEditor extends Component {
         blockRenderMap={blockRenderMap}
         onChange={this.onChange}
         editorState={this.props.editorState}
-        ref="editor"
+        ref={(element) => { this.editor = element; }}
       />
     );
   }

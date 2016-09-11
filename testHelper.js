@@ -23,5 +23,6 @@ Object.keys(document.defaultView).forEach((property) => {
 // chaiEnzyme needs to be initialised here, so that canUseDOM is set
 // to true when react-dom initialises (which chai-enzyme depends upon)
 const chaiEnzyme = require('chai-enzyme');
+
 chai.use(dirtyChai);
 chai.use(chaiEnzyme());

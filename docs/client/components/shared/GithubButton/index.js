@@ -3,11 +3,10 @@ import React, { Component } from 'react';
 export default class GithubStarButton extends Component {
 
   componentDidMount() {
-    const githubButton = this.refs.githubButton;
     const githubScript = document.createElement('script');
     githubScript.src = '//buttons.github.io/buttons.js';
     githubScript.id = 'github-bjs';
-    githubButton.parentNode.appendChild(githubScript);
+    this.githubButton.parentNode.appendChild(githubScript);
   }
 
   shouldComponentUpdate = () => false;
@@ -28,7 +27,7 @@ export default class GithubStarButton extends Component {
     // Note: all of the attributes including the className 'github-button' are required
     return (
       <a
-        ref="githubButton"
+        ref={(element) => { this.githubButton = element; }}
         className="github-button"
         href="https://github.com/draft-js-plugins/draft-js-plugins"
         data-style={size}

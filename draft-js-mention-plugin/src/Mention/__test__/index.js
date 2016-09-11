@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import Mention from '../index';
 import { fromJS, Map } from 'immutable';
 import { Entity } from 'draft-js';
 import { expect } from 'chai';
+import Mention from '../index';
 
 describe('Mention', () => {
   it('renders an Anchor tag in case a link is provided', () => {

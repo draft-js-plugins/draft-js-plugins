@@ -1,6 +1,6 @@
+import { Entity } from 'draft-js';
 import addBlock from './addBlock';
 import removeBlock from './removeBlock';
-import { Entity } from 'draft-js';
 import { DRAFTJS_BLOCK_KEY, DRAFTJS_BLOCK_TYPE } from '../constants';
 
 export default function onDropBlock({ handleDefaultData }) {

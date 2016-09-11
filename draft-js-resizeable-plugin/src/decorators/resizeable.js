@@ -4,14 +4,16 @@ import ReactDOM from 'react-dom';
 const resizeableRatioUtil = (ratio, padding) => ({
   ratioContainerStyle: {
     position: 'relative'
-  }, ratioContentStyle: {
+  },
+  ratioContentStyle: {
     position: 'absolute',
     top: padding ? `-${padding}px` : 0,
     left: padding ? `-${padding}px` : 0,
     bottom: 0,
     right: 0,
     padding: padding ? `${padding}px` : 0
-  }, createRatioPlaceholder: () => <div style={{ display: 'block', width: '100%', paddingTop: `${ratio * 100}%` }}></div>
+  },
+  createRatioPlaceholder: () => <div style={{ display: 'block', width: '100%', paddingTop: `${ratio * 100}%` }} />
 });
 
 // Get a component's display name
@@ -60,6 +62,7 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
   }
 
   componentDidUpdate() {
+    // eslint-disable-next-line react/no-find-dom-node
     this.DOMNode = ReactDOM.findDOMNode(this);
     const readOnly = this.props.blockProps.pluginEditor.getReadOnly();
 
@@ -121,14 +124,14 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
 
     // Do the actual drag operation
     const doDrag = (dragEvent) => {
-      let width = (startWidth + dragEvent.clientX - startX);
-      let height = (startHeight + dragEvent.clientY - startY);
+      let width = (startWidth + dragEvent.clientX) - startX;
+      let height = (startHeight + dragEvent.clientY) - startY;
       const b = component.parentElement.parentElement;
       width = b.clientWidth < width ? b.clientWidth : width;
       height = b.clientHeight < height ? b.clientHeight : height;
 
-      const widthPerc = 100 / b.clientWidth * width;
-      const heightPerc = 100 / b.clientHeight * height;
+      const widthPerc = 100 / (b.clientWidth * width);
+      const heightPerc = 100 / (b.clientHeight * height);
 
       const newState = {};
       if ((isLeft || isRight) && horizontal === 'relative') {
@@ -197,9 +200,9 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
     }
 
     // Handle cursor
-    if (isRight && isBottom || isLeft && isTop) {
+    if ((isRight && isBottom) || (isLeft && isTop)) {
       styles.cursor = 'nwse-resize';
-    } else if (isRight && isTop || isBottom && isLeft) {
+    } else if ((isRight && isTop) || (isBottom && isLeft)) {
       styles.cursor = 'nesw-resize';
     } else if (isRight || isLeft) {
       styles.cursor = 'ew-resize';

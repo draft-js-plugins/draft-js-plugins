@@ -1,16 +1,16 @@
+import { Map } from 'immutable';
+import decorateComponentWithProps from 'decorate-component-with-props';
+import { EditorState } from 'draft-js';
 import Emoji from './Emoji';
 import EmojiSuggestions from './EmojiSuggestions';
 import EmojiSuggestionsPortal from './EmojiSuggestionsPortal';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
-import decorateComponentWithProps from 'decorate-component-with-props';
-import { Map } from 'immutable';
 import emojiStyles from './emojiStyles.css';
 import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
-import { EditorState } from 'draft-js';
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const cacheBustParam = '?v=2.2.6';
@@ -50,7 +50,7 @@ const createEmojiPlugin = (config = {}) => {
   };
 
   let searches = Map();
-  let escapedSearch = undefined;
+  let escapedSearch;
   let clientRectFunctions = Map();
 
   const store = {

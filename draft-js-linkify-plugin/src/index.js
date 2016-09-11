@@ -1,7 +1,7 @@
+import decorateComponentWithProps from 'decorate-component-with-props';
 import Link from './Link';
 import linkStrategy from './linkStrategy';
 import styles from './styles.css';
-import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = {
   link: styles.link,

@@ -31,9 +31,10 @@ export default class CustomCounterEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
+  // eslint-disable-next-line class-methods-use-this
   customCountFunction(str) {
     const wordArray = str.match(/\S+/g);  // matches words according to whitespace
     return wordArray ? wordArray.length : 0;
@@ -47,7 +48,7 @@ export default class CustomCounterEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref="editor"
+            ref={(element) => { this.editor = element; }}
           />
         </div>
         <div><CharCounter limit={200} /> characters</div>

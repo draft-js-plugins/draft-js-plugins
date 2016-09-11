@@ -22,7 +22,7 @@ export default class CustomEmojiEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   render() {
@@ -32,7 +32,7 @@ export default class CustomEmojiEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref="editor"
+          ref={(element) => { this.editor = element; }}
         />
         <EmojiSuggestions />
       </div>

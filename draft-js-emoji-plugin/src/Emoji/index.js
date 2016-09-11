@@ -1,6 +1,6 @@
 import React from 'react';
-import escapeMap from '../utils/escapeMap';
 import unionClassNames from 'union-class-names';
+import escapeMap from '../utils/escapeMap';
 import mappedUnicode from '../utils/mappedUnicode';
 
 const Emoji = ({ theme = {}, cacheBustParam, imagePath, className, decoratedText, ...props }) => {

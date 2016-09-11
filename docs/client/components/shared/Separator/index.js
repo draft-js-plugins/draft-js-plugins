@@ -28,12 +28,12 @@ export default class Separator extends Component {
   render() {
     return (
       <div className={this.state.separatorRootClassName}>
-        <div className={this.state.separator1ClassName}></div>
-        <div className={this.state.separator2ClassName}></div>
-        <div className={this.state.separator3ClassName}></div>
-        <div className={this.state.separator4ClassName}></div>
-        <div className={this.state.separator5ClassName}></div>
-        <div className={this.state.separator6ClassName}></div>
+        <div className={this.state.separator1ClassName} />
+        <div className={this.state.separator2ClassName} />
+        <div className={this.state.separator3ClassName} />
+        <div className={this.state.separator4ClassName} />
+        <div className={this.state.separator5ClassName} />
+        <div className={this.state.separator6ClassName} />
       </div>
     );
   }

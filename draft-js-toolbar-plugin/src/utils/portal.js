@@ -34,12 +34,11 @@ class Tooltip extends Component {
     }
 
     // Get tooltip ref for width centering
-    const ref = ReactDOM.findDOMNode(this.refs.tooltip);
-    if (ref) {
-      const refRect = ref.getBoundingClientRect();
+    if (this.tooltip) {
+      const refRect = this.tooltip.getBoundingClientRect();
       const scrollY = window.scrollY ? window.scrollY : window.pageYOffset;
       const scrollX = window.scrollX ? window.scrollX : window.pageXOffset;
-      const leftForVerticalCenter = left - (refRect.width / 2) + (width / 2) + scrollX;
+      const leftForVerticalCenter = (left + scrollX) - ((refRect.width / 2) + (width / 2));
       // if tooltip overflow to window left(leftForVerticalCenter < 0),
       // some parts of it become invisible,
       // just simply set `state.left = 0` here
@@ -50,7 +49,7 @@ class Tooltip extends Component {
 
       // Set state
       this.setState({ // eslint-disable-line react/no-did-mount-set-state
-        top: top - (position === 'left' ? 0 : refRect.height) + scrollY,
+        top: (top + scrollY) - (position === 'left' ? 0 : refRect.height),
         left: typeof forceLeft === 'number' ? forceLeft : adjustedLeft,
         width,
       });
@@ -93,7 +92,7 @@ class Tooltip extends Component {
     }
 
     return (
-      <div ref="tooltip" style={style} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+      <div ref={(element) => { this.tooltip = element; }} style={style} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
         {this.props.children}
         <div style={{ backgroundColor: 'transparent', height: '5px', width: '100%', clear: 'both' }} />
       </div>

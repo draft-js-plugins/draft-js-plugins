@@ -1,4 +1,32 @@
 import React, { Component } from 'react';
+
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js';
+// eslint-disable-next-line import/no-unresolved
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import customComponentExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomComponentMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import customComponentExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomComponentMentionEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
+import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
+
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
@@ -8,22 +36,9 @@ import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
 import RemoteMentionEditor from './RemoteMentionEditor';
 import CustomComponentMentionEditor from './CustomComponentMentionEditor';
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor'; // eslint-disable-line import/no-unresolved
-import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js'; // eslint-disable-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor'; // eslint-disable-line import/no-unresolved
-import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js'; // eslint-disable-line import/no-unresolved
-import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
-import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css'; // eslint-disable-line import/no-unresolved
-import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor'; // eslint-disable-line import/no-unresolved
-import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
-import customComponentExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomComponentMentionEditor'; // eslint-disable-line import/no-unresolved
-import customComponentExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomComponentMentionEditor/editorStyles.css'; // eslint-disable-line import/no-unresolved
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
-import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig'; // eslint-disable-line import/no-unresolved
-import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport'; // eslint-disable-line import/no-unresolved
 import ExternalLink from '../../shared/Link';
 import InlineCode from '../../shared/InlineCode';
 

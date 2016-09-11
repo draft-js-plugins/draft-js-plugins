@@ -1,7 +1,7 @@
+import decorateComponentWithProps from 'decorate-component-with-props';
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
 import styles from './styles.css';
-import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = {
   hashtag: styles.hashtag,

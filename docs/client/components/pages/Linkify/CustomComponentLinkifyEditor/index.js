@@ -6,7 +6,7 @@ import editorStyles from './editorStyles.css';
 
 const linkifyPlugin = createLinkifyPlugin({
   component: (props) => (
-    // eslint-disable-next-line no-alert
+    // eslint-disable-next-line no-alert, jsx-a11y/anchor-has-content
     <a {...props} onClick={() => alert('Clicked on Link!')} />
   )
 });
@@ -25,7 +25,7 @@ export default class CustomMentionEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   render() {
@@ -35,7 +35,7 @@ export default class CustomMentionEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref="editor"
+          ref={(element) => { this.editor = element; }}
         />
       </div>
     );

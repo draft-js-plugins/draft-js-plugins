@@ -1,11 +1,11 @@
 /* eslint no-unused-expressions: 0 */
 import React from 'react';
 import { shallow } from 'enzyme';
-import Undo from '../index';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 import { EditorState, Modifier } from 'draft-js';
+import Undo from '../index';
 
 chai.use(sinonChai);
 
