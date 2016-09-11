@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - `onChange` & and all handlers now also receive: `getPlugins`, `getProps`, `getReadOnly`, `setReadOnly`.
-- 'defaultBlockRenderMap' option, by default it set to true, if manually set to false. the plugins editor will accept blockRenderMap passed from its props to override default blockRenderMap.
+- 'defaultBlockRenderMap' option, by default it set to true. If set to false the defaultBlockRenderMap from Draft.js is not used as base for the generated blockRenderMap.
 
 ### Removed
 

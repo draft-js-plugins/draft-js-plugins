@@ -229,14 +229,16 @@ class PluginEditor extends Component {
   );
 
   resolveblockRenderMap = () => {
-    const blockRenderMap = this.props.plugins
+    let blockRenderMap = this.props.plugins
       .filter(plug => plug.blockRenderMap !== undefined)
       .reduce((maps, plug) => maps.merge(plug.blockRenderMap), Map({}));
-    if (blockRenderMap && blockRenderMap.size > 0) {
-      return DefaultDraftBlockRenderMap.merge(blockRenderMap);
+    if (this.props.defaultBlockRenderMap) {
+      blockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
     }
-
-    return DefaultDraftBlockRenderMap;
+    if (this.props.blockRenderMap) {
+      blockRenderMap = blockRenderMap.merge(this.props.blockRenderMap);
+    }
+    return blockRenderMap;
   }
 
   resolveAccessibilityProps = () => {
@@ -273,8 +275,7 @@ class PluginEditor extends Component {
     const pluginHooks = this.createPluginHooks();
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
-    const blockRenderMap = this.props.defaultBlockRenderMap ? this.resolveblockRenderMap() :
-    this.resolveblockRenderMap().merge(this.props.blockRenderMap);
+    const blockRenderMap = this.resolveblockRenderMap();
     return (
       <Editor
         {...this.props}
