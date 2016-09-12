@@ -261,9 +261,19 @@ export default class EmojiSuggestions extends Component {
 
     this.filteredEmojis = this.getEmojisForFilter();
     const { theme = {}, cacheBustParam, imagePath } = this.props;
+    const {
+      ariaProps, // eslint-disable-line no-unused-vars
+      cacheBustParam: extractedcacheBustParam, // eslint-disable-line no-unused-vars
+      callbacks, // eslint-disable-line no-unused-vars
+      imagePath: extractedimagePath, // eslint-disable-line no-unused-vars
+      theme: extractedtheme, // eslint-disable-line no-unused-vars
+      store, // eslint-disable-line no-unused-vars
+      positionSuggestions, // eslint-disable-line no-unused-vars
+      ...restProps,
+  } = this.props;
     return (
       <div
-        {...this.props}
+        {...restProps}
         className={theme.emojiSuggestions}
         role="listbox"
         id={`emojis-list-${this.key}`}
