@@ -1,6 +1,5 @@
 /* eslint-disable */
 import ns from 'emojione';
-import ns from 'emojione';
 // emojione version 2.1.2
 // Original can be found here: https://github.com/Ranks/emojione
 
