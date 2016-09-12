@@ -3,6 +3,7 @@ import React, {
   Component,
 } from 'react';
 import ns from 'emojione';
+
 export default class Entry extends Component {
 
   constructor(props) {
