@@ -49,6 +49,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
   }
 
   componentDidUpdate() {
+    // eslint-disable-next-line react/no-find-dom-node
     this.DOMNode = ReactDOM.findDOMNode(this);
     this.ReactRoot = document.querySelector('[data-reactroot]');
     const { pluginEditor, isFocused } = this.props.blockProps;

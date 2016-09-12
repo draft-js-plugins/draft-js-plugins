@@ -1,10 +1,10 @@
+import decorateComponentWithProps from 'decorate-component-with-props';
+import { Map } from 'immutable';
 import Mention from './Mention';
 import MentionSuggestions from './MentionSuggestions';
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
-import decorateComponentWithProps from 'decorate-component-with-props';
-import { Map } from 'immutable';
 import mentionStyles from './mentionStyles.css';
 import mentionSuggestionsStyles from './mentionSuggestionsStyles.css';
 import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
@@ -43,7 +43,7 @@ const createMentionPlugin = (config = {}) => {
   };
 
   let searches = Map();
-  let escapedSearch = undefined;
+  let escapedSearch;
   let clientRectFunctions = Map();
 
   const store = {
@@ -84,6 +84,7 @@ const createMentionPlugin = (config = {}) => {
     mentionPrefix = '',
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
+    mentionComponent,
     mentionTrigger = '@',
   } = config;
   const mentionSearchProps = {
@@ -100,7 +101,7 @@ const createMentionPlugin = (config = {}) => {
     decorators: [
       {
         strategy: mentionStrategy(mentionTrigger),
-        component: decorateComponentWithProps(Mention, { theme, mentionPrefix }),
+        component: decorateComponentWithProps(Mention, { theme, mentionPrefix, mentionComponent }),
       },
       {
         strategy: mentionSuggestionsStrategy(mentionTrigger),

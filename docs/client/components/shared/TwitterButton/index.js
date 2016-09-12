@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 export default class TwitterButton extends Component {
 
   componentDidMount() {
-    const twitterbutton = this.refs.twitterbutton;
     const twitterscript = document.createElement('script');
     twitterscript.src = '//platform.twitter.com/widgets.js';
     twitterscript.id = 'twitter-wjs';
     twitterscript.onload = this.renderWidget;
-    twitterbutton.parentNode.appendChild(twitterscript);
+    this.twitterbutton.parentNode.appendChild(twitterscript);
   }
 
   // prevent re-rendering of the button
@@ -26,7 +25,7 @@ export default class TwitterButton extends Component {
     const size = this.props.size ? this.props.size : 'default';
     window.twttr.widgets.createShareButton(
       this.props.url,
-      this.refs.twitterbutton,
+      this.twitterbutton,
       {
         text,
         size,
@@ -36,7 +35,7 @@ export default class TwitterButton extends Component {
 
   render() {
     return (
-      <span ref="twitterbutton" />
+      <span ref={(element) => { this.twitterbutton = element; }} />
     );
   }
 }

@@ -18,13 +18,15 @@ export default ({ theme, customRender }) => WrappedComponent => class FocusedToo
   // Bind listeners on mount
   componentDidMount() {
     // Set this.number to a unique value
-    this.number = number++;
+    number += 1;
+    this.number = number;
 
     // Bind listeners
     this.componentDidUpdate();
   }
 
   componentDidUpdate() {
+    // eslint-disable-next-line react/no-find-dom-node
     this.DOMNode = ReactDOM.findDOMNode(this);
     if (!customRender) {
       this.renderToolbar(

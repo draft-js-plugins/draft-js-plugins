@@ -10,11 +10,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Introduced a new configuration option `mentionTrigger`. By default it is set to `@`. As before by default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered. [#320](https://github.com/draft-js-plugins/draft-js-plugins/pull/320) Thanks to @yjang1031
 - MentionSuggestions accepts a new prop `entryComponent`. The passed component is used as the template for each of the suggestions' entry. [#317](https://github.com/draft-js-plugins/draft-js-plugins/pull/327). Thanks to @Zhouzi
 - `defaultEntryComponent` component is passed `searchValue` prop to enable more customizations when displaying the the MentionSuggestions. Thanks to @nishp1
+- The config now accepts a new prop `mentionComponent`. If provided the passed component is used to render a Mention. [#271](https://github.com/draft-js-plugins/draft-js-plugins/pull/271). Thanks to @alexkuz
+- Added support for Chinese words. Thanks to @mzbac
+- Added support for Japanese characters (hiragana & katakana).
 
 ### Fixed
 
 - Mentions popover showed up when typing before a @ [#323](https://github.com/draft-js-plugins/draft-js-plugins/issues/323) Thanks to @nishp1
 - Only pass element properties to the root Div of MentionSuggestions to remove the "Unknown prop warning" in React 15.2.0
+- Fixed bug where a user typed @xxx (invalid mention) and hit Enter. [#416](https://github.com/draft-js-plugins/draft-js-plugins/pull/416)
 
 ## 1.1.2 - 2016-06-26
 

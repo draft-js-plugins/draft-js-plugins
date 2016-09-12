@@ -1,7 +1,7 @@
+import decorateComponentWithProps from 'decorate-component-with-props';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
 import styles from './styles.css';
-import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = {
   redo: styles.button,

@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 export default class FacebookLikeButton extends Component {
 
   componentDidMount() {
-    const fbbutton = this.refs.fbbutton;
     const fbscript = document.createElement('script');
     fbscript.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5';
     fbscript.id = 'facebook-jssdk';
     fbscript.onload = this.renderWidget;
-    fbbutton.parentNode.appendChild(fbscript);
+    this.fbbutton.parentNode.appendChild(fbscript);
   }
 
   // prevent re-rendering of the button
@@ -36,7 +35,7 @@ export default class FacebookLikeButton extends Component {
     return (
       <div
         id="fbbutton"
-        ref="fbbutton"
+        ref={(element) => { this.fbbutton = element; }}
         className="fb-like"
         data-href={this.props.url}
         data-layout="standard"

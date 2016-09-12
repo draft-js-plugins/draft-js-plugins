@@ -22,7 +22,7 @@ export default class SimpleMentionEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   render() {
@@ -33,7 +33,7 @@ export default class SimpleMentionEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref="editor"
+            ref={(element) => { this.editor = element; }}
           />
         </div>
         <div className={editorStyles.options}>

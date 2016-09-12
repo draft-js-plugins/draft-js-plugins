@@ -4,12 +4,13 @@
 .*/node_modules/fbjs/.*
 .*/node_modules/immutable/.*
 .*/node_modules/.*.json
+.*/node_modules/draft-js/.*
+.*/node_modules/react/.*
 
 [include]
 
 [libs]
 ./interfaces/CSSModule.js
-./interfaces/Draft.js
 ./interfaces/findWithRegex.js
 
 [options]
@@ -18,6 +19,3 @@ esproposal.class_instance_fields=enable
 module.name_mapper='.*\(.css\)' -> 'CSSModule'
 module.name_mapper='draft-js' -> 'Draft'
 module.system=haste
-
-[version]
-0.27.0

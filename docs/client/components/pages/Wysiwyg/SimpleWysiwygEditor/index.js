@@ -16,6 +16,19 @@ import createTablePlugin, { tableCreator, tableStyles } from 'draft-js-table-plu
 
 import { Map } from 'immutable';
 
+// import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
+
+import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
+
+// Components
+import PlaceholderGithub from '../components/placeholder-github';
+import BlockText from '../components/block-text';
+
+// Utils
+import mockUpload from '../utils/mockUpload';
+
+import styles from './styles.css';
+
 const image = ResizeableDecorator({
   resizeSteps: 10,
   handles: true,
@@ -39,18 +52,6 @@ const table = FocusDecorator(
   )
 );
 
-// import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
-
-// Components
-import PlaceholderGithub from '../components/placeholder-github';
-import BlockText from '../components/block-text';
-
-// Utils
-import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
-import mockUpload from '../utils/mockUpload';
-
-import styles from './styles.css';
-
 // Init Plugins
 const plugins = [
   createCleanupEmptyPlugin({
@@ -61,7 +62,8 @@ const plugins = [
     __toolbarHandler: {
       add: props => console.log('Add toolbar', props), // eslint-disable-line no-console
       remove: props => console.log('Remove toolbar', props), // eslint-disable-line no-console
-    }, textActions: [{
+    },
+    textActions: [{
       button: <span>Table</span>,
       label: 'Create a table',
       active: (block, editorState) => editorState.getSelection().isCollapsed(),
@@ -81,7 +83,8 @@ const plugins = [
       } else if (type.indexOf('text/') === 0 || type === 'application/json') {
         return 'placeholder-github';
       } return undefined;
-    }, handleBlock: (state, selection, data) => {
+    },
+    handleBlock: (state, selection, data) => {
       const { type } = data;
       if (type.indexOf('image/') === 0) {
         return 'block-image';
@@ -119,7 +122,7 @@ class SimpleWysiwygEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   blockRendererFn = (contentBlock) => {
@@ -172,7 +175,7 @@ class SimpleWysiwygEditor extends Component {
           blockRendererFn={this.blockRendererFn}
           blockRenderMap={this.blockRenderMap}
           plugins={plugins}
-          ref="editor"
+          ref={(element) => { this.editor = element; }}
         />
       </div>
     );

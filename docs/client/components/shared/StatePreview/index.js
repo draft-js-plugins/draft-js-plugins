@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import styles from './styles.css';
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
+import styles from './styles.css';
 
 export default class StatePreview extends Component {
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
-import PluginEditor, { createEditorStateWithText } from '../../index';
 import { expect } from 'chai';
 import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
 import { Map } from 'immutable';
 import sinon from 'sinon';
+import PluginEditor, { createEditorStateWithText } from '../../index';
 
 /* For use in integration tests, as in where you need to test the
  * Editor component as well */
@@ -49,7 +49,8 @@ describe('Editor', () => {
           plugins={[]}
         />
       );
-      expect(result).to.have.ref('editor');
+      expect(result.node.props.onChange).to.eq(changeSpy);
+      expect(result.node.props.editorState).to.eq(editorState);
     });
 
     it('without the plugins property provided', () => {
@@ -59,7 +60,8 @@ describe('Editor', () => {
           onChange={changeSpy}
         />
       );
-      expect(result).to.have.ref('editor');
+      expect(result.node.props.onChange).to.eq(changeSpy);
+      expect(result.node.props.editorState).to.eq(editorState);
     });
 
     it('with a plugin provided', () => {
@@ -73,7 +75,8 @@ describe('Editor', () => {
           plugins={plugins}
         />
       );
-      expect(result).to.have.ref('editor');
+      expect(result.node.props.onChange).to.eq(changeSpy);
+      expect(result.node.props.editorState).to.eq(editorState);
     });
 
     it('and by default adds the defaultKeyBindings plugin', () => {
@@ -441,7 +444,7 @@ describe('Editor', () => {
       expect(pluginEditor.resolveCustomStyleMap()).to.deep.equal(expected);
     });
 
-    it('combines the defaultBlockRenderMap from all plugins', () => {
+    it('combines the blockRenderMap from all plugins', () => {
       const plugins = [
         {
           blockRenderMap: Map({ sticker: { element: 'div' } }),
@@ -471,7 +474,8 @@ describe('Editor', () => {
           blockRenderMap: Map({ sticker: { element: 'div' } }),
         },
         {
-          blockRenderMap: Map({ test: { element: 'test' } }),
+          blockRenderMap: Map({ test: { element: 'test' } },
+        ),
         },
       ];
 
@@ -480,16 +484,19 @@ describe('Editor', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
-          defaultBlockRenderMap={false}
           blockRenderMap={customBlockRenderMap}
           onChange={changeSpy}
           plugins={plugins}
         />
       );
 
+      const expected = DefaultDraftBlockRenderMap.merge(Map({
+        sticker: { element: 'customDiv' },
+        test: { element: 'test' },
+      }));
+
       const pluginEditor = result.instance();
-      const expected = pluginEditor.resolveblockRenderMap().merge(customBlockRenderMap);
-      expect(pluginEditor.refs.editor.props.blockRenderMap).to.deep.equal(expected);
+      expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
     });
   });
 

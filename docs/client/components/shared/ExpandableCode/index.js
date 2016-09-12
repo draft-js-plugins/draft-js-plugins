@@ -1,7 +1,9 @@
+/* eslint-disable react/no-danger */
+
 import React, { Component, PropTypes } from 'react';
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
-import styles from './styles.css';
 import 'prismjs/themes/prism.css';
+import styles from './styles.css';
 
 export default class Code extends Component {
 

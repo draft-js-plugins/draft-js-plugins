@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-import createMentionPlugin from 'draft-js-mention-plugin'; // eslint-disable-line import/no-unresolved
-import editorStyles from './editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import Editor from 'draft-js-plugins-editor';
+// eslint-disable-next-line import/no-unresolved
+import createMentionPlugin from 'draft-js-mention-plugin';
 import { fromJS } from 'immutable';
+import editorStyles from './editorStyles.css';
 
 const mentionPlugin = createMentionPlugin();
 const { MentionSuggestions } = mentionPlugin;
@@ -45,7 +47,7 @@ export default class SimpleMentionEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   render() {
@@ -55,7 +57,7 @@ export default class SimpleMentionEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref="editor"
+          ref={(element) => { this.editor = element; }}
         />
         <MentionSuggestions
           onSearchChange={this.onSearchChange}

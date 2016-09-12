@@ -1,9 +1,9 @@
+import decorateComponentWithProps from 'decorate-component-with-props';
 import CharCounter from './CharCounter';
 import WordCounter from './WordCounter';
 import LineCounter from './LineCounter';
 import CustomCounter from './CustomCounter';
 import styles from './styles.css';
-import decorateComponentWithProps from 'decorate-component-with-props';
 
 const defaultTheme = {
   counter: styles.counter,

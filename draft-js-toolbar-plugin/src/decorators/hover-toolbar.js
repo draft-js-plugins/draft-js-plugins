@@ -25,9 +25,11 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
   // Bind listeners on mount
   componentDidMount() {
     // Set this.number to a unique value
-    this.number = number = number++;
+    number += 1;
+    this.number = number;
 
     // Get this domNode
+    // eslint-disable-next-line react/no-find-dom-node
     const element = ReactDOM.findDOMNode(this);
     if (!element) {
       return;

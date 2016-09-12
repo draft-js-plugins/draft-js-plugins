@@ -10,7 +10,7 @@ const positionSuggestions = ({ state, props }) => {
   let transform;
   let transition;
 
-  if (state.isActive & props.suggestions.size > 0) {
+  if (state.isActive && props.suggestions.size > 0) {
     transform = 'scaleY(1)';
     transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
   } else if (state.isActive) {
@@ -35,7 +35,12 @@ const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 const Entry = (props) => {
-  const { mention, theme, ...parentProps } = props;
+  const {
+    mention,
+    theme,
+    searchValue, // eslint-disable-line no-unused-vars
+    ...parentProps
+  } = props;
 
   return (
     <div {...parentProps}>
@@ -82,7 +87,7 @@ export default class CustomMentionEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   render() {
@@ -92,7 +97,7 @@ export default class CustomMentionEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref="editor"
+          ref={(element) => { this.editor = element; }}
         />
         <MentionSuggestions
           onSearchChange={this.onSearchChange}
