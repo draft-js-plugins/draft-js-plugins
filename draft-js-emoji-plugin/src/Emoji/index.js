@@ -1,12 +1,7 @@
 import React from 'react';
 import unionClassNames from 'union-class-names';
-<<<<<<< HEAD
 import ns from 'emojione';
-=======
-import escapeMap from '../utils/escapeMap';
-import mappedUnicode from '../utils/mappedUnicode';
 
->>>>>>> 4d874e419aa07cfcc6a4dc7ff30e26fbb10c8aba
 const Emoji = ({ theme = {}, cacheBustParam, imagePath, className, decoratedText, ...props }) => {
   const shortName = ns.toShort(decoratedText);
   // short name to image url code steal from emojione source code

@@ -273,10 +273,7 @@ export default class EmojiSuggestions extends Component {
   } = this.props;
     return (
       <div
-<<<<<<< HEAD
         {...restProps}
-=======
->>>>>>> 4d874e419aa07cfcc6a4dc7ff30e26fbb10c8aba
         className={theme.emojiSuggestions}
         role="listbox"
         id={`emojis-list-${this.key}`}
