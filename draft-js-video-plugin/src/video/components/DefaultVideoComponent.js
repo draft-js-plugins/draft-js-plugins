@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-const YOUTUBE_PREFIX = 'https://www.youtube.com/embed/';
-const VIMEO_PREFIX = 'https://player.vimeo.com/video/'
 
-const getSrc = ({ url, srcID, srcType }) => {
+const YOUTUBE_PREFIX = 'https://www.youtube.com/embed/';
+const VIMEO_PREFIX = 'https://player.vimeo.com/video/';
+
+const getSrc = ({ srcID, srcType }) => {
   if (srcType === 'youtube') {
     return `${YOUTUBE_PREFIX}${srcID}`;
   }
@@ -23,7 +24,7 @@ const DefaultVideoCompoent = props => {
         src={src}
         frameBorder="0"
         allowFullScreen
-      ></iframe>
+      />
     );
   }
 
@@ -31,8 +32,6 @@ const DefaultVideoCompoent = props => {
 };
 
 DefaultVideoCompoent.propTypes = {
-  srcType: PropTypes.string,
-  srcID: PropTypes.string,
-  url: PropTypes.string,
+  blockProps: PropTypes.object,
 };
 export default DefaultVideoCompoent;

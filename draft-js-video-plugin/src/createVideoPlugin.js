@@ -1,4 +1,3 @@
-import React from 'react';
 import { Entity } from 'draft-js';
 import utils from './video/utils';
 import addVideo from './video/modifiers/addVideo';
@@ -37,7 +36,7 @@ const createVideoPlugin = (config = {}) => {
         .getData();
       if (blockType === 'atomic' && entityData.type === customType.VIDEOTYPE) {
         return {
-          component: wrapperComponent ? wrapperComponent : defaultCompoent,
+          component: wrapperComponent || defaultCompoent,
           props: entityData,
         };
       }

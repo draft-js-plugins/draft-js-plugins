@@ -6,7 +6,7 @@ import {
 
 import * as customType from '../constants';
 
-export default function addVideo(editorState, { srcType, srcID, url}) {
+export default function addVideo(editorState, { srcType, srcID, url }) {
   if (RichUtils.getCurrentBlockType(editorState) === 'atomic') {
     return editorState;
   }
