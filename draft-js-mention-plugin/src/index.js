@@ -13,11 +13,10 @@ import defaultPositionSuggestions from './utils/positionSuggestions';
 
 const createMentionPlugin = (config = {}) => {
   const defaultTheme = {
-    // CSS class for mention text
     mention: mentionStyles.mention,
-    // CSS class for suggestions component
+
     mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
-    // CSS classes for an entry in the suggestions component
+
     mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
     mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
     mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
@@ -84,7 +83,6 @@ const createMentionPlugin = (config = {}) => {
     mentionPrefix = '',
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
-    mentionTrigger = '@',
   } = config;
   const mentionSearchProps = {
     ariaProps,
@@ -93,17 +91,16 @@ const createMentionPlugin = (config = {}) => {
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
     positionSuggestions,
-    mentionTrigger,
   };
   return {
     MentionSuggestions: decorateComponentWithProps(MentionSuggestions, mentionSearchProps),
     decorators: [
       {
-        strategy: mentionStrategy(mentionTrigger),
+        strategy: mentionStrategy,
         component: decorateComponentWithProps(Mention, { theme, mentionPrefix }),
       },
       {
-        strategy: mentionSuggestionsStrategy(mentionTrigger),
+        strategy: mentionSuggestionsStrategy,
         component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
       },
     ],

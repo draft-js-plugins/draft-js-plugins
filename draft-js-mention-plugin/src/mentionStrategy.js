@@ -1,13 +1,12 @@
 import { Entity } from 'draft-js';
-import getTypeByTrigger from './utils/getTypeByTrigger';
 
-const findMention = (trigger) => (character) => {
+const findMention = (character) => {
   const entityKey = character.getEntity();
-  return (entityKey !== null && Entity.get(entityKey).getType() === getTypeByTrigger(trigger));
+  return (entityKey !== null && Entity.get(entityKey).getType() === 'mention');
 };
 
-const findMentionEntities = (trigger) => (contentBlock, callback) => {
-  contentBlock.findEntityRanges(findMention(trigger), callback);
+const findMentionEntities = (contentBlock, callback) => {
+  contentBlock.findEntityRanges(findMention, callback);
 };
 
 export default findMentionEntities;

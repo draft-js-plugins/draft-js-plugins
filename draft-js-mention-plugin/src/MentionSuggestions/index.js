@@ -5,8 +5,6 @@ import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
-import defaultEntryComponent from './Entry/defaultEntryComponent';
-import { List } from 'immutable';
 
 export default class MentionSuggestions extends Component {
 
@@ -16,19 +14,6 @@ export default class MentionSuggestions extends Component {
       'IMMUTABLE',
       'MUTABLE',
     ]),
-    entryComponent: PropTypes.func,
-    suggestions: (props, propName, componentName) => {
-      if (!List.isList(props[propName])) {
-        return new Error(
-          `Invalid prop \`${propName}\' supplied to \`${componentName}\`. should be an instance of immutable list.`
-        );
-      }
-      return undefined;
-    },
-  };
-
-  static defaultProps = {
-    entryComponent: defaultEntryComponent,
   };
 
   state = {
@@ -94,7 +79,6 @@ export default class MentionSuggestions extends Component {
 
     // get the current selection
     const selection = editorState.getSelection();
-    const anchorKey = selection.getAnchorKey();
     const anchorOffset = selection.getAnchorOffset();
 
     // the list should not be visible if a range is selected or the editor has no focus
@@ -104,13 +88,11 @@ export default class MentionSuggestions extends Component {
     const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
 
     // a leave can be empty when it is removed due e.g. using backspace
-    const leaves = offsetDetails
-      .filter(({ blockKey }) => blockKey === anchorKey)
-      .map(({ blockKey, decoratorKey, leafKey }) => (
-        editorState
-          .getBlockTree(blockKey)
-          .getIn([decoratorKey, 'leaves', leafKey])
-      ));
+    const leaves = offsetDetails.map(({ blockKey, decoratorKey, leafKey }) => (
+      editorState
+        .getBlockTree(blockKey)
+        .getIn([decoratorKey, 'leaves', leafKey])
+    ));
 
     // if all leaves are undefined the popover should be removed
     if (leaves.every((leave) => leave === undefined)) {
@@ -210,7 +192,6 @@ export default class MentionSuggestions extends Component {
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
-      this.props.mentionTrigger,
       this.props.entityMutability,
     );
     this.props.store.setEditorState(newEditorState);
@@ -277,25 +258,13 @@ export default class MentionSuggestions extends Component {
 
   render() {
     if (!this.state.isActive) {
-      return null;
+      return <noscript />;
     }
 
-    const {
-      entryComponent,
-      onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
-      suggestions, // eslint-disable-line no-unused-vars
-      ariaProps, // eslint-disable-line no-unused-vars
-      callbacks, // eslint-disable-line no-unused-vars
-      theme = {},
-      store, // eslint-disable-line no-unused-vars
-      entityMutability, // eslint-disable-line no-unused-vars
-      positionSuggestions, // eslint-disable-line no-unused-vars
-      mentionTrigger, // eslint-disable-line no-unused-vars
-      ...elementProps } = this.props;
-
+    const { theme = {} } = this.props;
     return (
       <div
-        {...elementProps}
+        {...this.props}
         className={theme.mentionSuggestions}
         role="listbox"
         id={`mentions-list-${this.key}`}
@@ -304,7 +273,7 @@ export default class MentionSuggestions extends Component {
         {
           this.props.suggestions.map((mention, index) => (
             <Entry
-              key={mention.has('id') ? mention.get('id') : mention.get('name')}
+              key={mention.get('name')}
               onMentionSelect={this.onMentionSelect}
               onMentionFocus={this.onMentionFocus}
               isFocused={this.state.focusedOptionIndex === index}
@@ -312,8 +281,6 @@ export default class MentionSuggestions extends Component {
               index={index}
               id={`mention-option-${this.key}-${index}`}
               theme={theme}
-              searchValue={this.lastSearchValue}
-              entryComponent={entryComponent}
             />
           )).toJS()
         }
