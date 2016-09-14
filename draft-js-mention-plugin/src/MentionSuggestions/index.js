@@ -190,7 +190,7 @@ export default class MentionSuggestions extends Component {
     keyboardEvent.preventDefault();
     if (this.props.suggestions.size > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
-      this.onMentionFocus(newIndex < 0 ? this.props.suggestion.size - 1 : newIndex);
+      this.onMentionFocus(newIndex < 0 ? this.props.suggestions.size - 1 : newIndex);
     }
   };
 
