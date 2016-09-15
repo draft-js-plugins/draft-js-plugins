@@ -13,7 +13,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - The config now accepts a new prop `mentionComponent`. If provided the passed component is used to render a Mention. [#271](https://github.com/draft-js-plugins/draft-js-plugins/pull/271). Thanks to @alexkuz
 - Added support for Chinese words. Thanks to @mzbac
 - Added support for Japanese characters (hiragana & katakana).
-- Added support for special characters like `-` `_` `.` to be searched.
 
 ### Fixed
 
