@@ -12,9 +12,8 @@ const priorityList = {
   ':see_no_evil:': ["1f648"],
   ':raised_hands:': ["1f64c"],
   ':100:': ["1f4af"],
-}
+};
 let emojioneList = {};
-console.log(ns.emojioneList);
 for (let key in ns.emojioneList) {
   if (priorityList.hasOwnProperty(key)) {
     continue;
