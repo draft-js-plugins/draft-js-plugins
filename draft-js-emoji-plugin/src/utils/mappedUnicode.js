@@ -7,7 +7,7 @@ const mapUnicode = () => {
   for (const shortname in emojioneList) {
     // eslint-disable-next-line no-continue, no-prototype-builtins
     if (!emojioneList.hasOwnProperty(shortname)) {
-      continue;
+      continue;// eslint-disable-line no-continue
     }
 
     for (let i = 0, len = emojioneList[shortname].length; i < len; i += 1) {
