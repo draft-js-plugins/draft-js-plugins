@@ -19,6 +19,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Mentions popover showed up when typing before a @ [#323](https://github.com/draft-js-plugins/draft-js-plugins/issues/323) Thanks to @nishp1
 - Only pass element properties to the root Div of MentionSuggestions to remove the "Unknown prop warning" in React 15.2.0
 - Fixed bug where a user typed @xxx (invalid mention) and hit Enter. [#416](https://github.com/draft-js-plugins/draft-js-plugins/pull/416)
+- Fixed bug where press up arrow would not cycle back to the bottom of suggestions
+- Fixed race condition where the SuggestionPortal would unregister and not register again when inputting Japanese, etc.
 
 ## 1.1.2 - 2016-06-26
 
