@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class MentionSuggestionsPortal extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.store.register(this.props.offsetKey);
     this.updatePortalClientRect(this.props);
 
