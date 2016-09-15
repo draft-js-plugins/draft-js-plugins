@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
+### Added
+- add emojione as a dependency
+- in emojioneList, emojiList from emojione lib and accept a priorityList to put priority suggestions by default.
 
 ## 1.2.3 - 2016-07-06
 
