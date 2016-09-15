@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { genKey } from 'draft-js';
-
+import _ from 'lodash';
+import { List } from 'immutable';
 import Entry from './Entry';
 import addEmoji from '../modifiers/addEmoji';
 import getSearchText from '../utils/getSearchText';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
-import emojiShortNames from '../utils/shortNames';
+import emojione from '../utils/emojioneList';
 
 export default class EmojiSuggestions extends Component {
 
@@ -120,8 +121,7 @@ export default class EmojiSuggestions extends Component {
 
     // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another emoji search
-    if (this.lastSelectionIsInsideWord === undefined ||
-        !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
+    if (this.lastSelectionIsInsideWord === undefined || !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
       this.setState({
         focusedOptionIndex: 0,
       });
@@ -197,7 +197,7 @@ export default class EmojiSuggestions extends Component {
     const selection = this.props.store.getEditorState().getSelection();
     const { word } = getSearchText(this.props.store.getEditorState(), selection);
     const emojiValue = word.substring(1, word.length).toLowerCase();
-    const filteredValues = emojiShortNames.filter((emojiShortName) => (
+    const filteredValues = List(_.keys(emojione.emojioneList)).filter((emojiShortName) => (
       !emojiValue || emojiShortName.indexOf(emojiValue) > -1
     ));
     const size = filteredValues.size < 9 ? filteredValues.size : 9;
@@ -276,7 +276,9 @@ export default class EmojiSuggestions extends Component {
         className={theme.emojiSuggestions}
         role="listbox"
         id={`emojis-list-${this.key}`}
-        ref={(element) => { this.popover = element; }}
+        ref={(element) => {
+          this.popover = element;
+        }}
       >
         {
           this.filteredEmojis.map((emoji, index) => (

@@ -13,12 +13,23 @@ const priorityList = {
   ':raised_hands:': ["1f64c"],
   ':100:': ["1f4af"],
 };
-let emojioneList = {};
-for (let key in ns.emojioneList) {
-  if (priorityList.hasOwnProperty(key)) {
-    continue;
+const emojione = {};
+emojione.setPriorityList = (priorityList) => {
+  emojione.emojioneList = newEmojiListWithOutPriorityList(priorityList); // re-generate emojiList when set PriorityList
+};
+const newEmojiListWithOutPriorityList = (priorityList) => {
+  let list = {};
+  for (let key in ns.emojioneList) {
+    if (priorityList.hasOwnProperty(key)) {
+      continue;
+    }
+    list[key] = ns.emojioneList[key].unicode;
   }
-  emojioneList[key] = ns.emojioneList[key].unicode;
-}
-emojioneList = { ...priorityList, ...emojioneList }
-export default emojioneList;
+
+  return { ...priorityList, ...list };
+};
+
+emojione.emojioneList = newEmojiListWithOutPriorityList(priorityList); // init emojiList
+export default emojione;
+
+

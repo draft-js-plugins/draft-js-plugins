@@ -11,7 +11,7 @@ import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
-
+import emojione from './utils/emojioneList'
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const cacheBustParam = '?v=2.1.2';
 
@@ -91,7 +91,9 @@ const createEmojiPlugin = (config = {}) => {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
     imagePath = defaultImagePath,
+    priorityList,
   } = config;
+  if (priorityList) emojione.setPriorityList(priorityList);// if priorityList is configured in config then set priorityList
   const emojiSearchProps = {
     ariaProps,
     cacheBustParam,
@@ -114,14 +116,14 @@ const createEmojiPlugin = (config = {}) => {
       },
     ],
     getAccessibilityProps: () => (
-      {
-        role: 'combobox',
-        ariaAutoComplete: 'list',
-        ariaHasPopup: ariaProps.ariaHasPopup,
-        ariaExpanded: ariaProps.ariaExpanded,
-        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
-        ariaOwneeID: ariaProps.ariaOwneeID,
-      }
+    {
+      role: 'combobox',
+      ariaAutoComplete: 'list',
+      ariaHasPopup: ariaProps.ariaHasPopup,
+      ariaExpanded: ariaProps.ariaExpanded,
+      ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
+      ariaOwneeID: ariaProps.ariaOwneeID,
+    }
     ),
 
     initialize: ({ getEditorState, setEditorState }) => {
