@@ -5,9 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 ### Added
-- add emojione as a dependency.
-- change emojiList from emojione lib.
-- config will accept a priorityList, it wil show on top of rest of emojis after user typed ':'.
+
+- Add emojione as a dependency.
+- Update the list of Emojis from Emojione `2.1.2` to `2.2.6`.
+- The config object will accept a property `priorityList` which should contain Emoji entries used by EmojiOne. These entries will be show first in the EmojiSuggestions dropdown after typing `:`.
 
 ## 1.2.3 - 2016-07-06
 

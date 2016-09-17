@@ -106,7 +106,6 @@
     "react-dom": ">=15.2.1",
     "tlds": "1.159.0",
     "union-class-names": "^1.0.0",
-    "webpack": "^1.13.2",
-    "emojione": "^2.2.6"
+    "webpack": "^1.13.2"
   }
 }

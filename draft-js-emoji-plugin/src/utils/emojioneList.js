@@ -1,6 +1,6 @@
 /* eslint-disable */
 import ns from 'emojione';
-// emojione version 2.1.2
+// emojione version 2.2.6
 // Original can be found here: https://github.com/Ranks/emojione
 const priorityList = {
   ':thumbsup:': ["1f44d"],

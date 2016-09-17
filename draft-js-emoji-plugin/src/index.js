@@ -15,7 +15,7 @@ import defaultPositionSuggestions from './utils/positionSuggestions';
 import emojione from './utils/emojioneList';
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
-const cacheBustParam = '?v=2.1.2';
+const cacheBustParam = '?v=2.2.6';
 
 // TODO activate/deactivate different the conversion or search part
 
