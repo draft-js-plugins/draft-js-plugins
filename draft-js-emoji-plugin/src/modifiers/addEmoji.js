@@ -1,8 +1,9 @@
 import { Modifier, EditorState, Entity } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
-import emojioneList from '../utils/emojioneList';
+import emojione from '../utils/emojioneList';
 import convertShortNameToUnicode from '../utils/convertShortNameToUnicode';
 
+const emojioneList = emojione.emojioneList;
 const addEmoji = (editorState, emojiShortName) => {
   const currentSelectionState = editorState.getSelection();
   const { begin, end } = getSearchText(editorState, currentSelectionState);

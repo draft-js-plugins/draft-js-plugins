@@ -1,4 +1,5 @@
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
+import _ from 'lodash';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
 import Emoji from './Emoji';
@@ -11,6 +12,7 @@ import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
+import emojione from './utils/emojioneList';
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const cacheBustParam = '?v=2.1.2';
@@ -91,7 +93,9 @@ const createEmojiPlugin = (config = {}) => {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
     imagePath = defaultImagePath,
+    priorityList,
   } = config;
+  if (priorityList) emojione.setPriorityList(priorityList);// if priorityList is configured in config then set priorityList
   const emojiSearchProps = {
     ariaProps,
     cacheBustParam,
@@ -100,6 +104,7 @@ const createEmojiPlugin = (config = {}) => {
     theme,
     store,
     positionSuggestions,
+    shortNames: List(_.keys(emojione.emojioneList)),
   };
   return {
     EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
