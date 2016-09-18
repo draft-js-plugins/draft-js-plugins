@@ -60,8 +60,8 @@ const plugins = [
   createEntityPropsPlugin({ }),
   createToolbarPlugin({
     __toolbarHandler: {
-      add: props => console.log('Add toolbar', props), // eslint-disable-line no-console
-      remove: props => console.log('Remove toolbar', props), // eslint-disable-line no-console
+      add: (props) => console.log('Add toolbar', props), // eslint-disable-line no-console
+      remove: (props) => console.log('Remove toolbar', props), // eslint-disable-line no-console
     },
     textActions: [{
       button: <span>Table</span>,
@@ -136,7 +136,7 @@ class SimpleWysiwygEditor extends Component {
     } return undefined;
   }
 
-  customBlockRendering = props => {
+  customBlockRendering = (props) => {
     const { blockTypes } = props;
     const newObj = {
       paragraph: {
@@ -152,7 +152,7 @@ class SimpleWysiwygEditor extends Component {
         element: 'div',
       }
     };
-    Object.keys(blockTypes).forEach(type => {
+    Object.keys(blockTypes).forEach((type) => {
       newObj[type] = {
         element: 'div'
       };

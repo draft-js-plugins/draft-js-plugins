@@ -1,7 +1,7 @@
 import { Entity, EditorState } from 'draft-js';
 import removeBlock from './utils/removeBlock';
 
-const setEntityDataFn = (contentBlock, { getEditorState, setEditorState }) => data => {
+const setEntityDataFn = (contentBlock, { getEditorState, setEditorState }) => (data) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();

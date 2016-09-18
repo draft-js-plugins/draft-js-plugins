@@ -31,7 +31,7 @@ app.get('*', (req, res) => {
 // though we are only interested in the port.
 const { port } = url.parse(`http:${config.output.publicPath}`);
 
-app.listen(port, 'localhost', err => {
+app.listen(port, 'localhost', (err) => {
   if (err) return console.error(err); // eslint-disable-line no-console
   console.log(`Dev server listening at http://localhost:${port}`); // eslint-disable-line no-console
 

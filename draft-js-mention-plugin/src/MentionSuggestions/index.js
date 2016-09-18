@@ -133,7 +133,7 @@ export default class MentionSuggestions extends Component {
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
     this.activeOffsetKey = selectionIsInsideWord
-      .filter(value => value === true)
+      .filter((value) => value === true)
       .keySeq()
       .first();
 
@@ -198,7 +198,7 @@ export default class MentionSuggestions extends Component {
     keyboardEvent.preventDefault();
 
     const activeOffsetKey = this.lastSelectionIsInsideWord
-      .filter(value => value === true)
+      .filter((value) => value === true)
       .keySeq()
       .first();
     this.props.store.escapeSearch(activeOffsetKey);

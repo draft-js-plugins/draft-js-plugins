@@ -5,14 +5,14 @@ const airToolbar = {
   blockMode: 'hover',
   textMode: 'select',
   animations: true,
-  add: props => {
+  add: (props) => {
     Portal.renderPortal({
       toolbarAnimations: airToolbar.animations,
       Element: Toolbar,
       ...props,
     });
   },
-  remove: props => {
+  remove: (props) => {
     Portal.removePortal({
       toolbarAnimations: airToolbar.animations,
       Element: Toolbar,

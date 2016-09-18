@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
+const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
@@ -10,7 +10,7 @@ const getDisplayName = WrappedComponent => {
 let number = 0;
 
 // HoverToolbar decorator will render a toolbar on hovering the WrappedComponent
-export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverToolbarDecorator extends Component {
+export default (defaultTheme, toolbarStore) => (WrappedComponent) => class HoverToolbarDecorator extends Component {
   // Statics
   static displayName = `HoverToolbar(${getDisplayName(WrappedComponent)})`;
   static pluginOptions = WrappedComponent.pluginOptions;
@@ -53,7 +53,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
   }
 
   // Show the toolbar
-  showToolbar = event => {
+  showToolbar = (event) => {
     this.doRenderToolbar(true);
     if (event) event.stopPropagation();
   };
@@ -84,7 +84,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
   };
 
   // Render the actual toolbar
-  doRenderToolbar = active => {
+  doRenderToolbar = (active) => {
     const props = {
       ...this.props,
       actions: [...(this.props.actions || []), ...(this.componentActions || [])],
@@ -101,7 +101,7 @@ export default (defaultTheme, toolbarStore) => WrappedComponent => class HoverTo
     }
   }
 
-  addActions = actions => {
+  addActions = (actions) => {
     this.componentActions = actions;
   }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
+const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
@@ -14,7 +14,7 @@ const findParentNode = (node, filter) => {
     : findParentNode(node.parentElement, filter);
 };
 
-export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorator extends Component {
+export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
   // Statics
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -74,7 +74,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
     }
   }
 
-  releaseOnArrowKey = event => {
+  releaseOnArrowKey = (event) => {
     if (event.keyCode === 38) {
       event.stopPropagation();
       this.unsetFocus('up', event);
@@ -90,12 +90,12 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
   }
 
   releaseOnMouseDown = () => {
-    if (!findParentNode(event.target, x => x === this.DOMNode)) {
+    if (!findParentNode(event.target, (x) => x === this.DOMNode)) {
       this.unsetFocus();
     }
   }
 
-  mouseDown = event => {
+  mouseDown = (event) => {
     const { isFocused } = this.props.blockProps;
     if (isFocused) return;
     event.stopPropagation();
@@ -106,7 +106,7 @@ export default ({ theme, store }) => WrappedComponent => class BlockFocusDecorat
     const { blockProps, className } = this.props;
     const { isFocused } = blockProps;
 
-    const newClassName = [className, (isFocused ? theme.focused : null)].filter(p => p);
+    const newClassName = [className, (isFocused ? theme.focused : null)].filter((p) => p);
 
     return (
       <WrappedComponent {...this.props} className={newClassName.join(' ')} isFocused={isFocused} setFocus={this.setFocus} focusClassName={isFocused ? theme.focused : ''} />

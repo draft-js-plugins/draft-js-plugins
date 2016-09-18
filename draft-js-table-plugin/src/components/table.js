@@ -65,7 +65,7 @@ const TableComponent = ({ theme }) => class Table extends Component {
     const { style, className, blockProps } = this.props;
     const { isFocused, renderNestedEditor } = blockProps;
 
-    const classNames = [className, theme.table].filter(p => p);
+    const classNames = [className, theme.table].filter((p) => p);
 
     return (
       <table className={classNames.join(' ')} cellSpacing="0" style={style}>

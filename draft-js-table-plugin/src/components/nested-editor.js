@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState, ContentState, convertFromRaw, convertToRaw } from 'draft-js';
 
-export default PluginEditor => class NestedEditor extends Component {
+export default (PluginEditor) => class NestedEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,14 +21,14 @@ export default PluginEditor => class NestedEditor extends Component {
     this.editor.removeEventListener('keydown', this.stopPropagation, false);
   }
 
-  onChange = editorState => {
+  onChange = (editorState) => {
     const { readOnly } = this.props;
     if (readOnly) return;
     this.setState({ editorState });
     this.props.onChange(convertToRaw(editorState.getCurrentContent()));
   }
 
-  mouseDown = event => {
+  mouseDown = (event) => {
     const { readOnly, setFocus } = this.props;
     event.stopPropagation();
     if (readOnly === false) {
@@ -38,7 +38,7 @@ export default PluginEditor => class NestedEditor extends Component {
     setFocus();
   }
 
-  stopPropagation = event => {
+  stopPropagation = (event) => {
     if (event.keyCode === 38) {
       event.stopPropagation();
     } else if (event.keyCode === 40) {

@@ -27,7 +27,7 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
         const selRange = sel.getRangeAt(0);
         const testRange = selRange.cloneRange();
         // Get parent node for orientation
-        const parent = findParentNode(sel.anchorNode, node => node.hasAttribute('data-block'));
+        const parent = findParentNode(sel.anchorNode, (node) => node.hasAttribute('data-block'));
         testRange.selectNodeContents(parent);
 
         if (mode === 'up') {

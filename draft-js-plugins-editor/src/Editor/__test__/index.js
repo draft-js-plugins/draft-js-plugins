@@ -621,8 +621,8 @@ describe('Editor', () => {
       const decoratorComponent = sinon.spy(decorator, 'component');
 
       const wrapper = mount(<TestEditor {...{ plugins, decorators, text }} />);
-      const decoratorComponents = wrapper.findWhere(n => n.hasClass('decorator'));
-      const pluginComponents = wrapper.findWhere(n => n.hasClass('plugin'));
+      const decoratorComponents = wrapper.findWhere((n) => n.hasClass('decorator'));
+      const pluginComponents = wrapper.findWhere((n) => n.hasClass('plugin'));
 
       expect(decoratorComponent).has.been.called();
       expect(pluginComponent).has.been.called();
