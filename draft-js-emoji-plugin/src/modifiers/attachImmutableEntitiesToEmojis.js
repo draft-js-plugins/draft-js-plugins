@@ -2,6 +2,8 @@ import { EditorState, Modifier, Entity, SelectionState } from 'draft-js';
 import findWithRegex from 'find-with-regex';
 import emojione from 'emojione';
 
+const unicodeRegex = new RegExp(emojione.unicodeRegexp, 'g');
+
 /*
  * Attaches Immutable DraftJS Entities to the Emoji text.
  *
@@ -40,7 +42,7 @@ export default function attachImmutableEntitiesToEmojis(editorState: EditorState
       );
     };
 
-    findWithRegex(new RegExp(emojione.unicodeRegex, 'g'), block, addEntityToEmoji);
+    findWithRegex(unicodeRegex, block, addEntityToEmoji);
   });
 
   if (!newContentState.equals(contentState)) {
