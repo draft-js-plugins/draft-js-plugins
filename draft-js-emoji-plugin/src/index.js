@@ -1,7 +1,6 @@
 import { Map, List } from 'immutable';
 
-// TODO remove lodash here
-import _ from 'lodash';
+import keys from 'lodash.keys';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
 import Emoji from './Emoji';
@@ -108,7 +107,7 @@ const createEmojiPlugin = (config = {}) => {
     theme,
     store,
     positionSuggestions,
-    shortNames: List(_.keys(emojiList.list)),
+    shortNames: List(keys(emojiList.list)),
   };
   return {
     EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
