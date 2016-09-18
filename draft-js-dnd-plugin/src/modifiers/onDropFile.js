@@ -29,10 +29,10 @@ export default function onDropFile(config) {
       }
 
       // Read files on client side
-      readFiles(data.files).then(placeholders => {
+      readFiles(data.files).then((placeholders) => {
         // Add blocks for each image before uploading
         let state = getEditorState();
-        placeholders.forEach(placeholder => {
+        placeholders.forEach((placeholder) => {
           const newEditorStateOrBlockType = handleBlock
             ? handlePlaceholder(state, selection, { ...placeholder, progress: 1 })
             : defaultHandlePlaceholder(state, selection, { ...placeholder, progress: 1 }, defaultBlockType);
@@ -51,8 +51,8 @@ export default function onDropFile(config) {
         handleUpload(data, (uploadedFiles, { retainSrc }) => {
           // Success, remove 'progress' and 'src'
           let newEditorState = getEditorState();
-          uploadedFiles.forEach(file => {
-            const blocks = getBlocksWhereEntityData(state, block => block.src === file.src && block.progress !== undefined);
+          uploadedFiles.forEach((file) => {
+            const blocks = getBlocksWhereEntityData(state, (block) => block.src === file.src && block.progress !== undefined);
             if (blocks.size) {
               const newEditorStateOrBlockType = handleBlock
                 ? handleBlock(newEditorState, newEditorState.getSelection(), file)
@@ -90,8 +90,8 @@ export default function onDropFile(config) {
         }, (percent) => {
           // On progress, set entity data's progress field
           let newEditorState = getEditorState();
-          placeholders.forEach(placeholder => {
-            const blocks = getBlocksWhereEntityData(newEditorState, p => p.src === placeholder.src && p.progress !== undefined);
+          placeholders.forEach((placeholder) => {
+            const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
             if (blocks.size) {
               newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
             }

@@ -6,7 +6,7 @@ import styles from './style.css';
 const defaultTheme = { ...styles };
 const store = {
   types: {},
-  addType: type => {
+  addType: (type) => {
     store.types[type] = true;
   }
 };

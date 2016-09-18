@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { DRAFTJS_BLOCK_KEY } from '../constants';
 
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
+const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
 // Export
-export default WrappedComponent => {
+export default (WrappedComponent) => {
   const { pluginOptions } = WrappedComponent;
 
   return class BlockDraggableDecorator extends Component {
@@ -26,7 +26,7 @@ export default WrappedComponent => {
     };
 
     // Handle start-drag and set dataTransfer data with blockKey
-    startDrag = event => {
+    startDrag = (event) => {
       const allow = this.props.draggable && !this.props.readOnly;
       if (!allow) return;
       event.dataTransfer.dropEffect = 'move'; // eslint-disable-line no-param-reassign

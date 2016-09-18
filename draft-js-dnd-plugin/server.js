@@ -40,7 +40,7 @@ module.exports = function uploadEndpoint(options) {
     }, 1 * 60000);
     res.json({
       success: true,
-      files: files.map(file => ({
+      files: files.map((file) => ({
         encoding: file.encoding,
         filename: file.filename,
         mimetype: file.mimetype,

@@ -7,7 +7,7 @@ const defaultTheme = {
   ...styles,
 };
 
-const createRenderer = Editor => {
+const createRenderer = (Editor) => {
   const NestedEditor = nestedEditorCreator(Editor);
   return ({ block, editorState, onChange, setFocus, active }) => {
     const { pluginEditor } = block.props.blockProps;

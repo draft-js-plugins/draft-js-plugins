@@ -17,7 +17,7 @@ const resizeableRatioUtil = (ratio, padding) => ({
 });
 
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
+const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
@@ -27,7 +27,7 @@ function round(x, steps) {
 }
 
 // Export
-export default options => WrappedComponent => class BlockResizeableDecorator extends Component {
+export default (options) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
   // Statics
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -45,7 +45,7 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
     clicked: false,
   };
 
-  setEntityData = data => {
+  setEntityData = (data) => {
     this.props.blockProps.setEntityData(data);
   }
 
@@ -101,13 +101,13 @@ export default options => WrappedComponent => class BlockResizeableDecorator ext
       isTop, isLeft, isRight, isBottom, canResize
     };
 
-    if (Object.keys(newHoverPosition).filter(key => hoverPosition[key] !== newHoverPosition[key]).length) {
+    if (Object.keys(newHoverPosition).filter((key) => hoverPosition[key] !== newHoverPosition[key]).length) {
       this.setState({ hoverPosition: newHoverPosition });
     }
   }
 
   // Handle mousedown for resizing
-  mouseDown = event => {
+  mouseDown = (event) => {
     // No mouse-hover-position data? Nothing to resize!
     if (!this.state.hoverPosition.canResize) {
       return undefined;

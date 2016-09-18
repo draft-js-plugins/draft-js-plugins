@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
+const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ theme }) => WrappedComponent => class BlockAlignmentDecorator extends Component {
+export default ({ theme }) => (WrappedComponent) => class BlockAlignmentDecorator extends Component {
   // Statics
   static displayName = `BlockAlignment(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -22,7 +22,7 @@ export default ({ theme }) => WrappedComponent => class BlockAlignmentDecorator 
   }
 
   // Perform alignment
-  align = alignment => {
+  align = (alignment) => {
     const { setEntityData } = this.props.blockProps;
     this.setState({ alignment });
     setEntityData({ alignment });
@@ -55,7 +55,7 @@ export default ({ theme }) => WrappedComponent => class BlockAlignmentDecorator 
     ];
 
     // Get the className
-    const newClassName = [className, theme[alignment || 'center']].filter(p => p);
+    const newClassName = [className, theme[alignment || 'center']].filter((p) => p);
 
     // Get the wrapped component and pass alignment props
     return (

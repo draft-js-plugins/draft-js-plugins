@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
+const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };

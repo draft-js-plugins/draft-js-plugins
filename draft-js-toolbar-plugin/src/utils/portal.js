@@ -108,7 +108,7 @@ const Portal = {
     if (!props) {
       return portals;
     }
-    return portals.filter(portal => props.uid !== portal.uid);
+    return portals.filter((portal) => props.uid !== portal.uid);
   },
 
   // Add a portal to the list of portals safely
@@ -133,8 +133,8 @@ const Portal = {
   },
 
   // Remove a portal
-  removePortal: props => {
-    if (props && store && store.portals.filter(portal => props.uid === portal.uid).length > 0) {
+  removePortal: (props) => {
+    if (props && store && store.portals.filter((portal) => props.uid === portal.uid).length > 0) {
       store.portals = Portal.removePortalFromList(store.portals, props);
       // Other tooltip was active, switching
       if (store.portals.length > 0) {
