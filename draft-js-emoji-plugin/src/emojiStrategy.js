@@ -1,8 +1,8 @@
 /* @flow */
 
 import findWithRegex from 'find-with-regex';
-import unicodeRegex from './utils/unicodeRegex';
+import emojione from 'emojione';
 
 export default (contentBlock: Object, callback: Function) => {
-  findWithRegex(unicodeRegex, contentBlock, callback);
+  findWithRegex(emojione.unicodeRegex, contentBlock, callback);
 };

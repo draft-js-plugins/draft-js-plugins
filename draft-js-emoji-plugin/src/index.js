@@ -1,4 +1,7 @@
 import { Map, List } from 'immutable';
+
+// TODO rename ns to emojione
+// TODO remove lodash here
 import _ from 'lodash';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
