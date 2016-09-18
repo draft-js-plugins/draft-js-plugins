@@ -1,5 +1,3 @@
-/* @flow */
-
 import linkifyIt from 'linkify-it';
 import tlds from 'tlds';
 
