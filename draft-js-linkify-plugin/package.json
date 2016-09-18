@@ -1,6 +1,6 @@
 {
   "name": "draft-js-linkify-plugin",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta5",
   "description": "Linkify Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
