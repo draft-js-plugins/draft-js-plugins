@@ -40,7 +40,7 @@ export default function attachImmutableEntitiesToEmojis(editorState: EditorState
       );
     };
 
-    findWithRegex(emojione.unicodeRegex, block, addEntityToEmoji);
+    findWithRegex(new RegExp(emojione.unicodeRegex, 'g'), block, addEntityToEmoji);
   });
 
   if (!newContentState.equals(contentState)) {

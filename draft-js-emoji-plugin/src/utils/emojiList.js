@@ -1,22 +1,22 @@
-import ns from 'emojione';
+import emojione from 'emojione';
 
 const newEmojiListWithOutPriorityList = (priorityList) => {
   const list = {};
-  for (const key in ns.emojioneList) { // eslint-disable-line no-restricted-syntax
+  for (const key in emojione.emojioneList) { // eslint-disable-line no-restricted-syntax
     if (priorityList.hasOwnProperty(key)) { // eslint-disable-line no-prototype-builtins
       continue; // eslint-disable-line no-continue
     }
-    list[key] = ns.emojioneList[key].unicode;
+    list[key] = emojione.emojioneList[key].unicode;
   }
 
   return { ...priorityList, ...list };
 };
 
-const emojione = {};
+const emojiList = {};
 
-emojione.setPriorityList = (newPriorityList) => {
+emojiList.setPriorityList = (newPriorityList) => {
   // re-generate emojiList when set PriorityList
-  emojione.emojioneList = newEmojiListWithOutPriorityList(newPriorityList);
+  emojiList.list = newEmojiListWithOutPriorityList(newPriorityList);
 };
 
 // init emojiList
@@ -31,6 +31,6 @@ const priorityList = {
   ':raised_hands:': ['1f64c'],
   ':100:': ['1f4af'],
 };
-emojione.setPriorityList(priorityList);
+emojiList.setPriorityList(priorityList);
 
-export default emojione;
+export default emojiList;

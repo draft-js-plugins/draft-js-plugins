@@ -1,6 +1,5 @@
 import { Map, List } from 'immutable';
 
-// TODO rename ns to emojione
 // TODO remove lodash here
 import _ from 'lodash';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -15,7 +14,7 @@ import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
-import emojione from './utils/emojioneList';
+import emojiList from './utils/emojiList';
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const cacheBustParam = '?v=2.2.6';
@@ -98,7 +97,9 @@ const createEmojiPlugin = (config = {}) => {
     imagePath = defaultImagePath,
     priorityList,
   } = config;
-  if (priorityList) emojione.setPriorityList(priorityList);// if priorityList is configured in config then set priorityList
+
+  // if priorityList is configured in config then set priorityList
+  if (priorityList) emojiList.setPriorityList(priorityList);
   const emojiSearchProps = {
     ariaProps,
     cacheBustParam,
@@ -107,7 +108,7 @@ const createEmojiPlugin = (config = {}) => {
     theme,
     store,
     positionSuggestions,
-    shortNames: List(_.keys(emojione.emojioneList)),
+    shortNames: List(_.keys(emojiList.list)),
   };
   return {
     EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
