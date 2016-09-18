@@ -1,9 +1,8 @@
 import { Modifier, EditorState, Entity } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
-import emojione from '../utils/emojioneList';
+import emojiList from '../utils/emojiList';
 import convertShortNameToUnicode from '../utils/convertShortNameToUnicode';
 
-const emojioneList = emojione.emojioneList;
 const addEmoji = (editorState, emojiShortName) => {
   const currentSelectionState = editorState.getSelection();
   const { begin, end } = getSearchText(editorState, currentSelectionState);
@@ -14,7 +13,7 @@ const addEmoji = (editorState, emojiShortName) => {
     focusOffset: end,
   });
 
-  const unicode = emojioneList[emojiShortName][0];
+  const unicode = emojiList.list[emojiShortName][0];
   const emoji = convertShortNameToUnicode(unicode);
   const entityKey = Entity.create('emoji', 'IMMUTABLE', { emojiUnicode: emoji });
 

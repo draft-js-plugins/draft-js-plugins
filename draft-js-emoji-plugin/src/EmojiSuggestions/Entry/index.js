@@ -2,7 +2,7 @@ import React, {
   // PropTypes,
   Component,
 } from 'react';
-import ns from 'emojione';
+import emojione from 'emojione';
 
 export default class Entry extends Component {
 
@@ -37,7 +37,7 @@ export default class Entry extends Component {
     const { theme = {}, imagePath, cacheBustParam } = this.props;
     const className = this.props.isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
     // short name to image url code steal from emojione source code
-    const shortNameForImage = ns.emojioneList[this.props.emoji].unicode[ns.emojioneList[this.props.emoji].unicode.length - 1];
+    const shortNameForImage = emojione.emojioneList[this.props.emoji].unicode[emojione.emojioneList[this.props.emoji].unicode.length - 1];
     const fullImagePath = `${imagePath}${shortNameForImage}.svg${cacheBustParam}`;
     return (
       <div

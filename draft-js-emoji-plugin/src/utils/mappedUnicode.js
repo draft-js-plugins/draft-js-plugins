@@ -1,17 +1,16 @@
-import emojione from './emojioneList';
+import emojiList from './emojiList';
 
-const emojioneList = emojione.emojioneList;
 const mapUnicode = () => {
   const unicodes = {};
   // eslint-disable-next-line no-restricted-syntax
-  for (const shortname in emojioneList) {
+  for (const shortname in emojiList.list) {
     // eslint-disable-next-line no-continue, no-prototype-builtins
-    if (!emojioneList.hasOwnProperty(shortname)) {
+    if (!emojiList.list.hasOwnProperty(shortname)) {
       continue;// eslint-disable-line no-continue
     }
 
-    for (let i = 0, len = emojioneList[shortname].length; i < len; i += 1) {
-      unicodes[emojioneList[shortname][i]] = shortname;
+    for (let i = 0, len = emojiList.list[shortname].length; i < len; i += 1) {
+      unicodes[emojiList.list[shortname][i]] = shortname;
     }
   }
 
