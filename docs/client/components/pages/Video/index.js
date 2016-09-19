@@ -7,9 +7,6 @@ import customExampleCode from '!!../../../loaders/prism-loader?language=javascri
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
-// eslint-disable-next-line import/no-unresolved
-import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
 
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
@@ -22,7 +19,6 @@ import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
 import ExternalLink from '../../shared/Link';
-import InlineCode from '../../shared/InlineCode';
 
 export default class App extends Component {
   render() {
