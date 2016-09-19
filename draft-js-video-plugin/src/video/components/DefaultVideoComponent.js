@@ -13,7 +13,7 @@ const getSrc = ({ srcID, srcType }) => {
   return undefined;
 };
 
-const DefaultVideoCompoent = props => {
+const DefaultVideoCompoent = (props) => {
   const { blockProps } = props;
   const src = getSrc(blockProps);
 
