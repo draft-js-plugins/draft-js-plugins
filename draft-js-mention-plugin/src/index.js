@@ -86,6 +86,7 @@ const createMentionPlugin = (config = {}) => {
     positionSuggestions = defaultPositionSuggestions,
     mentionComponent,
     mentionTrigger = '@',
+    mentionUnicodeRegex = '',
   } = config;
   const mentionSearchProps = {
     ariaProps,
@@ -104,7 +105,7 @@ const createMentionPlugin = (config = {}) => {
         component: decorateComponentWithProps(Mention, { theme, mentionPrefix, mentionComponent }),
       },
       {
-        strategy: mentionSuggestionsStrategy(mentionTrigger),
+        strategy: mentionSuggestionsStrategy(mentionTrigger, mentionUnicodeRegex),
         component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
       },
     ],
