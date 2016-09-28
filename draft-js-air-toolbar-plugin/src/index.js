@@ -5,10 +5,16 @@ import ItalicButton from './components/ItalicButton';
 import BoldButton from './components/BoldButton';
 import CodeButton from './components/CodeButton';
 import UnderlineButton from './components/UnderlineButton';
+import LinkButton from './components/LinkButton';
+import LinkInput from './components/LinkInput';
+import linkStrategy from './linkStrategy';
+import createTooltipedLink from './utils/createTooltipedLink';
+import Link from './components/Link';
 
 const createAirToolbarPlugin = (config = {}) => {
   const store = createStore({
     isVisisble: false,
+    showInput: false,
   });
 
   const {
@@ -17,7 +23,9 @@ const createAirToolbarPlugin = (config = {}) => {
       BoldButton,
       CodeButton,
       UnderlineButton,
-    ]
+      LinkButton,
+    ],
+    link = Link,
   } = config;
 
   const toolbarProps = {
@@ -26,14 +34,16 @@ const createAirToolbarPlugin = (config = {}) => {
   };
 
   return {
-    initialize: ({ getEditorState, setEditorState }) => {
+    initialize: ({ getEditorState, setEditorState, setReadOnly }) => {
       store.updateItem('getEditorState', getEditorState);
       store.updateItem('setEditorState', setEditorState);
+      store.updateItem('setReadOnly', setReadOnly);
     },
     // Re-Render the text-toolbar on selection change
     onChange: (editorState) => {
       const selection = editorState.getSelection();
-      if (selection.getHasFocus() && !selection.isCollapsed()) {
+
+      if (selection.getHasFocus() && !selection.isCollapsed() && !store.getItem('linkSelection')) {
         store.updateItem('isVisible', true);
       } else {
         store.updateItem('isVisible', false);
@@ -41,6 +51,11 @@ const createAirToolbarPlugin = (config = {}) => {
       return editorState;
     },
     AirToolbar: decorateComponentWithProps(Toolbar, toolbarProps),
+    LinkInput: decorateComponentWithProps(LinkInput, { store }),
+    decorators: [{
+      strategy: linkStrategy,
+      component: decorateComponentWithProps(createTooltipedLink(link), { store }),
+    }]
   };
 };
 
@@ -51,4 +66,5 @@ export {
   BoldButton,
   CodeButton,
   UnderlineButton,
+  LinkButton,
 };

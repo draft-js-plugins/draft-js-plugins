@@ -10,6 +10,11 @@ export default class NavBar extends Component {
         <div className={styles.wideContainer}>
           <ul className={styles.plugins}>
             <li className={styles.plugin}>
+              <Link to="/plugin/air-toolbar" className={styles.link}>
+                Toolbar
+              </Link>
+            </li>
+            <li className={styles.plugin}>
               <Link to="/plugin/mention" className={styles.link}>
                 Mention
               </Link>

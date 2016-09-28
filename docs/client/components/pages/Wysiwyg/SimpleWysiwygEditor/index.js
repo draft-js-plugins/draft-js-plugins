@@ -51,14 +51,9 @@ const table = FocusDecorator(
 // import TextToolbar from 'draft-js-air-toolbar-plugin/components/text-toolbar';
 
 // Components
-import PlaceholderGithub from '../components/placeholder-github';
-import BlockText from '../components/block-text';
 
 // Utils
-import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
-import mockUpload from '../utils/mockUpload';
 
-import styles from './styles.css';
 
 // Init Plugins
 const plugins = [

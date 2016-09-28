@@ -34,8 +34,10 @@
     "find-with-regex": "^1.0.2",
     "union-class-names": "^1.0.0",
     "draft-js": ">=0.8.1",
+    "draftjs-utils": "^0.2.7",
     "immutable": ">=3.8.1",
     "react": ">=15.2.1",
-    "react-dom": ">=15.2.1"
+    "react-dom": ">=15.2.1",
+    "react-portal": "^2.2.1"
   }
 }

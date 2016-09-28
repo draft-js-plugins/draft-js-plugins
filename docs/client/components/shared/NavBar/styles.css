@@ -35,7 +35,7 @@
 
 @media (min-width: 481px) {
   .plugin {
-    width: 14%;
+    width: 10%;
   }
 }
 
@@ -44,7 +44,7 @@
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .link, .link:visited {

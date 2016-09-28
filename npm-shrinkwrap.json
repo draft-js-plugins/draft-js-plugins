@@ -1044,6 +1044,11 @@
         }
       }
     },
+    "cli-truncate": {
+      "version": "0.2.1",
+      "from": "cli-truncate@>=0.2.1 <0.3.0",
+      "resolved": "https://registry.npmjs.org/cli-truncate/-/cli-truncate-0.2.1.tgz"
+    },
     "cli-usage": {
       "version": "0.1.4",
       "from": "cli-usage@>=0.1.1 <0.2.0",
@@ -1502,6 +1507,11 @@
         }
       }
     },
+    "draftjs-utils": {
+      "version": "0.2.7",
+      "from": "draftjs-utils@latest",
+      "resolved": "https://registry.npmjs.org/draftjs-utils/-/draftjs-utils-0.2.7.tgz"
+    },
     "duplexer2": {
       "version": "0.1.4",
       "from": "duplexer2@>=0.1.4 <0.2.0",
@@ -1521,6 +1531,11 @@
       "version": "1.1.1",
       "from": "ee-first@1.1.1",
       "resolved": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
+    },
+    "elegant-spinner": {
+      "version": "1.0.1",
+      "from": "elegant-spinner@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/elegant-spinner/-/elegant-spinner-1.0.1.tgz"
     },
     "emojione": {
       "version": "2.2.6",
@@ -1662,18 +1677,6 @@
       "version": "1.15.0",
       "from": "eslint-plugin-import@>=1.14.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-1.15.0.tgz"
-    },
-    "espree": {
-      "version": "3.2.0",
-      "from": "espree@>=3.1.6 <4.0.0",
-      "resolved": "https://registry.npmjs.org/espree/-/espree-3.2.0.tgz",
-      "dependencies": {
-        "acorn": {
-          "version": "4.0.3",
-          "from": "acorn@>=4.0.1 <5.0.0",
-          "resolved": "https://registry.npmjs.org/acorn/-/acorn-4.0.3.tgz"
-        }
-      }
     },
     "esprima": {
       "version": "2.7.3",
@@ -3029,6 +3032,11 @@
       "from": "is-primitive@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/is-primitive/-/is-primitive-2.0.0.tgz"
     },
+    "is-promise": {
+      "version": "2.1.0",
+      "from": "is-promise@>=2.1.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/is-promise/-/is-promise-2.1.0.tgz"
+    },
     "is-property": {
       "version": "1.0.2",
       "from": "is-property@>=1.0.0 <2.0.0",
@@ -3395,10 +3403,32 @@
       "from": "linkify-it@2.0.0",
       "resolved": "https://registry.npmjs.org/linkify-it/-/linkify-it-2.0.0.tgz"
     },
-    "listr": {
-      "version": "0.4.3",
-      "from": "listr@>=0.4.3 <0.5.0",
-      "resolved": "https://registry.npmjs.org/listr/-/listr-0.4.3.tgz"
+    "listr-silent-renderer": {
+      "version": "1.0.0",
+      "from": "listr-silent-renderer@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/listr-silent-renderer/-/listr-silent-renderer-1.0.0.tgz"
+    },
+    "listr-update-renderer": {
+      "version": "0.1.2",
+      "from": "listr-update-renderer@>=0.1.1 <0.2.0",
+      "resolved": "https://registry.npmjs.org/listr-update-renderer/-/listr-update-renderer-0.1.2.tgz",
+      "dependencies": {
+        "indent-string": {
+          "version": "3.0.0",
+          "from": "indent-string@>=3.0.0 <4.0.0",
+          "resolved": "https://registry.npmjs.org/indent-string/-/indent-string-3.0.0.tgz"
+        },
+        "repeating": {
+          "version": "3.0.0",
+          "from": "repeating@>=3.0.0 <4.0.0",
+          "resolved": "https://registry.npmjs.org/repeating/-/repeating-3.0.0.tgz"
+        }
+      }
+    },
+    "listr-verbose-renderer": {
+      "version": "0.1.0",
+      "from": "listr-verbose-renderer@>=0.1.0 <0.2.0",
+      "resolved": "https://registry.npmjs.org/listr-verbose-renderer/-/listr-verbose-renderer-0.1.0.tgz"
     },
     "load-json-file": {
       "version": "1.1.0",
@@ -4697,6 +4727,11 @@
       "from": "rx-lite@>=3.1.2 <4.0.0",
       "resolved": "https://registry.npmjs.org/rx-lite/-/rx-lite-3.1.2.tgz"
     },
+    "rxjs": {
+      "version": "5.0.0-beta.12",
+      "from": "rxjs@>=5.0.0-beta.11 <6.0.0",
+      "resolved": "https://registry.npmjs.org/rxjs/-/rxjs-5.0.0-beta.12.tgz"
+    },
     "samsam": {
       "version": "1.1.2",
       "from": "samsam@1.1.2",
@@ -4996,6 +5031,11 @@
       "version": "0.6.6",
       "from": "svgo@>=0.6.1 <0.7.0",
       "resolved": "https://registry.npmjs.org/svgo/-/svgo-0.6.6.tgz"
+    },
+    "symbol-observable": {
+      "version": "1.0.2",
+      "from": "symbol-observable@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.2.tgz"
     },
     "symbol-tree": {
       "version": "3.1.4",

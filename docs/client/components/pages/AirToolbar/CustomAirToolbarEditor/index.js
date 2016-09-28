@@ -17,7 +17,7 @@ export default class CustomAirToolbarEditor extends Component {
   };
 
   focus = () => {
-    this.refs.editor.focus();
+    this.editor.focus();
   };
 
   render() {
@@ -26,7 +26,7 @@ export default class CustomAirToolbarEditor extends Component {
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}
-          ref="editor"
+          ref={(e) => { this.editor = e; }}
         />
       </div>
     );

@@ -1,5 +1,5 @@
-import createStore from '../createStore';
 import { expect } from 'chai';
+import createStore from '../createStore';
 
 describe('createStore', () => {
   it('allows to pass in initial state', () => {
