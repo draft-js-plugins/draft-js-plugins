@@ -10,7 +10,11 @@ const getDisplayName = (WrappedComponent) => {
 let number = 0;
 
 // HoverToolbar decorator will render a toolbar on hovering the WrappedComponent
-export default ({ theme, customRender }) => (WrappedComponent) => class FocusedToolbarDecorator extends Component {
+export default ({
+  theme,
+  leftOffset,
+  customRender,
+}) => (WrappedComponent) => class FocusedToolbarDecorator extends Component {
   // Statics
   static displayName = `FocusedToolbar(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -54,6 +58,7 @@ export default ({ theme, customRender }) => (WrappedComponent) => class FocusedT
       ...this.props,
       actions,
       theme,
+      leftOffset,
       getTargetRectangle: () => this.DOMNode.getBoundingClientRect(),
       uid: this.DOMNode,
     };

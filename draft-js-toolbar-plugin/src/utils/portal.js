@@ -66,7 +66,7 @@ class Tooltip extends Component {
   }
 
   render() {
-    const { onMouseOver, onMouseLeave, active, animations } = this.props;
+    const { onMouseOver, onMouseLeave, active, animations, leftOffset } = this.props;
 
     // Is server?
     if (typeof window === 'undefined') {
@@ -74,7 +74,7 @@ class Tooltip extends Component {
     }
 
     // Left/Top
-    const left = `${this.state.left}px`;
+    const left = `${this.state.left + leftOffset || 0}px`;
     const top = `${this.state.top + 1}px`;
 
     // Style

@@ -44,4 +44,7 @@ const toolbarPlugin = (config = {}) => {
 
 export default toolbarPlugin;
 
-export const ToolbarDecorator = (options = {}) => Decorator({ theme: options.theme || styles });
+export const ToolbarDecorator = (options = {}) => Decorator({
+  leftOffset: options.leftOffset,
+  theme: options.theme || styles,
+});
