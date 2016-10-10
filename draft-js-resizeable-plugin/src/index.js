@@ -1,6 +1,5 @@
-import Decorator from './decorators/resizeable';
+import createDecorator from './createDecorator';
 
-const resizeablePlugin = () => ({ });
-
-export default resizeablePlugin;
-export const ResizeableDecorator = (options) => Decorator(options);
+export default (config) => ({
+  Decorator: createDecorator(config),
+});

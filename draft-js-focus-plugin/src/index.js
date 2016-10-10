@@ -73,9 +73,8 @@ const focusPlugin = (config = {}) => {
       activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'up', event);
       setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
     },
+    Decorator: Decorator({ theme: styles, store }),
   };
 };
 
 export default focusPlugin;
-export const FocusDecorator = Decorator({ theme: styles, store });
-export const FocusDecoratorStyles = styles;

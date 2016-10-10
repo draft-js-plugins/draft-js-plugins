@@ -109,7 +109,13 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     const newClassName = [className, (isFocused ? theme.focused : null)].filter((p) => p);
 
     return (
-      <WrappedComponent {...this.props} className={newClassName.join(' ')} isFocused={isFocused} setFocus={this.setFocus} focusClassName={isFocused ? theme.focused : ''} />
+      <WrappedComponent
+        {...this.props}
+        className={newClassName.join(' ')}
+        isFocused={isFocused}
+        setFocus={this.setFocus}
+        focusClassName={isFocused ? theme.focused : ''}
+      />
     );
   }
 };
