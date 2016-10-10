@@ -1,8 +1,7 @@
 {
-  "name": "@poltak/draft-js-dnd-plugin",
+  "name": "draft-js-dnd-plugin",
   "version": "2.0.0-beta5",
   "description": "Dnd Plugin for DraftJS",
-  "private": false,
   "author": {
     "name": "Benjamin Kniffler",
     "email": "benjamin@kniffler.com"
