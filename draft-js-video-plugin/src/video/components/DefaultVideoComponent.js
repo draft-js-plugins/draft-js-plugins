@@ -19,12 +19,14 @@ const DefaultVideoCompoent = (props) => {
 
   if (src) {
     return (
-      <iframe
-        style={{ width: '100%' }}
-        src={src}
-        frameBorder="0"
-        allowFullScreen
-      />
+      <div style={{ width: '100%', height: '0', position: 'relative', 'padding-bottom': '56.25%' }}>
+        <iframe
+          style={{ width: '100%', height: '100%', position: 'absolute', top: '0', left: '0' }}
+          src={src}
+          frameBorder="0"
+          allowFullScreen
+        />
+      </div>
     );
   }
 
