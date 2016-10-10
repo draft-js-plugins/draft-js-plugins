@@ -7,7 +7,7 @@ import editorStyles from './editorStyles.css';
 const videoPlugin = createVideoPlugin();
 const plugins = [videoPlugin];
 
-export default class SimpleMentionEditor extends Component {
+export default class SimpleVideoEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(),

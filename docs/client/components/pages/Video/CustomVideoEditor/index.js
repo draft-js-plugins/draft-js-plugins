@@ -15,8 +15,8 @@ const HTML5Player = (props) => {
 
 const MP4URL = /^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:mp4)$/;
 const videoPlugin = createVideoPlugin({
-  isVideo: (url) => MP4URL.test(url),
-  getVideoSrc: (url) => ({
+  isVideo: url => MP4URL.test(url),
+  getVideoSrc: url => ({
     srcID: undefined,
     srcType: 'mp4',
     url,
@@ -25,7 +25,7 @@ const videoPlugin = createVideoPlugin({
 });
 const plugins = [videoPlugin];
 
-export default class CustomMentionEditor extends Component {
+export default class CustomVideoEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(),
