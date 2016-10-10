@@ -2,6 +2,8 @@ import Image from './components/image';
 import styles from './style.css';
 import {Entity, AtomicBlockUtils} from 'draft-js';
 
+const ACCEPTED_MIMES = ['image/png','image/jpeg','image/gif'];
+
 const imagePlugin = (config = {}) => {
   const type = config.type || 'block-image';
   const theme = config.theme ? config.theme : styles;
@@ -38,6 +40,12 @@ const imagePlugin = (config = {}) => {
 
       // get image
       var image = e[0];
+
+      // Only image is accepted
+      if (ACCEPTED_MIMES.indexOf(image.type) < 0) {
+        console.error('bad mime type: ' + image.type);
+        return;
+      }
 
       // get image blob data as data url
       var reader = new FileReader();
