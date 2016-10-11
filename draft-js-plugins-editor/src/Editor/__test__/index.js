@@ -173,6 +173,7 @@ describe('Editor', () => {
         getProps: pluginEditor.getProps,
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
+        getRef: pluginEditor.getRef,
       };
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
@@ -303,6 +304,7 @@ describe('Editor', () => {
         getProps: pluginEditor.getProps,
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
+        getRef: pluginEditor.getRef,
       };
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();

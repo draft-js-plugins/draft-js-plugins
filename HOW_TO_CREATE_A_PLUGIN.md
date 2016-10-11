@@ -75,6 +75,7 @@ All functions receive an additional argument. This argument is an object contain
   getEditorState, // a function to get the current EditorState
   getReadOnly, // a function returning of the Editor is set to readOnly
   setReadOnly, // a function which allows to set the Editor to readOnly
+  getRef, // a function to get the editor reference
 }
 ```
 

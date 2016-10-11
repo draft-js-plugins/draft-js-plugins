@@ -97,6 +97,8 @@ class PluginEditor extends Component {
     if (readOnly !== this.state.readOnly) this.setState({ readOnly });
   };
 
+  getRef = () => this.editor;
+
   getEditorState = () => this.props.editorState;
   getPluginMethods = () => ({
     getPlugins: this.getPlugins,
@@ -105,6 +107,7 @@ class PluginEditor extends Component {
     getEditorState: this.getEditorState,
     getReadOnly: this.getReadOnly,
     setReadOnly: this.setReadOnly,
+    getRef: this.getRef,
   });
 
   createEventHooks = (methodName, plugins) => (...args) => {
