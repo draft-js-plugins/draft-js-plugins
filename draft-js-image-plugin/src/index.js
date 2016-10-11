@@ -1,16 +1,16 @@
+import { Entity, AtomicBlockUtils } from 'draft-js';
 import Image from './components/image';
 import styles from './style.css';
-import {Entity, AtomicBlockUtils} from 'draft-js';
 
-const ACCEPTED_MIMES = ['image/png','image/jpeg','image/gif'];
+const ACCEPTED_MIMES = ['image/png', 'image/jpeg', 'image/gif'];
 
 const imagePlugin = (config = {}) => {
   const type = config.type || 'block-image';
   const theme = config.theme ? config.theme : styles;
-  const component = config.component || Image({theme});
+  const component = config.component || Image({ theme });
   const upload = config.upload || function (x, callback) {
-      callback(x);
-    };
+    callback(x);
+  };
   return {
     // Handle 'block-image' block-type with Image component
     blockRendererFn: (contentBlock) => {
@@ -24,35 +24,35 @@ const imagePlugin = (config = {}) => {
     },
     handlePastedFiles(e, editor) {
       // Get editor state
-      var editorState = editor.getEditorState();
+      let editorState = editor.getEditorState();
 
       // No image found
-      if (e.length == 0) {
+      if (e.length === 0) {
         console.error('no image found');
         return;
       }
 
       // Only support one image
-      if (e.length != 1) {
+      if (e.length !== 1) {
         console.error('only support one image');
         return;
       }
 
       // get image
-      var image = e[0];
+      const image = e[0];
 
       // Only image is accepted
       if (ACCEPTED_MIMES.indexOf(image.type) < 0) {
-        console.error('bad mime type: ' + image.type);
+        console.error(`bad mime type: ${image.type}`);
         return;
       }
 
       // get image blob data as data url
-      var reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = function (event) {
         // upload data url
-        var url = event.target.result;
-        upload(url, function (url2) {
+        const url = event.target.result;
+        upload(url, (url2) => {
           // insert image
           const entityKey = Entity.create('block-image', 'IMMUTABLE',
             {
