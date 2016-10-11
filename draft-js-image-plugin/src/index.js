@@ -28,13 +28,11 @@ const imagePlugin = (config = {}) => {
 
       // No image found
       if (e.length === 0) {
-        console.error('no image found');
         return;
       }
 
       // Only support one image
       if (e.length !== 1) {
-        console.error('only support one image');
         return;
       }
 
@@ -43,7 +41,6 @@ const imagePlugin = (config = {}) => {
 
       // Only image is accepted
       if (ACCEPTED_MIMES.indexOf(image.type) < 0) {
-        console.error(`bad mime type: ${image.type}`);
         return;
       }
 
