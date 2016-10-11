@@ -24,6 +24,7 @@ module.exports = {
       'draft-js-image-plugin': path.join(__dirname, '..', 'draft-js-image-plugin', 'src'),
       'draft-js-resizeable-plugin': path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
       'draft-js-table-plugin': path.join(__dirname, '..', 'draft-js-table-plugin', 'src'),
+      'draft-js-sidebar-plugin': path.join(__dirname, '..', 'draft-js-sidebar-plugin', 'src'),
       react: path.join(__dirname, 'node_modules', 'react'),
     },
     extensions: ['', '.js'],
@@ -58,6 +59,7 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-image-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-table-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-sidebar-plugin', 'src'),
         ],
       }, {
         test: /\.css$/,
@@ -81,6 +83,7 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-image-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-table-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-sidebar-plugin', 'src'),
           path.join(__dirname, 'client/components'),
         ],
       }, {

@@ -1,0 +1,18 @@
+.plusButton {
+    height: 24px;
+    widht: 24px;
+    display: inline-flex;
+}
+
+.menu {
+    position: relative;
+    display: inline-flex;
+    list-style-type:  none;
+    margin: 0;
+}
+
+.wrapper {
+    position: absolute;
+    display: flex;
+    z-index: 1000;
+}
