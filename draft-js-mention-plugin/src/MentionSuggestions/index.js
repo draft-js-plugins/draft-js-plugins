@@ -233,6 +233,10 @@ export default class MentionSuggestions extends Component {
     this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
+  isActive() {
+    return this.state.isActive;
+  }
+
   commitSelection = () => {
     this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
     return true;
