@@ -95,6 +95,7 @@ const createMentionPlugin = (config = {}) => {
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
     positionSuggestions,
     mentionTrigger,
+    mentionPrefix,
   };
   return {
     MentionSuggestions: decorateComponentWithProps(MentionSuggestions, mentionSearchProps),
