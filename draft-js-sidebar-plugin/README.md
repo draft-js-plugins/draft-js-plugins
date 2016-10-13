@@ -45,13 +45,45 @@ const actions = [{
       .then((data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.url })),
 }];
 
+const Image = ({ block }) => {
+  const data = Entity.get(block.getEntityAt(0)).getData();
+  return (
+      <img src={data.src} />
+  );
+}
 
 const sidebarPlugin = createSidebarPlugin({ actions });
 const { renderSidebar } = sidebarPlugin;
 const plugins = [sidebarPlugin];
 
+
+
 [...]
 
+  myBlockRenderer = (contentBlock) => {
+    const type = contentBlock.getType();
+
+    if (type !== 'atomic') {
+      return;
+    }
+
+    const entityKey = contentBlock.getEntityAt(0);
+    if (!entityKey) {
+      return;
+    }
+
+    const entity = Entity.get(entityKey);
+
+    switch(entity.getType()) {
+      case 'IMAGE': {
+        return {
+          component: Image,
+          editable: false,
+        };
+      }
+    }
+  }
+  
   render() {
     return (
       <div>
@@ -61,6 +93,7 @@ const plugins = [sidebarPlugin];
             onChange={this.onChange}
             plugins={plugins}
             ref={(element) => { this.editor = element; }}
+            blockRendererFn={this.myBlockRenderer}
           />
         </div>
         {renderSidebar()}
