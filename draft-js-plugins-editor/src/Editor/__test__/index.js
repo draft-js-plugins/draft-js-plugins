@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
 import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
-import { Map } from 'immutable';
+import { List, Map } from 'immutable';
 import sinon from 'sinon';
 import PluginEditor, { createEditorStateWithText } from '../../index';
 
@@ -46,7 +46,7 @@ describe('Editor', () => {
         <PluginEditor
           editorState={editorState}
           onChange={changeSpy}
-          plugins={[]}
+          plugins={List()}
         />
       );
       expect(result.node.props.onChange).to.eq(changeSpy);
@@ -67,7 +67,7 @@ describe('Editor', () => {
     it('with a plugin provided', () => {
       const createCustomPlugin = () => ({});
       const customPlugin = createCustomPlugin();
-      const plugins = [customPlugin];
+      const plugins = List([customPlugin]);
       const result = mount(
         <PluginEditor
           editorState={editorState}
@@ -113,7 +113,7 @@ describe('Editor', () => {
     });
 
     it('calls the on-hooks of the plugin', () => {
-      const plugins = [
+      const plugins = List([
         {
           onUpArrow: sinon.spy(),
           onDragEnter: sinon.spy(),
@@ -121,7 +121,7 @@ describe('Editor', () => {
           onTab: sinon.spy(),
           onChange: sinon.spy(),
         },
-      ];
+      ]);
       const result = shallow(
         <PluginEditor
           editorState={editorState}
@@ -131,7 +131,7 @@ describe('Editor', () => {
       );
 
       const draftEditor = result.node;
-      const plugin = plugins[0];
+      const plugin = plugins.get(0);
       draftEditor.props.onUpArrow();
       expect(plugin.onUpArrow).has.been.calledOnce();
       draftEditor.props.onDragEnter();
@@ -147,14 +147,14 @@ describe('Editor', () => {
     });
 
     it('calls the handle-hooks of the plugin', () => {
-      const plugins = [
+      const plugins = List([
         {
           handleKeyCommand: sinon.spy(),
           handlePastedText: sinon.spy(),
           handleReturn: sinon.spy(),
           handleDrop: sinon.spy(),
         },
-      ];
+      ]);
       const result = shallow(
         <PluginEditor
           editorState={editorState}
@@ -165,7 +165,7 @@ describe('Editor', () => {
 
       const pluginEditor = result.instance();
       const draftEditor = result.node;
-      const plugin = plugins[0];
+      const plugin = plugins.get(0);
       const expectedSecondArgument = {
         getEditorState: pluginEditor.getEditorState,
         setEditorState: pluginEditor.onChange,
@@ -189,11 +189,11 @@ describe('Editor', () => {
     });
 
     it('calls willUnmount', () => {
-      const plugins = [
+      const plugins = List([
         {
           willUnmount: sinon.spy(),
         },
-      ];
+      ]);
       const result = mount(
         <PluginEditor
           editorState={editorState}
@@ -203,7 +203,7 @@ describe('Editor', () => {
       );
 
       const pluginEditor = result.node;
-      const plugin = plugins[0];
+      const plugin = plugins.get(0);
       const expectedArgument = {
         getEditorState: pluginEditor.getEditorState,
         setEditorState: pluginEditor.onChange,
@@ -215,7 +215,7 @@ describe('Editor', () => {
     });
 
     it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {
-      const plugins = [
+      const plugins = List([
         {
           handleKeyCommand: sinon.stub().returns(true),
           onUpArrow: sinon.stub().returns(true),
@@ -224,7 +224,7 @@ describe('Editor', () => {
           handleKeyCommand: sinon.spy(),
           onUpArrow: sinon.spy(),
         },
-      ];
+      ]);
       const result = shallow(
         <PluginEditor
           editorState={editorState}
@@ -235,16 +235,16 @@ describe('Editor', () => {
 
       const draftEditor = result.node;
       draftEditor.props.handleKeyCommand('command');
-      expect(plugins[0].handleKeyCommand).has.been.calledOnce();
-      expect(plugins[1].handleKeyCommand).has.not.been.called();
+      expect(plugins.get(0).handleKeyCommand).has.been.calledOnce();
+      expect(plugins.get(1).handleKeyCommand).has.not.been.called();
 
       draftEditor.props.onUpArrow();
-      expect(plugins[0].onUpArrow).has.been.calledOnce();
-      expect(plugins[1].onUpArrow).has.not.been.called();
+      expect(plugins.get(0).onUpArrow).has.been.calledOnce();
+      expect(plugins.get(1).onUpArrow).has.not.been.called();
     });
 
     it('calls the handle- and on-hooks of all plugins in case none handeles the command', () => {
-      const plugins = [
+      const plugins = List([
         {
           handleKeyCommand: sinon.spy(),
           onUpArrow: sinon.spy(),
@@ -257,7 +257,7 @@ describe('Editor', () => {
           handleKeyCommand: sinon.spy(),
           onUpArrow: sinon.spy(),
         },
-      ];
+      ]);
       const result = shallow(
         <PluginEditor
           editorState={editorState}
@@ -268,23 +268,23 @@ describe('Editor', () => {
 
       const draftEditor = result.node;
       draftEditor.props.handleKeyCommand('command');
-      expect(plugins[0].handleKeyCommand).has.been.calledOnce();
-      expect(plugins[1].handleKeyCommand).has.been.calledOnce();
-      expect(plugins[2].handleKeyCommand).has.been.calledOnce();
+      expect(plugins.get(0).handleKeyCommand).has.been.calledOnce();
+      expect(plugins.get(1).handleKeyCommand).has.been.calledOnce();
+      expect(plugins.get(2).handleKeyCommand).has.been.calledOnce();
 
       draftEditor.props.onUpArrow();
-      expect(plugins[0].onUpArrow).has.been.calledOnce();
-      expect(plugins[1].onUpArrow).has.been.calledOnce();
-      expect(plugins[2].onUpArrow).has.been.calledOnce();
+      expect(plugins.get(0).onUpArrow).has.been.calledOnce();
+      expect(plugins.get(1).onUpArrow).has.been.calledOnce();
+      expect(plugins.get(2).onUpArrow).has.been.calledOnce();
     });
 
     it('calls the fn-hooks of the plugin', () => {
-      const plugins = [
+      const plugins = List([
         {
           blockRendererFn: sinon.spy(),
           keyBindingFn: sinon.spy(),
         },
-      ];
+      ]);
       const result = shallow(
         <PluginEditor
           editorState={editorState}
@@ -295,7 +295,7 @@ describe('Editor', () => {
 
       const pluginEditor = result.instance();
       const draftEditor = result.node;
-      const plugin = plugins[0];
+      const plugin = plugins.get(0);
       const expectedSecondArgument = {
         getEditorState: pluginEditor.getEditorState,
         setEditorState: pluginEditor.onChange,
@@ -313,7 +313,7 @@ describe('Editor', () => {
     });
 
     it('combines the customStyleMaps from all plugins', () => {
-      const plugins = [
+      const plugins = List([
         {
           customStyleMap: {
             orange: {
@@ -328,7 +328,7 @@ describe('Editor', () => {
             },
           },
         },
-      ];
+      ]);
       const result = mount(
         <PluginEditor
           editorState={editorState}
@@ -349,7 +349,7 @@ describe('Editor', () => {
     });
 
     it('combines customStyleMap props from plugins and the editor', () => {
-      const plugins = [
+      const plugins = List([
         {
           customStyleMap: {
             orange: {
@@ -364,7 +364,7 @@ describe('Editor', () => {
             },
           },
         },
-      ];
+      ]);
 
       const customStyleMap = {
         blue: {
@@ -397,7 +397,7 @@ describe('Editor', () => {
     });
 
     it('combines customStyleMap props from plugins and the editor', () => {
-      const plugins = [
+      const plugins = List([
         {
           customStyleMap: {
             orange: {
@@ -412,7 +412,7 @@ describe('Editor', () => {
             },
           },
         },
-      ];
+      ]);
 
       const customStyleMap = {
         blue: {
@@ -445,14 +445,14 @@ describe('Editor', () => {
     });
 
     it('combines the blockRenderMap from all plugins', () => {
-      const plugins = [
+      const plugins = List([
         {
           blockRenderMap: Map({ sticker: { element: 'div' } }),
         },
         {
           blockRenderMap: Map({ test: { element: 'test' } }),
         },
-      ];
+      ]);
       const result = mount(
         <PluginEditor
           editorState={editorState}
@@ -469,7 +469,7 @@ describe('Editor', () => {
     });
 
     it('combines blockRenderMap props from plugins and the editor', () => {
-      const plugins = [
+      const plugins = List([
         {
           blockRenderMap: Map({ sticker: { element: 'div' } }),
         },
@@ -477,7 +477,7 @@ describe('Editor', () => {
           blockRenderMap: Map({ test: { element: 'test' } },
         ),
         },
-      ];
+      ]);
 
       const customBlockRenderMap = Map({ sticker: { element: 'customDiv' } });
 
@@ -511,7 +511,7 @@ describe('Editor', () => {
         <PluginEditor
           editorState={editorState}
           onChange={changeSpy}
-          plugins={[]}
+          plugins={List()}
         />
       );
       draftEditor = result.node;
@@ -549,7 +549,7 @@ describe('Editor', () => {
         <PluginEditor
           editorState={editorState}
           onChange={changeSpy}
-          plugins={[plugin]}
+          plugins={List([plugin])}
           onUpArrow={customHook}
         />
       );
@@ -567,7 +567,7 @@ describe('Editor', () => {
         <PluginEditor
           editorState={editorState}
           onChange={changeSpy}
-          plugins={[plugin]}
+          plugins={List([plugin])}
           blockRendererFn={customHook}
         />
       );
@@ -602,8 +602,8 @@ describe('Editor', () => {
         ],
       };
 
-      plugins = [plugin];
-      decorators = [decorator];
+      plugins = List([plugin]);
+      decorators = List([decorator]);
     });
 
     it('uses strategies from both decorators and plugins together', () => {
