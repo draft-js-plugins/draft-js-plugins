@@ -13,7 +13,7 @@ const HTML5Player = (props) => {
       Your browser does not support the video tag.
     </video>);
   }
-  return (<div>not supported video type</div>)
+  return (<div>not supported video type</div>);
 };
 
 const MP4URL = /^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:mp4)$/;
