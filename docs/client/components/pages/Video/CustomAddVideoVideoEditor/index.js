@@ -6,11 +6,14 @@ import editorStyles from './editorStyles.css';
 // custom Player for mp4
 const HTML5Player = (props) => {
   const { blockProps } = props;
-  const { url } = blockProps;
-  return (<video width="320" height="240" autoPlay >
-    <source src={url} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>);
+   const { url, srcType } = blockProps;
+  if (srcType === 'mp4') {
+    return (<video width="320" height="240" autoPlay >
+      <source src={url} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>);
+  }
+  return (<div>not supported video type</div>)
 };
 
 // custom control button to insert new video
