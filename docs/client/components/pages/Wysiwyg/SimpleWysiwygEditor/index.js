@@ -14,7 +14,7 @@ import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable
 import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin'; // eslint-disable-line import/no-unresolved
 import createTablePlugin, { tableCreator, tableStyles } from 'draft-js-table-plugin'; // eslint-disable-line import/no-unresolved
 
-import { Map } from 'immutable';
+import { List, Map } from 'immutable';
 
 // import TextToolbar from 'draft-js-toolbar-plugin/components/text-toolbar';
 
@@ -53,7 +53,7 @@ const table = FocusDecorator(
 );
 
 // Init Plugins
-const plugins = [
+const plugins = List([
   createCleanupEmptyPlugin({
     types: ['block-image', 'block-table']
   }),
@@ -97,7 +97,7 @@ const plugins = [
   // Blocks
   createImagePlugin({ component: image }),
   createTablePlugin({ component: table, Editor }),
-];
+]);
 
 class SimpleWysiwygEditor extends Component {
   constructor(props) {

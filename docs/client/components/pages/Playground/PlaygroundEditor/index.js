@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import {
   EditorState,
   Modifier,
@@ -14,7 +15,7 @@ import ColorControls from './ColorControls';
 import * as colorPlugin from './colorPlugin';
 
 const hashtagPlugin = createHashtagPlugin();
-const plugins = [hashtagPlugin, colorPlugin];
+const plugins = List([hashtagPlugin, colorPlugin]);
 const text = `#TIL: This editor can have all sorts of #hashtags. Pretty #cool :)
 Try it yourself by starting a word with a # (hash character) …
 `;

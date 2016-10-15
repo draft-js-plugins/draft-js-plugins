@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import { EditorState } from 'draft-js';
 // eslint-disable-next-line import/no-unresolved
 import Editor from 'draft-js-plugins-editor';
@@ -9,7 +10,7 @@ import editorStyles from './editorStyles.css';
 
 const mentionPlugin = createMentionPlugin();
 const { MentionSuggestions } = mentionPlugin;
-const plugins = [mentionPlugin];
+const plugins = List([mentionPlugin]);
 
 export default class SimpleMentionEditor extends Component {
 

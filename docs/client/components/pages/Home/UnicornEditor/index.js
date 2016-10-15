@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createHashtagPlugin from 'draft-js-hashtag-plugin'; // eslint-disable-line import/no-unresolved
 import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
@@ -30,14 +31,14 @@ const { EmojiSuggestions } = emojiPlugin;
 const { StickerSelect } = stickerPlugin;
 const { UndoButton, RedoButton } = undoPlugin;
 
-const plugins = [
+const plugins = List([
   emojiPlugin,
   hashtagPlugin,
   stickerPlugin,
   linkifyPlugin,
   mentionPlugin,
   undoPlugin,
-];
+]);
 
 // const contentState = ContentState.createFromBlockArray(convertFromRaw(initialState));
 const contentState = ContentState.createFromText('You can add Emojis by typing colon : or mentions with an @. Add Stickers and undo your actions with the undo button below …');

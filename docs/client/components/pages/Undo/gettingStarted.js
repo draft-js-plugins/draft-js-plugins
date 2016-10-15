@@ -2,6 +2,7 @@
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createUndoPlugin from 'draft-js-undo-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
+import { List } from 'immutable';
 
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
@@ -15,7 +16,7 @@ const MyEditor = ({ editorState, onChange }) => (
     <Editor
       editorState={editorState}
       onChange={onChange}
-      plugins={[undoPlugin]}
+      plugins={List([undoPlugin])}
     />
     <UndoButton />
     <RedoButton />

@@ -2,6 +2,7 @@
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createEmojiPlugin from 'draft-js-emoji-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
+import { List } from 'immutable';
 
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
@@ -17,7 +18,7 @@ const MyEditor = ({ editorState, onChange }) => (
     <Editor
       editorState={editorState}
       onChange={onChange}
-      plugins={[emojiPlugin]}
+      plugins={List([emojiPlugin])}
     />
     <EmojiSuggestions />
   </div>

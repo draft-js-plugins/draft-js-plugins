@@ -2,6 +2,7 @@
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createLinkifyPlugin from 'draft-js-linkify-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
+import { List } from 'immutable';
 
 // Creates an Instance. At this step, a configuration object can be passed in
 // as an argument.
@@ -13,7 +14,7 @@ const MyEditor = ({ editorState, onChange }) => (
   <Editor
     editorState={editorState}
     onChange={onChange}
-    plugins={[linkifyPlugin]}
+    plugins={List([linkifyPlugin])}
   />
 );
 
