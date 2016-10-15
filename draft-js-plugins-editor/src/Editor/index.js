@@ -54,17 +54,17 @@ class PluginEditor extends Component {
 
   componentWillReceiveProps(nextProps) {
     const decorator = nextProps.editorState.getDecorator();
-      if (!Immutable.is(this.props.plugins, nextProps.plugins)
-          || !Immutable.is(this.props.decorators, nextProps.decorators)) {
-      setTimeout(function() {
+    if (!Immutable.is(this.props.plugins, nextProps.plugins)
+        || !Immutable.is(this.props.decorators, nextProps.decorators)) {
+      setTimeout(() => {
         this.unloadPlugins();
         this.initPlugins();
         this.decorateEditorState(nextProps.editorState);
-      }.bind(this), 0);
+      }, 0);
       return;
     }
 
-    if (typeof decorator !== "undefined" && decorator === null) {
+    if (typeof decorator !== 'undefined' && decorator === null) {
       this.decorateEditorState(nextProps.editorState);
       return;
     }
@@ -72,35 +72,6 @@ class PluginEditor extends Component {
 
   componentWillUnmount() {
     this.unloadPlugins();
-  }
-
-  decorateEditorState(editorState) {
-    const compositeDecorator = createCompositeDecorator(
-      this.resolveDecorators(),
-      this.getEditorState,
-      this.onChange);
-    const decoratedEditorState = EditorState.set(editorState, { decorator: compositeDecorator });
-    this.onChange(moveSelectionToEnd(decoratedEditorState));
-  }
-
-  initPlugins() {
-    const plugins = [this.props, ...this.resolvePlugins()];
-
-    for (const plugin of plugins) {
-      if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize(this.getPluginMethods());
-    }
-  }
-
-  unloadPlugins() {
-    this.resolvePlugins().forEach((plugin) => {
-      if (plugin.willUnmount) {
-        plugin.willUnmount({
-          getEditorState: this.getEditorState,
-          setEditorState: this.onChange
-        });
-      }
-    });
   }
 
   // Cycle through the plugins, changing the editor state with what the plugins
@@ -136,6 +107,35 @@ class PluginEditor extends Component {
     getReadOnly: this.getReadOnly,
     setReadOnly: this.setReadOnly,
   });
+
+  initPlugins = () => {
+    const plugins = [this.props, ...this.resolvePlugins()];
+
+    for (const plugin of plugins) {
+      if (typeof plugin.initialize !== 'function') continue;
+      plugin.initialize(this.getPluginMethods());
+    }
+  };
+
+  unloadPlugins = () => {
+    this.resolvePlugins().forEach((plugin) => {
+      if (plugin.willUnmount) {
+        plugin.willUnmount({
+          getEditorState: this.getEditorState,
+          setEditorState: this.onChange
+        });
+      }
+    });
+  };
+
+  decorateEditorState = (editorState) => {
+    const compositeDecorator = createCompositeDecorator(
+      this.resolveDecorators(),
+      this.getEditorState,
+      this.onChange);
+    const decoratedEditorState = EditorState.set(editorState, { decorator: compositeDecorator });
+    this.onChange(moveSelectionToEnd(decoratedEditorState));
+  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
