@@ -13,7 +13,7 @@ Basic Usage:
 ```js
 import createVideoPlugin from 'draft-js-video-plugin';
 
-const mentionPlugin = createVideoPlugin({ autoHandlePastedText: true });
+const videoPlugin = createVideoPlugin({ autoHandlePastedText: true });
 
 ```
 Advanced Usage:
