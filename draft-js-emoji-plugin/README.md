@@ -11,7 +11,18 @@ import createEmojiPlugin from 'draft-js-emoji-plugin';
 
 const emojiPlugin = createEmojiPlugin();
 ```
+## Advanced Usage
 
+```js
+const emojiPlugin = createEmojiPlugin({
+  priorityList: {
+    ':see_no_evil:': ["1f648"],
+    ':raised_hands:': ["1f64c"],
+    ':100:': ["1f4af"],
+  }
+});
+// emojis in priorityList will show up after user typed ':'
+```
 ## Importing the default styles
 
 The plugin ships with a default styling available at this location in the installed package:

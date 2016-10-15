@@ -24,6 +24,12 @@ import AlternateContainer from '../../shared/AlternateContainer';
 import ExternalLink from '../../shared/Link';
 import InlineCode from '../../shared/InlineCode';
 
+const priorityListCode = `priorityList: {
+  ':see_no_evil:': ["1f648"],
+  ':raised_hands:': ["1f64c"],
+  ':100:': ["1f4af"],
+}`;
+
 export default class App extends Component {
   // eslint-disable-next-line class-methods-use-this
   render() {
@@ -131,6 +137,11 @@ export default class App extends Component {
           <div className={styles.param}>
             <span className={styles.paramName}>imagePath</span>
             <span>The Emojis are displayed using SVGs. The full path is constructed of multiple parts like this: {'`${imagePath}${unicode}.svg${cacheBustParam}`'}. The default imagePath is: '//cdn.jsdelivr.net/emojione/assets/svg/', but can be overwritten with this config.</span>
+          </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>priorityList</span>
+            <span>These entries will be show first in the EmojiSuggestions dropdown after typing `:`. Must be an object which mus contain Emoji entries used by EmojiOne e.g.</span>
+            <Code code={priorityListCode} />
           </div>
           <Heading level={3}>EmojiSuggestions</Heading>
           <div>

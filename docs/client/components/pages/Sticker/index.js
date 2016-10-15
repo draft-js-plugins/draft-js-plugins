@@ -83,7 +83,7 @@ export default class App extends Component {
             <span>Object of CSS classes with the following keys.</span>
             <div className={styles.subParams}>
               <div className={styles.subParam}><span className={styles.subParamName}>sticker:</span> CSS class for sticker.</div>
-              <div className={styles.subParam}><span className={styles.subParamName}>stickerImage:</span> CSS class for </div>
+              <div className={styles.subParam}><span className={styles.subParamName}>stickerImage:</span> CSS class for sticker image tag.</div>
               <div className={styles.subParam}><span className={styles.subParamName}>stickerRemoveButton:</span> CSS class for sticker remove button.</div>
               <div className={styles.subParam}><span className={styles.subParamName}>select:</span> CSS class for sticker select.</div>
               <div className={styles.subParam}><span className={styles.subParamName}>selectPopover:</span> CSS class for sticker select popup.</div>

@@ -23,7 +23,7 @@ const cleanupEmptyPlugin = (config = {}) => {
 export default cleanupEmptyPlugin;
 
 // Use this to add one type to the list
-export const cleanupType = item => types.push(item);
+export const cleanupType = (item) => types.push(item);
 
 // Use this to add multiple types to the list
-export const cleanupTypes = items => types.push(...items);
+export const cleanupTypes = (items) => types.push(...items);

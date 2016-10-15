@@ -65,24 +65,24 @@ const TableComponent = ({ theme }) => class Table extends Component {
     const { style, className, blockProps } = this.props;
     const { isFocused, renderNestedEditor } = blockProps;
 
-    const classNames = [className, theme.table].filter(p => p);
+    const classNames = [className, theme.table].filter((p) => p);
 
     return (
       <table className={classNames.join(' ')} cellSpacing="0" style={style}>
         <tbody>
-        {rows.map((row, rowI) =>
-          <tr key={rowI}>
-            {Array.from(new Array(numberOfColumns), (x, i) => i).map((column, columnI) =>
-              <td key={columnI}>{renderNestedEditor({
-                block: this,
-                editorState: row[columnI],
-                onChange: (editorState) => this.updateEntityData(editorState, rowI, columnI),
-                setFocus: () => this.setFocus(rowI, columnI),
-                active: isFocused && focusedEdit && focusedEdit.row === rowI && focusedEdit.column === columnI
-              })}</td>
-            )}
-          </tr>
-        )}
+          {rows.map((row, rowI) =>
+            <tr key={rowI}>
+              {Array.from(new Array(numberOfColumns), (x, i) => i).map((column, columnI) =>
+                <td key={columnI}>{renderNestedEditor({
+                  block: this,
+                  editorState: row[columnI],
+                  onChange: (editorState) => this.updateEntityData(editorState, rowI, columnI),
+                  setFocus: () => this.setFocus(rowI, columnI),
+                  active: isFocused && focusedEdit && focusedEdit.row === rowI && focusedEdit.column === columnI
+                })}</td>
+              )}
+            </tr>
+          )}
         </tbody>
       </table>
     );

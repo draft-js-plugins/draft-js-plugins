@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { genKey } from 'draft-js';
-
 import Entry from './Entry';
 import addEmoji from '../modifiers/addEmoji';
 import getSearchText from '../utils/getSearchText';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
-import emojiShortNames from '../utils/shortNames';
+
 
 export default class EmojiSuggestions extends Component {
 
@@ -99,7 +98,7 @@ export default class EmojiSuggestions extends Component {
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
     this.activeOffsetKey = selectionIsInsideWord
-      .filter(value => value === true)
+      .filter((value) => value === true)
       .keySeq()
       .first();
 
@@ -120,8 +119,7 @@ export default class EmojiSuggestions extends Component {
 
     // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another emoji search
-    if (this.lastSelectionIsInsideWord === undefined ||
-        !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
+    if (this.lastSelectionIsInsideWord === undefined || !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
       this.setState({
         focusedOptionIndex: 0,
       });
@@ -164,7 +162,7 @@ export default class EmojiSuggestions extends Component {
     keyboardEvent.preventDefault();
 
     const activeOffsetKey = this.lastSelectionIsInsideWord
-      .filter(value => value === true)
+      .filter((value) => value === true)
       .keySeq()
       .first();
     this.props.store.escapeSearch(activeOffsetKey);
@@ -197,7 +195,7 @@ export default class EmojiSuggestions extends Component {
     const selection = this.props.store.getEditorState().getSelection();
     const { word } = getSearchText(this.props.store.getEditorState(), selection);
     const emojiValue = word.substring(1, word.length).toLowerCase();
-    const filteredValues = emojiShortNames.filter((emojiShortName) => (
+    const filteredValues = this.props.shortNames.filter((emojiShortName) => (
       !emojiValue || emojiShortName.indexOf(emojiValue) > -1
     ));
     const size = filteredValues.size < 9 ? filteredValues.size : 9;
@@ -260,13 +258,26 @@ export default class EmojiSuggestions extends Component {
     }
 
     this.filteredEmojis = this.getEmojisForFilter();
-    const { theme = {}, cacheBustParam, imagePath } = this.props;
+    const {
+      theme = {},
+      cacheBustParam,
+      imagePath,
+      ariaProps, // eslint-disable-line no-unused-vars
+      callbacks, // eslint-disable-line no-unused-vars
+      store, // eslint-disable-line no-unused-vars
+      positionSuggestions, // eslint-disable-line no-unused-vars
+      shortNames, // eslint-disable-line no-unused-vars
+      ...restProps,
+    } = this.props;
     return (
       <div
+        {...restProps}
         className={theme.emojiSuggestions}
         role="listbox"
         id={`emojis-list-${this.key}`}
-        ref={(element) => { this.popover = element; }}
+        ref={(element) => {
+          this.popover = element;
+        }}
       >
         {
           this.filteredEmojis.map((emoji, index) => (

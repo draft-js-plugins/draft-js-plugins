@@ -20,6 +20,7 @@ module.exports = Object.assign(webpackBaseConfig, {
   entry: {
     app: [
       `webpack-hot-middleware/client?path=${HMR_HOST}`,
+      'babel-polyfill',
       './client/index.js',
     ],
   },

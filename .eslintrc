@@ -8,6 +8,7 @@
   },
   "extends": "airbnb",
   "rules": {
+    "arrow-parens": ["error", "always"],
     "max-len": 0,
     "comma-dangle": 0,
     "new-cap": 0,

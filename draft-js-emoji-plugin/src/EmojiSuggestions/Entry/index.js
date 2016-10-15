@@ -2,9 +2,7 @@ import React, {
   // PropTypes,
   Component,
 } from 'react';
-import emojioneList from '../../utils/emojioneList';
-import convertShortNameToUnicode from '../../utils/convertShortNameToUnicode';
-import escapeMap from '../../utils/escapeMap';
+import emojione from 'emojione';
 
 export default class Entry extends Component {
 
@@ -38,10 +36,9 @@ export default class Entry extends Component {
   render() {
     const { theme = {}, imagePath, cacheBustParam } = this.props;
     const className = this.props.isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
-    const unicode = emojioneList[this.props.emoji][0].toUpperCase();
-    const emoji = convertShortNameToUnicode(unicode);
-    const unicodeForImage = escapeMap[emoji];
-    const fullImagePath = `${imagePath}${unicodeForImage}.svg${cacheBustParam}`;
+    // short name to image url code steal from emojione source code
+    const shortNameForImage = emojione.emojioneList[this.props.emoji].unicode[emojione.emojioneList[this.props.emoji].unicode.length - 1];
+    const fullImagePath = `${imagePath}${shortNameForImage}.svg${cacheBustParam}`;
     return (
       <div
         className={className}

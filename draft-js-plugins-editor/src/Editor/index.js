@@ -217,8 +217,8 @@ class PluginEditor extends Component {
 
   resolveCustomStyleMap = () => (
     this.props.plugins
-     .filter(plug => plug.customStyleMap !== undefined)
-     .map(plug => plug.customStyleMap)
+     .filter((plug) => plug.customStyleMap !== undefined)
+     .map((plug) => plug.customStyleMap)
      .concat([this.props.customStyleMap])
      .reduce((styles, style) => (
        {
@@ -230,7 +230,7 @@ class PluginEditor extends Component {
 
   resolveblockRenderMap = () => {
     let blockRenderMap = this.props.plugins
-      .filter(plug => plug.blockRenderMap !== undefined)
+      .filter((plug) => plug.blockRenderMap !== undefined)
       .reduce((maps, plug) => maps.merge(plug.blockRenderMap), Map({}));
     if (this.props.defaultBlockRenderMap) {
       blockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);

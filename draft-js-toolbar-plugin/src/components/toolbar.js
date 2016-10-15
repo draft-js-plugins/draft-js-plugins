@@ -11,19 +11,19 @@ export default class Toolbar extends Component {
   };
 
   // PreventDefault helper to swallow clicks on toolbar to not loose focus
-  preventDefault = event => {
+  preventDefault = (event) => {
     event.preventDefault();
   };
 
   // Action toggle
-  toggleAction = action => {
+  toggleAction = (action) => {
     if (action.toggle) {
       action.toggle(action, !action.active);
     }
   };
 
   // Render single action buttons
-  renderAction = action => {
+  renderAction = (action) => {
     const { toolbarTheme } = this.context;
     const { theme } = this.props;
     const styles = toolbarTheme || theme;

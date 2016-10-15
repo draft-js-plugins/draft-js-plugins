@@ -5,7 +5,7 @@ import getSelection from '../utils/getSelection';
 import getSelectionRect from '../utils/getSelectionRect';
 
 // Helper function, is toolbar necessary / is a text selected?
-export const shouldRenderToolbar = editorState => {
+export const shouldRenderToolbar = (editorState) => {
   const selected = getSelection();
   const selectionState = editorState ? editorState.getSelection() : null;
   return !!selected.rangeCount && !selectionState.isCollapsed();
@@ -36,7 +36,7 @@ export const getToolbarActions = (config, editorState, setEditorState) => {
     .getBlockForKey(editorState.getSelection().getStartKey());
 
   return [
-    ...inlineStyles.map(action => ({
+    ...inlineStyles.map((action) => ({
       icon: action.icon,
       button: action.button,
       label: action.label,
@@ -46,7 +46,7 @@ export const getToolbarActions = (config, editorState, setEditorState) => {
         action.style
       )),
     })),
-    ...customActions.map(action => ({
+    ...customActions.map((action) => ({
       icon: action.icon,
       button: action.button,
       label: action.label,
