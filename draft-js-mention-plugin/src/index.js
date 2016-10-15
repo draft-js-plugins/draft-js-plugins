@@ -102,7 +102,7 @@ const createMentionPlugin = (config = {}) => {
     decorators: [
       {
         strategy: mentionStrategy(mentionTrigger),
-        component: decorateComponentWithProps(Mention, { theme, mentionPrefix, mentionComponent }),
+        component: decorateComponentWithProps(Mention, { theme, mentionComponent }),
       },
       {
         strategy: mentionSuggestionsStrategy(mentionTrigger),
