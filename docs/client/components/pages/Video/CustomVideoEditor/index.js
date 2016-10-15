@@ -6,11 +6,14 @@ import editorStyles from './editorStyles.css';
 
 const HTML5Player = (props) => {
   const { blockProps } = props;
-  const { url } = blockProps;
-  return (<video width="320" height="240" autoPlay >
-    <source src={url} type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>);
+  const { url, srcType } = blockProps;
+  if (srcType === 'mp4') {
+    return (<video width="320" height="240" autoPlay >
+      <source src={url} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>);
+  }
+  return (<div>not supported video type</div>)
 };
 
 const MP4URL = /^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:mp4)$/;
