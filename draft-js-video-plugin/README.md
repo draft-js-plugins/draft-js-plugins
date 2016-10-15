@@ -13,7 +13,7 @@ Basic Usage:
 ```js
 import createVideoPlugin from 'draft-js-video-plugin';
 
-const mentionPlugin = createVideoPlugin();
+const mentionPlugin = createVideoPlugin({ autoHandlePastedText: true });
 
 ```
 Advanced Usage:
@@ -21,6 +21,7 @@ Advanced Usage:
 import createVideoPlugin from 'draft-js-video-plugin';
 
 const videoPlugin = createVideoPlugin({
+  autoHandlePastedText: true,
   isVideo: (url) => {
    //take url check if it's a valid video url return true or false
     const YOUTUBEMATCH_URL = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/
@@ -38,7 +39,7 @@ const videoPlugin = createVideoPlugin({
   },
   wrapperComponent: (props) => {
     const { blockProps } = props;
-    const { url } =blockProps;
+    const { url, srcID, srcType } =blockProps;
     return (
       <YourCustomVideoPlayer
         url={url}

@@ -21,6 +21,5 @@ export default function addVideo(editorState, { srcType, srcID, url }) {
       url,
     }
   );
-
   return AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
 }
