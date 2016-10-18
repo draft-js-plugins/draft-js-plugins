@@ -3,26 +3,18 @@ import {
   EditorState,
   Modifier,
   RichUtils,
-  Entity,
 } from 'draft-js';
 // eslint-disable-next-line import/no-unresolved
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+// eslint-disable-next-line import/no-unresolved
+import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import editorStyles from './editorStyles.css';
+import colorStyleMap from './colorStyleMap';
+import ColorControls from './ColorControls';
+import * as colorPlugin from './colorPlugin';
 
-import createSidebarPlugin, { TYPES } from 'draft-js-sidebar-plugin';
-
-const actions = [{
-  name: 'test',
-  type: TYPES.GENERIC,
-  icon: 'lol',
-  add: () => { return { then: (callback) => callback(Entity.create('EMBED', 'IMMUTABLE', { test: 'http://www.google.fr' }))}; }
-}];
-
-console.log(actions);
-
-const sidebarPlugin = createSidebarPlugin({ actions });
-const { renderSidebar } = sidebarPlugin;
-const plugins = [sidebarPlugin];
+const hashtagPlugin = createHashtagPlugin();
+const plugins = [hashtagPlugin, colorPlugin];
 const text = `#TIL: This editor can have all sorts of #hashtags. Pretty #cool :)
 Try it yourself by starting a word with a # (hash character) …
 `;
@@ -39,23 +31,59 @@ export default class SimpleHashtagEditor extends Component {
     });
   };
 
-
   focus = () => {
     this.editor.focus();
   };
 
+  toggleColor = (toggledColor) => {
+    const { editorState } = this.state;
+    const selection = editorState.getSelection();
+
+    // Let's just allow one color at a time. Turn off all active colors.
+    const nextContentState = Object.keys(colorStyleMap)
+      .reduce((contentState, color) => (
+        Modifier.removeInlineStyle(contentState, selection, color)
+      ), editorState.getCurrentContent());
+
+    let nextEditorState = EditorState.push(
+      editorState,
+      nextContentState,
+      'change-inline-style'
+    );
+
+    const currentStyle = editorState.getCurrentInlineStyle();
+
+    // Unset style override for current color.
+    if (selection.isCollapsed()) {
+      nextEditorState = currentStyle.reduce((currentEditorState, color) => (
+        RichUtils.toggleInlineStyle(currentEditorState, color)
+      ), nextEditorState);
+    }
+
+    // If the color is being toggled on, apply it.
+    if (!currentStyle.has(toggledColor)) {
+      nextEditorState = RichUtils.toggleInlineStyle(
+        nextEditorState,
+        toggledColor
+      );
+    }
+
+    this.onChange(nextEditorState);
+  };
+
   render() {
     return (
-      <div>
-        <div className={editorStyles.editor} onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            ref={(element) => { this.editor = element; }}
-          />
-        </div>
-        {renderSidebar()}
+      <div className={editorStyles.editor} onClick={this.focus}>
+        <Editor
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+          plugins={plugins}
+          ref={(element) => { this.editor = element; }}
+        />
+        <ColorControls
+          editorState={this.state.editorState}
+          onToggle={this.toggleColor}
+        />
       </div>
     );
   }
