@@ -10,18 +10,26 @@ const getUrl = (entityKey, urlKey) => {
 const Link = (props) => {
   const {
     urlKey,
-    target = '_blank',
-    rel = 'noopener noreferrer',
-    theme = {},
+    entityKey,
+    theme,
     className,
+    component,
+    rel = 'noopener noreferrer',
+    ...otherProps,
   } = props;
 
   const combinedClassName = unionClassNames(theme.link, className);
-  return (
-    <a href={getUrl(props.entityKey, urlKey)} target={target} rel={rel} className={combinedClassName}>
-      {props.children}
-    </a>
-  );
+  const componentProps = {
+    href: getUrl(entityKey, urlKey),
+    className: combinedClassName,
+    rel,
+    ...otherProps,
+  }
+
+  return component
+    ? React.createElement(component, componentProps)
+    : <a {...componentProps} />; // eslint-disable-line jsx-a11y/anchor-has-content
+  ;
 };
 
 export default Link;

@@ -13,6 +13,7 @@ import Undo from './components/pages/Undo';
 import Mention from './components/pages/Mention';
 import Wysiwyg from './components/pages/Wysiwyg';
 import Counter from './components/pages/Counter';
+import Link from './components/pages/Link';
 import Playground from './components/pages/Playground';
 import Image from './components/pages/Image';
 import InlineToolbar from './components/pages/InlineToolbar';
@@ -33,6 +34,7 @@ export const routes = (
       <Route path="plugin/image" title="App - Image" component={Image} />
       <Route path="plugin/inline-toolbar" title="App - InlineToolbar" component={InlineToolbar} />
       <Route path="plugin/side-toolbar" title="App - SideToolbar" component={SideToolbar} />
+      <Route path="plugin/link" title="App - Link" component={Link} />
     </Route>
     <Route path="playground" title="App - Development Playground" component={Playground} />
     <Route path="*" title="404: Not Found" component={NotFound} />

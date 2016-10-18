@@ -8,7 +8,7 @@ const defaultTheme = {
 };
 
 export const defaultType = 'LINK';
-export const defaultUrlKey = 'url';
+export const defaultUrlKey = 'href';
 export { Link };
 
 const linkPlugin = (config = {}) => {
@@ -20,11 +20,11 @@ const linkPlugin = (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
 
   const {
-    component = Link,
+    component,
     theme = defaultTheme,
     type = defaultType,
     urlKey = defaultUrlKey,
-    ...otherProps,
+    target = '_blank',
   } = config;
 
   return {
@@ -38,7 +38,7 @@ const linkPlugin = (config = {}) => {
             }, callback
           );
         },
-        component: decorateComponentWithProps(component, { theme, urlKey, ...otherProps }),
+        component: decorateComponentWithProps(Link, { theme, target, component, urlKey }),
       },
     ],
   };
