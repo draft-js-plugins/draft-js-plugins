@@ -504,7 +504,7 @@ describe('Editor', () => {
     it('returns the component reference when we call the getEditorRef inside of a plugin', () => {
       const spy = sinon.spy();
       const plugins = [{
-        onChange: (editorState, pluginFunctions) => spy(pluginFunctions.getEditorRef())
+        onChange: (state, pluginFunctions) => spy(pluginFunctions.getEditorRef())
       }];
       const pluginEditorComponent = mount(
         <PluginEditor
