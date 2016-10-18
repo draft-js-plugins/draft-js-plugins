@@ -1,6 +1,7 @@
 import React from 'react';
 import BasicAction from './Basic';
 import TextAction from './Text';
+import FileAction from './File';
 
 export const INPUT_TYPES = {
   BASIC: 'BASIC',
@@ -23,6 +24,9 @@ const createActionButton = (props) => {
 
     case INPUT_TYPES.TEXT:
       return <TextAction {...props} />;
+
+    case INPUT_TYPES.FILE:
+      return <FileAction {...props} />;
   }
 };
 export default createActionButton;

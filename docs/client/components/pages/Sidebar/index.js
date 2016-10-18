@@ -10,6 +10,11 @@ import textActionExampleCode from '!!../../../loaders/prism-loader?language=java
 // eslint-disable-next-line import/no-unresolved
 import textActionExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./TextActionEditor/editorStyles.css';
 
+// eslint-disable-next-line import/no-unresolved
+import fileActionExampleCode from '!!../../../loaders/prism-loader?language=javascript!./FileActionEditor';
+// eslint-disable-next-line import/no-unresolved
+import fileActionExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./FileActionEditor/editorStyles.css';
+
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
@@ -23,6 +28,7 @@ import ExternalLink from '../../shared/Link';
 
 import BasicActionEditor from './BasicActionEditor';
 import TextActionEditor from './TextActionEditor';
+import FileActionEditor from './FileActionEditor';
 
 export default class App extends Component {
   // eslint-disable-next-line class-methods-use-this
@@ -70,6 +76,12 @@ export default class App extends Component {
           <TextActionEditor />
           <Code code={textActionExampleCode} name="TextActionEditor.js" />
           <Code code={textActionExampleEditorStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>File Action Example</Heading>
+          <FileActionEditor />
+          <Code code={fileActionExampleCode} name="FileActionEditor.js" />
+          <Code code={fileActionExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>
