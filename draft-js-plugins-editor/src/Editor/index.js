@@ -6,6 +6,7 @@ import {
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
 import { List, Map } from 'immutable';
+import MultiDecorator from './MultiDecorator';
 import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import proxies from './proxies';
@@ -54,11 +55,23 @@ class PluginEditor extends Component {
   }
 
   componentWillMount() {
+    const decorators = this.resolveDecorators();
     const compositeDecorator = createCompositeDecorator(
-      this.resolveDecorators(),
+      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
       this.getEditorState,
       this.onChange);
-    const editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
+
+    const customDecorators = decorators
+      .filter((decorator) => this.decoratorIsCustom(decorator));
+
+    const multiDecorator = new MultiDecorator(
+      [
+        ...customDecorators,
+        compositeDecorator,
+      ]
+    );
+
+    const editorState = EditorState.set(this.props.editorState, { decorator: multiDecorator });
     this.onChange(moveSelectionToEnd(editorState));
   }
 
@@ -214,6 +227,13 @@ class PluginEditor extends Component {
       .filter((plugin) => plugin.decorators !== undefined)
       .flatMap((plugin) => plugin.decorators);
   };
+
+  // Return true if decorator implements the DraftDecoratorType interface
+  // @see https://github.com/facebook/draft-js/blob/master/src/model/decorators/DraftDecoratorType.js
+  decoratorIsCustom = (decorator) => typeof decorator.getDecorations === 'function' &&
+    typeof decorator.getComponentForKey === 'function' &&
+    typeof decorator.getPropsForKey === 'function';
+
 
   resolveCustomStyleMap = () => (
     this.props.plugins

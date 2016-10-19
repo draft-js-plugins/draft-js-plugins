@@ -585,7 +585,7 @@ describe('Editor', () => {
     let plugins;
     let decorators;
 
-    before(() => {
+    beforeEach(() => {
       text = "Hello there how's it going fella";
 
       decorator = {
@@ -598,6 +598,11 @@ describe('Editor', () => {
           {
             strategy: (block, cb) => cb(4, 7),
             component: () => <span className="plugin" />,
+          },
+          {
+            getDecorations: () => [],
+            getComponentForKey: () => <span className="custom" />,
+            getPropsForKey: () => {},
           },
         ],
       };
@@ -628,6 +633,18 @@ describe('Editor', () => {
       expect(pluginComponent).has.been.called();
       expect(decoratorComponents.length).to.equal(1);
       expect(pluginComponents.length).to.equal(1);
+    });
+
+    it('uses both custom and simple decorators in plugins', () => {
+      const simplePluginDecoratorStrategy = sinon.spy(plugin.decorators[0], 'strategy');
+      const customPluginDecorator = sinon.spy(plugin.decorators[1], 'getDecorations');
+      const decoratorStrategy = sinon.spy(decorator, 'strategy');
+
+      mount(<TestEditor {...{ plugins, decorators, text }} />);
+
+      expect(simplePluginDecoratorStrategy).has.been.called();
+      expect(customPluginDecorator).has.been.called();
+      expect(decoratorStrategy).has.been.called();
     });
   });
 });
