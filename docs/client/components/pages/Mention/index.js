@@ -153,7 +153,7 @@ export default class App extends Component {
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>mentionComponent</span>
-            <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className, mentionPrefix & decoratedText</span>
+            <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className & decoratedText</span>
           </div>
           <Heading level={3}>MentionSuggestions</Heading>
           <div>
