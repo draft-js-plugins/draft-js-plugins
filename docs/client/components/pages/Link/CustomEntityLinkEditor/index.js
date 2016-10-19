@@ -6,8 +6,8 @@ import editorStyles from './editorStyles.css';
 import data from './data';
 
 const linkPlugin = createLinkPlugin({
-  type: "MY-CUSTOM-LINK-ENTITY",
-  urlKey: "my-custom-attribute",
+  type: 'MY-CUSTOM-LINK-ENTITY',
+  urlKey: 'myCustomAttribute',
 });
 const plugins = [linkPlugin];
 

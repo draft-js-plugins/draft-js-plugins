@@ -24,12 +24,11 @@ const Link = (props) => {
     className: combinedClassName,
     rel,
     ...otherProps,
-  }
+  };
 
   return component
     ? React.createElement(component, componentProps)
     : <a {...componentProps} />; // eslint-disable-line jsx-a11y/anchor-has-content
-  ;
 };
 
 export default Link;

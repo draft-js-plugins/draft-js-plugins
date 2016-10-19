@@ -54,7 +54,7 @@ export default class App extends Component {
           <Heading level={2}>Getting Started</Heading>
           <p>
             This plugin is meant to give a default strategy to decorate link entities.
-            It ships with a default Link component which represents link entites with <a></a> markup.
+            It ships with a default Link component which represents link entites with "a" markup.
           </p>
           <Code code="npm install draft-js-plugins-editor@beta --save" />
           <Code code="npm install draft-js-link-plugin@beta --save" />
