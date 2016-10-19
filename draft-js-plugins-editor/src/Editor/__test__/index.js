@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
+import { EditorState, DefaultDraftBlockRenderMap, Editor } from 'draft-js';
 import { Map } from 'immutable';
 import sinon from 'sinon';
 import PluginEditor, { createEditorStateWithText } from '../../index';
@@ -173,6 +173,7 @@ describe('Editor', () => {
         getProps: pluginEditor.getProps,
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
+        getEditorRef: pluginEditor.getEditorRef,
       };
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
@@ -303,6 +304,7 @@ describe('Editor', () => {
         getProps: pluginEditor.getProps,
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
+        getEditorRef: pluginEditor.getEditorRef,
       };
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
@@ -497,6 +499,23 @@ describe('Editor', () => {
 
       const pluginEditor = result.instance();
       expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
+    });
+
+    it('returns the component reference when we call the getEditorRef inside of a plugin', () => {
+      const spy = sinon.spy();
+      const plugins = [{
+        onChange: (state, pluginFunctions) => spy(pluginFunctions.getEditorRef())
+      }];
+      const pluginEditorComponent = mount(
+        <PluginEditor
+          editorState={editorState}
+          plugins={plugins}
+          onChange={changeSpy}
+        />
+      );
+      const draftEditorComponent = (pluginEditorComponent.find(Editor)).nodes[0];
+      draftEditorComponent.focus();
+      expect(spy.getCall(1).args[0]).to.deep.equal(draftEditorComponent);
     });
   });
 
