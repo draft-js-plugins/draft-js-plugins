@@ -20,7 +20,7 @@ export default class MentionSuggestions extends Component {
     suggestions: (props, propName, componentName) => {
       if (!List.isList(props[propName])) {
         return new Error(
-          `Invalid prop \`${propName}\' supplied to \`${componentName}\`. should be an instance of immutable list.`
+          `Invalid prop \`${propName}' supplied to \`${componentName}\`. should be an instance of immutable list.`
         );
       }
       return undefined;
@@ -216,7 +216,7 @@ export default class MentionSuggestions extends Component {
       return;
     }
 
-    if(this.props.onSelect) {
+    if (this.props.onSelect) {
       this.props.onSelect(mention);
     }
 
@@ -296,7 +296,6 @@ export default class MentionSuggestions extends Component {
 
     const {
       entryComponent,
-      onSelect,
       onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
       suggestions, // eslint-disable-line no-unused-vars
       ariaProps, // eslint-disable-line no-unused-vars
