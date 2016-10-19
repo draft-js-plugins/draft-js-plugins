@@ -31,10 +31,26 @@ class Sidebar extends React.Component {
     if (!selection.getHasFocus()) {
       return;
     }
-    const offsetKey = DraftOffsetKey.encode(selection.getEndKey(), 0, 0);
+    const startKey = selection.getStartKey();
+    const contentState = editorState.getCurrentContent();
+    const block = contentState.getBlockForKey(startKey);
+    if (this.props.emptyLineOnly && block.getText().length > 0) {
+      this.setState({
+        display: {
+          display: 'none',
+        },
+        selectedBlockElement: null,
+      });
+      return;
+    }
+
+    const offsetKey = DraftOffsetKey.encode(startKey, 0, 0);
     setTimeout(() => {
       const elts = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`);
       if (elts.length === 0) {
+        this.setState({
+          selectedBlockElement: null,
+        })
         return ;
       }
       for (let i = 0; i < elts.length; i++) {
@@ -97,6 +113,17 @@ class Sidebar extends React.Component {
   );
 }
 
+Sidebar.propTypes = {
+  editorState: React.PropTypes.object.isRequired,
+  getPluginMethods: React.PropTypes.func.isRequired,
+  emptyLineOnly: React.PropTypes.bool.isRequired,
+};
+
+Sidebar.defaultProps = {
+  mainButton: {},
+  emptyLineOnly: true,
+};
+
 const SidebarButton = ({display, img, onClick}) => (
   <div
     onClick={onClick}
@@ -117,8 +144,5 @@ const SidebarMenu = ({ show, onClick, actions, ...rest}) => (
     </ul>
 );
 
-Sidebar.defaultProps = {
-  mainButton: {}
-};
 
 export default Sidebar;

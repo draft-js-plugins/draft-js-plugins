@@ -51,6 +51,7 @@ const createSidebarPlugin = (config) => {
     onChange: onChange,
     Sidebar: decorateComponentWithProps(Sidebar, {
       actions: config.actions,
+      emptyLineOnly: config.emptyLineOnly || false,
     }),
     blockRendererFn: myBlockRenderer
   };
