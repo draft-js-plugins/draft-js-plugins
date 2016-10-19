@@ -4,9 +4,9 @@ import insertBlock from '../../Modifiers/insertBlock';
 export default class BasicAction extends React.Component {
 
   insert = (entityKey) => {
-    const state = this.props.getEditorState();
+    const state = this.props.getPluginMethods().getEditorState();
     const newState = insertBlock(state, entityKey);
-    this.props.setEditorState(newState);
+    this.props.getPluginMethods().setEditorState(newState);
     this.props.onClick(entityKey);
   }
 

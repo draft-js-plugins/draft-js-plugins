@@ -4,9 +4,9 @@ import insertBlock from '../../Modifiers/insertBlock';
 export default class FileAction extends React.Component {
 
   insert = (entityKey) => {
-    const state = this.props.getEditorState();
+    const state = this.props.getPluginMethods().getEditorState();
     const newState = insertBlock(state, entityKey);
-    this.props.setEditorState(newState);
+    this.props.getPluginMethods().setEditorState(newState);
     this.props.onClick(entityKey);
   }
 
@@ -23,7 +23,6 @@ export default class FileAction extends React.Component {
 
       // Closure to capture the file information.
       reader.onload = ((event) => {
-        console.log(event);
         const data = {
           fileReader: event.target,
           file: files[0],

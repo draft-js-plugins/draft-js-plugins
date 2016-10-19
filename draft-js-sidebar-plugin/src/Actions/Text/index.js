@@ -6,11 +6,11 @@ import insertBlock from '../../Modifiers/insertBlock';
 export default class TextAction extends React.Component {
 
   insert = (entityKey, blockKey) => {
-    const editorState = this.props.getEditorState();
+    const editorState = this.props.getPluginMethods().getEditorState();
     const stateWithoutText = removeBlock(editorState, blockKey);
     const newState = insertBlock(stateWithoutText, entityKey);
-    this.props.setEditorState(newState);
-    this.props.setReadOnly(false);
+    this.props.getPluginMethods().setEditorState(newState);
+    this.props.getPluginMethods().setReadOnly(false);
   }
 
   onValidation = (textValue, blockKey) => {
@@ -23,10 +23,10 @@ export default class TextAction extends React.Component {
   }
 
   onCancel = (blockKey) => {
-    const editorState = this.props.getEditorState();
+    const editorState = this.props.getPluginMethods().getEditorState();
     const stateWithoutText = removeBlock(editorState, blockKey);
-    this.props.setEditorState(stateWithoutText);
-    this.props.setReadOnly(false);
+    this.props.getPluginMethods().setEditorState(stateWithoutText);
+    this.props.getPluginMethods().setReadOnly(false);
   }
 
   onClick = (event) => {
@@ -37,14 +37,14 @@ export default class TextAction extends React.Component {
       onValidation: this.onValidation,
       cancel: this.onCancel,
     });
-    const state = this.props.getEditorState();
+    const state = this.props.getPluginMethods().getEditorState();
     const newState = AtomicBlockUtils.insertAtomicBlock(
       state,
       entityKey,
       ' '
     );
-    this.props.setEditorState(newState);
-    this.props.setReadOnly(true);
+    this.props.getPluginMethods().setEditorState(newState);
+    this.props.getPluginMethods().setReadOnly(true);
   };
 
   render = () => (
