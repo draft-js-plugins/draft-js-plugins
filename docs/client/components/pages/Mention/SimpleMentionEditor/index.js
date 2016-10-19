@@ -29,8 +29,8 @@ export default class SimpleMentionEditor extends Component {
   };
 
   onSelect = (mention) => {
-    console.log("mention object", mention)
-  }
+    // use mention object
+  };
 
   focus = () => {
     this.editor.focus();
