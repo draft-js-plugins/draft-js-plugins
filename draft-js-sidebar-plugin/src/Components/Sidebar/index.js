@@ -1,5 +1,8 @@
 import React from 'react';
 import { AtomicBlockUtils, convertToRaw, CharacterMetadata, Entity } from 'draft-js';
+import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+import insertBlock from '../../Modifiers/insertBlock';
+import removeBlock from '../../Modifiers/removeBlock';
 import styles from './styles.css';
 import createActionButton from '../../Actions';
 
@@ -9,6 +12,12 @@ class Sidebar extends React.Component {
     super(props);
     this.state = {
       showMenu: false,
+      display: {
+        top: '-1000px',
+        left: `-35px`,
+        display: 'flex',
+      },
+      selectedBlockElement: null,
     }
   }
 
@@ -18,6 +27,38 @@ class Sidebar extends React.Component {
 
   componentWillUnmount = () => {
     document.body.removeEventListener('click', this.closeOnClick);
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    const editorState = nextProps.editorState;
+    const selection = editorState.getSelection();
+    if (!selection.isCollapsed()) {
+      return;
+    }
+    const offsetKey = DraftOffsetKey.encode(selection.getEndKey(), 0, 0);
+    setTimeout(() => {
+      const elts = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`);
+      if (elts.length === 0) {
+        return ;
+      }
+      for (let i = 0; i < elts.length; i++) {
+        if (elts[i].getAttribute('data-block') === 'true') {
+          if (this.state.selectedBlockElement === elts[i]) {
+            return;
+          }
+          this.setState({
+            display: {
+              top: `${elts[i].offsetTop + 16}px`,
+              left: `-35px`,
+              display: 'flex',
+            },
+            selectedBlockElement: elts[i],
+          });
+          return;
+          //pluginFunctions.setEditorState(editorState);
+        }
+      }
+    },0);
   };
 
   closeSidebarMenu = () =>  {
@@ -44,7 +85,7 @@ class Sidebar extends React.Component {
   };
 
   render = () => (
-    <div className={styles.wrapper} style={this.props.display}>
+    <div className={styles.wrapper} style={this.state.display}>
       <SidebarButton
         img={this.props.mainButton.img}
         onClick={this.onButtonClick}
@@ -54,9 +95,7 @@ class Sidebar extends React.Component {
           show={this.state.showMenu}
           onClick={this.onActionClick}
           actions={this.props.actions}
-          setEditorState={this.props.setEditorState}
-          getEditorState={this.props.getEditorState}
-          setReadOnly={this.props.setReadOnly}
+          getPluginMethods={this.props.getPluginMethods}
         />
       </div>
     </div>

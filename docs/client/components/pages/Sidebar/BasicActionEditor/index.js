@@ -26,7 +26,7 @@ const actions = [{
 }];
 
 const sidebarPlugin = createSidebarPlugin({ actions });
-const { renderSidebar } = sidebarPlugin;
+const { Sidebar } = sidebarPlugin;
 const plugins = [sidebarPlugin];
 const text = ` When you click somewhere on the editor,
 a button will appear on the left.
@@ -38,6 +38,13 @@ export default class BasicActionEditor extends Component {
   state = {
     editorState: createEditorStateWithText(text),
   };
+
+  getPluginMethods = () => {
+    if (!this.editor) {
+      return {};
+    }
+    return this.editor.getPluginMethods();
+  }
 
   onChange = (editorState) => {
     this.setState({
@@ -75,7 +82,7 @@ export default class BasicActionEditor extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -85,7 +92,7 @@ export default class BasicActionEditor extends Component {
             blockRendererFn={this.myBlockRenderer}
           />
         </div>
-        {renderSidebar()}
+        <Sidebar editorState={this.state.editorState} getPluginMethods={this.getPluginMethods} />
       </div>
     );
   }
