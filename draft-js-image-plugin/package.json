@@ -33,7 +33,7 @@
     "decorate-component-with-props": "^1.0.2",
     "find-with-regex": "^1.0.2",
     "union-class-names": "^1.0.0",
-    "draft-js": ">=0.8.1",
+    "draft-js": "^0.9.1",
     "immutable": ">=3.8.1",
     "react": ">=15.2.1",
     "react-dom": ">=15.2.1"
