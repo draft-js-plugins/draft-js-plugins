@@ -1,8 +1,6 @@
 import React from 'react';
 import { AtomicBlockUtils, convertToRaw, CharacterMetadata, Entity } from 'draft-js';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
-import insertBlock from '../../Modifiers/insertBlock';
-import removeBlock from '../../Modifiers/removeBlock';
 import styles from './styles.css';
 import createActionButton from '../../Actions';
 
@@ -13,9 +11,7 @@ class Sidebar extends React.Component {
     this.state = {
       showMenu: false,
       display: {
-        top: '-1000px',
-        left: `-35px`,
-        display: 'flex',
+        display: 'none',
       },
       selectedBlockElement: null,
     }
@@ -32,7 +28,7 @@ class Sidebar extends React.Component {
   componentWillReceiveProps = (nextProps) => {
     const editorState = nextProps.editorState;
     const selection = editorState.getSelection();
-    if (!selection.isCollapsed()) {
+    if (!selection.getHasFocus()) {
       return;
     }
     const offsetKey = DraftOffsetKey.encode(selection.getEndKey(), 0, 0);
@@ -55,7 +51,6 @@ class Sidebar extends React.Component {
             selectedBlockElement: elts[i],
           });
           return;
-          //pluginFunctions.setEditorState(editorState);
         }
       }
     },0);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Entity, EditorState } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
-import getSelectedBlockElement from './utils';
 import Sidebar from './Components/Sidebar';
 import InputBlock from './Components/InputBlock';
 import EmbedIframe from './Components/EmbedIframe';
