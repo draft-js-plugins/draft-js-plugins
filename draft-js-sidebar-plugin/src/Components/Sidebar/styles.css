@@ -2,13 +2,33 @@
     height: 24px;
     widht: 24px;
     display: inline-flex;
+    transition: all 0.5s ease-in-out;
 }
 
-.menu {
+.plusButtonOpen {
+    transform:         rotate(45deg); /* CSS3 */
+    -moz-transform:    rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Webkit */
+    -o-transform:      rotate(45deg); /* Opera */
+    -ms-transform:     rotate(45deg); /* IE 9 */
+}
+
+.menuList {
     position: relative;
     display: inline-flex;
     list-style-type:  none;
-    margin: 0;
+    margin: 0 10px;
+    padding: 0;
+}
+
+.menu {
+    overflow: hidden;
+    width: 0px;
+    transition: all 0.8s ease-in-out;
+}
+
+.menuOpen {
+    width: 100px;
 }
 
 .wrapper {
