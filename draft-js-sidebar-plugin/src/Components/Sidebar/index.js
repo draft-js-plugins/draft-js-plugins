@@ -35,6 +35,9 @@ class Sidebar extends React.Component {
     const startKey = selection.getStartKey();
     const contentState = editorState.getCurrentContent();
     const block = contentState.getBlockForKey(startKey);
+    if (!block) {
+      return;
+    }
     if (this.props.emptyLineOnly && block.getText().length > 0) {
       this.setState({
         display: {

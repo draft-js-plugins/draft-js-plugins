@@ -51,8 +51,8 @@ class EmbedIframe extends React.Component {
 
 EmbedIframe.propTypes = {
   width: React.PropTypes.string,
-  minHeight: React.PropTypes.int,
-  html: React.PropTypes.string.required,
+  minHeight: React.PropTypes.number,
+  html: React.PropTypes.string.isRequired,
 };
 
 EmbedIframe.defaultProps = {

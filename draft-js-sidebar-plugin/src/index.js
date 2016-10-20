@@ -40,9 +40,6 @@ const createSidebarPlugin = (userConfig) => {
         return {
           component: EmbedIframe,
           editable: false,
-          props: {
-            html: entity.getData()['html'],
-          }
         };
       }
 
