@@ -53,3 +53,11 @@ export default class TextAction extends React.Component {
     </span>
   )
 }
+
+TextAction.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  icon: React.PropTypes.string.isRequired,
+  add: React.PropTypes.func.isRequired,
+  remove: React.PropTypes.func,
+  remove: React.PropTypes.func,
+};
