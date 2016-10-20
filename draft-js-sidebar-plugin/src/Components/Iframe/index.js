@@ -1,14 +1,7 @@
 import React from 'react';
 
 class EmbedIframe extends React.Component {
-
-  resizeIframe = () => {
-    const height = Math.max(this.props.minHeight, this.iframe.contentWindow.document.body.offsetHeight);
-    this.iframe.height = `${height}px`;
-  }
-
   componentDidMount = () => {
-    const html = this.props.html;
     const page = `
       <html>
         <body style="margin:0;padding:0">
@@ -35,6 +28,11 @@ class EmbedIframe extends React.Component {
     this.iframe.contentWindow.document.open('text/html', 'replace');
     this.iframe.contentWindow.document.write(page);
     this.iframe.contentWindow.document.close();
+  }
+
+  resizeIframe = () => {
+    const height = Math.max(this.props.minHeight, this.iframe.contentWindow.document.body.offsetHeight);
+    this.iframe.height = `${height}px`;
   }
 
   render = () => (

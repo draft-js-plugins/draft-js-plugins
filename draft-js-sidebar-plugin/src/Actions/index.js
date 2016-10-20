@@ -11,7 +11,6 @@ export const INPUT_TYPES = {
 
 
 const createActionButton = (props) => {
-
   const { inputType } = props;
 
   if (Object.values(INPUT_TYPES).indexOf(inputType) === -1) {
@@ -27,7 +26,9 @@ const createActionButton = (props) => {
 
     case INPUT_TYPES.FILE:
       return <FileAction {...props} />;
+
+    default:
+      throw new Error(`unknown input type ${inputType}`);
   }
 };
 export default createActionButton;
-

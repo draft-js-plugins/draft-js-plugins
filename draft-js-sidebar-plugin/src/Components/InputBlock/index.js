@@ -25,12 +25,6 @@ class InputBlock extends React.Component {
     document.body.removeEventListener('click', this.closeOnClick);
   };
 
-  closeOnClick = (event) => {
-    if (!this.input.contains(event.target)) {
-      this.state.data.cancel(this.state.blockKey);
-    }
-  };
-
   onKeyUp = (event) => {
     if (event.keyCode === 13) {
       this.state.data.onValidation(this.state.inputValue, this.state.blockKey);
@@ -41,24 +35,28 @@ class InputBlock extends React.Component {
     }
   }
 
+  closeOnClick = (event) => {
+    if (!this.input.contains(event.target)) {
+      this.state.data.cancel(this.state.blockKey);
+    }
+  };
+
   handleChange = (event) => {
     this.setState({
       inputValue: event.target.value,
     });
   }
 
-  render = () => {
-    return (
-      <input
-        type="text"
-        value={this.state.inputValue}
-        onChange={this.handleChange}
-        onKeyUp={this.onKeyUp}
-        placeholder={this.state.data.placeholder}
-        ref={(i) => { this.input = i; }}
-      />
-    );
-  }
-};
+  render = () => (
+    <input
+      type="text"
+      value={this.state.inputValue}
+      onChange={this.handleChange}
+      onKeyUp={this.onKeyUp}
+      placeholder={this.state.data.placeholder}
+      ref={(i) => { this.input = i; }}
+    />
+  );
+}
 
 export default InputBlock;

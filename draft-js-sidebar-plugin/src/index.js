@@ -1,14 +1,13 @@
-import React from 'react';
-import { Entity, EditorState } from 'draft-js';
+import { Entity } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import Sidebar from './Components/Sidebar';
 import InputBlock from './Components/InputBlock';
 import EmbedIframe from './Components/EmbedIframe';
-export { INPUT_TYPES } from './Actions';
 import addButtonImg from './assets/addCircleMD.svg';
 
-const createSidebarPlugin = (userConfig) => {
+export { INPUT_TYPES } from './Actions';
 
+const createSidebarPlugin = (userConfig) => {
   const defaultConfig = {
     actions: [],
     emptyLineOnly: true,
@@ -16,10 +15,6 @@ const createSidebarPlugin = (userConfig) => {
   };
 
   const config = Object.assign(defaultConfig, userConfig);
-
-  const onChange = (editorState, pluginFunctions) => {
-    return editorState;
-  };
 
   const myBlockRenderer = (contentBlock) => {
     const type = contentBlock.getType();
@@ -35,8 +30,10 @@ const createSidebarPlugin = (userConfig) => {
 
     const entity = Entity.get(entityKey);
 
-    switch(entity.getType()) {
+    // eslint-disable-next-line default-case
+    switch (entity.getType()) {
       case 'EMBED': {
+        // eslint-disable-next-line consistent-return
         return {
           component: EmbedIframe,
           editable: false,
@@ -44,17 +41,17 @@ const createSidebarPlugin = (userConfig) => {
       }
 
       case 'TEXT-INPUT': {
+        // eslint-disable-next-line consistent-return
         return {
           component: InputBlock,
           editable: false,
         };
       }
     }
-  }
+  };
 
 
   return {
-    onChange: onChange,
     Sidebar: decorateComponentWithProps(Sidebar, {
       actions: config.actions,
       emptyLineOnly: config.emptyLineOnly,
@@ -62,6 +59,6 @@ const createSidebarPlugin = (userConfig) => {
     }),
     blockRendererFn: myBlockRenderer
   };
-}
+};
 
 export default createSidebarPlugin;

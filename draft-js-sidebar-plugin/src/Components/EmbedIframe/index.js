@@ -13,11 +13,9 @@ class EmbedIframe extends React.Component {
     };
   }
 
-  render = () => {
-    return (
-      <Iframe html={this.state.data.html} />
-    );
-  }
-};
+  render = () => (
+    <Iframe html={this.state.data.html} />
+  );
+}
 
 export default EmbedIframe;

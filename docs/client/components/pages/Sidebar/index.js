@@ -66,8 +66,8 @@ export default class App extends Component {
         <Container>
           <Heading level={2}>Text Action Example</Heading>
           <p>
-            The plugin use a default block renderer for EMBED entity types.<br/>
-            It expects a html attribute in the data of the entity containing the code for the embed.<br/>
+            The plugin use a default block renderer for EMBED entity types.<br />
+            It expects a html attribute in the data of the entity containing the code for the embed.<br />
             Twitter does not support CORS oO so the example will always render the same tweet. But you can see how you should do it in the code below
           </p>
           <TextActionEditor />

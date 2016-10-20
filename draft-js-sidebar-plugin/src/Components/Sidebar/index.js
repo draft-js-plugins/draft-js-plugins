@@ -1,12 +1,10 @@
 import React from 'react';
-import { AtomicBlockUtils, convertToRaw, CharacterMetadata, Entity } from 'draft-js';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 import unionClassNames from 'union-class-names';
 import styles from './styles.css';
 import createActionButton from '../../Actions';
 
 class Sidebar extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -15,15 +13,11 @@ class Sidebar extends React.Component {
         display: 'none',
       },
       selectedBlockElement: null,
-    }
+    };
   }
 
   componentDidMount = () => {
     document.body.addEventListener('click', this.closeOnClick);
-  };
-
-  componentWillUnmount = () => {
-    document.body.removeEventListener('click', this.closeOnClick);
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -54,10 +48,11 @@ class Sidebar extends React.Component {
       if (elts.length === 0) {
         this.setState({
           selectedBlockElement: null,
-        })
-        return ;
+        });
+        return;
       }
-      for (let i = 0; i < elts.length; i++) {
+
+      for (let i = 0; i < elts.length; i += 1) {
         if (elts[i].getAttribute('data-block') === 'true') {
           if (this.state.selectedBlockElement === elts[i]) {
             return;
@@ -65,7 +60,7 @@ class Sidebar extends React.Component {
           this.setState({
             display: {
               top: `${elts[i].offsetTop + 16}px`,
-              left: `-25px`,
+              left: '-25px',
               display: 'flex',
             },
             selectedBlockElement: elts[i],
@@ -76,19 +71,8 @@ class Sidebar extends React.Component {
     });
   };
 
-  closeSidebarMenu = () =>  {
-    this.setState({
-      showMenu: false,
-    });
-  };
-
-  closeOnClick = (event) => {
-    if (
-      this.sidebarMenu && !this.sidebarMenu.contains(event.target)
-      && !this.props.getPluginMethods().getEditorRef().refs.editorContainer.contains(event.target)
-    ) {
-      this.closeSidebarMenu();
-    }
+  componentWillUnmount = () => {
+    document.body.removeEventListener('click', this.closeOnClick);
   };
 
   onButtonClick = (event) => {
@@ -104,14 +88,29 @@ class Sidebar extends React.Component {
 
   getMenuWidth= () => {
     if (!this.state.showMenu) {
-      return { width: '0px'};
+      return { width: '0px' };
     }
     const listElt = this.sidebarMenu.getElementsByTagName('ul')[0];
     const style = getComputedStyle(listElt);
 
-    const width = listElt.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
+    const width = listElt.offsetWidth + parseInt(style.marginLeft, 10) + parseInt(style.marginRight, 10);
     return { width };
-  }
+  };
+
+  closeSidebarMenu = () => {
+    this.setState({
+      showMenu: false,
+    });
+  };
+
+  closeOnClick = (event) => {
+    if (
+      this.sidebarMenu && !this.sidebarMenu.contains(event.target)
+      && !this.props.getPluginMethods().getEditorRef().refs.editorContainer.contains(event.target)
+    ) {
+      this.closeSidebarMenu();
+    }
+  };
 
   render = () => (
     <div
@@ -146,13 +145,14 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   editorState: React.PropTypes.object.isRequired,
   getPluginMethods: React.PropTypes.func.isRequired,
   emptyLineOnly: React.PropTypes.bool.isRequired,
   icon: React.PropTypes.string.isRequired,
 };
 
-const SidebarMenu = ({ onClick, actions, ...rest}) => (
+const SidebarMenu = ({ onClick, actions, ...rest }) => (
   <ul className={styles.menuList}>
     {actions.map((action) => (
       <li key={action.name}>
