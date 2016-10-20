@@ -18,13 +18,10 @@ import fileActionExampleEditorStylesCode from '!!../../../loaders/prism-loader?l
 import Container from '../../shared/Container';
 import AlternateContainer from '../../shared/AlternateContainer';
 import Heading from '../../shared/Heading';
-import styles from './styles.css';
 import Code from '../../shared/Code';
-import InlineCode from '../../shared/InlineCode';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
-import ExternalLink from '../../shared/Link';
 
 import BasicActionEditor from './BasicActionEditor';
 import TextActionEditor from './TextActionEditor';
@@ -71,7 +68,7 @@ export default class App extends Component {
           <p>
             The plugin use a default block renderer for EMBED entity types.<br/>
             It expects a html attribute in the data of the entity containing the code for the embed.<br/>
-            Twitter does not support CORS oO so the example will always rendre the same tweet. But you can see how you should do it in the code below
+            Twitter does not support CORS oO so the example will always render the same tweet. But you can see how you should do it in the code below
           </p>
           <TextActionEditor />
           <Code code={textActionExampleCode} name="TextActionEditor.js" />

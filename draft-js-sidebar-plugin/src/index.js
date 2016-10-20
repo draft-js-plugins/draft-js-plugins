@@ -11,7 +11,7 @@ const createSidebarPlugin = (userConfig) => {
 
   const defaultConfig = {
     actions: [],
-    emptyLineOnly: false,
+    emptyLineOnly: true,
     openSidebarButton: {
       img: addButtonImg,
     },

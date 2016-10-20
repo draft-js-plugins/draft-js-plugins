@@ -2,7 +2,6 @@
 
 *This is a plugin for the `draft-js-plugins-editor`.*
 
-This plugin turns hyperlinks in the text to highlighted, clickable anchor tags!
 This plugin gives you a customizable sidebar on the left of the editor.
 
 You can plug in 3 types of action buttons:
@@ -14,6 +13,9 @@ On enter key pressed, component will call this.props.add(UserInputValue) and ins
 On click, component will open a file Dialog.<br />
 On file chosen, component will call this.props.add(file) and insert an atomic block with whatever Entity you return.
 
+## Important
+1) you MUST wrap the editor and the sidebar in a div with position: relative 
+2) you have to proxy the getPluginMethods to the sidebar props (cf: examples)
 
 ## Usage
 
@@ -23,7 +25,7 @@ import createSidebarPlugin, { INPUT_TYPES } from 'draft-js-sidebar-plugin';
 const actions = [{
   name: 'insert-unicorne',
   inputType: INPUT_TYPES.BASIC,
-  icon: 'insert-unicorne',
+  icon: { img: myImage.png },
   add: () =>  Entity.create('IMAGE', 'IMMUTABLE', { src: '/images/unicorn-1.png' }),
 },
 // comes with a built in EMBED block renderer
@@ -31,18 +33,18 @@ const actions = [{
   name: 'insert-twitter',
   inputType: INPUT_TYPES.TEXT,
   placeholder: 'insert tweet link',
-  icon: 'insert-twitter',
+  icon: { img: myImage.svg },
   add: (tweetUrl) => 
     callTheTwitterApi(tweetUrl)
       .then((data) => Entity.create('EMBED', 'IMMUTABLE', data),
 },
-{ //FILE NOT DONE YET
+{ 
   name: 'insert-image',
   inputType: INPUT_TYPES.FILE,
-  icon: 'insert-image',
+  icon: { img: myImage.jpeg },
   add: (file) => 
     uploadImage(file)
-      .then((data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.url })),
+      .then((data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.fileReader.result })),
 }];
 
 const Image = ({ block }) => {
@@ -53,12 +55,19 @@ const Image = ({ block }) => {
 }
 
 const sidebarPlugin = createSidebarPlugin({ actions });
-const { renderSidebar } = sidebarPlugin;
+const { Sidebar } = sidebarPlugin;
 const plugins = [sidebarPlugin];
 
 
 
 [...]
+
+  getPluginMethods = () => {
+    if (!this.editor) {
+      return {};
+    }
+    return this.editor.getPluginMethods();
+  }
 
   myBlockRenderer = (contentBlock) => {
     const type = contentBlock.getType();
@@ -86,7 +95,7 @@ const plugins = [sidebarPlugin];
   
   render() {
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -96,7 +105,7 @@ const plugins = [sidebarPlugin];
             blockRendererFn={this.myBlockRenderer}
           />
         </div>
-        {renderSidebar()}
+        <Sidebar editorState={this.state.editorState} getPluginMethods={this.getPluginMethods} />
       </div>
     );
   }
