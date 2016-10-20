@@ -8,7 +8,7 @@ const insertBlock = (editorState, entityKey) => {
   const selection = newState.getCurrentContent().getSelectionBefore();
 
   return EditorState.forceSelection(newState, selection);
-}
+};
 
 export default insertBlock;
 

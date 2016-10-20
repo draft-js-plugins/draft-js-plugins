@@ -5,14 +5,6 @@ import insertBlock from '../../Modifiers/insertBlock';
 
 export default class TextAction extends React.Component {
 
-  insert = (entityKey, blockKey) => {
-    const editorState = this.props.getPluginMethods().getEditorState();
-    const stateWithoutText = removeBlock(editorState, blockKey);
-    const newState = insertBlock(stateWithoutText, entityKey);
-    this.props.getPluginMethods().setEditorState(newState);
-    this.props.getPluginMethods().setReadOnly(false);
-  }
-
   onValidation = (textValue, blockKey) => {
     const response = this.props.add(textValue);
     if (typeof response.then === 'function') {
@@ -20,14 +12,14 @@ export default class TextAction extends React.Component {
     } else {
       this.insert(response, blockKey);
     }
-  }
+  };
 
   onCancel = (blockKey) => {
     const editorState = this.props.getPluginMethods().getEditorState();
     const stateWithoutText = removeBlock(editorState, blockKey);
     this.props.getPluginMethods().setEditorState(stateWithoutText);
     this.props.getPluginMethods().setReadOnly(false);
-  }
+  };
 
   onClick = (event) => {
     event.preventDefault();
@@ -49,17 +41,26 @@ export default class TextAction extends React.Component {
     this.props.getPluginMethods().setReadOnly(true);
   };
 
+  insert = (entityKey, blockKey) => {
+    const editorState = this.props.getPluginMethods().getEditorState();
+    const stateWithoutText = removeBlock(editorState, blockKey);
+    const newState = insertBlock(stateWithoutText, entityKey);
+    this.props.getPluginMethods().setEditorState(newState);
+    this.props.getPluginMethods().setReadOnly(false);
+  };
+
   render = () => (
     <span onClick={this.onClick}>
       <img src={this.props.icon} alt="BUTTON" />
     </span>
-  )
+  );
 }
 
 TextAction.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   name: React.PropTypes.string.isRequired,
   icon: React.PropTypes.string.isRequired,
   add: React.PropTypes.func.isRequired,
-  remove: React.PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   remove: React.PropTypes.func,
 };
