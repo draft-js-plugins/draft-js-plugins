@@ -93,9 +93,13 @@ module.exports = {
           path.join(__dirname, 'node_modules/prismjs/themes/'),
         ],
       }, {
-        test: /\.(png|jpg|gif|ico)$/,
-        loaders: ['file?name=[name].[ext]'],
-      },
+        test: /\.(png|jpg|gif|ico|svg)$/,
+        loaders: ['url?name=[name].[ext]'],
+        include: [
+          path.join(__dirname, '..', 'draft-js-sidebar-plugin', 'src'),
+          path.join(__dirname, 'client/components'),
+        ],
+      }
     ],
   },
   postcss: [autoprefixer({ browsers: ['> 1%'] })],
