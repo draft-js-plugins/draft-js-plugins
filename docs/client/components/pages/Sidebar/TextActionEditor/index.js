@@ -8,6 +8,7 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import editorStyles from './editorStyles.css';
+import codeImg from './code.svg';
 
 import createSidebarPlugin, { INPUT_TYPES } from 'draft-js-sidebar-plugin';
 
@@ -15,7 +16,7 @@ const actions = [{
   name: 'insert-twitter',
   inputType: INPUT_TYPES.TEXT,
   placeholder: 'insert tweet link',
-  icon: 'insert-twitter',
+  icon: codeImg,
   add: (tweetUrl) => Entity.create('EMBED', 'IMMUTABLE', {
     "url": "https:\/\/twitter.com\/sebmarkbage\/status\/786586514155110400",
     "author_name": "Sebastian Markbåge",
