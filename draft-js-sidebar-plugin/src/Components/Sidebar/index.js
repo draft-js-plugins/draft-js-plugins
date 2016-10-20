@@ -82,7 +82,7 @@ class Sidebar extends React.Component {
   closeOnClick = (event) => {
     if (
       this.sidebarMenu && !this.sidebarMenu.contains(event.target)
-      && !this.props.getPluginMethods().getEditorRef().refs.editorContainer(event.target)
+      && !this.props.getPluginMethods().getEditorRef().refs.editorContainer.contains(event.target)
     ) {
       this.closeSidebarMenu();
     }
@@ -99,6 +99,17 @@ class Sidebar extends React.Component {
     this.closeSidebarMenu();
   };
 
+  getMenuWidth= () => {
+    if (!this.state.showMenu) {
+      return { width: '0px'};
+    }
+    const listElt = this.sidebarMenu.getElementsByTagName('ul')[0];
+    const style = getComputedStyle(listElt);
+
+    const width = listElt.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
+    return { width };
+  }
+
   render = () => (
     <div
       className={styles.wrapper}
@@ -113,16 +124,14 @@ class Sidebar extends React.Component {
             : styles.plusButton
         }
       >
-        <img src={this.props.openSidebarButton.img} alt="+" />
+        <img src={this.props.icon} alt="+" />
       </div>
       <div
-        className={
-          this.state.showMenu
-            ? unionClassNames(styles.menu, styles.menuOpen)
-            : styles.menu
-        }
+        className={styles.menu}
+        style={this.getMenuWidth()}
       >
         <SidebarMenu
+          ref={(m) => { this.menu = m; }}
           show={this.state.showMenu}
           onClick={this.onActionClick}
           actions={this.props.actions}
@@ -137,10 +146,10 @@ Sidebar.propTypes = {
   editorState: React.PropTypes.object.isRequired,
   getPluginMethods: React.PropTypes.func.isRequired,
   emptyLineOnly: React.PropTypes.bool.isRequired,
-  openSidebarButton: React.PropTypes.object.isRequired,
+  icon: React.PropTypes.string.isRequired,
 };
 
-const SidebarMenu = ({ show, onClick, actions, classes, ...rest}) => (
+const SidebarMenu = ({ onClick, actions, ...rest}) => (
   <ul className={styles.menuList}>
     {actions.map((action) => (
       <li key={action.name}>

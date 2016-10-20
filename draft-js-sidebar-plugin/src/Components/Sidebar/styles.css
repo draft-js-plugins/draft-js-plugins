@@ -24,11 +24,7 @@
 .menu {
     overflow: hidden;
     width: 0px;
-    transition: all 0.8s ease-in-out;
-}
-
-.menuOpen {
-    width: 100px;
+    transition: all 0.5s ease-in-out;
 }
 
 .wrapper {
