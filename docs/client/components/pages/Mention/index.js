@@ -180,7 +180,7 @@ export default class App extends Component {
               <span>Component to be used as the template for each of the suggestions entry.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>onSelect</span>
+              <span className={styles.paramName}>onMentionSelect</span>
               <span>A callback which is triggered whenever the mention is selected. This return the mention object selected.</span>
             </div>
           </div>

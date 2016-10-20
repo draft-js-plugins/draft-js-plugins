@@ -57,7 +57,7 @@ describe('MentionSuggestions Component', () => {
     };
     const ariaProps = {};
     const onSearchChange = sinon.spy();
-    const onSelect = sinon.spy();
+    const onMentionSelect = sinon.spy();
     const positionSuggestions = sinon.stub().returns({});
     const suggestions = mount(
       <MentionSuggestions
@@ -68,7 +68,7 @@ describe('MentionSuggestions Component', () => {
         callbacks={callbacks}
         store={store}
         theme={{}}
-        onSelect={onSelect}
+        onMentionSelect={onMentionSelect}
       />
     );
 

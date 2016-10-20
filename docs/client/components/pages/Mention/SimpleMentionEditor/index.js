@@ -28,7 +28,7 @@ export default class SimpleMentionEditor extends Component {
     });
   };
 
-  onSelect = () => {
+  onMentionSelect = () => {
     // get the mention object selected
   }
 
@@ -48,7 +48,7 @@ export default class SimpleMentionEditor extends Component {
         <MentionSuggestions
           onSearchChange={this.onSearchChange}
           suggestions={this.state.suggestions}
-          onSelect={this.onSelect}
+          onMentionSelect={this.onMentionSelect}
         />
       </div>
     );
