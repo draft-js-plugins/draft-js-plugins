@@ -7,11 +7,57 @@ This plugin gives you a customizable sidebar on the left of the editor.
 You can plug in 3 types of action buttons:
 ### Basic Action
 On click, component will call this.props.add() and insert an atomic block with whatever Entity you return.
+```
+const action = {
+  name: 'insert-unicorne', // unique name
+  inputType: INPUT_TYPES.BASIC, // type of action
+  icon: myImage, // image in the sidebar
+  /* the action that will be called on button click  (can be a promise) */
+  add: () =>  Entity.create('IMAGE', 'IMMUTABLE', { src: '/images/unicorn-1.png' }),
+}
+```
 ### Text Action
 On enter key pressed, component will call this.props.add(UserInputValue) and insert an atomic block with whatever Entity you return.
+```
+const action = {
+  name: 'insert-text', // unique name
+  inputType: INPUT_TYPES.BASIC, // type of action
+  icon: myImage, // image in the sidebar
+  /* the action that will be called on button click  (can be a promise) */
+  add: (tweetUrl) => 
+    callTheTwitterApi(tweetUrl)
+      .then((data) => Entity.create('EMBED', 'IMMUTABLE', data),
+}
+```
 ### File Action
 On click, component will open a file Dialog.<br />
 On file chosen, component will call this.props.add(file) and insert an atomic block with whatever Entity you return.
+```
+const action = {
+  name: 'insert-text', // unique name
+  inputType: INPUT_TYPES.BASIC, // type of action
+  icon: myImage, // image in the sidebar
+  /* 
+    the action that will be called when user has chosen a file  (can be a promise)
+    it receives an object containing: {
+        fileReader,
+        file,
+    }
+   */
+  add: (file) => 
+    uploadImage(data.fileReader.result)
+      .then((result) => Entity.create('IMAGE', 'IMMUTABLE', { src: result.src })),
+}
+```
+
+## Global Config
+```
+const defaultConfig = {
+    actions: [], // a list of actions
+    emptyLineOnly: true, // if the sidebar should only appear on empty lines
+    icon: myImage, // the image used for the button that opens the sidebar
+  };
+```
 
 ## Important
 1) you MUST wrap the editor and the sidebar in a div with position: relative 
