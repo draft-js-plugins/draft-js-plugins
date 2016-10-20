@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorState, Entity, AtomicBlockUtils } from 'draft-js';
+import { EditorState, Entity, AtomicBlockUtils, SelectionState } from 'draft-js';
 import removeBlock from '../../Modifiers/removeBlock';
 import insertBlock from '../../Modifiers/insertBlock';
 
@@ -43,7 +43,9 @@ export default class TextAction extends React.Component {
       entityKey,
       ' '
     );
-    this.props.getPluginMethods().setEditorState(newState);
+    const emptySelection = SelectionState.createEmpty();
+    const noSelectionState = EditorState.acceptSelection(newState, emptySelection);
+    this.props.getPluginMethods().setEditorState(noSelectionState);
     this.props.getPluginMethods().setReadOnly(true);
   };
 
