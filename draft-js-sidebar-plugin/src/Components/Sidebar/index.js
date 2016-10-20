@@ -1,9 +1,9 @@
 import React from 'react';
 import { AtomicBlockUtils, convertToRaw, CharacterMetadata, Entity } from 'draft-js';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+import unionClassNames from 'union-class-names';
 import styles from './styles.css';
 import createActionButton from '../../Actions';
-import test from '../../assets/addCircleMD.svg';
 
 class Sidebar extends React.Component {
 
@@ -62,7 +62,7 @@ class Sidebar extends React.Component {
           this.setState({
             display: {
               top: `${elts[i].offsetTop + 16}px`,
-              left: `-35px`,
+              left: `-25px`,
               display: 'flex',
             },
             selectedBlockElement: elts[i],
@@ -80,7 +80,10 @@ class Sidebar extends React.Component {
   };
 
   closeOnClick = (event) => {
-    if (this.sidebarMenu && !this.sidebarMenu.contains(event.target)) {
+    if (
+      this.sidebarMenu && !this.sidebarMenu.contains(event.target)
+      && !this.props.getPluginMethods().getEditorRef().refs.editorContainer(event.target)
+    ) {
       this.closeSidebarMenu();
     }
   };
@@ -97,12 +100,28 @@ class Sidebar extends React.Component {
   };
 
   render = () => (
-    <div className={styles.wrapper} style={this.state.display}>
-      <SidebarButton
-        img={this.props.openSidebarButton.img}
+    <div
+      className={styles.wrapper}
+      style={this.state.display}
+      ref={(sm) => { this.sidebarMenu = sm; }}
+    >
+      <div
         onClick={this.onButtonClick}
-      />
-      <div ref={(sm) => { this.sidebarMenu = sm; }}>
+        className={
+          this.state.showMenu
+            ? unionClassNames(styles.plusButtonOpen, styles.plusButton)
+            : styles.plusButton
+        }
+      >
+        <img src={this.props.openSidebarButton.img} alt="+" />
+      </div>
+      <div
+        className={
+          this.state.showMenu
+            ? unionClassNames(styles.menu, styles.menuOpen)
+            : styles.menu
+        }
+      >
         <SidebarMenu
           show={this.state.showMenu}
           onClick={this.onActionClick}
@@ -121,24 +140,14 @@ Sidebar.propTypes = {
   openSidebarButton: React.PropTypes.object.isRequired,
 };
 
-const SidebarButton = ({display, img, onClick}) => (
-  <div
-    onClick={onClick}
-    className={styles.plusButton}
-  >
-    <img src={img} alt="+" />
-  </div>
-);
-
-const SidebarMenu = ({ show, onClick, actions, ...rest}) => (
-  show &&
-    <ul className={styles.menu}>
-      {actions.map((action) => (
-        <li key={action.name}>
-          {createActionButton({ onClick, ...action, ...rest })}
-        </li>
-      ))}
-    </ul>
+const SidebarMenu = ({ show, onClick, actions, classes, ...rest}) => (
+  <ul className={styles.menuList}>
+    {actions.map((action) => (
+      <li key={action.name}>
+        {createActionButton({ onClick, ...action, ...rest })}
+      </li>
+    ))}
+  </ul>
 );
 
 
