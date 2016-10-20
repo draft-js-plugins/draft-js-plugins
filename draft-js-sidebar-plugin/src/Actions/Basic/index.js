@@ -21,9 +21,9 @@ export default class BasicAction extends React.Component {
   };
 
   render = () => (
-    <button onClick={this.onClick}>
-      {this.props.icon || 'BUTTON'}
-    </button>
+    <span onClick={this.onClick}>
+      <img src={this.props.icon} alt="BUTTON" />
+    </span>
   )
 }
 

@@ -42,9 +42,9 @@ export default class FileAction extends React.Component {
 
   render = () => (
     <div>
-      <button onClick={this.onClick}>
-        {this.props.icon || 'BUTTON'}
-      </button>
+      <span onClick={this.onClick}>
+        <img src={this.props.icon} alt="BUTTON" />
+      </span>
       <input
         type="file"
         onChange={this.onChange}

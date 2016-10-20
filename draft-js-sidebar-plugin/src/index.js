@@ -5,8 +5,19 @@ import Sidebar from './Components/Sidebar';
 import InputBlock from './Components/InputBlock';
 import EmbedIframe from './Components/EmbedIframe';
 export { INPUT_TYPES } from './Actions';
+import addButtonImg from './assets/addCircleMD.svg';
 
-const createSidebarPlugin = (config) => {
+const createSidebarPlugin = (userConfig) => {
+
+  const defaultConfig = {
+    actions: [],
+    emptyLineOnly: false,
+    openSidebarButton: {
+      img: addButtonImg,
+    },
+  };
+
+  const config = Object.assign(defaultConfig, userConfig);
 
   const onChange = (editorState, pluginFunctions) => {
     return editorState;
@@ -51,7 +62,8 @@ const createSidebarPlugin = (config) => {
     onChange: onChange,
     Sidebar: decorateComponentWithProps(Sidebar, {
       actions: config.actions,
-      emptyLineOnly: config.emptyLineOnly || false,
+      emptyLineOnly: config.emptyLineOnly,
+      openSidebarButton: config.openSidebarButton,
     }),
     blockRendererFn: myBlockRenderer
   };

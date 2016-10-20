@@ -3,6 +3,7 @@ import { AtomicBlockUtils, convertToRaw, CharacterMetadata, Entity } from 'draft
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 import styles from './styles.css';
 import createActionButton from '../../Actions';
+import test from '../../assets/addCircleMD.svg';
 
 class Sidebar extends React.Component {
 
@@ -45,7 +46,7 @@ class Sidebar extends React.Component {
     }
 
     const offsetKey = DraftOffsetKey.encode(startKey, 0, 0);
-    setTimeout(() => {
+    setImmediate(() => {
       const elts = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`);
       if (elts.length === 0) {
         this.setState({
@@ -69,7 +70,7 @@ class Sidebar extends React.Component {
           return;
         }
       }
-    },0);
+    });
   };
 
   closeSidebarMenu = () =>  {
@@ -98,7 +99,7 @@ class Sidebar extends React.Component {
   render = () => (
     <div className={styles.wrapper} style={this.state.display}>
       <SidebarButton
-        img={this.props.mainButton.img}
+        img={this.props.openSidebarButton.img}
         onClick={this.onButtonClick}
       />
       <div ref={(sm) => { this.sidebarMenu = sm; }}>
@@ -117,11 +118,7 @@ Sidebar.propTypes = {
   editorState: React.PropTypes.object.isRequired,
   getPluginMethods: React.PropTypes.func.isRequired,
   emptyLineOnly: React.PropTypes.bool.isRequired,
-};
-
-Sidebar.defaultProps = {
-  mainButton: {},
-  emptyLineOnly: true,
+  openSidebarButton: React.PropTypes.object.isRequired,
 };
 
 const SidebarButton = ({display, img, onClick}) => (
