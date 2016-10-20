@@ -29,7 +29,7 @@ const actions = [{
 const sidebarPlugin = createSidebarPlugin({ actions, emptyLineOnly: true });
 const { Sidebar } = sidebarPlugin;
 const plugins = [sidebarPlugin];
-const text = ` When you click somewhere on the editor,
+const text = ` When you click somewhere on an empty line of the editor,
 a button will appear on the left.
 When you click on the button you will have access to the actions.
 `;
