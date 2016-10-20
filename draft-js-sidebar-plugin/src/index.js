@@ -12,9 +12,7 @@ const createSidebarPlugin = (userConfig) => {
   const defaultConfig = {
     actions: [],
     emptyLineOnly: true,
-    openSidebarButton: {
-      img: addButtonImg,
-    },
+    icon: addButtonImg,
   };
 
   const config = Object.assign(defaultConfig, userConfig);
@@ -63,7 +61,7 @@ const createSidebarPlugin = (userConfig) => {
     Sidebar: decorateComponentWithProps(Sidebar, {
       actions: config.actions,
       emptyLineOnly: config.emptyLineOnly,
-      openSidebarButton: config.openSidebarButton,
+      icon: config.icon,
     }),
     blockRendererFn: myBlockRenderer
   };

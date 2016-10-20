@@ -29,7 +29,7 @@ export default class BasicAction extends React.Component {
 
 BasicAction.propTypes = {
   name: React.PropTypes.string.isRequired,
-  icon: React.PropTypes.object.isRequired,
+  icon: React.PropTypes.string.isRequired,
   add: React.PropTypes.func.isRequired,
   remove: React.PropTypes.func,
 };
