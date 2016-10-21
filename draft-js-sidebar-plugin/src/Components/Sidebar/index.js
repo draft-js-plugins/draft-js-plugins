@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
 
   componentDidMount = () => {
     document.body.addEventListener('click', this.closeOnClick);
-    const openButtonRect= this.openButton.getBoundingClientRect();
+    const openButtonRect = this.openButton.getBoundingClientRect();
     this.setState({
       openButtonRect,
     });
@@ -72,7 +72,7 @@ class Sidebar extends React.Component {
           if (this.openButton) {
             const blockBoundRect = elts[i].getBoundingClientRect();
             const containerRect = this.props.container.getBoundingClientRect();
-            const align = (this.state.openButtonRect.height/2) - (blockBoundRect.height/2);
+            const align = (this.state.openButtonRect.height / 2) - (blockBoundRect.height / 2);
             const top = blockBoundRect.top - containerRect.top - align;
             this.setState({
               showMenu: false,
@@ -94,13 +94,6 @@ class Sidebar extends React.Component {
     document.body.removeEventListener('click', this.closeOnClick);
   };
 
-  toggleSidebar = (event) => {
-    event.preventDefault();
-    this.setState({
-      showMenu: !this.state.showMenu,
-    });
-  };
-
   getMenuWidth= () => {
     if (!this.state.showMenu) {
       return { width: '0px' };
@@ -110,6 +103,13 @@ class Sidebar extends React.Component {
 
     const width = listElt.offsetWidth + parseInt(style.marginLeft, 10) + parseInt(style.marginRight, 10);
     return { width };
+  };
+
+  toggleSidebar = (event) => {
+    event.preventDefault();
+    this.setState({
+      showMenu: !this.state.showMenu,
+    });
   };
 
   closeSidebar = () => {
