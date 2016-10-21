@@ -63,7 +63,7 @@ export default class BasicActionEditor extends Component {
 
   render() {
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative' }} ref={(container) => { this.container = container; }}>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -72,7 +72,11 @@ export default class BasicActionEditor extends Component {
             ref={(element) => { this.editor = element; }}
           />
         </div>
-        <Sidebar editorState={this.state.editorState} getPluginMethods={this.getPluginMethods} />
+        <Sidebar
+          editorState={this.state.editorState}
+          getPluginMethods={this.getPluginMethods}
+          container={this.container}
+        />
       </div>
     );
   }

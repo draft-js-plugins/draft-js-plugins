@@ -141,7 +141,8 @@ const plugins = [sidebarPlugin];
   
   render() {
     return (
-      <div style={{ position: 'relative' }}>
+  <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative' }} ref={(container) => { this.container = container; }}>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -151,7 +152,11 @@ const plugins = [sidebarPlugin];
             blockRendererFn={this.myBlockRenderer}
           />
         </div>
-        <Sidebar editorState={this.state.editorState} getPluginMethods={this.getPluginMethods} />
+        <Sidebar
+          editorState={this.state.editorState}
+          getPluginMethods={this.getPluginMethods}
+          container={this.container}
+        />
       </div>
     );
   }
