@@ -17,13 +17,13 @@ const actions = [{
   icon: codeImg,
   // eslint-disable-next-line no-unused-vars
   add: (url) =>
-    //personal trial key limited 1000r/mo
-    axios.get('http://iframe.ly/api/oembed',{
+    // personal trial key limited 1000r/mo
+    axios.get('http://iframe.ly/api/oembed', {
       params: {
-        url:encodeURI(url),
+        url: encodeURI(url),
         api_key: '54369a367cc9edef72dd01',
       },
-    }).then((response) =>Entity.create('EMBED', 'IMMUTABLE', response.data)),
+    }).then((response) => Entity.create('EMBED', 'IMMUTABLE', response.data)),
 }];
 
 const sidebarPlugin = createSidebarPlugin({ actions });
