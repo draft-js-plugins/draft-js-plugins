@@ -30,7 +30,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "draft-js": ">=0.8.1",
+    "draft-js": "^0.9.1",
     "immutable": ">=3.8.1",
     "react": ">=15.2.1",
     "react-dom": ">=15.2.1",
