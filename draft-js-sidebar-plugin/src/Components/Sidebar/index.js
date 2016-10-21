@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
     this.state = {
       showMenu: false,
       display: {
-        display: 'none',
+        visibility: 'hidden',
       },
       selectedBlockElement: null,
     };
@@ -21,6 +21,7 @@ class Sidebar extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
+    if (!nextProps.container) return;
     const editorState = nextProps.editorState;
     const selection = editorState.getSelection();
     if (!selection.getHasFocus()) {
@@ -34,8 +35,10 @@ class Sidebar extends React.Component {
     }
     if (this.props.emptyLineOnly && block.getText().length > 0) {
       this.setState({
+        showMenu: false,
         display: {
-          display: 'none',
+          left: '-1000px',
+          visibility: 'hidden',
         },
         selectedBlockElement: null,
       });
@@ -47,6 +50,10 @@ class Sidebar extends React.Component {
       const elts = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`);
       if (elts.length === 0) {
         this.setState({
+          display: {
+            left: '-1000px',
+            visibility: 'hidden',
+          },
           selectedBlockElement: null,
         });
         return;
@@ -57,14 +64,22 @@ class Sidebar extends React.Component {
           if (this.state.selectedBlockElement === elts[i]) {
             return;
           }
-          this.setState({
-            display: {
-              top: `${elts[i].offsetTop + 16}px`,
-              left: '-25px',
-              display: 'flex',
-            },
-            selectedBlockElement: elts[i],
-          });
+          if (this.openButton) {
+            const openButtonRect= this.openButton.getBoundingClientRect();
+            const blockBoundRect = elts[i].getBoundingClientRect();
+            const containerRect = this.props.container.getBoundingClientRect();
+            const align = (openButtonRect.height/2) - (blockBoundRect.height/2);
+            const top = blockBoundRect.top - containerRect.top - align;
+            this.setState({
+              showMenu: false,
+              display: {
+                top: `${top}px`,
+                left: `-${openButtonRect.width + 5}px`,
+                display: 'flex',
+              },
+              selectedBlockElement: elts[i],
+            });
+          }
           return;
         }
       }
@@ -75,15 +90,11 @@ class Sidebar extends React.Component {
     document.body.removeEventListener('click', this.closeOnClick);
   };
 
-  onButtonClick = (event) => {
+  toggleSidebar = (event) => {
     event.preventDefault();
     this.setState({
       showMenu: !this.state.showMenu,
     });
-  };
-
-  onActionClick = () => {
-    this.closeSidebarMenu();
   };
 
   getMenuWidth= () => {
@@ -97,7 +108,7 @@ class Sidebar extends React.Component {
     return { width };
   };
 
-  closeSidebarMenu = () => {
+  closeSidebar = () => {
     this.setState({
       showMenu: false,
     });
@@ -108,7 +119,7 @@ class Sidebar extends React.Component {
       this.sidebarMenu && !this.sidebarMenu.contains(event.target)
       && !this.props.getPluginMethods().getEditorRef().refs.editorContainer.contains(event.target)
     ) {
-      this.closeSidebarMenu();
+      this.closeSidebar();
     }
   };
 
@@ -119,12 +130,13 @@ class Sidebar extends React.Component {
       ref={(sm) => { this.sidebarMenu = sm; }}
     >
       <div
-        onClick={this.onButtonClick}
+        onClick={this.toggleSidebar}
         className={
           this.state.showMenu
             ? unionClassNames(styles.plusButtonOpen, styles.plusButton)
             : styles.plusButton
         }
+        ref={(b) => { this.openButton = b; }}
       >
         <img src={this.props.icon} alt="+" />
       </div>
@@ -132,13 +144,17 @@ class Sidebar extends React.Component {
         className={styles.menu}
         style={this.getMenuWidth()}
       >
-        <SidebarMenu
-          ref={(m) => { this.menu = m; }}
-          show={this.state.showMenu}
-          onClick={this.onActionClick}
-          actions={this.props.actions}
-          getPluginMethods={this.props.getPluginMethods}
-        />
+        <ul className={styles.menuList}>
+          {this.props.actions.map((action) => (
+            <li key={action.name}>
+              {createActionButton({
+                onClick: this.closeSidebar,
+                getPluginMethods: this.props.getPluginMethods,
+                ...action,
+              })}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
@@ -151,16 +167,5 @@ Sidebar.propTypes = {
   emptyLineOnly: React.PropTypes.bool.isRequired,
   icon: React.PropTypes.string.isRequired,
 };
-
-const SidebarMenu = ({ onClick, actions, ...rest }) => (
-  <ul className={styles.menuList}>
-    {actions.map((action) => (
-      <li key={action.name}>
-        {createActionButton({ onClick, ...action, ...rest })}
-      </li>
-    ))}
-  </ul>
-);
-
 
 export default Sidebar;

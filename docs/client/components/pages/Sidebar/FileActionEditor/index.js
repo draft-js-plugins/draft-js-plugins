@@ -83,7 +83,7 @@ export default class FileActionEditor extends Component {
 
   render() {
     return (
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative' }} ref={(container) => { this.container = container; }}>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -93,7 +93,11 @@ export default class FileActionEditor extends Component {
             blockRendererFn={this.myBlockRenderer}
           />
         </div>
-        <Sidebar editorState={this.state.editorState} getPluginMethods={this.getPluginMethods} />
+        <Sidebar
+          editorState={this.state.editorState}
+          getPluginMethods={this.getPluginMethods}
+          container={this.container}
+        />
       </div>
     );
   }

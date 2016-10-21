@@ -1,6 +1,4 @@
 .plusButton {
-    height: 24px;
-    widht: 24px;
     display: inline-flex;
     transition: all 0.5s ease-in-out;
 }
