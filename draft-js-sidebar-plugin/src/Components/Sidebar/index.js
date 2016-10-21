@@ -11,6 +11,7 @@ class Sidebar extends React.Component {
       showMenu: false,
       display: {
         visibility: 'hidden',
+        left: '-1000px',
       },
       selectedBlockElement: null,
     };
@@ -18,6 +19,10 @@ class Sidebar extends React.Component {
 
   componentDidMount = () => {
     document.body.addEventListener('click', this.closeOnClick);
+    const openButtonRect= this.openButton.getBoundingClientRect();
+    this.setState({
+      openButtonRect,
+    });
   };
 
   componentWillReceiveProps = (nextProps) => {
@@ -65,16 +70,15 @@ class Sidebar extends React.Component {
             return;
           }
           if (this.openButton) {
-            const openButtonRect= this.openButton.getBoundingClientRect();
             const blockBoundRect = elts[i].getBoundingClientRect();
             const containerRect = this.props.container.getBoundingClientRect();
-            const align = (openButtonRect.height/2) - (blockBoundRect.height/2);
+            const align = (this.state.openButtonRect.height/2) - (blockBoundRect.height/2);
             const top = blockBoundRect.top - containerRect.top - align;
             this.setState({
               showMenu: false,
               display: {
                 top: `${top}px`,
-                left: `-${openButtonRect.width + 5}px`,
+                left: `-${this.state.openButtonRect.width + 5}px`,
                 display: 'flex',
               },
               selectedBlockElement: elts[i],
