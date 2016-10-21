@@ -7,6 +7,7 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
 import createSidebarPlugin, { INPUT_TYPES } from 'draft-js-sidebar-plugin';
 import editorStyles from './editorStyles.css';
+import fileIcon from './file.svg';
 
 const Image = ({ block }) => {
   const data = Entity.get(block.getEntityAt(0)).getData();
@@ -18,7 +19,7 @@ const Image = ({ block }) => {
 const actions = [{
   name: 'insert-unicorne',
   inputType: INPUT_TYPES.FILE,
-  icon: 'insert-image',
+  icon: fileIcon,
   add: (data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.fileReader.result }),
 }];
 
