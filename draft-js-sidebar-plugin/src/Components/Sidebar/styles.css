@@ -19,6 +19,10 @@
     padding: 0;
 }
 
+.listItem {
+    display: flex;
+}
+
 .menu {
     overflow: hidden;
     width: 0px;
