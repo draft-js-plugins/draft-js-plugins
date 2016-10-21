@@ -5,11 +5,13 @@ export default class FileAction extends React.Component {
 
   onClick = (event) => {
     event.preventDefault();
-    this.input.click();
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = this.onChange;
+    input.click();
   };
 
   onChange = (event) => {
-    event.persist();
     const files = event.target.files;
     if (files.length > 0) {
       const reader = new FileReader();
@@ -41,18 +43,11 @@ export default class FileAction extends React.Component {
   };
 
   render = () => (
-    <div>
-      <span onClick={this.onClick}>
-        <img src={this.props.icon} alt="BUTTON" />
-      </span>
-      <input
-        type="file"
-        onChange={this.onChange}
-        name="file"
-        hidden
-        ref={(i) => { this.input = i; }}
-      />
-    </div>
+    <img
+      src={this.props.icon}
+      alt="BUTTON"
+      onClick={this.onClick}
+    />
   )
 }
 

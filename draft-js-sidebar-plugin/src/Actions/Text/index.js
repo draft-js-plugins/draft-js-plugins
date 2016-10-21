@@ -50,9 +50,11 @@ export default class TextAction extends React.Component {
   };
 
   render = () => (
-    <span onClick={this.onClick}>
-      <img src={this.props.icon} alt="BUTTON" />
-    </span>
+    <img
+      src={this.props.icon}
+      onClick={this.onClick}
+      alt="BUTTON"
+    />
   );
 }
 

@@ -150,7 +150,7 @@ class Sidebar extends React.Component {
       >
         <ul className={styles.menuList}>
           {this.props.actions.map((action) => (
-            <li key={action.name}>
+            <li key={action.name} className={styles.listItem}>
               {createActionButton({
                 onClick: this.closeSidebar,
                 getPluginMethods: this.props.getPluginMethods,

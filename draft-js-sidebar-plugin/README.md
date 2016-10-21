@@ -89,8 +89,8 @@ const actions = [{
   inputType: INPUT_TYPES.FILE,
   icon: { img: myImage.jpeg },
   add: (file) => 
-    uploadImage(file)
-      .then((data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.fileReader.result })),
+    uploadImage(file.fileReader.result)
+      .then((data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.src })),
 }];
 
 const Image = ({ block }) => {
