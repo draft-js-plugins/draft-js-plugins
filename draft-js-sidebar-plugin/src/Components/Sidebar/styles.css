@@ -1,0 +1,38 @@
+.plusButton {
+    display: inline-flex;
+    transition: all 0.3s ease-in-out;
+}
+
+.plusButtonOpen {
+    transform:         rotate(45deg); /* CSS3 */
+    -moz-transform:    rotate(45deg); /* Firefox */
+    -webkit-transform: rotate(45deg); /* Webkit */
+    -o-transform:      rotate(45deg); /* Opera */
+    -ms-transform:     rotate(45deg); /* IE 9 */
+}
+
+.menuList {
+    position: relative;
+    display: inline-flex;
+    list-style-type:  none;
+    margin: 0 10px;
+    padding: 0;
+}
+
+.listItem {
+    display: flex;
+}
+
+.menu {
+    overflow: hidden;
+    width: 0px;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.wrapper {
+    position: absolute;
+    display: flex;
+    z-index: 1000;
+}
