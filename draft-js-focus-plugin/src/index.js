@@ -12,6 +12,7 @@ const store = {
   }
 };
 
+// TODO make sure to remove the native selection of a text when the user clicks on the block
 const focusPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   let activeBlock = null;
