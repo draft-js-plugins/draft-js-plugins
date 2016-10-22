@@ -1,3 +1,4 @@
 .focused {
-  outline: 3px solid blue;
+  border-radius: 2px;
+  box-shadow: 0 0 0 3px #ACCEF7
 }
