@@ -173,8 +173,6 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
       styles.width = `${(width || blockProps.entityData.width || 40)}px`;
     }
 
-    // styles.width = 40;
-
     if (vertical === 'auto') {
       styles.height = 'auto';
     } else if (vertical === 'relative') {
@@ -182,8 +180,6 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     } else if (vertical === 'absolute') {
       styles.height = `${(height || blockProps.entityData.height || 40)}px`;
     }
-
-    // styles.height = 40;
 
     // Handle cursor
     if ((isRight && isBottom) || (isLeft && isTop)) {
