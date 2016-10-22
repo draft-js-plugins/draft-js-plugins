@@ -68,7 +68,7 @@ const focusPlugin = (config = {}) => {
       // TODO match by entitiy instead of block type
       setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
     },
-    Decorator: createDecorator({ theme: styles, store }),
+    decorator: createDecorator({ theme: styles, store }),
   };
 };
 

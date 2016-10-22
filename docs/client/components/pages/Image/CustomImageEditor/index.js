@@ -10,19 +10,22 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createEntityPropsPlugin from 'draft-js-entity-props-plugin';
+// eslint-disable-next-line import/no-unresolved
+import createDndPlugin from 'draft-js-dnd-plugin';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
 const entityPropsPlugin = createEntityPropsPlugin();
+const dndPlugin = createDndPlugin();
 const decorator = composeDecorators(
-  resizeablePlugin.Decorator,
-  focusPlugin.Decorator
+  resizeablePlugin.decorator,
+  focusPlugin.decorator,
+  dndPlugin.decorator
 );
-// const imagePlugin = createImagePlugin({ decorator: resizeablePlugin.Decorator });
-// const imagePlugin = createImagePlugin({ decorator: focusPlugin.Decorator });
+
 const imagePlugin = createImagePlugin({ decorator });
-const plugins = [entityPropsPlugin, focusPlugin, resizeablePlugin, imagePlugin];
+const plugins = [entityPropsPlugin, dndPlugin, focusPlugin, resizeablePlugin, imagePlugin];
 const { ImageAdd } = imagePlugin;
 
 export default class CustomImageEditor extends Component {
