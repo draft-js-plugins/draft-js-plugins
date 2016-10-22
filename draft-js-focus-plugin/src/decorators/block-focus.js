@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import unionClassNames from 'union-class-names';
 
 // Get a component's display name
@@ -8,12 +7,13 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-const findParentNode = (node, filter) => {
-  if (!node) return null;
-  return node.parentElement && filter(node.parentElement)
-    ? node.parentElement
-    : findParentNode(node.parentElement, filter);
-};
+// TODO remove if not necessary
+// const findParentNode = (node, filter) => {
+//   if (!node) return null;
+//   return node.parentElement && filter(node.parentElement)
+//     ? node.parentElement
+//     : findParentNode(node.parentElement, filter);
+// };
 
 export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
 
@@ -26,24 +26,18 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
   }
 
   componentWillUpdate() {
-    document.removeEventListener('keydown', this.releaseOnArrowKey);
-    if (this.ReactRoot) {
-      this.ReactRoot.removeEventListener('mousedown', this.releaseOnMouseDown);
-    }
+    document.removeEventListener('keydown', this.releaseOnKeyDown);
+    document.removeEventListener('click', this.releaseOnClick);
   }
 
   componentDidUpdate() {
-    // eslint-disable-next-line react/no-find-dom-node
-    this.DOMNode = ReactDOM.findDOMNode(this);
-    this.ReactRoot = document.querySelector('[data-reactroot]');
     const { pluginEditor, isFocused } = this.props.blockProps;
     const { getReadOnly } = pluginEditor;
     if (!getReadOnly()) {
-      document.addEventListener('keydown', this.releaseOnArrowKey);
-    }
-
-    if (this.DOMNode && !getReadOnly() && isFocused && this.ReactRoot) {
-      this.ReactRoot.addEventListener('mousedown', this.releaseOnMouseDown);
+      document.addEventListener('keydown', this.releaseOnKeyDown);
+      if (isFocused) {
+        document.addEventListener('click', this.releaseOnClick);
+      }
     }
   }
 
@@ -51,11 +45,11 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     const { isFocused } = this.props.blockProps;
     this.componentWillUpdate();
     if (isFocused) {
-      this.unsetFocus();
+      this.props.blockProps.unsetFocus();
     }
   }
 
-  releaseOnArrowKey = (event) => {
+  releaseOnKeyDown = (event) => {
     if (event.keyCode === 38) {
       this.props.blockProps.unsetFocus('up', event);
     } else if (event.keyCode === 40) {
@@ -67,10 +61,9 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     }
   }
 
-  releaseOnMouseDown = () => {
-    if (!findParentNode(event.target, (x) => x === this.DOMNode)) {
-      this.props.blockProps.unsetFocus();
-    }
+  releaseOnClick = () => {
+    // TODO don't release in case it's inside this component
+    this.props.blockProps.unsetFocus();
   }
 
   onClick = () => {
