@@ -13,7 +13,6 @@ const resizeableRatioUtil = (ratio, padding) => ({
     right: 0,
     padding: padding ? `${padding}px` : 0
   },
-  createRatioPlaceholder: () => <div style={{ display: 'block', width: '100%', paddingTop: `${ratio * 100}%` }} />
 });
 
 // Get a component's display name
@@ -28,14 +27,13 @@ function round(x, steps) {
 
 // Export
 export default (options) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
-  // Statics
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
   static defaultProps = {
     horizontal: 'relative',
     vertical: false,
     ratio: null,
-    resizeSteps: 5,
+    resizeSteps: 1,
     handles: false,
     caption: false,
     ...options
@@ -49,46 +47,23 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     this.props.blockProps.setEntityData(data);
   }
 
-  componentDidMount() {
-    this.componentDidUpdate();
-  }
-
-  componentWillUpdate() {
-    if (this.DOMNode) {
-      this.DOMNode.removeEventListener('mouseleave', this.mouseLeave);
-      this.DOMNode.removeEventListener('mousemove', this.mouseMove);
-      this.DOMNode.removeEventListener('mousedown', this.mouseDown);
-    }
-  }
-
-  componentDidUpdate() {
-    // eslint-disable-next-line react/no-find-dom-node
-    this.DOMNode = ReactDOM.findDOMNode(this);
-    const readOnly = this.props.blockProps.pluginEditor.getReadOnly();
-
-    if (!readOnly && this.DOMNode) {
-      this.DOMNode.addEventListener('mouseleave', this.mouseLeave);
-      this.DOMNode.addEventListener('mousemove', this.mouseMove);
-      this.DOMNode.addEventListener('mousedown', this.mouseDown);
-    }
-  }
-
   mouseLeave = () => {
     if (!this.state.clicked) {
       this.setState({ hoverPosition: {} });
     }
   }
 
-  mouseMove = (e) => {
+  mouseMove = (evt) => {
     const { vertical, horizontal } = this.props;
 
     const hoverPosition = this.state.hoverPosition;
     const tolerance = 6;
-    const pane = this.DOMNode;
-
+    // TODO figure out how to achieve this without fetching the DOM node
+    // eslint-disable-next-line react/no-find-dom-node
+    const pane = ReactDOM.findDOMNode(this);
     const b = pane.getBoundingClientRect();
-    const x = e.clientX - b.left;
-    const y = e.clientY - b.top;
+    const x = evt.clientX - b.left;
+    const y = evt.clientY - b.top;
 
     const isTop = vertical && vertical !== 'auto' ? y < tolerance : false;
     const isLeft = horizontal ? x < tolerance : false;
@@ -100,8 +75,10 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     const newHoverPosition = {
       isTop, isLeft, isRight, isBottom, canResize
     };
-
-    if (Object.keys(newHoverPosition).filter((key) => hoverPosition[key] !== newHoverPosition[key]).length) {
+    const hasNewHoverPositions = Object.keys(newHoverPosition).filter(
+      (key) => hoverPosition[key] !== newHoverPosition[key]
+    );
+    if (hasNewHoverPositions.length) {
       this.setState({ hoverPosition: newHoverPosition });
     }
   }
@@ -116,22 +93,25 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     const { hoverPosition } = this.state;
     const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
-    const component = this.DOMNode;
+    // TODO figure out how to achieve this without fetching the DOM node
+    // eslint-disable-next-line react/no-find-dom-node
+    const pane = ReactDOM.findDOMNode(this);
     const startX = event.clientX;
     const startY = event.clientY;
-    const startWidth = parseInt(document.defaultView.getComputedStyle(component).width, 10);
-    const startHeight = parseInt(document.defaultView.getComputedStyle(component).height, 10);
+    const startWidth = parseInt(document.defaultView.getComputedStyle(pane).width, 10);
+    const startHeight = parseInt(document.defaultView.getComputedStyle(pane).height, 10);
 
     // Do the actual drag operation
     const doDrag = (dragEvent) => {
       let width = (startWidth + dragEvent.clientX) - startX;
       let height = (startHeight + dragEvent.clientY) - startY;
-      const b = component.parentElement.parentElement;
-      width = b.clientWidth < width ? b.clientWidth : width;
-      height = b.clientHeight < height ? b.clientHeight : height;
+      // TODO get the editor ref here
+      const block = pane.parentElement.parentElement;
+      width = block.clientWidth < width ? block.clientWidth : width;
+      height = block.clientHeight < height ? block.clientHeight : height;
 
-      const widthPerc = 100 / (b.clientWidth * width);
-      const heightPerc = 100 / (b.clientHeight * height);
+      const widthPerc = (100 / block.clientWidth) * width;
+      const heightPerc = (100 / block.clientHeight) * height;
 
       const newState = {};
       if ((isLeft || isRight) && horizontal === 'relative') {
@@ -154,6 +134,7 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
 
     // Finished dragging
     const stopDrag = (e) => {
+      // TODO clean up event listeners
       document.removeEventListener('mousemove', doDrag, false);
       document.removeEventListener('mouseup', stopDrag, false);
 
@@ -167,6 +148,7 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
       return false;
     };
 
+    // TODO clean up event listeners
     document.addEventListener('mousemove', doDrag, false);
     document.addEventListener('mouseup', stopDrag, false);
 
@@ -188,7 +170,7 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     } else if (horizontal === 'relative') {
       styles.width = `${(width || blockProps.entityData.width || 40)}%`;
     } else if (horizontal === 'absolute') {
-      styles.width = styles.width = `${(width || blockProps.entityData.width || 40)}px`;
+      styles.width = `${(width || blockProps.entityData.width || 40)}px`;
     }
 
     if (vertical === 'auto') {
@@ -213,11 +195,29 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     }
 
     if (ratio) {
-      return <WrappedComponent {...this.props} style={styles} {...resizeableRatioUtil(ratio, 3)} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          onMouseDown={this.mouseDown}
+          onMouseMove={this.mouseMove}
+          onMouseLeave={this.mouseLeave}
+          ref={(element) => { this.wrapper = element; }}
+          style={styles}
+          {...resizeableRatioUtil(ratio, 3)}
+        />
+      );
     }
 
+    // TODO make sure resize doesn't work in readOnly mode
     return (
-      <WrappedComponent {...this.props} style={styles} />
+      <WrappedComponent
+        {...this.props}
+        onMouseDown={this.mouseDown}
+        onMouseMove={this.mouseMove}
+        onMouseLeave={this.mouseLeave}
+        ref={(element) => { this.wrapper = element; }}
+        style={styles}
+      />
     );
   }
 };

@@ -9,7 +9,9 @@ const findParentNode = (node, filter) => {
 
 // Set selection of editor to next/previous block
 export default (store, getEditorState, setEditorState, previousActiveBlock, mode, event) => {
-  const selectionKey = previousActiveBlock ? previousActiveBlock.get('key') : getEditorState().getSelection().getAnchorKey();
+  const selectionKey = previousActiveBlock
+    ? previousActiveBlock.get('key')
+    : getEditorState().getSelection().getAnchorKey();
   const editorState = getEditorState();
   const activeBlock = mode === 'up'
     ? editorState.getCurrentContent().getBlockBefore(selectionKey)
@@ -20,6 +22,7 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
   }
 
   if (event) {
+    // TODO make sure this works cross-browser
     let atLimit = false;
     if (window.getSelection) {
       const sel = window.getSelection();
@@ -40,19 +43,7 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
           atLimit = testRange.toString() === '' || toleranced < 10;
         }
       }
-    }/* else if (document.selection && document.selection.type !== 'Control') {
-      const selRange = document.selection.createRange();
-      const testRange = selRange.duplicate();
-      const parent = findParentNode(selRange.anchorNode, x => x.hasAttribute('data-block'));
-
-      testRange.moveToElementText(parent);
-      testRange.setEndPoint('EndToStart', selRange);
-      info.atStart = (testRange.text === '');
-
-      testRange.moveToElementText(parent);
-      testRange.setEndPoint('StartToEnd', selRange);
-      info.atEnd = (testRange.text === '');
-    }*/
+    }
 
     if (activeBlock && store.types[activeBlock.get('type')] && atLimit) {
       event.preventDefault();
