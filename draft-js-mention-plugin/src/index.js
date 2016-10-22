@@ -3,6 +3,7 @@ import { Map } from 'immutable';
 import Mention from './Mention';
 import MentionSuggestions from './MentionSuggestions';
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
+import defaultRegExp from './defaultRegExp';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import mentionStyles from './mentionStyles.css';
@@ -86,6 +87,7 @@ const createMentionPlugin = (config = {}) => {
     positionSuggestions = defaultPositionSuggestions,
     mentionComponent,
     mentionTrigger = '@',
+    mentionRegExp = defaultRegExp,
   } = config;
   const mentionSearchProps = {
     ariaProps,
@@ -105,7 +107,7 @@ const createMentionPlugin = (config = {}) => {
         component: decorateComponentWithProps(Mention, { theme, mentionComponent }),
       },
       {
-        strategy: mentionSuggestionsStrategy(mentionTrigger),
+        strategy: mentionSuggestionsStrategy(mentionTrigger, mentionRegExp),
         component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
       },
     ],
