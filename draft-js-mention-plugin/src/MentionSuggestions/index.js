@@ -19,7 +19,7 @@ export default class MentionSuggestions extends Component {
     suggestions: (props, propName, componentName) => {
       if (!List.isList(props[propName])) {
         return new Error(
-          `Invalid prop \`${propName}\' supplied to \`${componentName}\`. should be an instance of immutable list.`
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. should be an instance of immutable list.`
         );
       }
       return undefined;
@@ -218,6 +218,7 @@ export default class MentionSuggestions extends Component {
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
+      this.props.mentionPrefix,
       this.props.mentionTrigger,
       this.props.entityMutability,
     );
@@ -299,6 +300,7 @@ export default class MentionSuggestions extends Component {
       entityMutability, // eslint-disable-line no-unused-vars
       positionSuggestions, // eslint-disable-line no-unused-vars
       mentionTrigger, // eslint-disable-line no-unused-vars
+      mentionPrefix, // eslint-disable-line no-unused-vars
       ...elementProps } = this.props;
 
     return (

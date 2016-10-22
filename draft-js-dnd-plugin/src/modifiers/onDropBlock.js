@@ -21,7 +21,8 @@ export default function onDropBlock({ handleDefaultData }) {
 
       // Get content, selection, block
       const block = state.getCurrentContent().getBlockForKey(blockKey);
-      const editorStateAfterInsert = addBlock(state, selection, block.getType(), Entity.get(block.getEntityAt(0)).data);
+      const entity = Entity.get(block.getEntityAt(0));
+      const editorStateAfterInsert = addBlock(state, selection, block.getType(), entity.data, entity.type);
       setEditorState(removeBlock(editorStateAfterInsert, blockKey));
     }
 
