@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import unionClassNames from 'union-class-names';
 
 // Get a component's display name
 const getDisplayName = (WrappedComponent) => {
@@ -15,21 +16,9 @@ const findParentNode = (node, filter) => {
 };
 
 export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
-  // Statics
+
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
-
-  setFocus = () => {
-    this.props.blockProps.setFocus();
-  }
-
-  unsetFocus = (direction, event) => {
-    this.props.blockProps.unsetFocus(direction, event);
-  }
-
-  removeBlock = () => {
-    this.props.blockProps.removeBlock();
-  }
 
   componentDidMount() {
     store.addType(this.props.block.type);
@@ -37,13 +26,8 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
   }
 
   componentWillUpdate() {
-    if (this.DOMNode) {
-      this.DOMNode.removeEventListener('click', this.mouseDown);
-      // document.removeEventListener('keydown', this.releaseOnArrowKey);
-      // document.removeEventListener('mousedown', this.releaseOnMouseDown);
-    }
+    document.removeEventListener('keydown', this.releaseOnArrowKey);
     if (this.ReactRoot) {
-      document.removeEventListener('keydown', this.releaseOnArrowKey);
       this.ReactRoot.removeEventListener('mousedown', this.releaseOnMouseDown);
     }
   }
@@ -54,15 +38,12 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     this.ReactRoot = document.querySelector('[data-reactroot]');
     const { pluginEditor, isFocused } = this.props.blockProps;
     const { getReadOnly } = pluginEditor;
+    if (!getReadOnly()) {
+      document.addEventListener('keydown', this.releaseOnArrowKey);
+    }
 
-    if (this.DOMNode && !getReadOnly()) {
-      this.DOMNode.addEventListener('click', this.mouseDown);
-      if (isFocused && this.ReactRoot) {
-        // document.addEventListener('keydown', this.releaseOnArrowKey);
-        // document.addEventListener('mousedown', this.releaseOnMouseDown);
-        document.addEventListener('keydown', this.releaseOnArrowKey);
-        this.ReactRoot.addEventListener('mousedown', this.releaseOnMouseDown);
-      }
+    if (this.DOMNode && !getReadOnly() && isFocused && this.ReactRoot) {
+      this.ReactRoot.addEventListener('mousedown', this.releaseOnMouseDown);
     }
   }
 
@@ -76,45 +57,37 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
 
   releaseOnArrowKey = (event) => {
     if (event.keyCode === 38) {
-      event.stopPropagation();
-      this.unsetFocus('up', event);
+      this.props.blockProps.unsetFocus('up', event);
     } else if (event.keyCode === 40) {
-      event.stopPropagation();
-      this.unsetFocus('down', event);
+      this.props.blockProps.unsetFocus('down', event);
     } else if (event.keyCode === 8) {
-      event.stopPropagation();
-      event.preventDefault();
-      this.unsetFocus('down', event);
-      this.removeBlock();
+      // TODO fix backspace for removing the block
+      this.props.blockProps.unsetFocus('down', event);
+      this.props.blockProps.removeBlock();
     }
   }
 
   releaseOnMouseDown = () => {
     if (!findParentNode(event.target, (x) => x === this.DOMNode)) {
-      this.unsetFocus();
+      this.props.blockProps.unsetFocus();
     }
   }
 
-  mouseDown = (event) => {
+  onClick = () => {
     const { isFocused } = this.props.blockProps;
     if (isFocused) return;
-    event.stopPropagation();
-    this.setFocus();
+    this.props.blockProps.setFocus();
   };
 
   render() {
     const { blockProps, className } = this.props;
     const { isFocused } = blockProps;
-
-    const newClassName = [className, (isFocused ? theme.focused : null)].filter((p) => p);
-
+    const combinedClassName = isFocused ? unionClassNames(className, theme.focused) : className;
     return (
       <WrappedComponent
         {...this.props}
-        className={newClassName.join(' ')}
-        isFocused={isFocused}
-        setFocus={this.setFocus}
-        focusClassName={isFocused ? theme.focused : ''}
+        onClick={this.onClick}
+        className={combinedClassName}
       />
     );
   }
