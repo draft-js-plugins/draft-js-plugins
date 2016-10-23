@@ -20,18 +20,17 @@ export default class Toolbar extends React.Component {
     const position = selectionRect ? {
       top: (selectionRect.top + window.scrollY) - toolbarHeight,
       left: selectionRect.left + window.scrollX + (selectionRect.width / 2),
-    } : {};
+      transform: 'translate(-50%) scale(1)',
+      transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+    } : {
+      transform: 'translate(-50%) scale(0)',
+    };
     this.setState({
-      isVisible,
-      position
+      position,
     });
   }
 
   render() {
-    if (!this.state.isVisible) {
-      return null;
-    }
-
     return (
       <div
         className={styles.toolbar}
