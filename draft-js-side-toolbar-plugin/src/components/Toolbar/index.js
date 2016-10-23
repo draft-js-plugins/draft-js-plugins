@@ -1,33 +1,47 @@
 import React from 'react';
-import { getVisibleSelectionRect } from 'draft-js';
+import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 import styles from './styles.css';
-
-// TODO make toolbarHeight to be determined or a parameter
-const toolbarHeight = 44;
 
 export default class Toolbar extends React.Component {
 
   state = {
-    isVisisble: false,
+    position: {
+      transform: 'scale(0)',
+    }
   }
 
-  componentWillMount() {
-    this.props.store.subscribeToItem('isVisible', this.onVisibilityChanged);
+  componentDidMount() {
+    this.props.store.subscribeToItem('editorState', this.onEditorStateChange);
   }
 
-  onVisibilityChanged = (isVisible) => {
-    const selectionRect = isVisible ? getVisibleSelectionRect(window) : undefined;
-    const position = selectionRect ? {
-      top: (selectionRect.top + window.scrollY) - toolbarHeight,
-      left: selectionRect.left + window.scrollX + (selectionRect.width / 2),
-      transform: 'translate(-50%) scale(1)',
-      transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-    } : {
-      transform: 'translate(-50%) scale(0)',
-    };
-    this.setState({
-      position,
-    });
+  onEditorStateChange = (editorState) => {
+    const selection = editorState.getSelection();
+    if (!selection.getHasFocus()) {
+      this.setState({
+        position: {
+          transform: 'scale(0)',
+        },
+      });
+      return;
+    }
+
+    const currentContent = editorState.getCurrentContent();
+    const currentBlock = currentContent.getBlockForKey(selection.getStartKey());
+    // TODO verify that always a key-0-0 exists
+    const offsetKey = DraftOffsetKey.encode(currentBlock.getKey(), 0, 0);
+    // Note: need to wait on tick to make sure the DOM node has been create by Draft.js
+    setTimeout(() => {
+      const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
+      const top = node.getBoundingClientRect().top;
+      this.setState({
+        position: {
+          top: (top + window.scrollY),
+          left: 50,
+          transform: 'scale(1)',
+          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+        },
+      });
+    }, 0);
   }
 
   render() {
@@ -36,6 +50,7 @@ export default class Toolbar extends React.Component {
         className={styles.toolbar}
         style={this.state.position}
       >
+        +
         {this.props.structure.map((Component, index) => (
           <Component
             key={index}

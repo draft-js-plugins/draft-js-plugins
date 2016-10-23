@@ -17,18 +17,12 @@ const createSideToolbarPlugin = (config = {}) => {
   };
 
   return {
-    initialize: ({ getEditorState, setEditorState }) => {
-      store.updateItem('getEditorState', getEditorState);
-      store.updateItem('setEditorState', setEditorState);
+    initialize: ({ setEditorState, getEditorState }) => {
+      store.updateItem('setEditorState', setEditorState, getEditorState);
     },
-    // Re-Render the text-toolbar on selection change
+    // Re-Render the toolbar on every change
     onChange: (editorState) => {
-      const selection = editorState.getSelection();
-      if (selection.getHasFocus() && !selection.isCollapsed()) {
-        store.updateItem('isVisible', true);
-      } else {
-        store.updateItem('isVisible', false);
-      }
+      store.updateItem('editorState', editorState);
       return editorState;
     },
     SideToolbar: decorateComponentWithProps(Toolbar, toolbarProps),
