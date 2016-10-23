@@ -71,13 +71,13 @@ export default class App extends Component {
           </p>
         </AlternateContainer>
         <Container>
-          <Heading level={2}>Simple Example</Heading>
+          <Heading level={2}>Simple Inline Toolbar Example</Heading>
           <SimpleAirToolbarEditor />
           <Code code={simpleExampleCode} name="SimpleAirToolbarEditor.js" />
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Themed AirToolbar Example</Heading>
+          <Heading level={2}>Custom Inline Toolbar Example</Heading>
           <CustomAirToolbarEditor />
           <Code code={customExampleCode} name="CustomAirToolbarEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />

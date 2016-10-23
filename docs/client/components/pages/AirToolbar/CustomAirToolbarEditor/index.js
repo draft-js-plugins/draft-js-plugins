@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+// eslint-disable-next-line import/no-unresolved
+import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+// eslint-disable-next-line import/no-unresolved
+import createAirToolbarPlugin from 'draft-js-air-toolbar-plugin';
 import editorStyles from './editorStyles.css';
 
-const text = 'This editor can have a toolbar …';
+const airToolbarPlugin = createAirToolbarPlugin();
+const { AirToolbar } = airToolbarPlugin;
+const plugins = [airToolbarPlugin];
+const text = 'In this editor a toolbar with a lot more options shows up once you select part of the text …';
 
 export default class CustomAirToolbarEditor extends Component {
 
@@ -26,8 +32,10 @@ export default class CustomAirToolbarEditor extends Component {
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}
+          plugins={plugins}
           ref={(element) => { this.editor = element; }}
         />
+        <AirToolbar />
       </div>
     );
   }

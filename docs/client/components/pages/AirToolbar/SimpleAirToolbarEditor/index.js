@@ -6,7 +6,7 @@ import editorStyles from './editorStyles.css';
 const airToolbarPlugin = createAirToolbarPlugin();
 const { AirToolbar } = airToolbarPlugin;
 const plugins = [airToolbarPlugin];
-const text = 'This editor can have a toolbar …';
+const text = 'In this editor a toolbar shows up once you select part of the text …';
 
 export default class SimpleAirToolbarEditor extends Component {
 
