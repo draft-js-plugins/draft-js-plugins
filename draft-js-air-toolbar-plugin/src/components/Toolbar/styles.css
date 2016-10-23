@@ -1,7 +1,9 @@
 .toolbar {
+  left: 50%;
+  transform: translate(-50%);
+  position: absolute;
   background: #333;
   border-radius: 2px;
   font-size: 1.5rem;
-  position: absolute;
   padding: 0 0.5rem;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './styles.css';
 import { getVisibleSelectionRect } from 'draft-js';
+import styles from './styles.css';
 
 // TODO make toolbarHeight to be determined or a parameter
 const toolbarHeight = 40;
@@ -18,8 +18,8 @@ export default class Toolbar extends React.Component {
   onVisibilityChanged = (isVisible) => {
     const selectionRect = isVisible ? getVisibleSelectionRect(window) : undefined;
     const position = selectionRect ? {
-      top: selectionRect.top + window.scrollY - toolbarHeight,
-      left: selectionRect.left + window.scrollX,
+      top: (selectionRect.top + window.scrollY) - toolbarHeight,
+      left: selectionRect.left + window.scrollX + (selectionRect.width / 2),
     } : {};
     this.setState({
       isVisible,

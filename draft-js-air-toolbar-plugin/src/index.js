@@ -25,14 +25,14 @@ const createAirToolbarPlugin = (config = {}) => {
       BoldButton,
       CodeButton,
       UnderlineButton,
-      Separator,
-      HeaderOneButton,
-      HeaderTwoButton,
-      HeaderThreeButton,
-      UnorderedListButton,
-      OrderedListButton,
-      BlockquoteButton,
-      CodeBlockButton,
+      // Separator,
+      // HeaderOneButton,
+      // HeaderTwoButton,
+      // HeaderThreeButton,
+      // UnorderedListButton,
+      // OrderedListButton,
+      // BlockquoteButton,
+      // CodeBlockButton,
     ]
   } = config;
 
