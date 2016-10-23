@@ -34,7 +34,7 @@ import { Map } from 'immutable';
 //     )
 //   )
 // );
-// import TextToolbar from 'draft-js-air-toolbar-plugin/components/text-toolbar';
+// import TextToolbar from 'draft-js-inline-toolbar-plugin/components/text-toolbar';
 // import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
 
 // Components

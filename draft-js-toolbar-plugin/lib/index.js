@@ -32,9 +32,9 @@ var _styles = {
 
 var _styles2 = _interopRequireDefault(_styles);
 
-var _airToolbar = require('./air-toolbar');
+var _inlineToolbar = require('./inline-toolbar');
 
-var _airToolbar2 = _interopRequireDefault(_airToolbar);
+var _inlineToolbar2 = _interopRequireDefault(_inlineToolbar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44,7 +44,7 @@ var toolbarPlugin = function toolbarPlugin() {
   var config = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
   var theme = config.theme || _styles2.default;
-  var toolbarHandler = config.toolbarHandler || _extends({}, _airToolbar2.default, config);
+  var toolbarHandler = config.toolbarHandler || _extends({}, _inlineToolbar2.default, config);
   return {
     // Re-Render the text-toolbar onChange (on selection change)
     onChange: function onChange(editorState, _ref) {

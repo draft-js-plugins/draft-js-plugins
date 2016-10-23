@@ -16,22 +16,22 @@ var _toolbar2 = _interopRequireDefault(_toolbar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var airToolbar = {
+var inlineToolbar = {
   blockMode: 'hover',
   textMode: 'select',
   animations: true,
   add: function add(props) {
     _portal2.default.renderPortal(_extends({
-      toolbarAnimations: airToolbar.animations,
+      toolbarAnimations: inlineToolbar.animations,
       Element: _toolbar2.default
     }, props));
   },
   remove: function remove(props) {
     _portal2.default.removePortal(_extends({
-      toolbarAnimations: airToolbar.animations,
+      toolbarAnimations: inlineToolbar.animations,
       Element: _toolbar2.default
     }, props));
   }
 };
 
-exports.default = airToolbar;
+exports.default = inlineToolbar;

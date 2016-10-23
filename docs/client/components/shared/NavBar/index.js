@@ -37,7 +37,7 @@ export default class NavBar extends Component {
           </ul>
           <ul className={styles.plugins}>
             <li className={styles.plugin}>
-              <Link to="/plugin/air-toolbar" className={styles.link}>
+              <Link to="/plugin/inline-toolbar" className={styles.link}>
                 Inline Toolbar
               </Link>
             </li>
