@@ -129,10 +129,10 @@ class PluginEditor extends Component {
     for (const plugin of plugins) {
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
-      if (result === true) return true;
+      if (result === 'handled') return 'handled';
     }
 
-    return false;
+    return 'not-handled';
   };
 
   createFnHooks = (methodName, plugins) => (...args) => {
