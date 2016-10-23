@@ -3,31 +3,37 @@
 }
 
 .button {
-  background: #333;
-  color: #fdfdfd;
+  background: #fbfbfb;
+  color: #888;
+  font-size: 18px;
+  font-weight: bold;
   border: 0;
+  padding-top: 5px;
+  vertical-align: bottom;
+  height: 34px;
 }
 
-.button:hover {
-  background: #444;
-  color: #fff;
+.button svg {
+  fill: #888;
 }
 
-.button:active {
-  background: #444;
+.button:hover, .button:focus {
+  background: #f3f3f3;
+  outline: 0; /* reset for :focus */
 }
 
 .active {
-  color: #5e93c5;
+  background: #efefef;
+  color: #444;
 }
 
-.active:hover {
-  color: #7eadda;
+.active svg {
+  fill: #444;
 }
 
 .separator {
   display: inline-block;
-  border-right: 1px solid #444;
-  height: 1em;
-  margin: 0 0.75em;
+  border-right: 1px solid #ddd;
+  height: 24px;
+  margin: 0 0.5em;
 }

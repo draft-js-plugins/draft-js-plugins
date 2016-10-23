@@ -21,10 +21,10 @@ const createAirToolbarPlugin = (config = {}) => {
 
   const {
     structure = [
-      ItalicButton,
       BoldButton,
-      CodeButton,
+      ItalicButton,
       UnderlineButton,
+      CodeButton,
       // Separator,
       // HeaderOneButton,
       // HeaderTwoButton,
