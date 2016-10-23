@@ -8,14 +8,10 @@ const getDisplayName = (WrappedComponent) => {
 };
 
 // Export
-export default (WrappedComponent) => {
-  const { pluginOptions } = WrappedComponent;
-
-  return class BlockDraggableDecorator extends Component {
+export default (WrappedComponent) => (
+  class BlockDraggableDecorator extends Component {
     // Statics
     static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
-    // eslint-disable-next-line no-redeclare
-    static pluginOptions = pluginOptions;
     // eslint-disable-next-line no-redeclare
     static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
@@ -37,18 +33,13 @@ export default (WrappedComponent) => {
     render() {
       const { draggable, blockProps } = this.props;
       const readOnly = blockProps.pluginEditor.getReadOnly();
-
-      // Check if pluginOptions.customHandleDnd != true and add a div to markup
-      /* if (!pluginOptions || pluginOptions.customHandleDnd !== true) {
-        return (
-          <div onDragStart={this.startDrag} draggable={draggable}>
-            <WrappedComponent {...this.props} />
-          </div>
-        );
-      }*/
-
-      // In case pluginOptions.customHandleDnd == true let component handle onDragStart
-      return <WrappedComponent {...this.props} onDragStart={!readOnly ? this.startDrag : undefined} draggable={!readOnly && draggable} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          onDragStart={!readOnly ? this.startDrag : undefined}
+          draggable={!readOnly && draggable}
+        />
+      );
     }
-  };
-};
+  }
+);

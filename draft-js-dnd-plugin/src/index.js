@@ -7,7 +7,7 @@ const dndPlugin = (config = {}) => ({
   handleDroppedFiles: onDropFile(config),
   // Handle any other drops (mostly blocks dragged and dropped across editor)
   handleDrop: onDropBlock(config),
+  decorator
 });
 
 export default dndPlugin;
-export const DraggableDecorator = decorator;
