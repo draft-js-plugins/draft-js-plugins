@@ -140,16 +140,15 @@ class PluginEditor extends Component {
       this.getEditorState,
       this.onChange);
 
-    const customDecorators = decorators
-              .filter((decorator) => this.decoratorIsCustom(decorator));
+    const customDecorators = decorators.filter((decorator) => this.decoratorIsCustom(decorator));
 
     const multiDecorator = new MultiDecorator([
-        ...customDecorators,
-        compositeDecorator,
+      ...customDecorators,
+      compositeDecorator,
     ]);
 
-    const editorState = EditorState.set(this.props.editorState, { decorator: multiDecorator });
-    this.onChange(moveSelectionToEnd(editorState));
+    const newEditorState = EditorState.set(editorState, { decorator: multiDecorator });
+    this.onChange(moveSelectionToEnd(newEditorState));
   };
 
   createEventHooks = (methodName, plugins) => (...args) => {

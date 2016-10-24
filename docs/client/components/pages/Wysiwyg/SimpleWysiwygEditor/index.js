@@ -10,7 +10,7 @@ import createEntityPropsPlugin from 'draft-js-entity-props-plugin'; // eslint-di
 // import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin'; // eslint-disable-line import/no-unresolved
 // import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin'; // eslint-disable-line import/no-unresolved
 
-import { List, Map } from 'immutable';
+import { Map } from 'immutable';
 
 // const image = ResizeableDecorator({
 //   resizeSteps: 10,
