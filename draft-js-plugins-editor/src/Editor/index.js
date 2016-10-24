@@ -135,6 +135,18 @@ class PluginEditor extends Component {
     return false;
   };
 
+  createHandleHooks = (methodName, plugins) => (...args) => {
+    const newArgs = [].slice.apply(args);
+    newArgs.push(this.getPluginMethods());
+    for (const plugin of plugins) {
+      if (typeof plugin[methodName] !== 'function') continue;
+      const result = plugin[methodName](...newArgs);
+      if (result === 'handled') return 'handled';
+    }
+
+    return 'not-handled';
+  };
+
   createFnHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
 
@@ -180,6 +192,7 @@ class PluginEditor extends Component {
   createPluginHooks = () => {
     const pluginHooks = {};
     const eventHookKeys = [];
+    const handleHookKeys = [];
     const fnHookKeys = [];
     const plugins = [this.props, ...this.resolvePlugins()];
 
@@ -190,9 +203,15 @@ class PluginEditor extends Component {
         // if `attrName` has been added as a hook key already, ignore this one
         if (eventHookKeys.indexOf(attrName) !== -1 || fnHookKeys.indexOf(attrName) !== -1) return;
 
-        const isEventHookKey = attrName.indexOf('on') === 0 || attrName.indexOf('handle') === 0;
+        const isEventHookKey = attrName.indexOf('on') === 0;
         if (isEventHookKey) {
           eventHookKeys.push(attrName);
+          return;
+        }
+
+        const isHandleHookKey = attrName.indexOf('handle') === 0;
+        if (isHandleHookKey) {
+          handleHookKeys.push(attrName);
           return;
         }
 
@@ -206,6 +225,10 @@ class PluginEditor extends Component {
 
     eventHookKeys.forEach((attrName) => {
       pluginHooks[attrName] = this.createEventHooks(attrName, plugins);
+    });
+
+    handleHookKeys.forEach((attrName) => {
+      pluginHooks[attrName] = this.createHandleHooks(attrName, plugins);
     });
 
     fnHookKeys.forEach((attrName) => {
