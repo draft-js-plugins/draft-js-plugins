@@ -104,7 +104,7 @@
     "loader-utils": "^0.2.15",
     "lodash.escaperegexp": "^4.1.2",
     "lodash.keys": "^4.2.0",
-    "react": ">=15.2.1",
+    "react": ">=15.3.1",
     "react-dom": ">=15.2.1",
     "tlds": "1.159.0",
     "union-class-names": "^1.0.0",
