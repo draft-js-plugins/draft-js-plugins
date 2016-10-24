@@ -2,15 +2,16 @@ import React from 'react';
 import { EditorState, Entity, AtomicBlockUtils, SelectionState } from 'draft-js';
 import removeBlock from '../../Modifiers/removeBlock';
 import insertBlock from '../../Modifiers/insertBlock';
+import styles from '../../Components/Sidebar/styles.css';
 
 export default class TextAction extends React.Component {
 
   onValidation = (textValue, blockKey) => {
-    const response = this.props.add(textValue);
-    if (typeof response.then === 'function') {
-      response.then((entityKey) => this.insert(entityKey, blockKey));
+    const entity = this.props.getEntity(textValue);
+    if (typeof entity.then === 'function') {
+      entity.then((entityKey) => this.insert(entityKey, blockKey));
     } else {
-      this.insert(response, blockKey);
+      this.insert(entity, blockKey);
     }
   };
 
@@ -50,19 +51,19 @@ export default class TextAction extends React.Component {
   };
 
   render = () => (
-    <img
-      src={this.props.icon}
-      onClick={this.onClick}
-      alt="BUTTON"
-    />
+    <li className={styles.listItem}>
+      <img
+        src={this.props.icon}
+        onClick={this.onClick}
+        alt="BUTTON"
+      />
+    </li>
   );
 }
 
 TextAction.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  name: React.PropTypes.string.isRequired,
   icon: React.PropTypes.string.isRequired,
-  add: React.PropTypes.func.isRequired,
+  getEntity: React.PropTypes.func.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   remove: React.PropTypes.func,
 };

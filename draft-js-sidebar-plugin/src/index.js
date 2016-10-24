@@ -1,11 +1,13 @@
 import { Entity } from 'draft-js';
-import decorateComponentWithProps from 'decorate-component-with-props';
-import Sidebar from './Components/Sidebar';
 import InputBlock from './Components/InputBlock';
 import EmbedIframe from './Components/EmbedIframe';
 import addButtonImg from './assets/addCircleMD.svg';
 
-export { INPUT_TYPES } from './Actions';
+export BasicAction from './Actions/Basic';
+export FileAction from './Actions/File';
+export TextAction from './Actions/Text';
+
+export Sidebar from './Components/Sidebar';
 
 const createSidebarPlugin = (userConfig) => {
   const defaultConfig = {
@@ -52,11 +54,6 @@ const createSidebarPlugin = (userConfig) => {
 
 
   return {
-    Sidebar: decorateComponentWithProps(Sidebar, {
-      actions: config.actions,
-      emptyLineOnly: config.emptyLineOnly,
-      icon: config.icon,
-    }),
     blockRendererFn: myBlockRenderer
   };
 };

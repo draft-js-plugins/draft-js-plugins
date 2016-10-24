@@ -1,14 +1,15 @@
 import React from 'react';
 import insertBlock from '../../Modifiers/insertBlock';
+import styles from '../../Components/Sidebar/styles.css';
 
 export default class BasicAction extends React.Component {
   onClick = (event) => {
     event.preventDefault();
-    const response = this.props.add();
-    if (typeof response.then === 'function') {
-      response.then(this.insert);
+    const entity = this.props.getEntity();
+    if (typeof entity.then === 'function') {
+      entity.then(this.insert);
     } else {
-      this.insert(response);
+      this.insert(entity);
     }
   };
 
@@ -20,15 +21,15 @@ export default class BasicAction extends React.Component {
   };
 
   render = () => (
-    <img src={this.props.icon} onClick={this.onClick} alt="BUTTON" />
+    <li className={styles.listItem}>
+      <img src={this.props.icon} onClick={this.onClick} alt="BUTTON" />
+    </li>
   )
 }
 
 BasicAction.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  name: React.PropTypes.string.isRequired,
   icon: React.PropTypes.string.isRequired,
-  add: React.PropTypes.func.isRequired,
+  getEntity: React.PropTypes.func.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   remove: React.PropTypes.func,
 };

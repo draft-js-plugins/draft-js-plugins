@@ -2,7 +2,6 @@ import React from 'react';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 import unionClassNames from 'union-class-names';
 import styles from './styles.css';
-import createActionButton from '../../Actions';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -26,7 +25,6 @@ class Sidebar extends React.Component {
   };
 
   componentWillReceiveProps = (nextProps) => {
-    if (!nextProps.container) return;
     const editorState = nextProps.editorState;
     const selection = editorState.getSelection();
     if (!selection.getHasFocus()) {
@@ -71,7 +69,7 @@ class Sidebar extends React.Component {
           }
           if (this.openButton) {
             const blockBoundRect = elts[i].getBoundingClientRect();
-            const containerRect = this.props.container.getBoundingClientRect();
+            const containerRect = this.container.getBoundingClientRect();
             const align = (this.state.openButtonRect.height / 2) - (blockBoundRect.height / 2);
             const top = blockBoundRect.top - containerRect.top - align;
             this.setState({
@@ -119,46 +117,53 @@ class Sidebar extends React.Component {
   };
 
   closeOnClick = (event) => {
-    if (
-      this.sidebarMenu && !this.sidebarMenu.contains(event.target)
-      && !this.props.getPluginMethods().getEditorRef().refs.editorContainer.contains(event.target)
-    ) {
-      this.closeSidebar();
+    if (this.props.editor && this.props.editor.refs.editorContainer) {
+      if (
+        this.sidebarMenu && !this.sidebarMenu.contains(event.target)
+        && !this.props.editor.refs.editorContainer.contains(event.target)
+      ) {
+        this.closeSidebar();
+      }
     }
   };
 
+  getPluginMethods = () => {
+    if (!this.props.editor) {
+      return {};
+    }
+    return this.props.editor.getPluginMethods;
+  }
+
   render = () => (
-    <div
-      className={styles.wrapper}
-      style={this.state.display}
-      ref={(sm) => { this.sidebarMenu = sm; }}
-    >
+
+    <div style={{ position: 'relative' }} ref={(d) => { this.container = d; }}>
+      {this.props.children}
       <div
-        onClick={this.toggleSidebar}
-        className={
-          this.state.showMenu
-            ? unionClassNames(styles.plusButtonOpen, styles.plusButton)
-            : styles.plusButton
-        }
-        ref={(b) => { this.openButton = b; }}
+        className={styles.wrapper}
+        style={this.state.display}
+        ref={(sm) => { this.sidebarMenu = sm; }}
       >
-        <img src={this.props.icon} alt="+" />
-      </div>
-      <div
-        className={styles.menu}
-        style={this.getMenuWidth()}
-      >
-        <ul className={styles.menuList}>
-          {this.props.actions.map((action) => (
-            <li key={action.name} className={styles.listItem}>
-              {createActionButton({
-                onClick: this.closeSidebar,
-                getPluginMethods: this.props.getPluginMethods,
-                ...action,
-              })}
-            </li>
-          ))}
-        </ul>
+        <div
+          onClick={this.toggleSidebar}
+          className={
+            this.state.showMenu
+              ? unionClassNames(styles.plusButtonOpen, styles.plusButton)
+              : styles.plusButton
+          }
+          ref={(b) => { this.openButton = b; }}
+        >
+          <img src={this.props.icon} alt="+" />
+        </div>
+        <div
+          className={styles.menu}
+          style={this.getMenuWidth()}
+        >
+          <ul className={styles.menuList}>
+            {this.props.actions.map((Component) => (
+              <Component getPluginMethods={this.getPluginMethods()} onClick={this.closeSidebar} />
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

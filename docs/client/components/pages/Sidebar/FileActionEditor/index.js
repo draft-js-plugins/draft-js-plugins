@@ -5,7 +5,7 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
-import createSidebarPlugin, { INPUT_TYPES } from 'draft-js-sidebar-plugin';
+import createSidebarPlugin, { FileAction, Sidebar } from 'draft-js-sidebar-plugin';
 import editorStyles from './editorStyles.css';
 import fileIcon from './file.svg';
 
@@ -16,15 +16,17 @@ const Image = ({ block }) => {
   );
 };
 
-const actions = [{
-  name: 'insert-unicorne',
-  inputType: INPUT_TYPES.FILE,
-  icon: fileIcon,
-  add: (data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.fileReader.result }),
-}];
+class AddImageButton extends React.Component {
+  getEntity = (data) => Entity.create('IMAGE', 'IMMUTABLE', { src: data.fileReader.result });
 
-const sidebarPlugin = createSidebarPlugin({ actions });
-const { Sidebar } = sidebarPlugin;
+  render = () => (
+    <FileAction icon={fileIcon} getEntity={this.getEntity} {...this.props} />
+  );
+}
+
+const actions = [AddImageButton];
+
+const sidebarPlugin = createSidebarPlugin();
 const plugins = [sidebarPlugin];
 const text = ` When you click somewhere on an empty line of the editor,
 a button will appear on the left.
@@ -84,22 +86,22 @@ export default class FileActionEditor extends Component {
 
   render() {
     return (
-      <div style={{ position: 'relative' }} ref={(container) => { this.container = container; }}>
-        <div className={editorStyles.editor} onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            ref={(element) => { this.editor = element; }}
-            blockRendererFn={this.myBlockRenderer}
-          />
-        </div>
         <Sidebar
           editorState={this.state.editorState}
-          getPluginMethods={this.getPluginMethods}
-          container={this.container}
-        />
-      </div>
+          editor={this.editor}
+          emptyLineOnly={true}
+          actions={actions}
+        >
+          <div className={editorStyles.editor} onClick={this.focus}>
+            <Editor
+              editorState={this.state.editorState}
+              onChange={this.onChange}
+              plugins={plugins}
+              ref={(element) => { this.editor = element; }}
+              blockRendererFn={this.myBlockRenderer}
+            />
+          </div>
+        </Sidebar>
     );
   }
 }

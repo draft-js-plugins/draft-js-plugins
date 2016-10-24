@@ -1,5 +1,6 @@
 import React from 'react';
 import insertBlock from '../../Modifiers/insertBlock';
+import styles from '../../Components/Sidebar/styles.css';
 
 export default class FileAction extends React.Component {
 
@@ -22,11 +23,11 @@ export default class FileAction extends React.Component {
           fileReader: loadEvent.target,
           file: files[0],
         };
-        const response = this.props.add(data);
-        if (typeof response.then === 'function') {
-          response.then(this.insert);
+        const entity = this.props.getEntity(data);
+        if (typeof entity.then === 'function') {
+          entity.then(this.insert);
         } else {
-          this.insert(response);
+          this.insert(entity);
         }
       });
 
@@ -43,19 +44,19 @@ export default class FileAction extends React.Component {
   };
 
   render = () => (
-    <img
-      src={this.props.icon}
-      alt="BUTTON"
-      onClick={this.onClick}
-    />
+    <li className={styles.listItem}>
+      <img
+        src={this.props.icon}
+        alt="BUTTON"
+        onClick={this.onClick}
+      />
+    </li>
   )
 }
 
 FileAction.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
-  name: React.PropTypes.string.isRequired,
   icon: React.PropTypes.string.isRequired,
-  add: React.PropTypes.func.isRequired,
+  getEntity: React.PropTypes.func.isRequired,
   // eslint-disable-next-line react/no-unused-prop-types
   remove: React.PropTypes.func,
 };

@@ -5,10 +5,9 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
-import createSidebarPlugin, { INPUT_TYPES } from 'draft-js-sidebar-plugin';
+import createSidebarPlugin, { BasicAction, Sidebar } from 'draft-js-sidebar-plugin';
 import editorStyles from './editorStyles.css';
 import addPhotoImg from './addPhotoMD.svg';
-
 
 const Image = ({ block }) => {
   const data = Entity.get(block.getEntityAt(0)).getData();
@@ -17,15 +16,18 @@ const Image = ({ block }) => {
   );
 };
 
-const actions = [{
-  name: 'insert-unicorne',
-  inputType: INPUT_TYPES.BASIC,
-  icon: addPhotoImg,
-  add: () => Entity.create('IMAGE', 'IMMUTABLE', { src: '/images/unicorn-1.png' }),
-}];
+
+class AddImageButton extends React.Component {
+  getEntity = () => Entity.create('IMAGE', 'IMMUTABLE', { src: '/images/unicorn-1.png' });
+
+  render = () => (
+    <BasicAction icon={addPhotoImg} getEntity={this.getEntity} {...this.props} />
+  );
+}
+
+const actions = [AddImageButton];
 
 const sidebarPlugin = createSidebarPlugin({ actions, emptyLineOnly: true });
-const { Sidebar } = sidebarPlugin;
 const plugins = [sidebarPlugin];
 const text = ` When you click somewhere on an empty line of the editor,
 a button will appear on the left.
@@ -84,7 +86,12 @@ export default class BasicActionEditor extends Component {
 
   render() {
     return (
-      <div style={{ position: 'relative' }} ref={(container) => { this.container = container; }}>
+        <Sidebar
+          editorState={this.state.editorState}
+          editor={this.editor}
+          emptyLineOnly={true}
+          actions={actions}
+        >
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -94,12 +101,7 @@ export default class BasicActionEditor extends Component {
             blockRendererFn={this.myBlockRenderer}
           />
         </div>
-        <Sidebar
-          editorState={this.state.editorState}
-          getPluginMethods={this.getPluginMethods}
-          container={this.container}
-        />
-      </div>
+      </Sidebar>
     );
   }
 }
