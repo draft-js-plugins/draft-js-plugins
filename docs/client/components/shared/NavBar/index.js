@@ -30,6 +30,18 @@ export default class NavBar extends Component {
               </Link>
             </li>
             <li className={styles.plugin}>
+              <Link to="/plugin/image" className={styles.link}>
+                Image
+              </Link>
+            </li>
+          </ul>
+          <ul className={styles.plugins}>
+            <li className={styles.plugin}>
+              <Link to="/plugin/inline-toolbar" className={styles.link}>
+                Inline Toolbar
+              </Link>
+            </li>
+            <li className={styles.plugin}>
               <Link to="/plugin/hashtag" className={styles.link}>
                 Hashtag
               </Link>

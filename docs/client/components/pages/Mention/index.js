@@ -149,11 +149,15 @@ export default class App extends Component {
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>mentionTrigger</span>
-            <span>By default it is set to `@`. By default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered. Note: the implementation does not support a multi-character mentionTrigger.</span>
+            <span>Allows you to provide a custom character to change when the search is triggered. By default it is set to `@`. By default typing `@` will trigger the search for mentions. Note: the implementation does not support a multi-character mentionTrigger.</span>
+          </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>mentionRegExp</span>
+            <span>Allows you to overwrite the regular expression for initiating the dropdown. By default this supports any alphanumeric character as well as Chinese, Japanese & Korean characters. We are happy to accept pull requests to extend the default mentionRegExp as well.</span>
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>mentionComponent</span>
-            <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className, mentionPrefix & decoratedText</span>
+            <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className & decoratedText</span>
           </div>
           <Heading level={3}>MentionSuggestions</Heading>
           <div>

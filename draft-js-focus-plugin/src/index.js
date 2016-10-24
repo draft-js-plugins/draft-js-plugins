@@ -1,6 +1,7 @@
-import { SelectionState, EditorState } from 'draft-js';
+import { EditorState } from 'draft-js';
 import setSelection from './modifiers/setSelection';
-import Decorator from './decorators/block-focus';
+import setFocusToBlock from './modifiers/setFocusToBlock';
+import createDecorator from './createDecorator';
 import styles from './style.css';
 
 const defaultTheme = { ...styles };
@@ -11,6 +12,7 @@ const store = {
   }
 };
 
+// TODO make sure to remove the native selection of a text when the user clicks on the block
 const focusPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   let activeBlock = null;
@@ -25,16 +27,7 @@ const focusPlugin = (config = {}) => {
           // Set active block to current block
           activeBlock = contentBlock;
           // Force selection to move to current block
-          setEditorState(
-            EditorState.forceSelection(getEditorState(), new SelectionState({
-              anchorKey: activeBlock.get('key'),
-              anchorOffset: activeBlock.get('length') || 0,
-              focusKey: activeBlock.get('key'),
-              focusOffset: activeBlock.get('length') || 0,
-              hasFocus: true,
-              isBackward: false,
-            }))
-          );
+          setFocusToBlock(getEditorState, setEditorState, activeBlock);
           setReadOnly(true);
         }
       };
@@ -67,15 +60,16 @@ const focusPlugin = (config = {}) => {
     // Handle down/up arrow events and set activeBlock/selection if necessary
     onDownArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
       activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'down', event);
+      // TODO match by entitiy instead of block type
       setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
     },
     onUpArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
       activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'up', event);
+      // TODO match by entitiy instead of block type
       setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
     },
+    decorator: createDecorator({ theme: styles, store }),
   };
 };
 
 export default focusPlugin;
-export const FocusDecorator = Decorator({ theme: styles, store });
-export const FocusDecoratorStyles = styles;

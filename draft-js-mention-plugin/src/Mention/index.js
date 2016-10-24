@@ -3,21 +3,21 @@ import { Entity } from 'draft-js';
 import { fromJS } from 'immutable';
 import unionClassNames from 'union-class-names';
 
-const MentionLink = ({ mention, mentionPrefix, children, className }) =>
+const MentionLink = ({ mention, children, className }) =>
   <a
     href={mention.get('link')}
     className={className}
     spellCheck={false}
   >
-    {mentionPrefix}{children}
+    {children}
   </a>;
 
-const MentionText = ({ mentionPrefix, children, className }) =>
+const MentionText = ({ children, className }) =>
   <span
     className={className}
     spellCheck={false}
   >
-    {mentionPrefix}{children}
+    {children}
   </span>;
 
 const Mention = (props) => {
@@ -25,7 +25,6 @@ const Mention = (props) => {
     entityKey,
     theme = {},
     mentionComponent,
-    mentionPrefix,
     children,
     decoratedText,
     className,
@@ -44,7 +43,6 @@ const Mention = (props) => {
       mention={mention}
       theme={theme}
       className={combinedClassName}
-      mentionPrefix={mentionPrefix}
       decoratedText={decoratedText}
     >
       {children}
