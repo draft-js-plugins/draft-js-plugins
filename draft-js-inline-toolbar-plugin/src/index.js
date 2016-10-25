@@ -16,7 +16,7 @@ import Separator from './components/Separator';
 
 const createInlineToolbarPlugin = (config = {}) => {
   const store = createStore({
-    isVisisble: false,
+    isVisible: false,
   });
 
   const {
