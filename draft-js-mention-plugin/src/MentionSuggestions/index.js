@@ -242,7 +242,7 @@ export default class MentionSuggestions extends Component {
 
   commitSelection = () => {
     this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
-    return true;
+    return 'handled';
   };
 
   openDropdown = () => {

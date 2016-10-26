@@ -14,6 +14,8 @@ import Mention from './components/pages/Mention';
 import Wysiwyg from './components/pages/Wysiwyg';
 import Counter from './components/pages/Counter';
 import Playground from './components/pages/Playground';
+import Image from './components/pages/Image';
+import InlineToolbar from './components/pages/InlineToolbar';
 
 export const routes = (
   <Route path="/" title="App" component={App}>
@@ -27,6 +29,8 @@ export const routes = (
       <Route path="plugin/mention" title="App - Mention" component={Mention} />
       <Route path="plugin/wysiwyg" title="App - Wysiwyg" component={Wysiwyg} />
       <Route path="plugin/counter" title="App - Counter" component={Counter} />
+      <Route path="plugin/image" title="App - Image" component={Image} />
+      <Route path="plugin/inline-toolbar" title="App - InlineToolbar" component={InlineToolbar} />
     </Route>
     <Route path="playground" title="App - Development Playground" component={Playground} />
     <Route path="*" title="404: Not Found" component={NotFound} />

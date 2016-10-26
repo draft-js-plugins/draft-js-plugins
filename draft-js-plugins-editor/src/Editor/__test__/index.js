@@ -218,7 +218,7 @@ describe('Editor', () => {
     it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {
       const plugins = [
         {
-          handleKeyCommand: sinon.stub().returns(true),
+          handleKeyCommand: sinon.stub().returns('handled'),
           onUpArrow: sinon.stub().returns(true),
         },
         {
