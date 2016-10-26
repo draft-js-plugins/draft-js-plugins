@@ -22,7 +22,7 @@ export default class Entry extends Component {
   onMouseUp = () => {
     if (this.mouseDown) {
       this.mouseDown = false;
-      this.props.onMentionSelect(this.props.mention);
+      this.props.onAddMention(this.props.mention);
     }
   };
 
