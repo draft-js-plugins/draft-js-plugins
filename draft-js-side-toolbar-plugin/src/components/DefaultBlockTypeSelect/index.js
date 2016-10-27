@@ -1,6 +1,6 @@
 import React from 'react';
-import HeaderOneButton from '../../../../draft-js-inline-toolbar-plugin/src/components/HeaderOneButton';
-import HeaderTwoButton from '../../../../draft-js-inline-toolbar-plugin/src/components/HeaderTwoButton';
+import HeadlineOneButton from '../../../../draft-js-inline-toolbar-plugin/src/components/HeadlineOneButton';
+import HeadlineTwoButton from '../../../../draft-js-inline-toolbar-plugin/src/components/HeadlineTwoButton';
 import BlockquoteButton from '../../../../draft-js-inline-toolbar-plugin/src/components/BlockquoteButton';
 import CodeBlockButton from '../../../../draft-js-inline-toolbar-plugin/src/components/CodeBlockButton';
 import UnorderedListButton from '../../../../draft-js-inline-toolbar-plugin/src/components/UnorderedListButton';
@@ -12,8 +12,8 @@ const DefaultBlockTypeSelect = ({ getEditorState, setEditorState }) => (
     getEditorState={getEditorState}
     setEditorState={setEditorState}
     structure={[
-      HeaderOneButton,
-      HeaderTwoButton,
+      HeadlineOneButton,
+      HeadlineTwoButton,
       UnorderedListButton,
       OrderedListButton,
       BlockquoteButton,
