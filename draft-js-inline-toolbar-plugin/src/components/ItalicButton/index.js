@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../inlineToolbarStyles.css';
+import styles from '../../buttonStyles.css';
 import createInlineStyleButton from '../../utils/createInlineStyleButton';
 
 export default createInlineStyleButton({

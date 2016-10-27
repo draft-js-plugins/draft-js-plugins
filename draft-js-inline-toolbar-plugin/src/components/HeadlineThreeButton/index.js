@@ -1,8 +1,8 @@
-import styles from '../../inlineToolbarStyles.css';
+import styles from '../../buttonStyles.css';
 import createBlockStyleButton from '../../utils/createBlockStyleButton';
 
 export default createBlockStyleButton({
-  blockType: 'header-one',
+  blockType: 'header-three',
   theme: styles,
-  children: 'H1',
+  children: 'H3',
 });
