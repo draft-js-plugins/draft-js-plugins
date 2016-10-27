@@ -1,4 +1,4 @@
-import styles from '../../inlineToolbarStyles.css';
+import styles from '../../buttonStyles.css';
 import createBlockStyleButton from '../../utils/createBlockStyleButton';
 
 export default createBlockStyleButton({
