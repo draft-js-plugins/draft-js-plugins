@@ -37,6 +37,11 @@ export default class NavBar extends Component {
           </ul>
           <ul className={styles.plugins}>
             <li className={styles.plugin}>
+              <Link to="/plugin/hashtag" className={styles.link}>
+                Hashtag
+              </Link>
+            </li>
+            <li className={styles.plugin}>
               <Link to="/plugin/inline-toolbar" className={styles.link}>
                 Inline Toolbar
               </Link>
@@ -44,11 +49,6 @@ export default class NavBar extends Component {
             <li className={styles.plugin}>
               <Link to="/plugin/side-toolbar" className={styles.link}>
                 Side Toolbar
-              </Link>
-            </li>
-            <li className={styles.plugin}>
-              <Link to="/plugin/hashtag" className={styles.link}>
-                Hashtag
               </Link>
             </li>
             <li className={styles.plugin}>
