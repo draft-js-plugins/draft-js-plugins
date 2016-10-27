@@ -10,6 +10,6 @@ mv $(pwd)/../draft-js-alignment-plugin/tmpBabelrc $(pwd)/../draft-js-alignment-p
 mv $(pwd)/../draft-js-entity-props-plugin/tmpBabelrc $(pwd)/../draft-js-entity-props-plugin/.babelrc
 mv $(pwd)/../draft-js-focus-plugin/tmpBabelrc $(pwd)/../draft-js-focus-plugin/.babelrc
 mv $(pwd)/../draft-js-resizeable-plugin/tmpBabelrc $(pwd)/../draft-js-resizeable-plugin/.babelrc
-mv $(pwd)/../draft-js-inline-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js--inline-toolbar-plugin/.babelrc
+mv $(pwd)/../draft-js-inline-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js-inline-toolbar-plugin/.babelrc
 mv $(pwd)/../draft-js-side-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js-side-toolbar-plugin/.babelrc
 mv $(pwd)/../draft-js-image-plugin/tmpBabelrc $(pwd)/../draft-js-image-plugin/.babelrc
