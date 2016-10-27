@@ -1,6 +1,7 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
+import DefaultBlockTypeSelect from './components/DefaultBlockTypeSelect';
 
 const createSideToolbarPlugin = (config = {}) => {
   const store = createStore({
@@ -8,7 +9,9 @@ const createSideToolbarPlugin = (config = {}) => {
   });
 
   const {
-    structure = []
+    structure = [
+      DefaultBlockTypeSelect
+    ]
   } = config;
 
   const toolbarProps = {

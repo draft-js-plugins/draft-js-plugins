@@ -8,7 +8,7 @@ import editorStyles from './editorStyles.css';
 const sideToolbarPlugin = createSideToolbarPlugin();
 const { SideToolbar } = sideToolbarPlugin;
 const plugins = [sideToolbarPlugin];
-const text = 'In this editor a toolbar with a lot more options shows up once you select part of the text …';
+const text = 'Once you click into the text field the sidebar plugin will show up …';
 
 export default class CustomSideToolbarEditor extends Component {
 

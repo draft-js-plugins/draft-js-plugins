@@ -1,13 +1,6 @@
 import React from 'react';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
-import BlockTypeSelect from '../BlockTypeSelect';
 import styles from './styles.css';
-import HeaderOneButton from '../../../../draft-js-inline-toolbar-plugin/src/components/HeaderOneButton';
-import HeaderTwoButton from '../../../../draft-js-inline-toolbar-plugin/src/components/HeaderTwoButton';
-import BlockquoteButton from '../../../../draft-js-inline-toolbar-plugin/src/components/BlockquoteButton';
-import CodeBlockButton from '../../../../draft-js-inline-toolbar-plugin/src/components/CodeBlockButton';
-import UnorderedListButton from '../../../../draft-js-inline-toolbar-plugin/src/components/UnorderedListButton';
-import OrderedListButton from '../../../../draft-js-inline-toolbar-plugin/src/components/OrderedListButton';
 
 export default class Toolbar extends React.Component {
 
@@ -58,18 +51,13 @@ export default class Toolbar extends React.Component {
         className={styles.wrapper}
         style={this.state.position}
       >
-        <BlockTypeSelect
-          getEditorState={this.props.store.getItem('getEditorState')}
-          setEditorState={this.props.store.getItem('setEditorState')}
-          structure={[
-            HeaderOneButton,
-            HeaderTwoButton,
-            UnorderedListButton,
-            OrderedListButton,
-            BlockquoteButton,
-            CodeBlockButton,
-          ]}
-        />
+        {this.props.structure.map((Component, index) => (
+          <Component
+            key={index}
+            getEditorState={this.props.store.getItem('getEditorState')}
+            setEditorState={this.props.store.getItem('setEditorState')}
+          />
+        ))}
       </div>
     );
   }
