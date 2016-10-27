@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import addImage from '../modifiers/addImage';
+import styles from './styles.css';
 
 export default class ImageAdd extends Component {
   // Start the popover closed
@@ -44,7 +44,7 @@ export default class ImageAdd extends Component {
 
   addImage = () => {
     const { editorState, onChange } = this.props;
-    onChange(addImage(editorState, this.state.url));
+    onChange(this.props.modifier(editorState, this.state.url));
   };
 
   changeUrl = (evt) => {
@@ -52,22 +52,21 @@ export default class ImageAdd extends Component {
   }
 
   render() {
-    const { theme = {} } = this.props;
     const popoverClassName = this.state.open ?
-      theme.addImagePopover :
-      theme.addImageClosedPopover;
+      styles.addImagePopover :
+      styles.addImageClosedPopover;
     const buttonClassName = this.state.open ?
-      theme.addImagePressedButton :
-      theme.addImageButton;
+      styles.addImagePressedButton :
+      styles.addImageButton;
 
     return (
-      <div className={theme.addImage}>
+      <div className={styles.addImage}>
         <button
           className={buttonClassName}
           onMouseUp={this.openPopover}
           type="button"
         >
-          {this.props.addImageButtonContent}
+          +
         </button>
         <div
           className={popoverClassName}
@@ -76,12 +75,12 @@ export default class ImageAdd extends Component {
           <input
             type="text"
             placeholder="Paste the image url …"
-            className={theme.addImageInput}
+            className={styles.addImageInput}
             onChange={this.changeUrl}
             value={this.state.url}
           />
           <button
-            className={theme.addImageConfirmButton}
+            className={styles.addImageConfirmButton}
             type="button"
             onClick={this.addImage}
           >

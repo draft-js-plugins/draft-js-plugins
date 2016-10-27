@@ -9,6 +9,10 @@ import customExampleCode from '!!../../../loaders/prism-loader?language=javascri
 // eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomImageEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
+import addImageExampleCode from '!!../../../loaders/prism-loader?language=javascript!./AddImageEditor';
+// eslint-disable-next-line import/no-unresolved
+import addImageExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./AddImageEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
@@ -22,6 +26,7 @@ import styles from './styles.css';
 import Code from '../../shared/Code';
 import SimpleImageEditor from './SimpleImageEditor';
 import CustomImageEditor from './CustomImageEditor';
+import AddImageEditor from './AddImageEditor';
 import ExternalLink from '../../shared/Link';
 import InlineCode from '../../shared/InlineCode';
 import SocialBar from '../../shared/SocialBar';
@@ -123,10 +128,16 @@ export default class App extends Component {
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Themed Sticker Example</Heading>
+          <Heading level={2}>Resize + Focus + Drag&Drop Example</Heading>
           <CustomImageEditor />
-          <Code code={customExampleCode} name="CustomImageEditor.js" />
+          <Code code={customExampleCode} name="AddImageEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>Add Image Button Example</Heading>
+          <AddImageEditor />
+          <Code code={addImageExampleCode} name="AddImageEditor.js" />
+          <Code code={addImageExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>
