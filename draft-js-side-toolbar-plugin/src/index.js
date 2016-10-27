@@ -17,8 +17,10 @@ const createSideToolbarPlugin = (config = {}) => {
   };
 
   return {
-    initialize: ({ setEditorState, getEditorState }) => {
-      store.updateItem('setEditorState', setEditorState, getEditorState);
+    initialize: ({ setEditorState, getEditorState, getEditorRef }) => {
+      store.updateItem('getEditorState', getEditorState);
+      store.updateItem('setEditorState', setEditorState);
+      store.updateItem('getEditorRef', getEditorRef);
     },
     // Re-Render the toolbar on every change
     onChange: (editorState) => {
