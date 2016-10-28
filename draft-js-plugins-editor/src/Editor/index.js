@@ -123,6 +123,15 @@ class PluginEditor extends Component {
     getEditorRef: this.getEditorRef,
   });
 
+  editorRefChanged = (editor) => {
+    this.editor = editor;
+    this.resolvePlugins().forEach((plugin) => {
+      if (plugin.onRefChanged) {
+        plugin.onRefChanged(editor);
+      }
+    });
+  };
+
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
@@ -332,7 +341,7 @@ class PluginEditor extends Component {
         blockRenderMap={blockRenderMap}
         onChange={this.onChange}
         editorState={this.props.editorState}
-        ref={(element) => { this.editor = element; }}
+        ref={this.editorRefChanged}
       />
     );
   }
