@@ -7,6 +7,10 @@ const createStore = (initialState) => {
     listeners[key].push(callback);
   };
 
+  const unsubscribeFromItem = (key, callback) => {
+    listeners[key] = listeners[key].filter((l) => l !== callback);
+  };
+
   const updateItem = (key, item) => {
     state = {
       ...state,
@@ -21,6 +25,7 @@ const createStore = (initialState) => {
 
   return {
     subscribeToItem,
+    unsubscribeFromItem,
     updateItem,
     getItem,
   };
