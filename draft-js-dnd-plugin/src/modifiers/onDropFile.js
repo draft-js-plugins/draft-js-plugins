@@ -64,11 +64,11 @@ export default function onDropFile(config) {
                   blocks.first().get('key'),
                   retainSrc ? {
                     progress: undefined,
-                    url: file.url || undefined
+                    url: file.url
                   } : {
                     progress: undefined,
                     src: undefined,
-                    url: file.url || undefined
+                    url: file.url
                   }
                 ),
                 blocks.first().get('key'),
