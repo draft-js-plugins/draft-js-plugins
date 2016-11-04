@@ -85,6 +85,28 @@ class PluginEditor extends Component {
     }
   };
 
+  getPlugins = () => this.props.plugins.slice(0);
+  getProps = () => ({ ...this.props });
+
+  // TODO further down in render we use readOnly={this.props.readOnly || this.state.readOnly}. Ask Ben why readOnly is here just from the props? Why would plugins use this instead of just taking it from getProps?
+  getReadOnly = () => this.props.readOnly;
+  setReadOnly = (readOnly) => {
+    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
+  };
+
+  getEditorRef = () => this.editor;
+
+  getEditorState = () => this.props.editorState;
+  getPluginMethods = () => ({
+    getPlugins: this.getPlugins,
+    getProps: this.getProps,
+    setEditorState: this.onChange,
+    getEditorState: this.getEditorState,
+    getReadOnly: this.getReadOnly,
+    setReadOnly: this.setReadOnly,
+    getEditorRef: this.getEditorRef,
+  });
+
   loadDecorators = () => {
     const decorators = this.resolveDecorators();
     const compositeDecorator = createCompositeDecorator(
@@ -109,28 +131,6 @@ class PluginEditor extends Component {
     const editorState = this.loadDecorators();
     this.onChange(editorState);
   };
-
-  getPlugins = () => this.props.plugins.slice(0);
-  getProps = () => ({ ...this.props });
-
-  // TODO further down in render we use readOnly={this.props.readOnly || this.state.readOnly}. Ask Ben why readOnly is here just from the props? Why would plugins use this instead of just taking it from getProps?
-  getReadOnly = () => this.props.readOnly;
-  setReadOnly = (readOnly) => {
-    if (readOnly !== this.state.readOnly) this.setState({ readOnly });
-  };
-
-  getEditorRef = () => this.editor;
-
-  getEditorState = () => this.props.editorState;
-  getPluginMethods = () => ({
-    getPlugins: this.getPlugins,
-    getProps: this.getProps,
-    setEditorState: this.onChange,
-    getEditorState: this.getEditorState,
-    getReadOnly: this.getReadOnly,
-    setReadOnly: this.setReadOnly,
-    getEditorRef: this.getEditorRef,
-  });
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
