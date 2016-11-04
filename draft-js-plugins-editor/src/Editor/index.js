@@ -55,23 +55,7 @@ class PluginEditor extends Component {
   }
 
   componentWillMount() {
-    const decorators = this.resolveDecorators();
-    const compositeDecorator = createCompositeDecorator(
-      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
-      this.getEditorState,
-      this.onChange);
-
-    const customDecorators = decorators
-      .filter((decorator) => this.decoratorIsCustom(decorator));
-
-    const multiDecorator = new MultiDecorator(
-      [
-        ...customDecorators,
-        compositeDecorator,
-      ]
-    );
-
-    const editorState = EditorState.set(this.props.editorState, { decorator: multiDecorator });
+    const editorState = this.loadDecorators();
     this.onChange(moveSelectionToEnd(editorState));
   }
 
@@ -99,6 +83,31 @@ class PluginEditor extends Component {
     if (this.props.onChange) {
       this.props.onChange(newEditorState, this.getPluginMethods());
     }
+  };
+
+  loadDecorators = () => {
+    const decorators = this.resolveDecorators();
+    const compositeDecorator = createCompositeDecorator(
+      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
+      this.getEditorState,
+      this.onChange);
+
+    const customDecorators = decorators
+      .filter((decorator) => this.decoratorIsCustom(decorator));
+
+    const multiDecorator = new MultiDecorator(
+      [
+        ...customDecorators,
+        compositeDecorator,
+      ]
+    );
+
+    return EditorState.set(this.props.editorState, { decorator: multiDecorator });
+  };
+
+  reloadDecorators = () => {
+    const editorState = this.loadDecorators();
+    this.onChange(editorState);
   };
 
   getPlugins = () => this.props.plugins.slice(0);
