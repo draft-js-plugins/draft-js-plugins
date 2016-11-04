@@ -62,7 +62,14 @@ export default function onDropFile(config) {
                 modifyBlockData(
                   newEditorState,
                   blocks.first().get('key'),
-                  retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
+                  retainSrc ? {
+                    progress: undefined,
+                    url: file.url || undefined
+                  } : {
+                    progress: undefined,
+                    src: undefined,
+                    url: file.url || undefined
+                  }
                 ),
                 blocks.first().get('key'),
                 newEditorStateOrBlockType
