@@ -5,9 +5,9 @@ import ItalicButton from './components/ItalicButton';
 import BoldButton from './components/BoldButton';
 import CodeButton from './components/CodeButton';
 import UnderlineButton from './components/UnderlineButton';
-import HeaderOneButton from './components/HeaderOneButton';
-import HeaderTwoButton from './components/HeaderTwoButton';
-import HeaderThreeButton from './components/HeaderThreeButton';
+import HeadlineOneButton from './components/HeadlineOneButton';
+import HeadlineTwoButton from './components/HeadlineTwoButton';
+import HeadlineThreeButton from './components/HeadlineThreeButton';
 import UnorderedListButton from './components/UnorderedListButton';
 import OrderedListButton from './components/OrderedListButton';
 import BlockquoteButton from './components/BlockquoteButton';
@@ -16,7 +16,7 @@ import Separator from './components/Separator';
 
 const createInlineToolbarPlugin = (config = {}) => {
   const store = createStore({
-    isVisisble: false,
+    isVisible: false,
   });
 
   const {
@@ -26,9 +26,9 @@ const createInlineToolbarPlugin = (config = {}) => {
       UnderlineButton,
       CodeButton,
       // Separator,
-      // HeaderOneButton,
-      // HeaderTwoButton,
-      // HeaderThreeButton,
+      // HeadlineOneButton,
+      // HeadlineTwoButton,
+      // HeadlineThreeButton,
       // UnorderedListButton,
       // OrderedListButton,
       // BlockquoteButton,
@@ -67,9 +67,9 @@ export {
   BoldButton,
   CodeButton,
   UnderlineButton,
-  HeaderOneButton,
-  HeaderTwoButton,
-  HeaderThreeButton,
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  HeadlineThreeButton,
   UnorderedListButton,
   OrderedListButton,
   BlockquoteButton,

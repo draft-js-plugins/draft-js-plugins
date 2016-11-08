@@ -37,13 +37,18 @@ export default class NavBar extends Component {
           </ul>
           <ul className={styles.plugins}>
             <li className={styles.plugin}>
+              <Link to="/plugin/hashtag" className={styles.link}>
+                Hashtag
+              </Link>
+            </li>
+            <li className={styles.plugin}>
               <Link to="/plugin/inline-toolbar" className={styles.link}>
                 Inline Toolbar
               </Link>
             </li>
             <li className={styles.plugin}>
-              <Link to="/plugin/hashtag" className={styles.link}>
-                Hashtag
+              <Link to="/plugin/side-toolbar" className={styles.link}>
+                Side Toolbar
               </Link>
             </li>
             <li className={styles.plugin}>
@@ -57,6 +62,8 @@ export default class NavBar extends Component {
               </Link>
             </li>
           </ul>
+        </div>
+        <div style={{ textAlign: 'center', fontSize: 13, color: '#ae4a28' }}>The documentation currently represents the master branch.<br /> We will cut a new release with these features 2.0.0-beta6 on 30th October 2016.
         </div>
       </div>
     );

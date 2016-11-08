@@ -1,4 +1,4 @@
 import React from 'react';
-import styles from '../../inlineToolbarStyles.css';
+import styles from '../../buttonStyles.css';
 
 export default () => <div className={styles.separator} />;
