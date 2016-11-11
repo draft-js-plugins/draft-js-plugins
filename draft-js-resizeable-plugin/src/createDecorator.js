@@ -26,7 +26,7 @@ function round(x, steps) {
 }
 
 // Export
-export default (options) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
+export default ({ config, store }) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
   static defaultProps = {
@@ -36,7 +36,7 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     resizeSteps: 1,
     handles: false,
     caption: false,
-    ...options
+    ...config
   };
   state = {
     hoverPosition: {},
@@ -106,7 +106,7 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
       let width = (startWidth + dragEvent.clientX) - startX;
       let height = (startHeight + dragEvent.clientY) - startY;
       // TODO get the editor ref here
-      const block = pane.parentElement.parentElement;
+      const block = store.getEditorRef().refs.editor;
       width = block.clientWidth < width ? block.clientWidth : width;
       height = block.clientHeight < height ? block.clientHeight : height;
 

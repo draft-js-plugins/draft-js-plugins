@@ -1,5 +1,12 @@
 import createDecorator from './createDecorator';
 
+const store = {
+  getEditorRef: undefined,
+};
+
 export default (config) => ({
-  decorator: createDecorator(config),
+  initialize: ({ getEditorRef }) => {
+    store.getEditorRef = getEditorRef;
+  },
+  decorator: createDecorator({ config, store }),
 });
