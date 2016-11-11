@@ -87,7 +87,7 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
   mouseDown = (event) => {
     // No mouse-hover-position data? Nothing to resize!
     if (!this.state.hoverPosition.canResize) {
-      return undefined;
+      return;
     }
     const { resizeSteps, vertical, horizontal } = this.props;
     const { hoverPosition } = this.state;
@@ -129,11 +129,10 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
       this.setState(newState);
       dragEvent.stopPropagation();
       dragEvent.preventDefault();
-      return false;
     };
 
     // Finished dragging
-    const stopDrag = (e) => {
+    const stopDrag = (dragEvent) => {
       // TODO clean up event listeners
       document.removeEventListener('mousemove', doDrag, false);
       document.removeEventListener('mouseup', stopDrag, false);
@@ -144,8 +143,7 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
         this.setEntityData({ width, height });
       });
 
-      e.stopPropagation();
-      return false;
+      dragEvent.stopPropagation();
     };
 
     // TODO clean up event listeners
@@ -155,7 +153,6 @@ export default (options) => (WrappedComponent) => class BlockResizeableDecorator
     this.setState({ clicked: true });
     event.stopPropagation();
     event.preventDefault();
-    return false;
   }
 
   render() {
