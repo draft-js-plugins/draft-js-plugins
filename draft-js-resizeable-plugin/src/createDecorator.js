@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const resizeableRatioUtil = (ratio, padding) => ({
-  ratioContainerStyle: {
-    position: 'relative'
-  },
-  ratioContentStyle: {
-    position: 'absolute',
-    top: padding ? `-${padding}px` : 0,
-    left: padding ? `-${padding}px` : 0,
-    bottom: 0,
-    right: 0,
-    padding: padding ? `${padding}px` : 0
-  },
-});
-
 const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
@@ -28,7 +14,6 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
   static defaultProps = {
     horizontal: 'relative',
     vertical: false,
-    ratio: null,
     resizeSteps: 1,
     handles: false,
     caption: false,
@@ -145,7 +130,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
   }
 
   render() {
-    const { blockProps, vertical, horizontal, ratio, style } = this.props;
+    const { blockProps, vertical, horizontal, style } = this.props;
     const { width, height, hoverPosition } = this.state;
     const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
@@ -187,19 +172,6 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
         onMouseMove: this.mouseMove,
         onMouseLeave: this.mouseLeave,
       };
-
-    // TODO check if & how ratio plays together with readOnly
-    if (ratio) {
-      return (
-        <WrappedComponent
-          {...this.props}
-          {...interactionProps}
-          ref={(element) => { this.wrapper = element; }}
-          style={styles}
-          {...resizeableRatioUtil(ratio, 3)}
-        />
-      );
-    }
 
     return (
       <WrappedComponent
