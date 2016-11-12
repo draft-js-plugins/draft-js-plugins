@@ -1,6 +1,6 @@
 import onDropFile from './modifiers/onDropFile';
 import onDropBlock from './modifiers/onDropBlock';
-import createDecorator from './decorators/draggable';
+import createDecorator from './createDecorator';
 
 const store = {
   getReadOnly: undefined,

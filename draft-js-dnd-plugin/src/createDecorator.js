@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DRAFTJS_BLOCK_KEY } from '../constants';
+import { DRAFTJS_BLOCK_KEY } from './constants';
 
 // Get a component's display name
 const getDisplayName = (WrappedComponent) => {
