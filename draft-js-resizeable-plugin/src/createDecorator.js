@@ -184,6 +184,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       <WrappedComponent
         {...elementProps}
         {...interactionProps}
+        blockProps={blockProps}
         ref={(element) => { this.wrapper = element; }}
         style={styles}
       />
