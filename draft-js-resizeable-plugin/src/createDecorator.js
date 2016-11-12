@@ -15,17 +15,13 @@ const resizeableRatioUtil = (ratio, padding) => ({
   },
 });
 
-// Get a component's display name
 const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
-function round(x, steps) {
-  return Math.ceil(x / steps) * steps;
-}
+const round = (x, steps) => Math.ceil(x / steps) * steps;
 
-// Export
 export default ({ config, store }) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -58,7 +54,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
 
     const hoverPosition = this.state.hoverPosition;
     const tolerance = 6;
-    // TODO figure out how to achieve this without fetching the DOM node
+    // TODO figure out if and how to achieve this without fetching the DOM node
     // eslint-disable-next-line react/no-find-dom-node
     const pane = ReactDOM.findDOMNode(this);
     const b = pane.getBoundingClientRect();
@@ -105,7 +101,6 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     const doDrag = (dragEvent) => {
       let width = (startWidth + dragEvent.clientX) - startX;
       let height = (startHeight + dragEvent.clientY) - startY;
-      // TODO get the editor ref here
       const block = store.getEditorRef().refs.editor;
       width = block.clientWidth < width ? block.clientWidth : width;
       height = block.clientHeight < height ? block.clientHeight : height;
@@ -127,12 +122,10 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       }
 
       this.setState(newState);
-      dragEvent.stopPropagation();
-      dragEvent.preventDefault();
     };
 
     // Finished dragging
-    const stopDrag = (dragEvent) => {
+    const stopDrag = () => {
       // TODO clean up event listeners
       document.removeEventListener('mousemove', doDrag, false);
       document.removeEventListener('mouseup', stopDrag, false);
@@ -142,8 +135,6 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       setTimeout(() => {
         this.setEntityData({ width, height });
       });
-
-      dragEvent.stopPropagation();
     };
 
     // TODO clean up event listeners
@@ -151,8 +142,6 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     document.addEventListener('mouseup', stopDrag, false);
 
     this.setState({ clicked: true });
-    event.stopPropagation();
-    event.preventDefault();
   }
 
   render() {
@@ -191,13 +180,20 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       styles.cursor = 'default';
     }
 
+    const interactionProps = store.getReadOnly()
+      ? {}
+      : {
+        onMouseDown: this.mouseDown,
+        onMouseMove: this.mouseMove,
+        onMouseLeave: this.mouseLeave,
+      };
+
+    // TODO check if & how ratio plays together with readOnly
     if (ratio) {
       return (
         <WrappedComponent
           {...this.props}
-          onMouseDown={this.mouseDown}
-          onMouseMove={this.mouseMove}
-          onMouseLeave={this.mouseLeave}
+          {...interactionProps}
           ref={(element) => { this.wrapper = element; }}
           style={styles}
           {...resizeableRatioUtil(ratio, 3)}
@@ -205,13 +201,10 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       );
     }
 
-    // TODO make sure resize doesn't work in readOnly mode
     return (
       <WrappedComponent
         {...this.props}
-        onMouseDown={this.mouseDown}
-        onMouseMove={this.mouseMove}
-        onMouseLeave={this.mouseLeave}
+        {...interactionProps}
         ref={(element) => { this.wrapper = element; }}
         style={styles}
       />
