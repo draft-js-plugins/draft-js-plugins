@@ -15,8 +15,6 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     horizontal: 'relative',
     vertical: false,
     resizeSteps: 1,
-    handles: false,
-    caption: false,
     ...config
   };
   state = {
@@ -131,7 +129,15 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
   }
 
   render() {
-    const { blockProps, vertical, horizontal, style } = this.props;
+    const {
+      blockProps,
+      vertical,
+      horizontal,
+      style,
+      // using destructuring to make sure unused props are not passed down to the block
+      resizeSteps, // eslint-disable-line no-unused-vars
+      ...elementProps
+    } = this.props;
     const { width, height, hoverPosition } = this.state;
     const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
@@ -176,7 +182,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
 
     return (
       <WrappedComponent
-        {...this.props}
+        {...elementProps}
         {...interactionProps}
         ref={(element) => { this.wrapper = element; }}
         style={styles}
