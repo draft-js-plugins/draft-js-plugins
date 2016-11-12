@@ -7,16 +7,7 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-// TODO remove if not necessary
-// const findParentNode = (node, filter) => {
-//   if (!node) return null;
-//   return node.parentElement && filter(node.parentElement)
-//     ? node.parentElement
-//     : findParentNode(node.parentElement, filter);
-// };
-
 export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
-
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
