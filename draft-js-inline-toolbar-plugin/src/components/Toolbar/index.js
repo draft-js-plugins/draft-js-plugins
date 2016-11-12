@@ -8,7 +8,7 @@ const toolbarHeight = 44;
 export default class Toolbar extends React.Component {
 
   state = {
-    isVisisble: false,
+    isVisible: false,
   }
 
   componentWillMount() {
