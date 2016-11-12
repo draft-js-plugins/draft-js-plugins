@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import unionClassNames from 'union-class-names';
+import removeBlock from './modifiers/removeBlock';
 
 // Get a component's display name
 const getDisplayName = (WrappedComponent) => {
@@ -47,7 +48,7 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     } else if (event.keyCode === 8) {
       // TODO fix backspace for removing the block
       this.props.blockProps.unsetFocus('down', event);
-      this.props.blockProps.removeBlock();
+      store.setEditorState(removeBlock(store.getEditorState(), this.props.block.get('key')));
     }
   }
 

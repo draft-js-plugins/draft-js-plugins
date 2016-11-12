@@ -6,6 +6,8 @@ import defaultTheme from './style.css';
 
 const store = {
   getReadOnly: undefined,
+  getEditorState: undefined,
+  setEditorState: undefined,
   types: {},
   addType: (type) => {
     store.types[type] = true;
@@ -18,8 +20,10 @@ const focusPlugin = (config = {}) => {
   let activeBlock = null;
 
   return {
-    initialize: ({ getReadOnly }) => {
+    initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
       store.getReadOnly = getReadOnly;
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
     },
     // Wrap all block-types in block-focus decorator
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, setReadOnly, getReadOnly }) => {
