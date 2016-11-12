@@ -25,7 +25,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
   };
 
   setEntityData = (data) => {
-    this.props.blockProps.setEntityData(data);
+    this.props.blockProps.setResizeData(data);
   }
 
   mouseLeave = () => {
@@ -117,6 +117,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
 
       const { width, height } = this.state;
       this.setState({ clicked: false });
+      // TODO check if timeout is necessary
       setTimeout(() => {
         this.setEntityData({ width, height });
       });
@@ -139,17 +140,17 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     if (horizontal === 'auto') {
       styles.width = 'auto';
     } else if (horizontal === 'relative') {
-      styles.width = `${(width || blockProps.entityData.width || 40)}%`;
+      styles.width = `${(width || blockProps.resizeData.width || 40)}%`;
     } else if (horizontal === 'absolute') {
-      styles.width = `${(width || blockProps.entityData.width || 40)}px`;
+      styles.width = `${(width || blockProps.resizeData.width || 40)}px`;
     }
 
     if (vertical === 'auto') {
       styles.height = 'auto';
     } else if (vertical === 'relative') {
-      styles.height = `${(height || blockProps.entityData.height || 40)}%`;
+      styles.height = `${(height || blockProps.resizeData.height || 40)}%`;
     } else if (vertical === 'absolute') {
-      styles.height = `${(height || blockProps.entityData.height || 40)}px`;
+      styles.height = `${(height || blockProps.resizeData.height || 40)}px`;
     }
 
     // Handle cursor
