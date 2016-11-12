@@ -31,9 +31,8 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
   }
 
   componentDidUpdate() {
-    const { pluginEditor, isFocused } = this.props.blockProps;
-    const { getReadOnly } = pluginEditor;
-    if (!getReadOnly()) {
+    const { isFocused } = this.props.blockProps;
+    if (!store.getReadOnly()) {
       document.addEventListener('keydown', this.releaseOnKeyDown);
       if (isFocused) {
         document.addEventListener('click', this.releaseOnClick);

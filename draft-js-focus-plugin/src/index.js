@@ -2,10 +2,10 @@ import { EditorState } from 'draft-js';
 import setSelection from './modifiers/setSelection';
 import setFocusToBlock from './modifiers/setFocusToBlock';
 import createDecorator from './createDecorator';
-import styles from './style.css';
+import defaultTheme from './style.css';
 
-const defaultTheme = { ...styles };
 const store = {
+  getReadOnly: undefined,
   types: {},
   addType: (type) => {
     store.types[type] = true;
@@ -16,8 +16,11 @@ const store = {
 const focusPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   let activeBlock = null;
+
   return {
-    theme,
+    initialize: ({ getReadOnly }) => {
+      store.getReadOnly = getReadOnly;
+    },
     // Wrap all block-types in block-focus decorator
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, setReadOnly, getReadOnly }) => {
       const readOnly = getReadOnly();
@@ -53,7 +56,9 @@ const focusPlugin = (config = {}) => {
       // Return the decorator and feed it theme and above properties
       return {
         props: {
-          unsetFocus, isFocused, setFocus
+          unsetFocus,
+          isFocused,
+          setFocus
         }
       };
     },
@@ -68,7 +73,7 @@ const focusPlugin = (config = {}) => {
       // TODO match by entitiy instead of block type
       setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
     },
-    decorator: createDecorator({ theme: styles, store }),
+    decorator: createDecorator({ theme, store }),
   };
 };
 
