@@ -1,12 +1,38 @@
-import Decorator from './decorators/block-alignment';
-import styles from './style.css';
+import { Entity, EditorState } from 'draft-js';
+import createDecorator from './createDecorator';
 
-// Block-Types to be handled will be stored here
-
-const alignmentPlugin = (config = {}) => {
-  const theme = config.theme ? config.theme : styles;
-  return { theme };
+const store = {
+  getEditorRef: undefined,
+  getReadOnly: undefined,
+  getEditorState: undefined,
+  setEditorState: undefined,
 };
 
-export default alignmentPlugin;
-export const AlignmentDecorator = Decorator({ theme: styles });
+const createSetAlignmentData = (contentBlock, { getEditorState, setEditorState }) => (data) => {
+  const entityKey = contentBlock.getEntityAt(0);
+  if (entityKey) {
+    const editorState = getEditorState();
+    Entity.mergeData(entityKey, { ...data });
+    setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
+  }
+};
+
+export default (config) => ({
+  initialize: ({ getEditorRef, getReadOnly, getEditorState, setEditorState }) => {
+    store.getReadOnly = getReadOnly;
+    store.getEditorRef = getEditorRef;
+    store.getEditorState = getEditorState;
+    store.setEditorState = setEditorState;
+  },
+  decorator: createDecorator({ config, store }),
+  blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
+    const entityKey = contentBlock.getEntityAt(0);
+    const alignmentData = entityKey ? Entity.get(entityKey).data : {};
+    return {
+      props: {
+        alignmentData,
+        setAlignmentData: createSetAlignmentData(contentBlock, { getEditorState, setEditorState }),
+      },
+    };
+  }
+});
