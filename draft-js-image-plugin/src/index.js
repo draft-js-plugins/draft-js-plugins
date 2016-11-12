@@ -14,6 +14,7 @@ const imagePlugin = (config = {}) => {
   if (config.decorator) {
     Image = config.decorator(Image);
   }
+  const ThemedImage = decorateComponentWithProps(Image, { theme });
   return {
     blockRendererFn: (block) => {
       if (block.getType() === 'atomic') {
@@ -21,7 +22,7 @@ const imagePlugin = (config = {}) => {
         const type = entity.getType();
         if (type === 'image') {
           return {
-            component: decorateComponentWithProps(Image, { theme }),
+            component: ThemedImage,
             editable: false,
           };
         }
