@@ -2,13 +2,11 @@ import { Entity, EditorState } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
+import createStore from './utils/createStore';
 
-const store = {
-  getEditorRef: undefined,
-  getReadOnly: undefined,
-  getEditorState: undefined,
-  setEditorState: undefined,
-};
+const store = createStore({
+  isVisible: false,
+});
 
 const createSetAlignmentData = (contentBlock, { getEditorState, setEditorState }) => (data) => {
   const entityKey = contentBlock.getEntityAt(0);
@@ -24,11 +22,10 @@ export default (config) => {
     store
   };
   return {
-    initialize: ({ getEditorRef, getReadOnly, getEditorState, setEditorState }) => {
-      store.getReadOnly = getReadOnly;
-      store.getEditorRef = getEditorRef;
-      store.getEditorState = getEditorState;
-      store.setEditorState = setEditorState;
+    initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
+      store.updateItem('getReadOnly', getReadOnly);
+      store.updateItem('getEditorState', getEditorState);
+      store.updateItem('setEditorState', setEditorState);
     },
     decorator: createDecorator({ config, store }),
     blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {

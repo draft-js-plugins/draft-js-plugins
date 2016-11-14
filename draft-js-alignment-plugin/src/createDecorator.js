@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 const getDisplayName = (WrappedComponent) => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
@@ -8,6 +9,20 @@ const getDisplayName = (WrappedComponent) => {
 export default ({ store }) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
+
+  componentDidUpdate = () => {
+    if (this.props.blockProps.isFocused) {
+      // TODO figure out if and how to achieve this without fetching the DOM node
+      // eslint-disable-next-line react/no-find-dom-node
+      const blockNode = ReactDOM.findDOMNode(this);
+      const boundingRect = blockNode.getBoundingClientRect();
+      store.updateItem('setAlignmentData', this.props.blockProps.setAlignmentData);
+      store.updateItem('boundingRect', boundingRect);
+      store.updateItem('isVisible', true);
+    } else {
+      store.updateItem('isVisible', false);
+    }
+  }
 
   render() {
     const {
