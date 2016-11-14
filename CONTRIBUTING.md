@@ -72,15 +72,11 @@ module: {
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-undo-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-emoji-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-dnd-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-toolbar-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-entity-props-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-cleanup-empty-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-counter-plugin', 'src'), 
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-counter-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-focus-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-alignment-plugin', 'src'), 
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-alignment-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-image-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-resizeable-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-table-plugin', 'src')
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-resizeable-plugin', 'src')
     ]
   }]
 }
@@ -99,15 +95,10 @@ resolve: {
     'draft-js-emoji-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-emoji-plugin', 'src'),
     'draft-js-counter-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-counter-plugin', 'src'),
     'draft-js-dnd-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-dnd-plugin', 'src'),
-    'draft-js-entity-props-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-entity-props-plugin', 'src'),
-    'draft-js-cleanup-empty-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-cleanup-empty-plugin', 'src'),
-    'draft-js-toolbar-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-toolbar-plugin', 'src'),
     'draft-js-focus-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-focus-plugin', 'src'),
     'draft-js-alignment-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-alignment-plugin', 'src'),
-    'draft-js-click-events-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-click-events-plugin', 'src'),
     'draft-js-image-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-image-plugin', 'src'),
-    'draft-js-resizeable-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-resizeable-plugin', 'src'),
-    'draft-js-table-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-table-plugin', 'src')
+    'draft-js-resizeable-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-resizeable-plugin', 'src')
   }
 }
 ```
