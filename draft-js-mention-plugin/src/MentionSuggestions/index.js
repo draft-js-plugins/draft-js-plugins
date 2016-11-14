@@ -291,6 +291,8 @@ export default class MentionSuggestions extends Component {
 
     const {
       entryComponent,
+      onClose, // eslint-disable-line no-unused-vars
+      onOpen, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
       suggestions, // eslint-disable-line no-unused-vars
       ariaProps, // eslint-disable-line no-unused-vars
