@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import unionClassNames from 'union-class-names';
+import removeBlock from './modifiers/removeBlock';
 
 // Get a component's display name
 const getDisplayName = (WrappedComponent) => {
@@ -7,16 +8,7 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-// TODO remove if not necessary
-// const findParentNode = (node, filter) => {
-//   if (!node) return null;
-//   return node.parentElement && filter(node.parentElement)
-//     ? node.parentElement
-//     : findParentNode(node.parentElement, filter);
-// };
-
 export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
-
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
@@ -31,9 +23,8 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
   }
 
   componentDidUpdate() {
-    const { pluginEditor, isFocused } = this.props.blockProps;
-    const { getReadOnly } = pluginEditor;
-    if (!getReadOnly()) {
+    const { isFocused } = this.props.blockProps;
+    if (!store.getReadOnly()) {
       document.addEventListener('keydown', this.releaseOnKeyDown);
       if (isFocused) {
         document.addEventListener('click', this.releaseOnClick);
@@ -57,7 +48,7 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     } else if (event.keyCode === 8) {
       // TODO fix backspace for removing the block
       this.props.blockProps.unsetFocus('down', event);
-      this.props.blockProps.removeBlock();
+      store.setEditorState(removeBlock(store.getEditorState(), this.props.block.get('key')));
     }
   }
 

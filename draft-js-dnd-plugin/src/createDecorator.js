@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DRAFTJS_BLOCK_KEY } from '../constants';
+import { DRAFTJS_BLOCK_KEY } from './constants';
 
 // Get a component's display name
 const getDisplayName = (WrappedComponent) => {
@@ -8,7 +8,7 @@ const getDisplayName = (WrappedComponent) => {
 };
 
 // Export
-export default (WrappedComponent) => (
+export default ({ store }) => (WrappedComponent) => (
   class BlockDraggableDecorator extends Component {
     // Statics
     static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
@@ -31,8 +31,8 @@ export default (WrappedComponent) => (
     }
 
     render() {
-      const { draggable, blockProps } = this.props;
-      const readOnly = blockProps.pluginEditor.getReadOnly();
+      const { draggable } = this.props;
+      const readOnly = store.getReadOnly();
       return (
         <WrappedComponent
           {...this.props}

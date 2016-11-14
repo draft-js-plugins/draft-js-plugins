@@ -1,12 +1,43 @@
-import Decorator from './decorators/block-alignment';
-import styles from './style.css';
+import { Entity, EditorState } from 'draft-js';
+import decorateComponentWithProps from 'decorate-component-with-props';
+import createDecorator from './createDecorator';
+import AlignmentTool from './AlignmentTool';
+import createStore from './utils/createStore';
 
-// Block-Types to be handled will be stored here
+const store = createStore({
+  isVisible: false,
+});
 
-const alignmentPlugin = (config = {}) => {
-  const theme = config.theme ? config.theme : styles;
-  return { theme };
+const createSetAlignmentData = (contentBlock, { getEditorState, setEditorState }) => (data) => {
+  const entityKey = contentBlock.getEntityAt(0);
+  if (entityKey) {
+    const editorState = getEditorState();
+    Entity.mergeData(entityKey, { ...data });
+    setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
+  }
 };
 
-export default alignmentPlugin;
-export const AlignmentDecorator = Decorator({ theme: styles });
+export default (config) => {
+  const alignmentToolProps = {
+    store
+  };
+  return {
+    initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
+      store.updateItem('getReadOnly', getReadOnly);
+      store.updateItem('getEditorState', getEditorState);
+      store.updateItem('setEditorState', setEditorState);
+    },
+    decorator: createDecorator({ config, store }),
+    blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
+      const entityKey = contentBlock.getEntityAt(0);
+      const alignmentData = entityKey ? Entity.get(entityKey).data : {};
+      return {
+        props: {
+          alignmentData,
+          setAlignmentData: createSetAlignmentData(contentBlock, { getEditorState, setEditorState }),
+        },
+      };
+    },
+    AlignmentTool: decorateComponentWithProps(AlignmentTool, alignmentToolProps),
+  };
+};

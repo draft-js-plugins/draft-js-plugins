@@ -128,7 +128,7 @@ export default class App extends Component {
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Resize + Focus + Drag&Drop Example</Heading>
+          <Heading level={2}>Alignment + Resize + Focus + Drag&Drop Example</Heading>
           <CustomImageEditor />
           <Code code={customExampleCode} name="AddImageEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
