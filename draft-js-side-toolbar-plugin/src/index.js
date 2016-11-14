@@ -13,7 +13,7 @@ import CodeBlockButton from './components/CodeBlockButton';
 
 const createSideToolbarPlugin = (config = {}) => {
   const store = createStore({
-    isVisisble: false,
+    isVisible: false,
   });
 
   const {
