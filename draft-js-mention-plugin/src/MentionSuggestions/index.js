@@ -322,7 +322,7 @@ export default class MentionSuggestions extends Component {
           this.props.suggestions.map((mention, index) => (
             <Entry
               key={mention.has('id') ? mention.get('id') : mention.get('name')}
-              onAddMention={this.onAddMention}
+              onMentionSelect={this.onMentionSelect}
               onMentionFocus={this.onMentionFocus}
               isFocused={this.state.focusedOptionIndex === index}
               mention={mention}
