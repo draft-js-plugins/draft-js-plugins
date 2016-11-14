@@ -220,7 +220,7 @@ export default class App extends Component {
             </div>
             <div className={styles.teamMember}>
               <ExternalLink className={styles.teamTwitterLink} href="https://twitter.com/adrianmcli">
-                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/745010831469977600/mQqKuonK_200x200.jpg" role="presentation" />
+                <img className={styles.teamImage} src="https://pbs.twimg.com/profile_images/778069320194719744/R8SJ2ZX7_200x200.jpg" role="presentation" />
                 <div>Adrian Li</div>
               </ExternalLink>
             </div>
