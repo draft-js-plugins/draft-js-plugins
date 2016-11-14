@@ -16,6 +16,7 @@ export default class MentionSuggestions extends Component {
       'MUTABLE',
     ]),
     entryComponent: PropTypes.func,
+    onAddMention: PropTypes.func,
     suggestions: (props, propName, componentName) => {
       if (!List.isList(props[propName])) {
         return new Error(
@@ -214,6 +215,11 @@ export default class MentionSuggestions extends Component {
     if (!mention) {
       return;
     }
+
+    if (this.props.onAddMention) {
+      this.props.onAddMention(mention);
+    }
+
     this.closeDropdown();
     const newEditorState = addMention(
       this.props.store.getEditorState(),
@@ -293,6 +299,7 @@ export default class MentionSuggestions extends Component {
       entryComponent,
       onClose, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
+      onAddMention, // eslint-disable-line no-unused-vars, no-shadow
       onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
       suggestions, // eslint-disable-line no-unused-vars
       ariaProps, // eslint-disable-line no-unused-vars

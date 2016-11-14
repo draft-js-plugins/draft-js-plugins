@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added support for Chinese words. Thanks to @mzbac
 - Added support for Japanese characters (hiragana & katakana).
 - Added support for Korean characters (Hangul Syllables & Hangul Compatibility Jamo). Thanks to @FourwingsY
+- onAddMention prop to get the selected mention object
 
 ### Fixed
 
