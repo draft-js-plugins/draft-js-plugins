@@ -3,7 +3,6 @@ import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
 
 // Plugin-Editor
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-import createEntityPropsPlugin from 'draft-js-entity-props-plugin'; // eslint-disable-line import/no-unresolved
 // import createFocusPlugin, { FocusDecorator } from 'draft-js-focus-plugin'; // eslint-disable-line import/no-unresolved
 // import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin'; // eslint-disable-line import/no-unresolved
 // import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin'; // eslint-disable-line import/no-unresolved
@@ -64,7 +63,6 @@ import styles from './styles.css';
 
 // Init Plugins
 const plugins = [
-  createEntityPropsPlugin({}),
   // createFocusPlugin({}),
   // createAlignmentPlugin({}),
   // createDndPlugin({

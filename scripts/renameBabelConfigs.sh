@@ -7,7 +7,6 @@ mv $(pwd)/../draft-js-sticker-plugin/.babelrc $(pwd)/../draft-js-sticker-plugin/
 mv $(pwd)/../draft-js-undo-plugin/.babelrc $(pwd)/../draft-js-undo-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-dnd-plugin/.babelrc $(pwd)/../draft-js-dnd-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-alignment-plugin/.babelrc $(pwd)/../draft-js-alignment-plugin/tmpBabelrc
-mv $(pwd)/../draft-js-entity-props-plugin/.babelrc $(pwd)/../draft-js-entity-props-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-focus-plugin/.babelrc $(pwd)/../draft-js-focus-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-resizeable-plugin/.babelrc $(pwd)/../draft-js-resizeable-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-inline-toolbar-plugin/.babelrc $(pwd)/../draft-js-inline-toolbar-plugin/tmpBabelrc
