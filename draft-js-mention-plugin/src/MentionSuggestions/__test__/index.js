@@ -68,7 +68,7 @@ describe('MentionSuggestions Component', () => {
         callbacks={callbacks}
         store={store}
         theme={{}}
-        onMentionSelect={onAddMention}
+        onAddMention={onAddMention}
       />
     );
 
