@@ -12,3 +12,4 @@ mv $(pwd)/../draft-js-resizeable-plugin/.babelrc $(pwd)/../draft-js-resizeable-p
 mv $(pwd)/../draft-js-inline-toolbar-plugin/.babelrc $(pwd)/../draft-js-inline-toolbar-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-side-toolbar-plugin/.babelrc $(pwd)/../draft-js-side-toolbar-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-image-plugin/.babelrc $(pwd)/../draft-js-image-plugin/tmpBabelrc
+mv $(pwd)/../draft-js-buttons/.babelrc $(pwd)/../draft-js-buttons/tmpBabelrc
