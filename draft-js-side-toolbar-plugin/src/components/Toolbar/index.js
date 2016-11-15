@@ -1,6 +1,6 @@
 import React from 'react';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
-import styles from './styles.css';
+import styles from '../../toolbarStyles.css';
 
 export default class Toolbar extends React.Component {
 
@@ -56,6 +56,7 @@ export default class Toolbar extends React.Component {
             key={index}
             getEditorState={this.props.store.getItem('getEditorState')}
             setEditorState={this.props.store.getItem('setEditorState')}
+            buttonTheme={this.props.buttonTheme}
           />
         ))}
       </div>

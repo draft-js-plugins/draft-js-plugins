@@ -2,14 +2,7 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import DefaultBlockTypeSelect from './components/DefaultBlockTypeSelect';
-import BlockTypeSelect from './components/BlockTypeSelect';
-import HeadlineOneButton from './components/HeadlineOneButton';
-import HeadlineTwoButton from './components/HeadlineTwoButton';
-import HeadlineThreeButton from './components/HeadlineThreeButton';
-import UnorderedListButton from './components/UnorderedListButton';
-import OrderedListButton from './components/OrderedListButton';
-import BlockquoteButton from './components/BlockquoteButton';
-import CodeBlockButton from './components/CodeBlockButton';
+import buttonTheme from './buttonStyles.css';
 
 const createSideToolbarPlugin = (config = {}) => {
   const store = createStore({
@@ -25,6 +18,7 @@ const createSideToolbarPlugin = (config = {}) => {
   const toolbarProps = {
     store,
     structure,
+    buttonTheme,
   };
 
   return {
@@ -43,15 +37,3 @@ const createSideToolbarPlugin = (config = {}) => {
 };
 
 export default createSideToolbarPlugin;
-
-export {
-  HeadlineOneButton,
-  HeadlineTwoButton,
-  HeadlineThreeButton,
-  UnorderedListButton,
-  OrderedListButton,
-  BlockquoteButton,
-  CodeBlockButton,
-  DefaultBlockTypeSelect,
-  BlockTypeSelect,
-};

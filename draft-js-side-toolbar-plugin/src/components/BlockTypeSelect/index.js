@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.css';
+import styles from '../../blockTypeSelectStyles.css';
 
 export default class BlockTypeSelect extends React.Component {
 
@@ -55,6 +55,7 @@ export default class BlockTypeSelect extends React.Component {
               key={index}
               getEditorState={this.props.getEditorState}
               setEditorState={this.props.setEditorState}
+              theme={this.props.buttonTheme}
             />
           ))}
         </div>

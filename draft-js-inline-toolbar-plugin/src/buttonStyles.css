@@ -30,10 +30,3 @@
 .active svg {
   fill: #444;
 }
-
-.separator {
-  display: inline-block;
-  border-right: 1px solid #ddd;
-  height: 24px;
-  margin: 0 0.5em;
-}
