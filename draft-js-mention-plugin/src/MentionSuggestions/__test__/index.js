@@ -46,7 +46,7 @@ describe('MentionSuggestions Component', () => {
       onUpArrow: sinon.spy(),
       onTab: sinon.spy(),
       onEscape: sinon.spy(),
-      handleReturn: sinon.spy(),
+      handleReturn: sinon.spy()
     };
     const store = {
       getAllSearches: sinon.spy(() => ({ has: () => false })),
@@ -57,6 +57,7 @@ describe('MentionSuggestions Component', () => {
     };
     const ariaProps = {};
     const onSearchChange = sinon.spy();
+    const onAddMention = sinon.spy();
     const positionSuggestions = sinon.stub().returns({});
     const suggestions = mount(
       <MentionSuggestions
@@ -67,6 +68,7 @@ describe('MentionSuggestions Component', () => {
         callbacks={callbacks}
         store={store}
         theme={{}}
+        onAddMention={onAddMention}
       />
     );
 

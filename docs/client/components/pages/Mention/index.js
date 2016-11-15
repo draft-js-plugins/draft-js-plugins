@@ -181,7 +181,11 @@ export default class App extends Component {
             </div>
             <div className={styles.param}>
               <span className={styles.paramName}>entryComponent</span>
-              <span>Component to be used as the template for each of the suggestions' entry.</span>
+              <span>Component to be used as the template for each of the suggestions entry.</span>
+            </div>
+            <div className={styles.param}>
+              <span className={styles.paramName}>onAddMention</span>
+              <span>A callback which is triggered whenever the mention is about to be added. The first argument of this callback will contain the mention entry.</span>
             </div>
           </div>
           <Heading level={3}>Additional Exports</Heading>

@@ -28,6 +28,10 @@ export default class SimpleMentionEditor extends Component {
     });
   };
 
+  onAddMention = () => {
+    // get the mention object selected
+  }
+
   focus = () => {
     this.editor.focus();
   };
@@ -44,6 +48,7 @@ export default class SimpleMentionEditor extends Component {
         <MentionSuggestions
           onSearchChange={this.onSearchChange}
           suggestions={this.state.suggestions}
+          onAddMention={this.onAddMention}
         />
       </div>
     );
