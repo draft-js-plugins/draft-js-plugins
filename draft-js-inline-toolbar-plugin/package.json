@@ -1,6 +1,6 @@
 {
   "name": "draft-js-inline-toolbar-plugin",
-  "version": "2.0.0-beta5",
+  "version": "2.0.0-beta6",
   "description": "Toolbar Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
