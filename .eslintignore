@@ -1,7 +1,6 @@
 **/node_modules/**
 lib/**
 draft-js-alignment-plugin/lib/**
-draft-js-cleanup-empty-plugin/lib/**
 draft-js-dnd-plugin/lib/**
 draft-js-focus-plugin/lib/**
 draft-js-image-plugin/lib/**
@@ -16,5 +15,6 @@ draft-js-undo-plugin/lib/**
 draft-js-plugins-editor/lib/**
 draft-js-emoji-plugin/lib/**
 draft-js-counter-plugin/lib/**
+draft-js-buttons/lib/**
 scripts/**
 docs/public/**
