@@ -14,13 +14,10 @@ import Mention from './components/pages/Mention';
 import Wysiwyg from './components/pages/Wysiwyg';
 import Counter from './components/pages/Counter';
 import Playground from './components/pages/Playground';
-<<<<<<< 25404aed2c1431b4ab2b6c1b9e48d7df09238ad4
 import Image from './components/pages/Image';
 import InlineToolbar from './components/pages/InlineToolbar';
 import SideToolbar from './components/pages/SideToolbar';
-=======
 import Sidebar from './components/pages/Sidebar';
->>>>>>> sidebar plugin -- wip
 
 export const routes = (
   <Route path="/" title="App" component={App}>
