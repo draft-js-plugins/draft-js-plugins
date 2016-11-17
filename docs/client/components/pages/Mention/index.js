@@ -152,6 +152,10 @@ export default class App extends Component {
             <span>Allows you to provide a custom character to change when the search is triggered. By default it is set to `@`. By default typing `@` will trigger the search for mentions. Note: the implementation does not support a multi-character mentionTrigger.</span>
           </div>
           <div className={styles.param}>
+            <span className={styles.paramName}>triggerOnEmpty</span>
+            <span>If provided, the search will be triggered even if the search value is empty. This can be useful if you want to fetch remote data whenever the user hits `@`. By default, this is set to `false`.</span>
+          </div>
+          <div className={styles.param}>
             <span className={styles.paramName}>mentionRegExp</span>
             <span>Allows you to overwrite the regular expression for initiating the dropdown. By default this supports any alphanumeric character as well as Chinese, Japanese & Korean characters. We are happy to accept pull requests to extend the default mentionRegExp as well.</span>
           </div>

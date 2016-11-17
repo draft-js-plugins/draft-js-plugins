@@ -16,6 +16,7 @@ export default class MentionSuggestions extends Component {
       'MUTABLE',
     ]),
     entryComponent: PropTypes.func,
+    triggerOnEmpty: PropTypes.bool,
     onAddMention: PropTypes.func,
     suggestions: (props, propName, componentName) => {
       if (!List.isList(props[propName])) {
@@ -170,7 +171,7 @@ export default class MentionSuggestions extends Component {
   onSearchChange = (editorState, selection) => {
     const { word } = getSearchText(editorState, selection);
     const searchValue = word.substring(1, word.length);
-    if (this.lastSearchValue !== searchValue) {
+    if (this.lastSearchValue !== searchValue || this.props.triggerOnEmpty) {
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ value: searchValue });
     }
@@ -297,6 +298,7 @@ export default class MentionSuggestions extends Component {
 
     const {
       entryComponent,
+      triggerOnEmpty,
       onClose, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
       onAddMention, // eslint-disable-line no-unused-vars, no-shadow
