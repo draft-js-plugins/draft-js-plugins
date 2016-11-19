@@ -86,6 +86,7 @@ const createMentionPlugin = (config = {}) => {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
     mentionComponent,
+    entityMutability = 'SEGMENTED',
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
   } = config;
@@ -94,7 +95,7 @@ const createMentionPlugin = (config = {}) => {
     callbacks,
     theme,
     store,
-    entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
+    entityMutability,
     positionSuggestions,
     mentionTrigger,
     mentionPrefix,
