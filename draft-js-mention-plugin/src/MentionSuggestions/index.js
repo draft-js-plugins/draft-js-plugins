@@ -16,7 +16,7 @@ export default class MentionSuggestions extends Component {
       'MUTABLE',
     ]),
     entryComponent: PropTypes.func,
-    triggerOnEmpty: PropTypes.bool,
+    triggerOnEmpty: PropTypes.bool, // comment, so that travis hopefully works, please remove this comment after success
     onAddMention: PropTypes.func,
     suggestions: (props, propName, componentName) => {
       if (!List.isList(props[propName])) {
@@ -173,6 +173,7 @@ export default class MentionSuggestions extends Component {
     const searchValue = word.substring(1, word.length);
     if (this.lastSearchValue !== searchValue || this.props.triggerOnEmpty) {
       this.lastSearchValue = searchValue;
+      console.log(searchValue, searchValue.length);
       this.props.onSearchChange({ value: searchValue });
     }
   };
