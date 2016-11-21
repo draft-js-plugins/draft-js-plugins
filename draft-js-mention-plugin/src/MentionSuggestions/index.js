@@ -173,7 +173,6 @@ export default class MentionSuggestions extends Component {
     const searchValue = word.substring(1, word.length);
     if (this.lastSearchValue !== searchValue || this.props.triggerOnEmpty) {
       this.lastSearchValue = searchValue;
-      console.log(searchValue, searchValue.length);
       this.props.onSearchChange({ value: searchValue });
     }
   };
@@ -299,7 +298,7 @@ export default class MentionSuggestions extends Component {
 
     const {
       entryComponent,
-      triggerOnEmpty,
+      triggerOnEmpty, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
       onAddMention, // eslint-disable-line no-unused-vars, no-shadow
