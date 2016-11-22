@@ -24,7 +24,7 @@ You may optionally provide a transformation function to transform the links:
 
 ```js
 const linkifyPlugin = createLinkifyPlugin({
-  transform: (href) => { return href; // identity transformation }
+  transform: (href) => { return href; } // identity transformation
 });
 ```
 
