@@ -19,13 +19,14 @@ const linkPlugin = (config = {}) => {
     component,
     theme = defaultTheme,
     target = '_self',
+    transform,
   } = config;
 
   return {
     decorators: [
       {
         strategy: linkStrategy,
-        component: decorateComponentWithProps(Link, { theme, target, component }),
+        component: decorateComponentWithProps(Link, { theme, target, component, transform }),
       },
     ],
   };

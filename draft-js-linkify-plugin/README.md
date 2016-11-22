@@ -20,6 +20,14 @@ const linkifyPlugin = createLinkifyPlugin({
 });
 ```
 
+You may optionally provide a transformation function to transform the links:
+
+```js
+const linkifyPlugin = createLinkifyPlugin({
+  transform: (href) => { return href; // identity transformation }
+});
+```
+
 ## Importing the default styles
 
 The plugin ships with a default styling available at this location in the installed package:
