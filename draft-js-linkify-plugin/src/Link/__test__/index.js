@@ -66,7 +66,7 @@ describe('Link', () => {
   });
 
   it('transforms the href when a transform function is provided', () => {
-    const transform = (href) => href.replace(/draft-js-plugins/, 'foo')
+    const transform = (href) => href.replace(/draft-js-plugins/, 'foo');
     const result = shallow(
       <Link
         decoratedText="https://www.draft-js-plugins.com/"
