@@ -38,13 +38,13 @@ export default class App extends Component {
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>
           <Code code="npm install draft-js-plugins-editor@beta --save" />
-          <Code code="npm install draft-js-inlineToolbar-plugin@beta --save" />
+          <Code code="npm install draft-js-inline-toolbar-plugin@beta --save" />
           <Code code={gettingStarted} name="gettingStarted.js" />
           <Heading level={3}>Importing the default styles</Heading>
           <p>
             The plugin ships with a default styling available at this location in the installed package:
             &nbsp;
-            <InlineCode code={'node_modules/draft-js-inlineToolbar-plugin/lib/plugin.css'} />
+            <InlineCode code={'node_modules/draft-js-inline-toolbar-plugin/lib/plugin.css'} />
           </p>
           <Heading level={4}>Webpack Usage</Heading>
           <ul className={styles.list}>
