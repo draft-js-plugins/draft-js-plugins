@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
-import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
+import { EditorState, DefaultDraftBlockRenderMap, Editor } from 'draft-js';
 import { Map } from 'immutable';
 import sinon from 'sinon';
 import PluginEditor, { createEditorStateWithText } from '../../index';
@@ -173,6 +173,7 @@ describe('Editor', () => {
         getProps: pluginEditor.getProps,
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
+        getEditorRef: pluginEditor.getEditorRef,
       };
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
@@ -217,7 +218,7 @@ describe('Editor', () => {
     it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {
       const plugins = [
         {
-          handleKeyCommand: sinon.stub().returns(true),
+          handleKeyCommand: sinon.stub().returns('handled'),
           onUpArrow: sinon.stub().returns(true),
         },
         {
@@ -303,6 +304,7 @@ describe('Editor', () => {
         getProps: pluginEditor.getProps,
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
+        getEditorRef: pluginEditor.getEditorRef,
       };
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
@@ -498,6 +500,23 @@ describe('Editor', () => {
       const pluginEditor = result.instance();
       expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
     });
+
+    it('returns the component reference when we call the getEditorRef inside of a plugin', () => {
+      const spy = sinon.spy();
+      const plugins = [{
+        onChange: (state, pluginFunctions) => spy(pluginFunctions.getEditorRef())
+      }];
+      const pluginEditorComponent = mount(
+        <PluginEditor
+          editorState={editorState}
+          plugins={plugins}
+          onChange={changeSpy}
+        />
+      );
+      const draftEditorComponent = (pluginEditorComponent.find(Editor)).nodes[0];
+      draftEditorComponent.focus();
+      expect(spy.getCall(1).args[0]).to.deep.equal(draftEditorComponent);
+    });
   });
 
   describe('passed proxy to DraftEditor', () => {
@@ -585,7 +604,7 @@ describe('Editor', () => {
     let plugins;
     let decorators;
 
-    before(() => {
+    beforeEach(() => {
       text = "Hello there how's it going fella";
 
       decorator = {
@@ -598,6 +617,11 @@ describe('Editor', () => {
           {
             strategy: (block, cb) => cb(4, 7),
             component: () => <span className="plugin" />,
+          },
+          {
+            getDecorations: () => [],
+            getComponentForKey: () => <span className="custom" />,
+            getPropsForKey: () => {},
           },
         ],
       };
@@ -628,6 +652,18 @@ describe('Editor', () => {
       expect(pluginComponent).has.been.called();
       expect(decoratorComponents.length).to.equal(1);
       expect(pluginComponents.length).to.equal(1);
+    });
+
+    it('uses both custom and simple decorators in plugins', () => {
+      const simplePluginDecoratorStrategy = sinon.spy(plugin.decorators[0], 'strategy');
+      const customPluginDecorator = sinon.spy(plugin.decorators[1], 'getDecorations');
+      const decoratorStrategy = sinon.spy(decorator, 'strategy');
+
+      mount(<TestEditor {...{ plugins, decorators, text }} />);
+
+      expect(simplePluginDecoratorStrategy).has.been.called();
+      expect(customPluginDecorator).has.been.called();
+      expect(decoratorStrategy).has.been.called();
     });
   });
 });

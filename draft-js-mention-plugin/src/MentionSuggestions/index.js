@@ -16,10 +16,11 @@ export default class MentionSuggestions extends Component {
       'MUTABLE',
     ]),
     entryComponent: PropTypes.func,
+    onAddMention: PropTypes.func,
     suggestions: (props, propName, componentName) => {
       if (!List.isList(props[propName])) {
         return new Error(
-          `Invalid prop \`${propName}\' supplied to \`${componentName}\`. should be an instance of immutable list.`
+          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. should be an instance of immutable list.`
         );
       }
       return undefined;
@@ -214,10 +215,16 @@ export default class MentionSuggestions extends Component {
     if (!mention) {
       return;
     }
+
+    if (this.props.onAddMention) {
+      this.props.onAddMention(mention);
+    }
+
     this.closeDropdown();
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
+      this.props.mentionPrefix,
       this.props.mentionTrigger,
       this.props.entityMutability,
     );
@@ -235,7 +242,7 @@ export default class MentionSuggestions extends Component {
 
   commitSelection = () => {
     this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
-    return true;
+    return 'handled';
   };
 
   openDropdown = () => {
@@ -290,6 +297,9 @@ export default class MentionSuggestions extends Component {
 
     const {
       entryComponent,
+      onClose, // eslint-disable-line no-unused-vars
+      onOpen, // eslint-disable-line no-unused-vars
+      onAddMention, // eslint-disable-line no-unused-vars, no-shadow
       onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
       suggestions, // eslint-disable-line no-unused-vars
       ariaProps, // eslint-disable-line no-unused-vars
@@ -299,6 +309,7 @@ export default class MentionSuggestions extends Component {
       entityMutability, // eslint-disable-line no-unused-vars
       positionSuggestions, // eslint-disable-line no-unused-vars
       mentionTrigger, // eslint-disable-line no-unused-vars
+      mentionPrefix, // eslint-disable-line no-unused-vars
       ...elementProps } = this.props;
 
     return (

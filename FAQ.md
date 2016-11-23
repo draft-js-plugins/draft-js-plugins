@@ -119,3 +119,22 @@ const MyEditor = ({ editorState, editorState2, onChange, onChange2 }) => (
 
 export default MyEditor;
 ```
+
+## The editor throws errors in Internet Explorer 11?
+
+If you see error messages like `Symbol is undefined` or similar, it might probably be caused by lacking polyfills.
+
+To solve this, you can use `babel-polyfill` ([Babel Polyfill Documentation](https://babeljs.io/docs/usage/polyfill/)) to cover everything that babel cannot transpile/polyfill on build-time.
+Keep in mind that `babel-polyfill` is pretty huge and will increase your bundled filesize quite a bit. You can also just import the required polyfills manually using `core-js` directly:
+
+```javascript
+import 'core-js/es6/map';
+import 'core-js/es6/weak-map';
+import 'core-js/fn/object/assign';
+import 'core-js/fn/symbol';
+import 'core-js/fn/array/from';
+import 'core-js/fn/string/starts-with';
+import 'core-js/fn/string/ends-with';
+```
+
+Note: Those imports *might* not cover all possibly needed polyfills; this means, you maybe need to adapt them.

@@ -1,6 +1,6 @@
 {
   "name": "draft-js-undo-plugin",
-  "version": "2.0.0-beta5",
+  "version": "2.0.0-beta6",
   "description": "Undo Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
@@ -33,9 +33,9 @@
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "union-class-names": "^1.0.0",
-    "draft-js": ">=0.8.1",
+    "draft-js": ">=0.9.1",
     "immutable": ">=3.8.1",
-    "react": ">=15.2.1",
-    "react-dom": ">=15.2.1"
+    "react": ">=15.3.1",
+    "react-dom": ">=15.3.1"
   }
 }

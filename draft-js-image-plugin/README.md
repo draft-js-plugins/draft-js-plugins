@@ -5,7 +5,7 @@
 Usage:
 
 ```js
-import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin';
+import createImagePlugin from 'draft-js-image-plugin';
 
 const imagePlugin = createImagePlugin();
 ```

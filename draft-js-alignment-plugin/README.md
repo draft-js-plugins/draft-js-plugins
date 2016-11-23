@@ -12,4 +12,4 @@ const alignmentPlugin = createAlignmentPlugin();
 
 Dependencies:
 
-This plugin requires that the `draft-js-entity-props-plugin` is also applied to the `Editor`;
+This plugin requires that the `draft-js-focus-plugin`;

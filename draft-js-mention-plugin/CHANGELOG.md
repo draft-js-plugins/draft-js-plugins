@@ -11,8 +11,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - MentionSuggestions accepts a new prop `entryComponent`. The passed component is used as the template for each of the suggestions' entry. [#317](https://github.com/draft-js-plugins/draft-js-plugins/pull/327). Thanks to @Zhouzi
 - `defaultEntryComponent` component is passed `searchValue` prop to enable more customizations when displaying the the MentionSuggestions. Thanks to @nishp1
 - The config now accepts a new prop `mentionComponent`. If provided the passed component is used to render a Mention. [#271](https://github.com/draft-js-plugins/draft-js-plugins/pull/271). Thanks to @alexkuz
+- Introduced the `mentionRegExp` configuration to overwrite the regular expression for initiating the dropdown. By default this supports any alphanumeric character as well as Chinese, Japanese & Korean characters.
 - Added support for Chinese words. Thanks to @mzbac
 - Added support for Japanese characters (hiragana & katakana).
+- Added support for Korean characters (Hangul Syllables & Hangul Compatibility Jamo). Thanks to @FourwingsY
+- Added `onAddMention` prop to MentionSuggestions. The first argument of this callback will contain the mention entry.
 
 ### Fixed
 
@@ -21,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed bug where a user typed @xxx (invalid mention) and hit Enter. [#416](https://github.com/draft-js-plugins/draft-js-plugins/pull/416)
 - Fixed bug where press up arrow would not cycle back to the bottom of suggestions
 - Fixed race condition where the SuggestionPortal would unregister and not register again when inputting Japanese, etc.
+- Fixed bug where `mentionPrefix` does not appear in `editorState`. `mentionPrefix` is no longer passed to `mentionComponent`.
 
 ## 1.1.2 - 2016-06-26
 

@@ -12,3 +12,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #555;
 }
+
+figure {
+  margin: 0;
+}

@@ -1,7 +1,7 @@
 import { List, Repeat } from 'immutable';
 import { Modifier, CharacterMetadata, BlockMapBuilder, EditorState, ContentBlock, Entity, genKey } from 'draft-js';
 
-export default function (editorState, selection, type, data, text = ' ') {
+export default function (editorState, selection, type, data, entityType, text = ' ') {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = selection;
 
@@ -39,7 +39,8 @@ export default function (editorState, selection, type, data, text = ' ') {
   const newContentStateAfterSplit = Modifier.setBlockType(insertionTargetBlock, insertionTargetSelection, type);
 
   // creating a new ContentBlock including the entity with data
-  const entityKey = Entity.create(type, 'IMMUTABLE', { ...data });
+  // Entity will be created with a specific type, if defined, else will fall back to the ContentBlock type
+  const entityKey = Entity.create(entityType || type, 'IMMUTABLE', { ...data });
   const charData = CharacterMetadata.create({ entity: entityKey });
 
   const fragmentArray = [

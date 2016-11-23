@@ -1,27 +1,41 @@
 import { Entity, AtomicBlockUtils } from 'draft-js';
-import Image from './components/image';
-import styles from './style.css';
+import decorateComponentWithProps from 'decorate-component-with-props';
+import addImage from './modifiers/addImage';
+import ImageComponent from './Image';
+import imageStyles from './imageStyles.css';
 
 const ACCEPTED_MIMES = ['image/png', 'image/jpeg', 'image/gif'];
 
+const defaultTheme = {
+  image: imageStyles.image,
+};
+
 const imagePlugin = (config = {}) => {
-  const type = config.type || 'block-image';
-  const theme = config.theme ? config.theme : styles;
-  const component = config.component || Image({ theme });
+  const theme = config.theme ? config.theme : defaultTheme;
   const upload = config.upload || function (x, callback) {
     callback(x);
   };
+  let Image = config.imageComponent || ImageComponent;
+  if (config.decorator) {
+    Image = config.decorator(Image);
+  }
+  const ThemedImage = decorateComponentWithProps(Image, { theme });
   return {
-    // Handle 'block-image' block-type with Image component
-    blockRendererFn: (contentBlock) => {
-      const blockType = contentBlock.getType();
-      if (blockType === type) {
-        return {
-          component
-        };
+    blockRendererFn: (block) => {
+      if (block.getType() === 'atomic') {
+        const entity = Entity.get(block.getEntityAt(0));
+        const type = entity.getType();
+        if (type === 'image') {
+          return {
+            component: ThemedImage,
+            editable: false,
+          };
+        }
       }
-      return undefined;
+
+      return null;
     },
+    addImage,
     handlePastedFiles(e, editor) {
       // Get editor state
       let editorState = editor.getEditorState();
@@ -64,10 +78,8 @@ const imagePlugin = (config = {}) => {
       };
       reader.readAsDataURL(image);
     }
-
   };
 };
 
 export default imagePlugin;
-export const imageCreator = Image;
-export const imageStyles = styles;
+export const Image = ImageComponent;

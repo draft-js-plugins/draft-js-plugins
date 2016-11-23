@@ -7,10 +7,9 @@ mv $(pwd)/../draft-js-sticker-plugin/tmpBabelrc $(pwd)/../draft-js-sticker-plugi
 mv $(pwd)/../draft-js-undo-plugin/tmpBabelrc $(pwd)/../draft-js-undo-plugin/.babelrc
 mv $(pwd)/../draft-js-dnd-plugin/tmpBabelrc $(pwd)/../draft-js-dnd-plugin/.babelrc
 mv $(pwd)/../draft-js-alignment-plugin/tmpBabelrc $(pwd)/../draft-js-alignment-plugin/.babelrc
-mv $(pwd)/../draft-js-cleanup-empty-plugin/tmpBabelrc $(pwd)/../draft-js-cleanup-empty-plugin/.babelrc
-mv $(pwd)/../draft-js-entity-props-plugin/tmpBabelrc $(pwd)/../draft-js-entity-props-plugin/.babelrc
 mv $(pwd)/../draft-js-focus-plugin/tmpBabelrc $(pwd)/../draft-js-focus-plugin/.babelrc
 mv $(pwd)/../draft-js-resizeable-plugin/tmpBabelrc $(pwd)/../draft-js-resizeable-plugin/.babelrc
-mv $(pwd)/../draft-js-table-plugin/tmpBabelrc $(pwd)/../draft-js-table-plugin/.babelrc
-mv $(pwd)/../draft-js-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js-toolbar-plugin/.babelrc
+mv $(pwd)/../draft-js-inline-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js-inline-toolbar-plugin/.babelrc
+mv $(pwd)/../draft-js-side-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js-side-toolbar-plugin/.babelrc
 mv $(pwd)/../draft-js-image-plugin/tmpBabelrc $(pwd)/../draft-js-image-plugin/.babelrc
+mv $(pwd)/../draft-js-buttons/tmpBabelrc $(pwd)/../draft-js-buttons/.babelrc
