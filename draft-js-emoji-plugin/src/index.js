@@ -16,7 +16,8 @@ import defaultPositionSuggestions from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
-const cacheBustParam = '?v=2.2.6';
+const defaultImageType = 'svg';
+const defaultCacheBustParam = '?v=2.2.6';
 
 // TODO activate/deactivate different the conversion or search part
 
@@ -94,6 +95,8 @@ const createEmojiPlugin = (config = {}) => {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
     imagePath = defaultImagePath,
+    imageType = defaultImageType,
+    allowImageCache,
     priorityList,
   } = config;
 
@@ -101,9 +104,10 @@ const createEmojiPlugin = (config = {}) => {
   if (priorityList) emojiList.setPriorityList(priorityList);
   const emojiSearchProps = {
     ariaProps,
-    cacheBustParam,
+    cacheBustParam: allowImageCache ? '' : defaultCacheBustParam,
     callbacks,
     imagePath,
+    imageType,
     theme,
     store,
     positionSuggestions,
