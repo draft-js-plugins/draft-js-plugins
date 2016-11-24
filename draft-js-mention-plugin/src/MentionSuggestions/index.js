@@ -133,12 +133,13 @@ export default class MentionSuggestions extends Component {
 
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
 
+    const lastActiveOffsetKey = this.activeOffsetKey;
     this.activeOffsetKey = selectionIsInsideWord
       .filter((value) => value === true)
       .keySeq()
       .first();
 
-    this.onSearchChange(editorState, selection);
+    this.onSearchChange(editorState, selection, this.activeOffsetKey, lastActiveOffsetKey);
 
     // make sure the escaped search is reseted in the cursor since the user
     // already switched to another mention search
@@ -167,10 +168,10 @@ export default class MentionSuggestions extends Component {
     return editorState;
   };
 
-  onSearchChange = (editorState, selection) => {
+  onSearchChange = (editorState, selection, activeOffsetKey, lastActiveOffsetKey) => {
     const { word } = getSearchText(editorState, selection);
     const searchValue = word.substring(1, word.length);
-    if (this.lastSearchValue !== searchValue) {
+    if (this.lastSearchValue !== searchValue || activeOffsetKey !== lastActiveOffsetKey) {
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ value: searchValue });
     }
