@@ -95,6 +95,7 @@ const createMentionPlugin = (config = {}) => {
     theme,
     store,
     entityMutability: config.entityMutability ? config.entityMutability : 'SEGMENTED',
+    triggerOnEmpty: config.triggerOnEmpty ? config.triggerOnEmpty : false,
     positionSuggestions,
     mentionTrigger,
     mentionPrefix,
