@@ -15,6 +15,10 @@ export default class Toolbar extends React.Component {
     this.props.store.subscribeToItem('isVisible', this.onVisibilityChanged);
   }
 
+  componentWillUnmount() {
+    this.props.store.unsubscribeFromItem('isVisible', this.onVisibilityChanged);
+  }
+
   onVisibilityChanged = (isVisible) => {
     // need to wait a tick for window.getSelection() to be accurate
     // when focusing editor with already present selection
