@@ -140,7 +140,7 @@ export default class App extends Component {
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>imageType</span>
-            <span>The default imageType is: '.svg', but can be overwritten with this config.</span>
+            <span>The default imageType is: 'svg', but can be overwritten with this config.</span>
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>allowImageCache</span>
