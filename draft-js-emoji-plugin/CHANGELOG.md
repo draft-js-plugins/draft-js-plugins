@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## To Be Released
 ### Added
 
+- Added {allowImageCache, imageType} properties to  config object.
 - Add `emojione` as a dependency.
 - Add `lodash.keys` as a dependency.
 - Update the list of Emojis from Emojione `2.1.2` to `2.2.6`. Thanks to @mzbac
