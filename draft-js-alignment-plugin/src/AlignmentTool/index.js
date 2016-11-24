@@ -15,6 +15,10 @@ export default class AlignmentTool extends React.Component {
     this.props.store.subscribeToItem('isVisible', this.onVisibilityChanged);
   }
 
+  componentWillUnmount() {
+    this.props.store.unsubscribeFromItem('isVisible', this.onVisibilityChanged);
+  }
+
   onVisibilityChanged = (isVisible) => {
     const boundingRect = this.props.store.getItem('boundingRect');
     const position = isVisible ? {

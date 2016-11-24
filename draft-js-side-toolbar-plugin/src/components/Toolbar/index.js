@@ -14,6 +14,10 @@ export default class Toolbar extends React.Component {
     this.props.store.subscribeToItem('editorState', this.onEditorStateChange);
   }
 
+  componentWillUnmount() {
+    this.props.store.unsubscribeFromItem('editorState', this.onEditorStateChange);
+  }
+
   onEditorStateChange = (editorState) => {
     const selection = editorState.getSelection();
     if (!selection.getHasFocus()) {
