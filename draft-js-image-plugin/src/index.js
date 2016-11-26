@@ -7,10 +7,11 @@ import imageStyles from './imageStyles.css';
 const ACCEPTED_MIMES = ['image/png', 'image/jpeg', 'image/gif'];
 
 const defaultTheme = {
-  image: imageStyles.image,
+  image: imageStyles.image
 };
 
-const imagePlugin = (config = {}) => {
+const imagePlugin = function(config) {
+  if(!config)config = {};
   const theme = config.theme ? config.theme : defaultTheme;
   const upload = config.upload || function (x, callback) {
     callback(x);
@@ -21,14 +22,15 @@ const imagePlugin = (config = {}) => {
   }
   const ThemedImage = decorateComponentWithProps(Image, { theme });
   return {
-    blockRendererFn: (block) => {
+    blockRendererFn(block) {
       if (block.getType() === 'atomic') {
         const entity = Entity.get(block.getEntityAt(0));
         const type = entity.getType();
-        if (type === 'image') {
+        console.log('entity type',type);
+        if (type === 'block-image') {
           return {
             component: ThemedImage,
-            editable: false,
+            editable: false
           };
         }
       }
