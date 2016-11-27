@@ -62,6 +62,13 @@ export default class NavBar extends Component {
               </Link>
             </li>
           </ul>
+          <ul className={styles.plugins}>
+            <li className={styles.plugin}>
+              <Link to="/plugin/alignment" className={styles.link}>
+                Alignment
+              </Link>
+            </li>
+          </ul>
         </div>
         <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: 13, color: '#aaa' }}>The documentation currently represents the 2.0.0-beta7 release.
         </div>
