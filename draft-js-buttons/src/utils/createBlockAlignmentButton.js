@@ -6,7 +6,6 @@ export default ({ alignment, children }) => (
 
     activate = (event) => {
       event.preventDefault();
-      console.log(alignment);
       this.props.setAlignmentData({ alignment });
     }
 

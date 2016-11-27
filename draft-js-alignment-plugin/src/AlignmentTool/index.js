@@ -38,7 +38,9 @@ export default class AlignmentTool extends React.Component {
     } : {
       transform: 'translate(-50%) scale(0)',
     };
+    const alignmentData = this.props.store.getItem('alignmentData');
     this.setState({
+      alignmentData: alignmentData || { alignment: 'default' },
       position,
     });
   }

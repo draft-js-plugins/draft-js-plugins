@@ -33,7 +33,7 @@ export default (config) => {
       const alignmentData = entityKey ? Entity.get(entityKey).data : {};
       return {
         props: {
-          alignmentData,
+          alignmentData: alignmentData.alignment ? alignmentData : { alignment: 'default' },
           setAlignmentData: createSetAlignmentData(contentBlock, { getEditorState, setEditorState }),
         },
       };
