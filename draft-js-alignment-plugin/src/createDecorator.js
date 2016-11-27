@@ -6,7 +6,7 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ store }) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
+export default ({ store }) => (WrappedComponent) => class BlockAlignmentDecorator extends Component {
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 

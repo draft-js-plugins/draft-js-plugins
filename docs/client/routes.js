@@ -17,11 +17,13 @@ import Playground from './components/pages/Playground';
 import Image from './components/pages/Image';
 import InlineToolbar from './components/pages/InlineToolbar';
 import SideToolbar from './components/pages/SideToolbar';
+import Alignment from './components/pages/Alignment';
 
 export const routes = (
   <Route path="/" title="App" component={App}>
     <IndexRoute component={Home} />
     <Route path="/" title="App" component={Page}>
+      <Route path="plugin/alignment" title="App - Alignment" component={Alignment} />
       <Route path="plugin/hashtag" title="App - Hashtag" component={Hashtag} />
       <Route path="plugin/emoji" title="App - Emoji" component={Emoji} />
       <Route path="plugin/linkify" title="App - Linkify" component={Linkify} />
