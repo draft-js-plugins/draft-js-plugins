@@ -17,6 +17,7 @@ export default ({ store }) => (WrappedComponent) => class BlockResizeableDecorat
       const blockNode = ReactDOM.findDOMNode(this);
       const boundingRect = blockNode.getBoundingClientRect();
       store.updateItem('setAlignmentData', this.props.blockProps.setAlignmentData);
+      store.updateItem('alignmentData', this.props.blockProps.alignmentData);
       store.updateItem('boundingRect', boundingRect);
       store.updateItem('isVisible', true);
     } else {

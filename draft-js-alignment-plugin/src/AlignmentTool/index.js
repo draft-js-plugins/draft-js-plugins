@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  AlignBlockDefaultButton,
+  AlignBlockLeftButton,
+  AlignBlockCenterButton,
+  AlignBlockRightButton,
+} from 'draft-js-buttons'; // eslint-disable-line import/no-unresolved
 import styles from '../alignmentToolStyles.css';
 import buttonStyles from '../buttonStyles.css';
 
@@ -9,14 +15,17 @@ export default class AlignmentTool extends React.Component {
 
   state = {
     position: {},
+    alignmentData: {},
   }
 
   componentWillMount() {
     this.props.store.subscribeToItem('isVisible', this.onVisibilityChanged);
+    this.props.store.subscribeToItem('alignmentData', this.onAlignmentDataChange);
   }
 
   componentWillUnmount() {
     this.props.store.unsubscribeFromItem('isVisible', this.onVisibilityChanged);
+    this.props.store.unsubscribeFromItem('alignmentData', this.onAlignmentDataChange);
   }
 
   onVisibilityChanged = (isVisible) => {
@@ -34,60 +43,33 @@ export default class AlignmentTool extends React.Component {
     });
   }
 
-  floatLeft = (evt) => {
-    evt.preventDefault();
-    this.props.store.getItem('setAlignmentData')({ alignment: 'left' });
-  }
-
-  alignDefault = (evt) => {
-    evt.preventDefault();
-    this.props.store.getItem('setAlignmentData')({ alignment: 'default' });
-  }
-
-  alignCenter = (evt) => {
-    evt.preventDefault();
-    this.props.store.getItem('setAlignmentData')({ alignment: 'center' });
-  }
-
-  floatRight = (evt) => {
-    evt.preventDefault();
-    this.props.store.getItem('setAlignmentData')({ alignment: 'right' });
+  onAlignmentDataChange = (alignmentData) => {
+    this.setState({
+      alignmentData,
+    });
   }
 
   render() {
+    const defaultButtons = [
+      AlignBlockDefaultButton,
+      AlignBlockLeftButton,
+      AlignBlockCenterButton,
+      AlignBlockRightButton,
+    ];
     return (
       <div
         className={styles.alignmentTool}
         style={this.state.position}
       >
-        <button
-          className={buttonStyles.button}
-          onClick={this.floatLeft}
-          type="button"
-        >
-          Left
-        </button>
-        <button
-          className={buttonStyles.button}
-          onClick={this.alignDefault}
-          type="button"
-        >
-          Default
-        </button>
-        <button
-          className={buttonStyles.button}
-          onClick={this.alignCenter}
-          type="button"
-        >
-          Center
-        </button>
-        <button
-          className={buttonStyles.button}
-          onClick={this.floatRight}
-          type="button"
-        >
-          Right
-        </button>
+        {defaultButtons.map((Button, index) => (
+          <Button
+            /* the index can be used here as the buttons list won't change */
+            key={index}
+            alignmentData={this.state.alignmentData}
+            setAlignmentData={this.props.store.getItem('setAlignmentData')}
+            theme={buttonStyles}
+          />
+        ))}
       </div>
     );
   }
