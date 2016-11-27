@@ -16,7 +16,8 @@ export default ({ store }) => (WrappedComponent) => class BlockResizeableDecorat
       // eslint-disable-next-line react/no-find-dom-node
       const blockNode = ReactDOM.findDOMNode(this);
       const boundingRect = blockNode.getBoundingClientRect();
-      store.updateItem('setAlignmentData', this.props.blockProps.setAlignmentData);
+      store.updateItem('setAlignment', this.props.blockProps.setAlignment);
+      store.updateItem('alignment', this.props.blockProps.alignment);
       store.updateItem('boundingRect', boundingRect);
       store.updateItem('isVisible', true);
     } else {
@@ -31,7 +32,7 @@ export default ({ store }) => (WrappedComponent) => class BlockResizeableDecorat
       // using destructuring to make sure unused props are not passed down to the block
       ...elementProps
     } = this.props;
-    const alignment = blockProps.alignmentData.alignment;
+    const alignment = blockProps.alignment;
     let newStyle = style;
     if (alignment === 'left') {
       newStyle = { ...style, float: 'left' };
