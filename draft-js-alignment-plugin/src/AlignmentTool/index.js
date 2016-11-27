@@ -15,17 +15,17 @@ export default class AlignmentTool extends React.Component {
 
   state = {
     position: {},
-    alignmentData: {},
+    alignment: null,
   }
 
   componentWillMount() {
     this.props.store.subscribeToItem('isVisible', this.onVisibilityChanged);
-    this.props.store.subscribeToItem('alignmentData', this.onAlignmentDataChange);
+    this.props.store.subscribeToItem('alignment', this.onAlignmentChange);
   }
 
   componentWillUnmount() {
     this.props.store.unsubscribeFromItem('isVisible', this.onVisibilityChanged);
-    this.props.store.unsubscribeFromItem('alignmentData', this.onAlignmentDataChange);
+    this.props.store.unsubscribeFromItem('alignment', this.onAlignmentChange);
   }
 
   onVisibilityChanged = (isVisible) => {
@@ -38,16 +38,16 @@ export default class AlignmentTool extends React.Component {
     } : {
       transform: 'translate(-50%) scale(0)',
     };
-    const alignmentData = this.props.store.getItem('alignmentData');
+    const alignment = this.props.store.getItem('alignment') || 'default';
     this.setState({
-      alignmentData: alignmentData || { alignment: 'default' },
+      alignment,
       position,
     });
   }
 
-  onAlignmentDataChange = (alignmentData) => {
+  onAlignmentChange = (alignment) => {
     this.setState({
-      alignmentData,
+      alignment,
     });
   }
 
@@ -67,8 +67,8 @@ export default class AlignmentTool extends React.Component {
           <Button
             /* the index can be used here as the buttons list won't change */
             key={index}
-            alignmentData={this.state.alignmentData}
-            setAlignmentData={this.props.store.getItem('setAlignmentData')}
+            alignment={this.state.alignment}
+            setAlignment={this.props.store.getItem('setAlignment')}
             theme={buttonStyles}
           />
         ))}

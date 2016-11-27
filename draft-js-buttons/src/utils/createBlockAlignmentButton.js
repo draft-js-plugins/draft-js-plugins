@@ -6,12 +6,12 @@ export default ({ alignment, children }) => (
 
     activate = (event) => {
       event.preventDefault();
-      this.props.setAlignmentData({ alignment });
+      this.props.setAlignment({ alignment });
     }
 
     preventBubblingUp = (event) => { event.preventDefault(); }
 
-    isActive = () => this.props.alignmentData.alignment === alignment;
+    isActive = () => this.props.alignment === alignment;
 
     render() {
       const { theme } = this.props;

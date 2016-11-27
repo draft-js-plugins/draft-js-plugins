@@ -8,7 +8,7 @@ const store = createStore({
   isVisible: false,
 });
 
-const createSetAlignmentData = (contentBlock, { getEditorState, setEditorState }) => (data) => {
+const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) => (data) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
@@ -33,8 +33,8 @@ export default (config) => {
       const alignmentData = entityKey ? Entity.get(entityKey).data : {};
       return {
         props: {
-          alignmentData: alignmentData.alignment ? alignmentData : { alignment: 'default' },
-          setAlignmentData: createSetAlignmentData(contentBlock, { getEditorState, setEditorState }),
+          alignment: alignmentData.alignment || 'default',
+          setAlignment: createSetAlignment(contentBlock, { getEditorState, setEditorState }),
         },
       };
     },
