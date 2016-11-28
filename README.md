@@ -126,6 +126,12 @@ Join the channel #draft-js-plugins after signing into the DraftJS [Slack organiz
 
 Check out our [Contribution Guide](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/CONTRIBUTING.md).
 
+## Learn about why Draft.js and how to use DraftJS Plugins
+
+In this talk Nik Graf explained the ContentState structure of a Draft.js Editor as well as explained how to use plugins.
+
+[<img width="450" src="http://img.youtube.com/vi/gxNuHZXZMgs/maxresdefault.jpg" >](https://www.youtube.com/watch?v=gxNuHZXZMgs)
+
 ## License
 
 MIT
