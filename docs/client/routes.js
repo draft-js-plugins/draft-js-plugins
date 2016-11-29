@@ -18,7 +18,7 @@ import Image from './components/pages/Image';
 import InlineToolbar from './components/pages/InlineToolbar';
 import SideToolbar from './components/pages/SideToolbar';
 import Alignment from './components/pages/Alignment';
-
+import Video from './components/pages/Video';
 export const routes = (
   <Route path="/" title="App" component={App}>
     <IndexRoute component={Home} />
@@ -35,6 +35,7 @@ export const routes = (
       <Route path="plugin/image" title="App - Image" component={Image} />
       <Route path="plugin/inline-toolbar" title="App - InlineToolbar" component={InlineToolbar} />
       <Route path="plugin/side-toolbar" title="App - SideToolbar" component={SideToolbar} />
+      <Route path="plugin/video" title="App - Video" component={Video} />
     </Route>
     <Route path="playground" title="App - Development Playground" component={Playground} />
     <Route path="*" title="404: Not Found" component={NotFound} />
