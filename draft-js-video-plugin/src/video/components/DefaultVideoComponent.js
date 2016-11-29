@@ -1,13 +1,21 @@
 import React, { PropTypes } from 'react';
-
+import utils from '../utils';
 const YOUTUBE_PREFIX = 'https://www.youtube.com/embed/';
 const VIMEO_PREFIX = 'https://player.vimeo.com/video/';
 
-const getSrc = ({ srcID, srcType }) => {
-  if (srcType === 'youtube') {
+const getSrc = ({ src }) => {
+  const {
+    isYoutube,
+    getYoutubeSrc,
+    isVimeo,
+    getVimeoSrc,
+  } =utils;
+  if (isYoutube(src)) {
+    const { srcID } = getYoutubeSrc(src);
     return `${YOUTUBE_PREFIX}${srcID}`;
   }
-  if (srcType === 'vimeo') {
+  if (isVimeo(src)) {
+    const { srcID } = getVimeoSrc(src);
     return `${VIMEO_PREFIX}${srcID}`;
   }
   return undefined;
@@ -16,7 +24,6 @@ const getSrc = ({ srcID, srcType }) => {
 const DefaultVideoCompoent = (props) => {
   const { blockProps } = props;
   const src = getSrc(blockProps);
-
   if (src) {
     return (
       <div style={{ width: '100%', height: '0', position: 'relative', paddingBottom: '56.25%' }} >

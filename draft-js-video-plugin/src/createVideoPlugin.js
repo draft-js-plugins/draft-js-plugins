@@ -20,10 +20,14 @@ const videoPlugin = (config = {}) => {
         //TODO subject to change for draft-js next release
         const entity = Entity.get(block.getEntityAt(0));
         const type = entity.getType();
+        const { src } =entity.getData();
         if (type === types.VIDEOTYPE) {
           return {
             component: ThemedVideo,
             editable: false,
+            props: {
+              src,
+            },
           };
         }
       }
@@ -31,6 +35,7 @@ const videoPlugin = (config = {}) => {
       return null;
     },
     addVideo,
+    types,
   };
 };
 
