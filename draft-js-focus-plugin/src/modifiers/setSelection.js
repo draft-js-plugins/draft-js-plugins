@@ -56,5 +56,7 @@ export default (store, getEditorState, setEditorState, previousActiveBlock, mode
       })));
       return activeBlock;
     }
-  } return undefined;
+  }
+
+  return undefined;
 };

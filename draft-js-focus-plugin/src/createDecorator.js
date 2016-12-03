@@ -48,7 +48,7 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     } else if (event.keyCode === 8) {
       // TODO fix backspace for removing the block
       this.props.blockProps.unsetFocus('down', event);
-      store.setEditorState(removeBlock(store.getEditorState(), this.props.block.get('key')));
+      store.setEditorState(removeBlock(store, this.props.block.get('key')));
     }
   }
 
