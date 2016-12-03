@@ -136,7 +136,15 @@ export default class App extends Component {
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>imagePath</span>
-            <span>The Emojis are displayed using SVGs. The full path is constructed of multiple parts like this: {'`${imagePath}${unicode}.svg${cacheBustParam}`'}. The default imagePath is: '//cdn.jsdelivr.net/emojione/assets/svg/', but can be overwritten with this config.</span>
+            <span>The Emojis are displayed using SVGs. The full path is constructed of multiple parts like this: {'`${imagePath}${unicode}.${imageType}${cacheBustParam}`'}. The default imagePath is: '//cdn.jsdelivr.net/emojione/assets/svg/', but can be overwritten with this config.</span>
+          </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>imageType</span>
+            <span>The default imageType is: 'svg', but can be overwritten with this config.</span>
+          </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>allowImageCache</span>
+            <span>By default {'${cacheBustParam}'} is being changed with the new version. If you want to skip the cache busting, you can use this property. The default value of allowImageCache is:&nbsp;<InlineCode code={'false'} /></span>
           </div>
           <div className={styles.param}>
             <span className={styles.paramName}>priorityList</span>
