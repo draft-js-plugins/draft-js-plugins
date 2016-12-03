@@ -26,36 +26,34 @@ const focusPlugin = (config = {}) => {
       store.setEditorState = setEditorState;
     },
     // Wrap all block-types in block-focus decorator
-    blockRendererFn: (contentBlock, { getEditorState, setEditorState, setReadOnly, getReadOnly }) => {
-      const readOnly = getReadOnly();
+    blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
       const setFocus = () => {
-        if (readOnly) return;
+        if (getReadOnly()) return;
         if (!activeBlock || activeBlock.get('key') !== contentBlock.get('key')) {
           // Set active block to current block
           activeBlock = contentBlock;
           // Force selection to move to current block
           setFocusToBlock(getEditorState, setEditorState, activeBlock);
-          setReadOnly(true);
         }
       };
-      const unsetFocus = (direction, event) => {
-        if (readOnly) return;
 
-        setReadOnly(false);
+      const unsetFocus = (direction, event) => {
+        if (getReadOnly()) return;
+
         if (direction) {
           activeBlock = setSelection(store, getEditorState, setEditorState, contentBlock, direction, event);
-          setEditorState(EditorState.forceSelection(getEditorState(), getEditorState().getSelection()));
-          if (activeBlock) {
-            setTimeout(() => {
-              setReadOnly(true);
-            }, 1);
-          }
+          const editorState = getEditorState();
+          const newEditorState = EditorState.forceSelection(editorState, editorState.getSelection());
+          setEditorState(newEditorState);
         } else {
           activeBlock = undefined;
-          setEditorState(EditorState.forceSelection(getEditorState(), getEditorState().getSelection()));
+          const editorState = getEditorState();
+          const newEditorState = EditorState.forceSelection(editorState, editorState.getSelection());
+          setEditorState(newEditorState);
         }
       };
-      const isFocused = !readOnly && activeBlock && contentBlock.get('key') === activeBlock.get('key');
+
+      const isFocused = !getReadOnly() && activeBlock && contentBlock.get('key') === activeBlock.get('key');
 
       // Return the decorator and feed it theme and above properties
       return {

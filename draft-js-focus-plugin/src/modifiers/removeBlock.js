@@ -24,6 +24,8 @@ export default function (store, blockKey) {
       'unstyled'
     );
     const newState = EditorState.push(editorState, content, 'remove-block');
+
+    // force to new selection
     const newSelection = new SelectionState({
       anchorKey: blockKey,
       anchorOffset: 0,
@@ -43,24 +45,12 @@ export default function (store, blockKey) {
   content = Modifier.removeRange(content, targetRange, 'backward');
   const newState = EditorState.push(editorState, content, 'remove-block');
 
-  // Note: Ugly workaround to set the selection at the end of the before block.
-  // When I tried doing it directly Draft.js failed to render the blocks properly.
-  setTimeout(() => {
-    const postNewSelection = new SelectionState({
-      anchorKey: beforeKey,
-      anchorOffset: beforeBlock.getLength(),
-      focusKey: beforeKey,
-      focusOffset: beforeBlock.getLength(),
-    });
-    store.setEditorState(EditorState.forceSelection(store.getEditorState(), postNewSelection));
-  }, 0);
-
   // force to new selection
   const newSelection = new SelectionState({
     anchorKey: beforeKey,
-    anchorOffset: 0,
+    anchorOffset: beforeBlock.getLength(),
     focusKey: beforeKey,
-    focusOffset: 0,
+    focusOffset: beforeBlock.getLength(),
   });
   return EditorState.forceSelection(newState, newSelection);
 }
