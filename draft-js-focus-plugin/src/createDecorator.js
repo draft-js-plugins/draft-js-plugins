@@ -66,7 +66,9 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
   render() {
     const { blockProps, className } = this.props;
     const { isFocused } = blockProps;
-    const combinedClassName = isFocused ? unionClassNames(className, theme.focused) : className;
+    const combinedClassName = isFocused
+      ? unionClassNames(className, theme.focused)
+      : unionClassNames(className, theme.unfocused);
     return (
       <WrappedComponent
         {...this.props}
