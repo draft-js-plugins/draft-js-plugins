@@ -1,79 +1,93 @@
 import { EditorState } from 'draft-js';
 import setSelection from './modifiers/setSelection';
-import setFocusToBlock from './modifiers/setFocusToBlock';
 import createDecorator from './createDecorator';
+import createStore from './utils/createStore';
 import defaultTheme from './style.css';
 
-const store = {
-  getReadOnly: undefined,
-  getEditorState: undefined,
-  setEditorState: undefined,
-  types: {},
-  addType: (type) => {
-    store.types[type] = true;
+const store = createStore({});
+
+const oneAtomicBlockIsSelected = (editorState) => {
+  const selection = editorState.getSelection();
+  if (selection.getAnchorKey() !== selection.getFocusKey()) {
+    return false;
   }
+  const content = editorState.getCurrentContent();
+  const block = content.getBlockForKey(selection.getAnchorKey());
+  return block.getType() === 'atomic';
 };
 
 // TODO make sure to remove the native selection of a text when the user clicks on the block
 const focusPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
-  let activeBlock = null;
 
   return {
-    initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
-      store.getReadOnly = getReadOnly;
-      store.getEditorState = getEditorState;
-      store.setEditorState = setEditorState;
+    initialize: ({ getEditorState, setEditorState }) => {
+      store.updateItem('getEditorState', getEditorState);
+      store.updateItem('setEditorState', setEditorState);
+    },
+    onChange: (editorState) => {
+      // TODO check if selection changed
+      store.updateItem('selection', editorState.getSelection());
+      return editorState;
+    },
+    keyBindingFn(evt, { getEditorState, setEditorState }) {
+      const editorState = getEditorState();
+      if (oneAtomicBlockIsSelected(editorState)) {
+        // arrow left
+        if (evt.keyCode === 37) {
+          setSelection(store, getEditorState, setEditorState, 'up', evt);
+        }
+        // arrow right
+        if (evt.keyCode === 39) {
+          setSelection(store, getEditorState, setEditorState, 'down', evt);
+        }
+      }
     },
     // Wrap all block-types in block-focus decorator
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
-      const setFocus = () => {
-        if (getReadOnly()) return;
-        if (!activeBlock || activeBlock.get('key') !== contentBlock.get('key')) {
-          // Set active block to current block
-          activeBlock = contentBlock;
-          // Force selection to move to current block
-          setFocusToBlock(getEditorState, setEditorState, activeBlock);
-        }
-      };
+      if (contentBlock.getType() !== 'atomic') {
+        return undefined;
+      }
+      // const isFocused = !getReadOnly() && contentBlock.getKey() === getEditorState().getSelection().getAnchorKey();
+      const isFocused = () => (
+        contentBlock.getKey() === getEditorState().getSelection().getAnchorKey()
+      );
 
       const unsetFocus = (direction, event) => {
         if (getReadOnly()) return;
 
         if (direction) {
-          activeBlock = setSelection(store, getEditorState, setEditorState, contentBlock, direction, event);
+          setSelection(store, getEditorState, setEditorState, contentBlock, direction, event);
+          // TODO why has the editorstate be set again?
           const editorState = getEditorState();
-          const newEditorState = EditorState.forceSelection(editorState, editorState.getSelection());
-          setEditorState(newEditorState);
+          setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
         } else {
-          activeBlock = undefined;
           const editorState = getEditorState();
-          const newEditorState = EditorState.forceSelection(editorState, editorState.getSelection());
-          setEditorState(newEditorState);
+          setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
         }
       };
 
-      const isFocused = !getReadOnly() && activeBlock && contentBlock.get('key') === activeBlock.get('key');
-
-      // Return the decorator and feed it theme and above properties
       return {
         props: {
           unsetFocus,
           isFocused,
-          setFocus
         }
       };
     },
     // Handle down/up arrow events and set activeBlock/selection if necessary
-    onDownArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
-      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'down', event);
+    onDownArrow: (event, { getEditorState, setEditorState }) => {
       // TODO match by entitiy instead of block type
-      setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
+      const editorState = getEditorState();
+      if (oneAtomicBlockIsSelected(editorState)) {
+        setSelection(store, getEditorState, setEditorState, 'down', event);
+      }
     },
-    onUpArrow: (event, { getEditorState, setEditorState, setReadOnly }) => {
-      activeBlock = setSelection(store, getEditorState, setEditorState, activeBlock, 'up', event);
+    onUpArrow: (event, { getEditorState, setEditorState }) => {
       // TODO match by entitiy instead of block type
-      setReadOnly(activeBlock && store.types[activeBlock.get('type')]);
+      const editorState = getEditorState();
+      if (oneAtomicBlockIsSelected(editorState)) {
+        setSelection(store, getEditorState, setEditorState, 'up', event);
+      }
     },
     decorator: createDecorator({ theme, store }),
   };

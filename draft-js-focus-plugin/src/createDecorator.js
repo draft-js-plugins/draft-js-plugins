@@ -12,24 +12,8 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
-  componentDidMount() {
-    store.addType(this.props.block.type);
-    this.componentDidUpdate();
-  }
-
-  componentWillUpdate() {
-    document.removeEventListener('keydown', this.releaseOnKeyDown);
-    document.removeEventListener('click', this.releaseOnClick);
-  }
-
-  componentDidUpdate() {
-    const { isFocused } = this.props.blockProps;
-    if (!store.getReadOnly()) {
-      document.addEventListener('keydown', this.releaseOnKeyDown);
-      if (isFocused) {
-        document.addEventListener('click', this.releaseOnClick);
-      }
-    }
+  componentWillMount() {
+    store.subscribeToItem('selection', this.onSelectionChanged);
   }
 
   componentWillUnmount() {
@@ -40,6 +24,13 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     }
   }
 
+  // onSelectionChanged = (selection) => {
+  onSelectionChanged = () => {
+    // TODO only update if something changed
+    this.forceUpdate();
+  }
+
+  // TODO fix this with left/right up down
   releaseOnKeyDown = (event) => {
     if (event.keyCode === 38) {
       this.props.blockProps.unsetFocus('up', event);
@@ -57,22 +48,15 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
     this.props.blockProps.unsetFocus();
   }
 
-  onClick = () => {
-    const { isFocused } = this.props.blockProps;
-    if (isFocused) return;
-    this.props.blockProps.setFocus();
-  };
-
   render() {
     const { blockProps, className } = this.props;
     const { isFocused } = blockProps;
-    const combinedClassName = isFocused
+    const combinedClassName = isFocused()
       ? unionClassNames(className, theme.focused)
       : unionClassNames(className, theme.unfocused);
     return (
       <WrappedComponent
         {...this.props}
-        onClick={this.onClick}
         className={combinedClassName}
       />
     );
