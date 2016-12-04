@@ -17,11 +17,7 @@ export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecor
   }
 
   componentWillUnmount() {
-    const { isFocused } = this.props.blockProps;
-    this.componentWillUpdate();
-    if (isFocused) {
-      this.props.blockProps.unsetFocus();
-    }
+    store.unsubscribeFromItem('selection', this.onSelectionChanged);
   }
 
   // onSelectionChanged = (selection) => {
