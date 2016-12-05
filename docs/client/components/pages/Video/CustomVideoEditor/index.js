@@ -1,38 +1,123 @@
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import { EditorState, convertFromRaw } from 'draft-js';
+import Editor, { composeDecorators } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+// eslint-disable-next-line import/no-unresolved
+import createAlignmentPlugin from 'draft-js-alignment-plugin';
+// eslint-disable-next-line import/no-unresolved
+import createFocusPlugin from 'draft-js-focus-plugin';
+// eslint-disable-next-line import/no-unresolved
+import createResizeablePlugin from 'draft-js-resizeable-plugin';
+// eslint-disable-next-line import/no-unresolved
+import createDndPlugin from 'draft-js-dnd-plugin';
 import createVideoPlugin from 'draft-js-video-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
-const HTML5Player = (props) => {
-  const { blockProps } = props;
-  const { url, srcType } = blockProps;
-  if (srcType === 'mp4') {
-    return (<video width="320" height="240" autoPlay >
-      <source src={url} type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>);
-  }
-  return (<div>not supported video type</div>);
+const focusPlugin = createFocusPlugin();
+const resizeablePlugin = createResizeablePlugin();
+const dndPlugin = createDndPlugin();
+const alignmentPlugin = createAlignmentPlugin();
+const { AlignmentTool } = alignmentPlugin;
+
+const decorator = composeDecorators(
+  resizeablePlugin.decorator,
+  alignmentPlugin.decorator,
+  focusPlugin.decorator,
+  dndPlugin.decorator
+);
+
+const videoPlugin = createVideoPlugin({ decorator });
+const { types } =videoPlugin;
+const plugins = [dndPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, videoPlugin];
+/* eslint-disable */
+const initialState = {
+  "entityMap": {
+    "0": {
+      "type": types.VIDEOTYPE,
+      "mutability": "IMMUTABLE",
+      "data": {
+        "src": "https://www.youtube.com/watch?v=iEPTlhBmwRg"
+      }
+    }
+  },
+  "blocks": [{
+    "key": "9gm3s",
+    "text": "You can have video in your text field. This is a very rudimentary example, but you can enhance the video plugin with resizing, focus or alignment plugins.",
+    "type": "unstyled",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [],
+    "data": {}
+  }, {
+    "key": "ov7r",
+    "text": " ",
+    "type": "atomic",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [{
+      "offset": 0,
+      "length": 1,
+      "key": 0
+    }],
+    "data": {}
+  }, {
+    "key": "e23a8",
+    "text": "See advanced examples further down …",
+    "type": "unstyled",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [],
+    "data": {}
+  }, {
+    "key": "97vas",
+    "text": "",
+    "type": "unstyled",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [],
+    "data": {}
+  }, {
+    "key": "bbc5n",
+    "text": "",
+    "type": "unstyled",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [],
+    "data": {}
+  },
+    {
+      "key": "iqdh",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "fg6vi",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "7bvko",
+      "text": "",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    }
+  ]
 };
-
-const MP4URL = /^https?:\/\/(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:mp4)$/;
-const videoPlugin = createVideoPlugin({
-  autoHandlePastedText: true,
-  isVideo: (url) => MP4URL.test(url),
-  getVideoSrc: (url) => ({
-    srcID: undefined,
-    srcType: 'mp4',
-    url,
-  }),
-  wrapperComponent: HTML5Player,
-});
-const plugins = [videoPlugin];
-
+/* eslint-enable */
 export default class CustomVideoEditor extends Component {
 
   state = {
-    editorState: EditorState.createEmpty(),
+    editorState: EditorState.createWithContent(convertFromRaw(initialState)),
   };
 
   onChange = (editorState) => {
@@ -56,6 +141,7 @@ export default class CustomVideoEditor extends Component {
             this.editor = element;
           }}
         />
+        <AlignmentTool />
       </div>
     );
   }

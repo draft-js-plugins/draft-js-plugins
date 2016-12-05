@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleVideoEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleAddVideoExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleAddVideoVideoEditor';
-// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomVideoEditor';
+// eslint-disable-next-line import/no-unresolved
+import addVideoEditorExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomAddVideoVideoEditor';
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
@@ -16,7 +16,6 @@ import Heading from '../../shared/Heading';
 import styles from './styles.css';
 import Code from '../../shared/Code';
 import SimpleVideoEditor from './SimpleVideoEditor';
-import SimpleAddVideoVideoEditor from './SimpleAddVideoVideoEditor';
 import CustomVideoEditor from './CustomVideoEditor';
 import CustomAddVideoVideoEditor from './CustomAddVideoVideoEditor';
 import SocialBar from '../../shared/SocialBar';
@@ -69,14 +68,9 @@ export default class App extends Component {
           <Code code={customExampleCode} name="CustomVideoEditor.js" />
         </Container>
         <Container>
-          <Heading level={2} >Simple non-autoHandlePastedText Video Example</Heading>
-          <SimpleAddVideoVideoEditor />
-          <Code code={simpleAddVideoExampleCode} name="simpleAddVideoExampleCode.js" />
-        </Container>
-        <Container>
-          <Heading level={2} >Advanced non-autoHandlePastedText Video Example</Heading>
+          <Heading level={2} >Add Image Button Example</Heading>
           <CustomAddVideoVideoEditor />
-          <Code code={customExampleCode} name="CustomVideoEditor.js" />
+          <Code code={addVideoEditorExampleCode} name="CustomAddVideoVideoEditor.js" />
         </Container>
         <SocialBar />
       </div>

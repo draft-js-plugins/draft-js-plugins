@@ -14,7 +14,7 @@ const initialState = {
       "type": types.VIDEOTYPE,
       "mutability": "IMMUTABLE",
       "data": {
-        "src": "https://www.youtube.com/watch?v=i9JWHiOcrD0"
+        "src": "https://www.youtube.com/watch?v=iEPTlhBmwRg"
       }
     }
   },

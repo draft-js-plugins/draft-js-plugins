@@ -22,17 +22,19 @@ const getSrc = ({ src }) => {
 };
 
 const DefaultVideoCompoent = (props) => {
-  const { blockProps } = props;
+  const { blockProps, style } = props;
   const src = getSrc(blockProps);
   if (src) {
     return (
-      <div style={{ width: '100%', height: '0', position: 'relative', paddingBottom: '56.25%' }} >
-        <iframe
-          style={{ width: '100%', height: '100%', position: 'absolute', top: '0', left: '0' }}
-          src={src}
-          frameBorder="0"
-          allowFullScreen
-        />
+      <div style={style} >
+        <div style={{ width: '100%', height: '0', position: 'relative', paddingBottom: '56.25%' }} >
+          <iframe
+            style={{ width: '100%', height: '100%', position: 'absolute', top: '0', left: '0' }}
+            src={src}
+            frameBorder="0"
+            allowFullScreen
+          />
+        </div>
       </div>
     );
   }

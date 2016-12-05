@@ -6,7 +6,7 @@ import {
 
 import * as types from '../constants';
 
-export default function addVideo(editorState, { scr }) {
+export default function addVideo(editorState, { src }) {
   if (RichUtils.getCurrentBlockType(editorState) === types.ATOMIC) {
     return editorState;
   }
@@ -15,7 +15,7 @@ export default function addVideo(editorState, { scr }) {
     types.VIDEOTYPE,
     'IMMUTABLE',
     {
-      scr,
+      src,
     }
   );
   return AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');

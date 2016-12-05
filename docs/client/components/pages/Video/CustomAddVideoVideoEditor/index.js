@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createVideoPlugin from 'draft-js-video-plugin'; // eslint-disable-line import/no-unresolved
+import VideoAdd from './VideoAdd';
 import editorStyles from './editorStyles.css';
 
 const videoPlugin = createVideoPlugin();
@@ -37,6 +38,11 @@ export default class CustomVideoEditor extends Component {
             }}
           />
         </div>
+        <VideoAdd
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+          modifier={videoPlugin.addVideo}
+        />
       </div>
     );
   }
