@@ -17,10 +17,10 @@ const videoPlugin = (config = {}) => {
   return {
     blockRendererFn: (block) => {
       if (block.getType() === types.ATOMIC) {
-        //TODO subject to change for draft-js next release
+        // TODO subject to change for draft-js next release
         const entity = Entity.get(block.getEntityAt(0));
         const type = entity.getType();
-        const { src } =entity.getData();
+        const { src } = entity.getData();
         if (type === types.VIDEOTYPE) {
           return {
             component: ThemedVideo,

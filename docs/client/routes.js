@@ -19,6 +19,7 @@ import InlineToolbar from './components/pages/InlineToolbar';
 import SideToolbar from './components/pages/SideToolbar';
 import Alignment from './components/pages/Alignment';
 import Video from './components/pages/Video';
+
 export const routes = (
   <Route path="/" title="App" component={App}>
     <IndexRoute component={Home} />

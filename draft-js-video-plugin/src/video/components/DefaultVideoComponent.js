@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import utils from '../utils';
+
 const YOUTUBE_PREFIX = 'https://www.youtube.com/embed/';
 const VIMEO_PREFIX = 'https://player.vimeo.com/video/';
 
@@ -9,7 +10,7 @@ const getSrc = ({ src }) => {
     getYoutubeSrc,
     isVimeo,
     getVimeoSrc,
-  } =utils;
+  } = utils;
   if (isYoutube(src)) {
     const { srcID } = getYoutubeSrc(src);
     return `${YOUTUBE_PREFIX}${srcID}`;

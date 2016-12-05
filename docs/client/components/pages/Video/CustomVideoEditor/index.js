@@ -26,7 +26,7 @@ const decorator = composeDecorators(
 );
 
 const videoPlugin = createVideoPlugin({ decorator });
-const { types } =videoPlugin;
+const { types } = videoPlugin;
 const plugins = [dndPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, videoPlugin];
 /* eslint-disable */
 const initialState = {

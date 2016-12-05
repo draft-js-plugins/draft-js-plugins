@@ -5,7 +5,7 @@ import createVideoPlugin from 'draft-js-video-plugin'; // eslint-disable-line im
 import editorStyles from './editorStyles.css';
 
 const videoPlugin = createVideoPlugin();
-const { types } =videoPlugin;
+const { types } = videoPlugin;
 const plugins = [videoPlugin];
 /* eslint-disable */
 const initialState = {
