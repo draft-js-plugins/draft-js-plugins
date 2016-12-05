@@ -1,5 +1,6 @@
 // It is important to import the Editor which accepts plugins.
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
+import { List } from 'immutable';
 import createCounterPlugin from 'draft-js-counter-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 
@@ -18,7 +19,7 @@ const MyEditor = ({ editorState, onChange }) => (
     <Editor
       editorState={editorState}
       onChange={onChange}
-      plugins={[counterPlugin]}
+      plugins={List([counterPlugin])}
     />
     <CharCounter editorState={this.state.editorState} limit={200} />
   </div>

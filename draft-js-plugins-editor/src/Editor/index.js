@@ -5,7 +5,7 @@ import {
   EditorState,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
-import { List, Map } from 'immutable';
+import Immutable, { List, Map } from 'immutable';
 import MultiDecorator from './MultiDecorator';
 import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
@@ -20,29 +20,23 @@ class PluginEditor extends Component {
   static propTypes = {
     editorState: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired,
-    plugins: React.PropTypes.array,
+    plugins: React.PropTypes.object,
     defaultKeyBindings: React.PropTypes.bool,
     defaultBlockRenderMap: React.PropTypes.bool,
     customStyleMap: React.PropTypes.object,
-    decorators: React.PropTypes.array,
+    decorators: React.PropTypes.object,
   };
 
   static defaultProps = {
     defaultBlockRenderMap: true,
     defaultKeyBindings: true,
     customStyleMap: {},
-    plugins: [],
-    decorators: [],
+    plugins: List(),
+    decorators: List(),
   };
 
   constructor(props) {
     super(props);
-
-    const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
-      if (typeof plugin.initialize !== 'function') continue;
-      plugin.initialize(this.getPluginMethods());
-    }
 
     // attach proxy methods like `focus` or `blur`
     for (const method of proxies) {
@@ -55,35 +49,31 @@ class PluginEditor extends Component {
   }
 
   componentWillMount() {
-    const decorators = this.resolveDecorators();
-    const compositeDecorator = createCompositeDecorator(
-      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
-      this.getEditorState,
-      this.onChange);
+    this.initPlugins();
+    this.decorateEditorState(this.props.editorState);
+  }
 
-    const customDecorators = decorators
-      .filter((decorator) => this.decoratorIsCustom(decorator));
 
-    const multiDecorator = new MultiDecorator(
-      [
-        ...customDecorators,
-        compositeDecorator,
-      ]
-    );
+  componentWillReceiveProps(nextProps) {
+    const decorator = nextProps.editorState.getDecorator();
+    if (!Immutable.is(this.props.plugins, nextProps.plugins)
+        || !Immutable.is(this.props.decorators, nextProps.decorators)) {
+      setTimeout(() => {
+        this.unloadPlugins();
+        this.initPlugins();
+        this.decorateEditorState(nextProps.editorState);
+      }, 0);
+      return;
+    }
 
-    const editorState = EditorState.set(this.props.editorState, { decorator: multiDecorator });
-    this.onChange(moveSelectionToEnd(editorState));
+    if (typeof decorator !== 'undefined' && decorator === null) {
+      this.decorateEditorState(nextProps.editorState);
+      return;
+    }
   }
 
   componentWillUnmount() {
-    this.resolvePlugins().forEach((plugin) => {
-      if (plugin.willUnmount) {
-        plugin.willUnmount({
-          getEditorState: this.getEditorState,
-          setEditorState: this.onChange,
-        });
-      }
-    });
+    this.unloadPlugins();
   }
 
   // Cycle through the plugins, changing the editor state with what the plugins
@@ -101,7 +91,7 @@ class PluginEditor extends Component {
     }
   };
 
-  getPlugins = () => this.props.plugins.slice(0);
+  getPlugins = () => this.resolvePlugins().slice(0);
   getProps = () => ({ ...this.props });
 
   // TODO further down in render we use readOnly={this.props.readOnly || this.state.readOnly}. Ask Ben why readOnly is here just from the props? Why would plugins use this instead of just taking it from getProps?
@@ -122,6 +112,44 @@ class PluginEditor extends Component {
     setReadOnly: this.setReadOnly,
     getEditorRef: this.getEditorRef,
   });
+
+  initPlugins = () => {
+    const plugins = [this.props, ...this.resolvePlugins()];
+
+    for (const plugin of plugins) {
+      if (typeof plugin.initialize !== 'function') continue;
+      plugin.initialize(this.getPluginMethods());
+    }
+  };
+
+  unloadPlugins = () => {
+    this.resolvePlugins().forEach((plugin) => {
+      if (plugin.willUnmount) {
+        plugin.willUnmount({
+          getEditorState: this.getEditorState,
+          setEditorState: this.onChange
+        });
+      }
+    });
+  };
+
+  decorateEditorState = (editorState) => {
+    const decorators = this.resolveDecorators();
+    const compositeDecorator = createCompositeDecorator(
+      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
+      this.getEditorState,
+      this.onChange);
+
+    const customDecorators = decorators.filter((decorator) => this.decoratorIsCustom(decorator));
+
+    const multiDecorator = new MultiDecorator([
+      ...customDecorators,
+      compositeDecorator,
+    ]);
+
+    const newEditorState = EditorState.set(editorState, { decorator: multiDecorator });
+    this.onChange(moveSelectionToEnd(newEditorState));
+  };
 
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
@@ -239,7 +267,7 @@ class PluginEditor extends Component {
   };
 
   resolvePlugins = () => {
-    const plugins = this.props.plugins.slice(0);
+    const plugins = this.props.plugins.toArray().slice(0);
     if (this.props.defaultKeyBindings) {
       plugins.push(defaultKeyBindingPlugin);
     }
@@ -248,7 +276,8 @@ class PluginEditor extends Component {
   };
 
   resolveDecorators = () => {
-    const { decorators, plugins } = this.props;
+    const decorators = this.props.decorators.toArray();
+    const plugins = this.resolvePlugins();
     return List([{ decorators }, ...plugins])
       .filter((plugin) => plugin.decorators !== undefined)
       .flatMap((plugin) => plugin.decorators);
@@ -262,7 +291,7 @@ class PluginEditor extends Component {
 
 
   resolveCustomStyleMap = () => (
-    this.props.plugins
+    this.resolvePlugins()
      .filter((plug) => plug.customStyleMap !== undefined)
      .map((plug) => plug.customStyleMap)
      .concat([this.props.customStyleMap])
@@ -275,7 +304,7 @@ class PluginEditor extends Component {
   );
 
   resolveblockRenderMap = () => {
-    let blockRenderMap = this.props.plugins
+    let blockRenderMap = this.resolvePlugins()
       .filter((plug) => plug.blockRenderMap !== undefined)
       .reduce((maps, plug) => maps.merge(plug.blockRenderMap), Map({}));
     if (this.props.defaultBlockRenderMap) {

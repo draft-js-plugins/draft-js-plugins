@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createLinkifyPlugin from 'draft-js-linkify-plugin'; // eslint-disable-line import/no-unresolved
@@ -10,7 +11,7 @@ const linkifyPlugin = createLinkifyPlugin({
     <a {...props} onClick={() => alert('Clicked on Link!')} />
   )
 });
-const plugins = [linkifyPlugin];
+const plugins = List([linkifyPlugin]);
 
 export default class CustomMentionEditor extends Component {
 

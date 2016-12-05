@@ -16,6 +16,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - `decorators` don't decorate plugins anymore.
 
+### Changed
+
+- *Breaking change* The `plugins` and `decorators` editor props need to be an Immutable.List()
+- When `plugins` and `decorators` props change the editor will re-apply them on editorState, this means the client can now add and remove plugins and decorators while the plugin editor is still mounteB and the editor will act as expected.
+- When the editorState prop has no decorators set the editor will re-apply them on editorState, this means that the client can now load new editorState even after the plugin editor has already been mounted.
+
 ## 1.1.0 - 2016-05-30
 
 ### Added

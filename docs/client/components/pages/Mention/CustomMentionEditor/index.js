@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin'; // eslint-disable-line import/no-unresolved
@@ -32,7 +33,7 @@ const mentionPlugin = createMentionPlugin({
   mentionPrefix: '@',
 });
 const { MentionSuggestions } = mentionPlugin;
-const plugins = [mentionPlugin];
+const plugins = List([mentionPlugin]);
 
 const Entry = (props) => {
   const {

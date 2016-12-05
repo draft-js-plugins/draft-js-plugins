@@ -2,7 +2,7 @@
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
-import { fromJS } from 'immutable';
+import { List, fromJS } from 'immutable';
 
 // Creates an Instance. Passing in an Immutable.js List of stickers as an
 // argument.
@@ -27,7 +27,7 @@ const MyEditor = ({ editorState, onChange }) => (
   <Editor
     editorState={editorState}
     onChange={onChange}
-    plugins={[stickerPlugin]}
+    plugins={List([stickerPlugin])}
   />
 );
 

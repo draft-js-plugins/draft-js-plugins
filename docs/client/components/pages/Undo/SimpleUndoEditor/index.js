@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createUndoPlugin from 'draft-js-undo-plugin'; // eslint-disable-line import/no-unresolved
@@ -6,7 +7,7 @@ import editorStyles from './editorStyles.css';
 
 const undoPlugin = createUndoPlugin();
 const { UndoButton, RedoButton } = undoPlugin;
-const plugins = [undoPlugin];
+const plugins = List([undoPlugin]);
 
 export default class SimpleUndoEditor extends Component {
 

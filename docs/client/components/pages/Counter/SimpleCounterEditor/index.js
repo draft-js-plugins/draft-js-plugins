@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createCounterPlugin from 'draft-js-counter-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
 const counterPlugin = createCounterPlugin();
 const { CharCounter, WordCounter, LineCounter, CustomCounter } = counterPlugin;
-const plugins = [counterPlugin];
+const plugins = List([counterPlugin]);
 const text = `This editor has counters below!
 Try typing here and watch the numbers go up. 🙌
 
