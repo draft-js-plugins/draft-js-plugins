@@ -4,8 +4,13 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
 import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
 import editorStyles from './editorStyles.css';
+import buttonStyles from './buttonStyles.css';
+import toolbarStyles from './toolbarStyles.css';
+import separatorStyles from './separatorStyles.css';
 
-const inlineToolbarPlugin = createInlineToolbarPlugin();
+const inlineToolbarPlugin = createInlineToolbarPlugin({
+  theme: { buttonStyles, toolbarStyles, separatorStyles }
+});
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
 const text = 'In this editor a toolbar with a lot more options shows up once you select part of the text …';

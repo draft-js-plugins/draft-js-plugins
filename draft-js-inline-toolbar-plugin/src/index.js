@@ -8,14 +8,19 @@ import {
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
-import buttonTheme from './buttonStyles.css';
+import buttonStyles from './buttonStyles.css';
+import toolbarStyles from './toolbarStyles.css';
+import separatorStyles from './separatorStyles.css';
 
 const createInlineToolbarPlugin = (config = {}) => {
+  const defaultTheme = { buttonStyles, toolbarStyles, separatorStyles };
+
   const store = createStore({
     isVisible: false,
   });
 
   const {
+    theme = defaultTheme,
     structure = [
       BoldButton,
       ItalicButton,
@@ -35,7 +40,7 @@ const createInlineToolbarPlugin = (config = {}) => {
   const toolbarProps = {
     store,
     structure,
-    buttonTheme,
+    theme,
   };
 
   return {

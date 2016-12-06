@@ -7,11 +7,7 @@ import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 
 const createSideToolbarPlugin = (config = {}) => {
-  const defaultTheme = {
-    buttonStyles,
-    blockTypeSelectStyles,
-    toolbarStyles
-  };
+  const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
   const store = createStore({
     isVisible: false,
