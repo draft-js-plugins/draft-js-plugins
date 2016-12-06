@@ -4,8 +4,17 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 import editorStyles from './editorStyles.css';
+import buttonStyles from './buttonStyles.css';
+import toolbarStyles from './toolbarStyles.css';
+import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 
-const sideToolbarPlugin = createSideToolbarPlugin();
+const sideToolbarPlugin = createSideToolbarPlugin({
+  theme: {
+    buttonStyles: buttonStyles,
+    toolbarStyles: toolbarStyles,
+    blockTypeSelectStyles: blockTypeSelectStyles
+  }
+});
 const { SideToolbar } = sideToolbarPlugin;
 const plugins = [sideToolbarPlugin];
 const text = 'Once you click into the text field the sidebar plugin will show up …';
