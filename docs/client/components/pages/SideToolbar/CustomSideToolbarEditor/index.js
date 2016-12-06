@@ -10,9 +10,9 @@ import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 
 const sideToolbarPlugin = createSideToolbarPlugin({
   theme: {
-    buttonStyles: buttonStyles,
-    toolbarStyles: toolbarStyles,
-    blockTypeSelectStyles: blockTypeSelectStyles
+    buttonStyles,
+    toolbarStyles,
+    blockTypeSelectStyles
   }
 });
 const { SideToolbar } = sideToolbarPlugin;

@@ -8,9 +8,9 @@ import toolbarStyles from './toolbarStyles.css';
 
 const createSideToolbarPlugin = (config = {}) => {
   const defaultTheme = {
-    buttonStyles: buttonStyles,
-    blockTypeSelectStyles: blockTypeSelectStyles,
-    toolbarStyles: toolbarStyles
+    buttonStyles,
+    blockTypeSelectStyles,
+    toolbarStyles
   };
 
   const store = createStore({
