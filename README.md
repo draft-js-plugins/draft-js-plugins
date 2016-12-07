@@ -8,11 +8,11 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 ## Important Note
 
-We currently prepare for a 2.0. The `master` branch already contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-beta7 --save`.
+We are currently preparing for a 2.0. The `master` branch contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-beta7 --save`.
 
 ## Roadmap
 
-In case you are interested to help [Issue #329](https://github.com/draft-js-plugins/draft-js-plugins/issues/329) contains a roadmap of what's coming in 2.0 and beyond.
+In case you are interested in helping [Issue #329](https://github.com/draft-js-plugins/draft-js-plugins/issues/329) contains a roadmap of what's coming in 2.0 and beyond.
 
 ## Available Plugins (incl. Docs)
 
@@ -117,10 +117,10 @@ export default class UnicornEditor extends Component {
 
 #### How to write a Plugin
 
-Feel free to copy any of the existing plugins as a starting point.In this repository you also can find a [Guide](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/HOW_TO_CREATE_A_PLUGIN.md) on how to create a plugin including a description of the supported features. In addition you can contact [@nikgraf](https://github.com/nikgraf) directly in case you need help or simply open a Github Issue!
+Feel free to copy any of the existing plugins as a starting point.In this repository you can also find a [Guide](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/HOW_TO_CREATE_A_PLUGIN.md) on how to create a plugin, including a description of the supported features. In addition you can contact [@nikgraf](https://github.com/nikgraf) directly in case you need help or simply open a Github Issue!
 
 ## Discussion and Support
-Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com) or check out or collection of frequently asked questions here: [FAQ](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md).
+Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com) or check out our collection of frequently asked questions here: [FAQ](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md).
 
 ## Development
 
