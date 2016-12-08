@@ -89,22 +89,47 @@ const focusPlugin = (config = {}) => {
     },
     // Handle down/up arrow events and set activeBlock/selection if necessary
     onDownArrow: (event, { getEditorState, setEditorState }) => {
+      // TODO if one block is selected and the user wants to expand the selection using the shift key
+
       // TODO match by entitiy instead of block type
       const editorState = getEditorState();
       if (oneAtomicBlockIsSelected(editorState)) {
         setSelection(store, getEditorState, setEditorState, 'down', event);
+        return;
       }
 
-      // TODO check for is collapsed
-      // console.log('down');
+      // Don't manually overwrite in case the shift key is used to avoid breaking
+      // native behaviour that works anyway.
+      if (event.shiftKey) {
+        return;
+      }
 
-      // check for longer selections
-      // if (editorState.getSelection().getAnchorKey())
+      // Covering the case to select the after block with arrow down
+      const selectionKey = editorState.getSelection().getAnchorKey();
+      const afterBlock = editorState.getCurrentContent().getBlockAfter(selectionKey);
+      if (afterBlock && afterBlock.getType() === 'atomic') {
+        setSelection(store, getEditorState, setEditorState, 'down', event);
+      }
     },
     onUpArrow: (event, { getEditorState, setEditorState }) => {
+      // TODO if one block is selected and the user wants to expand the selection using the shift key
+
       // TODO match by entitiy instead of block type
       const editorState = getEditorState();
       if (oneAtomicBlockIsSelected(editorState)) {
+        setSelection(store, getEditorState, setEditorState, 'up', event);
+      }
+
+      // Don't manually overwrite in case the shift key is used to avoid breaking
+      // native behaviour that works anyway.
+      if (event.shiftKey) {
+        return;
+      }
+
+      // Covering the case to select the before block with arrow up
+      const selectionKey = editorState.getSelection().getAnchorKey();
+      const beforeBlock = editorState.getCurrentContent().getBlockBefore(selectionKey);
+      if (beforeBlock && beforeBlock.getType() === 'atomic') {
         setSelection(store, getEditorState, setEditorState, 'up', event);
       }
     },

@@ -9,8 +9,8 @@ const findParentNode = (node, filter) => {
 
 // Set selection of editor to next/previous block
 export default (store, getEditorState, setEditorState, mode, event) => {
-  const selectionKey = getEditorState().getSelection().getAnchorKey();
   const editorState = getEditorState();
+  const selectionKey = editorState.getSelection().getAnchorKey();
   const newActiveBlock = mode === 'up'
     ? editorState.getCurrentContent().getBlockBefore(selectionKey)
     : editorState.getCurrentContent().getBlockAfter(selectionKey);
