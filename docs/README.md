@@ -1,14 +1,20 @@
-# Docs
+# DraftJS Plugins Docs
 
-A boilerplate for building static sites with [React][] and [React Router][]
+![Draft JS Plugins Logo](https://dl.dropboxusercontent.com/u/40735/draft-js-plugins.svg)
 
-**Quick Start:**
-
-* `npm install`
-* `npm start` to run a dev server
-* Write an awesome client-side app...
-* `npm run build` to minify, package and generate static HTML files from your routes
+High quality plugins with great UX on top of [DraftJS](https://github.com/facebook/draft-js).
 
 ## Development
 
-**Iportant Note:** This setup does not yet support generating static sites for dynamic routes such as `post/:id`. For more info see [this issue on the react-static-webpack-plugin repo](https://github.com/iansinnott/react-static-webpack-plugin/issues/2).
+You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins. We use these docs to hack & prototype new features. Get it up & running with:
+
+```sh
+npm install
+cd docs
+npm install
+npm start
+```
+
+## Publishing Github Pages (for the core team)
+
+Run `./scripts/publishGithubPages.sh`
