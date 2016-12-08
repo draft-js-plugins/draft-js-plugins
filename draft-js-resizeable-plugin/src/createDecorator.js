@@ -26,12 +26,16 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     this.props.blockProps.setResizeData(data);
   }
 
+  // used to save the hoverPosition so it can be leveraged to determine if a
+  // drag should happen on mousedown
   mouseLeave = () => {
     if (!this.state.clicked) {
       this.setState({ hoverPosition: {} });
     }
   }
 
+  // used to save the hoverPosition so it can be leveraged to determine if a
+  // drag should happen on mousedown
   mouseMove = (evt) => {
     const { vertical, horizontal } = this.props;
 
@@ -104,6 +108,8 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
         newState.height = resizeSteps ? round(height, resizeSteps) : height;
       }
 
+      dragEvent.preventDefault();
+
       this.setState(newState);
     };
 
@@ -115,10 +121,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
 
       const { width, height } = this.state;
       this.setState({ clicked: false });
-      // TODO check if timeout is necessary
-      setTimeout(() => {
-        this.setEntityData({ width, height });
-      });
+      this.setEntityData({ width, height });
     };
 
     // TODO clean up event listeners

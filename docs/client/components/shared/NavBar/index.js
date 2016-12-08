@@ -73,6 +73,11 @@ export default class NavBar extends Component {
                 Alignment
               </Link>
             </li>
+            <li className={styles.plugin}>
+              <Link to="/plugin/resizeable" className={styles.link}>
+                Resizeable
+              </Link>
+            </li>
           </ul>
         </div>
         <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: 13, color: '#aaa' }}>The documentation currently represents the 2.0.0-beta7 release.

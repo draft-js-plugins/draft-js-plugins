@@ -19,6 +19,13 @@ export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFo
     blockKeyStore.remove(this.props.block.getKey());
   }
 
+  onClick = (evt) => {
+    evt.preventDefault();
+    if (!this.props.blockProps.isFocused) {
+      this.props.blockProps.setFocusToBlock();
+    }
+  }
+
   render() {
     const { blockProps, className } = this.props;
     const { isFocused } = blockProps;
@@ -28,6 +35,7 @@ export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFo
     return (
       <WrappedComponent
         {...this.props}
+        onClick={this.onClick}
         className={combinedClassName}
       />
     );

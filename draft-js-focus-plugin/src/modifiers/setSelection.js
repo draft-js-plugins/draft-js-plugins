@@ -10,7 +10,7 @@ export default (getEditorState, setEditorState, mode, event) => {
     : editorState.getCurrentContent().getBlockAfter(selectionKey);
 
   if (newActiveBlock && newActiveBlock.get('key') === selectionKey) {
-    return undefined;
+    return;
   }
 
   if (newActiveBlock) {
@@ -35,8 +35,5 @@ export default (getEditorState, setEditorState, mode, event) => {
       focusOffset: offset,
       isBackward: false,
     })));
-    return newActiveBlock;
   }
-
-  return undefined;
 };

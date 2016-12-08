@@ -1,5 +1,6 @@
 import { EditorState } from 'draft-js';
 import setSelection from './modifiers/setSelection';
+import setSelectionToBlock from './modifiers/setSelectionToBlock';
 import createDecorator from './createDecorator';
 import createBlockKeyStore from './utils/createBlockKeyStore';
 import blockInSelection from './utils/blockInSelection';
@@ -110,7 +111,7 @@ const focusPlugin = (config = {}) => {
       }
     },
     // Wrap all block-types in block-focus decorator
-    blockRendererFn: (contentBlock, { getEditorState }) => {
+    blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
       // This makes it mandatory to have atomic blocks for focus but also improves performance
       // since all the selection checks are not necessary.
       // In case there is a use-case where focus makes sense for none atomic blocks we can add it
@@ -126,6 +127,9 @@ const focusPlugin = (config = {}) => {
         props: {
           isFocused,
           isCollapsedSelection: editorState.getSelection().isCollapsed(),
+          setFocusToBlock: () => {
+            setSelectionToBlock(getEditorState, setEditorState, contentBlock);
+          },
         }
       };
     },
