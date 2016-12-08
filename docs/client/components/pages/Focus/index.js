@@ -33,7 +33,7 @@ export default class App extends Component {
           <Heading level={2}>Focus</Heading>
           <Heading level={3}>Prerequisite</Heading>
           <p>
-            This plugin exposes a decorator for blocks. You can use it in combination with any kind of plugin that manages a Draft.js block e.g. image or video. Keep in mind the plugin must accept a decorator for the block. The `Simple Focus Example` further down contains an example plugin rendering a colored div.
+            This plugin exposes a decorator for blocks of the type `atomic`. You can use it in combination with any kind of plugin that manages a Draft.js block e.g. image or video. Keep in mind the plugin must accept a decorator for the block. The `Simple Focus Example` further down contains an example plugin rendering a colored div.
           </p>
           <Heading level={3}>Usage</Heading>
           <p>
