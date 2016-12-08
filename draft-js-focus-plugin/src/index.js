@@ -3,6 +3,7 @@ import setSelection from './modifiers/setSelection';
 import createDecorator from './createDecorator';
 import createBlockKeyStore from './utils/createBlockKeyStore';
 import blockInSelection from './utils/blockInSelection';
+import getBlockMapKeys from './utils/getBlockMapKeys';
 import defaultTheme from './style.css';
 
 const focusableBlockIsSelected = (editorState, blockKeyStore) => {
@@ -33,17 +34,34 @@ const focusPlugin = (config = {}) => {
       }
       lastContentState = contentState;
 
+      // if the selection didn't change there is no need to re-render
       const selection = editorState.getSelection();
       if (lastSelection && selection.equals(lastSelection)) {
         lastSelection = editorState.getSelection();
         return editorState;
       }
 
-      // TODO check for if an atomic block is affected that has a focus entity
-      lastSelection = editorState.getSelection();
-      // By forcing the selection the editor will trigger the blockRendererFn which is
-      // necessary
-      return EditorState.forceSelection(editorState, editorState.getSelection());
+      // Note: Only if the previous or current selection contained a focusableBlock a re-render is needed.
+      const focusableBlockKeys = blockKeyStore.getAll();
+      if (lastSelection) {
+        const lastBlockMapKeys = getBlockMapKeys(contentState, lastSelection.getStartKey(), lastSelection.getEndKey());
+        if (lastBlockMapKeys.some((key) => focusableBlockKeys.includes(key))) {
+          lastSelection = selection;
+          // By forcing the selection the editor will trigger the blockRendererFn which is
+          // necessary for the blockProps containing isFocus to be passed down again.
+          return EditorState.forceSelection(editorState, editorState.getSelection());
+        }
+      }
+
+      const currentBlockMapKeys = getBlockMapKeys(contentState, selection.getStartKey(), selection.getEndKey());
+      if (currentBlockMapKeys.some((key) => focusableBlockKeys.includes(key))) {
+        lastSelection = selection;
+        // By forcing the selection the editor will trigger the blockRendererFn which is
+        // necessary for the blockProps containing isFocus to be passed down again.
+        return EditorState.forceSelection(editorState, editorState.getSelection());
+      }
+
+      return editorState;
     },
     keyBindingFn(evt, { getEditorState, setEditorState }) {
       const editorState = getEditorState();
@@ -113,7 +131,7 @@ const focusPlugin = (config = {}) => {
     },
     // Handle down/up arrow events and set activeBlock/selection if necessary
     onDownArrow: (event, { getEditorState, setEditorState }) => {
-      // TODO if one block is selected and the user wants to expand the selection using the shift key
+      // TODO edgecase: if one block is selected and the user wants to expand the selection using the shift key
 
       const editorState = getEditorState();
       if (focusableBlockIsSelected(editorState, blockKeyStore)) {
@@ -135,7 +153,7 @@ const focusPlugin = (config = {}) => {
       }
     },
     onUpArrow: (event, { getEditorState, setEditorState }) => {
-      // TODO if one block is selected and the user wants to expand the selection using the shift key
+      // TODO edgecase: if one block is selected and the user wants to expand the selection using the shift key
 
       const editorState = getEditorState();
       if (focusableBlockIsSelected(editorState, blockKeyStore)) {
