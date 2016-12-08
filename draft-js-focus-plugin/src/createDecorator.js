@@ -7,23 +7,9 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ theme, store }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
+export default ({ theme }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
-
-  componentWillMount() {
-    store.subscribeToItem('selection', this.onSelectionChanged);
-  }
-
-  componentWillUnmount() {
-    store.unsubscribeFromItem('selection', this.onSelectionChanged);
-  }
-
-  // onSelectionChanged = (selection) => {
-  onSelectionChanged = () => {
-    // TODO only update if something changed
-    this.forceUpdate();
-  }
 
   render() {
     const { blockProps, className } = this.props;

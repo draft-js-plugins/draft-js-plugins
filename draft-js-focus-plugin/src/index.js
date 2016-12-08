@@ -176,7 +176,7 @@ const focusPlugin = (config = {}) => {
         setSelection(store, getEditorState, setEditorState, 'up', event);
       }
     },
-    decorator: createDecorator({ theme, store }),
+    decorator: createDecorator({ theme }),
   };
 };
 
