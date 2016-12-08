@@ -6,23 +6,22 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
-import createAlignmentPlugin from 'draft-js-alignment-plugin';
+import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createColorBlockPlugin from './colorBlockPlugin';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
-const alignmentPlugin = createAlignmentPlugin();
-const { AlignmentTool } = alignmentPlugin;
+const resizeablePlugin = createResizeablePlugin();
 
 const decorator = composeDecorators(
-  alignmentPlugin.decorator,
+  resizeablePlugin.decorator,
   focusPlugin.decorator,
 );
 
 const colorBlockPlugin = createColorBlockPlugin({ decorator });
-const plugins = [focusPlugin, alignmentPlugin, colorBlockPlugin];
+const plugins = [focusPlugin, resizeablePlugin, colorBlockPlugin];
 
 /* eslint-disable */
 const initialState = {
@@ -35,7 +34,7 @@ const initialState = {
     },
     "blocks": [{
         "key": "9gm3s",
-        "text": "This is a simple example. Focus the block by clicking on it and change alignment via the toolbar.",
+        "text": "This is a simple example. Hover the block and change the with by dragging the mouse.",
         "type": "unstyled",
         "depth": 0,
         "inlineStyleRanges": [],
@@ -55,7 +54,7 @@ const initialState = {
         "data": {}
     }, {
         "key": "e23a8",
-        "text": "More text here to demonstrate how inline left/right alignment works …",
+        "text": "More text here …",
         "type": "unstyled",
         "depth": 0,
         "inlineStyleRanges": [],
@@ -65,7 +64,7 @@ const initialState = {
 };
 /* eslint-enable */
 
-export default class SimpleAlignmentEditor extends Component {
+export default class SimpleResizeableEditor extends Component {
 
   state = {
     editorState: EditorState.createWithContent(convertFromRaw(initialState)),
@@ -91,7 +90,6 @@ export default class SimpleAlignmentEditor extends Component {
             plugins={plugins}
             ref={(element) => { this.editor = element; }}
           />
-          <AlignmentTool />
         </div>
       </div>
     );
