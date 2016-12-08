@@ -1,15 +1,8 @@
 import { SelectionState, EditorState } from 'draft-js';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 
-const findParentNode = (node, filter) => {
-  if (!node) return null;
-  return node.parentElement && filter(node.parentElement)
-    ? node.parentElement
-    : findParentNode(node.parentElement, filter);
-};
-
 // Set selection of editor to next/previous block
-export default (store, getEditorState, setEditorState, mode, event) => {
+export default (getEditorState, setEditorState, mode, event) => {
   const editorState = getEditorState();
   const selectionKey = editorState.getSelection().getAnchorKey();
   const newActiveBlock = mode === 'up'

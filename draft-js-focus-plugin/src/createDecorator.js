@@ -7,9 +7,17 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ theme }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
+export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
+
+  componentWillMount() {
+    blockKeyStore.add(this.props.block.getKey());
+  }
+
+  componentWillUnmount() {
+    blockKeyStore.remove(this.props.block.getKey());
+  }
 
   render() {
     const { blockProps, className } = this.props;
