@@ -22,6 +22,7 @@ const oneAtomicBlockIsSelected = (editorState) => {
 const focusPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   let lastSelection;
+  let lastContentState;
 
   return {
     initialize: ({ getEditorState, setEditorState }) => {
@@ -29,6 +30,16 @@ const focusPlugin = (config = {}) => {
       store.updateItem('setEditorState', setEditorState);
     },
     onChange: (editorState) => {
+      // in case the content changed there is no need to re-render blockRendererFn
+      // since if a block was added it will be rendered anyway and if it was text
+      // then the change was not a pure selection change
+      const contentState = editorState.getCurrentContent();
+      if (!contentState.equals(lastContentState)) {
+        lastContentState = contentState;
+        return editorState;
+      }
+      lastContentState = contentState;
+
       const selection = editorState.getSelection();
       if (lastSelection && selection.equals(lastSelection)) {
         lastSelection = editorState.getSelection();
