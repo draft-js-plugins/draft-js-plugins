@@ -64,6 +64,11 @@ export default class NavBar extends Component {
           </ul>
           <ul className={styles.plugins}>
             <li className={styles.plugin}>
+              <Link to="/plugin/focus" className={styles.link}>
+                Focus
+              </Link>
+            </li>
+            <li className={styles.plugin}>
               <Link to="/plugin/alignment" className={styles.link}>
                 Alignment
               </Link>

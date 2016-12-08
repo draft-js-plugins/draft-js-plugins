@@ -11,7 +11,7 @@ export default ({ store }) => (WrappedComponent) => class BlockAlignmentDecorato
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
   componentDidUpdate = () => {
-    if (this.props.blockProps.isFocused) {
+    if (this.props.blockProps.isFocused && this.props.blockProps.isCollapsedSelection) {
       // TODO figure out if and how to achieve this without fetching the DOM node
       // eslint-disable-next-line react/no-find-dom-node
       const blockNode = ReactDOM.findDOMNode(this);
