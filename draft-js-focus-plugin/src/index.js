@@ -19,6 +19,7 @@ const oneAtomicBlockIsSelected = (editorState) => {
 // TODO make sure to remove the native selection of a text when the user clicks on the block
 const focusPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
+  let lastSelection;
 
   return {
     initialize: ({ getEditorState, setEditorState }) => {
@@ -26,9 +27,17 @@ const focusPlugin = (config = {}) => {
       store.updateItem('setEditorState', setEditorState);
     },
     onChange: (editorState) => {
-      // TODO check if selection changed
-      store.updateItem('selection', editorState.getSelection());
-      return editorState;
+      const selection = editorState.getSelection();
+      if (lastSelection && selection.equals(lastSelection)) {
+        lastSelection = editorState.getSelection();
+        return editorState;
+      }
+
+      // TODO check for if an atomic block is affected that has a focus entity
+      lastSelection = editorState.getSelection();
+      // By forcing the selection the editor will trigger the blockRendererFn which is
+      // necessary
+      return EditorState.forceSelection(editorState, editorState.getSelection());
     },
     keyBindingFn(evt, { getEditorState, setEditorState }) {
       const editorState = getEditorState();
@@ -48,10 +57,6 @@ const focusPlugin = (config = {}) => {
       if (contentBlock.getType() !== 'atomic') {
         return undefined;
       }
-      // const isFocused = !getReadOnly() && contentBlock.getKey() === getEditorState().getSelection().getAnchorKey();
-      const isFocused = () => (
-        contentBlock.getKey() === getEditorState().getSelection().getAnchorKey()
-      );
 
       const unsetFocus = (direction, event) => {
         if (getReadOnly()) return;
@@ -66,6 +71,9 @@ const focusPlugin = (config = {}) => {
           setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
         }
       };
+
+      // TODO is getReadOnly correct here?
+      const isFocused = !getReadOnly() && contentBlock.getKey() === getEditorState().getSelection().getAnchorKey();
 
       return {
         props: {
