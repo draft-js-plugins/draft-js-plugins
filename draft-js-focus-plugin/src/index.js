@@ -54,6 +54,38 @@ const focusPlugin = (config = {}) => {
           setSelection(store, getEditorState, setEditorState, 'down', evt);
         }
       }
+
+      // Don't manually overwrite in case the shift key is used to avoid breaking
+      // native behaviour that works anyway.
+      if (evt.shiftKey) {
+        return;
+      }
+
+      // arrow left
+      if (evt.keyCode === 37) {
+        // Covering the case to select the before block
+        const selection = editorState.getSelection();
+        const selectionKey = selection.getAnchorKey();
+        const beforeBlock = editorState.getCurrentContent().getBlockBefore(selectionKey);
+        // only if the selection caret is a the left most position
+        if (beforeBlock && selection.getAnchorOffset() === 0 && beforeBlock.getType() === 'atomic') {
+          setSelection(store, getEditorState, setEditorState, 'up', evt);
+        }
+      }
+      // arrow right
+      if (evt.keyCode === 39) {
+        // Covering the case to select the after block
+        const selection = editorState.getSelection();
+        const selectionKey = selection.getFocusKey();
+        const currentBlock = editorState.getCurrentContent().getBlockForKey(selectionKey);
+        const afterBlock = editorState.getCurrentContent().getBlockAfter(selectionKey);
+        const notAtomicAndLastPost =
+          currentBlock.getType() !== 'atomic' &&
+          currentBlock.getLength() === selection.getFocusOffset();
+        if (afterBlock && notAtomicAndLastPost && afterBlock.getType() === 'atomic') {
+          setSelection(store, getEditorState, setEditorState, 'down', evt);
+        }
+      }
     },
     // Wrap all block-types in block-focus decorator
     blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
