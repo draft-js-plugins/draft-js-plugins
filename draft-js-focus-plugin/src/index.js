@@ -2,6 +2,7 @@ import { EditorState } from 'draft-js';
 import setSelection from './modifiers/setSelection';
 import createDecorator from './createDecorator';
 import createStore from './utils/createStore';
+import blockInSelection from './utils/blockInSelection';
 import defaultTheme from './style.css';
 
 const store = createStore({});
@@ -13,6 +14,7 @@ const oneAtomicBlockIsSelected = (editorState) => {
   }
   const content = editorState.getCurrentContent();
   const block = content.getBlockForKey(selection.getAnchorKey());
+  // check for atomic block and for entity
   return block.getType() === 'atomic';
 };
 
@@ -41,6 +43,7 @@ const focusPlugin = (config = {}) => {
     },
     keyBindingFn(evt, { getEditorState, setEditorState }) {
       const editorState = getEditorState();
+      // TODO match by entitiy instead of block type
       if (oneAtomicBlockIsSelected(editorState)) {
         // arrow left
         if (evt.keyCode === 37) {
@@ -73,12 +76,14 @@ const focusPlugin = (config = {}) => {
       };
 
       // TODO is getReadOnly correct here?
-      const isFocused = !getReadOnly() && contentBlock.getKey() === getEditorState().getSelection().getAnchorKey();
+      const editorState = getEditorState();
+      const isFocused = !getReadOnly() && blockInSelection(editorState, contentBlock.getKey());
 
       return {
         props: {
           unsetFocus,
           isFocused,
+          isCollapsedSelection: editorState.getSelection().isCollapsed(),
         }
       };
     },
@@ -89,6 +94,12 @@ const focusPlugin = (config = {}) => {
       if (oneAtomicBlockIsSelected(editorState)) {
         setSelection(store, getEditorState, setEditorState, 'down', event);
       }
+
+      // TODO check for is collapsed
+      // console.log('down');
+
+      // check for longer selections
+      // if (editorState.getSelection().getAnchorKey())
     },
     onUpArrow: (event, { getEditorState, setEditorState }) => {
       // TODO match by entitiy instead of block type
