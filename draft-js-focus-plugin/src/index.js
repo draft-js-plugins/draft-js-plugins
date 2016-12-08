@@ -99,32 +99,17 @@ const focusPlugin = (config = {}) => {
       }
     },
     // Wrap all block-types in block-focus decorator
-    blockRendererFn: (contentBlock, { getEditorState, setEditorState, getReadOnly }) => {
+    blockRendererFn: (contentBlock, { getEditorState }) => {
       if (contentBlock.getType() !== 'atomic') {
         return undefined;
       }
 
-      const unsetFocus = (direction, event) => {
-        if (getReadOnly()) return;
-
-        if (direction) {
-          setSelection(store, getEditorState, setEditorState, contentBlock, direction, event);
-          // TODO why has the editorstate be set again?
-          const editorState = getEditorState();
-          setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
-        } else {
-          const editorState = getEditorState();
-          setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
-        }
-      };
-
       // TODO is getReadOnly correct here?
       const editorState = getEditorState();
-      const isFocused = !getReadOnly() && blockInSelection(editorState, contentBlock.getKey());
+      const isFocused = blockInSelection(editorState, contentBlock.getKey());
 
       return {
         props: {
-          unsetFocus,
           isFocused,
           isCollapsedSelection: editorState.getSelection().isCollapsed(),
         }
