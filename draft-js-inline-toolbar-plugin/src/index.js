@@ -8,34 +8,30 @@ import {
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
-import buttonTheme from './buttonStyles.css';
+import buttonStyles from './buttonStyles.css';
+import toolbarStyles from './toolbarStyles.css';
 
 const createInlineToolbarPlugin = (config = {}) => {
+  const defaultTheme = { buttonStyles, toolbarStyles };
+
   const store = createStore({
     isVisible: false,
   });
 
   const {
+    theme = defaultTheme,
     structure = [
       BoldButton,
       ItalicButton,
       UnderlineButton,
       CodeButton,
-      // Separator,
-      // HeadlineOneButton,
-      // HeadlineTwoButton,
-      // HeadlineThreeButton,
-      // UnorderedListButton,
-      // OrderedListButton,
-      // BlockquoteButton,
-      // CodeBlockButton,
     ]
   } = config;
 
   const toolbarProps = {
     store,
     structure,
-    buttonTheme,
+    theme,
   };
 
   return {

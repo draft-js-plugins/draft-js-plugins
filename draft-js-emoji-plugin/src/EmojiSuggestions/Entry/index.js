@@ -34,11 +34,11 @@ export default class Entry extends Component {
   };
 
   render() {
-    const { theme = {}, imagePath, cacheBustParam } = this.props;
+    const { theme = {}, imagePath, imageType, cacheBustParam } = this.props;
     const className = this.props.isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
     // short name to image url code steal from emojione source code
     const shortNameForImage = emojione.emojioneList[this.props.emoji].unicode[emojione.emojioneList[this.props.emoji].unicode.length - 1];
-    const fullImagePath = `${imagePath}${shortNameForImage}.svg${cacheBustParam}`;
+    const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
     return (
       <div
         className={className}

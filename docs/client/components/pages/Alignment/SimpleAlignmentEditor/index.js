@@ -65,7 +65,7 @@ const initialState = {
 };
 /* eslint-enable */
 
-export default class CustomImageEditor extends Component {
+export default class SimpleAlignmentEditor extends Component {
 
   state = {
     editorState: EditorState.createWithContent(convertFromRaw(initialState)),

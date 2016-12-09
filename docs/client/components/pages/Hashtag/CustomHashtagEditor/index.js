@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Map } from 'immutable';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 import createHashtagPlugin from 'draft-js-hashtag-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 import hashtagStyles from './hashtagStyles.css';
 
-const theme = Map({
-  hashtag: hashtagStyles.hashtag,
-});
-const hashtagPlugin = createHashtagPlugin({ theme });
+const hashtagPlugin = createHashtagPlugin({ theme: hashtagStyles });
 const plugins = [hashtagPlugin];
 const text = 'In this editor, we can even apply our own styles … #design #theme';
 

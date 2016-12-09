@@ -1,6 +1,5 @@
 import React from 'react';
 import { getVisibleSelectionRect } from 'draft-js';
-import styles from '../../toolbarStyles.css';
 
 // TODO make toolbarHeight to be determined or a parameter
 const toolbarHeight = 44;
@@ -39,17 +38,18 @@ export default class Toolbar extends React.Component {
   }
 
   render() {
+    const { theme, store } = this.props;
     return (
       <div
-        className={styles.toolbar}
+        className={theme.toolbarStyles.toolbar}
         style={this.state.position}
       >
         {this.props.structure.map((Component, index) => (
           <Component
             key={index}
-            theme={this.props.buttonTheme}
-            getEditorState={this.props.store.getItem('getEditorState')}
-            setEditorState={this.props.store.getItem('setEditorState')}
+            theme={theme.buttonStyles}
+            getEditorState={store.getItem('getEditorState')}
+            setEditorState={store.getItem('setEditorState')}
           />
         ))}
       </div>
