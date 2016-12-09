@@ -34,7 +34,7 @@
     "draft-js": ">=0.9.1",
     "draft-js-buttons": "^2.0.0-beta9",
     "find-with-regex": "^1.0.2",
-    "immutable": ">=3.8.1",
+    "immutable": "~3.7.4",
     "react": ">=15.3.1",
     "react-dom": ">=15.3.1",
     "union-class-names": "^1.0.0"
