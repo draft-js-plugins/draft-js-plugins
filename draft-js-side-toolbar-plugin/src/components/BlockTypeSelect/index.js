@@ -3,42 +3,38 @@ import React from 'react';
 export default class BlockTypeSelect extends React.Component {
 
   state = {
+    visible: false,
     style: {
       transform: 'translate(-50%) scale(0)',
+      transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
     }
   }
 
-  onMouseEnter = () => {
+  show = () => {
     this.setState({
-      style: {
-        transform: 'translate(-50%) scale(1)',
-        transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-      },
+      visible: true,
+      style: { transform: 'translate(-50%) scale(1)' }
     });
   }
 
-  onMouseLeave = () => {
+
+  hide = () => {
     this.setState({
-      style: {
-        transform: 'translate(-50%) scale(0)',
-      },
+      visible: false,
+      style: { transform: 'translate(-50%) scale(0)' }
     });
   }
 
   onMouseDown = (clickEvent) => {
-    clickEvent.preventDefault();
-    clickEvent.stopPropagation();
+    this.state.visible ? this.hide() : this.show()
   }
 
   render() {
     const { theme, getEditorState, setEditorState } = this.props;
     return (
-      <div
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onMouseDown={this.onClick}
-      >
-        <div className={theme.blockTypeSelectStyles.blockType}>
+      <div>
+        <div className={theme.blockTypeSelectStyles.blockType}
+             onMouseDown={this.onMouseDown}>
           <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0h24v24H0z" fill="none" />
             <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
