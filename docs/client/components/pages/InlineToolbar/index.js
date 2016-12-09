@@ -8,6 +8,10 @@ import customExampleCode from '!!../../../loaders/prism-loader?language=javascri
 // eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomInlineToolbarEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
+import themedExampleCode from '!!../../../loaders/prism-loader?language=javascript!./ThemedInlineToolbarEditor';
+// eslint-disable-next-line import/no-unresolved
+import themedExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./ThemedInlineToolbarEditor/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
@@ -21,6 +25,7 @@ import Code from '../../shared/Code';
 import InlineCode from '../../shared/InlineCode';
 import SimpleInlineToolbarEditor from './SimpleInlineToolbarEditor';
 import CustomInlineToolbarEditor from './CustomInlineToolbarEditor';
+import ThemedInlineToolbarEditor from './ThemedInlineToolbarEditor';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
@@ -81,6 +86,12 @@ export default class App extends Component {
           <CustomInlineToolbarEditor />
           <Code code={customExampleCode} name="CustomInlineToolbarEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>Themed Inline Toolbar Example</Heading>
+          <ThemedInlineToolbarEditor />
+          <Code code={themedExampleCode} name="ThemedInlineToolbarEditor.js" />
+          <Code code={themedExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <SocialBar />
       </div>

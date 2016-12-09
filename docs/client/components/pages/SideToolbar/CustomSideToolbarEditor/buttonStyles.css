@@ -7,35 +7,30 @@
 }
 
 .button {
-  background: slategray;
-  color: #fff;
+  background: #333;
+  color: #ddd;
   font-size: 18px;
   border: 0;
   padding-top: 5px;
   vertical-align: bottom;
   height: 34px;
   width: 36px;
+  border-radius: 4px;
 }
 
 .button svg {
-  fill: #fff;
+  fill: #ddd;
 }
 
 .button:hover, .button:focus {
-  opacity: 0.6;
+  background: #444;
+  outline: 0; /* reset for :focus */
 }
 
 .active {
-  opacity: 0.6;
+  color: #6a9cc9;
 }
 
 .active svg {
-  fill: #444;
-}
-
-.separator {
-  display: inline-block;
-  border-right: 1px solid #fff;
-  height: 24px;
-  margin: 0 0.5em;
+  fill: #6a9cc9;
 }

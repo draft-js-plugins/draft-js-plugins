@@ -10,10 +10,9 @@ import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
-import separatorStyles from './separatorStyles.css';
 
 const createInlineToolbarPlugin = (config = {}) => {
-  const defaultTheme = { buttonStyles, toolbarStyles, separatorStyles };
+  const defaultTheme = { buttonStyles, toolbarStyles };
 
   const store = createStore({
     isVisible: false,
@@ -26,14 +25,6 @@ const createInlineToolbarPlugin = (config = {}) => {
       ItalicButton,
       UnderlineButton,
       CodeButton,
-      // Separator,
-      // HeadlineOneButton,
-      // HeadlineTwoButton,
-      // HeadlineThreeButton,
-      // UnorderedListButton,
-      // OrderedListButton,
-      // BlockquoteButton,
-      // CodeBlockButton,
     ]
   } = config;
 
