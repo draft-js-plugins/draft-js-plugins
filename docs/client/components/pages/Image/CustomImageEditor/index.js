@@ -14,12 +14,12 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
-import createDndPlugin from 'draft-js-dnd-plugin';
+import createBlockDndPlugin from 'draft-js-block-dnd-plugin';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
-const dndPlugin = createDndPlugin();
+const blockDndPlugin = createBlockDndPlugin();
 const alignmentPlugin = createAlignmentPlugin();
 const { AlignmentTool } = alignmentPlugin;
 
@@ -27,11 +27,11 @@ const decorator = composeDecorators(
   resizeablePlugin.decorator,
   alignmentPlugin.decorator,
   focusPlugin.decorator,
-  dndPlugin.decorator
+  blockDndPlugin.decorator
 );
 
 const imagePlugin = createImagePlugin({ decorator });
-const plugins = [dndPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, imagePlugin];
+const plugins = [blockDndPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, imagePlugin];
 
 /* eslint-disable */
 const initialState = {
