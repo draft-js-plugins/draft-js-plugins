@@ -7,10 +7,8 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-// Export
 export default ({ store }) => (WrappedComponent) => (
   class BlockDraggableDecorator extends Component {
-    // Statics
     static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
     // eslint-disable-next-line no-redeclare
     static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
