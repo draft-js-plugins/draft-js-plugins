@@ -68,7 +68,7 @@ export default class App extends Component {
           <Code code={customExampleCode} name="CustomVideoEditor.js" />
         </Container>
         <Container>
-          <Heading level={2} >Add Image Button Example</Heading>
+          <Heading level={2} >Add Video Button Example</Heading>
           <CustomAddVideoVideoEditor />
           <Code code={addVideoEditorExampleCode} name="CustomAddVideoVideoEditor.js" />
         </Container>

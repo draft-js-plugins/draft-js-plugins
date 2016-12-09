@@ -1,8 +1,16 @@
 import React, { PropTypes } from 'react';
 import utils from '../utils';
+import styles from './DefaultVideoComponent.css';
 
 const YOUTUBE_PREFIX = 'https://www.youtube.com/embed/';
 const VIMEO_PREFIX = 'https://player.vimeo.com/video/';
+const iframeStyle = {
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  top: '0',
+  left: '0',
+};
 
 const getSrc = ({ src }) => {
   const {
@@ -28,9 +36,9 @@ const DefaultVideoCompoent = (props) => {
   if (src) {
     return (
       <div style={style} >
-        <div style={{ width: '100%', height: '0', position: 'relative', paddingBottom: '56.25%' }} >
+        <div className={styles.iframeContainer} >
           <iframe
-            style={{ width: '100%', height: '100%', position: 'absolute', top: '0', left: '0' }}
+            style={iframeStyle}
             src={src}
             frameBorder="0"
             allowFullScreen
@@ -40,7 +48,7 @@ const DefaultVideoCompoent = (props) => {
     );
   }
 
-  return (<div>invalid video source</div>);
+  return (<div className={styles.invalidVideoSrc} >invalid video source</div>);
 };
 
 DefaultVideoCompoent.propTypes = {
