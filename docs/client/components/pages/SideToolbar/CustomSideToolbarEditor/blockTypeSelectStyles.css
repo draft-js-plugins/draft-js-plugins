@@ -1,7 +1,7 @@
 .blockType {
   box-sizing: border-box;
-  border: 1px solid #fff;
-  background: slategray;
+  border: 1px solid #111;
+  background: #333;
   padding: 5px;
   margin: 0;
   border-radius: 18px;
@@ -13,7 +13,7 @@
 }
 
 .blockType svg {
-  fill: #fff;
+  fill: #ddd;
 }
 
 .spacer {
@@ -28,9 +28,8 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  background: #efefef;
-  border: 1px solid #ddd;
-  background: #fff;
+  border: 1px solid #111;
+  background: #333;
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(220,220,220,1);
   z-index: 3;
@@ -52,13 +51,13 @@
 
 .popup:after {
   border-color: rgba(251, 251, 251, 0);
-  border-bottom-color: #fbfbfb;
+  border-bottom-color: #333;
   border-width: 4px;
   margin-left: -4px;
 }
 .popup:before {
   border-color: rgba(221, 221, 221, 0);
-  border-bottom-color: #ddd;
+  border-bottom-color: #111;
   border-width: 6px;
   margin-left: -6px;
 }
