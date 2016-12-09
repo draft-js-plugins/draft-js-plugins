@@ -1,16 +1,8 @@
-import { Modifier, EditorState, SelectionState } from 'draft-js';
+import { Modifier, SelectionState } from 'draft-js';
 
-export default function (editorState, blockKey) {
-  let content = editorState.getCurrentContent();
-  const newSelection = new SelectionState({
-    anchorKey: blockKey,
-    anchorOffset: 0,
-    focusKey: blockKey,
-    focusOffset: 0,
-  });
-
-  const afterKey = content.getKeyAfter(blockKey);
-  const afterBlock = content.getBlockForKey(afterKey);
+export default function (contentState, blockKey) {
+  const afterKey = contentState.getKeyAfter(blockKey);
+  const afterBlock = contentState.getBlockForKey(afterKey);
   let targetRange;
 
   // Only if the following block the last with no text then the whole block
@@ -19,7 +11,7 @@ export default function (editorState, blockKey) {
   if (afterBlock &&
         afterBlock.getType() === 'unstyled' &&
         afterBlock.getLength() === 0 &&
-        afterBlock === content.getBlockMap().last()) {
+        afterBlock === contentState.getBlockMap().last()) {
     targetRange = new SelectionState({
       anchorKey: blockKey,
       anchorOffset: 0,
@@ -36,14 +28,10 @@ export default function (editorState, blockKey) {
   }
 
   // change the blocktype and remove the characterList entry with the block
-  content = Modifier.setBlockType(
-        content,
-        targetRange,
-        'unstyled'
-    );
-  content = Modifier.removeRange(content, targetRange, 'backward');
-
-  // force to new selection
-  const newState = EditorState.push(editorState, content, 'remove-block');
-  return EditorState.forceSelection(newState, newSelection);
+  const newContentState = Modifier.setBlockType(
+    contentState,
+    targetRange,
+    'unstyled'
+  );
+  return Modifier.removeRange(newContentState, targetRange, 'backward');
 }

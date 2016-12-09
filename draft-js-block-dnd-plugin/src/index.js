@@ -1,17 +1,18 @@
-import onDropBlock from './modifiers/onDropBlock';
+import handleDrop from './handleDrop';
 import createDecorator from './createDecorator';
 
-const store = {
-  getReadOnly: undefined,
+const createBlockDndPlugin = () => {
+  const store = {
+    getReadOnly: undefined,
+  };
+  return {
+    initialize: ({ getReadOnly }) => {
+      store.getReadOnly = getReadOnly;
+    },
+    decorator: createDecorator({ store }),
+    // Handle blocks dragged and dropped across the editor
+    handleDrop,
+  };
 };
-
-const createBlockDndPlugin = (config = {}) => ({
-  initialize: ({ getReadOnly }) => {
-    store.getReadOnly = getReadOnly;
-  },
-  // Handle any other drops (mostly blocks dragged and dropped across editor)
-  handleDrop: onDropBlock(config),
-  decorator: createDecorator({ store }),
-});
 
 export default createBlockDndPlugin;
