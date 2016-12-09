@@ -14,8 +14,20 @@ function defaultHandlePlaceholder(state, selection, data, defaultBlockType) {
 
 export default function onDropFile(config) {
   return function onDropFileInner(selection, files, { getEditorState, setEditorState }) {
+    // TODO need to make sure the correct image block is added
+    // TODO -> addImage must be passed in. content type matching should happen
+
+    // TODO make sure the Form building also works fine with S3 direct upload
+
     // Get upload function from config or editor props
-    const { handleUpload, handlePlaceholder, handleBlock, defaultBlockType, handleProgress } = config;
+    const {
+      handleUpload,
+      handlePlaceholder,
+      handleBlock,
+      defaultBlockType,
+      handleProgress
+    } = config;
+
     if (handleUpload) {
       const formData = new FormData();
 
