@@ -37,8 +37,10 @@
     "find-with-regex": "^1.0.2",
     "immutable": "~3.7.4",
     "lodash.keys": "^4.2.0",
-    "react": ">=15.3.1",
-    "react-dom": ">=15.3.1",
     "union-class-names": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0"
   }
 }
