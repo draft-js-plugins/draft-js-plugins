@@ -6,10 +6,9 @@ import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
-import separatorStyles from './separatorStyles.css';
 
 const inlineToolbarPlugin = createInlineToolbarPlugin({
-  theme: { buttonStyles, toolbarStyles, separatorStyles }
+  theme: { buttonStyles, toolbarStyles }
 });
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
