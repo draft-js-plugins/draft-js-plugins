@@ -2,14 +2,19 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import DefaultBlockTypeSelect from './components/DefaultBlockTypeSelect';
-import buttonTheme from './buttonStyles.css';
+import buttonStyles from './buttonStyles.css';
+import blockTypeSelectStyles from './blockTypeSelectStyles.css';
+import toolbarStyles from './toolbarStyles.css';
 
 const createSideToolbarPlugin = (config = {}) => {
+  const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
+
   const store = createStore({
     isVisible: false,
   });
 
   const {
+    theme = defaultTheme,
     structure = [
       DefaultBlockTypeSelect
     ]
@@ -18,7 +23,7 @@ const createSideToolbarPlugin = (config = {}) => {
   const toolbarProps = {
     store,
     structure,
-    buttonTheme,
+    theme,
   };
 
   return {

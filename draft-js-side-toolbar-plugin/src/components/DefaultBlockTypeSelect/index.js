@@ -11,11 +11,11 @@ import {
 
 import BlockTypeSelect from '../BlockTypeSelect';
 
-const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, buttonTheme }) => (
+const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme }) => (
   <BlockTypeSelect
     getEditorState={getEditorState}
     setEditorState={setEditorState}
-    buttonTheme={buttonTheme}
+    theme={theme}
     structure={[
       HeadlineOneButton,
       HeadlineTwoButton,
