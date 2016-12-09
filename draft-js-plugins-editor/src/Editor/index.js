@@ -170,7 +170,7 @@ class PluginEditor extends Component {
       for (const plugin of plugins) {
         if (typeof plugin[methodName] !== 'function') continue;
         const result = plugin[methodName](...newArgs);
-        if (result !== undefined) {
+        if (result !== undefined && result !== null) {
           styles = (styles ? (`${styles} `) : '') + result;
         }
       }
