@@ -120,7 +120,7 @@ const createEmojiPlugin = (config = {}) => {
     decorators: [
       {
         strategy: emojiStrategy,
-        component: decorateComponentWithProps(Emoji, { theme, imagePath, cacheBustParam }),
+        component: decorateComponentWithProps(Emoji, { theme, imagePath, imageType, cacheBustParam }),
       },
       {
         strategy: emojiSuggestionsStrategy,

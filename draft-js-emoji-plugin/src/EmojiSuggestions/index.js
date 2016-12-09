@@ -262,6 +262,7 @@ export default class EmojiSuggestions extends Component {
       theme = {},
       cacheBustParam,
       imagePath,
+      imageType,
       ariaProps, // eslint-disable-line no-unused-vars
       callbacks, // eslint-disable-line no-unused-vars
       store, // eslint-disable-line no-unused-vars
@@ -291,6 +292,7 @@ export default class EmojiSuggestions extends Component {
               id={`emoji-option-${this.key}-${index}`}
               theme={theme}
               imagePath={imagePath}
+              imageType={imageType}
               cacheBustParam={cacheBustParam}
             />
           )).toJS()
