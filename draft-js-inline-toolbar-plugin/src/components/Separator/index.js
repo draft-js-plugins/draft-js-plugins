@@ -1,3 +1,4 @@
 import React from 'react';
+import separatorStyles from '../../separatorStyles.css';
 
-export default ({ theme }) => <div className={theme.separatorStyles.separator} />;
+export default ({ className = separatorStyles.separator }) => <div className={className} />;
