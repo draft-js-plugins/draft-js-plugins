@@ -15,7 +15,10 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createBlockDndPlugin from 'draft-js-block-dnd-plugin';
+// eslint-disable-next-line import/no-unresolved
+import createDndFileUploadPlugin from 'draft-js-dnd-file-upload-plugin';
 import editorStyles from './editorStyles.css';
+import mockUpload from './mockUpload';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -29,9 +32,21 @@ const decorator = composeDecorators(
   focusPlugin.decorator,
   blockDndPlugin.decorator
 );
-
 const imagePlugin = createImagePlugin({ decorator });
-const plugins = [blockDndPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, imagePlugin];
+
+const dndFileUploadPlugin = createDndFileUploadPlugin({
+  handleUpload: mockUpload,
+  addImage: imagePlugin.addImage,
+});
+
+const plugins = [
+  dndFileUploadPlugin,
+  blockDndPlugin,
+  focusPlugin,
+  alignmentPlugin,
+  resizeablePlugin,
+  imagePlugin
+];
 
 /* eslint-disable */
 const initialState = {

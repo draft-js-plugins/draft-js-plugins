@@ -1,8 +1,8 @@
-import onDropFile from './modifiers/onDropFile';
+import handleDroppedFiles from './handleDroppedFiles';
 
 const createDndFileUploadPlugin = (config = {}) => ({
   // Handle file drops
-  handleDroppedFiles: onDropFile(config),
+  handleDroppedFiles: handleDroppedFiles(config),
 });
 
 export default createDndFileUploadPlugin;
