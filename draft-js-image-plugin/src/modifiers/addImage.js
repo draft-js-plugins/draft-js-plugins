@@ -1,18 +1,16 @@
 import {
   Entity,
   EditorState,
+  AtomicBlockUtils,
 } from 'draft-js';
-import insertAtomicBlockOnSelection from './insertAtomicBlockOnSelection';
 
-export default (editorState, url, optionalSelection) => {
-  const selection = optionalSelection || editorState.currentSelection();
+export default (editorState, url) => {
   const urlType = 'image';
   const entityKey = Entity.create(urlType, 'IMMUTABLE', { src: url });
-  const newEditorState = insertAtomicBlockOnSelection(
+  const newEditorState = AtomicBlockUtils.insertAtomicBlock(
     editorState,
     entityKey,
-    ' ',
-    selection
+    ' '
   );
   return EditorState.forceSelection(
     newEditorState,

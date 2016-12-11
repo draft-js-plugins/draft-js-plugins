@@ -1,5 +1,6 @@
 // import replaceBlock from './modifiers/replaceBlock';
 // import modifyBlockData from './modifiers/modifyBlockData';
+import { EditorState } from 'draft-js';
 import { readFiles } from './utils/file';
 // import { getBlocksWhereEntityData } from './utils/block';
 
@@ -31,12 +32,14 @@ export default function onDropFile(config) {
         }
       }
 
+      setEditorState(EditorState.acceptSelection(getEditorState(), selection));
+
       // Read files on client side
       readFiles(data.files).then((placeholders) => {
         // Add blocks for each image before uploading
         let editorState = getEditorState();
         placeholders.forEach((placeholder) => {
-          editorState = config.addImage(editorState, placeholder.src, selection);
+          editorState = config.addImage(editorState, placeholder.src);
         });
         setEditorState(editorState);
 
