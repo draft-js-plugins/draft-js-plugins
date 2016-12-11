@@ -21,7 +21,7 @@ const defaultCacheBustParam = '?v=2.2.6';
 
 // TODO activate/deactivate different the conversion or search part
 
-const createEmojiPlugin = (config = {}) => {
+export default (config = {}) => {
   const defaultTheme = {
     emoji: emojiStyles.emoji,
     emojiCharacter: emojiStyles.emojiCharacter,
@@ -167,5 +167,3 @@ const createEmojiPlugin = (config = {}) => {
     },
   };
 };
-
-export default createEmojiPlugin;

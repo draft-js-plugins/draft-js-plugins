@@ -6,7 +6,7 @@ import buttonStyles from './buttonStyles.css';
 import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 
-const createSideToolbarPlugin = (config = {}) => {
+export default (config = {}) => {
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
   const store = createStore({
@@ -40,5 +40,3 @@ const createSideToolbarPlugin = (config = {}) => {
     SideToolbar: decorateComponentWithProps(Toolbar, toolbarProps),
   };
 };
-
-export default createSideToolbarPlugin;

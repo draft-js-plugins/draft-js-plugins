@@ -7,7 +7,7 @@ const defaultTheme = {
   hashtag: styles.hashtag,
 };
 
-const hashtagPlugin = (config = {}) => {
+export default (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
@@ -24,5 +24,3 @@ const hashtagPlugin = (config = {}) => {
     ],
   };
 };
-
-export default hashtagPlugin;

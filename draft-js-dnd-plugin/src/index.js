@@ -6,7 +6,7 @@ const store = {
   getReadOnly: undefined,
 };
 
-const dndPlugin = (config = {}) => ({
+export default (config = {}) => ({
   initialize: ({ getReadOnly }) => {
     store.getReadOnly = getReadOnly;
   },
@@ -16,5 +16,3 @@ const dndPlugin = (config = {}) => ({
   handleDrop: onDropBlock(config),
   decorator: createDecorator({ store }),
 });
-
-export default dndPlugin;

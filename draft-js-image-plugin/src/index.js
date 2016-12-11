@@ -8,7 +8,7 @@ const defaultTheme = {
   image: imageStyles.image,
 };
 
-const imagePlugin = (config = {}) => {
+export default (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
   let Image = config.imageComponent || ImageComponent;
   if (config.decorator) {
@@ -34,5 +34,4 @@ const imagePlugin = (config = {}) => {
   };
 };
 
-export default imagePlugin;
 export const Image = ImageComponent;
