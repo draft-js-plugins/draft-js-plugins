@@ -14,7 +14,7 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
-import createBlockDndPlugin from 'draft-js-block-dnd-plugin';
+import createBlockDndPlugin from 'draft-js-dnd-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createDndFileUploadPlugin from 'draft-js-dnd-file-upload-plugin';
 import editorStyles from './editorStyles.css';

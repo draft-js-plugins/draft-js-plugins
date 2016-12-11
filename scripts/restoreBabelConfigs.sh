@@ -5,7 +5,7 @@ mv $(pwd)/../draft-js-linkify-plugin/tmpBabelrc $(pwd)/../draft-js-linkify-plugi
 mv $(pwd)/../draft-js-mention-plugin/tmpBabelrc $(pwd)/../draft-js-mention-plugin/.babelrc
 mv $(pwd)/../draft-js-sticker-plugin/tmpBabelrc $(pwd)/../draft-js-sticker-plugin/.babelrc
 mv $(pwd)/../draft-js-undo-plugin/tmpBabelrc $(pwd)/../draft-js-undo-plugin/.babelrc
-mv $(pwd)/../draft-js-block-dnd-plugin/tmpBabelrc $(pwd)/../draft-js-block-dnd-plugin/.babelrc
+mv $(pwd)/../draft-js-dnd-plugin/tmpBabelrc $(pwd)/../draft-js-dnd-plugin/.babelrc
 mv $(pwd)/../draft-js-dnd-file-upload-plugin/tmpBabelrc $(pwd)/../draft-js-dnd-file-upload-plugin/.babelrc
 mv $(pwd)/../draft-js-alignment-plugin/tmpBabelrc $(pwd)/../draft-js-alignment-plugin/.babelrc
 mv $(pwd)/../draft-js-focus-plugin/tmpBabelrc $(pwd)/../draft-js-focus-plugin/.babelrc

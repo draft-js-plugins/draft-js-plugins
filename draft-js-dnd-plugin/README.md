@@ -9,7 +9,7 @@ This plugin adds drag and drop functionality to your editor!
 Usage:
 
 ```js
-import createBlockDndPlugin from 'draft-js-block-dnd-plugin';
+import createBlockDndPlugin from 'draft-js-dnd-plugin';
 
 const blockDndPlugin = createBlockDndPlugin();
 ```
