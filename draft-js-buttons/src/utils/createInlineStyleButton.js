@@ -7,6 +7,7 @@ export default ({ style, children }) => (
 
     toggleStyle = (event) => {
       event.preventDefault();
+      event.stopPropagation();
       this.props.setEditorState(
         RichUtils.toggleInlineStyle(
           this.props.getEditorState(),
