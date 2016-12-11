@@ -29,6 +29,7 @@ In case you are interested in helping [Issue #329](https://github.com/draft-js-p
 
 - [Autolist](https://github.com/icelab/draft-js-autolist-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
 - [Block Breakout](https://github.com/icelab/draft-js-block-breakout-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
+- [Markdown Shortcuts](https://github.com/ngs/draft-js-markdown-shortcuts-plugin/) by [Atsushi Nagase](https://github.com/ngs)
 - [Single Line](https://github.com/icelab/draft-js-single-line-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
 - [RichButtons](https://github.com/jasonphillips/draft-js-richbuttons-plugin) by [jasonphillips](https://github.com/jasonphillips)
 
