@@ -1,4 +1,4 @@
-import { readFile } from 'draft-js-dnd-file-upload-plugin/utils/file'; // eslint-disable-line import/no-unresolved
+import { readFile } from 'draft-js-drag-n-drop-upload-plugin/utils/file'; // eslint-disable-line import/no-unresolved
 
 export default function mockUpload(data, success, failed, progress) {
   function doProgress(percent) {

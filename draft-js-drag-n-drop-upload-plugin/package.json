@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-dnd-file-upload-plugin",
+  "name": "draft-js-drag-n-drop-upload-plugin",
   "version": "2.0.0-beta9",
   "description": "Dropping & uploading files with DraftJS",
   "author": {

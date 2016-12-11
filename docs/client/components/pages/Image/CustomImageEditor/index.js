@@ -16,7 +16,7 @@ import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 // eslint-disable-next-line import/no-unresolved
-import createDndFileUploadPlugin from 'draft-js-dnd-file-upload-plugin';
+import createDragNDropUploadPlugin from 'draft-js-drag-n-drop-upload-plugin';
 import editorStyles from './editorStyles.css';
 import mockUpload from './mockUpload';
 
@@ -34,13 +34,13 @@ const decorator = composeDecorators(
 );
 const imagePlugin = createImagePlugin({ decorator });
 
-const dndFileUploadPlugin = createDndFileUploadPlugin({
+const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
   handleUpload: mockUpload,
   addImage: imagePlugin.addImage,
 });
 
 const plugins = [
-  dndFileUploadPlugin,
+  dragNDropFileUploadPlugin,
   blockDndPlugin,
   focusPlugin,
   alignmentPlugin,
