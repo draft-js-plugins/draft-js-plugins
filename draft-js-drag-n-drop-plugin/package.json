@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-dnd-plugin",
+  "name": "draft-js-drag-n-drop-plugin",
   "version": "2.0.0-beta9",
   "description": "Block Drag & Drop Plugin for DraftJS",
   "author": {

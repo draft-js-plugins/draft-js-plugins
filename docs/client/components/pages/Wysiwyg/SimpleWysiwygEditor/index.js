@@ -4,7 +4,7 @@ import { EditorState, DefaultDraftBlockRenderMap } from 'draft-js';
 // Plugin-Editor
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
 // import createFocusPlugin, { FocusDecorator } from 'draft-js-focus-plugin'; // eslint-disable-line import/no-unresolved
-// import createDndPlugin, { DraggableDecorator } from 'draft-js-dnd-plugin'; // eslint-disable-line import/no-unresolved
+// import createDndPlugin, { DraggableDecorator } from 'draft-js-drag-n-drop-plugin'; // eslint-disable-line import/no-unresolved
 // import createAlignmentPlugin, { AlignmentDecorator } from 'draft-js-alignment-plugin'; // eslint-disable-line import/no-unresolved
 // import createResizeablePlugin, { ResizeableDecorator } from 'draft-js-resizeable-plugin'; // eslint-disable-line import/no-unresolved
 // import createImagePlugin, { imageCreator, imageStyles } from 'draft-js-image-plugin'; // eslint-disable-line import/no-unresolved
@@ -34,7 +34,7 @@ import { Map } from 'immutable';
 //   )
 // );
 // import TextToolbar from 'draft-js-inline-toolbar-plugin/components/text-toolbar';
-// import addBlock from 'draft-js-dnd-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
+// import addBlock from 'draft-js-drag-n-drop-plugin/modifiers/addBlock'; // eslint-disable-line import/no-unresolved
 
 // Components
 import PlaceholderGithub from '../components/placeholder-github';
