@@ -9,16 +9,19 @@ import toolbarStyles from './toolbarStyles.css';
 const createSideToolbarPlugin = (config = {}) => {
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
-  const store = createStore({
-    isVisible: false,
-  });
+  const defaultToggle = function () { };
 
   const {
     theme = defaultTheme,
+    toggleInput = defaultToggle,
     structure = [
       DefaultBlockTypeSelect
     ]
   } = config;
+
+  const store = createStore({
+    toggleInput
+  });
 
   const toolbarProps = {
     store,
