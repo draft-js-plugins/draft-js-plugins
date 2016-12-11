@@ -7,6 +7,7 @@ export default class ImageAdd extends Component {
   state = {
     url: '',
     open: false,
+    urlInputValue: '',
   };
 
   // When the popover is open and users click anywhere on the page,
@@ -43,13 +44,20 @@ export default class ImageAdd extends Component {
     this.preventNextClose = false;
   };
 
-  addImage = () => {
-    const { editorState, onChange } = this.props;
-    onChange(modifier(editorState, this.state.url));
+  onClick = () => {
+    this.input.value = null;
+    this.input.click();
   };
 
-  changeUrl = (evt) => {
-    this.setState({ url: evt.target.value });
+  onChange(e) {
+    const { editorState, onChange } = this.props;
+    const file = e.target.files[0];
+
+    if (file.type.indexOf('image/') === 0) {
+      const url = URL.createObjectURL(file);
+      onChange(modifier(editorState, url));
+      this.closePopover();
+    }
   }
 
   render() {
@@ -64,18 +72,17 @@ export default class ImageAdd extends Component {
           onClick={this.onPopoverClick}
         >
           <input
-            type="text"
-            placeholder="Paste the image url …"
-            className={styles.addImageInput}
-            onChange={this.changeUrl}
-            value={this.state.url}
+            type="file"
+            ref={(c) => { this.input = c; }}
+            onChange={::this.onChange}
+            style={{ display: 'none' }}
           />
           <button
             className={styles.addImageConfirmButton}
             type="button"
-            onClick={this.addImage}
+            onClick={this.onClick}
           >
-            Add
+            +
           </button>
         </div>
       </div>
