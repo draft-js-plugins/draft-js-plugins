@@ -15,16 +15,6 @@ export default class NavBar extends Component {
               </Link>
             </li>
             <li className={styles.plugin}>
-              <Link to="/plugin/linkify" className={styles.link}>
-                Linkify
-              </Link>
-            </li>
-            <li className={styles.plugin}>
-              <Link to="/plugin/sticker" className={styles.link}>
-                Sticker
-              </Link>
-            </li>
-            <li className={styles.plugin}>
               <Link to="/plugin/emoji" className={styles.link}>
                 Emoji
               </Link>
@@ -32,6 +22,16 @@ export default class NavBar extends Component {
             <li className={styles.plugin}>
               <Link to="/plugin/image" className={styles.link}>
                 Image
+              </Link>
+            </li>
+            <li className={styles.plugin}>
+              <Link to="/plugin/video" className={styles.link}>
+                Video
+              </Link>
+            </li>
+            <li className={styles.plugin}>
+              <Link to="/plugin/sticker" className={styles.link}>
+                Sticker
               </Link>
             </li>
           </ul>
@@ -63,6 +63,11 @@ export default class NavBar extends Component {
             </li>
           </ul>
           <ul className={styles.plugins}>
+            <li className={styles.plugin}>
+              <Link to="/plugin/linkify" className={styles.link}>
+                Linkify
+              </Link>
+            </li>
             <li className={styles.plugin}>
               <Link to="/plugin/focus" className={styles.link}>
                 Focus
