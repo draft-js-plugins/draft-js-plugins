@@ -9,9 +9,10 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins. We use these docs to hack & prototype new features. Get it up & running with:
 
 ```sh
-npm install
+npm install --global yarn
+yarn install
 cd docs
-npm install
+yarn install
 npm start
 ```
 
