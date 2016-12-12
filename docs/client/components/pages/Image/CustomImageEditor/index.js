@@ -14,12 +14,15 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
-import createDndPlugin from 'draft-js-dnd-plugin';
+import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+// eslint-disable-next-line import/no-unresolved
+import createDragNDropUploadPlugin from 'draft-js-drag-n-drop-upload-plugin';
 import editorStyles from './editorStyles.css';
+import mockUpload from './mockUpload';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
-const dndPlugin = createDndPlugin();
+const blockDndPlugin = createBlockDndPlugin();
 const alignmentPlugin = createAlignmentPlugin();
 const { AlignmentTool } = alignmentPlugin;
 
@@ -27,11 +30,23 @@ const decorator = composeDecorators(
   resizeablePlugin.decorator,
   alignmentPlugin.decorator,
   focusPlugin.decorator,
-  dndPlugin.decorator
+  blockDndPlugin.decorator
 );
-
 const imagePlugin = createImagePlugin({ decorator });
-const plugins = [dndPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, imagePlugin];
+
+const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
+  handleUpload: mockUpload,
+  addImage: imagePlugin.addImage,
+});
+
+const plugins = [
+  dragNDropFileUploadPlugin,
+  blockDndPlugin,
+  focusPlugin,
+  alignmentPlugin,
+  resizeablePlugin,
+  imagePlugin
+];
 
 /* eslint-disable */
 const initialState = {

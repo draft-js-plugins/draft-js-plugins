@@ -11,9 +11,10 @@ Before opening an issue, please search the [issue tracker](https://github.com/dr
 You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins. We mostly use the docs to hack & prototype new features. Get it up & running with:
 
 ```sh
-npm install
+npm install --global yarn
+yarn install
 cd docs
-npm install
+yarn install
 npm start
 ```
 
@@ -71,7 +72,8 @@ module: {
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-sticker-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-undo-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-emoji-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-dnd-plugin', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-plugin', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-upload-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-counter-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-focus-plugin', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-alignment-plugin', 'src'),
@@ -94,7 +96,8 @@ resolve: {
     'draft-js-undo-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-undo-plugin', 'src'),
     'draft-js-emoji-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-emoji-plugin', 'src'),
     'draft-js-counter-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-counter-plugin', 'src'),
-    'draft-js-dnd-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-dnd-plugin', 'src'),
+    'draft-js-drag-n-drop-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-plugin', 'src'),
+    'draft-js-drag-n-drop-upload-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-upload-plugin', 'src'),
     'draft-js-focus-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-focus-plugin', 'src'),
     'draft-js-alignment-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-alignment-plugin', 'src'),
     'draft-js-image-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-image-plugin', 'src'),

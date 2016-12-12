@@ -1,7 +1,8 @@
 **/node_modules/**
 lib/**
 draft-js-alignment-plugin/lib/**
-draft-js-dnd-plugin/lib/**
+draft-js-drag-n-drop-plugin/lib/**
+draft-js-drag-n-drop-upload-plugin/lib/**
 draft-js-focus-plugin/lib/**
 draft-js-image-plugin/lib/**
 draft-js-resizeable-plugin/lib/**

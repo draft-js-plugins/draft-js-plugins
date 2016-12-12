@@ -1,5 +1,12 @@
 import { List, Repeat } from 'immutable';
-import { Modifier, CharacterMetadata, BlockMapBuilder, EditorState, ContentBlock, Entity, genKey } from 'draft-js';
+import {
+  Modifier,
+  CharacterMetadata,
+  BlockMapBuilder,
+  ContentBlock,
+  Entity,
+  genKey
+} from 'draft-js';
 
 export default function (editorState, selection, type, data, entityType, text = ' ') {
   const currentContentState = editorState.getCurrentContent();
@@ -7,9 +14,9 @@ export default function (editorState, selection, type, data, entityType, text = 
 
   // in case text is selected it is removed and then the block is appended
   const afterRemovalContentState = Modifier.removeRange(
-      currentContentState,
-      currentSelectionState,
-      'backward'
+    currentContentState,
+    currentSelectionState,
+    'backward'
   );
 
   // deciding on the postion to split the text
@@ -64,17 +71,9 @@ export default function (editorState, selection, type, data, entityType, text = 
   const fragment = BlockMapBuilder.createFromArray(fragmentArray);
 
   // replace the contentblock we reserved for our insert
-  const contentStateWithBlock = Modifier.replaceWithFragment(
-      newContentStateAfterSplit,
-      insertionTargetSelection,
-      fragment
+  return Modifier.replaceWithFragment(
+    newContentStateAfterSplit,
+    insertionTargetSelection,
+    fragment
   );
-
-  // update editor state with our new state including the block
-  const newState = EditorState.push(
-      editorState,
-      contentStateWithBlock,
-      `insert-${type}`
-  );
-  return EditorState.forceSelection(newState, contentStateWithBlock.getSelectionAfter());
 }

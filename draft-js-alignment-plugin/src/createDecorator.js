@@ -19,9 +19,12 @@ export default ({ store }) => (WrappedComponent) => class BlockAlignmentDecorato
       store.updateItem('setAlignment', this.props.blockProps.setAlignment);
       store.updateItem('alignment', this.props.blockProps.alignment);
       store.updateItem('boundingRect', boundingRect);
-      store.updateItem('isVisible', true);
-    } else {
-      store.updateItem('isVisible', false);
+      store.updateItem('visibleBlock', this.props.block.getKey());
+    // Only set visibleBlock to null in case it's the current one. This is important
+    // in case the focus directly switches from one block to the other. Then the
+    // Alignment tool should not be hidden, but just moved.
+    } else if (store.getItem('visibleBlock') === this.props.block.getKey()) {
+      store.updateItem('visibleBlock', null);
     }
   }
 

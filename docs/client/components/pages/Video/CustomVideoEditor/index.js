@@ -8,13 +8,13 @@ import createFocusPlugin from 'draft-js-focus-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
 // eslint-disable-next-line import/no-unresolved
-import createDndPlugin from 'draft-js-dnd-plugin';
+import createDragNDropPlugin from 'draft-js-drag-n-drop-plugin';
 import createVideoPlugin from 'draft-js-video-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
-const dndPlugin = createDndPlugin();
+const dragNDropPlugin = createDragNDropPlugin();
 const alignmentPlugin = createAlignmentPlugin();
 const { AlignmentTool } = alignmentPlugin;
 
@@ -22,12 +22,12 @@ const decorator = composeDecorators(
   resizeablePlugin.decorator,
   alignmentPlugin.decorator,
   focusPlugin.decorator,
-  dndPlugin.decorator
+  dragNDropPlugin.decorator
 );
 
 const videoPlugin = createVideoPlugin({ decorator });
 const { types } = videoPlugin;
-const plugins = [dndPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, videoPlugin];
+const plugins = [dragNDropPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, videoPlugin];
 /* eslint-disable */
 const initialState = {
   "entityMap": {
