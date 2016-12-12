@@ -12,22 +12,29 @@ import {
 
 import BlockTypeSelect from '../BlockTypeSelect';
 
-const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme, store }) => (
-  <BlockTypeSelect
-    getEditorState={getEditorState}
-    setEditorState={setEditorState}
-    theme={theme}
-    store={store}
-    structure={[
-      HeadlineOneButton,
-      HeadlineTwoButton,
-      UnorderedListButton,
-      OrderedListButton,
-      BlockquoteButton,
-      CodeBlockButton,
-      AddImageButton,
-    ]}
-  />
-);
+const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme, store }) => {
+  const structure = [
+    HeadlineOneButton,
+    HeadlineTwoButton,
+    UnorderedListButton,
+    OrderedListButton,
+    BlockquoteButton,
+    CodeBlockButton,
+  ];
+
+  if (store.getItem('addImageFile') !== undefined) {
+    structure.push(AddImageButton);
+  }
+
+  return (
+    <BlockTypeSelect
+      getEditorState={getEditorState}
+      setEditorState={setEditorState}
+      theme={theme}
+      store={store}
+      structure={structure}
+    />
+  );
+};
 
 export default DefaultBlockTypeSelect;

@@ -57,7 +57,7 @@ export default class BlockTypeSelect extends React.Component {
               setEditorState={setEditorState}
               theme={theme.buttonStyles}
               store={store}
-              toggleInput={store.getItem('toggleInput')}
+              addImageFile={store.getItem('addImageFile')}
             />
           ))}
         </div>

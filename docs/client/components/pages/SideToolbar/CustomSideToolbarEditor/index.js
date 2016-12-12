@@ -14,13 +14,22 @@ const imagePlugin = createImagePlugin();
 const { ImageAdd } = imagePlugin;
 let imageAddElement = null;
 
-const toggleInput = () => {
-  imageAddElement.openPopover();
+const parseUrl = (file, editorState, onChange) => {
+  /* custom parsing function, might upload to S3, then retrieve the url */
+  if (file.type.indexOf('image/') === 0) {
+    const url = URL.createObjectURL(file);
+    onChange(imagePlugin.addImage(editorState, url));
+  }
+};
+
+const addImageFile = () => {
+  imageAddElement.addImageFile(parseUrl);
+  /* imageAddElement.addImageFile(); // default parsing of the url */
 };
 
 const sideToolbarPlugin = createSideToolbarPlugin({
   theme: { buttonStyles, toolbarStyles, blockTypeSelectStyles },
-  toggleInput,
+  addImageFile,
 });
 const { SideToolbar } = sideToolbarPlugin;
 const plugins = [sideToolbarPlugin, imagePlugin];

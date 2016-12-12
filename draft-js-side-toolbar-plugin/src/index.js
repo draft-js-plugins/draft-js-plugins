@@ -9,18 +9,18 @@ import toolbarStyles from './toolbarStyles.css';
 const createSideToolbarPlugin = (config = {}) => {
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
-  const defaultToggle = function () { };
+  const defaultAddImageFile = undefined;
 
   const {
     theme = defaultTheme,
-    toggleInput = defaultToggle,
+    addImageFile = defaultAddImageFile,
     structure = [
       DefaultBlockTypeSelect
     ]
   } = config;
 
   const store = createStore({
-    toggleInput
+    addImageFile
   });
 
   const toolbarProps = {
