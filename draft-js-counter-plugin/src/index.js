@@ -10,7 +10,7 @@ const defaultTheme = {
   counterOverLimit: styles.counterOverLimit,
 };
 
-const counterPlugin = (config = {}) => {
+export default (config = {}) => {
   const store = {
     getEditorState: undefined,
     setEditorState: undefined,
@@ -33,5 +33,3 @@ const counterPlugin = (config = {}) => {
     },
   };
 };
-
-export default counterPlugin;

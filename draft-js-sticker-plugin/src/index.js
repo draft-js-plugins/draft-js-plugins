@@ -27,7 +27,7 @@ const defaultTheme = {
   selectStickerImage: selectStickerStyles.selectStickerImage,
 };
 
-const stickerPlugin = (config = {}) => {
+export default (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
@@ -63,5 +63,3 @@ const stickerPlugin = (config = {}) => {
     StickerSelect: decorateComponentWithProps(StickerSelect, stickerSelectProps),
   };
 };
-
-export default stickerPlugin;
