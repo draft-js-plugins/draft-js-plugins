@@ -1501,14 +1501,7 @@
     "draft-js": {
       "version": "0.9.1",
       "from": "draft-js@>=0.9.1",
-      "resolved": "https://registry.npmjs.org/draft-js/-/draft-js-0.9.1.tgz",
-      "dependencies": {
-        "immutable": {
-          "version": "3.7.6",
-          "from": "immutable@>=3.7.4 <3.8.0",
-          "resolved": "https://registry.npmjs.org/immutable/-/immutable-3.7.6.tgz"
-        }
-      }
+      "resolved": "https://registry.npmjs.org/draft-js/-/draft-js-0.9.1.tgz"
     },
     "duplexer2": {
       "version": "0.1.4",
@@ -2821,9 +2814,9 @@
       "resolved": "https://registry.npmjs.org/ignore/-/ignore-3.2.0.tgz"
     },
     "immutable": {
-      "version": "3.8.1",
-      "from": "immutable@>=3.8.1 <4.0.0",
-      "resolved": "https://registry.npmjs.org/immutable/-/immutable-3.8.1.tgz"
+      "version": "3.7.6",
+      "from": "immutable@>=3.7.4 <3.8.0",
+      "resolved": "https://registry.npmjs.org/immutable/-/immutable-3.7.6.tgz"
     },
     "imurmurhash": {
       "version": "0.1.4",

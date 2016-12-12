@@ -11,7 +11,7 @@ import Separator from './components/Separator';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 
-const createInlineToolbarPlugin = (config = {}) => {
+export default (config = {}) => {
   const defaultTheme = { buttonStyles, toolbarStyles };
 
   const store = createStore({
@@ -52,8 +52,6 @@ const createInlineToolbarPlugin = (config = {}) => {
     InlineToolbar: decorateComponentWithProps(Toolbar, toolbarProps),
   };
 };
-
-export default createInlineToolbarPlugin;
 
 export {
   Separator,

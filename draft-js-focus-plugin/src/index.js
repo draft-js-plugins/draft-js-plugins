@@ -17,7 +17,7 @@ const focusableBlockIsSelected = (editorState, blockKeyStore) => {
   return blockKeyStore.includes(block.getKey());
 };
 
-const focusPlugin = (config = {}) => {
+export default (config = {}) => {
   const blockKeyStore = createBlockKeyStore({});
   const theme = config.theme ? config.theme : defaultTheme;
   let lastSelection;
@@ -180,5 +180,3 @@ const focusPlugin = (config = {}) => {
     decorator: createDecorator({ theme, blockKeyStore }),
   };
 };
-
-export default focusPlugin;

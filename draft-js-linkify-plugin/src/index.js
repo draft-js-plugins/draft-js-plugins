@@ -7,7 +7,7 @@ const defaultTheme = {
   link: styles.link,
 };
 
-const linkPlugin = (config = {}) => {
+export default (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
 
   // Why? Because when merging a developer needs to know all of the underlying
@@ -30,5 +30,3 @@ const linkPlugin = (config = {}) => {
     ],
   };
 };
-
-export default linkPlugin;

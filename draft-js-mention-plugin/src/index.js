@@ -12,7 +12,7 @@ import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 
-const createMentionPlugin = (config = {}) => {
+export default (config = {}) => {
   const defaultTheme = {
     // CSS class for mention text
     mention: mentionStyles.mention,
@@ -139,7 +139,5 @@ const createMentionPlugin = (config = {}) => {
     },
   };
 };
-
-export default createMentionPlugin;
 
 export const defaultSuggestionsFilter = suggestionsFilter;

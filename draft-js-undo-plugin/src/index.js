@@ -8,7 +8,7 @@ const defaultTheme = {
   undo: styles.button,
 };
 
-const historyPlugin = (config = {}) => {
+export default (config = {}) => {
   const undoContent = config.undoContent ? config.undoContent : '↺';
   const redoContent = config.redoContent ? config.redoContent : '↻';
   const store = {
@@ -32,5 +32,3 @@ const historyPlugin = (config = {}) => {
     },
   };
 };
-
-export default historyPlugin;
