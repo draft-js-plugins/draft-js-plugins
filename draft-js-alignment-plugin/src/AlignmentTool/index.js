@@ -19,18 +19,18 @@ export default class AlignmentTool extends React.Component {
   }
 
   componentWillMount() {
-    this.props.store.subscribeToItem('isVisible', this.onVisibilityChanged);
+    this.props.store.subscribeToItem('visibleBlock', this.onVisibilityChanged);
     this.props.store.subscribeToItem('alignment', this.onAlignmentChange);
   }
 
   componentWillUnmount() {
-    this.props.store.unsubscribeFromItem('isVisible', this.onVisibilityChanged);
+    this.props.store.unsubscribeFromItem('visibleBlock', this.onVisibilityChanged);
     this.props.store.unsubscribeFromItem('alignment', this.onAlignmentChange);
   }
 
-  onVisibilityChanged = (isVisible) => {
+  onVisibilityChanged = (visibleBlock) => {
     const boundingRect = this.props.store.getItem('boundingRect');
-    const position = isVisible ? {
+    const position = visibleBlock ? {
       top: (boundingRect.top + window.scrollY) - toolbarHeight,
       left: boundingRect.left + window.scrollX + (boundingRect.width / 2),
       transform: 'translate(-50%) scale(1)',
