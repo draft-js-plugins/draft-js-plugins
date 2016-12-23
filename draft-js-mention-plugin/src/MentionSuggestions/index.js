@@ -128,7 +128,7 @@ export default class MentionSuggestions extends Component {
     const selectionIsInsideWord = leaves
       .filter((leave) => leave !== undefined)
       .map(({ start, end }) => (
-        (start === 0 && anchorOffset === 1 && plainText.charAt(anchorOffset) !== this.props.mentionTrigger && new RegExp(this.props.mentionTrigger, 'g').test(plainText)  && anchorOffset <= end) || // @ is the first character
+        (start === 0 && anchorOffset === 1 && plainText.charAt(anchorOffset) !== this.props.mentionTrigger && new RegExp(this.props.mentionTrigger, 'g').test(plainText) && anchorOffset <= end) || // @ is the first character
         (anchorOffset > start + 1 && anchorOffset <= end) // @ is in the text or at the end
       ));
 
