@@ -4,6 +4,19 @@ import { getVisibleSelectionRect } from 'draft-js';
 // TODO make toolbarHeight to be determined or a parameter
 const toolbarHeight = 44;
 
+const getRelativeParent = (element) => {
+  if (!element) {
+    return null;
+  }
+
+  const position = window.getComputedStyle(element).getPropertyValue('position');
+  if (position !== 'static') {
+    return element;
+  }
+
+  return getRelativeParent(element.parentElement);
+};
+
 export default class Toolbar extends React.Component {
 
   state = {
@@ -22,18 +35,21 @@ export default class Toolbar extends React.Component {
     // need to wait a tick for window.getSelection() to be accurate
     // when focusing editor with already present selection
     setTimeout(() => {
-      const selectionRect = isVisible ? getVisibleSelectionRect(window) : undefined;
-      const position = selectionRect ? {
-        top: (selectionRect.top + window.scrollY) - toolbarHeight,
-        left: selectionRect.left + window.scrollX + (selectionRect.width / 2),
-        transform: 'translate(-50%) scale(1)',
-        transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-      } : {
-        transform: 'translate(-50%) scale(0)',
-      };
-      this.setState({
-        position,
-      });
+      let position;
+      if (isVisible) {
+        const relativeParent = getRelativeParent(this.toolbar.parentElement);
+        const relativeRect = relativeParent ? relativeParent.getBoundingClientRect() : document.body.getBoundingClientRect();
+        const selectionRect = getVisibleSelectionRect(window);
+        position = {
+          top: (selectionRect.top - relativeRect.top) - toolbarHeight,
+          left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+          transform: 'translate(-50%) scale(1)',
+          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+        };
+      } else {
+        position = { transform: 'translate(-50%) scale(0)' };
+      }
+      this.setState({ position });
     }, 0);
   }
 
@@ -43,6 +59,7 @@ export default class Toolbar extends React.Component {
       <div
         className={theme.toolbarStyles.toolbar}
         style={this.state.position}
+        ref={toolbar => this.toolbar = toolbar}
       >
         {this.props.structure.map((Component, index) => (
           <Component
