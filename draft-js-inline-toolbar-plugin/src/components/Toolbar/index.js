@@ -59,7 +59,7 @@ export default class Toolbar extends React.Component {
       <div
         className={theme.toolbarStyles.toolbar}
         style={this.state.position}
-        ref={toolbar => this.toolbar = toolbar}
+        ref={(toolbar) => { this.toolbar = toolbar; }}
       >
         {this.props.structure.map((Component, index) => (
           <Component
