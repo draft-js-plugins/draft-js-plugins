@@ -21,6 +21,7 @@
   */
   max-height: 1em;
   line-height: inherit;
+  margin: -.2ex 0em .2ex;
 }
 
 .emojiCharacter {
