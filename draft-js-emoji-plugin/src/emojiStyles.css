@@ -28,5 +28,5 @@
   Hide the original Emoji icon no matter what system it is. color: transparent
   would have been nice to avoid the extra span, but it doesn't work on iOS.
   */
-  opacity: 0;
+  color: transparent;
 }
