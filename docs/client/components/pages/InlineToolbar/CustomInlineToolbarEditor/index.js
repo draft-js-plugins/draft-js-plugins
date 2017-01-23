@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
+// eslint-disable-next-line import/no-unresolved
+import createLinkifyPlugin from 'draft-js-linkify-plugin'; // eslint-disable-line import/no-unresolved
 import {
   ItalicButton,
   BoldButton,
@@ -15,8 +17,16 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton,
-} from 'draft-js-buttons'; // eslint-disable-line import/no-unresolved
+  AddLinkButton,
+} from '../../../../../../draft-js-buttons/src/'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
+
+let linkAddElement = null;
+let inlineToolbarElement = null;
+
+const addLink = () => {
+  linkAddElement.openPopover();
+};
 
 const inlineToolbarPlugin = createInlineToolbarPlugin({
   structure: [
@@ -32,10 +42,14 @@ const inlineToolbarPlugin = createInlineToolbarPlugin({
     OrderedListButton,
     BlockquoteButton,
     CodeBlockButton,
-  ]
+    AddLinkButton,
+  ],
+  addLink,
 });
 const { InlineToolbar } = inlineToolbarPlugin;
-const plugins = [inlineToolbarPlugin];
+const linkifyPlugin = createLinkifyPlugin();
+const { LinkAdd } = linkifyPlugin;
+const plugins = [inlineToolbarPlugin, linkifyPlugin];
 const text = 'In this editor a toolbar shows up once you select part of the text …';
 
 export default class CustomInlineToolbarEditor extends Component {
@@ -56,14 +70,24 @@ export default class CustomInlineToolbarEditor extends Component {
 
   render() {
     return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
+      <div>
+        <div className={editorStyles.editor} onClick={this.focus}>
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            plugins={plugins}
+            ref={(element) => { this.editor = element; }}
+          />
+          <InlineToolbar
+            ref={(element) => { inlineToolbarElement = element; }}
+          />
+        </div>
+        <LinkAdd
+          ref={(element) => { linkAddElement = element; }}
           editorState={this.state.editorState}
           onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          inlineToolbarElement={inlineToolbarElement}
         />
-        <InlineToolbar />
       </div>
     );
   }

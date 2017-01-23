@@ -50,6 +50,7 @@ export default class Toolbar extends React.Component {
             theme={theme.buttonStyles}
             getEditorState={store.getItem('getEditorState')}
             setEditorState={store.getItem('setEditorState')}
+            addLink={store.getItem('addLink')}
           />
         ))}
       </div>
