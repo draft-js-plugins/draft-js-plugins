@@ -1,12 +1,16 @@
-// import replaceBlock from './modifiers/replaceBlock';
-// import modifyBlockData from './modifiers/modifyBlockData';
 import { EditorState } from 'draft-js';
-import { readFiles } from './utils/file';
-// import { getBlocksWhereEntityData } from './utils/block';
 
-/* function defaultHandleBlock(state, selection, data, defaultBlockType) {
-  return addBlock(state, selection, defaultBlockType, data);
-} */
+import modifyBlockData from './modifiers/modifyBlockData';
+import replaceBlock from './modifiers/replaceBlock';
+import { getBlocksWhereEntityData } from './utils/block';
+import { readFiles } from './utils/file';
+
+function defaultHandleBlock(state, selection, data, blockType) {
+  return addBlock(state, selection, blockType, data);
+}
+
+const defaultBlockType = 'UNSTYLED';
+
 
 export default function onDropFile(config) {
   return function onDropFileInner(selection, files, { getEditorState, setEditorState }) {
@@ -17,6 +21,9 @@ export default function onDropFile(config) {
 
     // Get upload function from config or editor props
     const {
+      addImage,
+      handleBlock,
+      handleProgress,
       handleUpload,
     } = config;
 
@@ -39,69 +46,70 @@ export default function onDropFile(config) {
         // Add blocks for each image before uploading
         let editorState = getEditorState();
         placeholders.forEach((placeholder) => {
-          editorState = config.addImage(editorState, placeholder.src);
+          editorState = addImage(editorState, placeholder.src);
         });
         setEditorState(editorState);
 
         // Perform upload
-        // handleUpload(data, (uploadedFiles, { retainSrc }) => {
-        //   // Success, remove 'progress' and 'src'
-        //   let newEditorState = getEditorState();
-        //   uploadedFiles.forEach((file) => {
-        //     const blocks = getBlocksWhereEntityData(state, (block) => block.src === file.src && block.progress !== undefined);
-        //     if (blocks.size) {
-        //       const newEditorStateOrBlockType = handleBlock
-        //         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-        //         : defaultBlockType;
-        //
-        //       newEditorState = replaceBlock(
-        //         modifyBlockData(
-        //           newEditorState,
-        //           blocks.first().get('key'),
-        //           retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
-        //         ),
-        //         blocks.first().get('key'),
-        //         newEditorStateOrBlockType
-        //       );
-        //     } /* else {
-        //       const newEditorStateOrBlockType = handleBlock
-        //         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-        //         : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
-        //
-        //       if (!newEditorStateOrBlockType) {
-        //         newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
-        //       } else if (typeof newEditorStateOrBlockType === 'string') {
-        //         newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
-        //       } else {
-        //         newEditorState = newEditorStateOrBlockType;
-        //       }
-        //     } */
-        //   });
-        //
-        //   // Propagate progress
-        //   if (handleProgress) handleProgress(null);
-        //   setEditorState(newEditorState);
-        // }, () => {
-        //   // console.error(err);
-        // }, (percent) => {
-        //   // On progress, set entity data's progress field
-        //   let newEditorState = getEditorState();
-        //   placeholders.forEach((placeholder) => {
-        //     const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
-        //     if (blocks.size) {
-        //       newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
-        //     }
-        //   });
-        //   setEditorState(newEditorState);
-        //
-        //   // Propagate progress
-        //   if (handleProgress) {
-        //     handleProgress(percent);
-        //   }
-        // });
+        handleUpload(data, (uploadedFiles, { retainSrc }) => {
+          // Success, remove 'progress' and 'src'
+          let newEditorState = getEditorState();
+          uploadedFiles.forEach((file) => {
+            const blocks = getBlocksWhereEntityData(newEditorState, (block) => block.src === file.src && block.progress !== undefined);
+            if (blocks.size) {
+              const newEditorStateOrBlockType = handleBlock
+                ? handleBlock(newEditorState, newEditorState.getSelection(), file)
+                : defaultBlockType;
+
+              newEditorState = replaceBlock(
+                modifyBlockData(
+                  newEditorState,
+                  blocks.first().get('key'),
+                  retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
+                ),
+                blocks.first().get('key'),
+                newEditorStateOrBlockType
+              );
+            } else {
+              const newEditorStateOrBlockType = handleBlock
+                ? handleBlock(newEditorState, newEditorState.getSelection(), file)
+                : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
+
+              if (!newEditorStateOrBlockType) {
+                newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
+              } else if (typeof newEditorStateOrBlockType === 'string') {
+                newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
+              } else {
+                newEditorState = newEditorStateOrBlockType;
+              }
+            }
+          });
+
+          // Propagate progress
+          if (handleProgress) handleProgress(null);
+          setEditorState(newEditorState);
+        }, (err) => {
+          console.error(err);
+        }, (percent) => {
+          // On progress, set entity data's progress field
+          let newEditorState = getEditorState();
+          placeholders.forEach((placeholder) => {
+            const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
+            if (blocks.size) {
+              newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
+            }
+          });
+          setEditorState(newEditorState);
+
+          // Propagate progress
+          if (handleProgress) {
+            handleProgress(percent);
+          }
+        });
       });
 
-      return 'handled';
+      // draft-js-plugin-editor requires true
+      return true;
     }
 
     return undefined;
