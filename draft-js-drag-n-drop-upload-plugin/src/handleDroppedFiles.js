@@ -44,62 +44,70 @@ export default function onDropFile(config) {
       // Read files on client side
       readFiles(data.files).then((placeholders) => {
         // Add blocks for each image before uploading
-        let editorState = getEditorState();
-        placeholders.forEach((placeholder) => {
-          editorState = addImage(editorState, placeholder.src);
-        });
-        setEditorState(editorState);
+        const editorStateWithPlaceholders = placeholders.reduce(
+          (editorState, placeholder) => addImage(editorState, placeholder.src),
+          getEditorState()
+        );
+        setEditorState(editorStateWithPlaceholders);
 
         // Perform upload
         handleUpload(data, (uploadedFiles, { retainSrc }) => {
           // Success, remove 'progress' and 'src'
-          let newEditorState = getEditorState();
-          uploadedFiles.forEach((file) => {
-            const blocks = getBlocksWhereEntityData(newEditorState, (block) => block.src === file.src && block.progress !== undefined);
+          const editorStateWithImages = uploadedFiles.reduce((editorState, file) => {
+            const blocks = getBlocksWhereEntityData(
+              editorState,
+              (block) => (block.src === file.src) && (block.progress !== undefined)
+            );
+
             if (blocks.size) {
               const newEditorStateOrBlockType = handleBlock
-                ? handleBlock(newEditorState, newEditorState.getSelection(), file)
+                ? handleBlock(editorState, editorState.getSelection(), file)
                 : defaultBlockType;
 
-              newEditorState = replaceBlock(
+              return replaceBlock(
                 modifyBlockData(
-                  newEditorState,
+                  editorState,
                   blocks.first().get('key'),
                   retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
                 ),
                 blocks.first().get('key'),
                 newEditorStateOrBlockType
               );
-            } else {
-              const newEditorStateOrBlockType = handleBlock
-                ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-                : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
-
-              if (!newEditorStateOrBlockType) {
-                newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
-              } else if (typeof newEditorStateOrBlockType === 'string') {
-                newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
-              } else {
-                newEditorState = newEditorStateOrBlockType;
-              }
             }
-          });
+
+            const newEditorStateOrBlockType = handleBlock
+              ? handleBlock(editorState, editorState.getSelection(), file)
+              : defaultHandleBlock(editorState, editorState.getSelection(), file, defaultBlockType);
+
+            if (!newEditorStateOrBlockType) {
+              return defaultHandleBlock(editorState, selection, file, defaultBlockType);
+            } else if (typeof newEditorStateOrBlockType === 'string') {
+              return defaultHandleBlock(editorState, selection, file, newEditorStateOrBlockType);
+            }
+
+            return newEditorStateOrBlockType;
+          }, getEditorState());
 
           // Propagate progress
           if (handleProgress) handleProgress(null);
-          setEditorState(newEditorState);
+          setEditorState(editorStateWithImages);
         }, (err) => {
           console.error(err);
         }, (percent) => {
           // On progress, set entity data's progress field
-          let newEditorState = getEditorState();
-          placeholders.forEach((placeholder) => {
-            const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
+          const editorStateWithUpdatedPlaceholders = placeholders.reduce((editorState, placeholder) => {
+            const blocks = getBlocksWhereEntityData(
+              editorState,
+              (p) => (p.src === placeholder.src) && (p.progress !== undefined)
+            );
+
             if (blocks.size) {
-              newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
+              return modifyBlockData(editorState, blocks.first().get('key'), { progress: percent });
             }
-          });
-          setEditorState(newEditorState);
+
+            return editorState;
+          }, getEditorState());
+          setEditorState(editorStateWithUpdatedPlaceholders);
 
           // Propagate progress
           if (handleProgress) {
