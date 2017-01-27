@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
+import editorStylesCode from '!!../../../loaders/prism-loader?language=css!./editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleInlineToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleInlineToolbarEditor/editorStyles.css';
@@ -45,6 +47,11 @@ export default class App extends Component {
           <Code code="npm install draft-js-plugins-editor@beta --save" />
           <Code code="npm install draft-js-inline-toolbar-plugin@beta --save" />
           <Code code={gettingStarted} name="gettingStarted.js" />
+          <p>
+            Make sure that you position your editor:
+          </p>
+          <Code code={editorStylesCode} name="editorStyles.css" />
+
           <Heading level={3}>Importing the default styles</Heading>
           <p>
             The plugin ships with a default styling available at this location in the installed package:
