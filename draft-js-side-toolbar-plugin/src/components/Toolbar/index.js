@@ -34,24 +34,31 @@ export default class Toolbar extends React.Component {
     const offsetKey = DraftOffsetKey.encode(currentBlock.getKey(), 0, 0);
     // Note: need to wait on tick to make sure the DOM node has been create by Draft.js
     setTimeout(() => {
-      const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
-      const top = node.getBoundingClientRect().top;
-      const editor = this.props.store.getItem('getEditorRef')().refs.editor;
-      this.setState({
-        position: {
-          top: (top + window.scrollY),
-          left: editor.getBoundingClientRect().left - 80,
-          transform: 'scale(1)',
-          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-        },
-      });
+      const node = document.querySelector(`[data-offset-key="${offsetKey}"]`);
+      if (node) {
+        const blockTop = node.getBoundingClientRect().top;
+        const offsetParentTop = this.el.offsetParent.getBoundingClientRect().top;
+        this.setState({
+          position: {
+            top: blockTop - offsetParentTop,
+            left: -80,
+            transform: 'scale(1)',
+            transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+          },
+        });
+      }
     }, 0);
   }
+
+  setEl = (el) => {
+    this.el = el;
+  };
 
   render() {
     const { theme, store } = this.props;
     return (
       <div
+        ref={this.setEl}
         className={theme.toolbarStyles.wrapper}
         style={this.state.position}
       >
