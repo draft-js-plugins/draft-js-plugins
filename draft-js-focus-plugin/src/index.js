@@ -1,6 +1,7 @@
 import { EditorState } from 'draft-js';
 import setSelection from './modifiers/setSelection';
 import setSelectionToBlock from './modifiers/setSelectionToBlock';
+import removeBlock from './modifiers/removeBlock';
 import createDecorator from './createDecorator';
 import createBlockKeyStore from './utils/createBlockKeyStore';
 import blockInSelection from './utils/blockInSelection';
@@ -20,6 +21,8 @@ const focusableBlockIsSelected = (editorState, blockKeyStore) => {
 export default (config = {}) => {
   const blockKeyStore = createBlockKeyStore({});
   const theme = config.theme ? config.theme : defaultTheme;
+  const blockTypes = config.types ? config.types : ['atomic'];
+  const onRemove = config.onRemove ? config.onRemove : () => {};
   let lastSelection;
   let lastContentState;
 
@@ -103,11 +106,16 @@ export default (config = {}) => {
         const currentBlock = editorState.getCurrentContent().getBlockForKey(selectionKey);
         const afterBlock = editorState.getCurrentContent().getBlockAfter(selectionKey);
         const notAtomicAndLastPost =
-          currentBlock.getType() !== 'atomic' &&
+          !blockTypes.includes(currentBlock.getType()) &&
           currentBlock.getLength() === selection.getFocusOffset();
         if (afterBlock && notAtomicAndLastPost && blockKeyStore.includes(afterBlock.getKey())) {
           setSelection(getEditorState, setEditorState, 'down', evt);
         }
+      }
+
+      // delete, backspace
+      if ([46, 8].includes(evt.keyCode) && focusableBlockIsSelected(editorState, blockKeyStore)) {
+        setEditorState(removeBlock({ getEditorState }, editorState.getSelection().getFocusKey()));
       }
     },
     // Wrap all block-types in block-focus decorator
@@ -116,12 +124,13 @@ export default (config = {}) => {
       // since all the selection checks are not necessary.
       // In case there is a use-case where focus makes sense for none atomic blocks we can add it
       // in the future.
-      if (contentBlock.getType() !== 'atomic') {
+      if (!blockTypes.includes(contentBlock.getType())) {
         return undefined;
       }
 
       const editorState = getEditorState();
-      const isFocused = blockInSelection(editorState, contentBlock.getKey());
+      const blockKey = contentBlock.getKey();
+      const isFocused = blockInSelection(editorState, blockKey);
 
       return {
         props: {
@@ -130,6 +139,7 @@ export default (config = {}) => {
           setFocusToBlock: () => {
             setSelectionToBlock(getEditorState, setEditorState, contentBlock);
           },
+          removeBlock: () => onRemove(blockKey),
         }
       };
     },
