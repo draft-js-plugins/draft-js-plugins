@@ -39,7 +39,10 @@ export default function onDropFile(config) {
       setEditorState(EditorState.acceptSelection(getEditorState(), selection));
 
       // Read files on client side
-      readFiles(data.files).then((filesWithContent) => {
+      readFiles(data.files).then((filesWithContent) => filesWithContent.map((file, index) => {
+        file.id = files[index].id; // eslint-disable-line no-param-reassign
+        return file;
+      })).then((filesWithContent) => {
         // Add blocks for each image before uploading
         const editorStateWithPlaceholders = filesWithContent.reduce(
           (editorState, file) => addPlaceholder(editorState, file),
