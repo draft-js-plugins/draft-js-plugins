@@ -21,11 +21,12 @@ export default ({ store }) => (WrappedComponent) => (
     }
 
     render() {
-      const readOnly = store.getReadOnly();
+      // const readOnly = store.getReadOnly();
       return (
         <WrappedComponent
           {...this.props}
-          onDragStart={!readOnly ? this.startDrag : undefined}
+          draggable
+          onDragStart={this.startDrag}
         />
       );
     }
