@@ -80,10 +80,11 @@ export default function onDropFile(config) {
         });
       });
 
-      // draft-js-plugin-editor requires true
+      // NOTE: change to 'handled' once draft-js-plugin-editor is upgraded
       return true;
     }
 
+    // NOTE: change to 'not-handled' once draft-js-plugin-editor is upgraded
     return undefined;
   };
 }
