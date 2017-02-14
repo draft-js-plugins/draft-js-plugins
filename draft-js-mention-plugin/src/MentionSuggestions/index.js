@@ -41,7 +41,7 @@ export default class MentionSuggestions extends Component {
     if (nextProps.suggestions.size === 0 && this.state.isActive) {
       this.closeDropdown();
     }
-    if (nextProps.suggestions.size >= 1 && !this.state.isActive){
+    if (nextProps.suggestions.size >= 1 && !this.state.isActive) {
       this.openDropdown();
     }
   }
