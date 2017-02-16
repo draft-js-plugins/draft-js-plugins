@@ -1,4 +1,4 @@
-import { Entity, EditorState } from 'draft-js';
+import { EditorState } from 'draft-js';
 import createDecorator from './createDecorator';
 
 const store = {
@@ -12,7 +12,8 @@ const createSetResizeData = (contentBlock, { getEditorState, setEditorState }) =
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
-    Entity.mergeData(entityKey, { ...data });
+    const contentState = editorState.getCurrentContent();
+    contentState.mergeEntityData(entityKey, { ...data });
     setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
   }
 };
@@ -27,7 +28,8 @@ export default (config) => ({
   decorator: createDecorator({ config, store }),
   blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
     const entityKey = contentBlock.getEntityAt(0);
-    const resizeData = entityKey ? Entity.get(entityKey).data : {};
+    const contentState = getEditorState().getCurrentContent();
+    const resizeData = entityKey ? contentState.getEntity(entityKey).data : {};
     return {
       props: {
         resizeData,

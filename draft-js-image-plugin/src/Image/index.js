@@ -1,4 +1,3 @@
-import { Entity } from 'draft-js';
 import unionClassNames from 'union-class-names';
 import React, { Component } from 'react';
 
@@ -20,10 +19,11 @@ export default class Image extends Component {
       offsetKey, // eslint-disable-line no-unused-vars
       selection, // eslint-disable-line no-unused-vars
       tree, // eslint-disable-line no-unused-vars
+      contentState,
       ...elementProps
     } = otherProps;
     const combinedClassName = unionClassNames(theme.image, className);
-    const { src } = Entity.get(block.getEntityAt(0)).getData();
+    const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
     return (
       <img
         {...elementProps}

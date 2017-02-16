@@ -263,15 +263,15 @@ class PluginEditor extends Component {
 
   resolveCustomStyleMap = () => (
     this.props.plugins
-     .filter((plug) => plug.customStyleMap !== undefined)
-     .map((plug) => plug.customStyleMap)
-     .concat([this.props.customStyleMap])
-     .reduce((styles, style) => (
-       {
-         ...styles,
-         ...style,
-       }
-     ), {})
+      .filter((plug) => plug.customStyleMap !== undefined)
+      .map((plug) => plug.customStyleMap)
+      .concat([this.props.customStyleMap])
+      .reduce((styles, style) => (
+        {
+          ...styles,
+          ...style,
+        }
+      ), {})
   );
 
   resolveblockRenderMap = () => {

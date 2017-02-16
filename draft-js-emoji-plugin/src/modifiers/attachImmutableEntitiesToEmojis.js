@@ -1,4 +1,4 @@
-import { EditorState, Modifier, Entity, SelectionState } from 'draft-js';
+import { EditorState, Modifier, SelectionState } from 'draft-js';
 import findWithRegex from 'find-with-regex';
 import emojione from 'emojione';
 
@@ -22,7 +22,7 @@ export default function attachImmutableEntitiesToEmojis(editorState: EditorState
       const existingEntityKey = block.getEntityAt(start);
       if (existingEntityKey) {
         // avoid manipulation in case the emoji already has an entity
-        const entity = Entity.get(existingEntityKey);
+        const entity = newContentState.getEntity(existingEntityKey);
         if (entity && entity.get('type') === 'emoji') {
           return;
         }
@@ -32,7 +32,9 @@ export default function attachImmutableEntitiesToEmojis(editorState: EditorState
         .set('anchorOffset', start)
         .set('focusOffset', end);
       const emojiText = plainText.substring(start, end);
-      const entityKey = Entity.create('emoji', 'IMMUTABLE', { emojiUnicode: emojiText });
+      const contentStateWithEntity = newContentState.createEntity('emoji', 'IMMUTABLE', { emojiUnicode: emojiText });
+      const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
       newContentState = Modifier.replaceText(
         newContentState,
         selection,

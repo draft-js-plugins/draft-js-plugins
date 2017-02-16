@@ -1,9 +1,12 @@
-import { Modifier, EditorState, Entity } from 'draft-js';
+import { Modifier, EditorState } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 import getTypeByTrigger from '../utils/getTypeByTrigger';
 
 const addMention = (editorState, mention, mentionPrefix, mentionTrigger, entityMutability) => {
-  const entityKey = Entity.create(getTypeByTrigger(mentionTrigger), entityMutability, { mention });
+  const contentStateWithEntity = editorState.getCurrentContent().createEntity(
+    getTypeByTrigger(mentionTrigger), entityMutability, { mention }
+  );
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
   const currentSelectionState = editorState.getSelection();
   const { begin, end } = getSearchText(editorState, currentSelectionState);

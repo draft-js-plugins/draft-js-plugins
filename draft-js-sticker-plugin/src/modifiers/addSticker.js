@@ -7,7 +7,6 @@ import {
   CharacterMetadata,
   ContentBlock,
   EditorState,
-  Entity,
   genKey,
   Modifier,
 } from 'draft-js';
@@ -54,7 +53,10 @@ export default (editorState: Object, stickerId: any) => {
   const newContentStateAfterSplit = Modifier.setBlockType(insertionTargetBlock, insertionTargetSelection, 'sticker');
 
   // creating a new ContentBlock including the entity with data
-  const entityKey = Entity.create('sticker', 'IMMUTABLE', { id: stickerId });
+  const contentStateWithEntity = newContentStateAfterSplit.createEntity(
+    'sticker', 'IMMUTABLE', { id: stickerId }
+  );
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   const charDataOfSticker = CharacterMetadata.create({ entity: entityKey });
 
   const fragmentArray = [

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Entity } from 'draft-js';
 import { fromJS } from 'immutable';
 import unionClassNames from 'union-class-names';
 
@@ -28,10 +27,11 @@ const Mention = (props) => {
     children,
     decoratedText,
     className,
+    contentState,
   } = props;
 
   const combinedClassName = unionClassNames(theme.mention, className);
-  const mention = fromJS(Entity.get(entityKey).getData().mention);
+  const mention = fromJS(contentState.getEntity(entityKey).getData().mention);
 
   const Component = (
     mentionComponent || (mention.has('link') ? MentionLink : MentionText)

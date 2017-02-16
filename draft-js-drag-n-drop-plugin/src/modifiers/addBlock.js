@@ -4,7 +4,6 @@ import {
   CharacterMetadata,
   BlockMapBuilder,
   ContentBlock,
-  Entity,
   genKey
 } from 'draft-js';
 
@@ -47,7 +46,10 @@ export default function (editorState, selection, type, data, entityType, text = 
 
   // creating a new ContentBlock including the entity with data
   // Entity will be created with a specific type, if defined, else will fall back to the ContentBlock type
-  const entityKey = Entity.create(entityType || type, 'IMMUTABLE', { ...data });
+  const contentStateWithEntity = newContentStateAfterSplit.createEntity(
+    entityType || type, 'IMMUTABLE', { ...data }
+  );
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   const charData = CharacterMetadata.create({ entity: entityKey });
 
   const fragmentArray = [
