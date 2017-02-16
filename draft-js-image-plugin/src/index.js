@@ -20,7 +20,7 @@ export default (config = {}) => {
       if (block.getType() === 'atomic') {
         const entity = Entity.get(block.getEntityAt(0));
         const type = entity.getType();
-        if (type === 'image') {
+        if (type === 'IMAGE') {
           return {
             component: ThemedImage,
             editable: false,

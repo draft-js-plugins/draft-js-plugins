@@ -5,7 +5,7 @@ import {
 } from 'draft-js';
 
 export default (editorState, url) => {
-  const urlType = 'image';
+  const urlType = 'IMAGE';
   const entityKey = Entity.create(urlType, 'IMMUTABLE', { src: url });
   const newEditorState = AtomicBlockUtils.insertAtomicBlock(
     editorState,
