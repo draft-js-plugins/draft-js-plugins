@@ -20,7 +20,7 @@ module.exports = Object.assign(webpackBaseConfig, {
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css', { allChunks: true }),
+    new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

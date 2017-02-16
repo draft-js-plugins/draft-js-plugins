@@ -1,6 +1,5 @@
 var path = require('path'); // eslint-disable-line no-var
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
-var autoprefixer = require('autoprefixer'); // eslint-disable-line no-var
 
 module.exports = {
   resolve: {
@@ -25,19 +24,19 @@ module.exports = {
       'draft-js-video-plugin': path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
       react: path.join(__dirname, 'node_modules', 'react'),
     },
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
   module: {
     loaders: [
       {
         // match all js files except example.js
         test: /^(?!.*example\.js$).*\.js$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
         exclude: /node_modules/,
         include: path.join(__dirname, 'client'),
       }, {
         test: /\.js$/,
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
         include: [
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
@@ -60,7 +59,7 @@ module.exports = {
         ],
       }, {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader'),
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader' }),
         include: [
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
@@ -84,7 +83,7 @@ module.exports = {
         ],
       }, {
         test: /prism\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }),
         include: [
           path.join(__dirname, 'node_modules/prismjs/themes/'),
         ],
@@ -93,6 +92,5 @@ module.exports = {
         loaders: ['file?name=[name].[ext]'],
       },
     ],
-  },
-  postcss: [autoprefixer({ browsers: ['> 1%'] })],
+  }
 };

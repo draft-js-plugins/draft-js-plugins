@@ -32,8 +32,8 @@ module.exports = Object.assign(webpackBaseConfig, {
   },
 
   plugins: [
-    new ExtractTextPlugin('css/bundle.css', { disable: true }),
+    new ExtractTextPlugin({ filename: 'css/bundle.css', disable: true }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 });
