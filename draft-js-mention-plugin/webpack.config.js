@@ -1,7 +1,6 @@
 /* eslint-disable no-var */
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var autoprefixer = require('autoprefixer');
 
 module.exports = {
   output: {
@@ -17,8 +16,8 @@ module.exports = {
       },
     ],
   },
-  postcss: [autoprefixer({ browsers: ['> 1%'] })],
+
   plugins: [
-    new ExtractTextPlugin(`${path.parse(process.argv[2]).name}.css`),
+    new ExtractTextPlugin({ filename: `${path.parse(process.argv[2]).name}.css` }),
   ],
 };
