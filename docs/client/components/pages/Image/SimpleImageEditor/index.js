@@ -16,7 +16,7 @@ const plugins = [imagePlugin];
 const initialState = {
     "entityMap": {
         "0": {
-            "type": "IMAGE",
+            "type": "image",
             "mutability": "IMMUTABLE",
             "data": {
                 "src": "/images/canada-landscape-small.jpg"

@@ -20,7 +20,7 @@ export default (config = {}) => {
         const contentState = getEditorState().getCurrentContent();
         const entity = contentState.getEntity(block.getEntityAt(0));
         const type = entity.getType();
-        if (type === 'IMAGE') {
+        if (type === 'image') {
           return {
             component: ThemedImage,
             editable: false,

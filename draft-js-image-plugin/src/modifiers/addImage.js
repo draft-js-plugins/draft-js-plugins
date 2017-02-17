@@ -4,7 +4,7 @@ import {
 } from 'draft-js';
 
 export default (editorState, url) => {
-  const urlType = 'IMAGE';
+  const urlType = 'image';
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(urlType, 'IMMUTABLE', { src: url });
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
