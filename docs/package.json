@@ -40,7 +40,7 @@
     "union-class-names": "^1.0.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
-    "webpack-dev-middleware": "^1.10.0",
+    "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.17.0",
     "whatwg-fetch": "^2.0.2"
   }

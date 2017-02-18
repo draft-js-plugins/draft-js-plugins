@@ -73,7 +73,7 @@
     "lint-staged": "^3.3.0",
     "mocha": "^3.0.2",
     "multer": "^1.3.0",
-    "postcss-loader": "^1.3.0",
+    "postcss-loader": "^1.3.1",
     "pre-commit": "^1.2.2",
     "prismjs": "^1.5.1",
     "react-addons-pure-render-mixin": "^15.4.2",
@@ -87,15 +87,15 @@
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
-    "superagent": "^3.4.3",
+    "superagent": "^3.4.4",
     "webpack": "^2.2.1",
-    "webpack-dev-middleware": "^1.10.0",
+    "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.17.0"
   },
   "license": "MIT",
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
-    "draft-js": ">=0.9.1",
+    "draft-js": "^0.10.0",
     "emojione": "^2.2.6",
     "eslint-plugin-import": "^2.2.0",
     "find-with-regex": "^1.0.2",
@@ -106,7 +106,7 @@
     "lodash.keys": "^4.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "tlds": "^1.182.0",
+    "tlds": "^1.183.0",
     "union-class-names": "^1.0.0",
     "webpack": "^2.2.1"
   }
