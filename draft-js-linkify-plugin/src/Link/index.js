@@ -13,6 +13,7 @@ export default class Link extends Component {
       decoratedText = '',
       theme = {},
       target = '_self',
+      rel = 'noreferrer noopener',
       className,
       component,
       dir, // eslint-disable-line no-unused-vars
@@ -31,6 +32,7 @@ export default class Link extends Component {
       ...otherProps,
       href,
       target,
+      rel,
       className: combinedClassName,
     };
 
