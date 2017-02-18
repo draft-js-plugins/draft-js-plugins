@@ -1,4 +1,4 @@
-import { EditorState, Entity, SelectionState } from 'draft-js';
+import { EditorState, SelectionState } from 'draft-js';
 import addBlock from './modifiers/addBlock';
 import removeBlock from './modifiers/removeBlock';
 import { DRAFTJS_BLOCK_KEY } from './constants';
@@ -24,8 +24,9 @@ export default (
     const blockKey = data[1];
 
     // Get content, selection, block
-    const block = editorState.getCurrentContent().getBlockForKey(blockKey);
-    const entity = Entity.get(block.getEntityAt(0));
+    const contentState = editorState.getCurrentContent();
+    const block = contentState.getBlockForKey(blockKey);
+    const entity = contentState.getEntity(block.getEntityAt(0));
     const contentStateAfterInsert = addBlock(
       editorState,
       selection,

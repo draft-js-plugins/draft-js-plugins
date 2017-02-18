@@ -1,11 +1,12 @@
-import { Entity, EditorState } from 'draft-js';
+import { EditorState } from 'draft-js';
 import removeBlock from './utils/removeBlock';
 
 const setEntityDataFn = (contentBlock, { getEditorState, setEditorState }) => (data) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
-    Entity.mergeData(entityKey, { ...data });
+    const contentState = editorState.getCurrentContent();
+    contentState.mergeEntityData(entityKey, { ...data });
     setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
   }
 };
@@ -16,8 +17,9 @@ const removeBlockFn = (contentBlock, { getEditorState, setEditorState }) => () =
 
 const entityPropsPlugin = () => ({
   blockRendererFn: (contentBlock, pluginEditor) => {
+    const contentState = pluginEditor.getEditorState().getCurrentContent();
     const entityKey = contentBlock.getEntityAt(0);
-    const entityData = entityKey ? Entity.get(entityKey).data : {};
+    const entityData = entityKey ? contentState.getEntity(entityKey).data : {};
     return {
       props: {
         pluginEditor,
