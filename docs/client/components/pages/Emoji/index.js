@@ -125,7 +125,7 @@ export default class App extends Component {
                 CSS class for an entry’s text in the suggestions component.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>emojiSuggestionsEntryAvatar:</span>
+                <span className={styles.subParamName}>emojiSuggestionsEntryIcon:</span>
                 CSS class for an entry’s avatar image in the suggestions component.
               </div>
             </div>
