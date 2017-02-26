@@ -21,12 +21,11 @@
   */
   max-height: 1em;
   line-height: inherit;
-}
-
-.emojiCharacter {
+  margin: -.2ex 0em .2ex;
   /*
-  Hide the original Emoji icon no matter what system it is. color: transparent
-  would have been nice to avoid the extra span, but it doesn't work on iOS.
+  In the past we used opacity: 0 to hide the original Emoji icon no matter what
+  system it is. Recently we switched to color: transparent since it started to
+  work in recent iOS version.
   */
-  opacity: 0;
+  color: transparent;
 }
