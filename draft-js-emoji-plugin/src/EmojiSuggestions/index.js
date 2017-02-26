@@ -265,9 +265,12 @@ export default class EmojiSuggestions extends Component {
       imageType,
       ariaProps, // eslint-disable-line no-unused-vars
       callbacks, // eslint-disable-line no-unused-vars
-      store, // eslint-disable-line no-unused-vars
+      onClose, // eslint-disable-line no-unused-vars
+      onOpen, // eslint-disable-line no-unused-vars
+      onSearchChange, // eslint-disable-line no-unused-vars
       positionSuggestions, // eslint-disable-line no-unused-vars
       shortNames, // eslint-disable-line no-unused-vars
+      store, // eslint-disable-line no-unused-vars
       ...restProps,
     } = this.props;
     return (
