@@ -24,7 +24,6 @@ const defaultCacheBustParam = '?v=2.2.6';
 export default (config = {}) => {
   const defaultTheme = {
     emoji: emojiStyles.emoji,
-    emojiCharacter: emojiStyles.emojiCharacter,
 
     emojiSuggestions: emojiSuggestionsStyles.emojiSuggestions,
 

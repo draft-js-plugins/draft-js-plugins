@@ -8,14 +8,13 @@ const Emoji = ({ theme = {}, cacheBustParam, imagePath, imageType, className, de
   const shortNameForImage = emojione.emojioneList[shortName].unicode[emojione.emojioneList[shortName].unicode.length - 1];
   const backgroundImage = `url(${imagePath}${shortNameForImage}.${imageType}${cacheBustParam})`;
   const combinedClassName = unionClassNames(theme.emoji, className);
-  const characterClassName = unionClassNames(theme.emojiCharacter);
   return (
     <span
       className={combinedClassName}
       title={emojione.toShort(decoratedText)}
       style={{ backgroundImage }}
     >
-      <span className={characterClassName}>{props.children}</span>
+      {props.children}
     </span>
   );
 };
