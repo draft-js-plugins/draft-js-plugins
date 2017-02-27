@@ -106,6 +106,35 @@ resolve: {
 }
 ```
 
+For your CSS loader in webpack, ensure you enable CSS modules:
+
+```js
+{
+  test: /\.css$/,
+  loaders: [
+    'style', 'css?modules'
+  ]
+}
+```
+
+You'll need to use Babel Stage-0 if you aren't already. First, install it:
+
+```bash
+yarn add babel-preset-stage-0
+```
+
+Then use it as a preset when loading your JS:
+
+```js
+{
+  test: /\.js$/,
+  loader: 'babel-loader',
+  query: {
+    presets: ['es2015', 'react', 'stage-0'],
+  },
+}
+```
+
 ## Publishing Github Pages (for the core team)
 
 Run `./scripts/publishGithubPages.sh`
