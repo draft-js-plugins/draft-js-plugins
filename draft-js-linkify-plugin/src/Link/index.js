@@ -20,12 +20,14 @@ export default class Link extends Component {
       getEditorState, // eslint-disable-line no-unused-vars
       offsetKey, // eslint-disable-line no-unused-vars
       setEditorState, // eslint-disable-line no-unused-vars
+      transform,
       ...otherProps
     } = this.props;
 
     const combinedClassName = unionClassNames(theme.link, className);
     const links = linkify.match(decoratedText);
-    const href = links && links[0] ? links[0].url : '';
+    let href = links && links[0] ? links[0].url : '';
+    if (transform) { href = transform(href); }
 
     const props = {
       ...otherProps,

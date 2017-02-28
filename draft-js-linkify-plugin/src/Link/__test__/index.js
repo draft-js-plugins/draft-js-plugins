@@ -64,4 +64,15 @@ describe('Link', () => {
     const result = shallow(<Link target="_blank" />);
     expect(result).to.have.prop('target').to.contain('_blank');
   });
+
+  it('transforms the href when a transform function is provided', () => {
+    const transform = (href) => href.replace(/draft-js-plugins/, 'foo');
+    const result = shallow(
+      <Link
+        decoratedText="https://www.draft-js-plugins.com/"
+        transform={transform}
+      />
+    );
+    expect(result).to.have.prop('href').to.contain('https://www.foo.com/');
+  });
 });
