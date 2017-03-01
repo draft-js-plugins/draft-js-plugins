@@ -187,6 +187,13 @@ export default class App extends Component {
               <span className={styles.paramName}>onAddMention</span>
               <span>A callback which is triggered whenever the mention is about to be added. The first argument of this callback will contain the mention entry.</span>
             </div>
+            <div className={styles.param}>
+              <span className={styles.paramName}>popoverComponent</span>
+              <span>Component to be used as the template for the popover (the parent of entryComponent).  Defaults to a div.</span>
+            </div>
+            <div className={styles.param}>
+              <span>Additional properties are passed to the <InlineCode code="popoverComponent" /></span>
+            </div>
           </div>
           <Heading level={3}>Additional Exports</Heading>
           <div>

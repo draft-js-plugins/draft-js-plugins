@@ -302,6 +302,7 @@ export default class MentionSuggestions extends Component {
 
     const {
       entryComponent,
+      popoverComponent = <div />,
       onClose, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
       onAddMention, // eslint-disable-line no-unused-vars, no-shadow
@@ -317,31 +318,29 @@ export default class MentionSuggestions extends Component {
       mentionPrefix, // eslint-disable-line no-unused-vars
       ...elementProps } = this.props;
 
-    return (
-      <div
-        {...elementProps}
-        className={theme.mentionSuggestions}
-        role="listbox"
-        id={`mentions-list-${this.key}`}
-        ref={(element) => { this.popover = element; }}
-      >
-        {
-          this.props.suggestions.map((mention, index) => (
-            <Entry
-              key={mention.has('id') ? mention.get('id') : mention.get('name')}
-              onMentionSelect={this.onMentionSelect}
-              onMentionFocus={this.onMentionFocus}
-              isFocused={this.state.focusedOptionIndex === index}
-              mention={mention}
-              index={index}
-              id={`mention-option-${this.key}-${index}`}
-              theme={theme}
-              searchValue={this.lastSearchValue}
-              entryComponent={entryComponent || defaultEntryComponent}
-            />
-          )).toJS()
-        }
-      </div>
+    return React.cloneElement(
+      popoverComponent,
+      {
+        ...elementProps,
+        className: theme.mentionSuggestions,
+        role: 'listbox',
+        id: `mentions-list-${this.key}`,
+        ref: (element) => { this.popover = element; },
+      },
+      this.props.suggestions.map((mention, index) => (
+        <Entry
+          key={mention.has('id') ? mention.get('id') : mention.get('name')}
+          onMentionSelect={this.onMentionSelect}
+          onMentionFocus={this.onMentionFocus}
+          isFocused={this.state.focusedOptionIndex === index}
+          mention={mention}
+          index={index}
+          id={`mention-option-${this.key}-${index}`}
+          theme={theme}
+          searchValue={this.lastSearchValue}
+          entryComponent={entryComponent || defaultEntryComponent}
+        />
+      )).toJS()
     );
   }
 }
