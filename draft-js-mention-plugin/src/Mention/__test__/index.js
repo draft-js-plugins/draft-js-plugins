@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { render } from 'enzyme';
 import { fromJS, Map } from 'immutable';
 import { ContentState } from 'draft-js';
 import { expect } from 'chai';

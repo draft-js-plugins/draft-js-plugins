@@ -19,6 +19,10 @@
     "import/no-extraneous-dependencies": 0,
     "import/prefer-default-export": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
+    "import/no-webpack-loader-syntax": 0,
+    "import/extensions": 0,
+    "jsx-a11y/img-has-alt": 0,
+    "react/require-default-props": 0
   }
 }

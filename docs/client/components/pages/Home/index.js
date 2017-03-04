@@ -139,7 +139,7 @@ export default class App extends Component {
           </p>
           <Heading level={2}>Wait, but why?</Heading>
           <p className={styles.whyText}>
-            Facebook's rich-text editor framework
+            Facebook&apos;s rich-text editor framework
             <ExternalLink href="https://facebook.github.io/draft-js/">
               &nbsp;DraftJS&nbsp;
             </ExternalLink>
@@ -147,7 +147,7 @@ export default class App extends Component {
             <ExternalLink href="https://facebook.github.io/react/">
               &nbsp;React&nbsp;
             </ExternalLink>
-            allows you to create powerful editors. We're building a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want or build your own.
+            allows you to create powerful editors. We&apos;re building a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want or build your own.
           </p>
         </AlternateContainer>
         <Container>
@@ -226,7 +226,7 @@ export default class App extends Component {
             </div>
           </div>
           <p className={styles.specialThanks}>
-            Special thanks to all the people from Stripe for their invaluable feedback and funding Nik's efforts during the&nbsp;
+            Special thanks to all the people from Stripe for their invaluable feedback and funding Nik&apos;s efforts during the&nbsp;
             <ExternalLink href="https://stripe.com/blog/open-source-retreat-2016-grantees">
               Stripe Open Source Retreat
             </ExternalLink>.

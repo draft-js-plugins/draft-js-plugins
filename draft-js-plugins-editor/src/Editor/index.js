@@ -1,4 +1,4 @@
-/* eslint-disable no-continue */
+/* eslint-disable no-continue,no-restricted-syntax */
 import React, { Component } from 'react';
 import {
   Editor,

@@ -14,10 +14,10 @@ const ColorBlock = ({
   style,
   ...elementProps
 }) => (
-    <div
-      {...elementProps}
-      style={{ width: 200, height: 80, backgroundColor: '#9bc0c7', ...style }}
-    />
+  <div
+    {...elementProps}
+    style={{ width: 200, height: 80, backgroundColor: '#9bc0c7', ...style }}
+  />
   );
 
 const createColorBlockPlugin = (config = {}) => {

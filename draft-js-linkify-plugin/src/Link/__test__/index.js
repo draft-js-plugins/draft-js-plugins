@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-has-content,react/no-children-prop */
 
 import React from 'react';
 import { shallow } from 'enzyme';
