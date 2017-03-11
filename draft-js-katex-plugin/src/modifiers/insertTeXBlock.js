@@ -21,12 +21,14 @@ const examples = [
 ];
 
 export default function insertTeXBlock(editorState, tex) {
-  if (!tex) {
-    const nextFormula = count++ % examples.length;
-    tex = examples[nextFormula];
+  let texContent = tex;
+  if (!texContent) {
+    const nextFormula = count % examples.length;
+    count = count + 1;
+    texContent = examples[nextFormula];
   }
 
-  const entityKey = Entity.create('kateX', 'IMMUTABLE', { content: tex });
+  const entityKey = Entity.create('kateX', 'IMMUTABLE', { content: texContent });
   const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
 
   return EditorState.forceSelection(

@@ -4,21 +4,7 @@ import React from 'react';
 export default class KatexOutput extends React.Component {
   constructor(props) {
     super(props);
-    this._timer = null;
-  }
-
-  _update() {
-    if (this._timer) {
-      clearTimeout(this._timer);
-    }
-
-    this._timer = setTimeout(() => {
-      katex.render(
-        this.props.content,
-        this.refs.container,
-        { displayMode: true }
-      );
-    }, 0);
+    this.timer = null;
   }
 
   componentDidMount() {
@@ -32,11 +18,30 @@ export default class KatexOutput extends React.Component {
   }
 
   componentWillUnmount() {
-    clearTimeout(this._timer);
-    this._timer = null;
+    clearTimeout(this.timer);
+    this.timer = null;
+  }
+
+  _update() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+
+    this.timer = setTimeout(() => {
+      katex.render(
+        this.props.content,
+        this.container,
+        { displayMode: true }
+      );
+    }, 0);
   }
 
   render() {
-    return <div ref="container" onClick={this.props.onClick} />;
+    return (
+      <div
+        ref={(container) => this.container = container}
+        onClick={this.props.onClick}
+      />
+    );
   }
 }

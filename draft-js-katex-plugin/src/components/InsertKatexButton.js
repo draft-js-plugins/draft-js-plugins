@@ -19,9 +19,12 @@ export default class InsertKatexButton extends Component {
     const combinedClassName = unionClassNames(theme.insertButton, className);
 
     return (
-      <button className={combinedClassName} onClick={this.onClick}>
+      <button
+        className={combinedClassName}
+        onClick={this.onClick}
+      >
         {children}
       </button>
-    )
+    );
   }
 }

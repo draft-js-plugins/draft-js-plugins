@@ -42,7 +42,7 @@ export default (config = {}) => {
             props: {
               onStartEdit: (blockKey) => {
                 liveTeXEdits.set(blockKey, true);
-                store.setReadOnly(liveTeXEdits.size)
+                store.setReadOnly(liveTeXEdits.size);
               },
 
               onFinishEdit: (blockKey, newEditorState) => {
