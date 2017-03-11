@@ -13,4 +13,5 @@ mv $(pwd)/../draft-js-resizeable-plugin/tmpBabelrc $(pwd)/../draft-js-resizeable
 mv $(pwd)/../draft-js-inline-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js-inline-toolbar-plugin/.babelrc
 mv $(pwd)/../draft-js-side-toolbar-plugin/tmpBabelrc $(pwd)/../draft-js-side-toolbar-plugin/.babelrc
 mv $(pwd)/../draft-js-image-plugin/tmpBabelrc $(pwd)/../draft-js-image-plugin/.babelrc
+mv $(pwd)/../draft-js-katex-plugin/tmpBabelrc $(pwd)/../draft-js-katex-plugin/.babelrc
 mv $(pwd)/../draft-js-buttons/tmpBabelrc $(pwd)/../draft-js-buttons/.babelrc

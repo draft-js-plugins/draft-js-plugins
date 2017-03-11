@@ -1,0 +1,99 @@
+.tex {
+  background-color: #fff;
+  cursor: pointer;
+  margin: 20px auto;
+  padding: 20px;
+  -webkit-transition: background-color 0.2s fade-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.activeTeX {
+  color: #888;
+}
+
+.panel {
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 200;
+}
+
+.panel .texValue {
+  border: 1px solid #e1e1e1;
+  display: block;
+  font-family: 'Inconsolata', 'Menlo', monospace;
+  font-size: 14px;
+  height: 110px;
+  margin: 20px auto 10px;
+  outline: none;
+  padding: 14px;
+  resize: none;
+  -webkit-box-sizing: border-box;
+  width: 500px;
+}
+
+.buttons {
+  text-align: center;
+}
+
+.saveButton,
+.removeButton {
+  background-color: #fff;
+  border: 1px solid #0a0;
+  cursor: pointer;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  margin: 10px auto;
+  padding: 6px;
+  -webkit-border-radius: 3px;
+  width: 100px;
+}
+
+.removeButton {
+  border-color: #aaa;
+  color: #999;
+  margin-left: 8px;
+}
+
+.invalidButton {
+  background-color: #eee;
+  border-color: #a00;
+  color: #666;
+}
+
+.insertButton {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  height: 1.5em;
+  color: #888;
+  border-radius: 1.5em;
+  line-height: 1.2em;
+  cursor: pointer;
+  background-color: #fff;
+  width: 2.5em;
+  font-weight: bold;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+
+.insertButton:focus {
+  background-color: #eee;
+  color: #999;
+  outline: 0; /* reset for :focus */
+}
+
+.insertButton:hover {
+  background-color: #eee;
+  color: #999;
+}
+
+.insertButton:active {
+  background-color: #ddd;
+  color: #777;
+}
+
+.insertButton:disabled {
+  background-color: #F5F5F5;
+  color: #ccc;
+}
