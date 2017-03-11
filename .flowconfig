@@ -5,6 +5,7 @@
 .*/node_modules/immutable/.*
 .*/node_modules/.*.json
 .*/node_modules/draft-js/.*
+.*/node_modules/match-at/.*
 .*/node_modules/react/.*
 
 [include]

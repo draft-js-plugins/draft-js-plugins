@@ -5,6 +5,7 @@ draft-js-drag-n-drop-plugin/lib/**
 draft-js-drag-n-drop-upload-plugin/lib/**
 draft-js-focus-plugin/lib/**
 draft-js-image-plugin/lib/**
+draft-js-katex-plugin/lib/**
 draft-js-resizeable-plugin/lib/**
 draft-js-inline-toolbar-plugin/lib/**
 draft-js-side-toolbar-plugin/lib/**
