@@ -23,11 +23,11 @@ export default class TeXBlock extends Component {
     });
   };
 
-  onValueChange = evt => {
+  onValueChange = (evt) => {
     const value = evt.target.value;
     let invalid = false;
     try {
-      katex.__parse(value);
+      katex.__parse(value); // eslint-disable-line no-underscore-dangle
     } catch (e) {
       invalid = true;
     } finally {
@@ -36,6 +36,27 @@ export default class TeXBlock extends Component {
         texValue: value,
       });
     }
+  };
+
+  getValue = () => {
+    const entityKey = this.props.block.getEntityAt(0);
+    const entityData = Entity.get(entityKey).getData();
+    return entityData.content;
+  };
+
+  startEdit = () => {
+    const { block, blockProps } = this.props;
+    blockProps.onStartEdit(block.getKey());
+  };
+
+  finishEdit = (newContentState) => {
+    const { block, blockProps } = this.props;
+    blockProps.onFinishEdit(block.getKey(), newContentState);
+  };
+
+  remove = () => {
+    const { block, blockProps } = this.props;
+    blockProps.onRemove(block.getKey());
   };
 
   save = () => {
@@ -52,23 +73,6 @@ export default class TeXBlock extends Component {
       texValue: null,
     }, this.finishEdit.bind(this, editorState));
   };
-
-  remove = () => {
-    const { block, blockProps } = this.props;
-    blockProps.onRemove(block.getKey());
-  };
-  startEdit = () => {
-    const { block, blockProps } = this.props;
-    blockProps.onStartEdit(block.getKey());
-  };
-  finishEdit = (newContentState) => {
-    const { block, blockProps } = this.props;
-    blockProps.onFinishEdit(block.getKey(), newContentState);
-  };
-
-  getValue() {
-    return Entity.get(this.props.block.getEntityAt(0)).getData().content;
-  }
 
   render() {
     const { theme, doneContent, removeContent } = this.props;
@@ -96,17 +100,19 @@ export default class TeXBlock extends Component {
         buttonClass = unionClassNames(buttonClass, theme.invalidButton);
       }
 
-      editPanel =
+      editPanel = (
         <div
-          className={theme.panel}>
+          className={theme.panel}
+        >
           <textarea
             className={theme.texValue}
             onChange={this.onValueChange}
-            ref="textarea"
+            ref={(textarea) => { this.textarea = textarea; }}
             value={this.state.texValue}
           />
           <div
-            className={theme.buttons}>
+            className={theme.buttons}
+          >
             <button
               className={buttonClass}
               disabled={this.state.invalidTeX}
@@ -121,12 +127,14 @@ export default class TeXBlock extends Component {
               {removeContent}
             </button>
           </div>
-        </div>;
+        </div>
+      );
     }
 
     return (
       <div
-        className={className}>
+        className={className}
+      >
         <KatexOutput
           content={texContent}
           onClick={this.onClick}

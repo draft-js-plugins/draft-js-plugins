@@ -8,12 +8,12 @@ export default class KatexOutput extends React.Component {
   }
 
   componentDidMount() {
-    this._update();
+    this.update();
   }
 
   componentWillReceiveProps({ content }) {
     if (content !== this.props.content) {
-      this._update();
+      this.update();
     }
   }
 
@@ -22,7 +22,7 @@ export default class KatexOutput extends React.Component {
     this.timer = null;
   }
 
-  _update() {
+  update() {
     if (this.timer) {
       clearTimeout(this.timer);
     }
@@ -39,7 +39,7 @@ export default class KatexOutput extends React.Component {
   render() {
     return (
       <div
-        ref={(container) => this.container = container}
+        ref={(container) => { this.container = container; }}
         onClick={this.props.onClick}
       />
     );

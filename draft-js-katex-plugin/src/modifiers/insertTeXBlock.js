@@ -24,7 +24,7 @@ export default function insertTeXBlock(editorState, tex) {
   let texContent = tex;
   if (!texContent) {
     const nextFormula = count % examples.length;
-    count = count + 1;
+    count += 1;
     texContent = examples[nextFormula];
   }
 
