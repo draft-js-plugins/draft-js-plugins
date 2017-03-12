@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 export default class MentionSuggestionsPortal extends Component {
 
+  constructor(props) {
+    super(props);
+    this.searchPortalRef = (element) => { this.searchPortal = element; };
+  }
+
   // When inputting Japanese characters (or any complex alphabet which requires
   // hitting enter to commit the characters), that action was causing a race
   // condition when we used componentWillMount. By using componentDidMount
@@ -38,7 +43,7 @@ export default class MentionSuggestionsPortal extends Component {
     return (
       <span
         className={this.key}
-        ref={(element) => { this.searchPortal = element; }}
+        ref={this.searchPortalRef}
       >
         {this.props.children}
       </span>
