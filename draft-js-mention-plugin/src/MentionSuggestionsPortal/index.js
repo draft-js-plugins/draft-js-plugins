@@ -4,6 +4,8 @@ export default class MentionSuggestionsPortal extends Component {
 
   constructor(props) {
     super(props);
+    // Note: this is a workaround for an obscure issue: https://github.com/draft-js-plugins/draft-js-plugins/pull/667/files
+    // Ideally we can remove this in the future.
     this.searchPortalRef = (element) => { this.searchPortal = element; };
   }
 
