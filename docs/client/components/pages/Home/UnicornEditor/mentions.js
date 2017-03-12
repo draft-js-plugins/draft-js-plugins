@@ -9,12 +9,12 @@ const mentions = fromJS([
   {
     name: 'Julian Krispel-Samsel',
     link: 'https://twitter.com/juliandoesstuff',
-    avatar: 'https://pbs.twimg.com/profile_images/477132877763579904/m5bFc8LF_400x400.png',
+    avatar: 'https://avatars2.githubusercontent.com/u/1188186?v=3&s=400',
   },
   {
     name: 'Jyoti Puri',
     link: 'https://twitter.com/jyopur',
-    avatar: 'https://pbs.twimg.com/profile_images/705714058939359233/IaJoIa78_400x400.jpg',
+    avatar: 'https://avatars0.githubusercontent.com/u/2182307?v=3&s=400',
   },
   {
     name: 'Max Stoiber',
@@ -24,7 +24,7 @@ const mentions = fromJS([
   {
     name: 'Nik Graf',
     link: 'https://twitter.com/nikgraf',
-    avatar: 'https://pbs.twimg.com/profile_images/535634005769457664/Ppl32NaN_400x400.jpeg',
+    avatar: 'https://avatars0.githubusercontent.com/u/223045?v=3&s=400',
   },
   {
     name: 'Pascal Brandt',
