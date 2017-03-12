@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Reopens mentions dropdown if new suggestions are available. Thanks to @jameskraus [#659](https://github.com/draft-js-plugins/draft-js-plugins/pull/659)
 - Solved a bug with @ being placed in the beginning. Thanks to @hjyue1 [#621](https://github.com/draft-js-plugins/draft-js-plugins/pull/621)
 - Mentions popover showed up when typing before a @ [#323](https://github.com/draft-js-plugins/draft-js-plugins/issues/323) Thanks to @nishp1
 - Only pass element properties to the root Div of MentionSuggestions to remove the "Unknown prop warning" in React 15.2.0

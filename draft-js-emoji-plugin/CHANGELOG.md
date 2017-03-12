@@ -21,6 +21,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Update the list of Emojis from Emojione `2.1.2` to `2.2.6`. Thanks to @mzbac
 - The config object will accept a property `priorityList` which should contain Emoji entries used by EmojiOne. These entries will be show first in the EmojiSuggestions dropdown after typing `:`. Thanks to @mzbac
 
+### Fixed
+
+- Fix EmojiSuggestions unknown props warning on for `onClose`, `onOpen` and `onSearchChange` callbacks. Thanks to @julianwa [#658](https://github.com/draft-js-plugins/draft-js-plugins/pull/658)
+
 ## 1.2.3 - 2016-07-06
 
 [#309](https://github.com/draft-js-plugins/draft-js-plugins/commit/bac8c30f5e324f1fa13b11eeecbaec9172adeb58) Fix Emoji `positionSuggestions` as we introduced a bug in the last version. Thanks to @Zhouzi
