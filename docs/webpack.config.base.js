@@ -27,16 +27,15 @@ module.exports = {
     extensions: ['.js'],
   },
   module: {
-    loaders: [
+    rules: [
       {
         // match all js files except example.js
         test: /^(?!.*example\.js$).*\.js$/,
-        loaders: ['babel-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/,
-        include: path.join(__dirname, 'client'),
       }, {
         test: /\.js$/,
-        loaders: ['babel-loader'],
+        loader: ['babel-loader'],
         include: [
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
@@ -89,8 +88,10 @@ module.exports = {
         ],
       }, {
         test: /\.(png|jpg|gif|ico)$/,
-        loaders: ['file?name=[name].[ext]'],
+        use: [
+          { loader: 'file-loader', options: { name: '[name].[ext]' } },
+        ],
       },
     ],
-  }
+  },
 };

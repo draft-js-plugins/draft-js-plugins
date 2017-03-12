@@ -4,7 +4,7 @@ import fs from 'fs';
 /* Use like this with express
 
  app.post('/upload', require('draft-js-drag-n-drop-upload-plugin/server')({
- folder: './publicTemplate/images'
+ folder: './buildTemplate/images'
  }));
 
  */
