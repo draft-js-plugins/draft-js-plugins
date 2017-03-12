@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 import React, { Component } from 'react';
 import { RichUtils } from 'draft-js';
 import unionClassNames from 'union-class-names';

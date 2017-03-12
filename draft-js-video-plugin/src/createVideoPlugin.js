@@ -1,4 +1,3 @@
-import { Entity } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import addVideo from './video/modifiers/addVideo';
 import DefaultVideoComponent from './video/components/DefaultVideoComponent';
@@ -15,10 +14,11 @@ const videoPlugin = (config = {}) => {
   }
   const ThemedVideo = decorateComponentWithProps(Video, { theme });
   return {
-    blockRendererFn: (block) => {
+    blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === types.ATOMIC) {
         // TODO subject to change for draft-js next release
-        const entity = Entity.get(block.getEntityAt(0));
+        const contentState = getEditorState().getCurrentContent();
+        const entity = contentState.getEntity(block.getEntityAt(0));
         const type = entity.getType();
         const { src } = entity.getData();
         if (type === types.VIDEOTYPE) {

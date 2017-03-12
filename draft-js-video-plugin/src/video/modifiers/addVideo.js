@@ -1,6 +1,5 @@
 import {
   AtomicBlockUtils,
-  Entity,
   RichUtils,
 } from 'draft-js';
 
@@ -10,13 +9,12 @@ export default function addVideo(editorState, { src }) {
   if (RichUtils.getCurrentBlockType(editorState) === types.ATOMIC) {
     return editorState;
   }
-
-  const entityKey = Entity.create(
+  const contentState = editorState.getCurrentContent();
+  const contentStateWithEntity = contentState.createEntity(
     types.VIDEOTYPE,
     'IMMUTABLE',
-    {
-      src,
-    }
+    { src }
   );
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   return AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
 }

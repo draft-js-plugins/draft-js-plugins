@@ -20,8 +20,8 @@ module.exports = Object.assign(webpackBaseConfig, {
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css', { allChunks: true }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -33,6 +33,7 @@ module.exports = Object.assign(webpackBaseConfig, {
     }),
     new StaticSitePlugin({
       src: 'app',
+      routes: './client/index.js',
       stylesheet: '/app.css',
       favicon: '/favicon.ico',
       template: path.join(__dirname, 'index.html.js'),

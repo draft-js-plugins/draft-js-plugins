@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react';
 
 const TableComponent = ({ theme }) => class Table extends Component {

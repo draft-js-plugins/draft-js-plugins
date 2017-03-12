@@ -1,4 +1,4 @@
-/* eslint no-unused-expressions: 0 */
+/* eslint no-unused-expressions: 0, react/no-children-prop:0 */
 import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';

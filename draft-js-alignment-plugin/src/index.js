@@ -1,4 +1,4 @@
-import { Entity, EditorState } from 'draft-js';
+import { EditorState } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
@@ -12,7 +12,8 @@ const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) =>
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
-    Entity.mergeData(entityKey, { ...data });
+    const contentState = editorState.getCurrentContent();
+    contentState.mergeEntityData(entityKey, { ...data });
     setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
   }
 };
@@ -30,7 +31,8 @@ export default (config) => {
     decorator: createDecorator({ config, store }),
     blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
       const entityKey = contentBlock.getEntityAt(0);
-      const alignmentData = entityKey ? Entity.get(entityKey).data : {};
+      const contentState = getEditorState().getCurrentContent();
+      const alignmentData = entityKey ? contentState.getEntity(entityKey).data : {};
       return {
         props: {
           alignment: alignmentData.alignment || 'default',

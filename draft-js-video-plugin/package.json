@@ -22,9 +22,9 @@
   ],
   "scripts": {
     "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js **/__test__/*.js",
-    "clean": "./node_modules/.bin/rimraf lib",
+    "clean": "../node_modules/.bin/rimraf lib",
     "build": "npm run clean && npm run build:js",
-    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ./node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
+    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
     "prepublish": "npm run build"
   },
   "license": "MIT",

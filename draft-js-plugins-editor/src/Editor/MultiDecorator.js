@@ -13,11 +13,11 @@ class MultiDecorator {
    * @param {ContentBlock} block
    * @return {List<String>}
    */
-  getDecorations(block) {
+  getDecorations(block, contentState) {
     const decorations = new Array(block.getText().length).fill(null);
 
     this.decorators.forEach((decorator, i) => {
-      const subDecorations = decorator.getDecorations(block);
+      const subDecorations = decorator.getDecorations(block, contentState);
 
       subDecorations.forEach((key, offset) => {
         if (!key) {
