@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styles from './styles.css';
 import ExternalLink from '../../shared/Link';
 
+import '../../favicon.ico';
+
 export default class Wrapper extends Component {
   render() {
     return (

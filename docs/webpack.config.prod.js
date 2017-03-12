@@ -1,27 +1,31 @@
-/* eslint-disable no-var */
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var StaticSitePlugin = require('react-static-webpack-plugin');
-var webpackBaseConfig = require('./webpack.config.base');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ReactStaticPlugin = require('react-static-webpack-plugin');
+const webpackBaseConfig = require('./webpack.config.base');
 
 module.exports = Object.assign(webpackBaseConfig, {
   devtool: 'source-map',
 
+  context: __dirname,
+
   entry: {
-    app: ['./client/index.js'],
+    app: [
+      './client/index.js',
+    ],
   },
 
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'build'),
     filename: '[name].js',
-    libraryTarget: 'umd',
     publicPath: '/',
   },
 
   plugins: [
-    new ExtractTextPlugin({ filename: '[name].css', allChunks: true }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      allChunks: true,
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -29,14 +33,12 @@ module.exports = Object.assign(webpackBaseConfig, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       screw_ie8: true,
+      sourceMap: true,
       compressor: { warnings: false },
     }),
-    new StaticSitePlugin({
-      src: 'app',
-      routes: './client/index.js',
-      stylesheet: '/app.css',
-      favicon: '/favicon.ico',
-      template: path.join(__dirname, 'index.html.js'),
+    new ReactStaticPlugin({
+      routes: './client/routes.js',
+      template: './template.js',
     }),
   ],
 });

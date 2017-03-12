@@ -18,4 +18,4 @@ draft-js-emoji-plugin/lib/**
 draft-js-counter-plugin/lib/**
 draft-js-buttons/lib/**
 scripts/**
-docs/public/**
+docs/build/**
