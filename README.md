@@ -32,6 +32,7 @@ In case you are interested in helping [Issue #329](https://github.com/draft-js-p
 - [Markdown Shortcuts](https://github.com/ngs/draft-js-markdown-shortcuts-plugin/) by [Atsushi Nagase](https://github.com/ngs)
 - [Single Line](https://github.com/icelab/draft-js-single-line-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
 - [RichButtons](https://github.com/jasonphillips/draft-js-richbuttons-plugin) by [jasonphillips](https://github.com/jasonphillips)
+- [Katex](https://github.com/letranloc/draft-js-katex-plugin) by [letranloc](https://github.com/letranloc)
 
 ## Live Example & Documentation
 
