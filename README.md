@@ -1,6 +1,6 @@
 # DraftJS Plugins
 
-![Draft JS Plugins Logo](https://dl.dropboxusercontent.com/u/40735/draft-js-plugins.svg)
+![Draft JS Plugins Logo](http://static.nikgraf.com/draft-js-plugins/draft-js-plugins.svg)
 
 High quality plugins with great UX on top of [DraftJS](https://github.com/facebook/draft-js).
 
