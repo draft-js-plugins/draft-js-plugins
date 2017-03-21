@@ -37,7 +37,7 @@ const scripts = `<script>
 </script>`;
 
 const Html = ({
-  bundle = 'app.js',
+  bundle = '/app.js',
   body = '',
   // favicon = 'favicon.ico',
 }) => (
