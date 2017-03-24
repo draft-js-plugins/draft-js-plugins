@@ -1,4 +1,4 @@
-/* eslint-disable no-continue,no-restricted-syntax */
+/* eslint-disable no-continue,no-restricted-syntax,no-plusplus */
 import React, { Component } from 'react';
 import {
   Editor,
@@ -39,17 +39,17 @@ class PluginEditor extends Component {
     super(props);
 
     const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
-      if (typeof plugin.initialize !== 'function') continue;
+    plugins.forEach((plugin) => {
+      if (typeof plugin.initialize !== 'function') return;
       plugin.initialize(this.getPluginMethods());
-    }
+    });
 
     // attach proxy methods like `focus` or `blur`
-    for (const method of proxies) {
+    proxies.forEach((method) => {
       this[method] = (...args) => (
         this.editor[method](...args)
       );
-    }
+    });
 
     this.state = {}; // TODO for Nik: ask ben why this is relevent
   }
@@ -126,7 +126,8 @@ class PluginEditor extends Component {
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
-    for (const plugin of plugins) {
+    for (let i = 0; i < plugins.length; i++) {
+      const plugin = plugins[i];
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
       if (result === true) return true;
@@ -138,7 +139,8 @@ class PluginEditor extends Component {
   createHandleHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
-    for (const plugin of plugins) {
+    for (let i = 0; i < plugins.length; i++) {
+      const plugin = plugins[i];
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
       if (result === 'handled') return 'handled';
@@ -154,31 +156,32 @@ class PluginEditor extends Component {
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
-      for (const plugin of plugins) {
-        if (typeof plugin[methodName] !== 'function') continue;
+      plugins.forEach((plugin) => {
+        if (typeof plugin[methodName] !== 'function') return;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
           const { props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
           block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
-      }
+      });
 
       return block.component ? block : false;
     } else if (methodName === 'blockStyleFn') {
       let styles;
-      for (const plugin of plugins) {
-        if (typeof plugin[methodName] !== 'function') continue;
+      plugins.forEach((plugin) => {
+        if (typeof plugin[methodName] !== 'function') return;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
           styles = (styles ? (`${styles} `) : '') + result;
         }
-      }
+      });
 
       return styles || false;
     }
 
-    for (const plugin of plugins) {
+    for (let i = 0; i < plugins.length; i++) {
+      const plugin = plugins[i];
       if (typeof plugin[methodName] !== 'function') continue;
       const result = plugin[methodName](...newArgs);
       if (result !== undefined) {
@@ -290,8 +293,8 @@ class PluginEditor extends Component {
   resolveAccessibilityProps = () => {
     let accessibilityProps = {};
     const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
-      if (typeof plugin.getAccessibilityProps !== 'function') continue;
+    plugins.forEach((plugin) => {
+      if (typeof plugin.getAccessibilityProps !== 'function') return;
       const props = plugin.getAccessibilityProps();
       const popupProps = {};
 
@@ -312,7 +315,7 @@ class PluginEditor extends Component {
         ...props,
         ...popupProps,
       };
-    }
+    });
 
     return accessibilityProps;
   };
