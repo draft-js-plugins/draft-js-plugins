@@ -27,6 +27,7 @@ const stickerPlugin = createStickerPlugin({
 });
 const { MentionSuggestions } = mentionPlugin;
 const { EmojiSuggestions } = emojiPlugin;
+const { EmojiSelect } = emojiPlugin;
 const { StickerSelect } = stickerPlugin;
 const { UndoButton, RedoButton } = undoPlugin;
 
@@ -94,6 +95,7 @@ export default class UnicornEditor extends Component {
           <div className={styles.editorButton}>
             <RedoButton />
           </div>
+          <EmojiSelect />
         </div>
       </div>
     );

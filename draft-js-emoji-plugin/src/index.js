@@ -6,6 +6,7 @@ import { EditorState } from 'draft-js';
 import Emoji from './Emoji';
 import EmojiSuggestions from './EmojiSuggestions';
 import EmojiSuggestionsPortal from './EmojiSuggestionsPortal';
+import EmojiSelect from './EmojiSelect';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import emojiStyles from './emojiStyles.css';
@@ -116,6 +117,7 @@ export default (config = {}) => {
   };
   return {
     EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
+    EmojiSelect,
     decorators: [
       {
         strategy: emojiStrategy,
