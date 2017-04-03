@@ -1,14 +1,16 @@
+/* https://github.com/tommoor/emojione-picker */
+
 export default function createEmojisFromStrategy(strategy) {
   const emojis = {};
 
   // categorise and nest emoji
   // sort ensures that modifiers appear unmodified keys
   const keys = Object.keys(strategy);
-  for (const key of keys) {
+  keys.forEach((key) => {
     const value = strategy[key];
 
     // skip unknown categories
-    if (value.category !== "modifier") {
+    if (value.category !== 'modifier') {
       if (!emojis[value.category]) emojis[value.category] = {};
       const match = key.match(/(.*?)_tone(.*?)$/);
 
@@ -24,7 +26,7 @@ export default function createEmojisFromStrategy(strategy) {
         emojis[value.category][key] = [value];
       }
     }
-  }
+  });
 
   return emojis;
 }

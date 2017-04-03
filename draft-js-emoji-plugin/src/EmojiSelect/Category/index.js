@@ -4,7 +4,7 @@ import Entry from '../Entry';
 
 export default class Category extends Component {
   render() {
-    console.log(this.props.emojis);
+    console.log(this.props.category.label, this.props.emojis);
 
     return (
       <div>
