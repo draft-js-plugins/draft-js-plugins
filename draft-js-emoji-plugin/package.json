@@ -38,6 +38,7 @@
     "immutable": "~3.7.4",
     "lodash.keys": "^4.2.0",
     "react-icons": "^2.2.3",
+    "shortid": "^2.2.8",
     "union-class-names": "^1.0.0"
   },
   "peerDependencies": {

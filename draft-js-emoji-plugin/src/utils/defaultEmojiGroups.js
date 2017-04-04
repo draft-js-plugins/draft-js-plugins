@@ -3,15 +3,15 @@ import {
   FaClockO,
   FaSmileO,
   FaLeaf,
-  FaCatlery,
+  FaCutlery,
   FaFutbolO,
   FaPlane,
   FaBell,
   FaHeart,
   FaFlag,
-} from 'react-icons/fa';
+} from 'react-icons/lib/fa';
 
-const emojiDefaultGroups = [{
+const defaultEmojiGroups = [{
   title: 'Frequently used',
   icon: (
     <FaClockO />
@@ -32,7 +32,7 @@ const emojiDefaultGroups = [{
 }, {
   title: 'Food & Drink',
   icon: (
-    <FaCatlery />
+    <FaCutlery />
   ),
   categories: ['food'],
 }, {
@@ -67,4 +67,4 @@ const emojiDefaultGroups = [{
   categories: ['flags'],
 }];
 
-export default emojiDefaultGroups;
+export default defaultEmojiGroups;

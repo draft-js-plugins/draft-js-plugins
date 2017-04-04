@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import strategy from 'emojione/emoji.json';
 
-import emojiDefaultGroups from '../utils/emojiDefaultGroups';
+import defaultEmojiGroups from '../utils/defaultEmojiGroups';
 import createEmojisFromStrategy from '../utils/createEmojisFromStrategy';
 import Category from './Category';
+import Nav from './Nav';
 
 export default class EmojiSelect extends Component {
 
@@ -17,16 +18,14 @@ export default class EmojiSelect extends Component {
   };
 
   static defaultProps = {
-    groups: emojiDefaultGroups,
+    groups: defaultEmojiGroups,
   };
 
-  state = {
-    emojis: createEmojisFromStrategy(strategy),
-  };
+  emojis = createEmojisFromStrategy(strategy);
 
   render() {
-    console.log(this.state.emojis);
-    const emojiCategories = Object.keys(this.state.emojis);
+    console.log(this.emojis);
+    const emojiCategories = Object.keys(this.emojis);
 
     console.log(this.props.groups);
 
@@ -37,9 +36,10 @@ export default class EmojiSelect extends Component {
             category={{
               label: category,
             }}
-            emojis={this.state.emojis[category]}
+            emojis={this.emojis[category]}
           />
         ))}
+        <Nav groups={this.props.groups} />
       </div>
     );
   }
