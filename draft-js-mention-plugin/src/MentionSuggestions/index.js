@@ -246,6 +246,10 @@ export default class MentionSuggestions extends Component {
   };
 
   commitSelection = () => {
+    if (!this.props.store.getIsOpened()) {
+      return 'not-handled';
+    }
+
     this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
     return 'handled';
   };
