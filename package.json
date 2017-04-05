@@ -104,10 +104,12 @@
     "loader-utils": "^1.0.2",
     "lodash.escaperegexp": "^4.1.2",
     "lodash.keys": "^4.2.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "tlds": "^1.183.0",
     "union-class-names": "^1.0.0",
     "webpack": "^2.2.1"
+  },
+  "peerDependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   }
 }
