@@ -1,0 +1,81 @@
+.emojiSelect {
+  width: 25em;
+}
+
+.emojiSelectTitle {
+
+}
+
+.emojiSelectGroups {
+
+}
+
+.emojiSelectGroup {
+
+}
+
+.emojiSelectGroupTitle {
+  font-weight: normal;
+  font-size: 1em;
+  color: #7c868a;
+}
+
+.emojiSelectGroupList {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.emojiSelectGroupItem {
+  flex-grow: 1;
+}
+
+.emojiSelectGroupEntry {
+  padding: 0;
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.emojiSelectGroupEntryIcon {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+}
+
+.emojiSelectTone {
+
+}
+
+.emojiSelectToneItem {
+
+}
+
+.emojiSelectToneEntry {
+
+}
+
+.emojiSelectNav {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+.emojiSelectNavItem {
+  flex-grow: 1;
+}
+
+.emojiSelectNavEntry {
+  padding: 0;
+  width: 100%;
+  height: 2.3em;
+  font-size: 1.2em;
+  color: #7c868a;
+  background: none;
+  border: none;
+  outline: none;
+}

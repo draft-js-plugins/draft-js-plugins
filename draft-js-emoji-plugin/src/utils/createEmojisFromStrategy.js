@@ -1,5 +1,4 @@
-/* https://github.com/tommoor/emojione-picker */
-
+/* Idea from https://github.com/tommoor/emojione-picker */
 export default function createEmojisFromStrategy(strategy) {
   const emojis = {};
 
@@ -20,10 +19,10 @@ export default function createEmojisFromStrategy(strategy) {
         // https://github.com/Ranks/emojione/pull/330
         const unmodifiedEmojiExists = !!emojis[value.category][match[1]];
         if (unmodifiedEmojiExists) {
-          emojis[value.category][match[1]][match[2]] = value;
+          emojis[value.category][match[1]][match[2]] = value.shortname;
         }
       } else {
-        emojis[value.category][key] = [value];
+        emojis[value.category][key] = [value.shortname];
       }
     }
   });

@@ -2,7 +2,7 @@ import React from 'react';
 import {
   FaClockO,
   FaSmileO,
-  FaLeaf,
+  FaPaw,
   FaCutlery,
   FaFutbolO,
   FaPlane,
@@ -14,55 +14,55 @@ import {
 const defaultEmojiGroups = [{
   title: 'Frequently used',
   icon: (
-    <FaClockO />
+    <FaClockO style={{ verticalAlign: '' }} />
   ),
   emojis: [],
 }, {
   title: 'People',
   icon: (
-    <FaSmileO />
+    <FaSmileO style={{ verticalAlign: '' }} />
   ),
   categories: ['people'],
 }, {
   title: 'Nature',
   icon: (
-    <FaLeaf />
+    <FaPaw style={{ verticalAlign: '' }} />
   ),
   categories: ['nature'],
 }, {
   title: 'Food & Drink',
   icon: (
-    <FaCutlery />
+    <FaCutlery style={{ verticalAlign: '' }} />
   ),
   categories: ['food'],
 }, {
   title: 'Activity',
   icon: (
-    <FaFutbolO />
+    <FaFutbolO style={{ verticalAlign: '' }} />
   ),
   categories: ['activity'],
 }, {
   title: 'Travel & Places',
   icon: (
-    <FaPlane />
+    <FaPlane style={{ verticalAlign: '' }} />
   ),
   categories: ['travel'],
 }, {
   title: 'Objects',
   icon: (
-    <FaBell />
+    <FaBell style={{ verticalAlign: '' }} />
   ),
   categories: ['objects'],
 }, {
   title: 'Symbols',
   icon: (
-    <FaHeart />
+    <FaHeart style={{ verticalAlign: '' }} />
   ),
   categories: ['symbols'],
 }, {
   title: 'Flags',
   icon: (
-    <FaFlag />
+    <FaFlag style={{ verticalAlign: '' }} />
   ),
   categories: ['flags'],
 }];

@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import strategy from 'emojione/emoji.json';
+import shortid from 'shortid';
 
-import defaultEmojiGroups from '../utils/defaultEmojiGroups';
 import createEmojisFromStrategy from '../utils/createEmojisFromStrategy';
-import Category from './Category';
+import defaultEmojiGroups from '../utils/defaultEmojiGroups';
+import Group from './Group';
 import Nav from './Nav';
 
 export default class EmojiSelect extends Component {
@@ -25,21 +26,36 @@ export default class EmojiSelect extends Component {
 
   render() {
     console.log(this.emojis);
-    const emojiCategories = Object.keys(this.emojis);
 
     console.log(this.props.groups);
 
+    const {
+      theme = {},
+      groups = [],
+      imagePath,
+      imageType,
+      cacheBustParam,
+      ...restProps,
+    } = this.props;
+
+    console.log(restProps);
+
     return (
-      <div>
-        {emojiCategories.map((category) => (
-          <Category
-            category={{
-              label: category,
-            }}
-            emojis={this.emojis[category]}
-          />
-        ))}
-        <Nav groups={this.props.groups} />
+      <div className={theme.emojiSelect}>
+        <div className={theme.emojiSelectGroups}>
+          {groups.map((group) => (
+            <Group
+              key={shortid.generate()}
+              theme={theme}
+              group={group}
+              emojis={this.emojis}
+              imagePath={imagePath}
+              imageType={imageType}
+              cacheBustParam={cacheBustParam}
+            />
+          ))}
+        </div>
+        <Nav theme={theme} groups={this.props.groups} />
       </div>
     );
   }

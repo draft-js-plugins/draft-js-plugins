@@ -34,11 +34,13 @@ export default class Entry extends Component {
 
     return (
       <button
+        className={theme.emojiSelectGroupEntry}
         role="option"
+        title={this.props.emoji}
       >
         <img
           src={fullImagePath}
-          className={theme.emojiSelectEntryIcon}
+          className={theme.emojiSelectGroupEntryIcon}
           role="presentation"
         />
       </button>

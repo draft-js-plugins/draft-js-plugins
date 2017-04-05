@@ -12,6 +12,7 @@ import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import emojiStyles from './emojiStyles.css';
 import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
+import emojiSelectStyles from './emojiSelectStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
@@ -33,6 +34,26 @@ export default (config = {}) => {
     emojiSuggestionsEntryText: emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
     emojiSuggestionsEntryIcon: emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
     emojiSuggestionsEntryAvatar: emojiSuggestionsEntryStyles.emojiSuggestionsEntryAvatar,
+
+    emojiSelect: emojiSelectStyles.emojiSelect,
+    emojiSelectTitle: emojiSelectStyles.emojiSelectTitle,
+
+    emojiSelectGroups: emojiSelectStyles.emojiSelectGroups,
+
+    emojiSelectGroup: emojiSelectStyles.emojiSelectGroup,
+    emojiSelectGroupTitle: emojiSelectStyles.emojiSelectGroupTitle,
+    emojiSelectGroupList: emojiSelectStyles.emojiSelectGroupList,
+    emojiSelectGroupItem: emojiSelectStyles.emojiSelectGroupItem,
+    emojiSelectGroupEntry: emojiSelectStyles.emojiSelectGroupEntry,
+    emojiSelectGroupEntryIcon: emojiSelectStyles.emojiSelectGroupEntryIcon,
+
+    emojiSelectTone: emojiSelectStyles.emojiSelectTone,
+    emojiSelectToneItem: emojiSelectStyles.emojiSelectToneItem,
+    emojiSelectToneEntry: emojiSelectStyles.emojiSelectToneEntry,
+
+    emojiSelectNav: emojiSelectStyles.emojiSelectNav,
+    emojiSelectNavItem: emojiSelectStyles.emojiSelectNavItem,
+    emojiSelectNavEntry: emojiSelectStyles.emojiSelectNavEntry,
   };
 
   const callbacks = {
@@ -117,7 +138,7 @@ export default (config = {}) => {
   };
   return {
     EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
-    EmojiSelect,
+    EmojiSelect: decorateComponentWithProps(EmojiSelect, emojiSearchProps),
     decorators: [
       {
         strategy: emojiStrategy,
