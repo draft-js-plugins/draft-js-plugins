@@ -5,7 +5,9 @@ import convertShortNameToUnicode from '../utils/convertShortNameToUnicode';
 
 const addEmoji = (editorState, emojiShortName) => {
   const currentSelectionState = editorState.getSelection();
-  const { begin, end } = getSearchText(editorState, currentSelectionState);
+  const { word, begin, end } = getSearchText(editorState, currentSelectionState);
+
+  console.log(word, begin, end);
 
   // Get the selection of the :emoji: search text
   const emojiTextSelection = currentSelectionState.merge({

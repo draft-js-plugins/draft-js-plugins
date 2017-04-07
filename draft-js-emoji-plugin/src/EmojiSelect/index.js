@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import strategy from 'emojione/emoji.json';
 import shortid from 'shortid';
-
+import addEmoji from '../modifiers/addEmoji';
 import createEmojisFromStrategy from '../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../utils/defaultEmojiGroups';
 import Group from './Group';
@@ -22,13 +22,21 @@ export default class EmojiSelect extends Component {
     groups: defaultEmojiGroups,
   };
 
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  onEmojiSelect = (emoji) => {
+    const newEditorState = addEmoji(
+      this.props.store.getEditorState(),
+      emoji,
+    );
+    this.props.store.setEditorState(newEditorState);
+  };
+
   emojis = createEmojisFromStrategy(strategy);
 
   render() {
-    console.log(this.emojis);
-
-    console.log(this.props.groups);
-
     const {
       theme = {},
       groups = [],
@@ -37,8 +45,6 @@ export default class EmojiSelect extends Component {
       cacheBustParam,
       ...restProps,
     } = this.props;
-
-    console.log(restProps);
 
     return (
       <div className={theme.emojiSelect}>
@@ -52,6 +58,7 @@ export default class EmojiSelect extends Component {
               imagePath={imagePath}
               imageType={imageType}
               cacheBustParam={cacheBustParam}
+              onEmojiSelect={this.onEmojiSelect}
             />
           ))}
         </div>

@@ -19,10 +19,7 @@ export default class Entry extends Component {
     }
   };
 
-  onMouseDown = (event) => {
-    // Note: important to avoid a content edit change
-    event.preventDefault();
-
+  onMouseDown = () => {
     this.mouseDown = true;
   };
 
@@ -35,8 +32,10 @@ export default class Entry extends Component {
     return (
       <button
         className={theme.emojiSelectGroupEntry}
-        role="option"
+        onMouseDown={this.onMouseDown}
+        onMouseUp={this.onMouseUp}
         title={this.props.emoji}
+        role="option"
       >
         <img
           src={fullImagePath}

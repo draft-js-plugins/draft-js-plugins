@@ -11,6 +11,7 @@ export default class Group extends Component {
       cacheBustParam,
       imagePath,
       imageType,
+      onEmojiSelect,
     } = this.props;
 
     function renderEmoji(emoji) {
@@ -22,6 +23,7 @@ export default class Group extends Component {
             imagePath={imagePath}
             imageType={imageType}
             cacheBustParam={cacheBustParam}
+            onEmojiSelect={onEmojiSelect}
           />
         );
       }

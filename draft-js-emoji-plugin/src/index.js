@@ -125,7 +125,7 @@ export default (config = {}) => {
 
   // if priorityList is configured in config then set priorityList
   if (priorityList) emojiList.setPriorityList(priorityList);
-  const emojiSearchProps = {
+  const emojiSuggestionsProps = {
     ariaProps,
     cacheBustParam,
     callbacks,
@@ -136,9 +136,18 @@ export default (config = {}) => {
     positionSuggestions,
     shortNames: List(keys(emojiList.list)),
   };
+  const emojiSelectProps = {
+    cacheBustParam,
+    imagePath,
+    imageType,
+    theme,
+    store,
+  };
   return {
-    EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
-    EmojiSelect: decorateComponentWithProps(EmojiSelect, emojiSearchProps),
+    EmojiSuggestions: decorateComponentWithProps(
+      EmojiSuggestions, emojiSuggestionsProps,
+    ),
+    EmojiSelect: decorateComponentWithProps(EmojiSelect, emojiSelectProps),
     decorators: [
       {
         strategy: emojiStrategy,
