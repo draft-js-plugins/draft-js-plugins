@@ -7,8 +7,6 @@ const getSearchText = (editorState, selection) => {
   const currentBlock = currentContent.getBlockForKey(anchorKey);
   const blockText = currentBlock.getText();
 
-  console.log(anchorOffset);
-
   return getWordAt(blockText, anchorOffset);
 };
 
