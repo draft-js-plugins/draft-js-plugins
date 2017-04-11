@@ -100,7 +100,7 @@ describe('MentionSuggestions Component', () => {
     let called = false;
     const PopoverComponent = ({ children, ...props }) => {
       called = true;
-      expect(React.Children.count(children)).to.equal(mentions.length);
+      expect(React.Children.count(children)).to.equal(mentions.size);
       return <div {...props}>{children}</div>;
     };
 
