@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import Entry from './Entry';
 
 export default class Group extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+  shouldComponentUpdate = () => false;
 
   render() {
     const {

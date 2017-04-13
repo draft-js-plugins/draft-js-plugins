@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ScrollArea from 'react-scrollbar';
+import isEqual from 'lodash.isequal';
 import shortid from 'shortid';
 import Group from './Group';
 
@@ -8,9 +9,7 @@ export default class Groups extends Component {
     this.calculateBounds();
   }
 
-  shouldComponentUpdate() {
-    return false;
-  }
+  shouldComponentUpdate = (nextProps) => !isEqual(nextProps, this.props);
 
   onScroll = (value) => {
     const { topPosition } = value;
