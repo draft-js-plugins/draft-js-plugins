@@ -30,16 +30,18 @@ export default class Groups extends Component {
   scrollToGroup = (groupIndex) => {
     const { groups } = this.props;
 
-    this.scroll.scrollYTo(groups[groupIndex].top);
+    this.scroll.scrollYTo(groups[groupIndex].topList);
   }
 
   calculateBounds = () => {
     const { groups } = this.props;
-    const containerClientY = this.scroll.content.getBoundingClientRect().top;
+    const scrollTop = this.scroll.content.getBoundingClientRect().top;
 
     groups.forEach((group) => {
-      const groupClientY = group.instance.list.getBoundingClientRect().top;
-      group.top = groupClientY - containerClientY; // eslint-disable-line no-param-reassign
+      const containerTop = group.instance.container.getBoundingClientRect().top;
+      const listTop = group.instance.list.getBoundingClientRect().top;
+      group.top = containerTop - scrollTop; // eslint-disable-line no-param-reassign
+      group.topList = listTop - scrollTop; // eslint-disable-line no-param-reassign
     });
   }
 
@@ -70,7 +72,7 @@ export default class Groups extends Component {
         verticalScrollbarStyle={scrollbarStyle}
         stopScrollPropagation
         onScroll={this.onScroll}
-        ref={(node) => { this.scroll = node; }}
+        ref={(element) => { this.scroll = element; }}
       >
         {groups.map((group) => (
           <Group

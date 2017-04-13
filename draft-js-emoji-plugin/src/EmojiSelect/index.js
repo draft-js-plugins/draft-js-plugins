@@ -58,6 +58,9 @@ export default class EmojiSelect extends Component {
 
     return (
       <div className={theme.emojiSelect}>
+        <h3 className={theme.emojiSelectTitle}>
+          {groups[this.state.activeGroup].title}
+        </h3>
         <Groups
           theme={theme}
           groups={groups}

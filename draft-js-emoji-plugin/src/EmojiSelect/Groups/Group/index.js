@@ -67,11 +67,12 @@ export default class Group extends Component {
     return (
       <section
         className={theme.emojiSelectGroup}
+        ref={(element) => { this.container = element; }}
       >
         <h3 className={theme.emojiSelectGroupTitle}>{group.title}</h3>
         <ul
           className={theme.emojiSelectGroupList}
-          ref={(node) => { this.list = node; }}
+          ref={(element) => { this.list = element; }}
         >
           {renderEmojis(group.emojis)}
           {renderCategories(group.categories)}

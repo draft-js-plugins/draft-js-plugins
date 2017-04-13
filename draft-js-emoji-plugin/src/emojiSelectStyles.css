@@ -1,22 +1,34 @@
 .emojiSelect {
+  padding: 0 .3em;
+  position: absolute;
   box-sizing: content-box;
+  background: #fff;
+  border: 1px solid #bdbdbd;
 }
 
 .emojiSelectTitle {
-
+  margin: 0 0 .3em;
+  padding-left: 1em;
+  height: 2.5em;
+  line-height: 2.5em;
+  font-weight: normal;
+  font-size: 1em;
+  color: #9e9e9e;
 }
 
 .emojiSelectGroups {
-  width: 23.5em;
+  margin: 0 0 .3em;
+  padding: 0 .5em;
+  width: 22.5em;
   height: 22.5em;
 }
 
 .emojiSelectGroup {
-  padding: 0 .5em;
-  width: 22.5em;
+
 }
 
 .emojiSelectGroupTitle {
+  margin: 1em 0;
   padding-left: .5em;
   font-weight: normal;
   font-size: 1em;
