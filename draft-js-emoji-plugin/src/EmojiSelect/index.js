@@ -38,9 +38,11 @@ export default class EmojiSelect extends Component {
   };
 
   onGroupScroll = (groupIndex) => {
-    this.setState({
-      activeGroup: groupIndex,
-    });
+    if (groupIndex !== this.state.activeGroup) {
+      this.setState({
+        activeGroup: groupIndex,
+      });
+    }
   }
 
   emojis = createEmojisFromStrategy(strategy);
