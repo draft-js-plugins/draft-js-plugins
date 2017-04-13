@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-
-import Entry from '../Entry';
+import Entry from './Entry';
 
 export default class Group extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     const {
       theme = {},
@@ -59,10 +62,17 @@ export default class Group extends Component {
       return null;
     }
 
+    console.log('render group', group.title);
+
     return (
-      <section className={theme.emojiSelectGroup}>
+      <section
+        className={theme.emojiSelectGroup}
+      >
         <h3 className={theme.emojiSelectGroupTitle}>{group.title}</h3>
-        <ul className={theme.emojiSelectGroupList}>
+        <ul
+          className={theme.emojiSelectGroupList}
+          ref={(node) => { this.list = node; }}
+        >
           {renderEmojis(group.emojis)}
           {renderCategories(group.categories)}
         </ul>

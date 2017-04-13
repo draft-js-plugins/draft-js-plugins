@@ -54,6 +54,7 @@ export default (config = {}) => {
     emojiSelectNav: emojiSelectStyles.emojiSelectNav,
     emojiSelectNavItem: emojiSelectStyles.emojiSelectNavItem,
     emojiSelectNavEntry: emojiSelectStyles.emojiSelectNavEntry,
+    emojiSelectNavEntryActive: emojiSelectStyles.emojiSelectNavEntryActive,
   };
 
   const callbacks = {

@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import strategy from 'emojione/emoji.json';
-import shortid from 'shortid';
 import addEmoji from '../modifiers/addEmoji';
 import createEmojisFromStrategy from '../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../utils/defaultEmojiGroups';
-import Group from './Group';
+import Groups from './Groups';
 import Nav from './Nav';
 
 export default class EmojiSelect extends Component {
@@ -22,9 +21,9 @@ export default class EmojiSelect extends Component {
     groups: defaultEmojiGroups,
   };
 
-  shouldComponentUpdate() {
-    return false;
-  }
+  state = {
+    activeGroup: 0,
+  };
 
   onEmojiSelect = (emoji) => {
     const newEditorState = addEmoji(
@@ -33,6 +32,16 @@ export default class EmojiSelect extends Component {
     );
     this.props.store.setEditorState(newEditorState);
   };
+
+  onGroupSelect = (groupIndex) => {
+    this.groups.scrollToGroup(groupIndex);
+  };
+
+  onGroupScroll = (groupIndex) => {
+    this.setState({
+      activeGroup: groupIndex,
+    });
+  }
 
   emojis = createEmojisFromStrategy(strategy);
 
@@ -43,26 +52,29 @@ export default class EmojiSelect extends Component {
       imagePath,
       imageType,
       cacheBustParam,
-      ...restProps,
     } = this.props;
+
+    console.log('render emojiSelect');
 
     return (
       <div className={theme.emojiSelect}>
-        <div className={theme.emojiSelectGroups}>
-          {groups.map((group) => (
-            <Group
-              key={shortid.generate()}
-              theme={theme}
-              group={group}
-              emojis={this.emojis}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
-              onEmojiSelect={this.onEmojiSelect}
-            />
-          ))}
-        </div>
-        <Nav theme={theme} groups={this.props.groups} />
+        <Groups
+          theme={theme}
+          groups={groups}
+          emojis={this.emojis}
+          imagePath={imagePath}
+          imageType={imageType}
+          cacheBustParam={cacheBustParam}
+          onEmojiSelect={this.onEmojiSelect}
+          onGroupScroll={this.onGroupScroll}
+          ref={(element) => { this.groups = element; }}
+        />
+        <Nav
+          theme={theme}
+          groups={this.props.groups}
+          activeGroup={this.state.activeGroup}
+          onGroupSelect={this.onGroupSelect}
+        />
       </div>
     );
   }

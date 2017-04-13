@@ -1,5 +1,5 @@
 .emojiSelect {
-  width: 22.5em;
+  box-sizing: content-box;
 }
 
 .emojiSelectTitle {
@@ -7,18 +7,20 @@
 }
 
 .emojiSelectGroups {
-
+  width: 23.5em;
+  height: 22.5em;
 }
 
 .emojiSelectGroup {
-
+  padding: 0 .5em;
+  width: 22.5em;
 }
 
 .emojiSelectGroupTitle {
   padding-left: .5em;
   font-weight: normal;
   font-size: 1em;
-  color: #7c868a;
+  color: #9e9e9e;
 }
 
 .emojiSelectGroupList {
@@ -68,8 +70,9 @@
 
 .emojiSelectNav {
   margin: 0;
-  padding: 0;
+  padding: 0 .5em;
   display: flex;
+  width: 22.5em;
   list-style: none;
 }
 
@@ -78,13 +81,18 @@
   height: 2.5em;
 }
 
-.emojiSelectNavEntry {
+.emojiSelectNavEntry,
+.emojiSelectNavEntryActive {
   padding: 0;
   width: 100%;
   height: 100%;
   font-size: 1.2em;
-  color: #7c868a;
+  color: #bdbdbd;
   background: none;
   border: none;
   outline: none;
+}
+
+.emojiSelectNavEntryActive {
+  color: #42a5f5;
 }

@@ -6,13 +6,19 @@ export default class Nav extends Component {
     const {
       theme = {},
       groups,
+      activeGroup,
+      onGroupSelect,
     } = this.props;
 
     return (
       <ul className={theme.emojiSelectNav}>
-        {groups.map((group) => (
+        {groups.map((group, index) => (
           <li key={shortid.generate()} className={theme.emojiSelectNavItem}>
-            <button className={theme.emojiSelectNavEntry}>{group.icon}</button>
+            <button
+              className={index === activeGroup ?
+                theme.emojiSelectNavEntryActive : theme.emojiSelectNavEntry}
+              onClick={() => onGroupSelect(index)}
+            >{group.icon}</button>
           </li>
         ))}
       </ul>
