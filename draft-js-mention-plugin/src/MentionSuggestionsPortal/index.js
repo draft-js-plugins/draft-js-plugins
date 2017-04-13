@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 export default class MentionSuggestionsPortal extends Component {
 
+  constructor(props) {
+    super(props)
+    this.searchPortalRef = (element) => { this.searchPortal = element }
+  }
+
   componentWillMount() {
     this.props.store.register(this.props.offsetKey);
     this.updatePortalClientRect(this.props);
@@ -29,7 +34,7 @@ export default class MentionSuggestionsPortal extends Component {
 
   render() {
     return (
-      <span className={this.key} ref="searchPortal">
+      <span className={this.key} ref={this.searchPortalRef}>
         { this.props.children }
       </span>
     );
