@@ -31,17 +31,6 @@ export default class Group extends Component {
       return null;
     }
 
-    function renderEmojis(groupEmojis) {
-      if (groupEmojis && groupEmojis.length) {
-        return groupEmojis.map((emoji) => (
-          <li key={emoji} className={theme.emojiSelectGroupItem}>
-            {renderEmoji(emoji)}
-          </li>
-        ));
-      }
-      return null;
-    }
-
     function renderCategory(category) {
       if (category) {
         return Object.keys(category).map((key) => (
@@ -72,7 +61,6 @@ export default class Group extends Component {
           className={theme.emojiSelectGroupList}
           ref={(element) => { this.list = element; }}
         >
-          {renderEmojis(group.emojis)}
           {renderCategories(group.categories)}
         </ul>
       </section>

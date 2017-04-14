@@ -1,0 +1,110 @@
+.emojiSelect {
+  $groups: 8;
+  $itemSize: 2.5em;
+  $totalSize: $itemSize * $groups;
+
+  padding: 0 .3em;
+  position: absolute;
+  box-sizing: content-box;
+  background: #fff;
+  border: 1px solid #bdbdbd;
+
+  &Title {
+    margin: 0 0 .3em;
+    padding-left: 1em;
+    height: 2.5em;
+    line-height: 2.5em;
+    font-weight: normal;
+    font-size: 1em;
+    color: #9e9e9e;
+  }
+
+  &Groups {
+    margin: 0 0 .3em;
+    padding: 0 .5em;
+    width: $totalSize;
+    height: $totalSize;
+  }
+
+  &Group {
+    &Title {
+      margin: 1em 0;
+      padding-left: .5em;
+      font-weight: normal;
+      font-size: 1em;
+      color: #9e9e9e;
+    }
+
+    &List {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    &Item {
+      width: $itemSize;
+      height: $itemSize;
+    }
+
+    &Entry {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
+
+      &Icon {
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        background-color: #efefef;
+      }
+    }
+  }
+
+  &Tone {
+    &Item {
+
+    }
+
+    &Entry {
+
+    }
+  }
+
+  &Nav {
+    margin: 0;
+    padding: 0 .5em;
+    display: flex;
+    width: $totalSize;
+    list-style: none;
+
+    &Item {
+      width: $itemSize;
+      height: $itemSize;
+    }
+
+    &Entry,
+    &EntryActive {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 1.2em;
+      color: #bdbdbd;
+      background: none;
+      border: none;
+      outline: none;
+    }
+
+    &EntryActive {
+      color: #42a5f5;
+    }
+  }
+}

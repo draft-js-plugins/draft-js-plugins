@@ -83,8 +83,8 @@ export default class Groups extends Component {
             imageType={imageType}
             cacheBustParam={cacheBustParam}
             onEmojiSelect={onEmojiSelect}
-            ref={(node) => {
-              group.instance = node; // eslint-disable-line no-param-reassign
+            ref={(element) => {
+              group.instance = element; // eslint-disable-line no-param-reassign
             }}
           />
         ))}

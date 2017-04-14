@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  FaClockO,
   FaSmileO,
   FaPaw,
   FaCutlery,
@@ -12,12 +11,6 @@ import {
 } from 'react-icons/lib/fa';
 
 const defaultEmojiGroups = [{
-  title: 'Frequently used',
-  icon: (
-    <FaClockO style={{ verticalAlign: '' }} />
-  ),
-  emojis: [],
-}, {
   title: 'People',
   icon: (
     <FaSmileO style={{ verticalAlign: '' }} />
