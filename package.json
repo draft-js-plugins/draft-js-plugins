@@ -106,6 +106,7 @@
     "loader-utils": "^1.0.2",
     "lodash.escaperegexp": "^4.1.2",
     "lodash.keys": "^4.2.0",
+    "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "tlds": "^1.183.0",

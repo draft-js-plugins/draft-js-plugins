@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Entry from './Entry';
+import Entry from '../../Entry';
 
 export default class Group extends Component {
   shouldComponentUpdate = () => false;
@@ -20,7 +20,10 @@ export default class Group extends Component {
         return (
           <Entry
             emoji={emoji}
-            theme={theme}
+            theme={{
+              entry: theme.emojiSelectGroupEntry,
+              entryIcon: theme.emojiSelectGroupEntryIcon,
+            }}
             imagePath={imagePath}
             imageType={imageType}
             cacheBustParam={cacheBustParam}
@@ -33,6 +36,7 @@ export default class Group extends Component {
 
     function renderCategory(category) {
       if (category) {
+        console.log(category);
         return Object.keys(category).map((key) => (
           <li key={category[key][0]} className={theme.emojiSelectGroupItem}>
             {renderEmoji(category[key][0])}

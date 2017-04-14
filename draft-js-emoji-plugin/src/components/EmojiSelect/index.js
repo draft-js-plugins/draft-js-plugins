@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import strategy from 'emojione/emoji.json';
-import addEmoji from '../modifiers/addEmoji';
-import createEmojisFromStrategy from '../utils/createEmojisFromStrategy';
-import defaultEmojiGroups from '../utils/defaultEmojiGroups';
+import addEmoji from '../../modifiers/addEmoji';
+import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
+import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Groups from './Groups';
 import Nav from './Nav';
 
 export default class EmojiSelect extends Component {
-
   static propTypes = {
     groups: PropTypes.arrayOf(PropTypes.shape({
       title: PropTypes.string.isRequired,

@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import emojione from 'emojione';
 
 export default class Entry extends Component {
+  static propTypes = {
+    theme: PropTypes.shape({
+      entry: PropTypes.string,
+      entryIcon: PropTypes.string,
+    }),
+    imagePath: PropTypes.string.isRequired,
+    imageType: PropTypes.string.isRequired,
+    cacheBustParam: PropTypes.string,
+  };
 
   constructor(props) {
     super(props);
@@ -31,7 +41,7 @@ export default class Entry extends Component {
 
     return (
       <button
-        className={theme.emojiSelectGroupEntry}
+        className={theme.entry}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
         title={this.props.emoji}
@@ -39,7 +49,7 @@ export default class Entry extends Component {
       >
         <img
           src={fullImagePath}
-          className={theme.emojiSelectGroupEntryIcon}
+          className={theme.entryIcon}
           role="presentation"
         />
       </button>

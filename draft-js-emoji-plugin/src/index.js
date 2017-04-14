@@ -3,10 +3,10 @@ import { Map, List } from 'immutable';
 import keys from 'lodash.keys';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
-import Emoji from './Emoji';
-import EmojiSuggestions from './EmojiSuggestions';
-import EmojiSuggestionsPortal from './EmojiSuggestionsPortal';
-import EmojiSelect from './EmojiSelect';
+import Emoji from './components/Emoji';
+import EmojiSuggestions from './components/EmojiSuggestions';
+import EmojiSuggestionsPortal from './components/EmojiSuggestionsPortal';
+import EmojiSelect from './components/EmojiSelect';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import emojiStyles from './emojiStyles.css';
@@ -50,6 +50,7 @@ export default (config = {}) => {
     emojiSelectTone: emojiSelectStyles.emojiSelectTone,
     emojiSelectToneItem: emojiSelectStyles.emojiSelectToneItem,
     emojiSelectToneEntry: emojiSelectStyles.emojiSelectToneEntry,
+    emojiSelectToneEntryIcon: emojiSelectStyles.emojiSelectToneEntryIcon,
 
     emojiSelectNav: emojiSelectStyles.emojiSelectNav,
     emojiSelectNavItem: emojiSelectStyles.emojiSelectNavItem,
