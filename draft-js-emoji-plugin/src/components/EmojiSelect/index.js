@@ -1,10 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import strategy from 'emojione/emoji.json';
 import addEmoji from '../../modifiers/addEmoji';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Groups from './Groups';
 import Nav from './Nav';
+import ToneSelect from './ToneSelect';
 
 export default class EmojiSelect extends Component {
   static propTypes = {
@@ -14,14 +16,18 @@ export default class EmojiSelect extends Component {
       emojis: PropTypes.array,
       categories: PropTypes.arrayOf(PropTypes.string),
     })),
+    toneSelectOpenDelay: PropTypes.number,
   };
 
   static defaultProps = {
     groups: defaultEmojiGroups,
+    toneSelectOpenDelay: 1000,
   };
 
   state = {
     activeGroup: 0,
+    showToneSelect: false,
+    toneSet: [],
   };
 
   onEmojiSelect = (emoji) => {
@@ -31,6 +37,24 @@ export default class EmojiSelect extends Component {
     );
     this.props.store.setEditorState(newEditorState);
   };
+
+  onToneSelectOpen = (toneSet) => {
+    this.toneSelectTimer = setTimeout(() => {
+      this.setState({
+        showToneSelect: true,
+        toneSet,
+      });
+    }, this.props.toneSelectOpenDelay);
+  };
+
+  onToneSelectClose = () => {
+    if (this.state.showToneSelect) {
+      this.setState({
+        showToneSelect: true,
+        toneSet: [],
+      });
+    }
+  }
 
   onGroupSelect = (groupIndex) => {
     this.groups.scrollToGroup(groupIndex);
@@ -45,6 +69,7 @@ export default class EmojiSelect extends Component {
   }
 
   emojis = createEmojisFromStrategy(strategy);
+  toneSelectTimer = null;
 
   render() {
     const {
@@ -55,13 +80,17 @@ export default class EmojiSelect extends Component {
       cacheBustParam,
     } = this.props;
 
+    const {
+      activeGroup,
+      showToneSelect,
+      toneSet,
+    } = this.state;
+
     console.log('render emojiSelect');
 
     return (
       <div className={theme.emojiSelect}>
-        <h3 className={theme.emojiSelectTitle}>
-          {groups[this.state.activeGroup].title}
-        </h3>
+        <h3 className={theme.emojiSelectTitle}>{groups[activeGroup].title}</h3>
         <Groups
           theme={theme}
           groups={groups}
@@ -70,15 +99,26 @@ export default class EmojiSelect extends Component {
           imageType={imageType}
           cacheBustParam={cacheBustParam}
           onEmojiSelect={this.onEmojiSelect}
+          onToneSelectOpen={this.onToneSelectOpen}
           onGroupScroll={this.onGroupScroll}
           ref={(element) => { this.groups = element; }}
         />
         <Nav
           theme={theme}
           groups={this.props.groups}
-          activeGroup={this.state.activeGroup}
+          activeGroup={activeGroup}
           onGroupSelect={this.onGroupSelect}
         />
+        {showToneSelect && (
+          <ToneSelect
+            theme={theme}
+            toneSet={toneSet}
+            imagePath={imagePath}
+            imageType={imageType}
+            cacheBustParam={cacheBustParam}
+            onEmojiSelect={this.onEmojiSelect}
+          />
+        )}
       </div>
     );
   }

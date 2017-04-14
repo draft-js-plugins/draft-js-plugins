@@ -3,14 +3,14 @@ import Entry from '../Entry';
 
 const ToneSelect = ({
   theme = {},
-  emojiSet = [],
+  toneSet = [],
   cacheBustParam,
   imagePath,
   imageType,
   onEmojiSelect,
 }) => (
   <ul className={theme.emojiSelectTone}>
-    {emojiSet.map((emoji) => (
+    {toneSet.map((emoji) => (
       <li className={theme.emojiSelectToneItem}>
         <Entry
           emoji={emoji}

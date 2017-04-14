@@ -13,45 +13,26 @@ export default class Group extends Component {
       imagePath,
       imageType,
       onEmojiSelect,
+      onToneSelectOpen,
     } = this.props;
 
-    function renderEmoji(emoji) {
-      if (emoji) {
-        return (
-          <Entry
-            emoji={emoji}
-            theme={{
-              entry: theme.emojiSelectGroupEntry,
-              entryIcon: theme.emojiSelectGroupEntryIcon,
-            }}
-            imagePath={imagePath}
-            imageType={imageType}
-            cacheBustParam={cacheBustParam}
-            onEmojiSelect={onEmojiSelect}
-          />
-        );
-      }
-      return null;
-    }
-
-    function renderCategory(category) {
-      if (category) {
-        console.log(category);
-        return Object.keys(category).map((key) => (
-          <li key={category[key][0]} className={theme.emojiSelectGroupItem}>
-            {renderEmoji(category[key][0])}
-          </li>
-        ));
-      }
-      return null;
-    }
-
-    function renderCategories(categories) {
-      if (categories && categories.length) {
-        return categories.map((category) => renderCategory(emojis[category]));
-      }
-      return null;
-    }
+    const renderCategory = (category) => Object.keys(category).map((key) => (
+      <li key={category[key][0]} className={theme.emojiSelectGroupItem}>
+        <Entry
+          emoji={category[key][0]}
+          theme={{
+            entry: theme.emojiSelectGroupEntry,
+            entryIcon: theme.emojiSelectGroupEntryIcon,
+          }}
+          imagePath={imagePath}
+          imageType={imageType}
+          cacheBustParam={cacheBustParam}
+          onEmojiSelect={onEmojiSelect}
+          onToneSelectOpen={category[key].length ?
+            () => onToneSelectOpen(category[key]) : null}
+        />
+      </li>
+    ));
 
     console.log('render group', group.title);
 
@@ -65,7 +46,7 @@ export default class Group extends Component {
           className={theme.emojiSelectGroupList}
           ref={(element) => { this.list = element; }}
         >
-          {renderCategories(group.categories)}
+          {group.categories.map((category) => renderCategory(emojis[category]))}
         </ul>
       </section>
     );

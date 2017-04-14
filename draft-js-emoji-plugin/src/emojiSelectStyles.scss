@@ -3,11 +3,13 @@
   $itemSize: 2.5em;
   $totalSize: $itemSize * $groups;
 
+  $borderColor: #e0e0e0;
+
   padding: 0 .3em;
   position: absolute;
   box-sizing: content-box;
   background: #fff;
-  border: 1px solid #bdbdbd;
+  border: 1px solid $borderColor;
 
   &Title {
     margin: 0 0 .3em;
@@ -70,12 +72,38 @@
   }
 
   &Tone {
-    &Item {
+    margin: 0;
+    padding: .3em;
+    display: flex;
+    list-style: none;
 
+    &Item {
+      width: $itemSize;
+      height: $itemSize;
+
+      &:first-child {
+        border-right: 1px solid $borderColor;
+      }
     }
 
     &Entry {
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: none;
+      border: none;
+      outline: none;
+      transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
 
+      &Icon {
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        background-color: #efefef;
+      }
     }
   }
 

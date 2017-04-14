@@ -31,6 +31,9 @@ export default class Entry extends Component {
 
   onMouseDown = () => {
     this.mouseDown = true;
+    if (this.props.onToneSelectOpen) {
+      this.props.onToneSelectOpen();
+    }
   };
 
   render() {
@@ -50,6 +53,7 @@ export default class Entry extends Component {
         <img
           src={fullImagePath}
           className={theme.entryIcon}
+          draggable={false}
           role="presentation"
         />
       </button>

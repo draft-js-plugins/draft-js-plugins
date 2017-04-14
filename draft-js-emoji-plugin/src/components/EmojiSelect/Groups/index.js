@@ -11,6 +11,10 @@ export default class Groups extends Component {
 
   shouldComponentUpdate = (nextProps) => !isEqual(nextProps, this.props);
 
+  componentDidUpdate() {
+    this.calculateBounds();
+  }
+
   onScroll = (value) => {
     const { topPosition } = value;
 
@@ -53,6 +57,7 @@ export default class Groups extends Component {
       imageType,
       cacheBustParam,
       onEmojiSelect,
+      onToneSelectOpen,
     } = this.props;
 
     const scrollbarStyle = {
@@ -83,6 +88,7 @@ export default class Groups extends Component {
             imageType={imageType}
             cacheBustParam={cacheBustParam}
             onEmojiSelect={onEmojiSelect}
+            onToneSelectOpen={onToneSelectOpen}
             ref={(element) => {
               group.instance = element; // eslint-disable-line no-param-reassign
             }}
