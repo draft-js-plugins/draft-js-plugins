@@ -27,6 +27,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.9.0",
     "history": "^4.5.0",
+    "loader-utils": "1.1.0",
     "postcss-loader": "^1.2.0",
     "prismjs": "^1.5.1",
     "react": "^15.1.0",
