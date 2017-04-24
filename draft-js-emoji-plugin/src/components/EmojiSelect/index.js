@@ -21,7 +21,7 @@ export default class EmojiSelect extends Component {
 
   static defaultProps = {
     groups: defaultEmojiGroups,
-    toneSelectOpenDelay: 1000,
+    toneSelectOpenDelay: 500,
   };
 
   state = {
@@ -39,21 +39,23 @@ export default class EmojiSelect extends Component {
   };
 
   onToneSelectOpen = (toneSet) => {
-    this.toneSelectTimer = setTimeout(() => {
-      this.setState({
-        showToneSelect: true,
-        toneSet,
-      });
-    }, this.props.toneSelectOpenDelay);
+    this.setState({
+      showToneSelect: true,
+      toneSet,
+    });
+
+    window.addEventListener('mouseup', this.onToneSelectClose);
   };
 
   onToneSelectClose = () => {
     if (this.state.showToneSelect) {
       this.setState({
-        showToneSelect: true,
+        showToneSelect: false,
         toneSet: [],
       });
     }
+
+    window.removeEventListener('mouseup', this.onToneSelectClose);
   }
 
   onGroupSelect = (groupIndex) => {
@@ -69,7 +71,6 @@ export default class EmojiSelect extends Component {
   }
 
   emojis = createEmojisFromStrategy(strategy);
-  toneSelectTimer = null;
 
   render() {
     const {
@@ -78,6 +79,7 @@ export default class EmojiSelect extends Component {
       imagePath,
       imageType,
       cacheBustParam,
+      toneSelectOpenDelay,
     } = this.props;
 
     const {
@@ -86,7 +88,7 @@ export default class EmojiSelect extends Component {
       toneSet,
     } = this.state;
 
-    console.log('render emojiSelect');
+    console.log('render emojiSelect', showToneSelect);
 
     return (
       <div className={theme.emojiSelect}>
@@ -98,6 +100,7 @@ export default class EmojiSelect extends Component {
           imagePath={imagePath}
           imageType={imageType}
           cacheBustParam={cacheBustParam}
+          toneSelectOpenDelay={toneSelectOpenDelay}
           onEmojiSelect={this.onEmojiSelect}
           onToneSelectOpen={this.onToneSelectOpen}
           onGroupScroll={this.onGroupScroll}

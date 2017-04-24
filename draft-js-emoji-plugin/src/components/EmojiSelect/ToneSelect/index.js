@@ -1,4 +1,5 @@
 import React from 'react';
+import shortid from 'shortid';
 import Entry from '../Entry';
 
 const ToneSelect = ({
@@ -11,7 +12,7 @@ const ToneSelect = ({
 }) => (
   <ul className={theme.emojiSelectTone}>
     {toneSet.map((emoji) => (
-      <li className={theme.emojiSelectToneItem}>
+      <li key={shortid.generate()} className={theme.emojiSelectToneItem}>
         <Entry
           emoji={emoji}
           theme={{
@@ -22,6 +23,7 @@ const ToneSelect = ({
           imageType={imageType}
           cacheBustParam={cacheBustParam}
           onEmojiSelect={onEmojiSelect}
+          forceMouseDown
         />
       </li>
     ))}

@@ -11,12 +11,15 @@ export default class Entry extends Component {
     imagePath: PropTypes.string.isRequired,
     imageType: PropTypes.string.isRequired,
     cacheBustParam: PropTypes.string,
+    toneSelectOpenDelay: PropTypes.number,
+    forceMouseDown: PropTypes.bool,
+    onEmojiSelect: PropTypes.func,
+    onToneSelectOpen: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-    this.mouseDown = false;
-  }
+  static defaultProps = {
+    forceMouseDown: false,
+  };
 
   componentDidUpdate() {
     this.mouseDown = false;
@@ -24,6 +27,11 @@ export default class Entry extends Component {
 
   onMouseUp = () => {
     if (this.mouseDown) {
+      if (this.toneSelectTimer) {
+        clearTimeout(this.toneSelectTimer);
+        this.toneSelectTimer = null;
+      }
+
       this.mouseDown = false;
       this.props.onEmojiSelect(this.props.emoji);
     }
@@ -32,9 +40,15 @@ export default class Entry extends Component {
   onMouseDown = () => {
     this.mouseDown = true;
     if (this.props.onToneSelectOpen) {
-      this.props.onToneSelectOpen();
+      this.toneSelectTimer = setTimeout(() => {
+        this.mouseDown = false;
+        this.props.onToneSelectOpen();
+      }, this.props.toneSelectOpenDelay);
     }
   };
+
+  mouseDown = this.props.forceMouseDown;
+  toneSelectTimer = null;
 
   render() {
     const { theme = {}, imagePath, imageType, cacheBustParam } = this.props;

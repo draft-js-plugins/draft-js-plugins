@@ -56,6 +56,7 @@ export default class Groups extends Component {
       imagePath,
       imageType,
       cacheBustParam,
+      toneSelectOpenDelay,
       onEmojiSelect,
       onToneSelectOpen,
     } = this.props;
@@ -87,6 +88,7 @@ export default class Groups extends Component {
             imagePath={imagePath}
             imageType={imageType}
             cacheBustParam={cacheBustParam}
+            toneSelectOpenDelay={toneSelectOpenDelay}
             onEmojiSelect={onEmojiSelect}
             onToneSelectOpen={onToneSelectOpen}
             ref={(element) => {

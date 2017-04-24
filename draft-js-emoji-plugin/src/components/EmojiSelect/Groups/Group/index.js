@@ -9,9 +9,10 @@ export default class Group extends Component {
       theme = {},
       group,
       emojis,
-      cacheBustParam,
       imagePath,
       imageType,
+      cacheBustParam,
+      toneSelectOpenDelay,
       onEmojiSelect,
       onToneSelectOpen,
     } = this.props;
@@ -27,8 +28,9 @@ export default class Group extends Component {
           imagePath={imagePath}
           imageType={imageType}
           cacheBustParam={cacheBustParam}
+          toneSelectOpenDelay={toneSelectOpenDelay}
           onEmojiSelect={onEmojiSelect}
-          onToneSelectOpen={category[key].length ?
+          onToneSelectOpen={category[key].length > 1 ?
             () => onToneSelectOpen(category[key]) : null}
         />
       </li>
