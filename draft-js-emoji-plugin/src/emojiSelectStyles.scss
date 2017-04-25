@@ -24,6 +24,8 @@
   &Groups {
     margin: 0 0 .3em;
     padding: 0 .5em;
+    position: relative;
+    z-index: 0;
     width: $totalSize;
     height: $totalSize;
   }
@@ -72,10 +74,15 @@
   }
 
   &Tone {
-    margin: 0;
+    margin: .3em;
     padding: .3em;
+    position: absolute;
     display: flex;
     list-style: none;
+    border: 1px solid $borderColor;
+    border-radius: .5em;
+    background: inherit;
+    box-shadow: 0 0 .3em rgba(0, 0, 0, .1);
 
     &Item {
       width: $itemSize;

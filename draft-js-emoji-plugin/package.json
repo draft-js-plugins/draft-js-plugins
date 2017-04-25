@@ -42,6 +42,7 @@
     "react-icons": "^2.2.3",
     "react-scrollbar": "^0.5.1",
     "shortid": "^2.2.8",
+    "to-style": "^1.3.3",
     "union-class-names": "^1.0.0"
   },
   "peerDependencies": {

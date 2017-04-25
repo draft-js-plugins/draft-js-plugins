@@ -29,9 +29,9 @@ export default class Group extends Component {
           imageType={imageType}
           cacheBustParam={cacheBustParam}
           toneSelectOpenDelay={toneSelectOpenDelay}
+          toneSet={category[key].length > 1 ? category[key] : null}
           onEmojiSelect={onEmojiSelect}
-          onToneSelectOpen={category[key].length > 1 ?
-            () => onToneSelectOpen(category[key]) : null}
+          onToneSelectOpen={onToneSelectOpen}
         />
       </li>
     ));

@@ -27,6 +27,7 @@ export default class EmojiSelect extends Component {
   state = {
     activeGroup: 0,
     showToneSelect: false,
+    toneSelectBounds: {},
     toneSet: [],
   };
 
@@ -38,9 +39,33 @@ export default class EmojiSelect extends Component {
     this.props.store.setEditorState(newEditorState);
   };
 
-  onToneSelectOpen = (toneSet) => {
+  onToneSelectOpen = (toneSet, entryBounds) => {
+    const containerBounds = this.container.getBoundingClientRect();
+    const areaBounds = this.groups.scroll.wrapper.getBoundingClientRect();
+
+    console.log('test', containerBounds, areaBounds);
+
     this.setState({
       showToneSelect: true,
+      toneSelectBounds: {
+        // Translate TextRectangle coords to CSS relative coords
+        areaBounds: {
+          left: areaBounds.left - containerBounds.left,
+          right: containerBounds.right - areaBounds.right,
+          top: areaBounds.top - containerBounds.top,
+          bottom: containerBounds.bottom - areaBounds.bottom,
+          width: areaBounds.width,
+          height: areaBounds.width,
+        },
+        entryBounds: {
+          left: entryBounds.left - containerBounds.left,
+          right: containerBounds.right - entryBounds.right,
+          top: entryBounds.top - containerBounds.top,
+          bottom: containerBounds.bottom - entryBounds.bottom,
+          width: entryBounds.width,
+          height: entryBounds.width,
+        },
+      },
       toneSet,
     });
 
@@ -51,6 +76,7 @@ export default class EmojiSelect extends Component {
     if (this.state.showToneSelect) {
       this.setState({
         showToneSelect: false,
+        toneSelectBounds: {},
         toneSet: [],
       });
     }
@@ -85,13 +111,17 @@ export default class EmojiSelect extends Component {
     const {
       activeGroup,
       showToneSelect,
+      toneSelectBounds,
       toneSet,
     } = this.state;
 
     console.log('render emojiSelect', showToneSelect);
 
     return (
-      <div className={theme.emojiSelect}>
+      <div
+        className={theme.emojiSelect}
+        ref={(element) => { this.container = element; }}
+      >
         <h3 className={theme.emojiSelectTitle}>{groups[activeGroup].title}</h3>
         <Groups
           theme={theme}
@@ -115,6 +145,7 @@ export default class EmojiSelect extends Component {
         {showToneSelect && (
           <ToneSelect
             theme={theme}
+            bounds={toneSelectBounds}
             toneSet={toneSet}
             imagePath={imagePath}
             imageType={imageType}

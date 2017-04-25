@@ -4,6 +4,7 @@ import emojione from 'emojione';
 
 export default class Entry extends Component {
   static propTypes = {
+    emoji: PropTypes.string,
     theme: PropTypes.shape({
       entry: PropTypes.string,
       entryIcon: PropTypes.string,
@@ -12,6 +13,7 @@ export default class Entry extends Component {
     imageType: PropTypes.string.isRequired,
     cacheBustParam: PropTypes.string,
     toneSelectOpenDelay: PropTypes.number,
+    toneSet: PropTypes.arrayOf(PropTypes.string),
     forceMouseDown: PropTypes.bool,
     onEmojiSelect: PropTypes.func,
     onToneSelectOpen: PropTypes.func,
@@ -39,10 +41,13 @@ export default class Entry extends Component {
 
   onMouseDown = () => {
     this.mouseDown = true;
-    if (this.props.onToneSelectOpen) {
+    if (this.props.toneSet) {
       this.toneSelectTimer = setTimeout(() => {
         this.mouseDown = false;
-        this.props.onToneSelectOpen();
+        this.props.onToneSelectOpen(
+          this.props.toneSet,
+          this.element.getBoundingClientRect(),
+        );
       }, this.props.toneSelectOpenDelay);
     }
   };
@@ -51,9 +56,9 @@ export default class Entry extends Component {
   toneSelectTimer = null;
 
   render() {
-    const { theme = {}, imagePath, imageType, cacheBustParam } = this.props;
+    const { emoji, theme = {}, imagePath, imageType, cacheBustParam } = this.props;
     // short name to image url code steal from emojione source code
-    const shortNameForImage = emojione.emojioneList[this.props.emoji].unicode[emojione.emojioneList[this.props.emoji].unicode.length - 1];
+    const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
     const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
 
     return (
@@ -61,7 +66,8 @@ export default class Entry extends Component {
         className={theme.entry}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
-        title={this.props.emoji}
+        title={emoji}
+        ref={(element) => { this.element = element; }}
         role="option"
       >
         <img
