@@ -45,12 +45,14 @@ export default (config = {}) => {
     emojiSelectGroupList: emojiSelectStyles.emojiSelectGroupList,
     emojiSelectGroupItem: emojiSelectStyles.emojiSelectGroupItem,
     emojiSelectGroupEntry: emojiSelectStyles.emojiSelectGroupEntry,
+    emojiSelectGroupEntryFocused: emojiSelectStyles.emojiSelectGroupEntryFocused,
     emojiSelectGroupEntryIcon: emojiSelectStyles.emojiSelectGroupEntryIcon,
 
     emojiSelectTone: emojiSelectStyles.emojiSelectTone,
     emojiSelectToneList: emojiSelectStyles.emojiSelectToneList,
     emojiSelectToneItem: emojiSelectStyles.emojiSelectToneItem,
     emojiSelectToneEntry: emojiSelectStyles.emojiSelectToneEntry,
+    emojiSelectToneEntryFocused: emojiSelectStyles.emojiSelectToneEntryFocused,
     emojiSelectToneEntryIcon: emojiSelectStyles.emojiSelectToneEntryIcon,
 
     emojiSelectNav: emojiSelectStyles.emojiSelectNav,

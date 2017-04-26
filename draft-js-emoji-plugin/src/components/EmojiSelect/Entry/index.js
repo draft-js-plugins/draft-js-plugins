@@ -7,6 +7,7 @@ export default class Entry extends Component {
     emoji: PropTypes.string,
     theme: PropTypes.shape({
       entry: PropTypes.string,
+      entryFocused: PropTypes.string,
       entryIcon: PropTypes.string,
     }),
     imagePath: PropTypes.string.isRequired,
@@ -15,21 +16,17 @@ export default class Entry extends Component {
     toneSet: PropTypes.arrayOf(PropTypes.string),
     mouseDown: PropTypes.bool,
     onEmojiSelect: PropTypes.func,
-    onToneSelectOpen: PropTypes.func,
+    onEmojiMouseDown: PropTypes.func,
   };
 
   static defaultProps = {
     mouseDown: false,
   };
 
-  constructor(props) {
-    super(props);
-    this.mouseDown = props.mouseDown;
-  }
-
-  componentDidUpdate() {
-    this.mouseDown = false;
-  }
+  state = {
+    isActive: false,
+    isFocused: false,
+  };
 
   onMouseUp = () => {
     if (this.mouseDown) {
@@ -40,28 +37,43 @@ export default class Entry extends Component {
 
   onMouseDown = () => {
     this.mouseDown = true;
-
-    if (this.props.toneSet) {
-      this.props.onToneSelectOpen(
-        this.props.toneSet,
-        this.element.getBoundingClientRect(),
-      );
-    }
+    this.props.onEmojiMouseDown(this, this.props.toneSet);
   };
+
+  onMouseEnter = () => {
+    this.setState({ isFocused: true });
+  }
+
+  onMouseLeave = () => {
+    this.setState({ isFocused: false });
+  }
+
+  setActive = () => {
+    this.setState({ isActive: true });
+  }
+
+  unsetActive = () => {
+    this.setState({ isActive: false });
+  }
+
+  mouseDown = this.props.mouseDown;
 
   render() {
     const { emoji, theme = {}, imagePath, imageType, cacheBustParam } = this.props;
     // short name to image url code steal from emojione source code
     const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
     const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
+    const { isActive, isFocused } = this.state;
 
     return (
       <button
-        className={theme.entry}
+        className={isActive || isFocused ? theme.entryFocused : theme.entry}
         onMouseDown={this.onMouseDown}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         onMouseUp={this.onMouseUp}
         title={emoji}
-        ref={(element) => { this.element = element; }}
+        ref={(element) => { this.button = element; }}
         role="option"
       >
         <img

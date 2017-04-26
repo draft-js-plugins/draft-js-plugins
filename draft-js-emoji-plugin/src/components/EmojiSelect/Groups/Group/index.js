@@ -13,7 +13,7 @@ export default class Group extends Component {
       imageType,
       cacheBustParam,
       onEmojiSelect,
-      onToneSelectOpen,
+      onEmojiMouseDown,
     } = this.props;
 
     const renderCategory = (category) => Object.keys(category).map((key) => (
@@ -22,6 +22,7 @@ export default class Group extends Component {
           emoji={category[key][0]}
           theme={{
             entry: theme.emojiSelectGroupEntry,
+            entryFocused: theme.emojiSelectGroupEntryFocused,
             entryIcon: theme.emojiSelectGroupEntryIcon,
           }}
           imagePath={imagePath}
@@ -29,7 +30,7 @@ export default class Group extends Component {
           cacheBustParam={cacheBustParam}
           toneSet={category[key].length > 1 ? category[key] : null}
           onEmojiSelect={onEmojiSelect}
-          onToneSelectOpen={onToneSelectOpen}
+          onEmojiMouseDown={onEmojiMouseDown}
         />
       </li>
     ));

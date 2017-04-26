@@ -57,7 +57,7 @@ export default class Groups extends Component {
       imageType,
       cacheBustParam,
       onEmojiSelect,
-      onToneSelectOpen,
+      onEmojiMouseDown,
     } = this.props;
 
     const scrollbarStyle = {
@@ -88,7 +88,7 @@ export default class Groups extends Component {
             imageType={imageType}
             cacheBustParam={cacheBustParam}
             onEmojiSelect={onEmojiSelect}
-            onToneSelectOpen={onToneSelectOpen}
+            onEmojiMouseDown={onEmojiMouseDown}
             ref={(element) => {
               group.instance = element; // eslint-disable-line no-param-reassign
             }}

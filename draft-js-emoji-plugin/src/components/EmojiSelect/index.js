@@ -27,8 +27,27 @@ export default class EmojiSelect extends Component {
   state = {
     activeGroup: 0,
     showToneSelect: false,
-    toneSelectBounds: {},
-    toneSet: [],
+  };
+
+  componentDidMount() {
+    window.addEventListener('mouseup', this.onMouseUp);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.onMouseUp);
+  }
+
+  onMouseUp = () => {
+    this.activeEmoji.unsetActive();
+    this.mouseDown = false;
+    this.activeEmoji = null;
+
+    if (this.state.showToneSelect) {
+      this.closeToneSelect();
+    } else if (this.toneSelectTimer) {
+      clearTimeout(this.toneSelectTimer);
+      this.toneSelectTimer = null;
+    }
   };
 
   onEmojiSelect = (emoji) => {
@@ -39,25 +58,15 @@ export default class EmojiSelect extends Component {
     this.props.store.setEditorState(newEditorState);
   };
 
-  onToneSelectOpen = (toneSet, entryBounds) => {
-    this.toneSelectTimer = setTimeout(() => {
-      this.openToneSelect(toneSet, entryBounds);
-    }, this.props.toneSelectOpenDelay);
+  onEmojiMouseDown = (emojiEntry, toneSet) => {
+    this.mouseDown = true;
+    this.activeEmoji = emojiEntry;
+    this.activeEmoji.setActive();
 
-    window.addEventListener('mouseup', this.clearToneSelectTimer);
-  }
-
-  onToneSelectClose = () => {
-    if (this.state.showToneSelect) {
-      this.setState({
-        showToneSelect: false,
-        toneSelectBounds: {},
-        toneSet: [],
-      });
+    if (toneSet) {
+      this.openToneSelectWithTimer(toneSet);
     }
-
-    window.removeEventListener('mouseup', this.onToneSelectClose);
-  }
+  };
 
   onGroupSelect = (groupIndex) => {
     this.groups.scrollToGroup(groupIndex);
@@ -69,16 +78,46 @@ export default class EmojiSelect extends Component {
         activeGroup: groupIndex,
       });
     }
+  };
+
+  openToneSelectWithTimer = (toneSet) => {
+    this.toneSelectTimer = setTimeout(() => {
+      this.toneSelectTimer = null;
+      this.openToneSelect(toneSet);
+    }, this.props.toneSelectOpenDelay);
   }
 
-  openToneSelect = (toneSet, entryBounds) => {
-    const containerBounds = this.container.getBoundingClientRect();
-    const areaBounds = this.groups.scroll.wrapper.getBoundingClientRect();
+  openToneSelect = (toneSet) => {
+    this.toneSet = toneSet;
 
     this.setState({
       showToneSelect: true,
-      toneSelectBounds: {
-        // Translate TextRectangle coords to CSS relative coords
+    });
+  };
+
+  closeToneSelect = () => {
+    this.toneSet = [];
+
+    this.setState({
+      showToneSelect: false,
+    });
+  };
+
+  emojis = createEmojisFromStrategy(strategy);
+  mouseDown = false;
+  activeEmoji = null;
+  toneSet = [];
+  toneSelectTimer = null;
+
+  renderToneSelect = () => {
+    if (this.state.showToneSelect) {
+      const { theme = {}, imagePath, imageType, cacheBustParam } = this.props;
+
+      const containerBounds = this.container.getBoundingClientRect();
+      const areaBounds = this.groups.scroll.wrapper.getBoundingClientRect();
+      const entryBounds = this.activeEmoji.button.getBoundingClientRect();
+      // Translate TextRectangle coords to CSS relative coords
+      const bounds = {
         areaBounds: {
           left: areaBounds.left - containerBounds.left,
           right: containerBounds.right - areaBounds.right,
@@ -94,23 +133,24 @@ export default class EmojiSelect extends Component {
           bottom: containerBounds.bottom - entryBounds.bottom,
           width: entryBounds.width,
           height: entryBounds.width,
-        },
-      },
-      toneSet,
-    });
+        }
+      };
 
-    window.addEventListener('mouseup', this.onToneSelectClose);
+      return (
+        <ToneSelect
+          theme={theme}
+          bounds={bounds}
+          toneSet={this.toneSet}
+          imagePath={imagePath}
+          imageType={imageType}
+          cacheBustParam={cacheBustParam}
+          onEmojiSelect={this.onEmojiSelect}
+        />
+      );
+    }
+
+    return null;
   };
-
-  clearToneSelectTimer = () => {
-    clearTimeout(this.toneSelectTimer);
-    this.toneSelectTimer = null;
-
-    window.removeEventListener('mouseup', this.clearToneSelectTimer);
-  }
-
-  emojis = createEmojisFromStrategy(strategy);
-  toneSelectTimer = null;
 
   render() {
     const {
@@ -121,12 +161,7 @@ export default class EmojiSelect extends Component {
       cacheBustParam,
     } = this.props;
 
-    const {
-      activeGroup,
-      showToneSelect,
-      toneSelectBounds,
-      toneSet,
-    } = this.state;
+    const { activeGroup } = this.state;
 
     console.log('render emojiSelect');
 
@@ -144,7 +179,7 @@ export default class EmojiSelect extends Component {
           imageType={imageType}
           cacheBustParam={cacheBustParam}
           onEmojiSelect={this.onEmojiSelect}
-          onToneSelectOpen={this.onToneSelectOpen}
+          onEmojiMouseDown={this.onEmojiMouseDown}
           onGroupScroll={this.onGroupScroll}
           ref={(element) => { this.groups = element; }}
         />
@@ -154,17 +189,7 @@ export default class EmojiSelect extends Component {
           activeGroup={activeGroup}
           onGroupSelect={this.onGroupSelect}
         />
-        {showToneSelect && (
-          <ToneSelect
-            theme={theme}
-            bounds={toneSelectBounds}
-            toneSet={toneSet}
-            imagePath={imagePath}
-            imageType={imageType}
-            cacheBustParam={cacheBustParam}
-            onEmojiSelect={this.onEmojiSelect}
-          />
-        )}
+        {this.renderToneSelect()}
       </div>
     );
   }

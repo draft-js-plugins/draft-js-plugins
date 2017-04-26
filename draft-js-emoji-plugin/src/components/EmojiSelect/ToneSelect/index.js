@@ -67,6 +67,7 @@ export default class ToneSelect extends Component {
                 emoji={emoji}
                 theme={{
                   entry: theme.emojiSelectToneEntry,
+                  entryFocused: theme.emojiSelectToneEntryFocused,
                   entryIcon: theme.emojiSelectToneEntryIcon,
                 }}
                 imagePath={imagePath}

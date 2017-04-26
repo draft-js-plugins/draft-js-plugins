@@ -63,19 +63,15 @@
       outline: none;
       transition: background-color .4s cubic-bezier(.27, 1.27, .48, .56);
 
+      &Focused {
+        @extend .emojiSelectGroupEntry;
+        background-color: $hoverBackgroundColor;
+      }
+
       &Icon {
         width: 1.5em;
         height: 1.5em;
         vertical-align: middle;
-      }
-
-      &:hover {
-        background-color: $hoverBackgroundColor;
-      }
-
-      &Focused {
-        @extend .emojiSelectGroupEntry;
-        background-color: $hoverBackgroundColor;
       }
     }
   }
@@ -118,15 +114,15 @@
       outline: none;
       transition: background-color .4s cubic-bezier(.27, 1.27, .48, .56);
 
+      &Focused {
+        @extend .emojiSelectToneEntry;
+        background-color: $hoverBackgroundColor;
+      }
+
       &Icon {
         width: 1.5em;
         height: 1.5em;
         vertical-align: middle;
-      }
-
-      &Focused {
-        @extend .emojiSelectGroupEntry;
-        background-color: $hoverBackgroundColor;
       }
     }
   }
