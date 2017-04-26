@@ -24,8 +24,7 @@ exports.default = function (_ref) {
     var editorState = getEditorState();
 
     if (isInternal !== 'internal') {
-      // NOTE: change to 'not-handled' once draft-js-plugin-editor is upgraded
-      return false;
+      return 'not-handled';
     }
 
     // Get data 'text' (anything else won't move the cursor) and expecting kind of data (text/key)
@@ -40,13 +39,11 @@ exports.default = function (_ref) {
 
 
     if (key !== _constants.DRAFTJS_BLOCK_KEY) {
-      // NOTE: change to 'not-handled' once draft-js-plugin-editor is upgraded
-      return false;
+      return 'not-handled';
     }
 
     setEditorState(onDrop(editorState, selection, blockKey));
 
-    // NOTE: change to 'handled' once draft-js-plugin-editor is upgraded
-    return true;
+    return 'handled';
   };
 };
