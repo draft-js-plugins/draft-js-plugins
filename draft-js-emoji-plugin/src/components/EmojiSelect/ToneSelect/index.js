@@ -10,9 +10,13 @@ export default class ToneSelect extends Component {
     this.setCorrectPosition(areaBounds, entryBounds);
   }
 
+  onWheel = (e) => {
+    e.preventDefault();
+  }
+
   setCorrectPosition = (areaBounds, entryBounds) => {
-    const width = this.select.offsetWidth;
-    const height = this.select.offsetHeight;
+    const width = this.tones.offsetWidth;
+    const height = this.tones.offsetHeight;
 
     let style = {
       marginLeft: 0,
@@ -37,7 +41,7 @@ export default class ToneSelect extends Component {
     style = toStyle.object(style);
 
     Object.keys(style).forEach((property) => {
-      this.select.style[property] = style[property];
+      this.tones.style[property] = style[property];
     });
   }
 
@@ -52,27 +56,29 @@ export default class ToneSelect extends Component {
     } = this.props;
 
     return (
-      <ul
-        className={theme.emojiSelectTone}
-        ref={(element) => { this.select = element; }}
-      >
-        {toneSet.map((emoji) => (
-          <li key={shortid.generate()} className={theme.emojiSelectToneItem}>
-            <Entry
-              emoji={emoji}
-              theme={{
-                entry: theme.emojiSelectToneEntry,
-                entryIcon: theme.emojiSelectToneEntryIcon,
-              }}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
-              onEmojiSelect={onEmojiSelect}
-              forceMouseDown
-            />
-          </li>
-        ))}
-      </ul>
+      <div className={theme.emojiSelectTone} onWheel={this.onWheel}>
+        <ul
+          className={theme.emojiSelectToneList}
+          ref={(element) => { this.tones = element; }}
+        >
+          {toneSet.map((emoji) => (
+            <li key={shortid.generate()} className={theme.emojiSelectToneItem}>
+              <Entry
+                emoji={emoji}
+                theme={{
+                  entry: theme.emojiSelectToneEntry,
+                  entryIcon: theme.emojiSelectToneEntryIcon,
+                }}
+                imagePath={imagePath}
+                imageType={imageType}
+                cacheBustParam={cacheBustParam}
+                onEmojiSelect={onEmojiSelect}
+                mouseDown
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }

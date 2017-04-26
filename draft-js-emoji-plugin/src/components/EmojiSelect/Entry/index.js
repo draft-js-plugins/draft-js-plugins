@@ -12,16 +12,20 @@ export default class Entry extends Component {
     imagePath: PropTypes.string.isRequired,
     imageType: PropTypes.string.isRequired,
     cacheBustParam: PropTypes.string,
-    toneSelectOpenDelay: PropTypes.number,
     toneSet: PropTypes.arrayOf(PropTypes.string),
-    forceMouseDown: PropTypes.bool,
+    mouseDown: PropTypes.bool,
     onEmojiSelect: PropTypes.func,
     onToneSelectOpen: PropTypes.func,
   };
 
   static defaultProps = {
-    forceMouseDown: false,
+    mouseDown: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.mouseDown = props.mouseDown;
+  }
 
   componentDidUpdate() {
     this.mouseDown = false;
@@ -29,11 +33,6 @@ export default class Entry extends Component {
 
   onMouseUp = () => {
     if (this.mouseDown) {
-      if (this.toneSelectTimer) {
-        clearTimeout(this.toneSelectTimer);
-        this.toneSelectTimer = null;
-      }
-
       this.mouseDown = false;
       this.props.onEmojiSelect(this.props.emoji);
     }
@@ -41,19 +40,14 @@ export default class Entry extends Component {
 
   onMouseDown = () => {
     this.mouseDown = true;
+
     if (this.props.toneSet) {
-      this.toneSelectTimer = setTimeout(() => {
-        this.mouseDown = false;
-        this.props.onToneSelectOpen(
-          this.props.toneSet,
-          this.element.getBoundingClientRect(),
-        );
-      }, this.props.toneSelectOpenDelay);
+      this.props.onToneSelectOpen(
+        this.props.toneSet,
+        this.element.getBoundingClientRect(),
+      );
     }
   };
-
-  mouseDown = this.props.forceMouseDown;
-  toneSelectTimer = null;
 
   render() {
     const { emoji, theme = {}, imagePath, imageType, cacheBustParam } = this.props;

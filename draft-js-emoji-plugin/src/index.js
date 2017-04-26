@@ -48,6 +48,7 @@ export default (config = {}) => {
     emojiSelectGroupEntryIcon: emojiSelectStyles.emojiSelectGroupEntryIcon,
 
     emojiSelectTone: emojiSelectStyles.emojiSelectTone,
+    emojiSelectToneList: emojiSelectStyles.emojiSelectToneList,
     emojiSelectToneItem: emojiSelectStyles.emojiSelectToneItem,
     emojiSelectToneEntry: emojiSelectStyles.emojiSelectToneEntry,
     emojiSelectToneEntryIcon: emojiSelectStyles.emojiSelectToneEntryIcon,

@@ -4,11 +4,13 @@
   $totalSize: $itemSize * $groups;
 
   $borderColor: #e0e0e0;
+  $backgroundColor: #fff;
+  $hoverBackgroundColor: #efefef;
 
   padding: 0 .3em;
   position: absolute;
   box-sizing: content-box;
-  background: #fff;
+  background: $backgroundColor;
   border: 1px solid $borderColor;
 
   &Title {
@@ -59,7 +61,7 @@
       background: none;
       border: none;
       outline: none;
-      transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
+      transition: background-color .4s cubic-bezier(.27, 1.27, .48, .56);
 
       &Icon {
         width: 1.5em;
@@ -68,21 +70,35 @@
       }
 
       &:hover {
-        background-color: #efefef;
+        background-color: $hoverBackgroundColor;
+      }
+
+      &Focused {
+        @extend .emojiSelectGroupEntry;
+        background-color: $hoverBackgroundColor;
       }
     }
   }
 
   &Tone {
-    margin: .3em;
-    padding: .3em;
     position: absolute;
-    display: flex;
-    list-style: none;
-    border: 1px solid $borderColor;
-    border-radius: .5em;
-    background: inherit;
-    box-shadow: 0 0 .3em rgba(0, 0, 0, .1);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+
+    &List {
+      margin: .3em;
+      padding: .3em;
+      position: absolute;
+      display: flex;
+      list-style: none;
+      border: 1px solid $borderColor;
+      border-radius: .5em;
+      background: $backgroundColor;
+      box-shadow: 0 0 .3em rgba(0, 0, 0, .1);
+    }
 
     &Item {
       width: $itemSize;
@@ -100,7 +116,7 @@
       background: none;
       border: none;
       outline: none;
-      transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
+      transition: background-color .4s cubic-bezier(.27, 1.27, .48, .56);
 
       &Icon {
         width: 1.5em;
@@ -108,8 +124,9 @@
         vertical-align: middle;
       }
 
-      &:hover {
-        background-color: #efefef;
+      &Focused {
+        @extend .emojiSelectGroupEntry;
+        background-color: $hoverBackgroundColor;
       }
     }
   }

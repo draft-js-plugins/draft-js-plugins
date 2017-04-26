@@ -40,10 +40,40 @@ export default class EmojiSelect extends Component {
   };
 
   onToneSelectOpen = (toneSet, entryBounds) => {
+    this.toneSelectTimer = setTimeout(() => {
+      this.openToneSelect(toneSet, entryBounds);
+    }, this.props.toneSelectOpenDelay);
+
+    window.addEventListener('mouseup', this.clearToneSelectTimer);
+  }
+
+  onToneSelectClose = () => {
+    if (this.state.showToneSelect) {
+      this.setState({
+        showToneSelect: false,
+        toneSelectBounds: {},
+        toneSet: [],
+      });
+    }
+
+    window.removeEventListener('mouseup', this.onToneSelectClose);
+  }
+
+  onGroupSelect = (groupIndex) => {
+    this.groups.scrollToGroup(groupIndex);
+  };
+
+  onGroupScroll = (groupIndex) => {
+    if (groupIndex !== this.state.activeGroup) {
+      this.setState({
+        activeGroup: groupIndex,
+      });
+    }
+  }
+
+  openToneSelect = (toneSet, entryBounds) => {
     const containerBounds = this.container.getBoundingClientRect();
     const areaBounds = this.groups.scroll.wrapper.getBoundingClientRect();
-
-    console.log('test', containerBounds, areaBounds);
 
     this.setState({
       showToneSelect: true,
@@ -72,31 +102,15 @@ export default class EmojiSelect extends Component {
     window.addEventListener('mouseup', this.onToneSelectClose);
   };
 
-  onToneSelectClose = () => {
-    if (this.state.showToneSelect) {
-      this.setState({
-        showToneSelect: false,
-        toneSelectBounds: {},
-        toneSet: [],
-      });
-    }
+  clearToneSelectTimer = () => {
+    clearTimeout(this.toneSelectTimer);
+    this.toneSelectTimer = null;
 
-    window.removeEventListener('mouseup', this.onToneSelectClose);
-  }
-
-  onGroupSelect = (groupIndex) => {
-    this.groups.scrollToGroup(groupIndex);
-  };
-
-  onGroupScroll = (groupIndex) => {
-    if (groupIndex !== this.state.activeGroup) {
-      this.setState({
-        activeGroup: groupIndex,
-      });
-    }
+    window.removeEventListener('mouseup', this.clearToneSelectTimer);
   }
 
   emojis = createEmojisFromStrategy(strategy);
+  toneSelectTimer = null;
 
   render() {
     const {
@@ -105,7 +119,6 @@ export default class EmojiSelect extends Component {
       imagePath,
       imageType,
       cacheBustParam,
-      toneSelectOpenDelay,
     } = this.props;
 
     const {
@@ -115,7 +128,7 @@ export default class EmojiSelect extends Component {
       toneSet,
     } = this.state;
 
-    console.log('render emojiSelect', showToneSelect);
+    console.log('render emojiSelect');
 
     return (
       <div
@@ -130,7 +143,6 @@ export default class EmojiSelect extends Component {
           imagePath={imagePath}
           imageType={imageType}
           cacheBustParam={cacheBustParam}
-          toneSelectOpenDelay={toneSelectOpenDelay}
           onEmojiSelect={this.onEmojiSelect}
           onToneSelectOpen={this.onToneSelectOpen}
           onGroupScroll={this.onGroupScroll}
