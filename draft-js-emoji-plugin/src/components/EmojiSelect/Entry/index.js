@@ -21,11 +21,9 @@ export default class Entry extends Component {
 
   static defaultProps = {
     mouseDown: false,
-    checkMouseDown: () => false,
   };
 
   state = {
-    isActive: false,
     isFocused: false,
   };
 
@@ -42,23 +40,19 @@ export default class Entry extends Component {
   };
 
   onMouseEnter = () => {
-    if (this.mouseDown || !this.props.checkMouseDown()) {
+    if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: true });
     }
   };
 
   onMouseLeave = () => {
-    if (this.mouseDown || !this.props.checkMouseDown()) {
+    if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: false });
     }
   };
 
-  setActive = () => {
-    this.setState({ isActive: true });
-  };
-
-  unsetActive = () => {
-    this.setState({ isActive: false });
+  deselect = () => {
+    this.setState({ isFocused: false });
   };
 
   mouseDown = this.props.mouseDown;
@@ -68,11 +62,11 @@ export default class Entry extends Component {
     // short name to image url code steal from emojione source code
     const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
     const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
-    const { isActive, isFocused } = this.state;
+    const { isFocused } = this.state;
 
     return (
       <button
-        className={isActive || isFocused ? theme.entryFocused : theme.entry}
+        className={isFocused ? theme.entryFocused : theme.entry}
         onMouseDown={this.onMouseDown}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}

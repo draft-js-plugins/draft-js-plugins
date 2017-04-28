@@ -45,7 +45,7 @@ export default class EmojiSelect extends Component {
     this.mouseDown = false;
 
     if (this.activeEmoji) {
-      this.activeEmoji.unsetActive();
+      this.activeEmoji.deselect();
       this.activeEmoji = null;
 
       if (this.state.showToneSelect) {
@@ -67,7 +67,6 @@ export default class EmojiSelect extends Component {
 
   onEmojiMouseDown = (emojiEntry, toneSet) => {
     this.activeEmoji = emojiEntry;
-    this.activeEmoji.setActive();
 
     if (toneSet) {
       this.openToneSelectWithTimer(toneSet);

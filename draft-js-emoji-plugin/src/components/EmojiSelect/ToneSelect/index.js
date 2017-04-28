@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import toStyle from 'to-style';
-import shortid from 'shortid';
 import Entry from '../Entry';
 
 export default class ToneSelect extends Component {
@@ -62,7 +61,10 @@ export default class ToneSelect extends Component {
           ref={(element) => { this.tones = element; }}
         >
           {toneSet.map((emoji) => (
-            <li key={shortid.generate()} className={theme.emojiSelectToneItem}>
+            <li
+              key={`tone-select(${emoji})`}
+              className={theme.emojiSelectToneItem}
+            >
               <Entry
                 emoji={emoji}
                 theme={{
@@ -73,6 +75,7 @@ export default class ToneSelect extends Component {
                 imagePath={imagePath}
                 imageType={imageType}
                 cacheBustParam={cacheBustParam}
+                checkMouseDown={() => false}
                 onEmojiSelect={onEmojiSelect}
                 mouseDown
               />
