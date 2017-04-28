@@ -11,7 +11,7 @@ const Nav = ({
     {groups.map((group, index) => (
       <li
         key={
-          `nav-item#${index}[${group.categories.join(',')}]` // eslint-disable-line react/no-array-index-key
+          `nav-group#${index}[${group.categories.join(',')}]` // eslint-disable-line react/no-array-index-key
         }
         className={theme.emojiSelectNavItem}
       >

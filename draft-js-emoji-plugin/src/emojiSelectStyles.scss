@@ -74,6 +74,12 @@
         vertical-align: middle;
       }
     }
+
+    &:first-child {
+      .emojiSelectGroupTitle {
+        display: none;
+      }
+    }
   }
 
   &Tone {

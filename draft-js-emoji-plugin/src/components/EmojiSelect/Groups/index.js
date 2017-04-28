@@ -17,7 +17,7 @@ export default class Groups extends Component {
   onScroll = (value) => {
     const { topPosition } = value;
 
-    if (topPosition) {
+    if (typeof topPosition !== 'undefined') {
       const { groups, onGroupScroll } = this.props;
       let activeGroup = 0;
       groups.forEach((group, index) => {
@@ -65,6 +65,8 @@ export default class Groups extends Component {
       width: '.3em',
       borderRadius: '.15em',
     };
+
+    console.log('render groups');
 
     return (
       <ScrollArea
