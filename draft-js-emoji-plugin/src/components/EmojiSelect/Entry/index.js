@@ -21,6 +21,7 @@ export default class Entry extends Component {
 
   static defaultProps = {
     mouseDown: false,
+    checkMouseDown: () => false,
   };
 
   state = {
@@ -41,20 +42,24 @@ export default class Entry extends Component {
   };
 
   onMouseEnter = () => {
-    this.setState({ isFocused: true });
-  }
+    if (this.mouseDown || !this.props.checkMouseDown()) {
+      this.setState({ isFocused: true });
+    }
+  };
 
   onMouseLeave = () => {
-    this.setState({ isFocused: false });
-  }
+    if (this.mouseDown || !this.props.checkMouseDown()) {
+      this.setState({ isFocused: false });
+    }
+  };
 
   setActive = () => {
     this.setState({ isActive: true });
-  }
+  };
 
   unsetActive = () => {
     this.setState({ isActive: false });
-  }
+  };
 
   mouseDown = this.props.mouseDown;
 

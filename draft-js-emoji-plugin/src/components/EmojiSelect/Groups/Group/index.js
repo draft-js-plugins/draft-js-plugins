@@ -4,22 +4,24 @@ import Entry from '../../Entry';
 export default class Group extends Component {
   shouldComponentUpdate = () => false;
 
-  render() {
+  renderCategory = (category) => {
     const {
       theme = {},
-      group,
       emojis,
       imagePath,
       imageType,
       cacheBustParam,
+      checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,
     } = this.props;
 
-    const renderCategory = (category) => Object.keys(category).map((key) => (
-      <li key={category[key][0]} className={theme.emojiSelectGroupItem}>
+    const categoryEmojis = emojis[category];
+
+    return Object.keys(categoryEmojis).map((key) => (
+      <li key={categoryEmojis[key][0]} className={theme.emojiSelectGroupItem}>
         <Entry
-          emoji={category[key][0]}
+          emoji={categoryEmojis[key][0]}
           theme={{
             entry: theme.emojiSelectGroupEntry,
             entryFocused: theme.emojiSelectGroupEntryFocused,
@@ -28,12 +30,20 @@ export default class Group extends Component {
           imagePath={imagePath}
           imageType={imageType}
           cacheBustParam={cacheBustParam}
-          toneSet={category[key].length > 1 ? category[key] : null}
+          toneSet={categoryEmojis[key].length > 1 ? categoryEmojis[key] : null}
+          checkMouseDown={checkMouseDown}
           onEmojiSelect={onEmojiSelect}
           onEmojiMouseDown={onEmojiMouseDown}
         />
       </li>
     ));
+  };
+
+  render() {
+    const {
+      theme = {},
+      group,
+    } = this.props;
 
     console.log('render group', group.title);
 
@@ -47,7 +57,7 @@ export default class Group extends Component {
           className={theme.emojiSelectGroupList}
           ref={(element) => { this.list = element; }}
         >
-          {group.categories.map((category) => renderCategory(emojis[category]))}
+          {group.categories.map((category) => this.renderCategory(category))}
         </ul>
       </section>
     );

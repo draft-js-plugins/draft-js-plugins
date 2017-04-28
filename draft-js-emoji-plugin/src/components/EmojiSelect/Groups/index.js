@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ScrollArea from 'react-scrollbar';
 import isEqual from 'lodash.isequal';
-import shortid from 'shortid';
 import Group from './Group';
 
 export default class Groups extends Component {
@@ -56,6 +55,7 @@ export default class Groups extends Component {
       imagePath,
       imageType,
       cacheBustParam,
+      checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,
     } = this.props;
@@ -80,13 +80,14 @@ export default class Groups extends Component {
       >
         {groups.map((group) => (
           <Group
-            key={shortid.generate()}
+            key={`group-${group.categories.join('-')}`}
             theme={theme}
             group={group}
             emojis={emojis}
             imagePath={imagePath}
             imageType={imageType}
             cacheBustParam={cacheBustParam}
+            checkMouseDown={checkMouseDown}
             onEmojiSelect={onEmojiSelect}
             onEmojiMouseDown={onEmojiMouseDown}
             ref={(element) => {

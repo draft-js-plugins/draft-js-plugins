@@ -37,16 +37,23 @@ export default class EmojiSelect extends Component {
     window.removeEventListener('mouseup', this.onMouseUp);
   }
 
-  onMouseUp = () => {
-    this.activeEmoji.unsetActive();
-    this.mouseDown = false;
-    this.activeEmoji = null;
+  onMouseDown = () => {
+    this.mouseDown = true;
+  };
 
-    if (this.state.showToneSelect) {
-      this.closeToneSelect();
-    } else if (this.toneSelectTimer) {
-      clearTimeout(this.toneSelectTimer);
-      this.toneSelectTimer = null;
+  onMouseUp = () => {
+    this.mouseDown = false;
+
+    if (this.activeEmoji) {
+      this.activeEmoji.unsetActive();
+      this.activeEmoji = null;
+
+      if (this.state.showToneSelect) {
+        this.closeToneSelect();
+      } else if (this.toneSelectTimer) {
+        clearTimeout(this.toneSelectTimer);
+        this.toneSelectTimer = null;
+      }
     }
   };
 
@@ -59,7 +66,6 @@ export default class EmojiSelect extends Component {
   };
 
   onEmojiMouseDown = (emojiEntry, toneSet) => {
-    this.mouseDown = true;
     this.activeEmoji = emojiEntry;
     this.activeEmoji.setActive();
 
@@ -102,6 +108,8 @@ export default class EmojiSelect extends Component {
       showToneSelect: false,
     });
   };
+
+  checkMouseDown = () => this.mouseDown;
 
   emojis = createEmojisFromStrategy(strategy);
   mouseDown = false;
@@ -168,6 +176,7 @@ export default class EmojiSelect extends Component {
     return (
       <div
         className={theme.emojiSelect}
+        onMouseDown={this.onMouseDown}
         ref={(element) => { this.container = element; }}
       >
         <h3 className={theme.emojiSelectTitle}>{groups[activeGroup].title}</h3>
@@ -178,6 +187,7 @@ export default class EmojiSelect extends Component {
           imagePath={imagePath}
           imageType={imageType}
           cacheBustParam={cacheBustParam}
+          checkMouseDown={this.checkMouseDown}
           onEmojiSelect={this.onEmojiSelect}
           onEmojiMouseDown={this.onEmojiMouseDown}
           onGroupScroll={this.onGroupScroll}
