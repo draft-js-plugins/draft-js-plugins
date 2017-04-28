@@ -78,9 +78,11 @@ export default class Groups extends Component {
         onScroll={this.onScroll}
         ref={(element) => { this.scroll = element; }}
       >
-        {groups.map((group) => (
+        {groups.map((group, index) => (
           <Group
-            key={`group-${group.categories.join('-')}`}
+            key={
+              `group#${index}[${group.categories.join(',')}]` // eslint-disable-line react/no-array-index-key
+            }
             theme={theme}
             group={group}
             emojis={emojis}

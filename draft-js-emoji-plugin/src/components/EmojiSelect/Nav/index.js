@@ -1,27 +1,30 @@
-import React, { Component } from 'react';
-import shortid from 'shortid';
+import React from 'react';
+import Entry from './Entry';
 
-export default class Nav extends Component {
-  render() {
-    const {
-      theme = {},
-      groups,
-      activeGroup,
-      onGroupSelect,
-    } = this.props;
+const Nav = ({
+  theme = {},
+  groups,
+  activeGroup,
+  onGroupSelect,
+}) => (
+  <ul className={theme.emojiSelectNav}>
+    {groups.map((group, index) => (
+      <li
+        key={
+          `nav-item#${index}[${group.categories.join(',')}]` // eslint-disable-line react/no-array-index-key
+        }
+        className={theme.emojiSelectNavItem}
+      >
+        <Entry
+          theme={theme}
+          groupIndex={index}
+          isActive={index === activeGroup}
+          icon={group.icon}
+          onGroupSelect={onGroupSelect}
+        />
+      </li>
+    ))}
+  </ul>
+);
 
-    return (
-      <ul className={theme.emojiSelectNav}>
-        {groups.map((group, index) => (
-          <li key={shortid.generate()} className={theme.emojiSelectNavItem}>
-            <button
-              className={index === activeGroup ?
-                theme.emojiSelectNavEntryActive : theme.emojiSelectNavEntry}
-              onClick={() => onGroupSelect(index)}
-            >{group.icon}</button>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
+export default Nav;
