@@ -45,8 +45,6 @@ export default class Group extends Component {
       group,
     } = this.props;
 
-    console.log('render group', group.title);
-
     return (
       <section
         className={theme.emojiSelectGroup}

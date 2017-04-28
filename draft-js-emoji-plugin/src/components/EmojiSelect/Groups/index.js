@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import ScrollArea from 'react-scrollbar';
-import isEqual from 'lodash.isequal';
 import Group from './Group';
 
 export default class Groups extends Component {
   componentDidMount() {
     this.calculateBounds();
   }
-
-  shouldComponentUpdate = (nextProps) => !isEqual(nextProps, this.props);
 
   componentDidUpdate() {
     this.calculateBounds();
@@ -65,8 +62,6 @@ export default class Groups extends Component {
       width: '.3em',
       borderRadius: '.15em',
     };
-
-    console.log('render groups');
 
     return (
       <ScrollArea

@@ -170,8 +170,6 @@ export default class EmojiSelect extends Component {
 
     const { activeGroup } = this.state;
 
-    console.log('render emojiSelect');
-
     return (
       <div
         className={theme.emojiSelect}
