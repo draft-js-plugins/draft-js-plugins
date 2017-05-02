@@ -1,8 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import toStyle from 'to-style';
 import Entry from '../Entry';
 
 export default class ToneSelect extends Component {
+  static propTypes = {
+    cacheBustParam: PropTypes.string.isRequired,
+    imagePath: PropTypes.string.isRequired,
+    imageType: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
+    bounds: PropTypes.shape({
+      areaBounds: PropTypes.shape({
+        left: PropTypes.number.isRequired,
+        right: PropTypes.number.isRequired,
+        top: PropTypes.number.isRequired,
+        bottom: PropTypes.number.isRequired,
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
+      }).isRequired,
+      entryBounds: PropTypes.shape({
+        left: PropTypes.number.isRequired,
+        right: PropTypes.number.isRequired,
+        top: PropTypes.number.isRequired,
+        bottom: PropTypes.number.isRequired,
+        width: PropTypes.number.isRequired,
+        height: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    onEmojiSelect: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     const { areaBounds, entryBounds } = this.props.bounds;
 
@@ -42,11 +69,11 @@ export default class ToneSelect extends Component {
 
   render() {
     const {
-      theme = {},
-      toneSet = [],
       cacheBustParam,
       imagePath,
       imageType,
+      theme = {},
+      toneSet = [],
       onEmojiSelect,
     } = this.props;
 

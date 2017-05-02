@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Entry from './Entry';
 
 const Nav = ({
@@ -26,5 +27,12 @@ const Nav = ({
     ))}
   </ul>
 );
+
+Nav.propTypes = {
+  theme: PropTypes.object.isRequired,
+  groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activeGroup: PropTypes.number.isRequired,
+  onGroupSelect: PropTypes.func.isRequired,
+};
 
 export default Nav;

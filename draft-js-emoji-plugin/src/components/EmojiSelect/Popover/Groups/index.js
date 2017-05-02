@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ScrollArea from 'react-scrollbar';
 import Group from './Group';
 
 export default class Groups extends Component {
+  static propTypes = {
+    cacheBustParam: PropTypes.string.isRequired,
+    imagePath: PropTypes.string.isRequired,
+    imageType: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    emojis: PropTypes.object.isRequired,
+    checkMouseDown: PropTypes.func.isRequired,
+    onEmojiSelect: PropTypes.func.isRequired,
+    onEmojiMouseDown: PropTypes.func.isRequired,
+    onGroupScroll: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     this.calculateBounds();
   }
@@ -46,12 +60,12 @@ export default class Groups extends Component {
 
   render() {
     const {
-      theme = {},
-      groups = [],
-      emojis = {},
+      cacheBustParam,
       imagePath,
       imageType,
-      cacheBustParam,
+      theme = {},
+      groups = [],
+      emojis,
       checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,

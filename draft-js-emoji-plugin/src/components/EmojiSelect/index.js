@@ -1,22 +1,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import strategy from 'emojione/emoji.json';
+import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
+import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Popover from './Popover';
+
+const emojis = createEmojisFromStrategy(strategy);
 
 export default class EmojiSelect extends Component {
   static propTypes = {
+    cacheBustParam: PropTypes.string.isRequired,
+    imagePath: PropTypes.string.isRequired,
+    imageType: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired,
+    selectGroups: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      icon: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+      ]).isRequired,
+      categories: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(emojis))).isRequired,
+    })),
     selectButtonContent: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.string,
     ]),
+    toneSelectOpenDelay: PropTypes.number,
   };
 
   static defaultProps = {
     selectButtonContent: '☺',
+    selectGroups: defaultEmojiGroups,
+    toneSelectOpenDelay: 500,
   };
 
   // Start the selector closed
   state = {
-    open: false,
+    isOpen: false,
   };
 
   // When the selector is open and users click anywhere on the page,
@@ -40,30 +61,36 @@ export default class EmojiSelect extends Component {
 
   // Open the popover
   openPopover = () => {
-    if (!this.state.open) {
+    if (!this.state.isOpen) {
       this.setState({
-        open: true,
+        isOpen: true,
       });
     }
   };
 
   // Close the popover
   closePopover = () => {
-    if (this.state.open) {
+    if (this.state.isOpen) {
       this.setState({
-        open: false,
+        isOpen: false,
       });
     }
   };
 
   render() {
-    const { theme = {} } = this.props;
-    const buttonClassName = this.state.open ?
+    const {
+      cacheBustParam,
+      imagePath,
+      imageType,
+      theme = {},
+      store,
+      selectGroups,
+      selectButtonContent,
+      toneSelectOpenDelay,
+    } = this.props;
+    const buttonClassName = this.state.isOpen ?
       theme.emojiSelectButtonPressed :
       theme.emojiSelectButton;
-    const popoverClassName = this.state.open ?
-      theme.emojiSelectPopover :
-      theme.emojiSelectPopoverClosed;
 
     return (
       <div className={theme.emojiSelect} onClick={this.onClick}>
@@ -71,9 +98,19 @@ export default class EmojiSelect extends Component {
           className={buttonClassName}
           onMouseUp={this.onButtonMouseUp}
         >
-          {this.props.selectButtonContent}
+          {selectButtonContent}
         </button>
-        <Popover className={popoverClassName} {...this.props} />
+        <Popover
+          cacheBustParam={cacheBustParam}
+          imagePath={imagePath}
+          imageType={imageType}
+          theme={theme}
+          store={store}
+          groups={selectGroups}
+          emojis={emojis}
+          toneSelectOpenDelay={toneSelectOpenDelay}
+          isOpen={this.state.isOpen}
+        />
       </div>
     );
   }

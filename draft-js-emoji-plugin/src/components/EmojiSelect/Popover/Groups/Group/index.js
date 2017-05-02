@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Entry from '../../Entry';
 
 export default class Group extends Component {
+  static propTypes = {
+    cacheBustParam: PropTypes.string.isRequired,
+    imagePath: PropTypes.string.isRequired,
+    imageType: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
+    group: PropTypes.object.isRequired,
+    emojis: PropTypes.object.isRequired,
+    checkMouseDown: PropTypes.func.isRequired,
+    onEmojiSelect: PropTypes.func.isRequired,
+    onEmojiMouseDown: PropTypes.func.isRequired,
+  };
+
   shouldComponentUpdate = () => false;
 
   renderCategory = (category) => {
     const {
-      theme = {},
-      emojis,
+      cacheBustParam,
       imagePath,
       imageType,
-      cacheBustParam,
+      theme = {},
+      emojis,
       checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,

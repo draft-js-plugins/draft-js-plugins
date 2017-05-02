@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import strategy from 'emojione/emoji.json';
 import addEmoji from '../../../modifiers/addEmoji';
-import createEmojisFromStrategy from '../../../utils/createEmojisFromStrategy';
-import defaultEmojiGroups from '../../../constants/defaultEmojiGroups';
 import Groups from './Groups';
 import Nav from './Nav';
 import ToneSelect from './ToneSelect';
 
 export default class Popover extends Component {
   static propTypes = {
-    className: PropTypes.string,
-    groups: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      icon: PropTypes.element.isRequired,
-      emojis: PropTypes.array,
-      categories: PropTypes.arrayOf(PropTypes.string),
-    })),
-    toneSelectOpenDelay: PropTypes.number,
+    cacheBustParam: PropTypes.string.isRequired,
+    imagePath: PropTypes.string.isRequired,
+    imageType: PropTypes.string.isRequired,
+    theme: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired,
+    groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+    emojis: PropTypes.object.isRequired,
+    toneSelectOpenDelay: PropTypes.number.isRequired,
+    isOpen: PropTypes.bool,
   };
 
   static defaultProps = {
-    groups: defaultEmojiGroups,
-    toneSelectOpenDelay: 500,
+    isOpen: false,
   };
 
   state = {
@@ -115,7 +112,6 @@ export default class Popover extends Component {
 
   checkMouseDown = () => this.mouseDown;
 
-  emojis = createEmojisFromStrategy(strategy);
   mouseDown = false;
   activeEmoji = null;
   toneSet = [];
@@ -123,7 +119,7 @@ export default class Popover extends Component {
 
   renderToneSelect = () => {
     if (this.state.showToneSelect) {
-      const { theme = {}, imagePath, imageType, cacheBustParam } = this.props;
+      const { cacheBustParam, imagePath, imageType, theme = {} } = this.props;
 
       const containerBounds = this.container.getBoundingClientRect();
       const areaBounds = this.groups.scroll.wrapper.getBoundingClientRect();
@@ -166,14 +162,17 @@ export default class Popover extends Component {
 
   render() {
     const {
-      className,
-      theme = {},
-      groups = [],
+      cacheBustParam,
       imagePath,
       imageType,
-      cacheBustParam,
+      theme = {},
+      groups = [],
+      emojis,
+      isOpen = false,
     } = this.props;
-
+    const className = isOpen ?
+      theme.emojiSelectPopover :
+      theme.emojiSelectPopoverClosed;
     const { activeGroup } = this.state;
 
     return (
@@ -189,7 +188,7 @@ export default class Popover extends Component {
         <Groups
           theme={theme}
           groups={groups}
-          emojis={this.emojis}
+          emojis={emojis}
           imagePath={imagePath}
           imageType={imageType}
           cacheBustParam={cacheBustParam}
@@ -201,7 +200,7 @@ export default class Popover extends Component {
         />
         <Nav
           theme={theme}
-          groups={this.props.groups}
+          groups={groups}
           activeGroup={activeGroup}
           onGroupSelect={this.onGroupSelect}
         />

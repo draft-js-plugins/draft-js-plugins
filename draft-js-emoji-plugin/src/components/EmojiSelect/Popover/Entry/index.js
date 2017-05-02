@@ -4,18 +4,14 @@ import emojione from 'emojione';
 
 export default class Entry extends Component {
   static propTypes = {
-    emoji: PropTypes.string,
-    theme: PropTypes.shape({
-      entry: PropTypes.string,
-      entryFocused: PropTypes.string,
-      entryIcon: PropTypes.string,
-    }),
+    cacheBustParam: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
     imageType: PropTypes.string.isRequired,
-    cacheBustParam: PropTypes.string,
-    toneSet: PropTypes.arrayOf(PropTypes.string),
+    theme: PropTypes.object.isRequired,
+    emoji: PropTypes.string.isRequired,
     mouseDown: PropTypes.bool,
-    onEmojiSelect: PropTypes.func,
+    checkMouseDown: PropTypes.func.isRequired,
+    onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func,
   };
 
@@ -58,7 +54,7 @@ export default class Entry extends Component {
   mouseDown = this.props.mouseDown;
 
   render() {
-    const { emoji, theme = {}, imagePath, imageType, cacheBustParam } = this.props;
+    const { cacheBustParam, imagePath, imageType, theme = {}, emoji } = this.props;
     // short name to image url code steal from emojione source code
     const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
     const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;

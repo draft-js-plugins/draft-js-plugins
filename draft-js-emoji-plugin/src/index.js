@@ -122,18 +122,21 @@ export default (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const {
     theme = defaultTheme,
-    positionSuggestions = defaultPositionSuggestions,
     imagePath = defaultImagePath,
     imageType = defaultImageType,
     allowImageCache,
-    priorityList,
+    positionSuggestions = defaultPositionSuggestions,
+    suggestionsPriorityList,
+    selectGroups,
+    selectButtonContent,
+    toneSelectOpenDelay,
   } = config;
 
   const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
 
-  // if priorityList is configured in config then set priorityList
-  if (priorityList) emojiList.setPriorityList(priorityList);
-  const emojiSuggestionsProps = {
+  // if suggestionsPriorityList is configured in config then set priorityList
+  if (suggestionsPriorityList) emojiList.setPriorityList(suggestionsPriorityList);
+  const suggestionsProps = {
     ariaProps,
     cacheBustParam,
     callbacks,
@@ -144,18 +147,19 @@ export default (config = {}) => {
     positionSuggestions,
     shortNames: List(keys(emojiList.list)),
   };
-  const emojiSelectProps = {
+  const selectProps = {
     cacheBustParam,
     imagePath,
     imageType,
     theme,
     store,
+    selectGroups,
+    selectButtonContent,
+    toneSelectOpenDelay,
   };
   return {
-    EmojiSuggestions: decorateComponentWithProps(
-      EmojiSuggestions, emojiSuggestionsProps,
-    ),
-    EmojiSelect: decorateComponentWithProps(EmojiSelect, emojiSelectProps),
+    EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, suggestionsProps),
+    EmojiSelect: decorateComponentWithProps(EmojiSelect, selectProps),
     decorators: [
       {
         strategy: emojiStrategy,
