@@ -19,14 +19,13 @@ export default class Group extends Component {
     const categoryEmojis = emojis[category];
 
     return Object.keys(categoryEmojis).map((key) => (
-      <li key={categoryEmojis[key][0]} className={theme.emojiSelectGroupItem}>
+      <li
+        key={categoryEmojis[key][0]}
+        className={theme.emojiSelectPopoverGroupItem}
+      >
         <Entry
           emoji={categoryEmojis[key][0]}
-          theme={{
-            entry: theme.emojiSelectGroupEntry,
-            entryFocused: theme.emojiSelectGroupEntryFocused,
-            entryIcon: theme.emojiSelectGroupEntryIcon,
-          }}
+          theme={theme}
           imagePath={imagePath}
           imageType={imageType}
           cacheBustParam={cacheBustParam}
@@ -47,12 +46,12 @@ export default class Group extends Component {
 
     return (
       <section
-        className={theme.emojiSelectGroup}
+        className={theme.emojiSelectPopoverGroup}
         ref={(element) => { this.container = element; }}
       >
-        <h3 className={theme.emojiSelectGroupTitle}>{group.title}</h3>
+        <h3 className={theme.emojiSelectPopoverGroupTitle}>{group.title}</h3>
         <ul
-          className={theme.emojiSelectGroupList}
+          className={theme.emojiSelectPopoverGroupList}
           ref={(element) => { this.list = element; }}
         >
           {group.categories.map((category) => this.renderCategory(category))}

@@ -24,7 +24,8 @@ export default class Entry extends Component {
     return (
       <button
         className={isActive ?
-          theme.emojiSelectNavEntryActive : theme.emojiSelectNavEntry}
+          theme.emojiSelectPopoverNavEntryActive :
+          theme.emojiSelectPopoverNavEntry}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
       >{icon}</button>

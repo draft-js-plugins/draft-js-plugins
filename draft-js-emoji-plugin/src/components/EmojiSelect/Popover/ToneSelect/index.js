@@ -9,10 +9,6 @@ export default class ToneSelect extends Component {
     this.setCorrectPosition(areaBounds, entryBounds);
   }
 
-  onWheel = (e) => {
-    e.preventDefault();
-  }
-
   setCorrectPosition = (areaBounds, entryBounds) => {
     const width = this.tones.offsetWidth;
     const height = this.tones.offsetHeight;
@@ -55,23 +51,19 @@ export default class ToneSelect extends Component {
     } = this.props;
 
     return (
-      <div className={theme.emojiSelectTone} onWheel={this.onWheel}>
+      <div className={theme.emojiSelectPopoverTone}>
         <ul
-          className={theme.emojiSelectToneList}
+          className={theme.emojiSelectPopoverToneList}
           ref={(element) => { this.tones = element; }}
         >
           {toneSet.map((emoji) => (
             <li
               key={`tone-select(${emoji})`}
-              className={theme.emojiSelectToneItem}
+              className={theme.emojiSelectPopoverToneItem}
             >
               <Entry
                 emoji={emoji}
-                theme={{
-                  entry: theme.emojiSelectToneEntry,
-                  entryFocused: theme.emojiSelectToneEntryFocused,
-                  entryIcon: theme.emojiSelectToneEntryIcon,
-                }}
+                theme={theme}
                 imagePath={imagePath}
                 imageType={imageType}
                 cacheBustParam={cacheBustParam}

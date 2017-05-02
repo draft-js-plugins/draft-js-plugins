@@ -7,13 +7,13 @@ const Nav = ({
   activeGroup,
   onGroupSelect,
 }) => (
-  <ul className={theme.emojiSelectNav}>
+  <ul className={theme.emojiSelectPopoverNav}>
     {groups.map((group, index) => (
       <li
         key={
           `nav-group#${index}[${group.categories.join(',')}]` // eslint-disable-line react/no-array-index-key
         }
-        className={theme.emojiSelectNavItem}
+        className={theme.emojiSelectPopoverNavItem}
       >
         <Entry
           theme={theme}

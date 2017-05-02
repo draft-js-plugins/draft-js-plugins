@@ -36,29 +36,32 @@ export default (config = {}) => {
     emojiSuggestionsEntryAvatar: emojiSuggestionsEntryStyles.emojiSuggestionsEntryAvatar,
 
     emojiSelect: emojiSelectStyles.emojiSelect,
-    emojiSelectTitle: emojiSelectStyles.emojiSelectTitle,
 
-    emojiSelectGroups: emojiSelectStyles.emojiSelectGroups,
+    emojiSelectButton: emojiSelectStyles.emojiSelectButton,
+    emojiSelectButtonPressed: emojiSelectStyles.emojiSelectButtonPressed,
 
-    emojiSelectGroup: emojiSelectStyles.emojiSelectGroup,
-    emojiSelectGroupTitle: emojiSelectStyles.emojiSelectGroupTitle,
-    emojiSelectGroupList: emojiSelectStyles.emojiSelectGroupList,
-    emojiSelectGroupItem: emojiSelectStyles.emojiSelectGroupItem,
-    emojiSelectGroupEntry: emojiSelectStyles.emojiSelectGroupEntry,
-    emojiSelectGroupEntryFocused: emojiSelectStyles.emojiSelectGroupEntryFocused,
-    emojiSelectGroupEntryIcon: emojiSelectStyles.emojiSelectGroupEntryIcon,
+    emojiSelectPopover: emojiSelectStyles.emojiSelectPopover,
+    emojiSelectPopoverClosed: emojiSelectStyles.emojiSelectPopoverClosed,
+    emojiSelectPopoverTitle: emojiSelectStyles.emojiSelectPopoverTitle,
+    emojiSelectPopoverGroups: emojiSelectStyles.emojiSelectPopoverGroups,
 
-    emojiSelectTone: emojiSelectStyles.emojiSelectTone,
-    emojiSelectToneList: emojiSelectStyles.emojiSelectToneList,
-    emojiSelectToneItem: emojiSelectStyles.emojiSelectToneItem,
-    emojiSelectToneEntry: emojiSelectStyles.emojiSelectToneEntry,
-    emojiSelectToneEntryFocused: emojiSelectStyles.emojiSelectToneEntryFocused,
-    emojiSelectToneEntryIcon: emojiSelectStyles.emojiSelectToneEntryIcon,
+    emojiSelectPopoverGroup: emojiSelectStyles.emojiSelectPopoverGroup,
+    emojiSelectPopoverGroupTitle: emojiSelectStyles.emojiSelectPopoverGroupTitle,
+    emojiSelectPopoverGroupList: emojiSelectStyles.emojiSelectPopoverGroupList,
+    emojiSelectPopoverGroupItem: emojiSelectStyles.emojiSelectPopoverGroupItem,
 
-    emojiSelectNav: emojiSelectStyles.emojiSelectNav,
-    emojiSelectNavItem: emojiSelectStyles.emojiSelectNavItem,
-    emojiSelectNavEntry: emojiSelectStyles.emojiSelectNavEntry,
-    emojiSelectNavEntryActive: emojiSelectStyles.emojiSelectNavEntryActive,
+    emojiSelectPopoverTone: emojiSelectStyles.emojiSelectPopoverTone,
+    emojiSelectPopoverToneList: emojiSelectStyles.emojiSelectPopoverToneList,
+    emojiSelectPopoverToneItem: emojiSelectStyles.emojiSelectPopoverToneItem,
+
+    emojiSelectPopoverEntry: emojiSelectStyles.emojiSelectPopoverEntry,
+    emojiSelectPopoverEntryFocused: emojiSelectStyles.emojiSelectPopoverEntryFocused,
+    emojiSelectPopoverEntryIcon: emojiSelectStyles.emojiSelectPopoverEntryIcon,
+
+    emojiSelectPopoverNav: emojiSelectStyles.emojiSelectPopoverNav,
+    emojiSelectPopoverNavItem: emojiSelectStyles.emojiSelectPopoverNavItem,
+    emojiSelectPopoverNavEntry: emojiSelectStyles.emojiSelectPopoverNavEntry,
+    emojiSelectPopoverNavEntryActive: emojiSelectStyles.emojiSelectPopoverNavEntryActive,
   };
 
   const callbacks = {

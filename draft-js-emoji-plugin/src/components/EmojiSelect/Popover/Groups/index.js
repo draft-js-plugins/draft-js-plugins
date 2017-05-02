@@ -65,7 +65,7 @@ export default class Groups extends Component {
 
     return (
       <ScrollArea
-        className={theme.emojiSelectGroups}
+        className={theme.emojiSelectPopoverGroups}
         verticalContainerStyle={{
           ...scrollbarStyle,
           background: '#e0e0e0',

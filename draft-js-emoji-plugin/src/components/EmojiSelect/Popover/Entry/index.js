@@ -66,18 +66,18 @@ export default class Entry extends Component {
 
     return (
       <button
-        className={isFocused ? theme.entryFocused : theme.entry}
+        className={isFocused ?
+          theme.emojiSelectPopoverEntryFocused :
+          theme.emojiSelectPopoverEntry}
         onMouseDown={this.onMouseDown}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onMouseUp={this.onMouseUp}
-        title={emoji}
         ref={(element) => { this.button = element; }}
-        role="option"
       >
         <img
           src={fullImagePath}
-          className={theme.entryIcon}
+          className={theme.emojiSelectPopoverEntryIcon}
           draggable={false}
           role="presentation"
         />

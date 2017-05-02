@@ -4,7 +4,7 @@ import createEmojiPlugin from 'draft-js-emoji-plugin'; // eslint-disable-line im
 import editorStyles from './editorStyles.css';
 
 const emojiPlugin = createEmojiPlugin();
-const { EmojiSuggestions } = emojiPlugin;
+const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
 const plugins = [emojiPlugin];
 const text = `Cool, we can have all sorts of Emojis here. 🙌
 🌿☃️🎉🙈 aaaand maybe a few more here 🐲☀️🗻 Quite fun!`;
@@ -27,14 +27,19 @@ export default class SimpleEmojiEditor extends Component {
 
   render() {
     return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
-        />
-        <EmojiSuggestions />
+      <div>
+        <div className={editorStyles.editor} onClick={this.focus}>
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            plugins={plugins}
+            ref={(element) => { this.editor = element; }}
+          />
+          <EmojiSuggestions />
+        </div>
+        <div className={editorStyles.options}>
+          <EmojiSelect />
+        </div>
       </div>
     );
   }
