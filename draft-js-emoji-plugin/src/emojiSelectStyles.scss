@@ -103,7 +103,7 @@
       }
     }
 
-    &Tone {
+    &ToneSelect {
       position: absolute;
       left: 0;
       right: 0;
@@ -129,27 +129,6 @@
 
         &:first-child {
           border-right: 1px solid $borderColor;
-        }
-      }
-
-      &Entry {
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        background: none;
-        border: none;
-        outline: none;
-        transition: background-color .4s cubic-bezier(.27, 1.27, .48, .56);
-
-        &Focused {
-          @extend .emojiSelectPopoverToneEntry;
-          background-color: $hoverBackgroundColor;
-        }
-
-        &Icon {
-          width: 1.5em;
-          height: 1.5em;
-          vertical-align: middle;
         }
       }
     }
@@ -187,8 +166,7 @@
         height: $itemSize;
       }
 
-      &Entry,
-      &EntryActive {
+      &Entry {
         padding: 0;
         width: 100%;
         height: 100%;
@@ -197,10 +175,11 @@
         background: none;
         border: none;
         outline: none;
-      }
 
-      &EntryActive {
-        color: #42a5f5;
+        &Active {
+          @extend .emojiSelectPopoverNavEntry;
+          color: #42a5f5;
+        }
       }
     }
   }

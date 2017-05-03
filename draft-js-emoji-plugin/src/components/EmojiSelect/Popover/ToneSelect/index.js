@@ -78,15 +78,15 @@ export default class ToneSelect extends Component {
     } = this.props;
 
     return (
-      <div className={theme.emojiSelectPopoverTone}>
+      <div className={theme.emojiSelectPopoverToneSelect}>
         <ul
-          className={theme.emojiSelectPopoverToneList}
+          className={theme.emojiSelectPopoverToneSelectList}
           ref={(element) => { this.tones = element; }}
         >
           {toneSet.map((emoji) => (
             <li
               key={`tone-select(${emoji})`}
-              className={theme.emojiSelectPopoverToneItem}
+              className={theme.emojiSelectPopoverToneSelectItem}
             >
               <Entry
                 emoji={emoji}

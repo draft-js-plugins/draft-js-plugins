@@ -33,7 +33,6 @@ export default (config = {}) => {
     emojiSuggestionsEntryFocused: emojiSuggestionsEntryStyles.emojiSuggestionsEntryFocused,
     emojiSuggestionsEntryText: emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
     emojiSuggestionsEntryIcon: emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
-    emojiSuggestionsEntryAvatar: emojiSuggestionsEntryStyles.emojiSuggestionsEntryAvatar,
 
     emojiSelect: emojiSelectStyles.emojiSelect,
 
@@ -50,9 +49,9 @@ export default (config = {}) => {
     emojiSelectPopoverGroupList: emojiSelectStyles.emojiSelectPopoverGroupList,
     emojiSelectPopoverGroupItem: emojiSelectStyles.emojiSelectPopoverGroupItem,
 
-    emojiSelectPopoverTone: emojiSelectStyles.emojiSelectPopoverTone,
-    emojiSelectPopoverToneList: emojiSelectStyles.emojiSelectPopoverToneList,
-    emojiSelectPopoverToneItem: emojiSelectStyles.emojiSelectPopoverToneItem,
+    emojiSelectPopoverToneSelect: emojiSelectStyles.emojiSelectPopoverToneSelect,
+    emojiSelectPopoverToneSelectList: emojiSelectStyles.emojiSelectPopoverToneSelectList,
+    emojiSelectPopoverToneSelectItem: emojiSelectStyles.emojiSelectPopoverToneSelectItem,
 
     emojiSelectPopoverEntry: emojiSelectStyles.emojiSelectPopoverEntry,
     emojiSelectPopoverEntryFocused: emojiSelectStyles.emojiSelectPopoverEntryFocused,
