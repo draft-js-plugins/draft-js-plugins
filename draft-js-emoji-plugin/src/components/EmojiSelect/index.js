@@ -56,7 +56,7 @@ export default class EmojiSelect extends Component {
   };
 
   onButtonMouseUp = () => (
-    this.state.open ? this.closePopover() : this.openPopover()
+    this.state.isOpen ? this.closePopover() : this.openPopover()
   );
 
   // Open the popover
