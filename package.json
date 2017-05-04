@@ -98,7 +98,7 @@
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "draft-js": "^0.10.0",
-    "emojione": "^2.2.6",
+    "emojione": "^2.2.7",
     "eslint-plugin-import": "^2.2.0",
     "find-with-regex": "^1.0.2",
     "immutable": "^3.8.1",
