@@ -12,13 +12,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Make the emoji highlightable. Thanks to @AndrewHamm [#635](https://github.com/draft-js-plugins/draft-js-plugins/pull/635)
+- Update the list of Emojis from Emojione `2.1.2` to `2.2.7`. Thanks to @mzbac and @dineshvgp
 
 ### Added
 
 - Added {allowImageCache, imageType} properties to  config object.
 - Add `emojione` as a dependency.
 - Add `lodash.keys` as a dependency.
-- Update the list of Emojis from Emojione `2.1.2` to `2.2.6`. Thanks to @mzbac
 - The config object will accept a property `priorityList` which should contain Emoji entries used by EmojiOne. These entries will be show first in the EmojiSuggestions dropdown after typing `:`. Thanks to @mzbac
 
 ### Fixed

@@ -13,7 +13,7 @@ const mentionPlugin = createMentionPlugin({
       // eslint-disable-next-line no-alert
       onClick={() => alert('Clicked on the Mention!')}
     >
-      {props.decoratedText}
+      {props.children}
     </span>
   ),
 });

@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Fixed
+
+- Fixed an issue where render stickers from raw content state didn't work. Thanks to @matthiasn [#721](https://github.com/draft-js-plugins/draft-js-plugins/pull/721)
+
 ### Added
 
 - `blockRenderMap` for sticker custom block tyoe, the plugin should be responsible for its own block type rendering mapping.
