@@ -1,5 +1,6 @@
 /* eslint-disable no-continue,no-restricted-syntax */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Editor,
   EditorState,
@@ -18,13 +19,13 @@ import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
 class PluginEditor extends Component {
 
   static propTypes = {
-    editorState: React.PropTypes.object.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    plugins: React.PropTypes.array,
-    defaultKeyBindings: React.PropTypes.bool,
-    defaultBlockRenderMap: React.PropTypes.bool,
-    customStyleMap: React.PropTypes.object,
-    decorators: React.PropTypes.array,
+    editorState: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    plugins: PropTypes.array,
+    defaultKeyBindings: PropTypes.bool,
+    defaultBlockRenderMap: PropTypes.bool,
+    customStyleMap: PropTypes.object,
+    decorators: PropTypes.array,
   };
 
   static defaultProps = {

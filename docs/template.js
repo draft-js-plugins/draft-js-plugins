@@ -51,12 +51,4 @@ const Html = ({
   </html>
 );
 
-Html.propTypes = {
-  // title: React.PropTypes.string,
-  bundle: React.PropTypes.string,
-  body: React.PropTypes.string,
-  // favicon: React.PropTypes.string,
-  // stylesheet: React.PropTypes.string,
-};
-
 module.exports = Html;
