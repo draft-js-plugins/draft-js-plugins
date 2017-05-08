@@ -63,7 +63,7 @@ export default (editorState: Object, stickerId: any) => {
     new ContentBlock({
       key: genKey(),
       type: 'sticker',
-      text: '',
+      text: ' ',
       characterList: List(Repeat(charDataOfSticker, 1)), // eslint-disable-line new-cap
     }),
 
