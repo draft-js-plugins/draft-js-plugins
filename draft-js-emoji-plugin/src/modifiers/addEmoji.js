@@ -3,9 +3,11 @@ import getSearchText from '../utils/getSearchText';
 import emojiList from '../utils/emojiList';
 import convertShortNameToUnicode from '../utils/convertShortNameToUnicode';
 
+// This modifier can inserted emoji to current cursor position (with replace selected fragment),
+// or replaced emoji shortname like ":thumbsup:". Behavior determined by `Mode` parameter.
 const Mode = {
-  INSERT: 'INSERT',
-  REPLACE: 'REPLACE',
+  INSERT: 'INSERT', // insert emoji to current cursor position
+  REPLACE: 'REPLACE', // replace emoji shortname
 };
 
 const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
