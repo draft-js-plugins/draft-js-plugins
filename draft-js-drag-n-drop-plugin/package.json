@@ -1,6 +1,6 @@
 {
   "name": "draft-js-drag-n-drop-plugin",
-  "version": "2.0.0-beta10",
+  "version": "2.0.0-beta11",
   "description": "Block Drag & Drop Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
