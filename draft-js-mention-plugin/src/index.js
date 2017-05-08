@@ -46,6 +46,7 @@ export default (config = {}) => {
   let searches = Map();
   let escapedSearch;
   let clientRectFunctions = Map();
+  let isOpened;
 
   const store = {
     getEditorState: undefined,
@@ -73,6 +74,9 @@ export default (config = {}) => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
+
+    getIsOpened: () => isOpened,
+    setIsOpened: (nextIsOpened) => { isOpened = nextIsOpened; },
   };
 
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
