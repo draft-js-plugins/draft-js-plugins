@@ -31,7 +31,7 @@
     "draft-js": ">=0.9.1"
   },
   "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0"
   }
 }

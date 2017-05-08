@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
 import { List } from 'immutable';
 import Entry from './Entry';
