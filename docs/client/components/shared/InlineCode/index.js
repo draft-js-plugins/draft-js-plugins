@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
 import unionClassNames from 'union-class-names';
 import 'prismjs/themes/prism.css';

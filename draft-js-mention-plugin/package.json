@@ -35,11 +35,12 @@
     "draft-js": ">=0.9.1",
     "find-with-regex": "^1.0.2",
     "immutable": "~3.7.4",
+    "prop-types": "^15.5.8",
     "lodash.escaperegexp": "^4.1.2",
     "union-class-names": "^1.0.0"
   },
   "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0"
   }
 }
