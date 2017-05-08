@@ -41,9 +41,6 @@ export default class MentionSuggestions extends Component {
     if (nextProps.suggestions.size === 0 && this.state.isActive) {
       this.closeDropdown();
     }
-    if (nextProps.suggestions.size >= 1 && !this.state.isActive) {
-      this.openDropdown();
-    }
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -246,6 +243,10 @@ export default class MentionSuggestions extends Component {
   };
 
   commitSelection = () => {
+    if (!this.props.store.getIsOpened()) {
+      return 'not-handled';
+    }
+
     this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
     return 'handled';
   };

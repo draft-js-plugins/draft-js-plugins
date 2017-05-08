@@ -20,6 +20,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fix bug that selects candidate on hitting return key even if the dropdown was closed. Thanks to @ngs [#720](https://github.com/draft-js-plugins/draft-js-plugins/pull/720)
+- Fix issue with: add two mentions in the Custom Mention Component Example editor, then press backspace key, will remove the first one. Thanks to @chenyuejie [#693](https://github.com/draft-js-plugins/draft-js-plugins/pull/693)
+- Prevents inserting the selected item on Enter or Tab when there's no trigger in sight and dropdown is not rendered. Thanks to @alexfedoseev [#706](https://github.com/draft-js-plugins/draft-js-plugins/pull/706)
 - Reopens mentions dropdown if new suggestions are available. Thanks to @jameskraus [#659](https://github.com/draft-js-plugins/draft-js-plugins/pull/659)
 - Solved a bug with @ being placed in the beginning. Thanks to @hjyue1 [#621](https://github.com/draft-js-plugins/draft-js-plugins/pull/621)
 - Fixed "Cannot read property 'getBoundingClientRect' of null" issue. Thanks to @ismyrnow [#666](https://github.com/draft-js-plugins/draft-js-plugins/pull/667)

@@ -33,6 +33,7 @@ In case you are interested in helping [Issue #329](https://github.com/draft-js-p
 - [Single Line](https://github.com/icelab/draft-js-single-line-plugin) by [Max Wheeler/Icelab](https://github.com/makenosound)
 - [RichButtons](https://github.com/jasonphillips/draft-js-richbuttons-plugin) by [jasonphillips](https://github.com/jasonphillips)
 - [Katex](https://github.com/letranloc/draft-js-katex-plugin) by [letranloc](https://github.com/letranloc)
+- [Mathjax](https://github.com/efloti/draft-js-mathjax-plugin) by [efloti](https://github.com/efloti)
 
 ## Live Example & Documentation
 
