@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Fix issue with: add two mentions in the Custom Mention Component Example editor, then press backspace key, will remove the first one. Thanks to @chenyuejie [#693](https://github.com/draft-js-plugins/draft-js-plugins/pull/693)
 - Prevents inserting the selected item on Enter or Tab when there's no trigger in sight and dropdown is not rendered. Thanks to @alexfedoseev [#706](https://github.com/draft-js-plugins/draft-js-plugins/pull/706)
 - Reopens mentions dropdown if new suggestions are available. Thanks to @jameskraus [#659](https://github.com/draft-js-plugins/draft-js-plugins/pull/659)
 - Solved a bug with @ being placed in the beginning. Thanks to @hjyue1 [#621](https://github.com/draft-js-plugins/draft-js-plugins/pull/621)
