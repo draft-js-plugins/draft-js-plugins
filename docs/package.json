@@ -31,7 +31,7 @@
     "postcss-loader": "^1.2.0",
     "prismjs": "^1.5.1",
     "react": "^15.1.0",
-    "react-addons-pure-render-mixin": "^15.5.4",
+    "react-addons-pure-render-mixin": "^15.5.2",
     "react-dom": "^15.1.0",
     "react-router": "^3.0.0",
     "react-static-webpack-plugin": "^2.1.0",
