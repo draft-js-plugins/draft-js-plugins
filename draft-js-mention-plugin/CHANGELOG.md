@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+- Prevents inserting the selected item on Enter or Tab when there's no trigger in sight and dropdown is not rendered. Thanks to @alexfedoseev [#706](https://github.com/draft-js-plugins/draft-js-plugins/pull/706)
 - Reopens mentions dropdown if new suggestions are available. Thanks to @jameskraus [#659](https://github.com/draft-js-plugins/draft-js-plugins/pull/659)
 - Solved a bug with @ being placed in the beginning. Thanks to @hjyue1 [#621](https://github.com/draft-js-plugins/draft-js-plugins/pull/621)
 - Fixed "Cannot read property 'getBoundingClientRect' of null" issue. Thanks to @ismyrnow [#666](https://github.com/draft-js-plugins/draft-js-plugins/pull/667)
