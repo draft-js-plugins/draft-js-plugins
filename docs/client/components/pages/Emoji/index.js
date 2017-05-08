@@ -32,7 +32,7 @@ const toneSelectStyles = `.emojiSelectPopoverToneSelect {
   bottom: 0;
   z-index: 2;
 }`;
-const suggestionsPriorityListCode = `suggestionsPriorityList: {
+const priorityListCode = `priorityList: {
   ':see_no_evil:': ["1f648"],
   ':raised_hands:': ["1f64c"],
   ':100:': ["1f4af"],
@@ -253,10 +253,10 @@ export default class App extends Component {
             <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the colon. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span>
           </div>
           <div className={styles.paramBig}>
-            <span className={styles.paramName}>suggestionsPriorityList</span>
+            <span className={styles.paramName}>priorityList</span>
             <div>
               These entries will be show first in the EmojiSuggestions dropdown after typing `:`. Must be an object which must contain Emoji entries used by EmojiOne e.g.
-              <Code code={suggestionsPriorityListCode} />
+              <Code code={priorityListCode} />
             </div>
           </div>
           <div className={styles.paramBig}>

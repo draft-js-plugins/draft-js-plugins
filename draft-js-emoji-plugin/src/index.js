@@ -125,7 +125,7 @@ export default (config = {}) => {
     imageType = defaultImageType,
     allowImageCache,
     positionSuggestions = defaultPositionSuggestions,
-    suggestionsPriorityList,
+    priorityList,
     selectGroups,
     selectButtonContent,
     toneSelectOpenDelay,
@@ -133,8 +133,8 @@ export default (config = {}) => {
 
   const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
 
-  // if suggestionsPriorityList is configured in config then set priorityList
-  if (suggestionsPriorityList) emojiList.setPriorityList(suggestionsPriorityList);
+  // if priorityList is configured in config then set priorityList
+  if (priorityList) emojiList.setPriorityList(priorityList);
   const suggestionsProps = {
     ariaProps,
     cacheBustParam,
