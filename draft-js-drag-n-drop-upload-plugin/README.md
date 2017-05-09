@@ -7,7 +7,7 @@ This plugin adds dropping & uploading files functionality to your editor!
 Usage:
 
 ```js
-import createDndFileUploadPlugin from 'draft-js-drag-n-drop-upload-plugin';
+import createDndFileUploadPlugin from 'draft-js-drag-n-drop-plugin-canopy';
 
 const dndFileUploadPlugin = createDndFileUploadPlugin();
 ```
