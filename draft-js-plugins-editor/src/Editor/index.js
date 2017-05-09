@@ -126,27 +126,21 @@ class PluginEditor extends Component {
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
-    for (let i = 0; i < plugins.length; i++) {
-      const plugin = plugins[i];
-      if (typeof plugin[methodName] !== 'function') continue;
-      const result = plugin[methodName](...newArgs);
-      if (result === true) return true;
-    }
 
-    return false;
+    return plugins.some((plugin) =>
+      typeof plugin[methodName] === 'function'
+        && plugin[methodName](...newArgs) === true
+    );
   };
 
   createHandleHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
-    for (let i = 0; i < plugins.length; i++) {
-      const plugin = plugins[i];
-      if (typeof plugin[methodName] !== 'function') continue;
-      const result = plugin[methodName](...newArgs);
-      if (result === 'handled') return 'handled';
-    }
 
-    return 'not-handled';
+    return plugins.some((plugin) =>
+      typeof plugin[methodName] === 'function'
+        && plugin[methodName](...newArgs) === 'handled'
+    ) ? 'handled' : 'not-handled';
   };
 
   createFnHooks = (methodName, plugins) => (...args) => {
@@ -180,16 +174,13 @@ class PluginEditor extends Component {
       return styles || false;
     }
 
-    for (let i = 0; i < plugins.length; i++) {
-      const plugin = plugins[i];
-      if (typeof plugin[methodName] !== 'function') continue;
-      const result = plugin[methodName](...newArgs);
-      if (result !== undefined) {
-        return result;
-      }
-    }
-
-    return false;
+    let result;
+    const wasHandled = plugins.some((plugin) => {
+      if (typeof plugin[methodName] !== 'function') return false;
+      result = plugin[methodName](...newArgs);
+      return result !== undefined;
+    });
+    return wasHandled ? result : false;
   };
 
   createPluginHooks = () => {
