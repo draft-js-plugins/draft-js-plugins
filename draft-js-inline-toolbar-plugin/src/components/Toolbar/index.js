@@ -74,7 +74,7 @@ export default class Toolbar extends React.Component {
     }
   }
 
-  onSelectionChanged = (selection) => {
+  onSelectionChanged = () => {
     const relativeParent = getRelativeParent(this.toolbar.parentElement);
     const relativeRect = (relativeParent || document.body).getBoundingClientRect();
     const selectionRect = getVisibleSelectionRect(window);
