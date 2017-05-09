@@ -40,17 +40,17 @@ class PluginEditor extends Component {
     super(props);
 
     const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
-      if (typeof plugin.initialize !== 'function') continue;
+    plugins.forEach((plugin) => {
+      if (typeof plugin.initialize !== 'function') return;
       plugin.initialize(this.getPluginMethods());
-    }
+    });
 
     // attach proxy methods like `focus` or `blur`
-    for (const method of proxies) {
+    proxies.forEach((method) => {
       this[method] = (...args) => (
         this.editor[method](...args)
       );
-    }
+    });
 
     this.state = {}; // TODO for Nik: ask ben why this is relevent
   }
@@ -127,25 +127,21 @@ class PluginEditor extends Component {
   createEventHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
-    for (const plugin of plugins) {
-      if (typeof plugin[methodName] !== 'function') continue;
-      const result = plugin[methodName](...newArgs);
-      if (result === true) return true;
-    }
 
-    return false;
+    return plugins.some((plugin) =>
+      typeof plugin[methodName] === 'function'
+        && plugin[methodName](...newArgs) === true
+    );
   };
 
   createHandleHooks = (methodName, plugins) => (...args) => {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
-    for (const plugin of plugins) {
-      if (typeof plugin[methodName] !== 'function') continue;
-      const result = plugin[methodName](...newArgs);
-      if (result === 'handled') return 'handled';
-    }
 
-    return 'not-handled';
+    return plugins.some((plugin) =>
+      typeof plugin[methodName] === 'function'
+        && plugin[methodName](...newArgs) === 'handled'
+    ) ? 'handled' : 'not-handled';
   };
 
   createFnHooks = (methodName, plugins) => (...args) => {
@@ -155,39 +151,37 @@ class PluginEditor extends Component {
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
-      for (const plugin of plugins) {
-        if (typeof plugin[methodName] !== 'function') continue;
+      plugins.forEach((plugin) => {
+        if (typeof plugin[methodName] !== 'function') return;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
           const { props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
           block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
-      }
+      });
 
       return block.component ? block : false;
     } else if (methodName === 'blockStyleFn') {
       let styles;
-      for (const plugin of plugins) {
-        if (typeof plugin[methodName] !== 'function') continue;
+      plugins.forEach((plugin) => {
+        if (typeof plugin[methodName] !== 'function') return;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
           styles = (styles ? (`${styles} `) : '') + result;
         }
-      }
+      });
 
       return styles || false;
     }
 
-    for (const plugin of plugins) {
-      if (typeof plugin[methodName] !== 'function') continue;
-      const result = plugin[methodName](...newArgs);
-      if (result !== undefined) {
-        return result;
-      }
-    }
-
-    return false;
+    let result;
+    const wasHandled = plugins.some((plugin) => {
+      if (typeof plugin[methodName] !== 'function') return false;
+      result = plugin[methodName](...newArgs);
+      return result !== undefined;
+    });
+    return wasHandled ? result : false;
   };
 
   createPluginHooks = () => {
@@ -291,8 +285,8 @@ class PluginEditor extends Component {
   resolveAccessibilityProps = () => {
     let accessibilityProps = {};
     const plugins = [this.props, ...this.resolvePlugins()];
-    for (const plugin of plugins) {
-      if (typeof plugin.getAccessibilityProps !== 'function') continue;
+    plugins.forEach((plugin) => {
+      if (typeof plugin.getAccessibilityProps !== 'function') return;
       const props = plugin.getAccessibilityProps();
       const popupProps = {};
 
@@ -313,7 +307,7 @@ class PluginEditor extends Component {
         ...props,
         ...popupProps,
       };
-    }
+    });
 
     return accessibilityProps;
   };
