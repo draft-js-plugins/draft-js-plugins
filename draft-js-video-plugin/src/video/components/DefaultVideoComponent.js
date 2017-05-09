@@ -1,17 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import utils from '../utils';
-import styles from './DefaultVideoComponent.css';
 
 const YOUTUBE_PREFIX = 'https://www.youtube.com/embed/';
 const VIMEO_PREFIX = 'https://player.vimeo.com/video/';
-const iframeStyle = {
-  width: '100%',
-  height: '100%',
-  position: 'absolute',
-  top: '0',
-  left: '0',
-};
 
 const getSrc = ({ src }) => {
   const {
@@ -31,15 +23,19 @@ const getSrc = ({ src }) => {
   return undefined;
 };
 
-const DefaultVideoCompoent = (props) => {
-  const { blockProps, style } = props;
+const DefaultVideoCompoent = ({
+  blockProps,
+  className = '',
+  style,
+  theme,
+}) => {
   const src = getSrc(blockProps);
   if (src) {
     return (
       <div style={style} >
-        <div className={styles.iframeContainer} >
+        <div className={`${theme.iframeContainer} ${className}`}>
           <iframe
-            style={iframeStyle}
+            className={theme.iframe}
             src={src}
             frameBorder="0"
             allowFullScreen
@@ -49,10 +45,13 @@ const DefaultVideoCompoent = (props) => {
     );
   }
 
-  return (<div className={styles.invalidVideoSrc} >invalid video source</div>);
+  return (<div className={theme.invalidVideoSrc}>invalid video source</div>);
 };
 
 DefaultVideoCompoent.propTypes = {
-  blockProps: PropTypes.object,
+  blockProps: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  theme: PropTypes.object.isRequired,
 };
 export default DefaultVideoCompoent;
