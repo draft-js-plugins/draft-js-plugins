@@ -47,45 +47,23 @@ export default class Toolbar extends React.Component {
   onOverrideContent = (overrideContent) =>
     this.setState({ overrideContent });
 
-  onVisibilityChanged = (isVisible) => {
+  onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate
     // when focusing editor with already present selection
     setTimeout(() => {
-      let position;
-      if (isVisible) {
-        const relativeParent = getRelativeParent(this.toolbar.parentElement);
-        const relativeRect = relativeParent ? relativeParent.getBoundingClientRect() : document.body.getBoundingClientRect();
-        const selectionRect = getVisibleSelectionRect(window);
-        position = {
-          top: (selectionRect.top - relativeRect.top) - toolbarHeight,
-          left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
-          transform: 'translate(-50%) scale(1)',
-          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-        };
-      } else {
-        position = { transform: 'translate(-50%) scale(0)' };
-      }
+      if (!this.toolbar) return;
+      const relativeParent = getRelativeParent(this.toolbar.parentElement);
+      const relativeRect = (relativeParent || document.body).getBoundingClientRect();
+      const selectionRect = getVisibleSelectionRect(window);
+
+      if (!selectionRect) return;
+
+      const position = {
+        top: (selectionRect.top - relativeRect.top) - toolbarHeight,
+        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+      };
       this.setState({ position });
-    }, 0);
-
-    // Revert back to the regular structure when the toolbar gets hidden
-    if (!isVisible && this.state.overrideContent) {
-      this.setState({ overrideContent: undefined });
-    }
-  }
-
-  onSelectionChanged = () => {
-    const relativeParent = getRelativeParent(this.toolbar.parentElement);
-    const relativeRect = (relativeParent || document.body).getBoundingClientRect();
-    const selectionRect = getVisibleSelectionRect(window);
-
-    if (!selectionRect) return;
-
-    const position = {
-      top: (selectionRect.top - relativeRect.top) - toolbarHeight,
-      left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
-    };
-    this.setState({ position });
+    });
   };
 
   getStyle() {
