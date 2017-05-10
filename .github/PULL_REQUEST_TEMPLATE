@@ -1,0 +1,26 @@
+<!--
+Please check out Contributing Guidelines. By following this template you help us to review your code.
+https://github.com/draft-js-plugins/draft-js-plugins/blob/master/CONTRIBUTING.md
+-->
+
+## Implementation
+
+<!--
+Briefly describe the feature or fix
+-->
+
+## Demo
+
+<!--
+Please add a recorded gif and ideally code example how to test the feature or reproduce the bug.
+-->
+
+## Use-case
+
+<!--
+In case this is a new feature, property or function that is exposed please describe why you need it.
+-->
+
+## Allow editors for maintainers
+
+- [ ] Enable "Allow edits from maintainers" for this PR

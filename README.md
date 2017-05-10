@@ -8,7 +8,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 ## Important Note
 
-We are currently preparing for a 2.0 release. The `master` branch contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-beta10 --save`.
+We are currently preparing for a 2.0 release. The `master` branch contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-beta11 --save`.
 
 ## Roadmap
 
@@ -34,6 +34,15 @@ In case you are interested in helping [Issue #329](https://github.com/draft-js-p
 - [RichButtons](https://github.com/jasonphillips/draft-js-richbuttons-plugin) by [jasonphillips](https://github.com/jasonphillips)
 - [Katex](https://github.com/letranloc/draft-js-katex-plugin) by [letranloc](https://github.com/letranloc)
 - [Mathjax](https://github.com/efloti/draft-js-mathjax-plugin) by [efloti](https://github.com/efloti)
+- [Buttons](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Color Picker](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Embed](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [EmojiPicker](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [GifPicker](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Link](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Modal](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Sidebar](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Toolbar](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
 
 ## Live Example & Documentation
 
@@ -50,7 +59,7 @@ $ npm install draft-js-plugins-editor --save
 To try out the beta version of 2.0.0 run
 
 ```
-$ npm install draft-js-plugins-editor@2.0.0-beta10 --save
+$ npm install draft-js-plugins-editor@2.0.0-beta11 --save
 ```
 
 Then import the editor somewhere in your code and you're ready to go!
