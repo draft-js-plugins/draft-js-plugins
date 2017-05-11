@@ -27,10 +27,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "union-class-names": "^1.0.0",
-    "draft-js": ">=0.9.1"
+    "union-class-names": "^1.0.0"
   },
   "peerDependencies": {
+    "draft-js": "^0.10.0",
     "react": "^15.5.0",
     "react-dom": "^15.5.0"
   }
