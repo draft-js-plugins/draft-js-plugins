@@ -34,7 +34,7 @@ const Mention = (props) => {
   const mention = fromJS(contentState.getEntity(entityKey).getData().mention);
 
   const Component = (
-    mentionComponent || (mention.has('link') ? MentionLink : MentionText)
+    (mention.has('link') ? MentionLink : MentionText)
   );
 
   return (

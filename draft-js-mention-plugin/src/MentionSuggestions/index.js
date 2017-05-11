@@ -8,7 +8,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
-export default class MentionSuggestions extends Component {
+export default class UserMentionSuggestions extends Component {
 
   static propTypes = {
     entityMutability: PropTypes.oneOf([
