@@ -55,9 +55,7 @@ export default class Popover extends Component {
     }
   };
 
-  onWheel = (e) => {
-    e.preventDefault();
-  }
+  onWheel = (e) => e.preventDefault();
 
   onEmojiSelect = (emoji) => {
     const newEditorState = addEmoji(
