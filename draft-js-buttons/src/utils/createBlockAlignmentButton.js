@@ -7,6 +7,7 @@ export default ({ alignment, children }) => (
 
     activate = (event) => {
       event.preventDefault();
+      event.stopPropagation();
       this.props.setAlignment({ alignment });
     }
 

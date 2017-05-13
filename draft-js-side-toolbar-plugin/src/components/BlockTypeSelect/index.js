@@ -4,41 +4,36 @@ import React from 'react';
 export default class BlockTypeSelect extends React.Component {
 
   state = {
+    visible: false,
     style: {
       transform: 'translate(-50%) scale(0)',
+      transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
     }
   }
 
-  onMouseEnter = () => {
+  onClick = (e) => {
+    e.stopPropagation();
+    return this.state.visible ? this.hide() : this.show();
+  }
+
+  show = () => {
     this.setState({
-      style: {
-        transform: 'translate(-50%) scale(1)',
-        transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-      },
+      visible: true,
+      style: { transform: 'translate(-50%) scale(1)' }
     });
   }
 
-  onMouseLeave = () => {
+  hide = () => {
     this.setState({
-      style: {
-        transform: 'translate(-50%) scale(0)',
-      },
+      visible: false,
+      style: { transform: 'translate(-50%) scale(0)' }
     });
-  }
-
-  onMouseDown = (clickEvent) => {
-    clickEvent.preventDefault();
-    clickEvent.stopPropagation();
   }
 
   render() {
     const { theme, getEditorState, setEditorState } = this.props;
     return (
-      <div
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onMouseDown={this.onClick}
-      >
+      <div onClick={this.onClick}>
         <div className={theme.blockTypeSelectStyles.blockType}>
           <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0h24v24H0z" fill="none" />
