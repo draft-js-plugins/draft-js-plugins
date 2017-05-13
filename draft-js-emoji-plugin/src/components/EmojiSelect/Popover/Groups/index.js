@@ -28,9 +28,8 @@ export default class Groups extends Component {
   onScroll = (values) => {
     const { groups, onGroupScroll } = this.props;
     let activeGroup = 0;
-    console.log(values.top);
     groups.forEach((group, index) => {
-      if (values.top >= group.top) {
+      if (values.scrollTop >= group.top) {
         activeGroup = index;
       }
     });
@@ -38,18 +37,16 @@ export default class Groups extends Component {
   }
 
   onWheel = (e) => {
-    // Disable page scroll
-    const height = this.scrollbars.getValues().scrollHeight;
-    const delta = e.deltaY / height;
-    const top = this.scrollbars.getValues().top;
-    if (delta > 0) {
-      if (top < 1 - delta) {
+    // Disable page scroll, but enable groups scroll
+    const { clientHeight, scrollHeight, scrollTop } = this.scrollbars.getValues();
+    if (e.deltaY > 0) {
+      if (scrollTop < scrollHeight - clientHeight - e.deltaY) {
         e.stopPropagation();
       } else {
         this.scrollbars.scrollToBottom();
       }
     } else {
-      if (top > -delta) { // eslint-disable-line no-lonely-if
+      if (scrollTop > -e.deltaY) { // eslint-disable-line no-lonely-if
         e.stopPropagation();
       } else {
         this.scrollbars.scrollTop();
@@ -64,23 +61,18 @@ export default class Groups extends Component {
   }
 
   calculateBounds = () => {
-    const { groups } = this.props;
-    const height = this.scrollbars.getValues().scrollHeight;
-    const scrollTop = this.scrollbars.getValues().scrollTop;
-    const containerTop = this.container.getBoundingClientRect().top - scrollTop;
+    const { scrollHeight, scrollTop } = this.scrollbars.getValues();
+    if (scrollHeight) {
+      const { groups } = this.props;
+      const containerTop = this.container.getBoundingClientRect().top - scrollTop;
 
-    console.log(height);
-
-    if (height) {
       groups.forEach((group) => {
         const groupTop = group.instance.container.getBoundingClientRect().top;
         const listTop = group.instance.list.getBoundingClientRect().top;
-        group.top = (groupTop - containerTop) / height; // eslint-disable-line no-param-reassign
-        group.topList = (listTop - containerTop) / height; // eslint-disable-line no-param-reassign
+        group.top = groupTop - containerTop; // eslint-disable-line no-param-reassign
+        group.topList = listTop - containerTop; // eslint-disable-line no-param-reassign
       });
     }
-
-    console.log(groups);
   }
 
   render() {
