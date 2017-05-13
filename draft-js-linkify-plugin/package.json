@@ -35,11 +35,11 @@
     "union-class-names": "^1.0.0",
     "linkify-it": "2.0.0",
     "tlds": "1.159.0",
-    "draft-js": ">=0.9.1",
     "immutable": "~3.7.4",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
+    "draft-js": "^0.10.0",
     "react": "^15.5.0",
     "react-dom": "^15.5.0"
   }
