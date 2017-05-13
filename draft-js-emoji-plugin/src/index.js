@@ -61,6 +61,9 @@ export default (config = {}) => {
     emojiSelectPopoverNavItem: emojiSelectStyles.emojiSelectPopoverNavItem,
     emojiSelectPopoverNavEntry: emojiSelectStyles.emojiSelectPopoverNavEntry,
     emojiSelectPopoverNavEntryActive: emojiSelectStyles.emojiSelectPopoverNavEntryActive,
+
+    emojiSelectPopoverScrollbar: emojiSelectStyles.emojiSelectPopoverScrollbar,
+    emojiSelectPopoverScrollbarThumb: emojiSelectStyles.emojiSelectPopoverScrollbarThumb,
   };
 
   const callbacks = {

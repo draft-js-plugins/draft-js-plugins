@@ -67,14 +67,15 @@
 
     &Groups {
       margin: 0 0 .3em;
-      padding: 0 .5em;
       position: relative;
       z-index: 0;
-      width: $totalSize;
+      width: $totalSize + 1em;
       height: $totalSize;
     }
 
     &Group {
+      padding: 0 .5em;
+
       &:first-child {
         .emojiSelectPopoverGroupTitle {
           display: none;
@@ -181,6 +182,33 @@
           color: #42a5f5;
         }
       }
+    }
+
+    &Scrollbar {
+      position: absolute;
+      right: 0;
+      top: .3em;
+      bottom: .3em;
+      width: .25em;
+      background-color: #e0e0e0;
+      border-radius: .125em;
+      opacity: .1;
+      transition: opacity .4s;
+
+      &Thumb {
+        background-color: #000;
+        border-radius: .125em;
+        cursor: pointer;
+      }
+    }
+
+    &Groups:hover &Scrollbar {
+      opacity: .3;
+    }
+
+    &Groups &Scrollbar:hover,
+    &Groups &Scrollbar:active {
+      opacity: .6;
     }
   }
 }

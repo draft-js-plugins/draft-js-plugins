@@ -234,6 +234,14 @@ export default class App extends Component {
                 <span className={styles.subParamName}>emojiSelectPopoverNavEntryActive:</span>
                 CSS class for active state of the group navigation entry in the emoji select popup.
               </div>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>emojiSelectPopoverScrollbar:</span>
+                CSS class for scrollbar in the emoji select popup.
+              </div>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>emojiSelectPopoverScrollbarThumb:</span>
+                CSS class for scrollbar thumb in the emoji select popup.
+              </div>
             </div>
           </div>
           <div className={styles.paramBig}>

@@ -96,6 +96,12 @@ export default class Groups extends Component {
       >
         <Scrollbars
           onScrollFrame={this.onScroll}
+          renderTrackVertical={() => (
+            <div className={theme.emojiSelectPopoverScrollbar} />
+          )}
+          renderThumbVertical={(props) => (
+            <div {...props} className={theme.emojiSelectPopoverScrollbarThumb} />
+          )}
           ref={(element) => { this.scrollbars = element; }}
         >
           {groups.map((group, index) => (
