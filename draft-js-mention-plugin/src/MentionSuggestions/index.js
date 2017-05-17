@@ -215,7 +215,7 @@ export default class UserMentionSuggestions extends Component {
   onMentionSelect = (mention) => {
     // Note: This can happen in case a user typed @xxx (invalid mention) and
     // then hit Enter. Then the mention will be undefined.
-    if (!mention) {
+    if (!mention || mention.has('unclickable')) {
       return;
     }
 

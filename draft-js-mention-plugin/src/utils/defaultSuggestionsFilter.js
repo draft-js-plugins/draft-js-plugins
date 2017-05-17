@@ -1,10 +1,11 @@
-// Get the first 5 suggestions that match
+// Get the first 50 suggestions that match
 const defaultSuggestionsFilter = (searchValue, suggestions) => {
   const value = searchValue.toLowerCase();
   const filteredSuggestions = suggestions.filter((suggestion) => (
     !value || suggestion.get('name').toLowerCase().indexOf(value) > -1
   ));
-  return filteredSuggestions.setSize(filteredSuggestions.size);
+  const size = filteredSuggestions.size < 50 ? filteredSuggestions.size : 50;
+  return filteredSuggestions.setSize(size);
 };
 
 export default defaultSuggestionsFilter;
