@@ -26,11 +26,7 @@ export default class Toolbar extends React.Component {
 
     /**
      * If this is set, the toolbar will render this instead of the regular
-     * structure and will also be shown when the editor loses focus. It's
-     * the responsibility of the callee to call this function again with
-     * `undefined` to show the regular structure again or hide the toolbar
-     * if the editor doesn't have focus anymore.
-     *
+     * structure and will also be shown when the editor loses focus.
      * @type {Component}
      */
     overrideContent: undefined
@@ -44,6 +40,12 @@ export default class Toolbar extends React.Component {
     this.props.store.unsubscribeFromItem('selection', this.onSelectionChanged);
   }
 
+  /**
+   * This can be called by a child in order to render custom content instead
+   * of the regular structure. It's the responsibility of the callee to call
+   * this function again with `undefined` in order to reset `overrideContent`.
+   * @param {Component} overrideContent
+   */
   onOverrideContent = (overrideContent) =>
     this.setState({ overrideContent });
 
