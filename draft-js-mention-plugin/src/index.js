@@ -11,6 +11,7 @@ import mentionSuggestionsStyles from './mentionSuggestionsStyles.css';
 import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
+import MentionProps from '/index';
 
 export default (config = {}) => {
   const defaultTheme = {
@@ -145,3 +146,4 @@ export default (config = {}) => {
 };
 
 export const defaultSuggestionsFilter = suggestionsFilter;
+export const MentionProps = MentionProps;
