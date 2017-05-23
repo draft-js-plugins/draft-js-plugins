@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Add EmojiSelect component. Thanks to @bashkos
 - Added {allowImageCache, imageType} properties to  config object.
 - Add `emojione` as a dependency.
 - Add `lodash.keys` as a dependency.
