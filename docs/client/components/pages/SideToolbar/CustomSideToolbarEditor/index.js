@@ -15,16 +15,16 @@ const { ImageAdd } = imagePlugin;
 let imageAddElement = null;
 
 const parseUrl = (file, editorState, onChange) => {
-    /* custom parsing function, might upload to S3, then retrieve the url */
-    if (file.type.indexOf('image/') === 0) {
-      const url = URL.createObjectURL(file);
-      onChange(imagePlugin.addImage(editorState, url));
-    }
+  /* custom parsing function, might upload to S3, then retrieve the url */
+  if (file.type.indexOf('image/') === 0) {
+    const url = URL.createObjectURL(file);
+    onChange(imagePlugin.addImage(editorState, url));
+  }
 };
 
 const addImageFile = () => {
-    imageAddElement.addImageFile(parseUrl);
-    /* imageAddElement.addImageFile(); // default parsing of the url */
+  imageAddElement.addImageFile(parseUrl);
+  /* imageAddElement.addImageFile(); // default parsing of the url */
 };
 
 
