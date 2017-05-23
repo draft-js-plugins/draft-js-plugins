@@ -1,7 +1,7 @@
 {
   "name": "draft-js-video-plugin",
-  "version": "2.0.0-beta.4",
-  "description": "video Plugin for DraftJS",
+  "version": "2.0.0-rc1",
+  "description": "Video Plugin for DraftJS",
   "author": {
     "name": "Anchen li"
   },
@@ -29,6 +29,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "draft-js-plugins": "file:../"
+    "decorate-component-with-props": "^1.0.2",
+    "immutable": "~3.7.4",
+    "prop-types": "^15.5.8"
+  },
+  "peerDependencies": {
+    "draft-js": "^0.10.1",
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0"
   }
 }
