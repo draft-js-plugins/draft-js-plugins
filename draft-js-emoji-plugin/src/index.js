@@ -3,14 +3,16 @@ import { Map, List } from 'immutable';
 import keys from 'lodash.keys';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
-import Emoji from './Emoji';
-import EmojiSuggestions from './EmojiSuggestions';
-import EmojiSuggestionsPortal from './EmojiSuggestionsPortal';
+import Emoji from './components/Emoji';
+import EmojiSuggestions from './components/EmojiSuggestions';
+import EmojiSuggestionsPortal from './components/EmojiSuggestionsPortal';
+import EmojiSelect from './components/EmojiSelect';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import emojiStyles from './emojiStyles.css';
 import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
+import emojiSelectStyles from './emojiSelectStyles.scss';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
@@ -31,7 +33,37 @@ export default (config = {}) => {
     emojiSuggestionsEntryFocused: emojiSuggestionsEntryStyles.emojiSuggestionsEntryFocused,
     emojiSuggestionsEntryText: emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
     emojiSuggestionsEntryIcon: emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
-    emojiSuggestionsEntryAvatar: emojiSuggestionsEntryStyles.emojiSuggestionsEntryAvatar,
+
+    emojiSelect: emojiSelectStyles.emojiSelect,
+
+    emojiSelectButton: emojiSelectStyles.emojiSelectButton,
+    emojiSelectButtonPressed: emojiSelectStyles.emojiSelectButtonPressed,
+
+    emojiSelectPopover: emojiSelectStyles.emojiSelectPopover,
+    emojiSelectPopoverClosed: emojiSelectStyles.emojiSelectPopoverClosed,
+    emojiSelectPopoverTitle: emojiSelectStyles.emojiSelectPopoverTitle,
+    emojiSelectPopoverGroups: emojiSelectStyles.emojiSelectPopoverGroups,
+
+    emojiSelectPopoverGroup: emojiSelectStyles.emojiSelectPopoverGroup,
+    emojiSelectPopoverGroupTitle: emojiSelectStyles.emojiSelectPopoverGroupTitle,
+    emojiSelectPopoverGroupList: emojiSelectStyles.emojiSelectPopoverGroupList,
+    emojiSelectPopoverGroupItem: emojiSelectStyles.emojiSelectPopoverGroupItem,
+
+    emojiSelectPopoverToneSelect: emojiSelectStyles.emojiSelectPopoverToneSelect,
+    emojiSelectPopoverToneSelectList: emojiSelectStyles.emojiSelectPopoverToneSelectList,
+    emojiSelectPopoverToneSelectItem: emojiSelectStyles.emojiSelectPopoverToneSelectItem,
+
+    emojiSelectPopoverEntry: emojiSelectStyles.emojiSelectPopoverEntry,
+    emojiSelectPopoverEntryFocused: emojiSelectStyles.emojiSelectPopoverEntryFocused,
+    emojiSelectPopoverEntryIcon: emojiSelectStyles.emojiSelectPopoverEntryIcon,
+
+    emojiSelectPopoverNav: emojiSelectStyles.emojiSelectPopoverNav,
+    emojiSelectPopoverNavItem: emojiSelectStyles.emojiSelectPopoverNavItem,
+    emojiSelectPopoverNavEntry: emojiSelectStyles.emojiSelectPopoverNavEntry,
+    emojiSelectPopoverNavEntryActive: emojiSelectStyles.emojiSelectPopoverNavEntryActive,
+
+    emojiSelectPopoverScrollbar: emojiSelectStyles.emojiSelectPopoverScrollbar,
+    emojiSelectPopoverScrollbarThumb: emojiSelectStyles.emojiSelectPopoverScrollbarThumb,
   };
 
   const callbacks = {
@@ -92,18 +124,21 @@ export default (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const {
     theme = defaultTheme,
-    positionSuggestions = defaultPositionSuggestions,
     imagePath = defaultImagePath,
     imageType = defaultImageType,
     allowImageCache,
+    positionSuggestions = defaultPositionSuggestions,
     priorityList,
+    selectGroups,
+    selectButtonContent,
+    toneSelectOpenDelay,
   } = config;
 
   const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
 
   // if priorityList is configured in config then set priorityList
   if (priorityList) emojiList.setPriorityList(priorityList);
-  const emojiSearchProps = {
+  const suggestionsProps = {
     ariaProps,
     cacheBustParam,
     callbacks,
@@ -114,8 +149,19 @@ export default (config = {}) => {
     positionSuggestions,
     shortNames: List(keys(emojiList.list)),
   };
+  const selectProps = {
+    cacheBustParam,
+    imagePath,
+    imageType,
+    theme,
+    store,
+    selectGroups,
+    selectButtonContent,
+    toneSelectOpenDelay,
+  };
   return {
-    EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, emojiSearchProps),
+    EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, suggestionsProps),
+    EmojiSelect: decorateComponentWithProps(EmojiSelect, selectProps),
     decorators: [
       {
         strategy: emojiStrategy,

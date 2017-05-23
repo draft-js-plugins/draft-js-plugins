@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { genKey } from 'draft-js';
 import Entry from './Entry';
-import addEmoji from '../modifiers/addEmoji';
-import getSearchText from '../utils/getSearchText';
-import decodeOffsetKey from '../utils/decodeOffsetKey';
+import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
+import getSearchText from '../../utils/getSearchText';
+import decodeOffsetKey from '../../utils/decodeOffsetKey';
 
 
 export default class EmojiSuggestions extends Component {
@@ -177,6 +177,7 @@ export default class EmojiSuggestions extends Component {
     const newEditorState = addEmoji(
       this.props.store.getEditorState(),
       emoji,
+      AddEmojiMode.REPLACE,
     );
     this.props.store.setEditorState(newEditorState);
   };

@@ -81,6 +81,15 @@ module.exports = {
           path.join(__dirname, 'client/components'),
         ],
       }, {
+        test: /\.(scss|sass)/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader!sass-loader',
+        }),
+        include: [
+          path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src'),
+        ],
+      }, {
         test: /prism\.css$/,
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }),
         include: [
