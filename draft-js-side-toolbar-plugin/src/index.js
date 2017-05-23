@@ -9,16 +9,19 @@ import toolbarStyles from './toolbarStyles.css';
 export default (config = {}) => {
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
-  const store = createStore({
-    isVisible: false,
-  });
+  const defaultAddImageFile = undefined;
 
   const {
     theme = defaultTheme,
+    addImageFile = defaultAddImageFile,
     structure = [
       DefaultBlockTypeSelect
     ]
   } = config;
+
+  const store = createStore({
+    addImageFile
+  });
 
   const toolbarProps = {
     store,
