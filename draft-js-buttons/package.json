@@ -1,6 +1,6 @@
 {
   "name": "draft-js-buttons",
-  "version": "2.0.0-beta11",
+  "version": "2.0.0-rc1",
   "description": "Buttons for DraftJS",
   "author": {
     "name": "Nik Graf",
@@ -30,7 +30,7 @@
     "union-class-names": "^1.0.0"
   },
   "peerDependencies": {
-    "draft-js": "^0.10.0",
+    "draft-js": "^0.10.1",
     "react": "^15.5.0",
     "react-dom": "^15.5.0"
   }

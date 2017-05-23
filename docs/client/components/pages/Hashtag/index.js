@@ -39,6 +39,18 @@ export default class App extends Component {
         <Separator />
         <Container>
           <Heading level={2}>Hashtag</Heading>
+          <Heading level={3}>Supported Environment</Heading>
+          <ul className={styles.list}>
+            <li className={styles.listEntry}>
+              Desktop: Yes
+            </li>
+            <li className={styles.listEntry}>
+              Mobile: Yes
+            </li>
+            <li className={styles.listEntry}>
+              Screen-reader: Yes
+            </li>
+          </ul>
         </Container>
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>

@@ -20,6 +20,7 @@ import Alignment from './components/pages/Alignment';
 import Focus from './components/pages/Focus';
 import Resizeable from './components/pages/Resizeable';
 import Video from './components/pages/Video';
+import DragNDrop from './components/pages/DragNDrop';
 
 export const routes = (
   <Route path="/" title="App" component={App}>
@@ -39,6 +40,7 @@ export const routes = (
       <Route path="plugin/inline-toolbar" title="App - InlineToolbar" component={InlineToolbar} />
       <Route path="plugin/side-toolbar" title="App - SideToolbar" component={SideToolbar} />
       <Route path="plugin/video" title="App - Video" component={Video} />
+      <Route path="plugin/drag-n-drop" title="App - Drag'n'Drop" component={DragNDrop} />
     </Route>
     <Route path="playground" title="App - Development Playground" component={Playground} />
     <Route path="*" title="404: Not Found" component={NotFound} />
