@@ -74,6 +74,18 @@ export default class App extends Component {
           <p>
             To use simply type <code>:</code> which will show an autocomplete with matching emojis.
           </p>
+          <Heading level={3}>Supported Environment</Heading>
+          <ul className={styles.list}>
+            <li className={styles.listEntry}>
+              Desktop: Yes
+            </li>
+            <li className={styles.listEntry}>
+              Mobile: Yes
+            </li>
+            <li className={styles.listEntry}>
+              Screen-reader: Yes
+            </li>
+          </ul>
         </Container>
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>

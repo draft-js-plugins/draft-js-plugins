@@ -45,6 +45,18 @@ export default class App extends Component {
             <li>Custom Counter</li>
           </ul>
           <p>The Custom Counter allows you to bring your own counting function. This will be a function that takes plain text (as a string) from the editor as input and returns a numerical value.</p>
+          <Heading level={3}>Supported Environment</Heading>
+          <ul className={styles.list}>
+            <li className={styles.listEntry}>
+              Desktop: Yes
+            </li>
+            <li className={styles.listEntry}>
+              Mobile: Yes
+            </li>
+            <li className={styles.listEntry}>
+              Screen-reader: Yes
+            </li>
+          </ul>
         </Container>
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>

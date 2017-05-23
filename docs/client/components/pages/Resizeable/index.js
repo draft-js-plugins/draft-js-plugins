@@ -39,6 +39,18 @@ export default class App extends Component {
           <p>
             Hover with the mouse on the right side of the block and drag it to resize. At which edge resize is possible is configurable.
           </p>
+          <Heading level={3}>Supported Environment</Heading>
+          <ul className={styles.list}>
+            <li className={styles.listEntry}>
+              Desktop: Yes
+            </li>
+            <li className={styles.listEntry}>
+              Mobile: No
+            </li>
+            <li className={styles.listEntry}>
+              Screen-reader: No
+            </li>
+          </ul>
         </Container>
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>
