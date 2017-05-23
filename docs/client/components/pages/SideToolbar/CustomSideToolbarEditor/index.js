@@ -29,7 +29,8 @@ const addImageFile = () => {
 
 
 const sideToolbarPlugin = createSideToolbarPlugin({
-  theme: { buttonStyles, toolbarStyles, blockTypeSelectStyles }
+  theme: { buttonStyles, toolbarStyles, blockTypeSelectStyles },
+  addImageFile,
 });
 const { SideToolbar } = sideToolbarPlugin;
 const plugins = [sideToolbarPlugin, imagePlugin];
