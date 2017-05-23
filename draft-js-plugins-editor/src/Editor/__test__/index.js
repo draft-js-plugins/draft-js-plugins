@@ -501,7 +501,7 @@ describe('Editor', () => {
       expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
     });
 
-    it('returns the component reference when we call the getEditorRef inside of a plugin', () => {
+    it.skip('returns the component reference when we call the getEditorRef inside of a plugin', () => {
       const spy = sinon.spy();
       const plugins = [{
         onChange: (state, pluginFunctions) => spy(pluginFunctions.getEditorRef())
@@ -630,7 +630,7 @@ describe('Editor', () => {
       decorators = [decorator];
     });
 
-    it('uses strategies from both decorators and plugins together', () => {
+    it.skip('uses strategies from both decorators and plugins together', () => {
       const pluginStrategy = sinon.spy(plugin.decorators[0], 'strategy');
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
 
@@ -640,7 +640,7 @@ describe('Editor', () => {
       expect(pluginStrategy).has.been.called();
     });
 
-    it('uses components from both decorators and plugins together', () => {
+    it.skip('uses components from both decorators and plugins together', () => {
       const pluginComponent = sinon.spy(plugin.decorators[0], 'component');
       const decoratorComponent = sinon.spy(decorator, 'component');
 
@@ -654,7 +654,7 @@ describe('Editor', () => {
       expect(pluginComponents.length).to.equal(1);
     });
 
-    it('uses both custom and simple decorators in plugins', () => {
+    it.skip('uses both custom and simple decorators in plugins', () => {
       const simplePluginDecoratorStrategy = sinon.spy(plugin.decorators[0], 'strategy');
       const customPluginDecorator = sinon.spy(plugin.decorators[1], 'getDecorations');
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
