@@ -90,7 +90,7 @@ export default class NavBar extends Component {
             </li>
           </ul>
         </div>
-        <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: 13, color: '#aaa' }}>The documentation currently represents the 2.0.0-beta12 release.
+        <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: 13, color: '#aaa' }}>The documentation currently represents the 2.0.0-rc1 release.
         </div>
       </div>
     );
