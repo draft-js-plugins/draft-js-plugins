@@ -7,14 +7,11 @@ import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
 // eslint-disable-next-line import/no-unresolved
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
-// eslint-disable-next-line import/no-unresolved
-import createDragNDropPlugin from 'draft-js-drag-n-drop-plugin';
 import createVideoPlugin from 'draft-js-video-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
-const dragNDropPlugin = createDragNDropPlugin();
 const alignmentPlugin = createAlignmentPlugin();
 const { AlignmentTool } = alignmentPlugin;
 
@@ -22,12 +19,11 @@ const decorator = composeDecorators(
   resizeablePlugin.decorator,
   alignmentPlugin.decorator,
   focusPlugin.decorator,
-  dragNDropPlugin.decorator
 );
 
 const videoPlugin = createVideoPlugin({ decorator });
 const { types } = videoPlugin;
-const plugins = [dragNDropPlugin, focusPlugin, alignmentPlugin, resizeablePlugin, videoPlugin];
+const plugins = [focusPlugin, alignmentPlugin, resizeablePlugin, videoPlugin];
 /* eslint-disable */
 const initialState = {
   "entityMap": {
@@ -84,34 +80,33 @@ const initialState = {
     "entityRanges": [],
     "data": {}
   },
-    {
-      "key": "iqdh",
-      "text": "",
-      "type": "unstyled",
-      "depth": 0,
-      "inlineStyleRanges": [],
-      "entityRanges": [],
-      "data": {}
-    },
-    {
-      "key": "fg6vi",
-      "text": "",
-      "type": "unstyled",
-      "depth": 0,
-      "inlineStyleRanges": [],
-      "entityRanges": [],
-      "data": {}
-    },
-    {
-      "key": "7bvko",
-      "text": "",
-      "type": "unstyled",
-      "depth": 0,
-      "inlineStyleRanges": [],
-      "entityRanges": [],
-      "data": {}
-    }
-  ]
+  {
+    "key": "iqdh",
+    "text": "",
+    "type": "unstyled",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [],
+    "data": {}
+  },
+  {
+    "key": "fg6vi",
+    "text": "",
+    "type": "unstyled",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [],
+    "data": {}
+  },
+  {
+    "key": "7bvko",
+    "text": "",
+    "type": "unstyled",
+    "depth": 0,
+    "inlineStyleRanges": [],
+    "entityRanges": [],
+    "data": {}
+  }]
 };
 /* eslint-enable */
 export default class CustomVideoEditor extends Component {
