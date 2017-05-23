@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Fixed
+
+- Fixed an issue during initialization [#740](https://github.com/draft-js-plugins/draft-js-plugins/pull/740). Thanks to @terryoy
+
 ## 1.0.0 - 2016-04-20
 
 ### Changed
