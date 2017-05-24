@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { genKey } from 'draft-js';
+import Portal from 'react-portal';
 import Entry from './Entry';
 import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
 import decodeOffsetKey from '../../utils/decodeOffsetKey';
-import Portal from 'react-portal';
 
 export default class EmojiSuggestions extends Component {
 

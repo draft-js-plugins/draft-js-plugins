@@ -27,7 +27,7 @@ export default class SimpleEmojiEditor extends Component {
 
   render() {
     return (
-      <div style={{position: 'relative', overflow: 'hidden'}}>
+      <div style={{ position: 'relative', overflow: 'hidden' }}>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
