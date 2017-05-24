@@ -120,7 +120,7 @@ export default class Popover extends Component {
       const { cacheBustParam, imagePath, imageType, theme = {} } = this.props;
 
       const containerBounds = this.container.getBoundingClientRect();
-      const areaBounds = this.groups.scroll.wrapper.getBoundingClientRect();
+      const areaBounds = this.groups.container.getBoundingClientRect();
       const entryBounds = this.activeEmoji.button.getBoundingClientRect();
       // Translate TextRectangle coords to CSS relative coords
       const bounds = {
