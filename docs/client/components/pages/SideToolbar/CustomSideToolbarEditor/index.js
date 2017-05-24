@@ -54,22 +54,22 @@ export default class CustomSideToolbarEditor extends Component {
 
   render() {
     return (
-        <div>
-            <div className={editorStyles.editor} onClick={this.focus}>
-                <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={plugins}
-                    ref={(element) => { this.editor = element; }}
-                />
-                <SideToolbar />
-            </div>
-            <ImageAdd
-                ref={(element) => { imageAddElement = element; }}
-                editorState={this.state.editorState}
-                onChange={this.onChange}
-            />
+      <div>
+        <div className={editorStyles.editor} onClick={this.focus}>
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            plugins={plugins}
+            ref={(element) => { this.editor = element; }}
+          />
+          <SideToolbar />
         </div>
+        <ImageAdd
+          ref={(element) => { imageAddElement = element; }}
+          editorState={this.state.editorState}
+          onChange={this.onChange}
+        />
+      </div>
     );
   }
 }

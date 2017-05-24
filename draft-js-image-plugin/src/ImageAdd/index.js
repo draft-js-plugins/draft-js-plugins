@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles.css';
+import styles from './style.css';
 import modifier from '../modifiers/addImage';
 
 export default class ImageAdd extends Component {
@@ -17,20 +17,20 @@ export default class ImageAdd extends Component {
   }
 
   addImageFile = (parseUrl) => {
-  this.input.click();
-  this.parseUrl = parseUrl;
-};
+    this.input.click();
+    this.parseUrl = parseUrl;
+  };
 
-render() {
-  return (
-    <div className={styles.addImage}>
-<input
-  type="file"
-  ref={(c) => { this.input = c; }}
-  onChange={(e) => this.onChange(e)}
-  style={{ display: 'none' }}
-/>
-</div>
-);
-}
+  render() {
+    return (
+      <div className={styles.addImage}>
+        <input
+          type="file"
+          ref={(c) => { this.input = c; }}
+          onChange={(e) => this.onChange(e)}
+          style={{ display: 'none' }}
+        />
+      </div>
+    );
+  }
 }

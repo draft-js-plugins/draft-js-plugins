@@ -28,11 +28,11 @@ const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme, store }
 
   return (
     <BlockTypeSelect
-        getEditorState={getEditorState}
-        setEditorState={setEditorState}
-        theme={theme}
-        store={store}
-        structure={structure}
+      getEditorState={getEditorState}
+      setEditorState={setEditorState}
+      theme={theme}
+      store={store}
+      structure={structure}
     />
   );
 };

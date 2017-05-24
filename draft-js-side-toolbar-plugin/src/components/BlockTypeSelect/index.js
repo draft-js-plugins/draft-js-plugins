@@ -32,7 +32,7 @@ export default class BlockTypeSelect extends React.Component {
   }
 
   render() {
-    const { theme, getEditorState, setEditorState, store} = this.props;
+    const { theme, getEditorState, setEditorState, store } = this.props;
     return (
       <div
         onMouseEnter={this.onMouseEnter}
