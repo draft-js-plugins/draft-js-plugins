@@ -38,7 +38,7 @@ export default class SimpleMentionEditor extends Component {
 
   render() {
     return (
-      <div className={editorStyles.editor} onClick={this.focus}>
+      <div className={editorStyles.editor} onClick={this.focus} style={{ position: 'relative', overflow: 'hidden' }}>
         <Editor
           editorState={this.state.editorState}
           onChange={this.onChange}

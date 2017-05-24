@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
 import { List } from 'immutable';
+import Portal from 'react-portal';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
@@ -318,16 +319,19 @@ export default class MentionSuggestions extends Component {
       positionSuggestions, // eslint-disable-line no-unused-vars
       mentionTrigger, // eslint-disable-line no-unused-vars
       mentionPrefix, // eslint-disable-line no-unused-vars
-      ...elementProps } = this.props;
+      ...elementProps
+    } = this.props;
 
-    return React.cloneElement(
+    const children = React.cloneElement(
       popoverComponent,
       {
         ...elementProps,
         className: theme.mentionSuggestions,
         role: 'listbox',
         id: `mentions-list-${this.key}`,
-        ref: (element) => { this.popover = element; },
+        ref: (element) => {
+          this.popover = element;
+        },
       },
       this.props.suggestions.map((mention, index) => (
         <Entry
@@ -343,6 +347,11 @@ export default class MentionSuggestions extends Component {
           entryComponent={entryComponent || defaultEntryComponent}
         />
       )).toJS()
+    );
+    return (
+      <Portal isOpened>
+        {children}
+      </Portal>
     );
   }
 }
