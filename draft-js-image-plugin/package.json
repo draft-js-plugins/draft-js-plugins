@@ -1,6 +1,6 @@
 {
-  "name": "draft-js-image-plugin",
-  "version": "2.0.0-beta11",
+  "name": "kaneoh-draft-js-image-plugin",
+  "version": "0.0.5",
   "description": "Image Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
@@ -32,9 +32,9 @@
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "find-with-regex": "^1.0.2",
-    "union-class-names": "^1.0.0",
     "immutable": "~3.7.4",
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.5.8",
+    "union-class-names": "^1.0.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.0",

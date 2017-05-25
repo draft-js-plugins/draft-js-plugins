@@ -1,83 +1,37 @@
 import React, { Component } from 'react';
-import styles from './style.css';
+import styles from './styles.css';
 import modifier from '../modifiers/addImage';
 
 export default class ImageAdd extends Component {
-  // Start the popover closed
-  state = {
-    url: '',
-    open: false,
-  };
 
-  // When the popover is open and users click anywhere on the page,
-  // the popover should close
-  componentDidMount() {
-    document.addEventListener('click', this.closePopover);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.closePopover);
-  }
-
-  // Note: make sure whenever a click happens within the popover it is not closed
-  onPopoverClick = () => {
-    this.preventNextClose = true;
-  }
-
-  openPopover = () => {
-    if (!this.state.open) {
-      this.preventNextClose = true;
-      this.setState({
-        open: true,
-      });
-    }
-  };
-
-  closePopover = () => {
-    if (!this.preventNextClose && this.state.open) {
-      this.setState({
-        open: false,
-      });
-    }
-
-    this.preventNextClose = false;
-  };
-
-  addImage = () => {
+  onChange(e) {
     const { editorState, onChange } = this.props;
-    onChange(modifier(editorState, this.state.url));
-  };
+    const file = e.target.files[0];
 
-  changeUrl = (evt) => {
-    this.setState({ url: evt.target.value });
+    if (this.parseUrl !== undefined) {
+      this.parseUrl(file, editorState, onChange);
+    } else {
+      const url = URL.createObjectURL(file);
+      onChange(modifier(editorState, url));
+    }
   }
+
+  addImageFile = (parseUrl) => {
+    this.input.click();
+    this.parseUrl = parseUrl;
+  };
 
   render() {
-    const popoverClassName = this.state.open ?
-      styles.addImagePopover :
-      styles.addImageClosedPopover;
-
     return (
       <div className={styles.addImage}>
-        <div
-          className={popoverClassName}
-          onClick={this.onPopoverClick}
-        >
-          <input
-            type="text"
-            placeholder="Paste the image url …"
-            className={styles.addImageInput}
-            onChange={this.changeUrl}
-            value={this.state.url}
-          />
-          <button
-            className={styles.addImageConfirmButton}
-            type="button"
-            onClick={this.addImage}
-          >
-            Add
-          </button>
-        </div>
+        <input
+          type="file"
+          ref={(c) => { this.input = c; }}
+          onChange={(e) => this.onChange(e)}
+          style={{ display: 'none' }}
+          multiple={false}
+          accept={'image/*'}
+        />
       </div>
     );
   }
