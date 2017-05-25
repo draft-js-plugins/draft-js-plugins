@@ -9,7 +9,7 @@ import toolbarStyles from './toolbarStyles.css';
 export default (config = {}) => {
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
-  const defaultToggle = function () { };
+  const defaultToggle = () => {};
 
   const {
     theme = defaultTheme,

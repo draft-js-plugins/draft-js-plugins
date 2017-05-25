@@ -22,10 +22,10 @@ export default ({ children }) => (
             className={theme.button}
             onClick={this.activate}
             type="button"
-            children={children}
-          />
+          >
+            {children}
+          </button>
         </div>
-
       );
     }
   }

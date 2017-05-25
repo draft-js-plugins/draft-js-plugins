@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles.css';
+import styles from './style.css';
 import modifier from '../modifiers/addImage';
 
 export default class ImageAdd extends Component {
