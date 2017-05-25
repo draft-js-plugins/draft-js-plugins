@@ -6,7 +6,6 @@ export default ({ children }) => (
     activate = (event) => {
       event.preventDefault();
       event.stopPropagation();
-      console.log(21212);
       this.props.addImageFile();
     }
 
@@ -23,8 +22,9 @@ export default ({ children }) => (
             className={theme.button}
             onClick={this.activate}
             type="button"
-            children={children}
-          />
+          >
+            {children}
+          </button>
         </div>
 
       );

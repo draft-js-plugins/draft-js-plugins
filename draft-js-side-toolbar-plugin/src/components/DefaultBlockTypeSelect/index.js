@@ -4,7 +4,6 @@ import {
   HeadlineOneButton,
   HeadlineTwoButton,
   BlockquoteButton,
-  CodeBlockButton,
   UnorderedListButton,
   OrderedListButton,
   AddImageButton,
