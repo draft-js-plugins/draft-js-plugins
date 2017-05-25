@@ -82,6 +82,7 @@ describe('MentionSuggestions Component', () => {
   });
 
   it('The popoverComponent prop changes the popover component', () => {
+    // eslint-disable-next-line no-unused-vars
     const PopoverComponent = ({ children, closePortal, popoverRef, ...props }) => (
       <div data-test-test ref={popoverRef} {...props}>{children}</div>
     );

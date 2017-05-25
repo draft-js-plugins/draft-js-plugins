@@ -9,7 +9,8 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
-const DefaultPopoverComponent = ({children, closePortal, popoverRef, ...props}) => (
+// eslint-disable-next-line no-unused-vars
+const DefaultPopoverComponent = ({ children, closePortal, popoverRef, ...props }) => (
   <div ref={popoverRef} {...props}>{children}</div>
 );
 
