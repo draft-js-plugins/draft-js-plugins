@@ -91,7 +91,7 @@ export default class NavBar extends Component {
           </ul>
         </div>
         <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: 13, color: '#aaa' }}>
-          The documentation currently represents the 2.0.0-rc1 release.<br />For troubleshooting please checkout the
+          The documentation currently represents the 2.0.0-rc2 release.<br />For troubleshooting please checkout the
           <a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md" className={styles.link}>
             FAQ
           </a>
