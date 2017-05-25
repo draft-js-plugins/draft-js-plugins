@@ -81,7 +81,7 @@ module.exports = {
           path.join(__dirname, 'client/components'),
         ],
       }, {
-        test: /\.(scss|sass)/,
+        test: /\.(scss|sass)$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader!sass-loader',

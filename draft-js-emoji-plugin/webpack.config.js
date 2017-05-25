@@ -14,6 +14,13 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules&importLoaders=1&localIdentName=draftJsEmojiPlugin__[local]__[hash:base64:5]!postcss-loader' }),
       },
+      {
+        test: /\.(scss|sass)$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?modules&importLoaders=1&localIdentName=draftJsEmojiPlugin__[local]__[hash:base64:5]!postcss-loader!sass-loader',
+        }),
+      }
     ],
   },
 
