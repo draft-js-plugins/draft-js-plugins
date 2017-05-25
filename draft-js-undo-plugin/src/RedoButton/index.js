@@ -19,7 +19,11 @@ class RedoButton extends Component {
     const combinedClassName = unionClassNames(theme.redo, className);
     return (
       <button
-        disabled={!this.props.store || this.props.store.getEditorState().getRedoStack().isEmpty()}
+        disabled={
+          !this.props.store ||
+          !this.props.store.getEditorState ||
+          this.props.store.getEditorState().getRedoStack().isEmpty()
+        }
         onClick={this.onClick}
         className={combinedClassName}
       >
