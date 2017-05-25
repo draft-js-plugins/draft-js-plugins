@@ -6,7 +6,7 @@ export default ({ children }) => (
     activate = (event) => {
       event.preventDefault();
       event.stopPropagation();
-      this.props.addImageFile();
+      this.props.toggleInput();
     }
 
     preventBubblingUp = (event) => { event.preventDefault(); }
@@ -22,11 +22,11 @@ export default ({ children }) => (
             className={theme.button}
             onClick={this.activate}
             type="button"
-          >
-            {children}
-          </button>
+            children={children}
+          />
         </div>
+
       );
     }
-}
+  }
 );

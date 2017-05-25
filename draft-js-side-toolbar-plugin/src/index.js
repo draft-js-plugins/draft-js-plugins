@@ -9,18 +9,18 @@ import toolbarStyles from './toolbarStyles.css';
 export default (config = {}) => {
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
-  const defaultAddImageFile = undefined;
+  const defaultToggle = function () { };
 
   const {
     theme = defaultTheme,
-    addImageFile = defaultAddImageFile,
+    toggleInput = defaultToggle,
     structure = [
       DefaultBlockTypeSelect
     ]
   } = config;
 
   const store = createStore({
-    addImageFile
+    toggleInput
   });
 
   const toolbarProps = {
