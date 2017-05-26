@@ -17,7 +17,7 @@ export default class Entry extends Component {
   }
 
   componentDidUpdate() {
-    this.mouseDown = false;
+    this.mouseDown = this.mouseDown || false;
   }
 
   onMouseUp = () => {
