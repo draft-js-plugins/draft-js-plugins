@@ -82,21 +82,25 @@ describe('MentionSuggestions Component', () => {
   });
 
   it('The popoverComponent prop changes the popover component', () => {
-    const PopoverComponent = ({ children, ...props }) => (
-      <div data-test-test {...props}>{children}</div>
+    // eslint-disable-next-line no-unused-vars
+    const PopoverComponent = ({ children, closePortal, popoverRef, ...props }) => (
+      <div data-test-test ref={popoverRef} {...props}>{children}</div>
     );
 
     const props = defaultProps();
-    props.popoverComponent = <PopoverComponent />;
+    props.popoverComponent = PopoverComponent;
     const suggestions = mount(
       <MentionSuggestions {...props} />
     );
 
     suggestions.instance().openDropdown();
-    expect(suggestions.find('[data-test-test]')).to.have.length(1);
+    const { popover } = suggestions.instance();
+    // React 16 has native support for portals, so using _currentElement is safe until then
+    const componentProps = popover[Object.keys(popover)[0]]._currentElement.props; // eslint-disable-line
+    expect(componentProps['data-test-test']).to.equal(true);
   });
 
-  it('The popoverComponent recieves the children', () => {
+  it('The popoverComponent receives the children', () => {
     let called = false;
     const PopoverComponent = ({ children, ...props }) => {
       called = true;
@@ -105,7 +109,7 @@ describe('MentionSuggestions Component', () => {
     };
 
     const props = defaultProps();
-    props.popoverComponent = <PopoverComponent />;
+    props.popoverComponent = PopoverComponent;
     const suggestions = mount(
       <MentionSuggestions {...props} />
     );
@@ -121,6 +125,6 @@ describe('MentionSuggestions Component', () => {
     );
 
     suggestions.instance().openDropdown();
-    expect(suggestions.find('div[data-findme]')).to.have.length(1);
+    expect(suggestions.instance().popover.constructor.name).to.equal('HTMLDivElement');
   });
 });

@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
 import { List } from 'immutable';
+import Portal from 'react-portal';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
+
+// eslint-disable-next-line no-unused-vars
+const DefaultPopoverComponent = ({ children, closePortal, popoverRef, ...props }) => (
+  <div ref={popoverRef} {...props}>{children}</div>
+);
 
 export default class MentionSuggestions extends Component {
 
@@ -304,7 +310,7 @@ export default class MentionSuggestions extends Component {
 
     const {
       entryComponent,
-      popoverComponent = <div />,
+      popoverComponent: Popover = DefaultPopoverComponent,
       onClose, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
       onAddMention, // eslint-disable-line no-unused-vars, no-shadow
@@ -318,31 +324,33 @@ export default class MentionSuggestions extends Component {
       positionSuggestions, // eslint-disable-line no-unused-vars
       mentionTrigger, // eslint-disable-line no-unused-vars
       mentionPrefix, // eslint-disable-line no-unused-vars
-      ...elementProps } = this.props;
-
-    return React.cloneElement(
-      popoverComponent,
-      {
-        ...elementProps,
-        className: theme.mentionSuggestions,
-        role: 'listbox',
-        id: `mentions-list-${this.key}`,
-        ref: (element) => { this.popover = element; },
-      },
-      this.props.suggestions.map((mention, index) => (
-        <Entry
-          key={mention.has('id') ? mention.get('id') : mention.get('name')}
-          onMentionSelect={this.onMentionSelect}
-          onMentionFocus={this.onMentionFocus}
-          isFocused={this.state.focusedOptionIndex === index}
-          mention={mention}
-          index={index}
-          id={`mention-option-${this.key}-${index}`}
-          theme={theme}
-          searchValue={this.lastSearchValue}
-          entryComponent={entryComponent || defaultEntryComponent}
-        />
-      )).toJS()
+      ...elementProps
+    } = this.props;
+    return (
+      <Portal isOpened>
+        <Popover
+          {...elementProps}
+          className={theme.mentionSuggestions}
+          role="listbox"
+          id={`mentions-list-${this.key}`}
+          popoverRef={(el) => { this.popover = el; }}
+        >
+          {this.props.suggestions.map((mention, index) => (
+            <Entry
+              key={mention.has('id') ? mention.get('id') : mention.get('name')}
+              onMentionSelect={this.onMentionSelect}
+              onMentionFocus={this.onMentionFocus}
+              isFocused={this.state.focusedOptionIndex === index}
+              mention={mention}
+              index={index}
+              id={`mention-option-${this.key}-${index}`}
+              theme={theme}
+              searchValue={this.lastSearchValue}
+              entryComponent={entryComponent || defaultEntryComponent}
+            />
+          )).toJS()}
+        </Popover>
+      </Portal>
     );
   }
 }

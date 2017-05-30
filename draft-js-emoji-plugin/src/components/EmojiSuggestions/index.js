@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { genKey } from 'draft-js';
+import Portal from 'react-portal';
 import Entry from './Entry';
 import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
 import decodeOffsetKey from '../../utils/decodeOffsetKey';
-
 
 export default class EmojiSuggestions extends Component {
 
@@ -275,33 +275,35 @@ export default class EmojiSuggestions extends Component {
       ...restProps,
     } = this.props;
     return (
-      <div
-        {...restProps}
-        className={theme.emojiSuggestions}
-        role="listbox"
-        id={`emojis-list-${this.key}`}
-        ref={(element) => {
-          this.popover = element;
-        }}
-      >
-        {
-          this.filteredEmojis.map((emoji, index) => (
-            <Entry
-              key={emoji}
-              onEmojiSelect={this.onEmojiSelect}
-              onEmojiFocus={this.onEmojiFocus}
-              isFocused={this.state.focusedOptionIndex === index}
-              emoji={emoji}
-              index={index}
-              id={`emoji-option-${this.key}-${index}`}
-              theme={theme}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
-            />
-          )).toJS()
-        }
-      </div>
+      <Portal isOpened>
+        <div
+          {...restProps}
+          className={theme.emojiSuggestions}
+          role="listbox"
+          id={`emojis-list-${this.key}`}
+          ref={(element) => {
+            this.popover = element;
+          }}
+        >
+          {
+            this.filteredEmojis.map((emoji, index) => (
+              <Entry
+                key={emoji}
+                onEmojiSelect={this.onEmojiSelect}
+                onEmojiFocus={this.onEmojiFocus}
+                isFocused={this.state.focusedOptionIndex === index}
+                emoji={emoji}
+                index={index}
+                id={`emoji-option-${this.key}-${index}`}
+                theme={theme}
+                imagePath={imagePath}
+                imageType={imageType}
+                cacheBustParam={cacheBustParam}
+              />
+            )).toJS()
+          }
+        </div>
+      </Portal>
     );
   }
 }
