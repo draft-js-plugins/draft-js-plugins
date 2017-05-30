@@ -41,6 +41,11 @@ export default class MentionSuggestions extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.suggestions.size === 0 && this.state.isActive) {
       this.closeDropdown();
+    } else if (this.isOpening) {
+      if (nextProps.suggestions.size > 0) {
+        this.openDropdown();
+      }
+      this.isOpening = false;
     }
   }
 
@@ -153,7 +158,7 @@ export default class MentionSuggestions extends Component {
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will again.
     if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey)) {
-      this.openDropdown();
+      this.isOpening = true;
     }
 
     // makes sure the focused index is reseted every time a new selection opens
