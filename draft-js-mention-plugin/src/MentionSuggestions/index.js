@@ -243,6 +243,10 @@ export default class MentionSuggestions extends Component {
     this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
+  isActive() {
+    return this.state.isActive;
+  }
+
   commitSelection = () => {
     if (!this.props.store.getIsOpened()) {
       return 'not-handled';

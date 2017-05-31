@@ -73,12 +73,12 @@ describe('MentionSuggestions Component', () => {
     );
 
     suggestions.instance().openDropdown();
-    expect(suggestions.state().isActive).to.equal(true);
+    expect(suggestions.instance().isActive()).to.equal(true);
 
     suggestions.setProps({
       suggestions: fromJS([]),
     });
-    expect(suggestions.state().isActive).to.equal(false);
+    expect(suggestions.instance().isActive()).to.equal(false);
   });
 
   it('The popoverComponent prop changes the popover component', () => {
