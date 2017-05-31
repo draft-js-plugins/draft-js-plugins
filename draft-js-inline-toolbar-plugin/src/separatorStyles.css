@@ -3,4 +3,6 @@
   border-right: 1px solid #ddd;
   height: 24px;
   margin: 0 0.5em;
+  position: relative;
+  top: 3px;
 }
