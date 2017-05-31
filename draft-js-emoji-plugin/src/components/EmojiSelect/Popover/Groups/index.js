@@ -15,6 +15,7 @@ export default class Groups extends Component {
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func.isRequired,
     onGroupScroll: PropTypes.func.isRequired,
+    useNativeArt: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -86,6 +87,7 @@ export default class Groups extends Component {
       checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,
+      useNativeArt,
     } = this.props;
 
     return (
@@ -121,6 +123,7 @@ export default class Groups extends Component {
               ref={(element) => {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
+              useNativeArt={useNativeArt}
             />
           ))}
         </Scrollbars>

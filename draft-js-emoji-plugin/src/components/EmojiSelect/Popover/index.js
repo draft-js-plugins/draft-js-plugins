@@ -16,6 +16,7 @@ export default class Popover extends Component {
     emojis: PropTypes.object.isRequired,
     toneSelectOpenDelay: PropTypes.number.isRequired,
     isOpen: PropTypes.bool,
+    useNativeArt: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -167,6 +168,7 @@ export default class Popover extends Component {
       groups = [],
       emojis,
       isOpen = false,
+      useNativeArt,
     } = this.props;
     const className = isOpen ?
       theme.emojiSelectPopover :
@@ -195,6 +197,7 @@ export default class Popover extends Component {
           onEmojiMouseDown={this.onEmojiMouseDown}
           onGroupScroll={this.onGroupScroll}
           ref={(element) => { this.groups = element; }}
+          useNativeArt={useNativeArt}
         />
         <Nav
           theme={theme}

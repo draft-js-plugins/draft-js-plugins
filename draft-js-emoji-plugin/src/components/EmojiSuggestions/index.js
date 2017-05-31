@@ -272,6 +272,7 @@ export default class EmojiSuggestions extends Component {
       positionSuggestions, // eslint-disable-line no-unused-vars
       shortNames, // eslint-disable-line no-unused-vars
       store, // eslint-disable-line no-unused-vars
+      useNativeArt,
       ...restProps,
     } = this.props;
     return (
@@ -298,6 +299,7 @@ export default class EmojiSuggestions extends Component {
               imagePath={imagePath}
               imageType={imageType}
               cacheBustParam={cacheBustParam}
+              useNativeArt={useNativeArt}
             />
           )).toJS()
         }
