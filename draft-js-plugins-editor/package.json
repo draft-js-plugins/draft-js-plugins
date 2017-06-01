@@ -1,6 +1,6 @@
 {
-  "name": "draft-js-plugins-editor",
-  "version": "2.0.0-beta11",
+  "name": "kaneoh-draft-js-plugins-editor",
+  "version": "0.0.3",
   "description": "Editor for DraftJS Plugins",
   "author": {
     "name": "Nik Graf",

@@ -229,7 +229,9 @@ class PluginEditor extends Component {
     fnHookKeys.forEach((attrName) => {
       pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
     });
-
+    // we handle handleBeforeInput & handleKeyCommand in our own project, so it need delete here, or it will conflict
+    delete pluginHooks.handleBeforeInput;
+    delete pluginHooks.handleKeyCommand;
     return pluginHooks;
   };
 
