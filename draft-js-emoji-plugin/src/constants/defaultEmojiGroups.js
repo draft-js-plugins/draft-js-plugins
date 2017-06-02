@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  FaSmileO,
-  FaPaw,
-  FaCutlery,
-  FaFutbolO,
-  FaPlane,
-  FaBell,
-  FaHeart,
-  FaFlag,
-} from 'react-icons/lib/fa';
+import FaSmileO from 'react-icons/lib/fa/smile-o';
+import FaPaw from 'react-icons/lib/fa/paw';
+import FaCutlery from 'react-icons/lib/fa/cutlery';
+import FaFutbolO from 'react-icons/lib/fa/futbol-o';
+import FaPlane from 'react-icons/lib/fa/plane';
+import FaBell from 'react-icons/lib/fa/bell';
+import FaHeart from 'react-icons/lib/fa/heart';
+import FaFlag from 'react-icons/lib/fa/flag';
 
 const defaultEmojiGroups = [{
   title: 'People',
