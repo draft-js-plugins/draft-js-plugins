@@ -237,7 +237,9 @@ export default class MentionSuggestions extends Component {
   onMentionFocus = (index) => {
     const descendant = `mention-option-${this.key}-${index}`;
     this.props.ariaProps.ariaActiveDescendantID = descendant;
-    this.state.focusedOptionIndex = index;
+    this.setState({
+      focusedOptionIndex: index,
+    });
 
     // to force a re-render of the outer component to change the aria props
     this.props.store.setEditorState(this.props.store.getEditorState());
