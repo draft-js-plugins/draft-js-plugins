@@ -19,12 +19,13 @@ export default (config = {}) => {
     component,
     theme = defaultTheme,
     target = '_self',
+    onLinkFound,
   } = config;
 
   return {
     decorators: [
       {
-        strategy: linkStrategy,
+        strategy: linkStrategy(onLinkFound),
         component: decorateComponentWithProps(Link, { theme, target, component }),
       },
     ],
