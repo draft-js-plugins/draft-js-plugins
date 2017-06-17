@@ -46,9 +46,10 @@ export default createCustomPlugin = (config) => {
 
 # Supported Objects & Webhooks
 
-A plugin accepts all standard props that a Draft.js Editor.
+A plugin accepts all standard props the Draft.js Editor Component uses.
 
 - [blockRendererFn](https://facebook.github.io/draft-js/docs/api-reference-editor.html#blockrendererfn)
+- [keyBindingFn](https://draftjs.org/docs/advanced-topics-key-bindings.html)
 - [blockStyleFn](https://facebook.github.io/draft-js/docs/api-reference-editor.html#blockstylefn)
 - [customStyleMap](https://facebook.github.io/draft-js/docs/api-reference-editor.html#customstylemap)
 - [handleReturn](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handlereturn)
