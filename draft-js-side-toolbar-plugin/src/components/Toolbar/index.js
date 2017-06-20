@@ -36,13 +36,10 @@ export default class Toolbar extends React.Component {
     // Note: need to wait on tick to make sure the DOM node has been create by Draft.js
     setTimeout(() => {
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
-      const top = node.getBoundingClientRect().top;
-      const editor = this.props.store.getItem('getEditorRef')().refs.editor;
-      const scrollY = window.scrollY == null ? window.pageYOffset : window.scrollY;
       this.setState({
         position: {
-          top: (top + scrollY),
-          left: editor.getBoundingClientRect().left - 80,
+          top: node.offsetTop - node.parentElement.offsetTop - node.parentElement.scrollTop,
+          left: '-25px',
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
         },

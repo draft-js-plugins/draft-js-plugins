@@ -1,6 +1,6 @@
 {
   "name": "kaneoh-draft-js-side-toolbar-plugin",
-  "version": "0.0.9",
+  "version": "0.0.12",
   "description": "Toolbar Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
