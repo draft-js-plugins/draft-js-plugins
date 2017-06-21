@@ -1,6 +1,6 @@
 {
   "name": "kaneoh-draft-js-mention-plugin",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Mention Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
