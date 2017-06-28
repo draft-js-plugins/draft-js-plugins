@@ -9,6 +9,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - The plugin now accepts a `component` config and if provided this component will be rendered instead of the default Anchor tag. Thanks to @antoinerey.
 
+### Fix
+
+- The plugin now accepts a `rel` config to prevent the `target="_blank"` vulnerability.
+- Limit the props that can be added to the link to prevent the Unknown Prop Warning
+
 ## 1.0.1 - 2016-04-29
 
 ### Fix

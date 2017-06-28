@@ -21,7 +21,7 @@ export default class Link extends Component {
       offsetKey, // eslint-disable-line no-unused-vars
       setEditorState, // eslint-disable-line no-unused-vars
       contentState, // eslint-disable-line no-unused-vars
-      ...otherProps
+      rel = 'noreferrer noopener',
     } = this.props;
 
     const combinedClassName = unionClassNames(theme.link, className);
@@ -29,7 +29,7 @@ export default class Link extends Component {
     const href = links && links[0] ? links[0].url : '';
 
     const props = {
-      ...otherProps,
+      rel,
       href,
       target,
       className: combinedClassName,
