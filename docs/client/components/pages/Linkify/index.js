@@ -106,6 +106,10 @@ export default class App extends Component {
             <span className={styles.paramName}>component</span>
             <span>If provided this component will be rendered instead of the default Anchor tag. It receives the following props: target, href & className</span>
           </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>rel</span>
+            <span>String value for the rel attribute. (Default value is noreferrer noopener)</span>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Example</Heading>
