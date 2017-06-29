@@ -2,6 +2,7 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import addImage from './modifiers/addImage';
 import ImageComponent from './Image';
 import imageStyles from './imageStyles.css';
+import ImageAdd from './ImageAdd';
 
 const defaultTheme = {
   image: imageStyles.image,
@@ -31,6 +32,7 @@ export default (config = {}) => {
       return null;
     },
     addImage,
+    ImageAdd,
   };
 };
 

@@ -15,6 +15,7 @@ import AlignBlockDefaultButton from './components/AlignBlockDefaultButton';
 import AlignBlockCenterButton from './components/AlignBlockCenterButton';
 import AlignBlockLeftButton from './components/AlignBlockLeftButton';
 import AlignBlockRightButton from './components/AlignBlockRightButton';
+import AddImageButton from './components/AddImageButton';
 
 export {
   createBlockStyleButton,
@@ -34,4 +35,5 @@ export {
   AlignBlockCenterButton,
   AlignBlockLeftButton,
   AlignBlockRightButton,
+  AddImageButton,
 };
