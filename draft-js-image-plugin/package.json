@@ -1,6 +1,6 @@
 {
   "name": "kaneoh-draft-js-image-plugin",
-  "version": "0.0.7",
+  "version": "0.0.27",
   "description": "Image Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",

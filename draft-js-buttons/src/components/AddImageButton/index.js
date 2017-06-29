@@ -3,6 +3,6 @@ import createImageButton from '../../utils/createImageButton';
 
 export default createImageButton({
   children: (
-    <span>📷</span>
+    <i className="ki-upload-file" />
   ),
 });

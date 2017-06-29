@@ -10,25 +10,35 @@ const defaultTheme = {
 
 export default (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
-  let Image = config.imageComponent || ImageComponent;
-  if (config.decorator) {
-    Image = config.decorator(Image);
-  }
-  const ThemedImage = decorateComponentWithProps(Image, { theme });
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === 'atomic') {
         const contentState = getEditorState().getCurrentContent();
         const entity = contentState.getEntity(block.getEntityAt(0));
-        const type = entity.getType();
-        if (type === 'image') {
+        let Image = config.imageComponent || ImageComponent;
+        if (config.decorator) {
+          Image = config.decorator(Image);
+        }
+        const ThemedImage = decorateComponentWithProps(Image, { theme });
+        const fileRecord = entity.getData().fileRecord;
+        if (fileRecord.type.search(/^image\/*/) < 0) {
+          let File = config.filePreviewComponent || ImageComponent;
+          if (config.decorator) {
+            File = config.decorator(File);
+          }
+          const ThemedFile = decorateComponentWithProps(File, { theme });
           return {
-            component: ThemedImage,
-            editable: false,
+            component: ThemedFile,
+            props: {
+              fileRecord: entity.getData().fileRecord,
+            }
           };
         }
+        return {
+          component: ThemedImage,
+          editable: false,
+        };
       }
-
       return null;
     },
     addImage,

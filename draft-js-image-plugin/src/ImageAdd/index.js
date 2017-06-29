@@ -30,7 +30,6 @@ export default class ImageAdd extends Component {
           onChange={(e) => this.onChange(e)}
           style={{ display: 'none' }}
           multiple={false}
-          accept={'image/*'}
         />
       </div>
     );
