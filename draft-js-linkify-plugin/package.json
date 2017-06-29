@@ -33,8 +33,8 @@
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "union-class-names": "^1.0.0",
-    "linkify-it": "2.0.0",
-    "tlds": "1.159.0",
+    "linkify-it": "^2.0.3",
+    "tlds": "^1.189.0",
     "immutable": "~3.7.4",
     "prop-types": "^15.5.8"
   },
