@@ -272,7 +272,12 @@ class PluginEditor extends Component {
   resolveblockRenderMap = () => {
     let blockRenderMap = this.props.plugins
       .filter((plug) => plug.blockRenderMap !== undefined)
-      .reduce((maps, plug) => maps.merge(plug.blockRenderMap), Map({}));
+      .reduce((maps, plug) => {
+        Object.keys(plug.blockRenderMap).forEach((key) => {
+          maps = maps.set(key, plug.blockRenderMap[key]);
+        });
+        return maps;
+      }, Map({}));
     if (this.props.defaultBlockRenderMap) {
       blockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
     }
