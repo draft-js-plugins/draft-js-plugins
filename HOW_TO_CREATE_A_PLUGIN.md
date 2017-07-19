@@ -44,7 +44,7 @@ export default createCustomPlugin = (config) => {
 };
 ```
 
-# Supported Objects & Webhooks
+# Supported Objects & Hooks
 
 A plugin accepts all standard props the Draft.js Editor Component uses.
 
