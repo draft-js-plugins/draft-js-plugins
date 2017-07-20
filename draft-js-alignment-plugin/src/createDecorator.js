@@ -28,6 +28,11 @@ export default ({ store }) => (WrappedComponent) => class BlockAlignmentDecorato
     }
   }
 
+  componentWillUnmount() {
+    // Set visibleBlock to null if the block is deleted
+    store.updateItem('visibleBlock', null);
+  }
+
   render() {
     const {
       blockProps,
