@@ -46,6 +46,7 @@ export default class Toolbar extends React.Component {
           left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
           transform: 'translate(-50%) scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+          width: '342px',
         };
       } else {
         position = { transform: 'translate(-50%) scale(0)' };

@@ -4,7 +4,7 @@ import {
   BoldButton,
   UnderlineButton,
   CodeButton,
-} from 'draft-js-buttons'; // eslint-disable-line import/no-unresolved
+} from 'kaneoh-draft-js-buttons'; // eslint-disable-line import/no-unresolved
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
