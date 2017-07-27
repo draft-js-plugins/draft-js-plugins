@@ -12,6 +12,8 @@ import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 
+export { default as MentionSuggestions } from './MentionSuggestions';
+
 export default (config = {}) => {
   const defaultTheme = {
     // CSS class for mention text
@@ -90,6 +92,7 @@ export default (config = {}) => {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
     mentionComponent,
+    mentionSuggestionsComponent = MentionSuggestions,
     entityMutability = 'SEGMENTED',
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
@@ -105,7 +108,7 @@ export default (config = {}) => {
     mentionPrefix,
   };
   return {
-    MentionSuggestions: decorateComponentWithProps(MentionSuggestions, mentionSearchProps),
+    MentionSuggestions: decorateComponentWithProps(mentionSuggestionsComponent, mentionSearchProps),
     decorators: [
       {
         strategy: mentionStrategy(mentionTrigger),

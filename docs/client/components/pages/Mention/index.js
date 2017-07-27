@@ -204,6 +204,10 @@ export default class App extends Component {
               <span>Component to be used as the template for the popover (the parent of entryComponent).  Defaults to a div.</span>
             </div>
             <div className={styles.param}>
+              <span className={styles.paramName}>mentionSuggestionsComponent</span>
+              <span>Component to be used to render the suggestions dropdown. It must implement the same interface like <InlineCode code="MentionSuggestions" />.  Defaults to <InlineCode code="MentionSuggestions" />.</span>
+            </div>
+            <div className={styles.param}>
               <span>Additional properties are passed to the <InlineCode code="popoverComponent" /></span>
             </div>
           </div>
