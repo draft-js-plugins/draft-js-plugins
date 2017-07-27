@@ -66,11 +66,7 @@ class PluginEditor extends Component {
       .filter((decorator) => this.decoratorIsCustom(decorator));
 
     const multiDecorator = new MultiDecorator(
-      [
-        ...customDecorators,
-        compositeDecorator,
-      ]
-    );
+      customDecorators.push(compositeDecorator));
 
     const editorState = EditorState.set(this.props.editorState, { decorator: multiDecorator });
     this.onChange(moveSelectionToEnd(editorState));
