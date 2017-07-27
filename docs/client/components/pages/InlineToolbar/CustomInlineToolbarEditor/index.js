@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
@@ -18,6 +19,51 @@ import {
 } from 'draft-js-buttons'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
+
+class HeadlinesPicker extends Component {
+  componentDidMount() {
+    setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onWindowClick);
+  }
+
+  onWindowClick = () =>
+    // Call `onOverrideContent` again with `undefined`
+    // so the toolbar can show its regular content again.
+    this.props.onOverrideContent(undefined);
+
+  render() {
+    const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
+    return (
+      <div>
+        {buttons.map((Button, i) => // eslint-disable-next-line
+          <Button key={i} {...this.props} />
+        )}
+      </div>
+    );
+  }
+}
+
+class HeadlinesButton extends Component {
+  onClick = () =>
+    // A button can call `onOverrideContent` to replace the content
+    // of the toolbar. This can be useful for displaying sub
+    // menus or requesting additional information from the user.
+    this.props.onOverrideContent(HeadlinesPicker);
+
+  render() {
+    return (
+      <div className={editorStyles.headlineButtonWrapper}>
+        <button onClick={this.onClick} className={editorStyles.headlineButton}>
+          H
+        </button>
+      </div>
+    );
+  }
+}
+
 const inlineToolbarPlugin = createInlineToolbarPlugin({
   structure: [
     BoldButton,
@@ -25,13 +71,11 @@ const inlineToolbarPlugin = createInlineToolbarPlugin({
     UnderlineButton,
     CodeButton,
     Separator,
-    HeadlineOneButton,
-    HeadlineTwoButton,
-    HeadlineThreeButton,
+    HeadlinesButton,
     UnorderedListButton,
     OrderedListButton,
     BlockquoteButton,
-    CodeBlockButton,
+    CodeBlockButton
   ]
 });
 const { InlineToolbar } = inlineToolbarPlugin;

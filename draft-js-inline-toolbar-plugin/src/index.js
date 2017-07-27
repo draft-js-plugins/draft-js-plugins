@@ -41,12 +41,7 @@ export default (config = {}) => {
     },
     // Re-Render the text-toolbar on selection change
     onChange: (editorState) => {
-      const selection = editorState.getSelection();
-      if (selection.getHasFocus() && !selection.isCollapsed()) {
-        store.updateItem('isVisible', true);
-      } else {
-        store.updateItem('isVisible', false);
-      }
+      store.updateItem('selection', editorState.getSelection());
       return editorState;
     },
     InlineToolbar: decorateComponentWithProps(Toolbar, toolbarProps),
