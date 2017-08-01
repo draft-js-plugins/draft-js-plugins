@@ -189,6 +189,54 @@ describe('Editor', () => {
       expect(plugin.handleDrop).has.been.calledWith('command', expectedSecondArgument);
     });
 
+    it('allows handle-hooks functions with boolean return values', () => {
+      const plugins = [
+        {
+          handleKeyCommand: sinon.stub().returns(true),
+          handlePastedText: sinon.stub().returns(true),
+          handleReturn: sinon.stub().returns(true),
+          handleDrop: sinon.stub().returns(true),
+        },
+      ];
+      const result = shallow(
+        <PluginEditor
+          editorState={editorState}
+          onChange={changeSpy}
+          plugins={plugins}
+        />
+      );
+
+      const draftEditor = result.node;
+      expect(draftEditor.props.handleDrop('command')).to.equal('handled');
+      expect(draftEditor.props.handleKeyCommand('command')).to.equal('handled');
+      expect(draftEditor.props.handlePastedText('command')).to.equal('handled');
+      expect(draftEditor.props.handleReturn('command')).to.equal('handled');
+    });
+
+    it("allows handle-hooks functions with 'handled'|'not-handled' return values", () => {
+      const plugins = [
+        {
+          handleKeyCommand: sinon.stub().returns('handled'),
+          handlePastedText: sinon.stub().returns('handled'),
+          handleReturn: sinon.stub().returns('handled'),
+          handleDrop: sinon.stub().returns('handled'),
+        },
+      ];
+      const result = shallow(
+        <PluginEditor
+          editorState={editorState}
+          onChange={changeSpy}
+          plugins={plugins}
+        />
+      );
+
+      const draftEditor = result.node;
+      expect(draftEditor.props.handleDrop('command')).to.equal('handled');
+      expect(draftEditor.props.handleKeyCommand('command')).to.equal('handled');
+      expect(draftEditor.props.handlePastedText('command')).to.equal('handled');
+      expect(draftEditor.props.handleReturn('command')).to.equal('handled');
+    });
+
     it('calls willUnmount', () => {
       const plugins = [
         {
