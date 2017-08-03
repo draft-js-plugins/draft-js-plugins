@@ -29,13 +29,13 @@ export default class NavBar extends Component {
                 Video
               </Link>
             </li>
+          </ul>
+          <ul className={styles.plugins}>
             <li className={styles.plugin}>
               <Link to="/plugin/sticker" className={styles.link}>
                 Sticker
               </Link>
             </li>
-          </ul>
-          <ul className={styles.plugins}>
             <li className={styles.plugin}>
               <Link to="/plugin/hashtag" className={styles.link}>
                 Hashtag
@@ -51,6 +51,8 @@ export default class NavBar extends Component {
                 Side Toolbar
               </Link>
             </li>
+          </ul>
+          <ul className={styles.plugins}>
             <li className={styles.plugin}>
               <Link to="/plugin/undo" className={styles.link}>
                 Undo
@@ -61,13 +63,18 @@ export default class NavBar extends Component {
                 Counter
               </Link>
             </li>
-          </ul>
-          <ul className={styles.plugins}>
+            <li className={styles.plugin}>
+              <Link to="/plugin/link" className={styles.link}>
+                Link
+              </Link>
+            </li>
             <li className={styles.plugin}>
               <Link to="/plugin/linkify" className={styles.link}>
                 Linkify
               </Link>
             </li>
+          </ul>
+          <ul className={styles.plugins}>
             <li className={styles.plugin}>
               <Link to="/plugin/focus" className={styles.link}>
                 Focus
