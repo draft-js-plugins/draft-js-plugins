@@ -8,7 +8,7 @@ import linkStyles from './linkStyles.css';
 export default (config = {}) => {
   const defaultTheme = linkStyles;
 
-  const { theme = defaultTheme, placeholder, Link } = config;
+  const { theme = defaultTheme, placeholder, Link, linkTarget } = config;
 
   const store = {
     getEditorState: undefined,
@@ -26,7 +26,8 @@ export default (config = {}) => {
         strategy: linkStrategy,
         matchesEntityType,
         component: Link || decorateComponentWithProps(DefaultLink, {
-          className: theme.link
+          className: theme.link,
+          target: linkTarget
         })
       }
     ],

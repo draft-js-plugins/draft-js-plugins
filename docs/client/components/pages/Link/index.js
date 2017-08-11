@@ -55,7 +55,7 @@ export default class App extends Component {
           <Heading level={2}>Configuration Parameters</Heading>
           <div className={styles.param}>
             <span className={styles.paramName}>theme</span>
-            <span>Object of CSS classes with the following keys.</span>
+            <span>Object of CSS classes with the following keys:</span>
             <div className={styles.subParams}>
               <div className={styles.subParam}>
                 <span className={styles.subParamName}>input:</span>
@@ -70,10 +70,18 @@ export default class App extends Component {
                 CSS class for the link in the editor content.
               </div>
             </div>
+          </div>
+          <div>
             <span className={styles.paramName}>placeholder</span>
             <span>The placeholder that is shown when the input field is empty.</span>
+          </div>
+          <div>
+            <span className={styles.paramName}>linkTarget</span>
+            <span>The target attribute of the link.</span>
+          </div>
+          <div>
             <span className={styles.paramName}>Link</span>
-            <span>Specify the component that will be rendered into the editor.</span>
+            <span>Specify the link component that will be rendered.</span>
           </div>
         </Container>
         <Container>
