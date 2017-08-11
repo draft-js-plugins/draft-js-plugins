@@ -27,6 +27,7 @@ export default ({ alignment, children }) => (
             onClick={this.activate}
             type="button"
             children={children}
+            tabIndex="-1"
           />
         </div>
       );

@@ -40,6 +40,7 @@ export default ({ blockType, children }) => (
             onClick={this.toggleStyle}
             type="button"
             children={children}
+            tabIndex="-1"
           />
         </div>
       );

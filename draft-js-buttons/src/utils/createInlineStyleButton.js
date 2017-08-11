@@ -33,6 +33,7 @@ export default ({ style, children }) => (
             onClick={this.toggleStyle}
             type="button"
             children={children}
+            tabIndex="-1"
           />
         </div>
       );
