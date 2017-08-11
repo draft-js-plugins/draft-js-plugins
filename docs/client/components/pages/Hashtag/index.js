@@ -39,6 +39,13 @@ export default class App extends Component {
         <Separator />
         <Container>
           <Heading level={2}>Hashtag</Heading>
+          <p>
+            Highlighting words starting with a number sign (#).
+          </p>
+          <Heading level={3}>Usage in combination with Linkify Plugin</Heading>
+          <p>
+            When used in combination with the linkify plugin make sure the hashtag plugin is listed afterwards in the plugins list to avoid URL hashes being styled as hashtags e.g. <InlineCode code={'[linkifyPlugin, hashtagPlugin]'} />
+          </p>
           <Heading level={3}>Supported Environment</Heading>
           <ul className={styles.list}>
             <li className={styles.listEntry}>
