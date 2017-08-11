@@ -134,10 +134,13 @@ class PluginEditor extends Component {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
 
-    return plugins.some((plugin) =>
-      typeof plugin[methodName] === 'function'
-        && plugin[methodName](...newArgs) === 'handled'
-    ) ? 'handled' : 'not-handled';
+    return plugins.some((plugin) => {
+      if (typeof plugin[methodName] === 'function') {
+        const value = plugin[methodName](...newArgs);
+        return value === 'handled' || value === true;
+      }
+      return false;
+    }) ? 'handled' : 'not-handled';
   };
 
   createFnHooks = (methodName, plugins) => (...args) => {
