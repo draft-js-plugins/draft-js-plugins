@@ -76,10 +76,12 @@ export default class Toolbar extends React.Component {
     const style = { ...position };
 
     if (isVisible) {
+      style.visibility = 'visible';
       style.transform = 'translate(-50%) scale(1)';
       style.transition = 'transform 0.15s cubic-bezier(.3,1.2,.2,1)';
     } else {
       style.transform = 'translate(-50%) scale(0)';
+      style.visibility = 'hidden';
     }
 
     return style;
