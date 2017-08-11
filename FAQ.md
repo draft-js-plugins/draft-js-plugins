@@ -75,7 +75,7 @@ const customDecorators = [
   },
 ];
 
-// Editor accepts a prop called decorators. 
+// Editor accepts a prop called decorators.
 const MyEditor = ({ editorState, onChange }) => (
   <Editor
     editorState={editorState}
@@ -118,6 +118,14 @@ const MyEditor = ({ editorState, editorState2, onChange, onChange2 }) => (
 );
 
 export default MyEditor;
+```
+
+## How can I avoid that a URL hash is converted to a Hash when using the linkify plugin?
+
+The order of the plugins matter. It will ignore the hash if the linkifyPlugin comes first in the plugins array.
+
+```js
+const plugin = [linkifyPlugin, hashtagPlugin]
 ```
 
 ## The editor throws errors in Internet Explorer 11?
