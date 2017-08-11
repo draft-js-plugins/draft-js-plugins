@@ -1,6 +1,6 @@
 {
   "name": "draft-js-video-plugin",
-  "version": "2.0.0-rc3",
+  "version": "2.0.0-rc4",
   "description": "Video Plugin for DraftJS",
   "author": {
     "name": "Anchen li"
