@@ -28,7 +28,7 @@ describe('Toolbar', () => {
       unsubscribeFromItem() {},
       getItem: (name) => ({
         getEditorState: () => ({
-          getSelection: () => ({ isCollapsed: () => true })
+          getSelection: () => ({ isCollapsed: () => true, getHasFocus: () => true })
         })
       }[name])
     };

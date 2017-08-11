@@ -72,7 +72,7 @@ export default class Toolbar extends React.Component {
     const { store } = this.props;
     const { overrideContent, position } = this.state;
     const selection = store.getItem('getEditorState')().getSelection();
-    const isVisible = !selection.isCollapsed() || overrideContent;
+    const isVisible = (!selection.isCollapsed() || overrideContent) && selection.getHasFocus();
     const style = { ...position };
 
     if (isVisible) {
