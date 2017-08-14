@@ -16,13 +16,21 @@ In case you are interested in helping [Issue #329](https://github.com/draft-js-p
 
 ## Available Plugins (incl. Docs)
 
-- [Emoji](https://www.draft-js-plugins.com/plugin/emoji)
-- [Stickers](https://www.draft-js-plugins.com/plugin/sticker)
-- [Hashtags](https://www.draft-js-plugins.com/plugin/hashtag)
-- [Linkify](https://www.draft-js-plugins.com/plugin/linkify)
-- [Mentions](https://www.draft-js-plugins.com/plugin/mention)
+- [Alignment](https://www.draft-js-plugins.com/plugin/alignment)
 - [Counter](https://www.draft-js-plugins.com/plugin/counter)
+- [Drag and Drop](https://www.draft-js-plugins.com/plugin/drag-n-drop)
+- [Emoji](https://www.draft-js-plugins.com/plugin/emoji)
+- [Focus](https://www.draft-js-plugins.com/plugin/focus)
+- [Hashtag](https://www.draft-js-plugins.com/plugin/hashtag)
+- [Image](https://www.draft-js-plugins.com/plugin/image)
+- [Inline Toolbar](https://www.draft-js-plugins.com/plugin/inline-toolbar)
+- [Linkify](https://www.draft-js-plugins.com/plugin/linkify)
+- [Mention](https://www.draft-js-plugins.com/plugin/mention)
+- [Resizeable](https://www.draft-js-plugins.com/plugin/resizeable)
+- [Side Toolbar](https://www.draft-js-plugins.com/plugin/side-toolbar)
+- [Sticker](https://www.draft-js-plugins.com/plugin/sticker)
 - [Undo](https://www.draft-js-plugins.com/plugin/undo)
+- [Video](https://www.draft-js-plugins.com/plugin/video)
 - or build your own … :)
 
 ### Built by the community
