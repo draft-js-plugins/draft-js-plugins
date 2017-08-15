@@ -52,6 +52,11 @@ export default class NavBar extends Component {
               </Link>
             </li>
             <li className={styles.plugin}>
+              <Link to="/plugin/wysiwyg-toolbar" className={styles.link}>
+                Wysiwyg Toolbar
+              </Link>
+            </li>
+            <li className={styles.plugin}>
               <Link to="/plugin/undo" className={styles.link}>
                 Undo
               </Link>
