@@ -62,7 +62,7 @@ export default class Toolbar extends React.Component {
 
       const position = {
         top: (selectionRect.top - relativeRect.top) - toolbarHeight,
-        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+        left: this.calculateToolbarLeft(selectionRect, relativeRect)
       };
       this.setState({ position });
     });
@@ -87,9 +87,43 @@ export default class Toolbar extends React.Component {
     return style;
   }
 
+  calculateToolbarLeft(selectionRect, relativeRect) {
+    const toolbarWidth = this.toolbar.offsetWidth + 4;
+    const defualtToolbarLeft = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2);
+    const outOfWindowPixlesLeft = defualtToolbarLeft - (toolbarWidth / 2);
+    const outOfWindowPixlesRight = relativeRect.width - (defualtToolbarLeft + (toolbarWidth / 2));
+
+    if (outOfWindowPixlesLeft < 0) {
+      this.adjustToolbarPointer(outOfWindowPixlesLeft + (toolbarWidth / 2));
+      return defualtToolbarLeft + Math.abs(outOfWindowPixlesLeft);
+    } else if (outOfWindowPixlesRight < 0) {
+      this.adjustToolbarPointer((toolbarWidth / 2) - outOfWindowPixlesRight);
+      return defualtToolbarLeft + outOfWindowPixlesRight;
+    }
+
+    this.adjustToolbarPointer(toolbarWidth / 2);
+    return defualtToolbarLeft;
+  }
+
   handleToolbarRef = (node) => {
     this.toolbar = node;
   };
+
+  adjustToolbarPointer(leftAttribute) {
+    const { theme } = this.props;
+    const toolbarPointerNode = document.querySelector('.toolbar-pointer');
+    const wordPointerStyle = document.createElement('style');
+
+    if (toolbarPointerNode) {
+      toolbarPointerNode.remove();
+    }
+
+    wordPointerStyle.className = 'toolbar-pointer';
+
+    document.head.appendChild(wordPointerStyle);
+    wordPointerStyle.sheet.insertRule(`.${theme.toolbarStyles.toolbar}::after { left: ${leftAttribute}px}`, 0);
+    wordPointerStyle.sheet.insertRule(`.${theme.toolbarStyles.toolbar}::before { left: ${leftAttribute}px}`, 0);
+  }
 
   render() {
     const { theme, store, structure } = this.props;
