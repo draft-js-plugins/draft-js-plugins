@@ -1,7 +1,7 @@
 {
   "name": "draft-js-link-plugin",
-  "version": "2.0.0-rc3",
-  "description": "Mention Plugin for DraftJS",
+  "version": "2.0.0-rc4",
+  "description": "Link Plugin for DraftJS",
   "author": {
     "name": "Jan Amann",
     "email": "jan@amann.me",
