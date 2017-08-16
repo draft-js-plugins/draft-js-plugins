@@ -43,6 +43,7 @@ export default class Entry extends Component {
           theme.emojiSelectPopoverNavEntryActive :
           theme.emojiSelectPopoverNavEntry}
         onMouseDown={this.onMouseDown}
+        type="button"
         onMouseUp={this.onMouseUp}
       >{icon}</button>
     );
