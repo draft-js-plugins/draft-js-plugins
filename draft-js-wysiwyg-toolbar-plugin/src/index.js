@@ -41,12 +41,6 @@ export default (config = {}) => {
     // Re-Render the text-toolbar on selection change
     onChange: (editorState) => {
       store.updateItem('selection', editorState.getSelection());
-
-      // we update the getEditorState function to enable getting the current state
-      // otherwise the component has to wait until the PluginEditor is rendered...
-      // TODO: Enable plugin authors to get the new editorstate before the editor
-      // has rendered
-      store.updateItem('getEditorState', () => editorState);
       return editorState;
     },
     Toolbar: decorateComponentWithProps(Toolbar, toolbarProps),
