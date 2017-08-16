@@ -46,8 +46,9 @@ export default class Toolbar extends React.Component {
    * this function again with `undefined` in order to reset `overrideContent`.
    * @param {Component} overrideContent
    */
-  onOverrideContent = (overrideContent) =>
+  onOverrideContent = (overrideContent) => {
     this.setState({ overrideContent });
+  }
 
   onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate

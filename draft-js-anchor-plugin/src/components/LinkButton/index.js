@@ -12,9 +12,13 @@ export default class LinkButton extends Component {
     onRemoveLinkAtSelection: PropTypes.func.isRequired,
   };
 
-  onMouseDown = (event) => { event.preventDefault(); }
+  onMouseDown = (event) => {
+    event.preventDefault();
+  }
 
-  onAddLinkClick = () => {
+  onAddLinkClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     const { ownTheme, placeholder, onOverrideContent } = this.props;
     const content = (props) =>
       <AddLinkForm {...props} placeholder={placeholder} theme={ownTheme} />;

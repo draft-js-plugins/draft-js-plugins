@@ -64,8 +64,8 @@ export default class NavBar extends Component {
               </Link>
             </li>
             <li className={styles.plugin}>
-              <Link to="/plugin/link" className={styles.link}>
-                Link
+              <Link to="/plugin/anchor" className={styles.link}>
+                Anchor
               </Link>
             </li>
             <li className={styles.plugin}>

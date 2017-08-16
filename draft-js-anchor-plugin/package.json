@@ -1,5 +1,5 @@
 {
-  "name": "draft-js-link-plugin",
+  "name": "draft-js-anchor-plugin",
   "version": "2.0.0-rc4",
   "description": "Link Plugin for DraftJS",
   "author": {
