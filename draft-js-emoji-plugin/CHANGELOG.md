@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### Fixed
+- Added type="button" to EmojiSelect button to prevent submitting forms, thanks to @alanwflood [for the pr](https://github.com/draft-js-plugins/draft-js-plugins/pull/829)
+
 ### Removed
 
 - Removed wrapping span with emojiCharacter class [#668](https://github.com/draft-js-plugins/draft-js-plugins/pull/668)
