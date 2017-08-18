@@ -33,7 +33,7 @@ module.exports = {
         // match all js files except example.js
         test: /^(?!.*example\.js$).*\.js$/,
         use: ['babel-loader'],
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!url-regex)/,
       }, {
         test: /\.js$/,
         loader: ['babel-loader'],
