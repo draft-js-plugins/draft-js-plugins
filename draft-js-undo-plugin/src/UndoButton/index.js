@@ -24,6 +24,7 @@ class UndoButton extends Component {
           !this.props.store.getEditorState ||
           this.props.store.getEditorState().getUndoStack().isEmpty()
         }
+        type="button"
         onClick={this.onClick}
         className={combinedClassName}
       >
