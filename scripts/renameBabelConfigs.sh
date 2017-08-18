@@ -14,3 +14,5 @@ mv $(pwd)/../draft-js-inline-toolbar-plugin/.babelrc $(pwd)/../draft-js-inline-t
 mv $(pwd)/../draft-js-side-toolbar-plugin/.babelrc $(pwd)/../draft-js-side-toolbar-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-image-plugin/.babelrc $(pwd)/../draft-js-image-plugin/tmpBabelrc
 mv $(pwd)/../draft-js-buttons/.babelrc $(pwd)/../draft-js-buttons/tmpBabelrc
+mv $(pwd)/../draft-js-video-plugin/.babelrc $(pwd)/../draft-js-video-plugin/tmpBabelrc
+mv $(pwd)/../draft-js-anchor-plugin/.babelrc $(pwd)/../draft-js-anchor-plugin/tmpBabelrc
