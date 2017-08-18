@@ -44,6 +44,10 @@ cd ..
 cd draft-js-resizeable-plugin
 npm publish --tag beta
 cd ..
+cd draft-js-anchor-plugin
+npm install
+npm publish --tag beta
+cd ..
 cd draft-js-side-toolbar-plugin
 npm install
 npm publish --tag beta
