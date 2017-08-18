@@ -53,8 +53,6 @@ export default class UnicornEditor extends Component {
     this.setState({
       editorState,
     });
-
-    // console.log(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
   };
 
   onMentionSearchChange = ({ value }) => {

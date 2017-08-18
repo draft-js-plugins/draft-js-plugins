@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
 import Editor from 'draft-js-plugins-editor';
-import createLinkPlugin from 'draft-js-link-plugin';
+import createLinkPlugin from 'draft-js-anchor-plugin';
 import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
 import { ItalicButton, BoldButton, UnderlineButton } from 'draft-js-buttons';
 import React from 'react';
