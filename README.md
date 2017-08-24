@@ -152,11 +152,10 @@ In this talk Nik Graf explained the ContentState structure of a Draft.js Editor 
 
 [<img width="450" src="http://img.youtube.com/vi/gxNuHZXZMgs/maxresdefault.jpg" >](https://www.youtube.com/watch?v=gxNuHZXZMgs)
 
+## Maintainers
+
+This project was initiated by [Nik Graf](https://twitter.com/nikgraf) and is maintained by [Julian Krispel](https://twitter.com/juliandoesstuff). Julian is a draft.js consultant and available for hire, you can get in touch with him on his website, [react rocket](https://reactrocket.com)
+
 ## License
 
 MIT
-
-## Maintainers
-
-This project is owned by [Nik Graf](https://twitter.com/nikgraf) and maintained by [Julian Krispel](https://twitter.com/juliandoesstuff). Julian is a draft.js consultant and available for hire, you can get in touch with him on his website, [react rocket](https://reactrocket.com)
-
