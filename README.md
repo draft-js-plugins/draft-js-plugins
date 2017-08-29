@@ -8,7 +8,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 ## Important Note
 
-We are currently preparing for a 2.0 release. The `master` branch contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-rc4 --save`.
+We are currently preparing for a 2.0 release. The `master` branch contains these features. All the packages are already published with a beta tag. Install it via `$ npm install <plugin>@2.0.0-rc5 --save`.
 
 ## Roadmap
 
@@ -67,7 +67,7 @@ $ npm install draft-js-plugins-editor --save
 To try out the beta version of 2.0.0 run
 
 ```
-$ npm install draft-js-plugins-editor@2.0.0-rc4 --save
+$ npm install draft-js-plugins-editor@2.0.0-rc5 --save
 ```
 
 Then import the editor somewhere in your code and you're ready to go!
@@ -151,6 +151,10 @@ Check out our [Contribution Guide](https://github.com/draft-js-plugins/draft-js-
 In this talk Nik Graf explained the ContentState structure of a Draft.js Editor as well as explained how to use plugins.
 
 [<img width="450" src="http://img.youtube.com/vi/gxNuHZXZMgs/maxresdefault.jpg" >](https://www.youtube.com/watch?v=gxNuHZXZMgs)
+
+## Maintainers
+
+This project was initiated by [Nik Graf](https://twitter.com/nikgraf) and is maintained by [Julian Krispel](https://twitter.com/juliandoesstuff). Julian is a draft.js consultant and available for hire, you can get in touch with him on his website, [react rocket](https://reactrocket.com)
 
 ## License
 

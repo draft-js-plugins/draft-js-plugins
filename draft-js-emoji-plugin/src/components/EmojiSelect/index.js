@@ -97,6 +97,7 @@ export default class EmojiSelect extends Component {
         <button
           className={buttonClassName}
           onMouseUp={this.onButtonMouseUp}
+          type="button"
         >
           {selectButtonContent}
         </button>

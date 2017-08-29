@@ -7,6 +7,7 @@ module.exports = {
       'draft-js-plugins-editor': path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
       'draft-js-hashtag-plugin': path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
       'draft-js-linkify-plugin': path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
+      'draft-js-anchor-plugin': path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
       'draft-js-mention-plugin': path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),
       'draft-js-sticker-plugin': path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
       'draft-js-undo-plugin': path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),
@@ -33,7 +34,7 @@ module.exports = {
         // match all js files except example.js
         test: /^(?!.*example\.js$).*\.js$/,
         use: ['babel-loader'],
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!url-regex)/,
       }, {
         test: /\.js$/,
         loader: ['babel-loader'],
@@ -41,6 +42,7 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),
@@ -65,6 +67,7 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),

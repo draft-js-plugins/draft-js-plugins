@@ -62,6 +62,7 @@ export default class Entry extends Component {
 
     return (
       <button
+        type="button"
         className={isFocused ?
           theme.emojiSelectPopoverEntryFocused :
           theme.emojiSelectPopoverEntry}

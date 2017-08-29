@@ -46,8 +46,9 @@ export default class Toolbar extends React.Component {
    * this function again with `undefined` in order to reset `overrideContent`.
    * @param {Component} overrideContent
    */
-  onOverrideContent = (overrideContent) =>
+  onOverrideContent = (overrideContent) => {
     this.setState({ overrideContent });
+  }
 
   onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate
@@ -72,7 +73,9 @@ export default class Toolbar extends React.Component {
     const { store } = this.props;
     const { overrideContent, position } = this.state;
     const selection = store.getItem('getEditorState')().getSelection();
-    const isVisible = (!selection.isCollapsed() || overrideContent) && selection.getHasFocus();
+    // overrideContent could for example contain a text input, hence we always show overrideContent
+    // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
+    const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
     const style = { ...position };
 
     if (isVisible) {

@@ -8,6 +8,7 @@ import Home from './components/pages/Home';
 import Hashtag from './components/pages/Hashtag';
 import Emoji from './components/pages/Emoji';
 import Linkify from './components/pages/Linkify';
+import Anchor from './components/pages/Anchor';
 import Sticker from './components/pages/Sticker';
 import Undo from './components/pages/Undo';
 import Mention from './components/pages/Mention';
@@ -33,6 +34,7 @@ export const routes = (
       <Route path="plugin/hashtag" title="App - Hashtag" component={Hashtag} />
       <Route path="plugin/emoji" title="App - Emoji" component={Emoji} />
       <Route path="plugin/linkify" title="App - Linkify" component={Linkify} />
+      <Route path="plugin/anchor" title="App - Anchor" component={Anchor} />
       <Route path="plugin/sticker" title="App - Sticker" component={Sticker} />
       <Route path="plugin/undo" title="App - Undo" component={Undo} />
       <Route path="plugin/mention" title="App - Mention" component={Mention} />

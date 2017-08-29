@@ -24,6 +24,7 @@ class RedoButton extends Component {
           !this.props.store.getEditorState ||
           this.props.store.getEditorState().getRedoStack().isEmpty()
         }
+        type="button"
         onClick={this.onClick}
         className={combinedClassName}
       >
