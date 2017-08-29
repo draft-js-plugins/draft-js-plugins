@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
-import createToolbarPlugin, { Separator } from 'draft-js-wysiwyg-toolbar-plugin';
+import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
 import {
   ItalicButton,
   BoldButton,
@@ -101,7 +101,6 @@ export default class CustomToolbarEditor extends Component {
   render() {
     return (
       <div>
-        <Toolbar />
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -109,6 +108,7 @@ export default class CustomToolbarEditor extends Component {
             plugins={plugins}
             ref={(element) => { this.editor = element; }}
           />
+          <Toolbar />
         </div>
       </div>
     );

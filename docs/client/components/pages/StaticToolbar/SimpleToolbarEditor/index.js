@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-import createToolbarPlugin from 'draft-js-wysiwyg-toolbar-plugin'; // eslint-disable-line import/no-unresolved
+import createToolbarPlugin from 'draft-js-static-toolbar-plugin'; // eslint-disable-line import/no-unresolved
 import editorStyles from './editorStyles.css';
 
 const inlineToolbarPlugin = createToolbarPlugin();
 const { Toolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
-const text = 'The toolbar above the editor can be used for formatting text, as in conventional wysiwyg editors  …';
+const text = 'The toolbar above the editor can be used for formatting text, as in conventional static editors  …';
 
 export default class SimpleInlineToolbarEditor extends Component {
   state = {
@@ -26,7 +26,6 @@ export default class SimpleInlineToolbarEditor extends Component {
   render() {
     return (
       <div>
-        <Toolbar />
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -34,6 +33,7 @@ export default class SimpleInlineToolbarEditor extends Component {
             plugins={plugins}
             ref={(element) => { this.editor = element; }}
           />
+          <Toolbar />
         </div>
       </div>
     );

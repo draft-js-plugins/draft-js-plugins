@@ -88,19 +88,19 @@ export default class App extends Component {
           </p>
         </AlternateContainer>
         <Container>
-          <Heading level={2}>Simple Wysiwyg Toolbar Example</Heading>
+          <Heading level={2}>Simple Static Toolbar Example</Heading>
           <SimpleToolbarEditor />
           <Code code={simpleExampleCode} name="SimpleToolbarEditor.js" />
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Custom Wysiwyg Toolbar Example</Heading>
+          <Heading level={2}>Custom Static Toolbar Example</Heading>
           <CustomToolbarEditor />
           <Code code={customExampleCode} name="CustomToolbarEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Themed Wysiwyg Toolbar Example</Heading>
+          <Heading level={2}>Themed Static Toolbar Example</Heading>
           <ThemedToolbarEditor />
           <Code code={themedExampleCode} name="ThemedToolbarEditor.js" />
           <Code code={themedExampleEditorStylesCode} name="editorStyles.css" />

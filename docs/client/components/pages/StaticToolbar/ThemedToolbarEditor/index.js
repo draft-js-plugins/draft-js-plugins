@@ -33,7 +33,6 @@ export default class ThemedToolbarEditor extends Component {
   render() {
     return (
       <div>
-        <Toolbar />
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
@@ -41,6 +40,7 @@ export default class ThemedToolbarEditor extends Component {
             plugins={plugins}
             ref={(element) => { this.editor = element; }}
           />
+          <Toolbar />
         </div>
       </div>
     );

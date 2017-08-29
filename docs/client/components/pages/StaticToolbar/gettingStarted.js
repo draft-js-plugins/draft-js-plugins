@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
 import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-import createToolbarPlugin from 'draft-js-wysiwyg-toolbar-plugin'; // eslint-disable-line import/no-unresolved
+import createToolbarPlugin from 'draft-js-static-toolbar-plugin'; // eslint-disable-line import/no-unresolved
 import React from 'react';
 
 // Creates an Instance. At this step, a configuration object can be passed in
