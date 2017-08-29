@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import emojione from 'emojione';
+import emojiList from '../../../../utils/emojiList';
+import convertShortNameToUnicode from '../../../../utils/convertShortNameToUnicode';
 
 export default class Entry extends Component {
   static propTypes = {
@@ -13,6 +15,7 @@ export default class Entry extends Component {
     checkMouseDown: PropTypes.func.isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func,
+    useNativeArt: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -54,11 +57,26 @@ export default class Entry extends Component {
   mouseDown = this.props.mouseDown;
 
   render() {
-    const { cacheBustParam, imagePath, imageType, theme = {}, emoji } = this.props;
-    // short name to image url code steal from emojione source code
-    const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
-    const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
+    const { cacheBustParam, imagePath, imageType, theme = {}, emoji, useNativeArt } = this.props;
     const { isFocused } = this.state;
+
+    let emojiDisplay = null;
+    if (useNativeArt === true) {
+      const unicode = emojiList.list[emoji][0];
+      emojiDisplay = convertShortNameToUnicode(unicode);
+    } else {
+      // short name to image url code steal from emojione source code
+      const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
+      const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
+      emojiDisplay = (
+        <img
+          src={fullImagePath}
+          className={theme.emojiSelectPopoverEntryIcon}
+          draggable={false}
+          role="presentation"
+        />
+      );
+    }
 
     return (
       <button
@@ -72,12 +90,7 @@ export default class Entry extends Component {
         onMouseUp={this.onMouseUp}
         ref={(element) => { this.button = element; }}
       >
-        <img
-          src={fullImagePath}
-          className={theme.emojiSelectPopoverEntryIcon}
-          draggable={false}
-          role="presentation"
-        />
+        {emojiDisplay}
       </button>
     );
   }
