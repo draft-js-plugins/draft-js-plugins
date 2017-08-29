@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 // eslint-disable-next-line import/no-unresolved
-import createToolbarPlugin from 'draft-js-wysiwyg-toolbar-plugin';
+import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
