@@ -36,7 +36,6 @@ export default (config = {}) => {
 
   return {
     initialize: ({ getEditorState, setEditorState }) => {
-      console.log('init inline');
       store.updateItem('getEditorState', getEditorState);
       store.updateItem('setEditorState', setEditorState);
     },

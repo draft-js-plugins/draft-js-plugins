@@ -93,10 +93,6 @@ class PluginEditor extends Component {
       }
     });
 
-    // we cache editorState in the state object so that components with access
-    // to editorState get the updated editorState before the editor renders
-    this.state.editorState = newEditorState;
-
     if (this.props.onChange) {
       this.props.onChange(newEditorState, this.getPluginMethods());
     }
@@ -113,7 +109,7 @@ class PluginEditor extends Component {
 
   getEditorRef = () => this.editor;
 
-  getEditorState = () => this.state.editorState || this.props.editorState;
+  getEditorState = () => this.props.editorState;
 
   getPluginMethods = () => ({
     getPlugins: this.getPlugins,

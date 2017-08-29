@@ -8,7 +8,6 @@ export default ({ style, children }) => (
 
     toggleStyle = (event) => {
       event.preventDefault();
-      console.log('toggle style dude');
       this.props.setEditorState(
         RichUtils.toggleInlineStyle(
           this.props.getEditorState(),
@@ -21,7 +20,6 @@ export default ({ style, children }) => (
 
     // we check if this.props.getEditorstate is undefined first in case the button is rendered before the editor
     styleIsActive = () => {
-      console.log('does the editor store have the current style?', this.props.getEditorState && this.props.getEditorState().getCurrentInlineStyle().toJS());
       return this.props.getEditorState && this.props.getEditorState().getCurrentInlineStyle().has(style);
     }
 
