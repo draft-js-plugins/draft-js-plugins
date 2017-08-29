@@ -13,6 +13,7 @@ export default class Group extends Component {
     checkMouseDown: PropTypes.func.isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func.isRequired,
+    useNativeArt: PropTypes.bool,
   };
 
   shouldComponentUpdate = () => false;
@@ -27,6 +28,7 @@ export default class Group extends Component {
       checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,
+      useNativeArt,
     } = this.props;
 
     const categoryEmojis = emojis[category];
@@ -46,6 +48,7 @@ export default class Group extends Component {
           checkMouseDown={checkMouseDown}
           onEmojiSelect={onEmojiSelect}
           onEmojiMouseDown={onEmojiMouseDown}
+          useNativeArt={useNativeArt}
         />
       </li>
     ));

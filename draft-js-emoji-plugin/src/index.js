@@ -132,6 +132,7 @@ export default (config = {}) => {
     selectGroups,
     selectButtonContent,
     toneSelectOpenDelay,
+    useNativeArt,
   } = config;
 
   const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
@@ -148,6 +149,7 @@ export default (config = {}) => {
     store,
     positionSuggestions,
     shortNames: List(keys(emojiList.list)),
+    useNativeArt,
   };
   const selectProps = {
     cacheBustParam,
@@ -158,6 +160,7 @@ export default (config = {}) => {
     selectGroups,
     selectButtonContent,
     toneSelectOpenDelay,
+    useNativeArt,
   };
   return {
     EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, suggestionsProps),
@@ -165,7 +168,7 @@ export default (config = {}) => {
     decorators: [
       {
         strategy: emojiStrategy,
-        component: decorateComponentWithProps(Emoji, { theme, imagePath, imageType, cacheBustParam }),
+        component: decorateComponentWithProps(Emoji, { theme, imagePath, imageType, cacheBustParam, useNativeArt }),
       },
       {
         strategy: emojiSuggestionsStrategy,

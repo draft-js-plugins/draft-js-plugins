@@ -3,6 +3,8 @@ import React, {
   Component,
 } from 'react';
 import emojione from 'emojione';
+import emojiList from '../../../utils/emojiList';
+import convertShortNameToUnicode from '../../../utils/convertShortNameToUnicode';
 
 export default class Entry extends Component {
 
@@ -34,11 +36,26 @@ export default class Entry extends Component {
   };
 
   render() {
-    const { theme = {}, imagePath, imageType, cacheBustParam } = this.props;
+    const { theme = {}, imagePath, imageType, cacheBustParam, useNativeArt } = this.props;
     const className = this.props.isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
-    // short name to image url code steal from emojione source code
-    const shortNameForImage = emojione.emojioneList[this.props.emoji].unicode[emojione.emojioneList[this.props.emoji].unicode.length - 1];
-    const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
+
+    let emojiDisplay = null;
+    if (useNativeArt === true) {
+      const unicode = emojiList.list[this.props.emoji][0];
+      emojiDisplay = convertShortNameToUnicode(unicode);
+    } else {
+      // short name to image url code steal from emojione source code
+      const shortNameForImage = emojione.emojioneList[this.props.emoji].unicode[emojione.emojioneList[this.props.emoji].unicode.length - 1];
+      const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
+      emojiDisplay = (
+        <img
+          src={fullImagePath}
+          className={theme.emojiSuggestionsEntryIcon}
+          role="presentation"
+        />
+      );
+    }
+
     return (
       <div
         className={className}
@@ -47,11 +64,7 @@ export default class Entry extends Component {
         onMouseEnter={this.onMouseEnter}
         role="option"
       >
-        <img
-          src={fullImagePath}
-          className={theme.emojiSuggestionsEntryIcon}
-          role="presentation"
-        />
+        {emojiDisplay}
         <span className={theme.emojiSuggestionsEntryText}>
           {this.props.emoji}
         </span>

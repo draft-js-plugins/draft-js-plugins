@@ -70,6 +70,9 @@ export default class App extends Component {
             a background image. This creates consistency across all platforms while maintaining
             natural copy/pasting functionality.
           </p>
+          <p>
+            If useNativeArt parameter is used, emoji unicode characters are displayed. This enables displaying platform specific art for emojis.
+          </p>
           <Heading level={3}>Usage</Heading>
           <p>
             To use simply type <code>:</code> which will show an autocomplete with matching emojis.
@@ -295,6 +298,10 @@ export default class App extends Component {
           <div className={styles.paramBig}>
             <span className={styles.paramName}>toneSelectOpenDelay</span>
             <span>Time delay before opening tone select. (Default value is 500&nbsp;ms)</span>
+          </div>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>useNativeArt</span>
+            <span>If set to <InlineCode code={'true'} />, uses host system art for emojis instead of EmojiOne art. Default value is <InlineCode code={'false'} />.</span>
           </div>
           <Heading level={3}>EmojiSuggestions</Heading>
           <div>

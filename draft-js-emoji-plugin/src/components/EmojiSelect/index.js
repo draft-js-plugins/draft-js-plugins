@@ -27,6 +27,7 @@ export default class EmojiSelect extends Component {
       PropTypes.string,
     ]),
     toneSelectOpenDelay: PropTypes.number,
+    useNativeArt: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -87,6 +88,7 @@ export default class EmojiSelect extends Component {
       selectGroups,
       selectButtonContent,
       toneSelectOpenDelay,
+      useNativeArt,
     } = this.props;
     const buttonClassName = this.state.isOpen ?
       theme.emojiSelectButtonPressed :
@@ -111,6 +113,7 @@ export default class EmojiSelect extends Component {
           emojis={emojis}
           toneSelectOpenDelay={toneSelectOpenDelay}
           isOpen={this.state.isOpen}
+          useNativeArt={useNativeArt}
         />
       </div>
     );
