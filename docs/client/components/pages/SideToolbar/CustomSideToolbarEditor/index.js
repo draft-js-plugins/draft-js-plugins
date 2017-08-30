@@ -9,7 +9,8 @@ import toolbarStyles from './toolbarStyles.css';
 import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 
 const sideToolbarPlugin = createSideToolbarPlugin({
-  theme: { buttonStyles, toolbarStyles, blockTypeSelectStyles }
+  theme: { buttonStyles, toolbarStyles, blockTypeSelectStyles },
+  relative: true
 });
 const { SideToolbar } = sideToolbarPlugin;
 const plugins = [sideToolbarPlugin];

@@ -7,6 +7,7 @@
   margin-bottom: 2em;
   box-shadow: inset 0px 1px 8px -3px #ABABAB;
   background: #fefefe;
+  position: relative;
 }
 
 .editor :global(.public-DraftEditor-content) {

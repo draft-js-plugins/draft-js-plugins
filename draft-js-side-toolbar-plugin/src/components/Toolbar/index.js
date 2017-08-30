@@ -8,7 +8,7 @@ export default class Toolbar extends React.Component {
     position: {
       transform: 'scale(0)',
     }
-  }
+  };
 
   componentDidMount() {
     this.props.store.subscribeToItem('editorState', this.onEditorStateChange);
@@ -19,35 +19,34 @@ export default class Toolbar extends React.Component {
   }
 
   onEditorStateChange = (editorState) => {
+    const { relative } = this.props;
+
     const selection = editorState.getSelection();
+    const currentBlock = editorState.getCurrentContent().getBlockForKey(selection.getStartKey());
+    const offsetKey = DraftOffsetKey.encode(currentBlock.getKey(), 0, 0); // TODO verify that always a key-0-0 exists
+
     if (!selection.getHasFocus()) {
-      this.setState({
-        position: {
-          transform: 'scale(0)',
-        },
-      });
+      this.setPosition({ transform: 'scale(0)' });
       return;
     }
 
-    const currentContent = editorState.getCurrentContent();
-    const currentBlock = currentContent.getBlockForKey(selection.getStartKey());
-    // TODO verify that always a key-0-0 exists
-    const offsetKey = DraftOffsetKey.encode(currentBlock.getKey(), 0, 0);
     // Note: need to wait on tick to make sure the DOM node has been create by Draft.js
     setTimeout(() => {
-      const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
-      const top = node.getBoundingClientRect().top;
-      const editor = this.props.store.getItem('getEditorRef')().refs.editor;
-      const scrollY = window.scrollY == null ? window.pageYOffset : window.scrollY;
-      this.setState({
-        position: {
-          top: (top + scrollY),
-          left: editor.getBoundingClientRect().left - 80,
-          transform: 'scale(1)',
-          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-        },
+      const $node = document.querySelector(`[data-offset-key="${offsetKey}"]`);
+      const scrollY = window.scrollY || window.pageYOffset;
+      const nodeClientRect = $node.getBoundingClientRect();
+
+      this.setPosition({
+        top: relative ? ($node.offsetTop + 10) : (nodeClientRect.top + scrollY),
+        left: (relative ? 0 : nodeClientRect.left) - 80,
+        transform: 'scale(1)',
+        transition: 'transform 0.15s cubic-bezier(.3, 1.2, .2,1)'
       });
     }, 0);
+  };
+
+  setPosition(position) {
+    this.setState({ position });
   }
 
   render() {
