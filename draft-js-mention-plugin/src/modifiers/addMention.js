@@ -9,7 +9,7 @@ const addMention = (editorState, mention, mentionPrefix, mentionTrigger, entityM
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
   const currentSelectionState = editorState.getSelection();
-  const { begin, end } = getSearchText(editorState, currentSelectionState);
+  const { begin, end } = getSearchText(editorState, currentSelectionState, mentionTrigger);
 
   // get selection of the @mention search text
   const mentionTextSelection = currentSelectionState.merge({
