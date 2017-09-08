@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleInlineToolbarEditor';
+import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleInlineToolbarEditor/editorStyles.css';
+import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleToolbarEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomInlineToolbarEditor';
+import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomInlineToolbarEditor/editorStyles.css';
+import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomToolbarEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
-import themedExampleCode from '!!../../../loaders/prism-loader?language=javascript!./ThemedInlineToolbarEditor';
+import themedExampleCode from '!!../../../loaders/prism-loader?language=javascript!./ThemedToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
-import themedExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./ThemedInlineToolbarEditor/editorStyles.css';
+import themedExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./ThemedToolbarEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
@@ -23,9 +23,9 @@ import Heading from '../../shared/Heading';
 import styles from './styles.css';
 import Code from '../../shared/Code';
 import InlineCode from '../../shared/InlineCode';
-import SimpleInlineToolbarEditor from './SimpleInlineToolbarEditor';
-import CustomInlineToolbarEditor from './CustomInlineToolbarEditor';
-import ThemedInlineToolbarEditor from './ThemedInlineToolbarEditor';
+import SimpleToolbarEditor from './SimpleToolbarEditor';
+import CustomToolbarEditor from './CustomToolbarEditor';
+import ThemedToolbarEditor from './ThemedToolbarEditor';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
@@ -38,7 +38,7 @@ export default class App extends Component {
         <NavBar />
         <Separator />
         <Container>
-          <Heading level={2}>InlineToolbar</Heading>
+          <Heading level={2}>Toolbar</Heading>
           <Heading level={3}>Supported Environment</Heading>
           <ul className={styles.list}>
             <li className={styles.listEntry}>
@@ -84,25 +84,25 @@ export default class App extends Component {
           </ul>
           <Heading level={4}>Browserify Usage</Heading>
           <p>
-            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/InlineToolbar/index.js">documentation</ExternalLink>.
+            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Toolbar/index.js">documentation</ExternalLink>.
           </p>
         </AlternateContainer>
         <Container>
-          <Heading level={2}>Simple Inline Toolbar Example</Heading>
-          <SimpleInlineToolbarEditor />
-          <Code code={simpleExampleCode} name="SimpleInlineToolbarEditor.js" />
+          <Heading level={2}>Simple Static Toolbar Example</Heading>
+          <SimpleToolbarEditor />
+          <Code code={simpleExampleCode} name="SimpleToolbarEditor.js" />
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Custom Inline Toolbar Example</Heading>
-          <CustomInlineToolbarEditor />
-          <Code code={customExampleCode} name="CustomInlineToolbarEditor.js" />
+          <Heading level={2}>Custom Static Toolbar Example</Heading>
+          <CustomToolbarEditor />
+          <Code code={customExampleCode} name="CustomToolbarEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Themed Inline Toolbar Example</Heading>
-          <ThemedInlineToolbarEditor />
-          <Code code={themedExampleCode} name="ThemedInlineToolbarEditor.js" />
+          <Heading level={2}>Themed Static Toolbar Example</Heading>
+          <ThemedToolbarEditor />
+          <Code code={themedExampleCode} name="ThemedToolbarEditor.js" />
           <Code code={themedExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <SocialBar />

@@ -54,6 +54,11 @@ export default class NavBar extends Component {
           </ul>
           <ul className={styles.plugins}>
             <li className={styles.plugin}>
+              <Link to="/plugin/static-toolbar" className={styles.link}>
+                Static Toolbar
+              </Link>
+            </li>
+            <li className={styles.plugin}>
               <Link to="/plugin/undo" className={styles.link}>
                 Undo
               </Link>

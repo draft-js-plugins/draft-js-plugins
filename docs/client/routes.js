@@ -16,6 +16,7 @@ import Counter from './components/pages/Counter';
 import Playground from './components/pages/Playground';
 import Image from './components/pages/Image';
 import InlineToolbar from './components/pages/InlineToolbar';
+import StaticToolbar from './components/pages/StaticToolbar';
 import SideToolbar from './components/pages/SideToolbar';
 import Alignment from './components/pages/Alignment';
 import Focus from './components/pages/Focus';
@@ -40,6 +41,7 @@ export const routes = (
       <Route path="plugin/counter" title="App - Counter" component={Counter} />
       <Route path="plugin/image" title="App - Image" component={Image} />
       <Route path="plugin/inline-toolbar" title="App - InlineToolbar" component={InlineToolbar} />
+      <Route path="plugin/static-toolbar" title="App - StaticToolbar" component={StaticToolbar} />
       <Route path="plugin/side-toolbar" title="App - SideToolbar" component={SideToolbar} />
       <Route path="plugin/video" title="App - Video" component={Video} />
       <Route path="plugin/drag-n-drop" title="App - Drag'n'Drop" component={DragNDrop} />

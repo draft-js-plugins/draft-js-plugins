@@ -110,6 +110,7 @@ class PluginEditor extends Component {
   getEditorRef = () => this.editor;
 
   getEditorState = () => this.props.editorState;
+
   getPluginMethods = () => ({
     getPlugins: this.getPlugins,
     getProps: this.getProps,
