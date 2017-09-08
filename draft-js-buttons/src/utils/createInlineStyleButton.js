@@ -19,9 +19,7 @@ export default ({ style, children }) => (
     preventBubblingUp = (event) => { event.preventDefault(); }
 
     // we check if this.props.getEditorstate is undefined first in case the button is rendered before the editor
-    styleIsActive = () => {
-      return this.props.getEditorState && this.props.getEditorState().getCurrentInlineStyle().has(style);
-    }
+    styleIsActive = () => this.props.getEditorState && this.props.getEditorState().getCurrentInlineStyle().has(style);
 
     render() {
       const { theme } = this.props;
