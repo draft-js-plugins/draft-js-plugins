@@ -1,6 +1,6 @@
 {
   "name": "draft-js-sticker-plugin",
-  "version": "2.0.0-rc5",
+  "version": "2.0.0-rc6",
   "description": "Sticker Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
