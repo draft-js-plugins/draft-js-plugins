@@ -61,14 +61,14 @@ export default class Toolbar extends React.Component {
 
       if (!selectionRect) return;
 
-      let toolbarwidth = this.toolbar.clientWidth;
+      const toolbarwidth = this.toolbar.clientWidth;
 
-      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2) - (toolbarwidth/2);
+      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2) - (toolbarwidth / 2);
 
-      if(left < padding) {
+      if (left < padding) {
         left = padding;
-      } else if(left > (document.documentElement.clientWidth - toolbarwidth + padding)) {
-        left = document.documentElement.clientWidth - toolbarwidth - padding
+      } else if (left > (document.documentElement.clientWidth - toolbarwidth + padding)) {
+        left = document.documentElement.clientWidth - toolbarwidth - padding;
       }
 
       const position = {
@@ -88,11 +88,9 @@ export default class Toolbar extends React.Component {
 
     if (isVisible) {
       style.visibility = 'visible';
-      //style.transform = 'translate(-50%) scale(1)';
       style.transform = 'scale(1)';
       style.transition = 'transform 0.15s cubic-bezier(.3,1.2,.2,1)';
     } else {
-      //z style.transform = 'translate(-50%) scale(0)';
       style.transform = 'scale(0)';
       style.visibility = 'hidden';
     }
