@@ -4,6 +4,7 @@ import { getVisibleSelectionRect } from 'draft-js';
 
 // TODO make toolbarHeight to be determined or a parameter
 const toolbarHeight = 44;
+const padding = 5;
 
 const getRelativeParent = (element) => {
   if (!element) {
@@ -61,9 +62,19 @@ export default class Toolbar extends React.Component {
 
       if (!selectionRect) return;
 
+      const toolbarwidth = this.toolbar.clientWidth;
+
+      let left = (selectionRect.left - relativeRect.left) + (selectionRect.width / 2) - (toolbarwidth / 2);
+
+      if (left < padding) {
+        left = padding;
+      } else if (left > (document.documentElement.clientWidth - toolbarwidth + padding)) {
+        left = document.documentElement.clientWidth - toolbarwidth - padding;
+      }
+
       const position = {
         top: (selectionRect.top - relativeRect.top) - toolbarHeight,
-        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+        left
       };
       this.setState({ position });
     });
@@ -80,10 +91,10 @@ export default class Toolbar extends React.Component {
 
     if (isVisible) {
       style.visibility = 'visible';
-      style.transform = 'translate(-50%) scale(1)';
+      style.transform = 'scale(1)';
       style.transition = 'transform 0.15s cubic-bezier(.3,1.2,.2,1)';
     } else {
-      style.transform = 'translate(-50%) scale(0)';
+      style.transform = 'scale(0)';
       style.visibility = 'hidden';
     }
 
