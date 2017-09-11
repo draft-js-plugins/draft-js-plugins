@@ -1,6 +1,7 @@
 .DS_Store
 .idea
 *.iml
+_book
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
