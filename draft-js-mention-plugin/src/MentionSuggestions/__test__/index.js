@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { fromJS } from 'immutable';
 
-import MentionSuggestions from '../index';
+import { MentionSuggestions } from '../index';
 
 const mentions = fromJS([
   {

@@ -8,18 +8,18 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
-const suggestionsHoc = Comp => props => {
+const suggestionsHoc = (Comp) => (props) => {
   if (List.isList(props.suggestions)) {
-    console.warn('Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead');
+    console.warn('Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead'); // eslint-disable-line no-console
   }
 
   return (<Comp
     {...props}
     suggestions={fromJS(props.suggestions)}
   />);
-}
+};
 
-class MentionSuggestions extends Component {
+export class MentionSuggestions extends Component {
   static propTypes = {
     entityMutability: PropTypes.oneOf([
       'SEGMENTED',
