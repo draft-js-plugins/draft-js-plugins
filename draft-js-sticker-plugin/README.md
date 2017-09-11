@@ -44,10 +44,6 @@ Follow the steps below to import the css file by using Webpack's `style-loader` 
     ```
 4. Restart Webpack.
 
-### Browserify Usage
-
-TODO: PR welcome
-
 ## Exported functions
 
 | Props                                          | Description
