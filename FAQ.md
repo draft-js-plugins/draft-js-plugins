@@ -23,6 +23,8 @@ this.setState({ editorState: EditorState.createEmpty() })
 
 ## Why are mentions broken after using `convertFromRaw` and throwing an error?
 
+__Please Note: this has been fixed in the beta version, from now on you can use a plain array for your mention suggestions__
+
 We design the API to accept an Immutable Map for a Mention. After saving your data structure to the server and using `convertFromRaw`, the mentions in there are plain objects. I (Nik) believe this is a flaw in our design and the mention data should be a plain object. Hint: we might fix this with v2.0.0 of the mentions plugin.
 
 What you can do now is fixing the datastructure before converting it:
@@ -30,6 +32,7 @@ What you can do now is fixing the datastructure before converting it:
 ```JS
 import { fromJS} from 'immutable';
 import forEach from 'lodash/forEach';
+n
 
 forEach(rawContent.entityMap, function(value, key) {
   value.data.mention = fromJS(value.data.mention)
