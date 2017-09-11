@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
-import { List } from 'immutable';
+import { List, fromJS } from 'immutable';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
-export default class MentionSuggestions extends Component {
+const suggestionsHoc = Comp => props => <Comp
+  {...props}
+  suggestions={fromJS(props.suggestions)}
+/>
 
+class MentionSuggestions extends Component {
   static propTypes = {
     entityMutability: PropTypes.oneOf([
       'SEGMENTED',
@@ -350,3 +354,5 @@ export default class MentionSuggestions extends Component {
     );
   }
 }
+
+export default suggestionsHoc(MentionSuggestions);
