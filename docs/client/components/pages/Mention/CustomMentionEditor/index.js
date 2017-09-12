@@ -24,16 +24,6 @@ const positionSuggestions = ({ state, props }) => {
   };
 };
 
-const mentionPlugin = createMentionPlugin({
-  mentions,
-  entityMutability: 'IMMUTABLE',
-  theme: mentionsStyles,
-  positionSuggestions,
-  mentionPrefix: '@',
-});
-const { MentionSuggestions } = mentionPlugin;
-const plugins = [mentionPlugin];
-
 const Entry = (props) => {
   const {
     mention,
@@ -90,7 +80,18 @@ export default class CustomMentionEditor extends Component {
     this.editor.focus();
   };
 
+  mentionPlugin = createMentionPlugin({
+    mentions,
+    entityMutability: 'IMMUTABLE',
+    theme: mentionsStyles,
+    positionSuggestions,
+    mentionPrefix: '@',
+  });
+
   render() {
+    const { MentionSuggestions } = this.mentionPlugin;
+    const plugins = [this.mentionPlugin];
+
     return (
       <div className={editorStyles.editor} onClick={this.focus}>
         <Editor

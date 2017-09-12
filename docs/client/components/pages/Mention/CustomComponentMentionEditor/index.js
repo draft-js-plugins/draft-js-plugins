@@ -5,21 +5,6 @@ import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin({
-  mentions,
-  mentionComponent: (props) => (
-    <span
-      className={props.className}
-      // eslint-disable-next-line no-alert
-      onClick={() => alert('Clicked on the Mention!')}
-    >
-      {props.children}
-    </span>
-  ),
-});
-const { MentionSuggestions } = mentionPlugin;
-const plugins = [mentionPlugin];
-
 export default class CustomMentionEditor extends Component {
 
   state = {
@@ -43,7 +28,23 @@ export default class CustomMentionEditor extends Component {
     this.editor.focus();
   };
 
+  mentionPlugin = createMentionPlugin({
+    mentions,
+    mentionComponent: (mentionProps) => (
+      <span
+        className={mentionProps.className}
+        // eslint-disable-next-line no-alert
+        onClick={() => alert('Clicked on the Mention!')}
+      >
+        {mentionProps.children}
+      </span>
+    ),
+  });
+
   render() {
+    const { MentionSuggestions } = this.mentionPlugin;
+    const plugins = [this.mentionPlugin];
+
     return (
       <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
