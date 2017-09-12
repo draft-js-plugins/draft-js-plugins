@@ -63,7 +63,7 @@ Because of the structure of this repository you can not just use your own fork o
 module: {
   loaders: [{
     test: /\.js$/,
-    loaders: ['babel'],
+    loaders: 'babel-loader',
     include: [
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-plugins-editor', 'src'),
       path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-hashtag-plugin', 'src'),
@@ -112,7 +112,7 @@ For your CSS loader in webpack, ensure you enable CSS modules:
 {
   test: /\.css$/,
   loaders: [
-    'style', 'css?modules'
+    'style-loader', 'css-loader?modules'
   ]
 }
 ```

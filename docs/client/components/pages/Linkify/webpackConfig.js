@@ -4,7 +4,7 @@ module.exports = {
       {
         test: /plugin\.css$/,
         loaders: [
-          'style', 'css',
+          'style-loader', 'css',
         ],
       },
     ],
