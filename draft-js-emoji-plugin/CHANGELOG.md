@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+- Removed sass support for this plugin. There was only one scss file.
 - Removed wrapping span with emojiCharacter class [#668](https://github.com/draft-js-plugins/draft-js-plugins/pull/668)
 
 ### Changed
