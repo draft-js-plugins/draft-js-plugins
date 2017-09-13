@@ -169,7 +169,7 @@ class PluginEditor extends Component {
         }
       });
 
-      return styles || false;
+      return styles || '';
     }
 
     let result;
