@@ -30,7 +30,7 @@ const initialState = {
     },
     "blocks": [{
         "key": "9gm3s",
-        "text": "This is a simple example. Focus the block by clicking on it and change alignment via the toolbar.",
+        "text": "This is a simple example. Click on the block to focus on it.",
         "type": "unstyled",
         "depth": 0,
         "inlineStyleRanges": [],
