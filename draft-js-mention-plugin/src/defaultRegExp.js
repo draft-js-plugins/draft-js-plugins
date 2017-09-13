@@ -1,5 +1,5 @@
 export default '[' +
-  'a-zA-Z0-9-' +
+  '\\w-' +
 
   // Latin-1 Supplement (letters only) - https://en.wikipedia.org/wiki/List_of_Unicode_characters#Latin-1_Supplement
   '\u00C0-\u00D6' +
