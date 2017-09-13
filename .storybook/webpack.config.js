@@ -5,6 +5,8 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
 
 module.exports = {
   plugins: [
@@ -12,7 +14,65 @@ module.exports = {
   ],
   module: {
     loaders: [
-      // add your custom loaders.
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader',
+        }),
+        include: [
+          path.join(__dirname, '..', 'stories'),
+          path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
+          path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-drag-n-drop-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-drag-n-drop-upload-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-inline-toolbar-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-static-toolbar-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-side-toolbar-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-counter-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-focus-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-alignment-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-image-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-buttons', 'src'),
+          path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
+        ],
+      },
+      {
+        test: /plugin\.css$/,
+        loaders: [
+          'style-loader', 'css',
+        ],
+        include: [
+          path.join('..', 'stories'),
+          path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
+          path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-mention-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-sticker-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-undo-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-drag-n-drop-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-drag-n-drop-upload-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-inline-toolbar-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-static-toolbar-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-side-toolbar-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-counter-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-focus-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-alignment-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-image-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
+          path.join(__dirname, '..', 'draft-js-buttons', 'src'),
+          path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
+        ],
+      },
     ],
   },
   resolve: {
@@ -37,8 +97,7 @@ module.exports = {
       'draft-js-resizeable-plugin': path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
       'draft-js-buttons': path.join(__dirname, '..', 'draft-js-buttons', 'src'),
       'draft-js-video-plugin': path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
-      react: path.join(__dirname, 'node_modules', 'react'),
+      react: path.join(__dirname, '..', 'node_modules', 'react'),
     },
-
   }
 };
