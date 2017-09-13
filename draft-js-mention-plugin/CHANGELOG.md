@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Fixed incorrect opening of suggestions. Thanks to @thomas88
 - Added config option `mentionSuggestionsComponent`. If provided the passed component replaces the default `MentionSuggestions` component. The provided component must implement the same interface like `MentionSuggestions`.
 - Added support popoverComponent on the `MentionSuggestions` component. Thanks to @samdroid-apps
 - Introduced a new configuration option `mentionTrigger`. By default it is set to `@`. As before by default typing `@` will trigger the search for mentions. You can provide a custom character or string to change when the search is triggered. [#320](https://github.com/draft-js-plugins/draft-js-plugins/pull/320) Thanks to @yjang1031
