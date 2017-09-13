@@ -2,9 +2,6 @@
 import React from 'react';
 import { getVisibleSelectionRect } from 'draft-js';
 
-// TODO make toolbarHeight to be determined or a parameter
-const toolbarHeight = 44;
-
 const getRelativeParent = (element) => {
   if (!element) {
     return null;
@@ -56,6 +53,7 @@ export default class Toolbar extends React.Component {
     setTimeout(() => {
       if (!this.toolbar) return;
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
+      const toolbarHeight = this.toolbar.clientHeight;
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
       const selectionRect = getVisibleSelectionRect(window);
 

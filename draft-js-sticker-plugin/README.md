@@ -31,7 +31,7 @@ Follow the steps below to import the css file by using Webpack's `style-loader` 
       loaders: [{
         test: /\.css$/,
         loaders: [
-          'style', 'css'
+          'style-loader', 'css'
         ]
       }]
     }
@@ -43,10 +43,6 @@ Follow the steps below to import the css file by using Webpack's `style-loader` 
     import 'draft-js-sticker-plugin/lib/plugin.css';
     ```
 4. Restart Webpack.
-
-### Browserify Usage
-
-TODO: PR welcome
 
 ## Exported functions
 

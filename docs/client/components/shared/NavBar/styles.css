@@ -54,7 +54,6 @@
   padding: 18px 0px;
 }
 
-/* TODO colour links based on theme colours */
 .link:hover, .link:focus {
   color: #9CB7C7;
 }

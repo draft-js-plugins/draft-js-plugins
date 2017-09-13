@@ -22,8 +22,6 @@ export default class GithubStarButton extends Component {
     const size = this.props.size ? this.props.size : 'default'; // 'mega' is the other option
     const text = this.props.text ? this.props.text : 'Github';
 
-    // TODO make name & repo dynamic
-
     // Note: all of the attributes including the className 'github-button' are required
     return (
       <a

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
-import { List } from 'immutable';
+import { List, fromJS } from 'immutable';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
-export default class MentionSuggestions extends Component {
+const suggestionsHoc = (Comp) => (props) => {
+  if (List.isList(props.suggestions)) {
+    console.warn('Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead'); // eslint-disable-line no-console
+  }
 
+  return (<Comp
+    {...props}
+    suggestions={fromJS(props.suggestions)}
+  />);
+};
+
+export class MentionSuggestions extends Component {
   static propTypes = {
     entityMutability: PropTypes.oneOf([
       'SEGMENTED',
@@ -41,7 +51,7 @@ export default class MentionSuggestions extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.suggestions.size === 0 && this.state.isActive) {
       this.closeDropdown();
-    } else if (nextProps.suggestions.size > 0 && !this.state.isActive) {
+    } else if (nextProps.suggestions.size > 0 && !nextProps.suggestions.equals(this.props.suggestions) && !this.state.isActive) {
       this.openDropdown();
     }
   }
@@ -153,7 +163,7 @@ export default class MentionSuggestions extends Component {
 
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
-    // input field and then comes back: the dropdown will again.
+    // input field and then comes back: the dropdown will show again.
     if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey)) {
       this.openDropdown();
     }
@@ -350,3 +360,5 @@ export default class MentionSuggestions extends Component {
     );
   }
 }
+
+export default suggestionsHoc(MentionSuggestions);

@@ -9,9 +9,6 @@ import {
 import styles from '../alignmentToolStyles.css';
 import buttonStyles from '../buttonStyles.css';
 
-// TODO make toolbarHeight to be determined or a parameter
-const toolbarHeight = 44;
-
 const getRelativeParent = (element) => {
   if (!element) {
     return null;
@@ -48,6 +45,7 @@ export default class AlignmentTool extends React.Component {
       const boundingRect = this.props.store.getItem('boundingRect');
       if (visibleBlock) {
         const relativeParent = getRelativeParent(this.toolbar.parentElement);
+        const toolbarHeight = this.toolbar.clientHeight;
         const relativeRect = relativeParent ? relativeParent.getBoundingClientRect() : document.body.getBoundingClientRect();
         position = {
           top: (boundingRect.top - relativeRect.top) - toolbarHeight,
