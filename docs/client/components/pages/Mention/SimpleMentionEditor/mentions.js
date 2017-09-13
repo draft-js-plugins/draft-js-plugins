@@ -1,5 +1,3 @@
-import { fromJS } from 'immutable';
-
 const mentions = [
   {
     name: 'Matthew Russell',

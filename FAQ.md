@@ -32,7 +32,6 @@ What you can do now is fixing the datastructure before converting it:
 ```JS
 import { fromJS} from 'immutable';
 import forEach from 'lodash/forEach';
-n
 
 forEach(rawContent.entityMap, function(value, key) {
   value.data.mention = fromJS(value.data.mention)

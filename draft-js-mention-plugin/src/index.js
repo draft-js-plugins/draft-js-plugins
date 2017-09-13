@@ -1,7 +1,7 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { Map } from 'immutable';
 import Mention from './Mention';
-import MentionSuggestions from './MentionSuggestions';
+import MentionSuggestions from './MentionSuggestions'; // eslint-disable-line import/no-named-as-default
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import defaultRegExp from './defaultRegExp';
 import mentionStrategy from './mentionStrategy';
