@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- blockStyleFn returns '' instead of false
 - `handleKeyCommand` now receives the arguments `(command, editorState, pluginFunctions)`
 - `handlePastedText` now receives the arguments `(text, html, editorState, pluginFunctions)`
 - `handleBeforeInput` now receives the arguments `(chars, editorState, pluginFunctions)`
