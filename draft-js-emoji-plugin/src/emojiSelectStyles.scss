@@ -1,214 +1,202 @@
 .emojiSelect {
   display: inline-block;
+}
 
-  &Button {
-    margin: 0;
-    padding: 0;
-    width: 2.5em;
-    height: 1.5em;
-    box-sizing: border-box;
-    line-height: 1.2em;
-    font-size: 1.5em;
-    color: #888;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 1.5em;
-    cursor: pointer;
+.emojiSelectButton, .emojiSelectButtonPressed {
+  margin: 0;
+  padding: 0;
+  width: 2.5em;
+  height: 1.5em;
+  box-sizing: border-box;
+  line-height: 1.2em;
+  font-size: 1.5em;
+  color: #888;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 1.5em;
+  cursor: pointer;
+}
 
-    &:focus {
-      outline: 0; /* reset for :focus */
-    }
+.emojiSelectButton:focus, .emojiSelectButtonPressed:focus {
+  outline: 0;
+  /* reset for :focus */
+}
 
-    &:hover {
-      background: #f3f3f3;
-    }
+.emojiSelectButton:hover, .emojiSelectButtonPressed:hover {
+  background: #f3f3f3;
+}
 
-    &:active {
-      background: #e6e6e6;
-    }
+.emojiSelectButton:active, .emojiSelectButtonPressed:active {
+  background: #e6e6e6;
+}
 
-    &Pressed {
-      @extend .emojiSelectButton;
-      background: #ededed;
-    }
-  }
+.emojiSelectButtonPressed {
+  background: #ededed;
+}
 
-  &Popover {
-    $groups: 8;
-    $itemSize: 2.5em;
-    $totalSize: $itemSize * $groups;
+.emojiSelectPopover {
+  margin-top: 10px;
+  padding: 0 .3em;
+  position: absolute;
+  z-index: 1000;
+  box-sizing: content-box;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 30px 0 gainsboro;
+}
 
-    $borderColor: #e0e0e0;
-    $backgroundColor: #fff;
-    $hoverBackgroundColor: #efefef;
+.emojiSelectPopoverClosed {
+  display: none;
+}
 
-    margin-top: 10px;
-    padding: 0 .3em;
-    position: absolute;
-    z-index: 1000;
-    box-sizing: content-box;
-    background: $backgroundColor;
-    border: 1px solid $borderColor;
-    box-shadow: 0 4px 30px 0 rgba(220, 220, 220, 1);
+.emojiSelectPopoverTitle {
+  margin: 0 0 .3em;
+  padding-left: 1em;
+  height: 2.5em;
+  line-height: 2.5em;
+  font-weight: normal;
+  font-size: 1em;
+  color: #9e9e9e;
+}
 
-    &Closed {
-      display: none;
-    }
+.emojiSelectPopoverGroups {
+  margin: 0 0 .3em;
+  position: relative;
+  z-index: 0;
+  width: 21em;
+  height: 20em;
+}
 
-    &Title {
-      margin: 0 0 .3em;
-      padding-left: 1em;
-      height: 2.5em;
-      line-height: 2.5em;
-      font-weight: normal;
-      font-size: 1em;
-      color: #9e9e9e;
-    }
+.emojiSelectPopoverGroup {
+  padding: 0 .5em;
+}
 
-    &Groups {
-      margin: 0 0 .3em;
-      position: relative;
-      z-index: 0;
-      width: $totalSize + 1em;
-      height: $totalSize;
-    }
+.emojiSelectPopoverGroup:first-child .emojiSelectPopoverGroupTitle {
+  display: none;
+}
 
-    &Group {
-      padding: 0 .5em;
+.emojiSelectPopoverGroupTitle {
+  margin: 1em 0;
+  padding-left: .5em;
+  font-weight: normal;
+  font-size: 1em;
+  color: #9e9e9e;
+}
 
-      &:first-child {
-        .emojiSelectPopoverGroupTitle {
-          display: none;
-        }
-      }
+.emojiSelectPopoverGroupList {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+}
 
-      &Title {
-        margin: 1em 0;
-        padding-left: .5em;
-        font-weight: normal;
-        font-size: 1em;
-        color: #9e9e9e;
-      }
+.emojiSelectPopoverGroupItem {
+  width: 2.5em;
+  height: 2.5em;
+}
 
-      &List {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        list-style: none;
-        flex-wrap: wrap;
-      }
+.emojiSelectPopoverToneSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+}
 
-      &Item {
-        width: $itemSize;
-        height: $itemSize;
-      }
-    }
+.emojiSelectPopoverToneSelectList {
+  margin: .3em;
+  padding: .3em;
+  position: absolute;
+  display: flex;
+  list-style: none;
+  border: 1px solid #e0e0e0;
+  border-radius: .5em;
+  background: #fff;
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.1);
+}
 
-    &ToneSelect {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      z-index: 2;
+.emojiSelectPopoverToneSelectItem {
+  width: 2.5em;
+  height: 2.5em;
+}
 
-      &List {
-        margin: .3em;
-        padding: .3em;
-        position: absolute;
-        display: flex;
-        list-style: none;
-        border: 1px solid $borderColor;
-        border-radius: .5em;
-        background: $backgroundColor;
-        box-shadow: 0 0 .3em rgba(0, 0, 0, .1);
-      }
+.emojiSelectPopoverToneSelectItem:first-child {
+  border-right: 1px solid #e0e0e0;
+}
 
-      &Item {
-        width: $itemSize;
-        height: $itemSize;
+.emojiSelectPopoverEntry, .emojiSelectPopoverEntryFocused {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  transition: background-color 0.4s cubic-bezier(0.27, 1.27, 0.48, 0.56);
+}
 
-        &:first-child {
-          border-right: 1px solid $borderColor;
-        }
-      }
-    }
+.emojiSelectPopoverEntryFocused {
+  background-color: #efefef;
+}
 
-    &Entry {
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: none;
-      border: none;
-      outline: none;
-      transition: background-color .4s cubic-bezier(.27, 1.27, .48, .56);
+.emojiSelectPopoverEntryIcon {
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+}
 
-      &Focused {
-        @extend .emojiSelectPopoverEntry;
-        background-color: $hoverBackgroundColor;
-      }
+.emojiSelectPopoverNav {
+  margin: 0;
+  padding: 0 .5em;
+  display: flex;
+  width: 20em;
+  list-style: none;
+}
 
-      &Icon {
-        width: 1.5em;
-        height: 1.5em;
-        vertical-align: middle;
-      }
-    }
+.emojiSelectPopoverNavItem {
+  width: 2.5em;
+  height: 2.5em;
+}
 
-    &Nav {
-      margin: 0;
-      padding: 0 .5em;
-      display: flex;
-      width: $totalSize;
-      list-style: none;
+.emojiSelectPopoverNavEntry, .emojiSelectPopoverNavEntryActive {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 1.2em;
+  color: #bdbdbd;
+  background: none;
+  border: none;
+  outline: none;
+}
 
-      &Item {
-        width: $itemSize;
-        height: $itemSize;
-      }
+.emojiSelectPopoverNavEntryActive {
+  color: #42a5f5;
+}
 
-      &Entry {
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        font-size: 1.2em;
-        color: #bdbdbd;
-        background: none;
-        border: none;
-        outline: none;
+.emojiSelectPopoverScrollbar {
+  position: absolute;
+  right: 0;
+  top: .3em;
+  bottom: .3em;
+  width: .25em;
+  background-color: #e0e0e0;
+  border-radius: .125em;
+  opacity: .1;
+  transition: opacity .4s;
+}
 
-        &Active {
-          @extend .emojiSelectPopoverNavEntry;
-          color: #42a5f5;
-        }
-      }
-    }
+.emojiSelectPopoverScrollbarThumb {
+  background-color: #000;
+  border-radius: .125em;
+  cursor: pointer;
+}
 
-    &Scrollbar {
-      position: absolute;
-      right: 0;
-      top: .3em;
-      bottom: .3em;
-      width: .25em;
-      background-color: #e0e0e0;
-      border-radius: .125em;
-      opacity: .1;
-      transition: opacity .4s;
+.emojiSelectPopoverGroups:hover .emojiSelectPopoverScrollbar {
+  opacity: .3;
+}
 
-      &Thumb {
-        background-color: #000;
-        border-radius: .125em;
-        cursor: pointer;
-      }
-    }
-
-    &Groups:hover &Scrollbar {
-      opacity: .3;
-    }
-
-    &Groups &Scrollbar:hover,
-    &Groups &Scrollbar:active {
-      opacity: .6;
-    }
-  }
+.emojiSelectPopoverGroups .emojiSelectPopoverScrollbar:hover,
+.emojiSelectPopoverGroups .emojiSelectPopoverScrollbar:active {
+  opacity: .6;
 }
