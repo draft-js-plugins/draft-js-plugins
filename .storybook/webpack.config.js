@@ -8,18 +8,16 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line no-var
 
+console.log('yooooo', path.join(__dirname, '..', 'draft-js-focus-plugin', 'src'));
+
 module.exports = {
   plugins: [
-    // your custom plugins
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader',
-        }),
+        loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
         include: [
           path.join(__dirname, '..', 'stories'),
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
@@ -47,7 +45,7 @@ module.exports = {
       {
         test: /plugin\.css$/,
         loaders: [
-          'style-loader', 'css',
+          'style-loader', 'css-loader',
         ],
         include: [
           path.join('..', 'stories'),
