@@ -7,6 +7,12 @@ import mentions from './mentions';
 
 export default class SimpleMentionEditor extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.mentionPlugin = createMentionPlugin();
+  }
+
   state = {
     editorState: EditorState.createEmpty(),
     suggestions: mentions,
@@ -31,8 +37,6 @@ export default class SimpleMentionEditor extends Component {
   focus = () => {
     this.editor.focus();
   };
-
-  mentionPlugin = createMentionPlugin();
 
   render() {
     const { MentionSuggestions } = this.mentionPlugin;

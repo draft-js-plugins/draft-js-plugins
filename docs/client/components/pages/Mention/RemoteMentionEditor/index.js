@@ -9,6 +9,12 @@ import editorStyles from './editorStyles.css';
 
 export default class SimpleMentionEditor extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.mentionPlugin = createMentionPlugin();
+  }
+
   state = {
     editorState: EditorState.createEmpty(),
     suggestions: fromJS([]),
@@ -45,8 +51,6 @@ export default class SimpleMentionEditor extends Component {
   focus = () => {
     this.editor.focus();
   };
-
-  mentionPlugin = createMentionPlugin();
 
   render() {
     const { MentionSuggestions } = this.mentionPlugin;

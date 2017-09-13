@@ -7,6 +7,23 @@ import mentions from './mentions';
 
 export default class CustomMentionEditor extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.mentionPlugin = createMentionPlugin({
+      mentions,
+      mentionComponent: (mentionProps) => (
+        <span
+          className={mentionProps.className}
+          // eslint-disable-next-line no-alert
+          onClick={() => alert('Clicked on the Mention!')}
+        >
+          {mentionProps.children}
+        </span>
+      ),
+    });
+  }
+
   state = {
     editorState: EditorState.createEmpty(),
     suggestions: mentions,
@@ -27,19 +44,6 @@ export default class CustomMentionEditor extends Component {
   focus = () => {
     this.editor.focus();
   };
-
-  mentionPlugin = createMentionPlugin({
-    mentions,
-    mentionComponent: (mentionProps) => (
-      <span
-        className={mentionProps.className}
-        // eslint-disable-next-line no-alert
-        onClick={() => alert('Clicked on the Mention!')}
-      >
-        {mentionProps.children}
-      </span>
-    ),
-  });
 
   render() {
     const { MentionSuggestions } = this.mentionPlugin;

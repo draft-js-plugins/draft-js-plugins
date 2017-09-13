@@ -59,6 +59,18 @@ const Entry = (props) => {
 
 export default class CustomMentionEditor extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.mentionPlugin = createMentionPlugin({
+      mentions,
+      entityMutability: 'IMMUTABLE',
+      theme: mentionsStyles,
+      positionSuggestions,
+      mentionPrefix: '@',
+    });
+  }
+
   state = {
     editorState: EditorState.createEmpty(),
     suggestions: mentions,
@@ -79,14 +91,6 @@ export default class CustomMentionEditor extends Component {
   focus = () => {
     this.editor.focus();
   };
-
-  mentionPlugin = createMentionPlugin({
-    mentions,
-    entityMutability: 'IMMUTABLE',
-    theme: mentionsStyles,
-    positionSuggestions,
-    mentionPrefix: '@',
-  });
 
   render() {
     const { MentionSuggestions } = this.mentionPlugin;
