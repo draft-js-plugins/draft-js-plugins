@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+- Added support for Latin-1 Supplement and Latin Extended-A characters. Thanks to @thomas88
 - Fixed incorrect opening of suggestions. Thanks to @thomas88
 - Added config option `mentionSuggestionsComponent`. If provided the passed component replaces the default `MentionSuggestions` component. The provided component must implement the same interface like `MentionSuggestions`.
 - Added support popoverComponent on the `MentionSuggestions` component. Thanks to @samdroid-apps
