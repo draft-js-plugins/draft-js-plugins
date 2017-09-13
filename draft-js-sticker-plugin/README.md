@@ -31,7 +31,7 @@ Follow the steps below to import the css file by using Webpack's `style-loader` 
       loaders: [{
         test: /\.css$/,
         loaders: [
-          'style', 'css'
+          'style-loader', 'css'
         ]
       }]
     }
