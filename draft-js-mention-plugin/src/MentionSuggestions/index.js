@@ -141,8 +141,8 @@ export class MentionSuggestions extends Component {
     const selectionIsInsideWord = leaves
       .filter((leave) => leave !== undefined)
       .map(({ start, end }) => (
-        (start === 0 && anchorOffset === 1 && plainText.charAt(anchorOffset) !== this.props.mentionTrigger && new RegExp(this.props.mentionTrigger, 'g').test(plainText) && anchorOffset <= end) || // @ is the first character
-        (anchorOffset > start + 1 && anchorOffset <= end) // @ is in the text or at the end
+        (start === 0 && anchorOffset === this.props.mentionTrigger.length && plainText.charAt(anchorOffset) !== this.props.mentionTrigger && new RegExp(this.props.mentionTrigger, 'g').test(plainText) && anchorOffset <= end) || // @ is the first character
+        (anchorOffset > start + this.props.mentionTrigger.length && anchorOffset <= end) // @ is in the text or at the end
       ));
 
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
@@ -183,8 +183,9 @@ export class MentionSuggestions extends Component {
   };
 
   onSearchChange = (editorState, selection, activeOffsetKey, lastActiveOffsetKey) => {
-    const { word } = getSearchText(editorState, selection);
-    const searchValue = word.substring(1, word.length);
+    const { word } = getSearchText(editorState, selection, this.props.mentionTrigger);
+    const searchValue = word.substring(this.props.mentionTrigger.length, word.length);
+
     if (this.lastSearchValue !== searchValue || activeOffsetKey !== lastActiveOffsetKey) {
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ value: searchValue });
