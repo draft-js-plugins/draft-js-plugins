@@ -70,6 +70,11 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-buttons', 'src'),
           path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
         ],
+      }, {
+        test: /\.(png|jpg|gif|ico)$/,
+        use: [
+          { loader: 'file-loader', options: { name: '[name].[ext]' } },
+        ],
       },
     ],
   },

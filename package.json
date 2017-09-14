@@ -31,7 +31,7 @@
     "lint:flow": "flow status",
     "lint:staged": "lint-staged",
     "alex": "alex README.md",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./stories/public",
     "build-storybook": "build-storybook"
   },
   "lint-staged": {

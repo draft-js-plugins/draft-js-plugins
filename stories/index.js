@@ -70,18 +70,18 @@ storiesOf('Alignment Plugin', module)
   .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />);
 
 storiesOf('Anchor Plugin', module)
-  .add('Editor with Anchor Plugin', () => <SimpleLinkPluginEditor />);
+  .add('Editor with Anchor Plugin', () => <AnchorSimpleLinkPluginEditor />);
 
 storiesOf('Counter Plugin', module)
-  .add('Editor with Counter Plugin', () => <SimpleCounterPluginEditor />)
-  .add('Editor with custom themed Counter Plugin', () => <CustomCounterPluginEditor />);
+  .add('Editor with Counter Plugin', () => <SimpleCounterEditor />)
+  .add('Editor with custom themed Counter Plugin', () => <CustomCounterEditor />);
 
 storiesOf('DragNDrop Plugin', module)
   .add('Editor with DragNDrop plugin and image plugin', () => <DragNDropImageEditor />);
 
 storiesOf('Emoji Plugin')
   .add('Editor with Emoji Plugin using emoji-one plugins', () => <SimpleEmojiEditor />)
-  .add('Editor with Emoji Plugin using native emojis', () => <SimpleEmojiEditor />);
+  .add('Editor with Emoji Plugin using native emojis', () => <CustomEmojiEditor />);
 
 storiesOf('Focus Plugin')
   .add('Editor with Focus Plugin', () => <SimpleFocusEditor />);
@@ -97,10 +97,33 @@ storiesOf('Image Plugin')
 
 storiesOf('Inline Toolbar Plugin')
   .add('Editor with default inline toolbar plugin', () => <SimpleInlineToolbarEditor />)
-  .add('Editor with inline toolbar plugin containing all buttons', () => <CustomInlineToolbarEditor />);
+  .add('Editor with inline toolbar plugin containing all buttons', () => <CustomInlineToolbarEditor />)
+  .add('Editor with custom themed toolbar plugin', () => <ThemedInlineToolbarEditor />);
 
 storiesOf('Linkify Plugin')
   .add('Editor with Linkify Plugin', () => <SimpleLinkifyEditor />)
   .add('Editor with Linkify Plugin and configured to render links with - target: _blank', () => <CustomLinkifyEditor />)
   .add('Editor with Linkify Plugin using a custom component to render the link', () => <CustomComponentLinkifyEditor />);
 
+storiesOf('Mention Plugin')
+  .add('Editor with Mention Plugin', () => <SimpleMentionEditor />)
+  .add('Editor with Mention Plugin and asynchronously loaded Suggestions', () => <RemoteMentionEditor />)
+  .add('Editor with custom themed Mention Plugin', () => <CustomMentionEditor />)
+  .add('Editor with Mention Plugin and custom themed Suggestions', () => <CustomComponentMentionEditor />);
+
+storiesOf('Side Toolbar Plugin')
+  .add('Editor with SideToolbar Plugin', () => <SimpleSideToolbarEditor />)
+  .add('Editor with custom themed SideToolbar Plugin', () => <CustomSideToolbarEditor />);
+
+storiesOf('Sticker Plugin')
+  .add('Editor with Sticker Plugin', () => <SimpleStickerEditor />)
+  .add('Editor with custom themed Sticker Plugin', () => <CustomStickerEditor />);
+
+storiesOf('Undo Plugin')
+  .add('Editor with Undo Plugin', () => <SimpleUndoEditor />)
+  .add('Editor with custom themed Undo Plugin', () => <CustomUndoEditor />);
+
+storiesOf('Video Plugin')
+  .add('Editor with Video Plugin', () => <SimpleVideoEditor />)
+  .add('Editor with custom themed Video Plugin', () => <CustomVideoEditor />)
+  .add('Editor with Video Plugin and Add Video Button', () => <CustomAddVideoEditor />);
