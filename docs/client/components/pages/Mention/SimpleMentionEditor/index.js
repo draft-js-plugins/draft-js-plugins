@@ -5,11 +5,13 @@ import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin();
-const { MentionSuggestions } = mentionPlugin;
-const plugins = [mentionPlugin];
-
 export default class SimpleMentionEditor extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.mentionPlugin = createMentionPlugin();
+  }
 
   state = {
     editorState: EditorState.createEmpty(),
@@ -37,6 +39,9 @@ export default class SimpleMentionEditor extends Component {
   };
 
   render() {
+    const { MentionSuggestions } = this.mentionPlugin;
+    const plugins = [this.mentionPlugin];
+
     return (
       <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
