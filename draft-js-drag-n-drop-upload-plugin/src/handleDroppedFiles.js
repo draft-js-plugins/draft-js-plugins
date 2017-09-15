@@ -20,6 +20,7 @@ export default function onDropFile(config) {
       handleBlock,
       handleProgress,
       handleUpload,
+      handleError,
     } = config;
 
     if (handleUpload) {
@@ -27,14 +28,13 @@ export default function onDropFile(config) {
 
       // Set data {files: [Array of files], formData: FormData}
       const data = { files: [], formData };
-      for (const key in files) { // eslint-disable-line no-restricted-syntax
-        const file = files[key];
-        file.id = getRandomString();
+      Object.keys(files).map((k) => files[k]).forEach((file) => {
+        file.id = getRandomString(); // eslint-disable-line no-param-reassign
         if (file && file instanceof File) {
           data.formData.append('files', file);
           data.files.push(file);
         }
-      }
+      });
 
       setEditorState(EditorState.acceptSelection(getEditorState(), selection));
 
@@ -63,8 +63,17 @@ export default function onDropFile(config) {
           }, getEditorState());
           setEditorState(editorStateWithImages);
         }, (err) => {
-          console.error(err);
-          // TODO: error handling should happen
+          // On error, transform placeholder blocks separately
+          const editorStateWithUpdatedPlaceholders = filesWithContent.reduce((editorState, file) => {
+            const placeholderBlock = getPlaceholderBlock(editorState, file);
+
+            if (!placeholderBlock) {
+              return editorState;
+            }
+
+            return handleError(editorState, placeholderBlock, err);
+          }, getEditorState());
+          setEditorState(editorStateWithUpdatedPlaceholders);
         }, (percent) => {
           // On progress, set entity data's progress field
           const editorStateWithUpdatedPlaceholders = filesWithContent.reduce((editorState, file) => {
