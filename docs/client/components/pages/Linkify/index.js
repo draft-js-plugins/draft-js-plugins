@@ -99,6 +99,10 @@ export default class App extends Component {
             </div>
           </div>
           <div className={styles.param}>
+            <span className={styles.paramName}>rel</span>
+            <span>String value for the rel attribute. (Default value is {"'noreferrer noopener'"})</span>
+          </div>
+          <div className={styles.param}>
             <span className={styles.paramName}>target</span>
             <span>String value for the target attribute. (Default value is _self)</span>
           </div>
