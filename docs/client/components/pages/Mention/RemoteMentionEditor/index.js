@@ -4,7 +4,6 @@ import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 
 import createMentionPlugin from 'draft-js-mention-plugin';
-import { fromJS } from 'immutable';
 import editorStyles from './editorStyles.css';
 
 export default class SimpleMentionEditor extends Component {
@@ -17,7 +16,7 @@ export default class SimpleMentionEditor extends Component {
 
   state = {
     editorState: EditorState.createEmpty(),
-    suggestions: fromJS([]),
+    suggestions: [],
   };
 
   onChange = (editorState) => {
@@ -43,7 +42,7 @@ export default class SimpleMentionEditor extends Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          suggestions: fromJS(data),
+          suggestions: data,
         });
       });
   };
