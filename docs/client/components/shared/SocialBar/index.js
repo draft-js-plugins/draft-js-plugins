@@ -10,7 +10,7 @@ export default class SocialBar extends Component {
     return (
       <div className={styles.root}>
         <div className={styles.githubButtonWrapper}>
-          <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="mega" />
+          <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="large" />
         </div>
         <div className={styles.twitterButtonWrapper}>
           <TwitterButton url="https://www.draft-js-plugins.com/" size="large" />
