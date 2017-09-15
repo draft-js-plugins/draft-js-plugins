@@ -23,6 +23,30 @@
     "import/no-webpack-loader-syntax": 0,
     "import/extensions": 0,
     "jsx-a11y/img-has-alt": 0,
-    "react/require-default-props": 0
+    "react/require-default-props": 0,
+  },
+  "settings": {
+    "import/core-modules": [
+      "draft-js-alignment-plugin",
+      "draft-js-anchor-plugin",
+      "draft-js-buttons",
+      "draft-js-counter-plugin",
+      "draft-js-drag-n-drop-plugin",
+      "draft-js-drag-n-drop-upload-plugin/",
+      "draft-js-emoji-plugin",
+      "draft-js-focus-plugin",
+      "draft-js-hashtag-plugin",
+      "draft-js-image-plugin",
+      "draft-js-inline-toolbar-plugin",
+      "draft-js-linkify-plugin",
+      "draft-js-mention-plugin",
+      "draft-js-plugins-editor",
+      "draft-js-resizeable-plugin",
+      "draft-js-side-toolbar-plugin",
+      "draft-js-static-toolbar-plugin",
+      "draft-js-sticker-plugin",
+      "draft-js-undo-plugin",
+      "draft-js-video-plugin"
+    ]
   }
 }

@@ -39,6 +39,7 @@
   },
   "pre-commit": "lint:staged",
   "devDependencies": {
+    "@storybook/react": "^3.2.8",
     "alex": "^4.0.1",
     "animateplus": "^1.4.0",
     "autoprefixer": "^6.7.6",
