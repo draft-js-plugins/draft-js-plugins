@@ -26,11 +26,6 @@ export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFo
     }
   }
 
-  onRemove = (evt) => {
-    evt.preventDefault();
-    this.props.blockProps.removeBlock();
-  }
-
   render() {
     const { blockProps, className } = this.props;
     const { isFocused } = blockProps;
@@ -41,7 +36,6 @@ export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFo
       <WrappedComponent
         {...this.props}
         onClick={this.onClick}
-        onRemove={this.onRemove}
         className={combinedClassName}
       />
     );
