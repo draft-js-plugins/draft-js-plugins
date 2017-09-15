@@ -5,7 +5,7 @@ import {
   AlignBlockLeftButton,
   AlignBlockCenterButton,
   AlignBlockRightButton,
-} from 'draft-js-buttons'; // eslint-disable-line import/no-unresolved
+} from 'draft-js-buttons';
 import styles from '../alignmentToolStyles.css';
 import buttonStyles from '../buttonStyles.css';
 

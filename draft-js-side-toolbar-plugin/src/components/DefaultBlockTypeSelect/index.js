@@ -7,7 +7,7 @@ import {
   CodeBlockButton,
   UnorderedListButton,
   OrderedListButton,
-} from 'draft-js-buttons'; // eslint-disable-line import/no-unresolved
+} from 'draft-js-buttons';
 
 import BlockTypeSelect from '../BlockTypeSelect';
 

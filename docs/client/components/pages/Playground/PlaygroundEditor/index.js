@@ -4,9 +4,9 @@ import {
   Modifier,
   RichUtils,
 } from 'draft-js';
-// eslint-disable-next-line import/no-unresolved
+
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-// eslint-disable-next-line import/no-unresolved
+
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import editorStyles from './editorStyles.css';
 import colorStyleMap from './colorStyleMap';

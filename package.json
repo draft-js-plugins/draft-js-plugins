@@ -23,20 +23,23 @@
     "react-component"
   ],
   "scripts": {
-    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js **/__test__/*.js",
+    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js \"./{,!(node_modules)/**/}/__test__/*.js\"",
     "test:watch": "npm test -- --watch",
     "lint": "npm run lint:eslint && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests:2' ./",
     "lint:flow": "flow status",
     "lint:staged": "lint-staged",
-    "alex": "alex README.md"
+    "alex": "alex README.md",
+    "storybook": "start-storybook -p 6006 -s ./stories/public",
+    "build-storybook": "build-storybook"
   },
   "lint-staged": {
     "lint:eslint": "*.js"
   },
   "pre-commit": "lint:staged",
   "devDependencies": {
+    "@storybook/react": "^3.2.8",
     "alex": "^4.0.1",
     "animateplus": "^1.4.0",
     "autoprefixer": "^6.7.6",
