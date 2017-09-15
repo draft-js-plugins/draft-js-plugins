@@ -3,9 +3,9 @@ import {
   convertFromRaw,
   EditorState,
 } from 'draft-js';
-// eslint-disable-next-line import/no-unresolved
+
 import Editor from 'draft-js-plugins-editor';
-// eslint-disable-next-line import/no-unresolved
+
 import createImagePlugin from 'draft-js-image-plugin';
 import editorStyles from './editorStyles.css';
 

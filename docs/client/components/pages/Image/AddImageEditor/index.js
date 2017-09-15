@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line import/no-unresolved
+
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-// eslint-disable-next-line import/no-unresolved
+
 import createImagePlugin from 'draft-js-image-plugin';
 import ImageAdd from './ImageAdd';
-// eslint-disable-next-line import/no-unresolved
+
 import editorStyles from './editorStyles.css';
 
 const imagePlugin = createImagePlugin();

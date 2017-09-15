@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { EditorState, convertFromRaw } from 'draft-js';
-import Editor, { composeDecorators } from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-// eslint-disable-next-line import/no-unresolved
+import Editor, { composeDecorators } from 'draft-js-plugins-editor';
+
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
-// eslint-disable-next-line import/no-unresolved
+
 import createFocusPlugin from 'draft-js-focus-plugin';
-// eslint-disable-next-line import/no-unresolved
+
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
-import createVideoPlugin from 'draft-js-video-plugin'; // eslint-disable-line import/no-unresolved
+import createVideoPlugin from 'draft-js-video-plugin';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();

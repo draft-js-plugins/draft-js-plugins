@@ -1,8 +1,8 @@
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
-// eslint-disable-next-line import/no-unresolved
+
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-// eslint-disable-next-line import/no-unresolved
+
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
 import {
   ItalicButton,
@@ -16,7 +16,7 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton,
-} from 'draft-js-buttons'; // eslint-disable-line import/no-unresolved
+} from 'draft-js-buttons';
 import editorStyles from './editorStyles.css';
 
 

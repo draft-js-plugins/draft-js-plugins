@@ -3,19 +3,19 @@ import {
   convertFromRaw,
   EditorState,
 } from 'draft-js';
-// eslint-disable-next-line import/no-unresolved
+
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-// eslint-disable-next-line import/no-unresolved
+
 import createImagePlugin from 'draft-js-image-plugin';
-// eslint-disable-next-line import/no-unresolved
+
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
-// eslint-disable-next-line import/no-unresolved
+
 import createFocusPlugin from 'draft-js-focus-plugin';
-// eslint-disable-next-line import/no-unresolved
+
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
-// eslint-disable-next-line import/no-unresolved
+
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-// eslint-disable-next-line import/no-unresolved
+
 import createDragNDropUploadPlugin from 'draft-js-drag-n-drop-upload-plugin';
 import editorStyles from './editorStyles.css';
 import mockUpload from './mockUpload';

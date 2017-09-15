@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-import createHashtagPlugin from 'draft-js-hashtag-plugin'; // eslint-disable-line import/no-unresolved
-import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
-import createLinkifyPlugin from 'draft-js-linkify-plugin'; // eslint-disable-line import/no-unresolved
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin'; // eslint-disable-line import/no-unresolved
-import createEmojiPlugin from 'draft-js-emoji-plugin'; // eslint-disable-line import/no-unresolved
-import createUndoPlugin from 'draft-js-undo-plugin'; // eslint-disable-line import/no-unresolved
+import Editor from 'draft-js-plugins-editor';
+import createHashtagPlugin from 'draft-js-hashtag-plugin';
+import createStickerPlugin from 'draft-js-sticker-plugin';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
+import createUndoPlugin from 'draft-js-undo-plugin';
 import {
-  // convertToRaw,
-  // convertFromRaw,
   ContentState,
   EditorState,
 } from 'draft-js';
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
-// import initialState from './initialState';
 
 const emojiPlugin = createEmojiPlugin();
 const hashtagPlugin = createHashtagPlugin();
@@ -39,8 +36,9 @@ const plugins = [
   undoPlugin,
 ];
 
-// const contentState = ContentState.createFromBlockArray(convertFromRaw(initialState));
-const contentState = ContentState.createFromText('You can add Emojis by typing colon : or mentions with an @. Add Stickers and undo your actions with the undo button below …');
+const contentState = ContentState.createFromText(
+  'You can add Emojis by typing colon : or mentions with an @. Add Stickers and undo your actions with the undo button below …'
+);
 
 export default class UnicornEditor extends Component {
 

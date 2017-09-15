@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line import/no-unresolved
+
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-// eslint-disable-next-line import/no-unresolved
+
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';

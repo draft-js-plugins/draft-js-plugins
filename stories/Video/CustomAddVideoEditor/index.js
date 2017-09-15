@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-import createVideoPlugin from 'draft-js-video-plugin'; // eslint-disable-line import/no-unresolved
+import Editor from 'draft-js-plugins-editor';
+import createVideoPlugin from 'draft-js-video-plugin';
 import VideoAdd from './VideoAdd';
 import editorStyles from './editorStyles.css';
 

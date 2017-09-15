@@ -3,9 +3,9 @@ import {
   convertFromRaw,
   EditorState,
 } from 'draft-js';
-// eslint-disable-next-line import/no-unresolved
+
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-// eslint-disable-next-line import/no-unresolved
+
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createColorBlockPlugin from './colorBlockPlugin';
 import editorStyles from './editorStyles.css';

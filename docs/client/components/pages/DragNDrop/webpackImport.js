@@ -1,1 +1,1 @@
-import 'draft-js-image-plugin/lib/plugin.css'; // eslint-disable-line import/no-unresolved
+import 'draft-js-image-plugin/lib/plugin.css';

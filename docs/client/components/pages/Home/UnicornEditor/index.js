@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugins-editor'; // eslint-disable-line import/no-unresolved
-import createHashtagPlugin from 'draft-js-hashtag-plugin'; // eslint-disable-line import/no-unresolved
-import createStickerPlugin from 'draft-js-sticker-plugin'; // eslint-disable-line import/no-unresolved
-import createLinkifyPlugin from 'draft-js-linkify-plugin'; // eslint-disable-line import/no-unresolved
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin'; // eslint-disable-line import/no-unresolved
-import createEmojiPlugin from 'draft-js-emoji-plugin'; // eslint-disable-line import/no-unresolved
-import createUndoPlugin from 'draft-js-undo-plugin'; // eslint-disable-line import/no-unresolved
+import Editor from 'draft-js-plugins-editor';
+import createHashtagPlugin from 'draft-js-hashtag-plugin';
+import createStickerPlugin from 'draft-js-sticker-plugin';
+import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createEmojiPlugin from 'draft-js-emoji-plugin';
+import createUndoPlugin from 'draft-js-undo-plugin';
 import {
   // convertToRaw,
   // convertFromRaw,
