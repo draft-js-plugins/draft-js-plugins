@@ -14,7 +14,6 @@ export default (config = {}) => {
   });
 
   const {
-    relative = false,
     theme = defaultTheme,
     structure = [
       DefaultBlockTypeSelect
@@ -22,7 +21,6 @@ export default (config = {}) => {
   } = config;
 
   const toolbarProps = {
-    relative,
     store,
     structure,
     theme,
