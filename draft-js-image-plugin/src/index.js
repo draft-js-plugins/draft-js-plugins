@@ -18,8 +18,9 @@ export default (config = {}) => {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === 'atomic') {
         const contentState = getEditorState().getCurrentContent();
-        const entity = contentState.getEntity(block.getEntityAt(0));
-        const type = entity.getType();
+        const entity = block.getEntityAt(0);
+        if (!entity) return;
+        const type = contentState.getEntity(entity).getType();
         if (type === 'image') {
           return {
             component: ThemedImage,
