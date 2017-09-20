@@ -19,7 +19,7 @@ export default (config = {}) => {
       if (block.getType() === 'atomic') {
         const contentState = getEditorState().getCurrentContent();
         const entity = block.getEntityAt(0);
-        if (!entity) return;
+        if (!entity) return null;
         const type = contentState.getEntity(entity).getType();
         if (type === 'image') {
           return {
@@ -27,6 +27,7 @@ export default (config = {}) => {
             editable: false,
           };
         }
+        return null;
       }
 
       return null;
