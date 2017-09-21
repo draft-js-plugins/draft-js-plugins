@@ -8,5 +8,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Released the first working of DraftJS State Plugin
 
-## 2.0.0-rc7 - 2016-08-16
+## 2.0.0-rc8 - 2016-08-16
 ### added `extraData` parameter to addImage modifier, so additional parameters can be passed.
