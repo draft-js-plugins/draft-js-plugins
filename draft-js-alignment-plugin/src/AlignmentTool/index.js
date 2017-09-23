@@ -1,11 +1,5 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import {
-  AlignBlockDefaultButton,
-  AlignBlockLeftButton,
-  AlignBlockCenterButton,
-  AlignBlockRightButton,
-} from 'draft-js-buttons';
 import styles from '../alignmentToolStyles.css';
 import buttonStyles from '../buttonStyles.css';
 
@@ -71,19 +65,15 @@ export default class AlignmentTool extends React.Component {
   }
 
   render() {
-    const defaultButtons = [
-      AlignBlockDefaultButton,
-      AlignBlockLeftButton,
-      AlignBlockCenterButton,
-      AlignBlockRightButton,
-    ];
+    const { structure } = this.props;
+    
     return (
       <div
         className={styles.alignmentTool}
         style={this.state.position}
         ref={(toolbar) => { this.toolbar = toolbar; }}
       >
-        {defaultButtons.map((Button, index) => (
+        {structure.map((Button, index) => (
           <Button
             /* the index can be used here as the buttons list won't change */
             key={index}

@@ -3,10 +3,13 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
 import createStore from './utils/createStore';
+import {
+  AlignBlockDefaultButton,
+  AlignBlockLeftButton,
+  AlignBlockCenterButton,
+  AlignBlockRightButton,
+} from 'draft-js-buttons';
 
-const store = createStore({
-  isVisible: false,
-});
 
 const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) => (data) => {
   const entityKey = contentBlock.getEntityAt(0);
@@ -18,10 +21,27 @@ const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) =>
   }
 };
 
-export default (config) => {
+
+export default (config = {}) => {
+
+  const store = createStore({
+    isVisible: false,
+  });
+
+  const {
+    structure = [
+      AlignBlockDefaultButton,
+      AlignBlockLeftButton,
+      AlignBlockCenterButton,
+      AlignBlockRightButton
+    ]
+  } = config;
+
   const alignmentToolProps = {
+    structure,
     store
   };
+  
   return {
     initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
       store.updateItem('getReadOnly', getReadOnly);
