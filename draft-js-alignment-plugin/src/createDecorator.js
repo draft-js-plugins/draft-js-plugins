@@ -6,17 +6,17 @@ const getDisplayName = (WrappedComponent) => {
   return component.displayName || component.name || 'Component';
 };
 
-const defaultDecoratorRenderStyling = (alignment,{style, className}) => {
+const defaultDecoratorRenderStyling = (alignment, { style, className }) => {
   let newStyle = style;
-    if (alignment === 'left') {
-      newStyle = { ...style, float: 'left' };
-    } else if (alignment === 'right') {
-      newStyle = { ...style, float: 'right' };
-    } else if (alignment === 'center') {
-      newStyle = { ...style, marginLeft: 'auto', marginRight: 'auto', display: 'block' };
-    }
-  return {style: newStyle,className};
-}
+  if (alignment === 'left') {
+    newStyle = { ...style, float: 'left' };
+  } else if (alignment === 'right') {
+    newStyle = { ...style, float: 'right' };
+  } else if (alignment === 'center') {
+    newStyle = { ...style, marginLeft: 'auto', marginRight: 'auto', display: 'block' };
+  }
+  return { style: newStyle, className };
+};
 
 export default ({ config, store }) => (WrappedComponent) => class BlockAlignmentDecorator extends Component {
   static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
@@ -54,12 +54,12 @@ export default ({ config, store }) => (WrappedComponent) => class BlockAlignment
       ...elementProps
     } = this.props;
     const alignment = blockProps.alignment;
-    
+
     const {
       decoratorRenderStyling = defaultDecoratorRenderStyling
     } = config;
 
-    const styling = decoratorRenderStyling(alignment,{style,className})
+    const styling = decoratorRenderStyling(alignment, { style, className });
 
     return (
       <WrappedComponent

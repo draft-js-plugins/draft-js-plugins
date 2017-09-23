@@ -6,24 +6,25 @@ import {
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
-import createColorBlockPlugin from './colorBlockPlugin';
-import editorStyles from './editorStyles.css';
 import {
   AlignBlockDefaultButton,
   AlignBlockLeftButton
 } from 'draft-js-buttons';
+import createColorBlockPlugin from './colorBlockPlugin';
+import editorStyles from './editorStyles.css';
 
-const decoratorRenderStyling = (alignment,{style, className}) => {
+const decoratorRenderStyling = (alignment, { style, className }) => {
   let newStyle = style;
-    if (alignment === 'left') {
-      newStyle = { ...style, backgroundColor: "red" };
-    } 
-  return {style: newStyle,className};
-}
+  if (alignment === 'left') {
+    newStyle = { ...style, backgroundColor: 'red' };
+  }
+  return { style: newStyle, className };
+};
 
 const focusPlugin = createFocusPlugin();
-const alignmentPlugin = createAlignmentPlugin({structure: [AlignBlockDefaultButton,
-  AlignBlockLeftButton],decoratorRenderStyling});
+const alignmentPlugin = createAlignmentPlugin({ structure: [AlignBlockDefaultButton,
+  AlignBlockLeftButton],
+  decoratorRenderStyling });
 const { AlignmentTool } = alignmentPlugin;
 
 const decorator = composeDecorators(

@@ -1,14 +1,14 @@
 import { EditorState } from 'draft-js';
 import decorateComponentWithProps from 'decorate-component-with-props';
-import createDecorator from './createDecorator';
-import AlignmentTool from './AlignmentTool';
-import createStore from './utils/createStore';
 import {
   AlignBlockDefaultButton,
   AlignBlockLeftButton,
   AlignBlockCenterButton,
   AlignBlockRightButton,
 } from 'draft-js-buttons';
+import createDecorator from './createDecorator';
+import AlignmentTool from './AlignmentTool';
+import createStore from './utils/createStore';
 
 
 const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) => (data) => {
@@ -23,7 +23,6 @@ const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) =>
 
 
 export default (config = {}) => {
-
   const store = createStore({
     isVisible: false,
   });
@@ -41,7 +40,7 @@ export default (config = {}) => {
     structure,
     store
   };
-  
+
   return {
     initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
       store.updateItem('getReadOnly', getReadOnly);

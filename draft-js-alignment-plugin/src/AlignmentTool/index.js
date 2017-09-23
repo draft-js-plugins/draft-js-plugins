@@ -66,7 +66,7 @@ export default class AlignmentTool extends React.Component {
 
   render() {
     const { structure } = this.props;
-    
+
     return (
       <div
         className={styles.alignmentTool}
