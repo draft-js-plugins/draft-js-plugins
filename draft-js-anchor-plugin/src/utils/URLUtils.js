@@ -1,5 +1,5 @@
-import urlRegex from 'url-regex';
 import prependHttp from 'prepend-http';
+import urlRegex from './urlRegex';
 
 export default {
   isUrl(text) {
