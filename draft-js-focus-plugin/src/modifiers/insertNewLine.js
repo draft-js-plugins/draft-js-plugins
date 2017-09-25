@@ -8,15 +8,13 @@ import {
 } from 'draft-js';
 
 export default function insertNewLine(editorState) {
-  const newEditorState = EditorState.forceSelection(
-    editorState,
-    editorState.getCurrentContent().getSelectionAfter(),
-  );
+  const newEditorState = editorState;
   const contentState = newEditorState.getCurrentContent();
   const selectionState = newEditorState.getSelection();
-  const insertionTarget = contentState.getSelectionAfter();
+  const currentBlock = contentState.getBlockForKey(selectionState.getFocusKey());
 
   const fragmentArray = [
+    currentBlock,
     new ContentBlock({
       key: generateRandomKey(),
       type: 'unstyled',
@@ -29,12 +27,11 @@ export default function insertNewLine(editorState) {
 
   const withUnstyledBlock = Modifier.replaceWithFragment(
     contentState,
-    insertionTarget,
+    selectionState,
     fragment,
   );
 
   const newContent = withUnstyledBlock.merge({
-    selectionBefore: selectionState,
     selectionAfter: withUnstyledBlock.getSelectionAfter().set('hasFocus', true),
   });
 
