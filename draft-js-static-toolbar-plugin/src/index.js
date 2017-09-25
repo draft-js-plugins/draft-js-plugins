@@ -41,6 +41,8 @@ export default (config = {}) => {
     // Re-Render the text-toolbar on selection change
     onChange: (editorState) => {
       store.updateItem('selection', editorState.getSelection());
+      store.updateItem('getEditorState', () => editorState);
+      
       return editorState;
     },
     Toolbar: decorateComponentWithProps(Toolbar, toolbarProps),
