@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
 import { List, fromJS } from 'immutable';
+import escapeRegExp from 'lodash.escaperegexp';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
@@ -141,8 +142,14 @@ export class MentionSuggestions extends Component {
     const selectionIsInsideWord = leaves
       .filter((leave) => leave !== undefined)
       .map(({ start, end }) => (
-        (start === 0 && anchorOffset === this.props.mentionTrigger.length && plainText.charAt(anchorOffset) !== this.props.mentionTrigger && new RegExp(this.props.mentionTrigger, 'g').test(plainText) && anchorOffset <= end) || // @ is the first character
-        (anchorOffset > start + this.props.mentionTrigger.length && anchorOffset <= end) // @ is in the text or at the end
+        (start === 0
+         && anchorOffset === this.props.mentionTrigger.length
+         && plainText.charAt(anchorOffset) !== this.props.mentionTrigger
+         && new RegExp(String.raw`${escapeRegExp(this.props.mentionTrigger)}`, 'g').test(plainText)
+         && anchorOffset <= end)
+         || // @ is the first character
+           (anchorOffset > start + this.props.mentionTrigger.length
+         && anchorOffset <= end) // @ is in the text or at the end
       ));
 
     if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
