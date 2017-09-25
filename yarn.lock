@@ -4005,9 +4005,9 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-ip-regex@^1.0.1:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-1.0.3.tgz#dc589076f659f419c222039a33316f1c7387effd"
+ip-regex@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-2.1.0.tgz#fa78bf5d2e6913c911ce9f819ee5146bb6d844e9"
 
 ipaddr.js@1.4.0:
   version "1.4.0"
@@ -7637,9 +7637,9 @@ tiny-emitter@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
 
-tlds@^1.183.0, tlds@^1.187.0:
-  version "1.196.0"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.196.0.tgz#49d74ddbd1f9df30238b3bfef4df82862b5bbb48"
+tlds@^1.197.0:
+  version "1.197.0"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.197.0.tgz#5e5463a2a0d78480aeb1768b6611e4f3bc22778d"
 
 tmpl@1.0.x:
   version "1.0.4"
@@ -7932,13 +7932,6 @@ url-parse-lax@^1.0.0:
   resolved "https://registry.yarnpkg.com/url-parse-lax/-/url-parse-lax-1.0.0.tgz#7af8f303645e9bd79a272e7a14ac68bc0609da73"
   dependencies:
     prepend-http "^1.0.1"
-
-url-regex@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/url-regex/-/url-regex-4.1.1.tgz#a5617b22e15e26dac57ce74c3f52088bcdfec995"
-  dependencies:
-    ip-regex "^1.0.1"
-    tlds "^1.187.0"
 
 url@^0.11.0:
   version "0.11.0"

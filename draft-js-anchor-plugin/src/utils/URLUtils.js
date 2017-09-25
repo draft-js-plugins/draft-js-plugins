@@ -1,4 +1,4 @@
-import urlRegex from 'url-regex';
+import urlRegex from './urlRegex';
 import prependHttp from 'prepend-http';
 
 export default {

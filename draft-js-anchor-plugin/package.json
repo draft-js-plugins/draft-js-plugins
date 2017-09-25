@@ -1,6 +1,6 @@
 {
   "name": "draft-js-anchor-plugin",
-  "version": "2.0.0-rc8",
+  "version": "2.0.0-rc9",
   "description": "Link Plugin for DraftJS",
   "author": {
     "name": "Jan Amann",
@@ -34,10 +34,11 @@
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "immutable": "~3.7.4",
+    "ip-regex": "^2.1.0",
     "prepend-http": "1.0.4",
     "prop-types": "^15.5.8",
-    "union-class-names": "^1.0.0",
-    "url-regex": "4.1.1"
+    "tlds": "^1.197.0",
+    "union-class-names": "^1.0.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1",
