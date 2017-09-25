@@ -145,7 +145,7 @@ export class MentionSuggestions extends Component {
         (start === 0
          && anchorOffset === this.props.mentionTrigger.length
          && plainText.charAt(anchorOffset) !== this.props.mentionTrigger
-         && new RegExp(String.raw`${escapeRegExp(this.props.mentionTrigger)}`, 'g').test(plainText)
+         && new RegExp(String.raw({ raw: `${escapeRegExp(this.props.mentionTrigger)}` }), 'g').test(plainText)
          && anchorOffset <= end)
          || // @ is the first character
            (anchorOffset > start + this.props.mentionTrigger.length
