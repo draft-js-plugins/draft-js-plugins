@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0-rc9
+
+### Fix native emojis
+- render props.children instead, fixes editing behaviour
+
 ## To Be Released
 
 ### Fixed
