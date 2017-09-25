@@ -1,4 +1,5 @@
 import { EditorState } from 'draft-js';
+import insertNewLine from './modifiers/insertNewLine';
 import setSelection from './modifiers/setSelection';
 import setSelectionToBlock from './modifiers/setSelectionToBlock';
 import createDecorator from './createDecorator';
@@ -24,6 +25,14 @@ export default (config = {}) => {
   let lastContentState;
 
   return {
+    handleReturn: (event, editorState, { setEditorState }) => {
+      // if a focusable block is selected then overwrite new line behavior to custom
+      if (focusableBlockIsSelected(editorState, blockKeyStore)) {
+        setEditorState(insertNewLine(editorState));
+        return 'handled';
+      }
+      return 'not-handled';
+    },
     onChange: (editorState) => {
       // in case the content changed there is no need to re-render blockRendererFn
       // since if a block was added it will be rendered anyway and if it was text
