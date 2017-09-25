@@ -4,5 +4,8 @@ import findWithRegex from 'find-with-regex';
 import escapeRegExp from 'lodash.escaperegexp';
 
 export default (trigger: string, regExp: string) => (contentBlock: Object, callback: Function) => {
-  findWithRegex(new RegExp(`(\\s|^)${escapeRegExp(trigger)}${regExp}`, 'g'), contentBlock, callback);
+  const reg = new RegExp(String.raw({
+    raw: `(\s|^)${escapeRegExp(trigger)}${regExp}` // eslint-disable-line no-useless-escape
+  }), 'g');
+  findWithRegex(reg, contentBlock, callback);
 };
