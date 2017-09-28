@@ -29,6 +29,7 @@ const Entry = (props) => {
     mention,
     theme,
     searchValue, // eslint-disable-line no-unused-vars
+    isFocused, // eslint-disable-line no-unused-vars
     ...parentProps
   } = props;
 
