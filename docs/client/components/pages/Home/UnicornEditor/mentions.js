@@ -1,6 +1,4 @@
-import { fromJS } from 'immutable';
-
-const mentions = fromJS([
+const mentions = [
   {
     name: 'Matthew Russell',
     link: 'https://twitter.com/mrussell247',
@@ -31,20 +29,20 @@ const mentions = fromJS([
     link: 'https://twitter.com/psbrandt',
     avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
   },
-]);
+];
 
-// const mentions = fromJS([
+// const mentions = [
 //   { name: 'Matthew Russell', link: 'https://twitter.com/mrussell247' },
 //   { name: 'Jyoti Puri', link: 'https://twitter.com/jyopur' },
 //   { name: 'Max Stoiber', link: 'https://twitter.com/mxstbr' },
 //   { name: 'Nik Graf', link: 'https://twitter.com/nikgraf' },
-// ]);
+// ];
 
-// const mentions = fromJS([
+// const mentions = [
 //   { name: 'Matthew Russell' },
 //   { name: 'Jyoti Puri' },
 //   { name: 'Max Stoiber' },
 //   { name: 'Nik Graf' },
-// ]);
+// ];
 
 export default mentions;

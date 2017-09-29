@@ -111,7 +111,7 @@ storiesOf('Mention Plugin')
   .add('Editor with Mention Plugin and asynchronously loaded Suggestions', () => <RemoteMentionEditor />)
   .add('Editor with custom themed Mention Plugin', () => <CustomMentionEditor />)
   .add('Editor with Mention Plugin and custom themed Suggestions', () => <CustomComponentMentionEditor />)
-  .add('Editor with mention trigger which nieeds to be escaped', () => <MentionEditorWithCustomTrigger />);
+  .add('Editor with mention trigger which needs to be escaped', () => <MentionEditorWithCustomTrigger />);
 
 storiesOf('Side Toolbar Plugin')
   .add('Editor with SideToolbar Plugin', () => <SimpleSideToolbarEditor />)

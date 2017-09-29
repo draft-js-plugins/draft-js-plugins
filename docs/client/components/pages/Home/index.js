@@ -127,7 +127,7 @@ export default class App extends Component {
             <div className={styles.logoText}>DraftJS Plugins</div>
             <p className={styles.tagline}>High quality plugins with great UX</p>
             <div className={styles.githubWrapper} ref={(element) => { this.githubWrapper = element; }}>
-              <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="mega" />
+              <GithubButton user="draft-js-plugins" repo="draft-js-plugins" size="large" />
             </div>
           </ContainerBox>
         </div>
