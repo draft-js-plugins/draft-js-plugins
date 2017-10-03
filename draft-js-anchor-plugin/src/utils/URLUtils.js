@@ -15,7 +15,7 @@ export default {
     if (email.toLowerCase().startsWith('mailto:')) {
       return email;
     }
-    return 'mailto:' + email;
+    return `mailto:${email}`;
   },
 
   normalizeUrl(url) {
