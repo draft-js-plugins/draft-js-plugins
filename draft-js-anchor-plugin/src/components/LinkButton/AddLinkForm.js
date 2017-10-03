@@ -52,14 +52,21 @@ export default class AddLinkForm extends Component {
   submit() {
     const { getEditorState, setEditorState } = this.props;
     let { value: url } = this.state;
-    url = URLUtils.normalizeUrl(url);
-    if (!URLUtils.isUrl(url)) {
-      this.setState({ isInvalid: true });
+    if (!URLUtils.isMail(URLUtils.normaliseMail(url))) {
+      url = URLUtils.normalizeUrl(url);
+      
+      if (!URLUtils.isUrl(url)) {
+        this.setState({ isInvalid: true });
+
+        return;
+      }
     } else {
-      setEditorState(EditorUtils.createLinkAtSelection(getEditorState(), url));
-      this.input.blur();
-      this.onClose();
+      url = URLUtils.normaliseMail(url);
     }
+
+    setEditorState(EditorUtils.createLinkAtSelection(getEditorState(), url));
+    this.input.blur();
+    this.onClose();
   }
 
   render() {
