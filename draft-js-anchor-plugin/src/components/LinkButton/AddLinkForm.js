@@ -54,16 +54,13 @@ export default class AddLinkForm extends Component {
     let { value: url } = this.state;
     if (!URLUtils.isMail(URLUtils.normaliseMail(url))) {
       url = URLUtils.normalizeUrl(url);
-      
       if (!URLUtils.isUrl(url)) {
         this.setState({ isInvalid: true });
-
         return;
       }
     } else {
       url = URLUtils.normaliseMail(url);
     }
-
     setEditorState(EditorUtils.createLinkAtSelection(getEditorState(), url));
     this.input.blur();
     this.onClose();
