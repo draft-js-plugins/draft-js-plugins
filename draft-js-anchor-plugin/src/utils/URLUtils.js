@@ -10,12 +10,14 @@ export default {
   isMail(text) {
     return mailRegex().test(text);
   },
+
   normaliseMail(email) {
-    if (email.toLowerCase().startsWith('mailto:'))
+    if (email.toLowerCase().startsWith('mailto:')) {
       return email;
-    
-    return 'mailto:'+email;
+    }
+    return 'mailto:' + email;
   },
+
   normalizeUrl(url) {
     return prependHttp(url);
   }
