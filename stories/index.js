@@ -67,6 +67,11 @@ import SimpleVideoEditor from './Video/SimpleVideoEditor';
 import CustomVideoEditor from './Video/CustomVideoEditor';
 import CustomAddVideoEditor from './Video/CustomAddVideoEditor';
 
+// Static toolbar
+import CustomToolbarEditor from './StaticToolbar/CustomToolbarEditor'
+import ThemedToolbarEditor from './StaticToolbar/ThemedToolbarEditor'
+import SimpleToolbarEditor from './StaticToolbar/SimpleToolbarEditor'
+
 storiesOf('Alignment Plugin', module)
   .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />);
 
@@ -129,3 +134,11 @@ storiesOf('Video Plugin')
   .add('Editor with Video Plugin', () => <SimpleVideoEditor />)
   .add('Editor with custom themed Video Plugin', () => <CustomVideoEditor />)
   .add('Editor with Video Plugin and Add Video Button', () => <CustomAddVideoEditor />);
+
+storiesOf('StaticToolbar Plugin')
+  .add('CustomToolbarEditor', () => <CustomToolbarEditor />)
+  .add('Simple toolbar editor', () => <SimpleToolbarEditor />)
+  .add('ThemedToolbarEditor', () => <ThemedToolbarEditor />)
+
+  //.add('Editor with custom themed Video Plugin', () => <CustomVideoEditor />)
+  //.add('Editor with Video Plugin and Add Video Button', () => <CustomAddVideoEditor />);

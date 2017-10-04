@@ -16,6 +16,8 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton,
+  SubButton,
+  SupButton
 } from 'draft-js-buttons';
 import editorStyles from './editorStyles.css';
 
@@ -75,12 +77,14 @@ const toolbarPlugin = createToolbarPlugin({
     UnorderedListButton,
     OrderedListButton,
     BlockquoteButton,
-    CodeBlockButton
+    CodeBlockButton,
+    SubButton,
+    SupButton
   ]
 });
 const { Toolbar } = toolbarPlugin;
 const plugins = [toolbarPlugin];
-const text = 'In this editor a toolbar shows up once you select part of the text …';
+const text = 'Remember to place the <Toolbar> component bellow the Editor component …';
 
 export default class CustomToolbarEditor extends Component {
 
@@ -106,6 +110,10 @@ export default class CustomToolbarEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
+            customStyleMap={{
+              SUBSCRIPT: { fontSize: '0.6em', verticalAlign: 'sub' },
+              SUPERSCRIPT: { fontSize: '0.6em', verticalAlign: 'super' }
+            }}
             ref={(element) => { this.editor = element; }}
           />
           <Toolbar />
