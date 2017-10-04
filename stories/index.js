@@ -138,7 +138,4 @@ storiesOf('Video Plugin')
 storiesOf('StaticToolbar Plugin')
   .add('CustomToolbarEditor', () => <CustomToolbarEditor />)
   .add('Simple toolbar editor', () => <SimpleToolbarEditor />)
-  .add('ThemedToolbarEditor', () => <ThemedToolbarEditor />)
-
-  //.add('Editor with custom themed Video Plugin', () => <CustomVideoEditor />)
-  //.add('Editor with Video Plugin and Add Video Button', () => <CustomAddVideoEditor />);
+  .add('ThemedToolbarEditor', () => <ThemedToolbarEditor />);
