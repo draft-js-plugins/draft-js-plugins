@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
-import { List, fromJS } from 'immutable';
 import escapeRegExp from 'lodash.escaperegexp';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
-import defaultEntryComponent from './Entry/defaultEntryComponent';
-
-const suggestionsHoc = (Comp) => (props) => {
-  if (List.isList(props.suggestions)) {
-    console.warn('Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead'); // eslint-disable-line no-console
-  }
-
-  return (<Comp
-    {...props}
-    suggestions={fromJS(props.suggestions)}
-  />);
-};
+import DefaultEntryComponent from './Entry/DefaultEntryComponent';
 
 export class MentionSuggestions extends Component {
   static propTypes = {
@@ -29,14 +17,7 @@ export class MentionSuggestions extends Component {
     ]),
     entryComponent: PropTypes.func,
     onAddMention: PropTypes.func,
-    suggestions: (props, propName, componentName) => {
-      if (!List.isList(props[propName])) {
-        return new Error(
-          `Invalid prop \`${propName}\` supplied to \`${componentName}\`. should be an instance of immutable list.`
-        );
-      }
-      return undefined;
-    },
+    suggestions: PropTypes.array,
   };
 
   state = {
@@ -50,9 +31,10 @@ export class MentionSuggestions extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.suggestions.size === 0 && this.state.isActive) {
+    if (nextProps.suggestions.length === 0 && this.state.isActive) {
+      console.log('close??');
       this.closeDropdown();
-    } else if (nextProps.suggestions.size > 0 && !nextProps.suggestions.equals(this.props.suggestions) && !this.state.isActive) {
+    } else if (nextProps.suggestions.length > 0 && nextProps.suggestions !== this.props.suggestions && !this.state.isActive) {
       this.openDropdown();
     }
   }
@@ -62,7 +44,7 @@ export class MentionSuggestions extends Component {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
       // not fullfilled anymore.
-      const size = this.props.suggestions.size;
+      const size = this.props.suggestions.length;
       if (size > 0 && this.state.focusedOptionIndex >= size) {
         this.setState({
           focusedOptionIndex: size - 1,
@@ -202,7 +184,7 @@ export class MentionSuggestions extends Component {
   onDownArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
-    this.onMentionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
+    this.onMentionFocus(newIndex >= this.props.suggestions.length ? 0 : newIndex);
   };
 
   onTab = (keyboardEvent) => {
@@ -212,9 +194,9 @@ export class MentionSuggestions extends Component {
 
   onUpArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
-    if (this.props.suggestions.size > 0) {
+    if (this.props.suggestions.length > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
-      this.onMentionFocus(newIndex < 0 ? this.props.suggestions.size - 1 : newIndex);
+      this.onMentionFocus(newIndex < 0 ? this.props.suggestions.length - 1 : newIndex);
     }
   };
 
@@ -270,7 +252,7 @@ export class MentionSuggestions extends Component {
       return 'not-handled';
     }
 
-    this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
+    this.onMentionSelect(this.props.suggestions[this.state.focusedOptionIndex]);
     return 'handled';
   };
 
@@ -351,9 +333,9 @@ export class MentionSuggestions extends Component {
         id: `mentions-list-${this.key}`,
         ref: (element) => { this.popover = element; },
       },
-      this.props.suggestions.map((mention, index) => (
+      suggestions.map((mention, index) => (
         <Entry
-          key={mention.has('id') ? mention.get('id') : mention.get('name')}
+          key={mention.id ? mention.id : mention.name}
           onMentionSelect={this.onMentionSelect}
           onMentionFocus={this.onMentionFocus}
           isFocused={this.state.focusedOptionIndex === index}
@@ -362,11 +344,11 @@ export class MentionSuggestions extends Component {
           id={`mention-option-${this.key}-${index}`}
           theme={theme}
           searchValue={this.lastSearchValue}
-          entryComponent={entryComponent || defaultEntryComponent}
+          entryComponent={entryComponent || DefaultEntryComponent}
         />
-      )).toJS()
+      ))
     );
   }
 }
 
-export default suggestionsHoc(MentionSuggestions);
+export default MentionSuggestions;
