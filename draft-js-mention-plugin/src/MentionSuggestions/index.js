@@ -44,8 +44,8 @@ export class MentionSuggestions extends Component {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
       // not fullfilled anymore.
-      const size = this.props.suggestions.length;
-      if (size > 0 && this.state.focusedOptionIndex >= size) {
+      const length = this.props.suggestions.length;
+      if (length > 0 && this.state.focusedOptionIndex >= length) {
         this.setState({
           focusedOptionIndex: size - 1,
         });
