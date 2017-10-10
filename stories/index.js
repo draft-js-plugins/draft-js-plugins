@@ -68,9 +68,9 @@ import CustomVideoEditor from './Video/CustomVideoEditor';
 import CustomAddVideoEditor from './Video/CustomAddVideoEditor';
 
 // Static toolbar
-import CustomToolbarEditor from './StaticToolbar/CustomToolbarEditor'
-import ThemedToolbarEditor from './StaticToolbar/ThemedToolbarEditor'
-import SimpleToolbarEditor from './StaticToolbar/SimpleToolbarEditor'
+import CustomToolbarEditor from './StaticToolbar/CustomToolbarEditor';
+import ThemedToolbarEditor from './StaticToolbar/ThemedToolbarEditor';
+import SimpleToolbarEditor from './StaticToolbar/SimpleToolbarEditor';
 
 storiesOf('Alignment Plugin', module)
   .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />);
