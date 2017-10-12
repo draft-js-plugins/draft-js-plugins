@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0-rc9 - 2018-10-03
+### Add support for mailto:username@domain syntax (to support email links)
+
 ## 2.0.0-rc9 - 2018-09-25
 ### Replaced url-regex with local util
 
