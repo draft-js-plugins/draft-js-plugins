@@ -92,6 +92,7 @@ An editor component accepting plugins. [see source](https://github.com/draft-js-
 | decorators                                     | an array of custom decorators |  |
 | defaultKeyBindings                             | bool |  |
 | defaultBlockRenderMap                          | bool |  |
+| uniqueId                                       | unique identifier (integer or string) |  |
 | all other props accepted by the DraftJS Editor except decorator | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#props) |  |
 
 Usage:
