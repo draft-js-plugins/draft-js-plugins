@@ -26,6 +26,10 @@ class PluginEditor extends Component {
     defaultBlockRenderMap: PropTypes.bool,
     customStyleMap: PropTypes.object,
     decorators: PropTypes.array,
+    uniqueId: PropTypes.onOfTypes([
+      PropTypes.string,
+      PropTypes.number
+    ])
   };
 
   static defaultProps = {
@@ -34,6 +38,7 @@ class PluginEditor extends Component {
     customStyleMap: {},
     plugins: [],
     decorators: [],
+    uniqueId: null
   };
 
   constructor(props) {
@@ -119,6 +124,7 @@ class PluginEditor extends Component {
     getReadOnly: this.getReadOnly,
     setReadOnly: this.setReadOnly,
     getEditorRef: this.getEditorRef,
+    getUniqueId: this.props.uniqueId
   });
 
   createEventHooks = (methodName, plugins) => (...args) => {
