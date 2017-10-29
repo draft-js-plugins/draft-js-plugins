@@ -26,7 +26,7 @@ class PluginEditor extends Component {
     defaultBlockRenderMap: PropTypes.bool,
     customStyleMap: PropTypes.object,
     decorators: PropTypes.array,
-    uniqueId: PropTypes.onOfTypes([
+    uniqueId: PropTypes.oneOfTypes([
       PropTypes.string,
       PropTypes.number
     ])
