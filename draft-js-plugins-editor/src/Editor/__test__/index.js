@@ -174,6 +174,7 @@ describe('Editor', () => {
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
         getEditorRef: pluginEditor.getEditorRef,
+        getUniqueId: pluginEditor.getUniqueId,
       };
       draftEditor.props.handleKeyCommand('command');
       expect(plugin.handleKeyCommand).has.been.calledOnce();
@@ -305,6 +306,7 @@ describe('Editor', () => {
         getReadOnly: pluginEditor.getReadOnly,
         setReadOnly: pluginEditor.setReadOnly,
         getEditorRef: pluginEditor.getEditorRef,
+        getUniqueId: pluginEditor.getUniqueId,
       };
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
