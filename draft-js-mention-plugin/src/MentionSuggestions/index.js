@@ -41,7 +41,8 @@ export class MentionSuggestions extends Component {
 
   state = {
     isActive: false,
-    focusedOptionIndex: 0,
+    focusedOptionIndex: this.props.initialSelectionIndex || 0,
+    isChanged: false,
   };
 
   componentWillMount() {
@@ -180,7 +181,7 @@ export class MentionSuggestions extends Component {
     if (this.lastSelectionIsInsideWord === undefined ||
         !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
       this.setState({
-        focusedOptionIndex: 0,
+        focusedOptionIndex: this.props.initialSelectionIndex || 0,
       });
     }
 
@@ -202,17 +203,24 @@ export class MentionSuggestions extends Component {
   onDownArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
+
+    this.isChosen = true;
     this.onMentionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
   };
 
   onTab = (keyboardEvent) => {
-    keyboardEvent.preventDefault();
-    this.commitSelection();
+    if (this.props.customOnTab) {
+      this.props.customOnTab(keyboardEvent);
+    } else {
+      keyboardEvent.preventDefault();
+      this.commitSelection();
+    }
   };
 
   onUpArrow = (keyboardEvent) => {
     keyboardEvent.preventDefault();
     if (this.props.suggestions.size > 0) {
+      this.isChosen = true;
       const newIndex = this.state.focusedOptionIndex - 1;
       this.onMentionFocus(newIndex < 0 ? this.props.suggestions.size - 1 : newIndex);
     }
@@ -265,8 +273,15 @@ export class MentionSuggestions extends Component {
     this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
+  onMentionUnfocus = () => {
+    this.props.ariaProps.ariaActiveDescendantID = undefined;
+    this.setState({
+      focusedOptionIndex: this.props.initialSelectionIndex || 0,
+    });
+  };
+
   commitSelection = () => {
-    if (!this.props.store.getIsOpened()) {
+    if (!this.props.store.getIsOpened() || !this.isChosen) {
       return 'not-handled';
     }
 
@@ -312,7 +327,10 @@ export class MentionSuggestions extends Component {
     this.props.ariaProps.ariaOwneeID = undefined;
     this.setState({
       isActive: false,
+      focusedOptionIndex: this.props.initialSelectionIndex || 0,
     });
+
+    this.isChosen = false;
 
     if (this.props.onClose) {
       this.props.onClose();
@@ -356,6 +374,7 @@ export class MentionSuggestions extends Component {
           key={mention.has('id') ? mention.get('id') : mention.get('name')}
           onMentionSelect={this.onMentionSelect}
           onMentionFocus={this.onMentionFocus}
+          onMentionUnfocus={this.onMentionUnfocus}
           isFocused={this.state.focusedOptionIndex === index}
           mention={mention}
           index={index}
