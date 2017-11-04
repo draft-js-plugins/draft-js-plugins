@@ -308,7 +308,7 @@ export class MentionSuggestions extends Component {
     this.setState({
       isActive: true,
     });
-
+    this.props.store.setIsOpened(true);
     if (this.props.onOpen) {
       this.props.onOpen();
     }
@@ -331,6 +331,8 @@ export class MentionSuggestions extends Component {
     });
 
     this.isChosen = false;
+
+    this.props.store.setIsOpened(false);
 
     if (this.props.onClose) {
       this.props.onClose();
