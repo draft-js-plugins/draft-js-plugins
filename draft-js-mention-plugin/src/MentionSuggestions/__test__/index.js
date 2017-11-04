@@ -56,6 +56,7 @@ function defaultProps() {
       isEscaped: sinon.spy(),
       resetEscapedSearch: sinon.spy(),
       escapeSearch: sinon.spy(),
+      setIsOpened: sinon.spy(),
     },
     ariaProps: {},
     onSearchChange: sinon.spy(),
