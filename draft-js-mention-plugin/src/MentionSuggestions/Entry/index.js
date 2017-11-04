@@ -8,7 +8,8 @@ export default class Entry extends Component {
   static propTypes = {
     entryComponent: PropTypes.any.isRequired,
     searchValue: PropTypes.string,
-    onMentionSelect: PropTypes.func
+    onMentionSelect: PropTypes.func,
+    onMentionBlur: PropTypes.func,
   };
 
   constructor(props) {
@@ -38,6 +39,10 @@ export default class Entry extends Component {
     this.props.onMentionFocus(this.props.index);
   };
 
+  onMouseLeave = () => {
+    this.props.onMentionBlur();
+  };
+
   render() {
     const { theme = {}, mention, searchValue, isFocused } = this.props;
     const className = isFocused ? theme.mentionSuggestionsEntryFocused : theme.mentionSuggestionsEntry;
@@ -48,6 +53,7 @@ export default class Entry extends Component {
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
         onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
         role="option"
         theme={theme}
         mention={mention}
