@@ -68,24 +68,28 @@ export default class Toolbar extends React.Component {
   };
 
   getStyle() {
-    const { store } = this.props;
-    const { overrideContent, position } = this.state;
-    const selection = store.getItem('getEditorState')().getSelection();
-    // overrideContent could for example contain a text input, hence we always show overrideContent
-    // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
-    const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
-    const style = { ...position };
+    // need to wait a tick for children onClick that will set overrideContent
+    // and mentain the visibilty state of the inline menu
+    setTimeout(() => {
+      const { store } = this.props;
+      const { overrideContent, position } = this.state;
+      const selection = store.getItem('getEditorState')().getSelection();
+      // overrideContent could for example contain a text input, hence we always show overrideContent
+      // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
+      const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
+      const style = { ...position };
 
-    if (isVisible) {
-      style.visibility = 'visible';
-      style.transform = 'translate(-50%) scale(1)';
-      style.transition = 'transform 0.15s cubic-bezier(.3,1.2,.2,1)';
-    } else {
-      style.transform = 'translate(-50%) scale(0)';
-      style.visibility = 'hidden';
-    }
+      if (isVisible) {
+        style.visibility = 'visible';
+        style.transform = 'translate(-50%) scale(1)';
+        style.transition = 'transform 0.15s cubic-bezier(.3,1.2,.2,1)';
+      } else {
+        style.transform = 'translate(-50%) scale(0)';
+        style.visibility = 'hidden';
+      }
 
-    return style;
+      return style;
+    });
   }
 
   handleToolbarRef = (node) => {
