@@ -51,6 +51,7 @@ In case you are interested in helping [Issue #329](https://github.com/draft-js-p
 - [Modal](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
 - [Sidebar](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
 - [Toolbar](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
+- [Divider](https://github.com/simsim0709/draft-js-plugins/tree/master/draft-js-divider-plugin) by [simsim0709](https://github.com/simsim0709)
 
 ## Live Example & Documentation
 
