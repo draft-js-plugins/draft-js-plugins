@@ -8,6 +8,7 @@ import {
 } from 'draft-js';
 import { List, Map } from 'immutable';
 import MultiDecorator from './MultiDecorator';
+import handleAtomicBlocks from './handleAtomicBlocks';
 import createCompositeDecorator from './createCompositeDecorator';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import proxies from './proxies';
@@ -235,7 +236,7 @@ class PluginEditor extends Component {
     if (this.props.defaultKeyBindings) {
       plugins.push(defaultKeyBindingPlugin);
     }
-
+    plugins.push(handleAtomicBlocks);
     return plugins;
   };
 
