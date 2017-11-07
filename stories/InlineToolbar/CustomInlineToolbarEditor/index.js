@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
-import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, {
+  Separator,
+} from 'draft-js-inline-toolbar-plugin';
 import {
   ItalicButton,
   BoldButton,
@@ -16,13 +18,16 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton,
+  SubButton,
+  SupButton,
 } from 'draft-js-buttons';
 import editorStyles from './editorStyles.css';
 
-
 class HeadlinesPicker extends Component {
   componentDidMount() {
-    setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
+    setTimeout(() => {
+      window.addEventListener('click', this.onWindowClick);
+    });
   }
 
   componentWillUnmount() {
@@ -32,15 +37,16 @@ class HeadlinesPicker extends Component {
   onWindowClick = () =>
     // Call `onOverrideContent` again with `undefined`
     // so the toolbar can show its regular content again.
-    this.props.onOverrideContent(undefined);
+    this.props.onOverrideContent(undefined)
 
   render() {
     const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
     return (
       <div>
-        {buttons.map((Button, i) => // eslint-disable-next-line
-          <Button key={i} {...this.props} />
-        )}
+        {buttons.map((
+          Button,
+          i // eslint-disable-next-line
+        ) => <Button key={i} {...this.props} />)}
       </div>
     );
   }
@@ -51,7 +57,7 @@ class HeadlinesButton extends Component {
     // A button can call `onOverrideContent` to replace the content
     // of the toolbar. This can be useful for displaying sub
     // menus or requesting additional information from the user.
-    this.props.onOverrideContent(HeadlinesPicker);
+    this.props.onOverrideContent(HeadlinesPicker)
 
   render() {
     return (
@@ -69,34 +75,36 @@ const inlineToolbarPlugin = createInlineToolbarPlugin({
     BoldButton,
     ItalicButton,
     UnderlineButton,
+    SubButton,
+    SupButton,
     CodeButton,
     Separator,
     HeadlinesButton,
     UnorderedListButton,
     OrderedListButton,
     BlockquoteButton,
-    CodeBlockButton
-  ]
+    CodeBlockButton,
+  ],
 });
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
-const text = 'In this editor a toolbar shows up once you select part of the text …';
+const text =
+  'In this editor a toolbar shows up once you select part of the text …';
 
 export default class CustomInlineToolbarEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
-  };
+  }
 
   onChange = (editorState) => {
     this.setState({
       editorState,
     });
-  };
+  }
 
   focus = () => {
     this.editor.focus();
-  };
+  }
 
   render() {
     return (
@@ -105,7 +113,9 @@ export default class CustomInlineToolbarEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={(element) => {
+            this.editor = element;
+          }}
         />
         <InlineToolbar />
       </div>
