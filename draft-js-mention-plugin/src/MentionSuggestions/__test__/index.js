@@ -56,6 +56,8 @@ function defaultProps() {
       isEscaped: sinon.spy(),
       resetEscapedSearch: sinon.spy(),
       escapeSearch: sinon.spy(),
+      setIsOpened: sinon.spy(),
+      getIsOpened: sinon.stub().returns(true),
     },
     ariaProps: {},
     onSearchChange: sinon.spy(),
@@ -122,5 +124,16 @@ describe('MentionSuggestions Component', () => {
 
     suggestions.instance().openDropdown();
     expect(suggestions.find('div[data-findme]')).to.have.length(1);
+  });
+
+  it('doesnt choose suggestion by default when commitByDefault prop is disabled', () => {
+    const props = defaultProps();
+    const suggestions = mount(
+      <MentionSuggestions {...props} commitByDefault={false} initialSelectionIndex={-1} />
+    );
+
+    const instance = suggestions.instance();
+    expect(suggestions.state().focusedOptionIndex).to.equal(-1);
+    expect(instance.commitSelection()).to.equal('not-handled');
   });
 });
