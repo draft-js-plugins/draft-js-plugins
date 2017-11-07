@@ -15,12 +15,16 @@ import AlignBlockDefaultButton from './components/AlignBlockDefaultButton';
 import AlignBlockCenterButton from './components/AlignBlockCenterButton';
 import AlignBlockLeftButton from './components/AlignBlockLeftButton';
 import AlignBlockRightButton from './components/AlignBlockRightButton';
+import SubButton from './components/SubButton';
+import SupButton from './components/SupButton';
 
 export {
   createBlockStyleButton,
   createInlineStyleButton,
   ItalicButton,
   BoldButton,
+  SupButton,
+  SubButton,
   CodeButton,
   UnderlineButton,
   HeadlineOneButton,
