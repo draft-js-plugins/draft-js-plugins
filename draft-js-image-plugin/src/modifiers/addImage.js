@@ -15,6 +15,6 @@ export default (editorState, url, extraData) => {
   );
   return EditorState.forceSelection(
     newEditorState,
-    newEditorState.getCurrentContent().getSelectionAfter()
+    editorState.getCurrentContent().getSelectionAfter()
   );
 };
