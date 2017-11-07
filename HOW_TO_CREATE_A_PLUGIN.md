@@ -85,7 +85,7 @@ In addition the a plugin accepts
 
 - `initialize: (PluginFunctions) => void`
 - `onChange: (EditorState) => EditorState`
-- `willUnMount: (PluginFunctions) => void`
+- `willUnmount: (PluginFunctions) => void`
 - `decorators: Array<Decorator> => void`
 - `getAccessibilityProps: () => { ariaHasPopup: string, ariaExpanded: string }`
 
@@ -99,7 +99,7 @@ Allows to initialize a plugin once the editor becomes mounted.
 
 Allows a plugin to modify the state at the latest moment before the onChange callback of the Draft.js Editor is fired.
 
-### `willUnMount`
+### `willUnmount`
 
 Usually used to clean up.
 

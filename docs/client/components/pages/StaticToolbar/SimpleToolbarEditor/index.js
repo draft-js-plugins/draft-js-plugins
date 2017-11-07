@@ -3,12 +3,12 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
 import editorStyles from './editorStyles.css';
 
-const inlineToolbarPlugin = createToolbarPlugin();
-const { Toolbar } = inlineToolbarPlugin;
-const plugins = [inlineToolbarPlugin];
+const staticToolbarPlugin = createToolbarPlugin();
+const { Toolbar } = staticToolbarPlugin;
+const plugins = [staticToolbarPlugin];
 const text = 'The toolbar above the editor can be used for formatting text, as in conventional static editors  …';
 
-export default class SimpleInlineToolbarEditor extends Component {
+export default class SimpleStaticToolbarEditor extends Component {
   state = {
     editorState: createEditorStateWithText(text),
   };
