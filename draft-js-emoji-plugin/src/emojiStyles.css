@@ -34,5 +34,5 @@
   may not be rendered properly on some platforms/browsers (e.g., Windows 10 +
   Chrome 61).
   */
-  width: 1em;
+  min-width: 1em;
 }
