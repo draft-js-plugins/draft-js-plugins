@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Added type="button" to EmojiSelect button to prevent submitting forms, thanks to @alanwflood [for the pr](https://github.com/draft-js-plugins/draft-js-plugins/pull/829)
-- Fixed incorrect unicode of emoji 'heart'. By @steven-qi
+- Fixed rendering of emoji 'heart' on Windows 10 + Chrome. By @steven-qi
 
 ### Removed
 
