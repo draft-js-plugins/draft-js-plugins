@@ -54,9 +54,9 @@ export default class App extends Component {
         </Container>
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>
-          <Code code="npm install draft-js-plugins-editor@beta --save" />
-          <Code code="npm install draft-js-focus-plugin@beta --save" />
-          <Code code="npm install draft-js-resizeable-plugin@beta --save" />
+          <Code code="npm install draft-js-plugins-editor" />
+          <Code code="npm install draft-js-focus-plugin" />
+          <Code code="npm install draft-js-resizeable-plugin" />
           <Heading level={3}>Importing the default styles</Heading>
           <p>
             The plugin ships with a default styling available at this location in the installed package:

@@ -41,9 +41,9 @@ export default class App extends Component {
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>
           <p>This plugin allows you to add link entities via the <Link to="/plugin/inline-toolbar">inline toolbar</Link>. It also provides a decorator that formats the created entities.</p>
-          <Code code="npm install draft-js-plugins-editor@beta --save" />
-          <Code code="npm install draft-js-anchor-plugin@beta --save" />
-          <Code code="npm install draft-js-inline-toolbar-plugin@beta --save" />
+          <Code code="npm install draft-js-plugins-editor" />
+          <Code code="npm install draft-js-anchor-plugin" />
+          <Code code="npm install draft-js-inline-toolbar-plugin" />
           <Code code={gettingStarted} name="gettingStarted.js" />
           <p>
             The plugin ships with a default styling available at this location:

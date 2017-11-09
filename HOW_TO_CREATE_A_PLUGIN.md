@@ -1,5 +1,3 @@
-Note: this guide already focuses on version 2 (currently in beta) of the DraftJS Plugins architecture.
-
 -----
 
 # Basics
