@@ -172,6 +172,14 @@ export default class App extends Component {
               <li>Linkify (automatically turns links into a-tags)</li>
               <li>Mentions</li>
               <li>Emojis</li>
+              <li>Image</li>
+              <li>Focus</li>
+              <li>Alignment</li>
+              <li>
+                Drag{"'"}n{"'"}Drop
+              </li>
+              <li>Inline Toolbar</li>
+              <li>Side Toolbar</li>
             </ul>
           </div>
           <Heading level={3}>Why a UnicornEditor?</Heading>
