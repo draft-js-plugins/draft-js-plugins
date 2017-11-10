@@ -654,7 +654,7 @@ describe('Editor', () => {
       expect(pluginComponents.length).to.equal(1);
     });
 
-    it.skip('uses both custom and simple decorators in plugins', () => {
+    it('uses both custom and simple decorators in plugins', () => {
       const simplePluginDecoratorStrategy = sinon.spy(plugin.decorators[0], 'strategy');
       const customPluginDecorator = sinon.spy(plugin.decorators[1], 'getDecorations');
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
