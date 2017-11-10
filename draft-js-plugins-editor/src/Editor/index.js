@@ -1,22 +1,21 @@
 /* eslint-disable no-continue,no-restricted-syntax */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Editor,
   EditorState,
+  Editor,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
-import { List, Map } from 'immutable';
-import MultiDecorator from './MultiDecorator';
-import createCompositeDecorator from './createCompositeDecorator';
-import moveSelectionToEnd from './moveSelectionToEnd';
+import { Map } from 'immutable';
 import proxies from './proxies';
+import moveSelectionToEnd from './moveSelectionToEnd';
+import resolveDecorators from './resolveDecorators';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
 
 /**
  * The main editor component
  */
-class PluginEditor extends Component {
+class PluginEditor extends PureComponent {
 
   static propTypes = {
     editorState: PropTypes.object.isRequired,
@@ -25,6 +24,7 @@ class PluginEditor extends Component {
     defaultKeyBindings: PropTypes.bool,
     defaultBlockRenderMap: PropTypes.bool,
     customStyleMap: PropTypes.object,
+    // eslint-disable-next-line react/no-unused-prop-types
     decorators: PropTypes.array,
   };
 
@@ -56,20 +56,25 @@ class PluginEditor extends Component {
   }
 
   componentWillMount() {
-    const decorators = this.resolveDecorators();
-    const compositeDecorator = createCompositeDecorator(
-      decorators.filter((decorator) => !this.decoratorIsCustom(decorator)),
-      this.getEditorState,
-      this.onChange);
+    const decorator = resolveDecorators(this.props, this.getEditorState, this.onChange);
 
-    const customDecorators = decorators
-      .filter((decorator) => this.decoratorIsCustom(decorator));
-
-    const multiDecorator = new MultiDecorator(
-      customDecorators.push(compositeDecorator));
-
-    const editorState = EditorState.set(this.props.editorState, { decorator: multiDecorator });
+    const editorState = EditorState.set(this.props.editorState, { decorator });
     this.onChange(moveSelectionToEnd(editorState));
+  }
+
+  componentWillReceiveProps(next) {
+    if (
+      this.props.editorState.getDecorator() !== null &&
+      (
+        next.editorState.getDecorator() === null ||
+        next.editorState.getDecorator().decorators.size
+          !== this.props.editorState.getDecorator().decorators.size
+      )
+    ) {
+      const decorator = this.props.editorState.getDecorator();
+      const editorState = EditorState.set(next.editorState, { decorator });
+      this.onChange(moveSelectionToEnd(editorState));
+    }
   }
 
   componentWillUnmount() {
@@ -238,20 +243,6 @@ class PluginEditor extends Component {
 
     return plugins;
   };
-
-  resolveDecorators = () => {
-    const { decorators, plugins } = this.props;
-    return List([{ decorators }, ...plugins])
-      .filter((plugin) => plugin.decorators !== undefined)
-      .flatMap((plugin) => plugin.decorators);
-  };
-
-  // Return true if decorator implements the DraftDecoratorType interface
-  // @see https://github.com/facebook/draft-js/blob/master/src/model/decorators/DraftDecoratorType.js
-  decoratorIsCustom = (decorator) => typeof decorator.getDecorations === 'function' &&
-    typeof decorator.getComponentForKey === 'function' &&
-    typeof decorator.getPropsForKey === 'function';
-
 
   resolveCustomStyleMap = () => (
     this.props.plugins
