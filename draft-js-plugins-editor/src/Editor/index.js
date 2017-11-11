@@ -1,5 +1,5 @@
 /* eslint-disable no-continue,no-restricted-syntax */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   EditorState,
@@ -15,7 +15,7 @@ import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
 /**
  * The main editor component
  */
-class PluginEditor extends PureComponent {
+class PluginEditor extends Component {
 
   static propTypes = {
     editorState: PropTypes.object.isRequired,
