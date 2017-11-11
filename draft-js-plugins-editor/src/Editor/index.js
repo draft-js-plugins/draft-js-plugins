@@ -65,11 +65,7 @@ class PluginEditor extends Component {
   componentWillReceiveProps(next) {
     if (
       this.props.editorState.getDecorator() !== null &&
-      (
-        next.editorState.getDecorator() === null ||
-        next.editorState.getDecorator().decorators.size
-          !== this.props.editorState.getDecorator().decorators.size
-      )
+      this.props.editorState.getDecorator() !== next.editorState.getDecorator()
     ) {
       const decorator = this.props.editorState.getDecorator();
       const editorState = EditorState.set(next.editorState, { decorator });
