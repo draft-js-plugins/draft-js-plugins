@@ -1,4 +1,4 @@
-import { EditorState } from 'draft-js';
+import { EditorState, SelectionState } from 'draft-js';
 import insertNewLine from './modifiers/insertNewLine';
 import setSelection from './modifiers/setSelection';
 import setSelectionToBlock from './modifiers/setSelectionToBlock';
@@ -30,6 +30,35 @@ export default (config = {}) => {
       if (focusableBlockIsSelected(editorState, blockKeyStore)) {
         setEditorState(insertNewLine(editorState));
         return 'handled';
+      }
+      return 'not-handled';
+    },
+    handleKeyCommand: (command, editorState, { setEditorState }) => {
+      if (command === 'backspace' && focusableBlockIsSelected(editorState, blockKeyStore)) {
+        const selection = editorState.getSelection();
+        const content = editorState.getCurrentContent();
+        const startKey = selection.getStartKey();
+        const blockAfter = content.getBlockAfter(startKey);
+        const blockMap = content.getBlockMap().delete(startKey);
+        const withoutAtomicBlock = content.merge({
+          blockMap,
+          selectionAfter: selection,
+        });
+        if (withoutAtomicBlock !== content) {
+          const newState = EditorState.push(
+            editorState,
+            withoutAtomicBlock,
+            'remove-range',
+          );
+          setEditorState(EditorState.forceSelection(newState, new SelectionState({
+            anchorKey: blockAfter.getKey(),
+            anchorOffset: 0,
+            focusKey: blockAfter.getKey(),
+            focusOffset: 0,
+            isBackward: false,
+          })));
+          return 'handled';
+        }
       }
       return 'not-handled';
     },
