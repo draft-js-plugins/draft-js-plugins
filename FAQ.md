@@ -1,46 +1,5 @@
 # Frequently Asked Questions
 
-## How to reset the content?
-
-Since the decorators are stored in the EditorState it's important to not reset
-the complete EditorState. The proper way is to reset the ContentState which is
-part of the EditorState. In addition this ensures proper undo/redo behavior.
-
-Right:
-```js
-import { EditorState, ContentState } from 'draft-js';
-
-const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
-this.setState({ editorState });
-```
-
-Wrong:
-```js
-import { EditorState } from 'draft-js';
-
-this.setState({ editorState: EditorState.createEmpty() })
-```
-
-## Why are mentions broken after using `convertFromRaw` and throwing an error?
-
-__Please Note: this has been fixed in the beta version, from now on you can use a plain array for your mention suggestions__
-
-We design the API to accept an Immutable Map for a Mention. After saving your data structure to the server and using `convertFromRaw`, the mentions in there are plain objects. I (Nik) believe this is a flaw in our design and the mention data should be a plain object. Hint: we might fix this with v2.0.0 of the mentions plugin.
-
-What you can do now is fixing the datastructure before converting it:
-
-```JS
-import { fromJS} from 'immutable';
-import forEach from 'lodash/forEach';
-
-forEach(rawContent.entityMap, function(value, key) {
-  value.data.mention = fromJS(value.data.mention)
-})
-
-const contentState = Draft.convertFromRaw(rawContent)
-const editorState = Draft.EditorState.createWithContent(contentState)
-```
-
 ## Why is there no Popover for Mentions/Emoji plugin?
 
 The MentionSuggestions/EmojiSuggestions component is internally connected to the
