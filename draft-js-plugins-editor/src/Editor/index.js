@@ -63,14 +63,17 @@ class PluginEditor extends Component {
   }
 
   componentWillReceiveProps(next) {
-    if (
-      this.props.editorState.getDecorator() !== null &&
-      this.props.editorState.getDecorator() !== next.editorState.getDecorator()
-    ) {
-      const decorator = this.props.editorState.getDecorator();
-      const editorState = EditorState.set(next.editorState, { decorator });
-      this.onChange(moveSelectionToEnd(editorState));
-    }
+    const curr = this.props;
+    const currDec = curr.editorState.getDecorator();
+    const nextDec = next.editorState.getDecorator();
+
+    if (currDec === nextDec) return;
+    if (currDec && nextDec && currDec.decorators.size === nextDec.decorators.size) return;
+    if (!currDec && nextDec) return;
+
+    const decorator = curr.editorState.getDecorator();
+    const editorState = EditorState.set(next.editorState, { decorator });
+    this.onChange(moveSelectionToEnd(editorState));
   }
 
   componentWillUnmount() {
