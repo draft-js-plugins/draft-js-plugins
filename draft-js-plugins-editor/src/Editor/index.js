@@ -73,7 +73,7 @@ class PluginEditor extends Component {
 
     const decorator = curr.editorState.getDecorator();
     const editorState = EditorState.set(next.editorState, { decorator });
-    this.onChange(moveSelectionToEnd(editorState));
+    this.onChange(editorState);
   }
 
   componentWillUnmount() {
