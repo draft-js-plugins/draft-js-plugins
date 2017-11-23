@@ -41,6 +41,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed race condition where the SuggestionPortal would unregister and not register again when inputting Japanese, etc.
 - Fixed bug where `mentionPrefix` does not appear in `editorState`. `mentionPrefix` is no longer passed to `mentionComponent`.
 - Fixed bug where `onSearchChange` didn't fire when a user switched between two different mention autocompletions with the same search value. Now it will trigger `onSearchChange` in such a case.
+- Fixed bug where tapping on entries on mobile devices would not select them. [#423](https://github.com/draft-js-plugins/draft-js-plugins/pull/423)
 
 ## 1.1.2 - 2016-06-26
 
