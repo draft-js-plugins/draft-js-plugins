@@ -171,7 +171,7 @@ export class MentionSuggestions extends Component {
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will show again.
-    if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey) && this.props.suggestions.size > 0) {
       this.openDropdown();
     }
 
