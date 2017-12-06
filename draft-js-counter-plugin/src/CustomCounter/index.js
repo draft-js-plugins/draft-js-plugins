@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import unionClassNames from 'union-class-names';
 
 class CustomCounter extends Component {
-
   static propTypes = {
     theme: PropTypes.any,
     limit: PropTypes.number,
@@ -19,7 +18,10 @@ class CustomCounter extends Component {
 
   render() {
     const { store, limit, countFunction } = this.props;
-    const plainText = store.getEditorState().getCurrentContent().getPlainText('');
+    const plainText = store
+      .getEditorState()
+      .getCurrentContent()
+      .getPlainText('');
     const count = countFunction(plainText);
     const classNames = this.getClassNames(count, limit);
 

@@ -14,18 +14,18 @@ const COLORS = [
 
 const styles = {
   controls: {
-    fontFamily: '\'Helvetica\', sans-serif',
+    fontFamily: "'Helvetica', sans-serif",
     fontSize: 14,
     marginBottom: 10,
     userSelect: 'none',
   },
 };
 
-const ColorControls = (props) => {
+const ColorControls = props => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
   return (
     <div style={styles.controls}>
-      {COLORS.map((type, index) =>
+      {COLORS.map((type, index) => (
         <StyleButton
           active={currentStyle.has(type.style)}
           label={type.label}
@@ -33,7 +33,7 @@ const ColorControls = (props) => {
           style={type.style}
           key={index}
         />
-      )}
+      ))}
     </div>
   );
 };

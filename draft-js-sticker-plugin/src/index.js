@@ -36,7 +36,9 @@ export default (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
   const stickers = config.stickers;
-  const selectButtonContent = config.selectButtonContent ? config.selectButtonContent : '☺';
+  const selectButtonContent = config.selectButtonContent
+    ? config.selectButtonContent
+    : '☺';
 
   // default to true if not explicitly set to false
   const attachRemoveButton = config.attachRemoveButton !== false;
@@ -60,6 +62,9 @@ export default (config = {}) => {
     add: addSticker,
     remove: removeSticker,
     blockRenderMap: Map({ sticker: { element: 'div' } }),
-    StickerSelect: decorateComponentWithProps(StickerSelect, stickerSelectProps),
+    StickerSelect: decorateComponentWithProps(
+      StickerSelect,
+      stickerSelectProps
+    ),
   };
 };

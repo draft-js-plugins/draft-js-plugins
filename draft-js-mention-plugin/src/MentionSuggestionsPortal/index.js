@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
 export default class MentionSuggestionsPortal extends Component {
-
   constructor(props) {
     super(props);
     // Note: this is a workaround for an obscure issue: https://github.com/draft-js-plugins/draft-js-plugins/pull/667/files
     // Ideally we can remove this in the future.
-    this.searchPortalRef = (element) => { this.searchPortal = element; };
+    this.searchPortalRef = element => {
+      this.searchPortal = element;
+    };
   }
 
   // When inputting Japanese characters (or any complex alphabet which requires
@@ -35,20 +36,14 @@ export default class MentionSuggestionsPortal extends Component {
   }
 
   updatePortalClientRect(props) {
-    this.props.store.updatePortalClientRect(
-      props.offsetKey,
-      () => (
-        this.searchPortal.getBoundingClientRect()
-      ),
+    this.props.store.updatePortalClientRect(props.offsetKey, () =>
+      this.searchPortal.getBoundingClientRect()
     );
   }
 
   render() {
     return (
-      <span
-        className={this.key}
-        ref={this.searchPortalRef}
-      >
+      <span className={this.key} ref={this.searchPortalRef}>
         {this.props.children}
       </span>
     );

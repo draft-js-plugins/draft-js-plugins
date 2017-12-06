@@ -4,7 +4,7 @@
 var loaderUtils = require('loader-utils');
 var Prism = require('prismjs');
 
-module.exports = function (content) {
+module.exports = function(content) {
   this.cacheable();
 
   var query = loaderUtils.getOptions(this);

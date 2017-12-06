@@ -33,7 +33,7 @@ export default (config = {}) => {
       }
       return 'not-handled';
     },
-    onChange: (editorState) => {
+    onChange: editorState => {
       // in case the content changed there is no need to re-render blockRendererFn
       // since if a block was added it will be rendered anyway and if it was text
       // then the change was not a pure selection change
@@ -54,21 +54,35 @@ export default (config = {}) => {
       // Note: Only if the previous or current selection contained a focusableBlock a re-render is needed.
       const focusableBlockKeys = blockKeyStore.getAll();
       if (lastSelection) {
-        const lastBlockMapKeys = getBlockMapKeys(contentState, lastSelection.getStartKey(), lastSelection.getEndKey());
-        if (lastBlockMapKeys.some((key) => focusableBlockKeys.includes(key))) {
+        const lastBlockMapKeys = getBlockMapKeys(
+          contentState,
+          lastSelection.getStartKey(),
+          lastSelection.getEndKey()
+        );
+        if (lastBlockMapKeys.some(key => focusableBlockKeys.includes(key))) {
           lastSelection = selection;
           // By forcing the selection the editor will trigger the blockRendererFn which is
           // necessary for the blockProps containing isFocus to be passed down again.
-          return EditorState.forceSelection(editorState, editorState.getSelection());
+          return EditorState.forceSelection(
+            editorState,
+            editorState.getSelection()
+          );
         }
       }
 
-      const currentBlockMapKeys = getBlockMapKeys(contentState, selection.getStartKey(), selection.getEndKey());
-      if (currentBlockMapKeys.some((key) => focusableBlockKeys.includes(key))) {
+      const currentBlockMapKeys = getBlockMapKeys(
+        contentState,
+        selection.getStartKey(),
+        selection.getEndKey()
+      );
+      if (currentBlockMapKeys.some(key => focusableBlockKeys.includes(key))) {
         lastSelection = selection;
         // By forcing the selection the editor will trigger the blockRendererFn which is
         // necessary for the blockProps containing isFocus to be passed down again.
-        return EditorState.forceSelection(editorState, editorState.getSelection());
+        return EditorState.forceSelection(
+          editorState,
+          editorState.getSelection()
+        );
       }
 
       return editorState;
@@ -98,9 +112,15 @@ export default (config = {}) => {
         // Covering the case to select the before block
         const selection = editorState.getSelection();
         const selectionKey = selection.getAnchorKey();
-        const beforeBlock = editorState.getCurrentContent().getBlockBefore(selectionKey);
+        const beforeBlock = editorState
+          .getCurrentContent()
+          .getBlockBefore(selectionKey);
         // only if the selection caret is a the left most position
-        if (beforeBlock && selection.getAnchorOffset() === 0 && blockKeyStore.includes(beforeBlock.getKey())) {
+        if (
+          beforeBlock &&
+          selection.getAnchorOffset() === 0 &&
+          blockKeyStore.includes(beforeBlock.getKey())
+        ) {
           setSelection(getEditorState, setEditorState, 'up', evt);
         }
       }
@@ -109,12 +129,20 @@ export default (config = {}) => {
         // Covering the case to select the after block
         const selection = editorState.getSelection();
         const selectionKey = selection.getFocusKey();
-        const currentBlock = editorState.getCurrentContent().getBlockForKey(selectionKey);
-        const afterBlock = editorState.getCurrentContent().getBlockAfter(selectionKey);
+        const currentBlock = editorState
+          .getCurrentContent()
+          .getBlockForKey(selectionKey);
+        const afterBlock = editorState
+          .getCurrentContent()
+          .getBlockAfter(selectionKey);
         const notAtomicAndLastPost =
           currentBlock.getType() !== 'atomic' &&
           currentBlock.getLength() === selection.getFocusOffset();
-        if (afterBlock && notAtomicAndLastPost && blockKeyStore.includes(afterBlock.getKey())) {
+        if (
+          afterBlock &&
+          notAtomicAndLastPost &&
+          blockKeyStore.includes(afterBlock.getKey())
+        ) {
           setSelection(getEditorState, setEditorState, 'down', evt);
         }
       }
@@ -139,7 +167,7 @@ export default (config = {}) => {
           setFocusToBlock: () => {
             setSelectionToBlock(getEditorState, setEditorState, contentBlock);
           },
-        }
+        },
       };
     },
     // Handle down/up arrow events and set activeBlock/selection if necessary
@@ -160,7 +188,9 @@ export default (config = {}) => {
 
       // Covering the case to select the after block with arrow down
       const selectionKey = editorState.getSelection().getAnchorKey();
-      const afterBlock = editorState.getCurrentContent().getBlockAfter(selectionKey);
+      const afterBlock = editorState
+        .getCurrentContent()
+        .getBlockAfter(selectionKey);
       if (afterBlock && blockKeyStore.includes(afterBlock.getKey())) {
         setSelection(getEditorState, setEditorState, 'down', event);
       }
@@ -181,7 +211,9 @@ export default (config = {}) => {
 
       // Covering the case to select the before block with arrow up
       const selectionKey = editorState.getSelection().getAnchorKey();
-      const beforeBlock = editorState.getCurrentContent().getBlockBefore(selectionKey);
+      const beforeBlock = editorState
+        .getCurrentContent()
+        .getBlockBefore(selectionKey);
       if (beforeBlock && blockKeyStore.includes(beforeBlock.getKey())) {
         setSelection(getEditorState, setEditorState, 'up', event);
       }

@@ -33,23 +33,23 @@ export default class App extends Component {
           <Heading level={2}>Resizeable</Heading>
           <Heading level={3}>Prerequisite</Heading>
           <p>
-            This plugin exposes a decorator for blocks. You can use it in combination with any kind of plugin that manages a Draft.js block e.g. image or video. Keep in mind the plugin must accept a decorator for the block. The `Simple Resizeable Example` further down contains an example plugin rendering a colored div. In addition this plugin only works in combination with the draft-js-focus-plugin.
+            This plugin exposes a decorator for blocks. You can use it in
+            combination with any kind of plugin that manages a Draft.js block
+            e.g. image or video. Keep in mind the plugin must accept a decorator
+            for the block. The `Simple Resizeable Example` further down contains
+            an example plugin rendering a colored div. In addition this plugin
+            only works in combination with the draft-js-focus-plugin.
           </p>
           <Heading level={3}>Usage</Heading>
           <p>
-            Hover with the mouse on the right side of the block and drag it to resize. At which edge resize is possible is configurable.
+            Hover with the mouse on the right side of the block and drag it to
+            resize. At which edge resize is possible is configurable.
           </p>
           <Heading level={3}>Supported Environment</Heading>
           <ul className={styles.list}>
-            <li className={styles.listEntry}>
-              Desktop: Yes
-            </li>
-            <li className={styles.listEntry}>
-              Mobile: No
-            </li>
-            <li className={styles.listEntry}>
-              Screen-reader: No
-            </li>
+            <li className={styles.listEntry}>Desktop: Yes</li>
+            <li className={styles.listEntry}>Mobile: No</li>
+            <li className={styles.listEntry}>Screen-reader: No</li>
           </ul>
         </Container>
         <AlternateContainer>
@@ -59,32 +59,37 @@ export default class App extends Component {
           <Code code="npm install draft-js-resizeable-plugin" />
           <Heading level={3}>Importing the default styles</Heading>
           <p>
-            The plugin ships with a default styling available at this location in the installed package:
-            &nbsp;
-            <InlineCode code={'node_modules/draft-js-resizeable-plugin/lib/plugin.css'} />
+            The plugin ships with a default styling available at this location
+            in the installed package: &nbsp;
+            <InlineCode
+              code={'node_modules/draft-js-resizeable-plugin/lib/plugin.css'}
+            />
           </p>
           <Heading level={4}>Webpack Usage</Heading>
           <ul className={styles.list}>
             <li className={styles.listEntry}>
-              1. Install Webpack loaders:
-              &nbsp;
+              1. Install Webpack loaders: &nbsp;
               <InlineCode code={'npm i style-loader css-loader --save-dev'} />
             </li>
             <li className={styles.listEntry}>
-              2. Add the below section to Webpack config (if your config already has a loaders array, simply add the below loader object to your existing list.
+              2. Add the below section to Webpack config (if your config already
+              has a loaders array, simply add the below loader object to your
+              existing list.
               <Code code={webpackConfig} className={styles.guideCodeBlock} />
             </li>
             <li className={styles.listEntry}>
-              3. Add the below import line to your component to tell Webpack to inject the style to your component.
+              3. Add the below import line to your component to tell Webpack to
+              inject the style to your component.
               <Code code={webpackImport} className={styles.guideCodeBlock} />
             </li>
-            <li className={styles.listEntry}>
-              4. Restart Webpack.
-            </li>
+            <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
           <Heading level={4}>Browserify Usage</Heading>
           <p>
-            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">documentation</ExternalLink>.
+            Please help, by submiting a Pull Request to the{' '}
+            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">
+              documentation
+            </ExternalLink>.
           </p>
         </AlternateContainer>
         <Container>

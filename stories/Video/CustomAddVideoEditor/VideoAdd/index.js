@@ -47,20 +47,20 @@ export default class VideoAdd extends Component {
     onChange(this.props.modifier(editorState, { src: this.state.url }));
   };
 
-  changeUrl = (evt) => {
+  changeUrl = evt => {
     this.setState({ url: evt.target.value });
   };
 
   render() {
-    const popoverClassName = this.state.open ?
-      styles.addVideoPopover :
-      styles.addVideoClosedPopover;
-    const buttonClassName = this.state.open ?
-      styles.addVideoPressedButton :
-      styles.addVideoButton;
+    const popoverClassName = this.state.open
+      ? styles.addVideoPopover
+      : styles.addVideoClosedPopover;
+    const buttonClassName = this.state.open
+      ? styles.addVideoPressedButton
+      : styles.addVideoButton;
 
     return (
-      <div className={styles.addVideo} >
+      <div className={styles.addVideo}>
         <button
           className={buttonClassName}
           onMouseUp={this.openPopover}
@@ -68,10 +68,7 @@ export default class VideoAdd extends Component {
         >
           +
         </button>
-        <div
-          className={popoverClassName}
-          onClick={this.onPopoverClick}
-        >
+        <div className={popoverClassName} onClick={this.onPopoverClick}>
           <input
             type="text"
             placeholder="Paste the video url …"

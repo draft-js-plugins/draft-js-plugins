@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import utils from '../video/utils';
 
-describe('CreateVideoPlugin\'s  utils can parse correct youtube and vimeo ulr without config', () => {
+describe("CreateVideoPlugin's  utils can parse correct youtube and vimeo ulr without config", () => {
   it('default video plugin handle youtube url', () => {
     const url = 'https://www.youtube.com/watch?v=YsRMoWYGLNA';
     const { isYoutube, getYoutubeSrc } = utils;

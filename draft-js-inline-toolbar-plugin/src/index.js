@@ -20,12 +20,7 @@ export default (config = {}) => {
 
   const {
     theme = defaultTheme,
-    structure = [
-      BoldButton,
-      ItalicButton,
-      UnderlineButton,
-      CodeButton,
-    ]
+    structure = [BoldButton, ItalicButton, UnderlineButton, CodeButton],
   } = config;
 
   const toolbarProps = {
@@ -40,7 +35,7 @@ export default (config = {}) => {
       store.updateItem('setEditorState', setEditorState);
     },
     // Re-Render the text-toolbar on selection change
-    onChange: (editorState) => {
+    onChange: editorState => {
       store.updateItem('selection', editorState.getSelection());
       return editorState;
     },
@@ -48,6 +43,4 @@ export default (config = {}) => {
   };
 };
 
-export {
-  Separator,
-};
+export { Separator };

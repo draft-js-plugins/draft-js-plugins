@@ -7,7 +7,7 @@
 .*/node_modules/draft-js/.*
 .*/node_modules/react/.*
 .*/node_modules/radium/.*
-
+.*/node_modules/eslint-plugin-jsx-a11y/.*
 [include]
 
 [libs]

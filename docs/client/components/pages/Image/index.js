@@ -43,15 +43,9 @@ export default class App extends Component {
           <Heading level={2}>Image</Heading>
           <Heading level={3}>Supported Environment</Heading>
           <ul className={styles.list}>
-            <li className={styles.listEntry}>
-              Desktop: Yes
-            </li>
-            <li className={styles.listEntry}>
-              Mobile: Yes
-            </li>
-            <li className={styles.listEntry}>
-              Screen-reader: No
-            </li>
+            <li className={styles.listEntry}>Desktop: Yes</li>
+            <li className={styles.listEntry}>Mobile: Yes</li>
+            <li className={styles.listEntry}>Screen-reader: No</li>
           </ul>
         </Container>
         <AlternateContainer>
@@ -61,32 +55,37 @@ export default class App extends Component {
           <Code code={gettingStarted} name="gettingStarted.js" />
           <Heading level={3}>Importing the default styles</Heading>
           <p>
-            The plugin ships with a default styling available at this location in the installed package:
-            &nbsp;
-            <InlineCode code={'node_modules/draft-js-image-plugin/lib/plugin.css'} />
+            The plugin ships with a default styling available at this location
+            in the installed package: &nbsp;
+            <InlineCode
+              code={'node_modules/draft-js-image-plugin/lib/plugin.css'}
+            />
           </p>
           <Heading level={4}>Webpack Usage</Heading>
           <ul className={styles.list}>
             <li className={styles.listEntry}>
-              1. Install Webpack loaders:
-              &nbsp;
+              1. Install Webpack loaders: &nbsp;
               <InlineCode code={'npm i style-loader css-loader --save-dev'} />
             </li>
             <li className={styles.listEntry}>
-              2. Add the below section to Webpack config (if your config already has a loaders array, simply add the below loader object to your existing list.
+              2. Add the below section to Webpack config (if your config already
+              has a loaders array, simply add the below loader object to your
+              existing list.
               <Code code={webpackConfig} className={styles.guideCodeBlock} />
             </li>
             <li className={styles.listEntry}>
-              3. Add the below import line to your component to tell Webpack to inject the style to your component.
+              3. Add the below import line to your component to tell Webpack to
+              inject the style to your component.
               <Code code={webpackImport} className={styles.guideCodeBlock} />
             </li>
-            <li className={styles.listEntry}>
-              4. Restart Webpack.
-            </li>
+            <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
           <Heading level={4}>Browserify Usage</Heading>
           <p>
-            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">documentation</ExternalLink>.
+            Please help, by submiting a Pull Request to the{' '}
+            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">
+              documentation
+            </ExternalLink>.
           </p>
         </AlternateContainer>
         <Container>
@@ -96,31 +95,48 @@ export default class App extends Component {
             <span>Object of CSS classes with the following keys.</span>
             <div className={styles.subParams}>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>image:</span> CSS class for the image.
+                <span className={styles.subParamName}>image:</span> CSS class
+                for the image.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImage:</span> CSS class.
+                <span className={styles.subParamName}>addImage:</span> CSS
+                class.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImagePopover:</span> CSS class.
+                <span className={styles.subParamName}>addImagePopover:</span>{' '}
+                CSS class.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImageClosedPopover:</span> CSS class.
+                <span className={styles.subParamName}>
+                  addImageClosedPopover:
+                </span>{' '}
+                CSS class.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImageBottomGradient:</span> CSS class.
+                <span className={styles.subParamName}>
+                  addImageBottomGradient:
+                </span>{' '}
+                CSS class.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImageButton:</span> CSS class.
+                <span className={styles.subParamName}>addImageButton:</span> CSS
+                class.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImagePressedButton:</span> CSS class.
+                <span className={styles.subParamName}>
+                  addImagePressedButton:
+                </span>{' '}
+                CSS class.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImageInput:</span> CSS class.
+                <span className={styles.subParamName}>addImageInput:</span> CSS
+                class.
               </div>
               <div className={styles.subParam}>
-                <span className={styles.subParamName}>addImageConfirmButton:</span> CSS class.
+                <span className={styles.subParamName}>
+                  addImageConfirmButton:
+                </span>{' '}
+                CSS class.
               </div>
             </div>
           </div>
@@ -130,7 +146,10 @@ export default class App extends Component {
           </div>
           <div className={styles.paramBig}>
             <span className={styles.paramName}>addImageButtonContent</span>
-            <span>Content of button which opens add image popup. (Default content is 📷)</span>
+            <span>
+              Content of button which opens add image popup. (Default content is
+              📷)
+            </span>
           </div>
         </Container>
         <Container>
@@ -140,7 +159,10 @@ export default class App extends Component {
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
         <Container>
-          <Heading level={2}>Alignment + Resize + Focus + Drag&apos;n&apos;Drop + Drag&apos;n&apos;Drop Upload Example</Heading>
+          <Heading level={2}>
+            Alignment + Resize + Focus + Drag&apos;n&apos;Drop +
+            Drag&apos;n&apos;Drop Upload Example
+          </Heading>
           <CustomImageEditor />
           <Code code={customExampleCode} name="AddImageEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
@@ -149,7 +171,10 @@ export default class App extends Component {
           <Heading level={2}>Add Image Button Example</Heading>
           <AddImageEditor />
           <Code code={addImageExampleCode} name="AddImageEditor.js" />
-          <Code code={addImageExampleEditorStylesCode} name="editorStyles.css" />
+          <Code
+            code={addImageExampleEditorStylesCode}
+            name="editorStyles.css"
+          />
         </Container>
         <SocialBar />
       </div>

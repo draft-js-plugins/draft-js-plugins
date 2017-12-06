@@ -7,27 +7,21 @@ import editorStyles from './editorStyles.css';
 
 const linkPlugin = createLinkPlugin();
 const inlineToolbarPlugin = createInlineToolbarPlugin({
-  structure: [
-    BoldButton,
-    ItalicButton,
-    UnderlineButton,
-    linkPlugin.LinkButton
-  ]
+  structure: [BoldButton, ItalicButton, UnderlineButton, linkPlugin.LinkButton],
 });
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin, linkPlugin];
-const text = 'Try selecting a part of this text and click on the link button in the toolbar that appears …';
+const text =
+  'Try selecting a part of this text and click on the link button in the toolbar that appears …';
 
 export default class SimpleLinkPluginEditor extends Component {
   state = {
-    editorState: createEditorStateWithText(text)
+    editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) =>
-    this.setState({ editorState });
+  onChange = editorState => this.setState({ editorState });
 
-  focus = () =>
-    this.editor.focus();
+  focus = () => this.editor.focus();
 
   render() {
     return (
@@ -36,7 +30,9 @@ export default class SimpleLinkPluginEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
         <InlineToolbar />
       </div>

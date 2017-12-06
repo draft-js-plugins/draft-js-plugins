@@ -8,7 +8,6 @@ import 'prismjs/themes/prism.css';
 import styles from './styles.css';
 
 export default class Code extends Component {
-
   static propTypes = {
     code: PropTypes.string,
   };
@@ -23,9 +22,7 @@ export default class Code extends Component {
       <div className={combinedRootClassName}>
         <div className={nameClassname}>{this.props.name}</div>
         <pre className={styles.code}>
-          <code
-            dangerouslySetInnerHTML={{ __html: this.props.code }}
-          />
+          <code dangerouslySetInnerHTML={{ __html: this.props.code }} />
         </pre>
       </div>
     );

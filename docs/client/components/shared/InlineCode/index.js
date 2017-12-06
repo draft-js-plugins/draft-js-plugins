@@ -6,7 +6,6 @@ import 'prismjs/themes/prism.css';
 import styles from './styles.css';
 
 export default class InlineCode extends Component {
-
   static propTypes = {
     code: PropTypes.string,
   };

@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  EditorState,
-  Modifier,
-  RichUtils,
-} from 'draft-js';
+import { EditorState, Modifier, RichUtils } from 'draft-js';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
@@ -20,12 +16,11 @@ Try it yourself by starting a word with a # (hash character) …
 `;
 
 export default class SimpleHashtagEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -35,15 +30,16 @@ export default class SimpleHashtagEditor extends Component {
     this.editor.focus();
   };
 
-  toggleColor = (toggledColor) => {
+  toggleColor = toggledColor => {
     const { editorState } = this.state;
     const selection = editorState.getSelection();
 
     // Let's just allow one color at a time. Turn off all active colors.
-    const nextContentState = Object.keys(colorStyleMap)
-      .reduce((contentState, color) => (
-        Modifier.removeInlineStyle(contentState, selection, color)
-      ), editorState.getCurrentContent());
+    const nextContentState = Object.keys(colorStyleMap).reduce(
+      (contentState, color) =>
+        Modifier.removeInlineStyle(contentState, selection, color),
+      editorState.getCurrentContent()
+    );
 
     let nextEditorState = EditorState.push(
       editorState,
@@ -55,9 +51,11 @@ export default class SimpleHashtagEditor extends Component {
 
     // Unset style override for current color.
     if (selection.isCollapsed()) {
-      nextEditorState = currentStyle.reduce((currentEditorState, color) => (
-        RichUtils.toggleInlineStyle(currentEditorState, color)
-      ), nextEditorState);
+      nextEditorState = currentStyle.reduce(
+        (currentEditorState, color) =>
+          RichUtils.toggleInlineStyle(currentEditorState, color),
+        nextEditorState
+      );
     }
 
     // If the color is being toggled on, apply it.
@@ -78,7 +76,9 @@ export default class SimpleHashtagEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
         <ColorControls
           editorState={this.state.editorState}

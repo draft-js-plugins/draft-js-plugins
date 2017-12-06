@@ -13,12 +13,7 @@ export default (config = {}) => {
     isVisible: false,
   });
 
-  const {
-    theme = defaultTheme,
-    structure = [
-      DefaultBlockTypeSelect
-    ]
-  } = config;
+  const { theme = defaultTheme, structure = [DefaultBlockTypeSelect] } = config;
 
   const toolbarProps = {
     store,
@@ -33,7 +28,7 @@ export default (config = {}) => {
       store.updateItem('getEditorRef', getEditorRef);
     },
     // Re-Render the toolbar on every change
-    onChange: (editorState) => {
+    onChange: editorState => {
       store.updateItem('editorState', editorState);
       return editorState;
     },

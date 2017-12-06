@@ -18,10 +18,12 @@ const ColorBlock = ({
     {...elementProps}
     style={{ width: 200, height: 80, backgroundColor: '#9bc0c7', ...style }}
   />
-  );
+);
 
 const createColorBlockPlugin = (config = {}) => {
-  const component = config.decorator ? config.decorator(ColorBlock) : ColorBlock;
+  const component = config.decorator
+    ? config.decorator(ColorBlock)
+    : ColorBlock;
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === 'atomic') {

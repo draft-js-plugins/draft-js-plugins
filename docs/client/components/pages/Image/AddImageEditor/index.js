@@ -10,15 +10,15 @@ import editorStyles from './editorStyles.css';
 const imagePlugin = createImagePlugin();
 const plugins = [imagePlugin];
 
-const text = 'Click on the + button below and insert "/images/canada-landscape-small.jpg" to add the landscape image. Alternativly you can use any image url on the web.';
+const text =
+  'Click on the + button below and insert "/images/canada-landscape-small.jpg" to add the landscape image. Alternativly you can use any image url on the web.';
 
 export default class CustomImageEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -36,7 +36,9 @@ export default class CustomImageEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
         </div>
         <ImageAdd

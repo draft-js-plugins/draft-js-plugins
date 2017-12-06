@@ -10,9 +10,7 @@ module.exports = Object.assign(webpackBaseConfig, {
   context: __dirname,
 
   entry: {
-    app: [
-      './client/index.js',
-    ],
+    app: ['./client/index.js'],
   },
 
   output: {

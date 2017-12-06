@@ -49,23 +49,25 @@ export default class ToneSelect extends Component {
     if (style.left < areaBounds.left) {
       delete style.marginLeft;
       style.left = areaBounds.left;
-    } else if (style.left > areaBounds.left + areaBounds.width - width) { // eslint-disable-line no-mixed-operators
+    } else if (style.left > areaBounds.left + areaBounds.width - width) {
+      // eslint-disable-line no-mixed-operators
       delete style.marginLeft;
       delete style.left;
       style.right = areaBounds.right;
     }
 
-    if (style.bottom > areaBounds.bottom + areaBounds.height - height) { // eslint-disable-line no-mixed-operators
+    if (style.bottom > areaBounds.bottom + areaBounds.height - height) {
+      // eslint-disable-line no-mixed-operators
       delete style.bottom;
       style.top = entryBounds.top + entryBounds.height;
     }
 
     style = toStyle.object(style);
 
-    Object.keys(style).forEach((property) => {
+    Object.keys(style).forEach(property => {
       this.tones.style[property] = style[property];
     });
-  }
+  };
 
   render() {
     const {
@@ -81,9 +83,11 @@ export default class ToneSelect extends Component {
       <div className={theme.emojiSelectPopoverToneSelect}>
         <ul
           className={theme.emojiSelectPopoverToneSelectList}
-          ref={(element) => { this.tones = element; }}
+          ref={element => {
+            this.tones = element;
+          }}
         >
-          {toneSet.map((emoji) => (
+          {toneSet.map(emoji => (
             <li
               key={`tone-select(${emoji})`}
               className={theme.emojiSelectPopoverToneSelectItem}

@@ -6,14 +6,15 @@ import editorStyles from './editorStyles.css';
 const inlineToolbarPlugin = createToolbarPlugin();
 const { Toolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
-const text = 'The toolbar above the editor can be used for formatting text, as in conventional static editors  …';
+const text =
+  'The toolbar above the editor can be used for formatting text, as in conventional static editors  …';
 
 export default class SimpleInlineToolbarEditor extends Component {
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -31,7 +32,9 @@ export default class SimpleInlineToolbarEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
           <Toolbar />
         </div>

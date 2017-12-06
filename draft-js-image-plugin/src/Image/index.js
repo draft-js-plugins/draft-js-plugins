@@ -3,12 +3,7 @@ import React, { Component } from 'react';
 
 export default class Image extends Component {
   render() {
-    const {
-      block,
-      className,
-      theme = {},
-      ...otherProps
-    } = this.props;
+    const { block, className, theme = {}, ...otherProps } = this.props;
     // leveraging destructuring to omit certain properties from props
     const {
       blockProps, // eslint-disable-line no-unused-vars

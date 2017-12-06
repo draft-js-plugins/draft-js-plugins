@@ -12,7 +12,7 @@ export default (config = {}) => {
 
   const store = {
     getEditorState: undefined,
-    setEditorState: undefined
+    setEditorState: undefined,
   };
 
   return {
@@ -25,20 +25,23 @@ export default (config = {}) => {
       {
         strategy: linkStrategy,
         matchesEntityType,
-        component: Link || decorateComponentWithProps(DefaultLink, {
-          className: theme.link,
-          target: linkTarget
-        })
-      }
+        component:
+          Link ||
+          decorateComponentWithProps(DefaultLink, {
+            className: theme.link,
+            target: linkTarget,
+          }),
+      },
     ],
 
     LinkButton: decorateComponentWithProps(LinkButton, {
       ownTheme: theme,
       store,
       placeholder,
-      onRemoveLinkAtSelection: () => store.setEditorState(
-        EditorUtils.removeLinkAtSelection(store.getEditorState())
-      )
-    })
+      onRemoveLinkAtSelection: () =>
+        store.setEditorState(
+          EditorUtils.removeLinkAtSelection(store.getEditorState())
+        ),
+    }),
   };
 };

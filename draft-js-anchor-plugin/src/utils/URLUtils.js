@@ -20,5 +20,5 @@ export default {
 
   normalizeUrl(url) {
     return prependHttp(url);
-  }
+  },
 };

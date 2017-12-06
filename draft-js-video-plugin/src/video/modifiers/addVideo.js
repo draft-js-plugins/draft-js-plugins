@@ -1,7 +1,4 @@
-import {
-  AtomicBlockUtils,
-  RichUtils,
-} from 'draft-js';
+import { AtomicBlockUtils, RichUtils } from 'draft-js';
 
 import * as types from '../constants';
 

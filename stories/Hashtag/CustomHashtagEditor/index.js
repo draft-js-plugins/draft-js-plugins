@@ -6,15 +6,15 @@ import hashtagStyles from './hashtagStyles.css';
 
 const hashtagPlugin = createHashtagPlugin({ theme: hashtagStyles });
 const plugins = [hashtagPlugin];
-const text = 'In this editor, we can even apply our own styles … #design #theme';
+const text =
+  'In this editor, we can even apply our own styles … #design #theme';
 
 export default class CustomHashtagEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -31,7 +31,9 @@ export default class CustomHashtagEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
       </div>
     );

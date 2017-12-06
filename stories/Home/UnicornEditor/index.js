@@ -3,13 +3,12 @@ import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from 'draft-js-mention-plugin';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import createUndoPlugin from 'draft-js-undo-plugin';
-import {
-  ContentState,
-  EditorState,
-} from 'draft-js';
+import { ContentState, EditorState } from 'draft-js';
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
@@ -41,13 +40,12 @@ const contentState = ContentState.createFromText(
 );
 
 export default class UnicornEditor extends Component {
-
   state = {
     editorState: EditorState.createWithContent(contentState),
     suggestions: mentions,
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -72,7 +70,9 @@ export default class UnicornEditor extends Component {
             onChange={this.onChange}
             plugins={plugins}
             spellCheck
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
         </div>
         <div>

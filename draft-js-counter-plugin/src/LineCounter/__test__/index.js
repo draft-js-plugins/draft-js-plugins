@@ -5,7 +5,7 @@ import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
 describe('CounterPlugin Line Counter', () => {
-  const createEditorStateFromText = (text) => {
+  const createEditorStateFromText = text => {
     const contentState = ContentState.createFromText(text);
     return EditorState.createWithContent(contentState);
   };
@@ -23,9 +23,7 @@ describe('CounterPlugin Line Counter', () => {
     });
     const { LineCounter } = counterPlugin;
 
-    const result = mount(
-      <LineCounter />
-    );
+    const result = mount(<LineCounter />);
     expect(result).to.have.text('3');
   });
 });

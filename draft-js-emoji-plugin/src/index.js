@@ -30,9 +30,12 @@ export default (config = {}) => {
     emojiSuggestions: emojiSuggestionsStyles.emojiSuggestions,
 
     emojiSuggestionsEntry: emojiSuggestionsEntryStyles.emojiSuggestionsEntry,
-    emojiSuggestionsEntryFocused: emojiSuggestionsEntryStyles.emojiSuggestionsEntryFocused,
-    emojiSuggestionsEntryText: emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
-    emojiSuggestionsEntryIcon: emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
+    emojiSuggestionsEntryFocused:
+      emojiSuggestionsEntryStyles.emojiSuggestionsEntryFocused,
+    emojiSuggestionsEntryText:
+      emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
+    emojiSuggestionsEntryIcon:
+      emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
 
     emojiSelect: emojiSelectStyles.emojiSelect,
 
@@ -45,25 +48,32 @@ export default (config = {}) => {
     emojiSelectPopoverGroups: emojiSelectStyles.emojiSelectPopoverGroups,
 
     emojiSelectPopoverGroup: emojiSelectStyles.emojiSelectPopoverGroup,
-    emojiSelectPopoverGroupTitle: emojiSelectStyles.emojiSelectPopoverGroupTitle,
+    emojiSelectPopoverGroupTitle:
+      emojiSelectStyles.emojiSelectPopoverGroupTitle,
     emojiSelectPopoverGroupList: emojiSelectStyles.emojiSelectPopoverGroupList,
     emojiSelectPopoverGroupItem: emojiSelectStyles.emojiSelectPopoverGroupItem,
 
-    emojiSelectPopoverToneSelect: emojiSelectStyles.emojiSelectPopoverToneSelect,
-    emojiSelectPopoverToneSelectList: emojiSelectStyles.emojiSelectPopoverToneSelectList,
-    emojiSelectPopoverToneSelectItem: emojiSelectStyles.emojiSelectPopoverToneSelectItem,
+    emojiSelectPopoverToneSelect:
+      emojiSelectStyles.emojiSelectPopoverToneSelect,
+    emojiSelectPopoverToneSelectList:
+      emojiSelectStyles.emojiSelectPopoverToneSelectList,
+    emojiSelectPopoverToneSelectItem:
+      emojiSelectStyles.emojiSelectPopoverToneSelectItem,
 
     emojiSelectPopoverEntry: emojiSelectStyles.emojiSelectPopoverEntry,
-    emojiSelectPopoverEntryFocused: emojiSelectStyles.emojiSelectPopoverEntryFocused,
+    emojiSelectPopoverEntryFocused:
+      emojiSelectStyles.emojiSelectPopoverEntryFocused,
     emojiSelectPopoverEntryIcon: emojiSelectStyles.emojiSelectPopoverEntryIcon,
 
     emojiSelectPopoverNav: emojiSelectStyles.emojiSelectPopoverNav,
     emojiSelectPopoverNavItem: emojiSelectStyles.emojiSelectPopoverNavItem,
     emojiSelectPopoverNavEntry: emojiSelectStyles.emojiSelectPopoverNavEntry,
-    emojiSelectPopoverNavEntryActive: emojiSelectStyles.emojiSelectPopoverNavEntryActive,
+    emojiSelectPopoverNavEntryActive:
+      emojiSelectStyles.emojiSelectPopoverNavEntryActive,
 
     emojiSelectPopoverScrollbar: emojiSelectStyles.emojiSelectPopoverScrollbar,
-    emojiSelectPopoverScrollbarThumb: emojiSelectStyles.emojiSelectPopoverScrollbarThumb,
+    emojiSelectPopoverScrollbarThumb:
+      emojiSelectStyles.emojiSelectPopoverScrollbarThumb,
   };
 
   const callbacks = {
@@ -91,10 +101,10 @@ export default (config = {}) => {
   const store = {
     getEditorState: undefined,
     setEditorState: undefined,
-    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
+    getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
     getAllSearches: () => searches,
-    isEscaped: (offsetKey) => escapedSearch === offsetKey,
-    escapeSearch: (offsetKey) => {
+    isEscaped: offsetKey => escapedSearch === offsetKey,
+    escapeSearch: offsetKey => {
       escapedSearch = offsetKey;
     },
 
@@ -102,7 +112,7 @@ export default (config = {}) => {
       escapedSearch = undefined;
     },
 
-    register: (offsetKey) => {
+    register: offsetKey => {
       searches = searches.set(offsetKey, offsetKey);
     },
 
@@ -110,7 +120,7 @@ export default (config = {}) => {
       clientRectFunctions = clientRectFunctions.set(offsetKey, func);
     },
 
-    unregister: (offsetKey) => {
+    unregister: offsetKey => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
@@ -163,50 +173,67 @@ export default (config = {}) => {
     useNativeArt,
   };
   return {
-    EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, suggestionsProps),
+    EmojiSuggestions: decorateComponentWithProps(
+      EmojiSuggestions,
+      suggestionsProps
+    ),
     EmojiSelect: decorateComponentWithProps(EmojiSelect, selectProps),
     decorators: [
       {
         strategy: emojiStrategy,
-        component: decorateComponentWithProps(Emoji, { theme, imagePath, imageType, cacheBustParam, useNativeArt }),
+        component: decorateComponentWithProps(Emoji, {
+          theme,
+          imagePath,
+          imageType,
+          cacheBustParam,
+          useNativeArt,
+        }),
       },
       {
         strategy: emojiSuggestionsStrategy,
-        component: decorateComponentWithProps(EmojiSuggestionsPortal, { store }),
+        component: decorateComponentWithProps(EmojiSuggestionsPortal, {
+          store,
+        }),
       },
     ],
-    getAccessibilityProps: () => (
-      {
-        role: 'combobox',
-        ariaAutoComplete: 'list',
-        ariaHasPopup: ariaProps.ariaHasPopup,
-        ariaExpanded: ariaProps.ariaExpanded,
-        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
-        ariaOwneeID: ariaProps.ariaOwneeID,
-      }
-    ),
+    getAccessibilityProps: () => ({
+      role: 'combobox',
+      ariaAutoComplete: 'list',
+      ariaHasPopup: ariaProps.ariaHasPopup,
+      ariaExpanded: ariaProps.ariaExpanded,
+      ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
+      ariaOwneeID: ariaProps.ariaOwneeID,
+    }),
 
     initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;
     },
 
-    onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
-    onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
-    onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
-    onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
-    handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
-    onChange: (editorState) => {
+    onDownArrow: keyboardEvent =>
+      callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
+    onTab: keyboardEvent => callbacks.onTab && callbacks.onTab(keyboardEvent),
+    onUpArrow: keyboardEvent =>
+      callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
+    onEscape: keyboardEvent =>
+      callbacks.onEscape && callbacks.onEscape(keyboardEvent),
+    handleReturn: keyboardEvent =>
+      callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
+    onChange: editorState => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
 
-      if (!newEditorState.getCurrentContent().equals(editorState.getCurrentContent())) {
+      if (
+        !newEditorState
+          .getCurrentContent()
+          .equals(editorState.getCurrentContent())
+      ) {
         // Forcing the current selection ensures that it will be at it's right place.
         // This solves the issue where inserting an Emoji on OSX with Apple's Emoji
         // selector led to the right selection the data, but wrong position in
         // the contenteditable.
         newEditorState = EditorState.forceSelection(
           newEditorState,
-          newEditorState.getSelection(),
+          newEditorState.getSelection()
         );
       }
 

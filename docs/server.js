@@ -23,7 +23,7 @@ import Html from './template';
  * @param {object} props
  * @return {string}
  */
-const renderDocumentToString = (props) =>
+const renderDocumentToString = props =>
   `<!doctype html>${renderToStaticMarkup(<Html {...props} />)}`;
 
 const app = express();
@@ -33,10 +33,12 @@ app.use('/css', express.static('buildTemplate/css'));
 app.use('/images', express.static('buildTemplate/images'));
 app.use('/data', express.static('buildTemplate/data'));
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath,
-}));
+app.use(
+  require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath,
+  })
+);
 
 app.use(require('webpack-hot-middleware')(compiler));
 
@@ -55,7 +57,7 @@ app.get('*', (req, res) => {
 // though we are only interested in the port.
 const { port } = url.parse(`http:${config.output.publicPath}`);
 
-app.listen(port, 'localhost', (err) => {
+app.listen(port, 'localhost', err => {
   if (err) {
     console.error(err); // eslint-disable-line no-console
     return;

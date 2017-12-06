@@ -2,7 +2,8 @@ const mentions = [
   {
     name: 'matthew',
     title: 'Senior Software Engineer',
-    avatar: 'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
+    avatar:
+      'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
   },
   {
     name: 'julian',
@@ -16,8 +17,10 @@ const mentions = [
   },
   {
     name: 'max',
-    title: 'Travels around the world, brews coffee, skis mountains and makes stuff on the web.',
-    avatar: 'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg',
+    title:
+      'Travels around the world, brews coffee, skis mountains and makes stuff on the web.',
+    avatar:
+      'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg',
   },
   {
     name: 'nik',
@@ -27,7 +30,8 @@ const mentions = [
   {
     name: 'pascal',
     title: 'HeathIT hacker and researcher',
-    avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
+    avatar:
+      'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
   },
 ];
 

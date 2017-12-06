@@ -2,12 +2,14 @@
 import React from 'react';
 import { getVisibleSelectionRect } from 'draft-js';
 
-const getRelativeParent = (element) => {
+const getRelativeParent = element => {
   if (!element) {
     return null;
   }
 
-  const position = window.getComputedStyle(element).getPropertyValue('position');
+  const position = window
+    .getComputedStyle(element)
+    .getPropertyValue('position');
   if (position !== 'static') {
     return element;
   }
@@ -16,7 +18,6 @@ const getRelativeParent = (element) => {
 };
 
 export default class Toolbar extends React.Component {
-
   state = {
     isVisible: false,
     position: undefined,
@@ -26,8 +27,8 @@ export default class Toolbar extends React.Component {
      * structure and will also be shown when the editor loses focus.
      * @type {Component}
      */
-    overrideContent: undefined
-  }
+    overrideContent: undefined,
+  };
 
   componentWillMount() {
     this.props.store.subscribeToItem('selection', this.onSelectionChanged);
@@ -43,9 +44,9 @@ export default class Toolbar extends React.Component {
    * this function again with `undefined` in order to reset `overrideContent`.
    * @param {Component} overrideContent
    */
-  onOverrideContent = (overrideContent) => {
+  onOverrideContent = overrideContent => {
     this.setState({ overrideContent });
-  }
+  };
 
   onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate
@@ -54,14 +55,16 @@ export default class Toolbar extends React.Component {
       if (!this.toolbar) return;
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
       const toolbarHeight = this.toolbar.clientHeight;
-      const relativeRect = (relativeParent || document.body).getBoundingClientRect();
+      const relativeRect = (
+        relativeParent || document.body
+      ).getBoundingClientRect();
       const selectionRect = getVisibleSelectionRect(window);
 
       if (!selectionRect) return;
 
       const position = {
-        top: (selectionRect.top - relativeRect.top) - toolbarHeight,
-        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+        top: selectionRect.top - relativeRect.top - toolbarHeight,
+        left: selectionRect.left - relativeRect.left + selectionRect.width / 2,
       };
       this.setState({ position });
     });
@@ -70,10 +73,13 @@ export default class Toolbar extends React.Component {
   getStyle() {
     const { store } = this.props;
     const { overrideContent, position } = this.state;
-    const selection = store.getItem('getEditorState')().getSelection();
+    const selection = store
+      .getItem('getEditorState')()
+      .getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
-    const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
+    const isVisible =
+      (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
     const style = { ...position };
 
     if (isVisible) {
@@ -88,7 +94,7 @@ export default class Toolbar extends React.Component {
     return style;
   }
 
-  handleToolbarRef = (node) => {
+  handleToolbarRef = node => {
     this.toolbar = node;
   };
 
@@ -99,7 +105,7 @@ export default class Toolbar extends React.Component {
       theme: theme.buttonStyles,
       getEditorState: store.getItem('getEditorState'),
       setEditorState: store.getItem('setEditorState'),
-      onOverrideContent: this.onOverrideContent
+      onOverrideContent: this.onOverrideContent,
     };
 
     return (
@@ -108,10 +114,13 @@ export default class Toolbar extends React.Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        {OverrideContent
-          ? <OverrideContent {...childrenProps} />
-          : structure.map((Component, index) =>
-            <Component key={index} {...childrenProps} />)}
+        {OverrideContent ? (
+          <OverrideContent {...childrenProps} />
+        ) : (
+          structure.map((Component, index) => (
+            <Component key={index} {...childrenProps} />
+          ))
+        )}
       </div>
     );
   }

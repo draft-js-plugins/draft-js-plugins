@@ -34,7 +34,7 @@ const alignmentPlugin = createAlignmentPlugin();
 const decorator = composeDecorators(
   alignmentPlugin.decorator,
   focusPlugin.decorator,
-  blockDndPlugin.decorator,
+  blockDndPlugin.decorator
 );
 const imagePlugin = createImagePlugin({ decorator });
 
@@ -71,7 +71,7 @@ export default class UnicornEditor extends Component {
     suggestions: mentions,
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -96,7 +96,7 @@ export default class UnicornEditor extends Component {
             onChange={this.onChange}
             plugins={plugins}
             spellCheck
-            ref={(element) => {
+            ref={element => {
               this.editor = element;
             }}
           />
