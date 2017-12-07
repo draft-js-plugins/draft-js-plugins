@@ -133,6 +133,8 @@
   background: none;
   border: none;
   outline: none;
+  display: flex;
+  align-items: center;
   transition: background-color 0.4s cubic-bezier(0.27, 1.27, 0.48, 0.56);
 }
 
