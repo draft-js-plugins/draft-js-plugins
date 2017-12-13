@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.4
+- Tighten Immutable.js dependency requirements to ~3.7.4 to match draft-js and other plugins
+
 ## 2.0.3
 - Bugfix - componentWillReceiveProps causes infite update loop in some circumstances
 
