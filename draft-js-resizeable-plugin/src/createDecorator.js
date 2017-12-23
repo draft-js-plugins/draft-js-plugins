@@ -15,6 +15,8 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     horizontal: 'relative',
     vertical: false,
     resizeSteps: 1,
+    defaultHorizontalWidth: 40,
+    defaultVerticalHeight: 40,
     ...config
   };
   state = {
@@ -134,6 +136,8 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
   render() {
     const {
       blockProps,
+      defaultHorizontalWidth,
+      defaultVerticalHeight,
       vertical,
       horizontal,
       style,
@@ -149,17 +153,17 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     if (horizontal === 'auto') {
       styles.width = 'auto';
     } else if (horizontal === 'relative') {
-      styles.width = `${(width || blockProps.resizeData.width || 40)}%`;
+      styles.width = `${(width || blockProps.resizeData.width || defaultHorizontalWidth)}%`;
     } else if (horizontal === 'absolute') {
-      styles.width = `${(width || blockProps.resizeData.width || 40)}px`;
+      styles.width = `${(width || blockProps.resizeData.width || defaultHorizontalWidth)}px`;
     }
 
     if (vertical === 'auto') {
       styles.height = 'auto';
     } else if (vertical === 'relative') {
-      styles.height = `${(height || blockProps.resizeData.height || 40)}%`;
+      styles.height = `${(height || blockProps.resizeData.height || defaultVerticalHeight)}%`;
     } else if (vertical === 'absolute') {
-      styles.height = `${(height || blockProps.resizeData.height || 40)}px`;
+      styles.height = `${(height || blockProps.resizeData.height || defaultVerticalHeight)}px`;
     }
 
     // Handle cursor
