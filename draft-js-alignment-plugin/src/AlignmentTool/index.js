@@ -9,12 +9,14 @@ import {
 import styles from '../alignmentToolStyles.css';
 import buttonStyles from '../buttonStyles.css';
 
-const getRelativeParent = (element) => {
+const getRelativeParent = element => {
   if (!element) {
     return null;
   }
 
-  const position = window.getComputedStyle(element).getPropertyValue('position');
+  const position = window
+    .getComputedStyle(element)
+    .getPropertyValue('position');
   if (position !== 'static') {
     return element;
   }
@@ -23,11 +25,10 @@ const getRelativeParent = (element) => {
 };
 
 export default class AlignmentTool extends React.Component {
-
   state = {
     position: {},
     alignment: null,
-  }
+  };
 
   componentWillMount() {
     this.props.store.subscribeToItem('visibleBlock', this.onVisibilityChanged);
@@ -35,21 +36,26 @@ export default class AlignmentTool extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.store.unsubscribeFromItem('visibleBlock', this.onVisibilityChanged);
+    this.props.store.unsubscribeFromItem(
+      'visibleBlock',
+      this.onVisibilityChanged
+    );
     this.props.store.unsubscribeFromItem('alignment', this.onAlignmentChange);
   }
 
-  onVisibilityChanged = (visibleBlock) => {
+  onVisibilityChanged = visibleBlock => {
     setTimeout(() => {
       let position;
       const boundingRect = this.props.store.getItem('boundingRect');
       if (visibleBlock) {
         const relativeParent = getRelativeParent(this.toolbar.parentElement);
         const toolbarHeight = this.toolbar.clientHeight;
-        const relativeRect = relativeParent ? relativeParent.getBoundingClientRect() : document.body.getBoundingClientRect();
+        const relativeRect = relativeParent
+          ? relativeParent.getBoundingClientRect()
+          : document.body.getBoundingClientRect();
         position = {
-          top: (boundingRect.top - relativeRect.top) - toolbarHeight,
-          left: (boundingRect.left - relativeRect.left) + (boundingRect.width / 2),
+          top: boundingRect.top - relativeRect.top - toolbarHeight,
+          left: boundingRect.left - relativeRect.left + boundingRect.width / 2,
           transform: 'translate(-50%) scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
         };
@@ -62,13 +68,13 @@ export default class AlignmentTool extends React.Component {
         position,
       });
     }, 0);
-  }
+  };
 
-  onAlignmentChange = (alignment) => {
+  onAlignmentChange = alignment => {
     this.setState({
       alignment,
     });
-  }
+  };
 
   render() {
     const defaultButtons = [
@@ -81,7 +87,9 @@ export default class AlignmentTool extends React.Component {
       <div
         className={styles.alignmentTool}
         style={this.state.position}
-        ref={(toolbar) => { this.toolbar = toolbar; }}
+        ref={toolbar => {
+          this.toolbar = toolbar;
+        }}
       >
         {defaultButtons.map((Button, index) => (
           <Button

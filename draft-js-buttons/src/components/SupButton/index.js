@@ -4,7 +4,7 @@ import createInlineStyleButton from '../../utils/createInlineStyleButton';
 export default createInlineStyleButton({
   style: 'SUPERSCRIPT',
   children: (
-    <div >
+    <div>
       x<sup>2</sup>
     </div>
   ),

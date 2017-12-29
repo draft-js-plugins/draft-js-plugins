@@ -10,12 +10,11 @@ const plugins = [stickerPlugin];
 const StickerSelect = stickerPlugin.StickerSelect;
 
 export default class SimpleMentionEditor extends Component {
-
   state = {
     editorState: EditorState.createEmpty(),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -33,7 +32,9 @@ export default class SimpleMentionEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
         </div>
         <div className={editorStyles.options}>

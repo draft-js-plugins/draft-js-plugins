@@ -4,7 +4,7 @@ import MultiDecorator from '../MultiDecorator';
 
 describe('MultiDecorator', () => {
   const contentBlock = new Draft.ContentBlock({
-    text: 'AAA BBB CCC ABC'
+    text: 'AAA BBB CCC ABC',
   });
 
   const firstDecorator = new Draft.CompositeDecorator([
@@ -13,8 +13,8 @@ describe('MultiDecorator', () => {
         callback(0, 3);
         callback(12, 15);
       },
-      component: () => 'a'
-    }
+      component: () => 'a',
+    },
   ]);
 
   const secondDecorator = new Draft.CompositeDecorator([
@@ -23,8 +23,8 @@ describe('MultiDecorator', () => {
         callback(4, 7);
         callback(12, 15);
       },
-      component: () => 'b'
-    }
+      component: () => 'b',
+    },
   ]);
 
   const thirdDecorator = new Draft.CompositeDecorator([
@@ -33,14 +33,14 @@ describe('MultiDecorator', () => {
         callback(8, 11);
         callback(12, 15);
       },
-      component: () => 'c'
-    }
+      component: () => 'c',
+    },
   ]);
 
   const decorator = new MultiDecorator([
     firstDecorator,
     secondDecorator,
-    thirdDecorator
+    thirdDecorator,
   ]);
 
   it('should correctly decorate text', () => {
@@ -61,7 +61,7 @@ describe('MultiDecorator', () => {
       null,
       '2-0.1',
       '2-0.1',
-      '2-0.1'
+      '2-0.1',
     ]);
   });
 

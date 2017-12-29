@@ -1,11 +1,7 @@
 /* eslint-disable no-continue,no-restricted-syntax */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  EditorState,
-  Editor,
-  DefaultDraftBlockRenderMap,
-} from 'draft-js';
+import { EditorState, Editor, DefaultDraftBlockRenderMap } from 'draft-js';
 import { Map } from 'immutable';
 import proxies from './proxies';
 import moveSelectionToEnd from './moveSelectionToEnd';
@@ -16,7 +12,6 @@ import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
  * The main editor component
  */
 class PluginEditor extends Component {
-
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -40,23 +35,25 @@ class PluginEditor extends Component {
     super(props);
 
     const plugins = [this.props, ...this.resolvePlugins()];
-    plugins.forEach((plugin) => {
+    plugins.forEach(plugin => {
       if (typeof plugin.initialize !== 'function') return;
       plugin.initialize(this.getPluginMethods());
     });
 
     // attach proxy methods like `focus` or `blur`
-    proxies.forEach((method) => {
-      this[method] = (...args) => (
-        this.editor[method](...args)
-      );
+    proxies.forEach(method => {
+      this[method] = (...args) => this.editor[method](...args);
     });
 
     this.state = {}; // TODO for Nik: ask ben why this is relevent
   }
 
   componentWillMount() {
-    const decorator = resolveDecorators(this.props, this.getEditorState, this.onChange);
+    const decorator = resolveDecorators(
+      this.props,
+      this.getEditorState,
+      this.onChange
+    );
 
     const editorState = EditorState.set(this.props.editorState, { decorator });
     this.onChange(moveSelectionToEnd(editorState));
@@ -68,7 +65,12 @@ class PluginEditor extends Component {
     const nextDec = next.editorState.getDecorator();
 
     if (currDec === nextDec) return;
-    if (currDec && nextDec && currDec.decorators.size === nextDec.decorators.size) return;
+    if (
+      currDec &&
+      nextDec &&
+      currDec.decorators.size === nextDec.decorators.size
+    )
+      return;
     if (!currDec && nextDec) return;
 
     const decorator = curr.editorState.getDecorator();
@@ -77,7 +79,7 @@ class PluginEditor extends Component {
   }
 
   componentWillUnmount() {
-    this.resolvePlugins().forEach((plugin) => {
+    this.resolvePlugins().forEach(plugin => {
       if (plugin.willUnmount) {
         plugin.willUnmount({
           getEditorState: this.getEditorState,
@@ -89,11 +91,14 @@ class PluginEditor extends Component {
 
   // Cycle through the plugins, changing the editor state with what the plugins
   // changed (or didn't)
-  onChange = (editorState) => {
+  onChange = editorState => {
     let newEditorState = editorState;
-    this.resolvePlugins().forEach((plugin) => {
+    this.resolvePlugins().forEach(plugin => {
       if (plugin.onChange) {
-        newEditorState = plugin.onChange(newEditorState, this.getPluginMethods());
+        newEditorState = plugin.onChange(
+          newEditorState,
+          this.getPluginMethods()
+        );
       }
     });
 
@@ -107,7 +112,7 @@ class PluginEditor extends Component {
 
   // TODO further down in render we use readOnly={this.props.readOnly || this.state.readOnly}. Ask Ben why readOnly is here just from the props? Why would plugins use this instead of just taking it from getProps?
   getReadOnly = () => this.props.readOnly;
-  setReadOnly = (readOnly) => {
+  setReadOnly = readOnly => {
     if (readOnly !== this.state.readOnly) this.setState({ readOnly });
   };
 
@@ -129,9 +134,10 @@ class PluginEditor extends Component {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
 
-    return plugins.some((plugin) =>
-      typeof plugin[methodName] === 'function'
-        && plugin[methodName](...newArgs) === true
+    return plugins.some(
+      plugin =>
+        typeof plugin[methodName] === 'function' &&
+        plugin[methodName](...newArgs) === true
     );
   };
 
@@ -139,10 +145,13 @@ class PluginEditor extends Component {
     const newArgs = [].slice.apply(args);
     newArgs.push(this.getPluginMethods());
 
-    return plugins.some((plugin) =>
-      typeof plugin[methodName] === 'function'
-        && plugin[methodName](...newArgs) === 'handled'
-    ) ? 'handled' : 'not-handled';
+    return plugins.some(
+      plugin =>
+        typeof plugin[methodName] === 'function' &&
+        plugin[methodName](...newArgs) === 'handled'
+    )
+      ? 'handled'
+      : 'not-handled';
   };
 
   createFnHooks = (methodName, plugins) => (...args) => {
@@ -152,24 +161,28 @@ class PluginEditor extends Component {
 
     if (methodName === 'blockRendererFn') {
       let block = { props: {} };
-      plugins.forEach((plugin) => {
+      plugins.forEach(plugin => {
         if (typeof plugin[methodName] !== 'function') return;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
           const { props: pluginProps, ...pluginRest } = result; // eslint-disable-line no-use-before-define
           const { props, ...rest } = block; // eslint-disable-line no-use-before-define
-          block = { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
+          block = {
+            ...rest,
+            ...pluginRest,
+            props: { ...props, ...pluginProps },
+          };
         }
       });
 
       return block.component ? block : false;
     } else if (methodName === 'blockStyleFn') {
       let styles;
-      plugins.forEach((plugin) => {
+      plugins.forEach(plugin => {
         if (typeof plugin[methodName] !== 'function') return;
         const result = plugin[methodName](...newArgs);
         if (result !== undefined && result !== null) {
-          styles = (styles ? (`${styles} `) : '') + result;
+          styles = (styles ? `${styles} ` : '') + result;
         }
       });
 
@@ -177,7 +190,7 @@ class PluginEditor extends Component {
     }
 
     let result;
-    const wasHandled = plugins.some((plugin) => {
+    const wasHandled = plugins.some(plugin => {
       if (typeof plugin[methodName] !== 'function') return false;
       result = plugin[methodName](...newArgs);
       return result !== undefined;
@@ -192,12 +205,16 @@ class PluginEditor extends Component {
     const fnHookKeys = [];
     const plugins = [this.props, ...this.resolvePlugins()];
 
-    plugins.forEach((plugin) => {
-      Object.keys(plugin).forEach((attrName) => {
+    plugins.forEach(plugin => {
+      Object.keys(plugin).forEach(attrName => {
         if (attrName === 'onChange') return;
 
         // if `attrName` has been added as a hook key already, ignore this one
-        if (eventHookKeys.indexOf(attrName) !== -1 || fnHookKeys.indexOf(attrName) !== -1) return;
+        if (
+          eventHookKeys.indexOf(attrName) !== -1 ||
+          fnHookKeys.indexOf(attrName) !== -1
+        )
+          return;
 
         const isEventHookKey = attrName.indexOf('on') === 0;
         if (isEventHookKey) {
@@ -212,22 +229,22 @@ class PluginEditor extends Component {
         }
 
         // checks if `attrName` ends with 'Fn'
-        const isFnHookKey = (attrName.length - 2 === attrName.indexOf('Fn'));
+        const isFnHookKey = attrName.length - 2 === attrName.indexOf('Fn');
         if (isFnHookKey) {
           fnHookKeys.push(attrName);
         }
       });
     });
 
-    eventHookKeys.forEach((attrName) => {
+    eventHookKeys.forEach(attrName => {
       pluginHooks[attrName] = this.createEventHooks(attrName, plugins);
     });
 
-    handleHookKeys.forEach((attrName) => {
+    handleHookKeys.forEach(attrName => {
       pluginHooks[attrName] = this.createHandleHooks(attrName, plugins);
     });
 
-    fnHookKeys.forEach((attrName) => {
+    fnHookKeys.forEach(attrName => {
       pluginHooks[attrName] = this.createFnHooks(attrName, plugins);
     });
 
@@ -243,22 +260,22 @@ class PluginEditor extends Component {
     return plugins;
   };
 
-  resolveCustomStyleMap = () => (
+  resolveCustomStyleMap = () =>
     this.props.plugins
-      .filter((plug) => plug.customStyleMap !== undefined)
-      .map((plug) => plug.customStyleMap)
+      .filter(plug => plug.customStyleMap !== undefined)
+      .map(plug => plug.customStyleMap)
       .concat([this.props.customStyleMap])
-      .reduce((styles, style) => (
-        {
+      .reduce(
+        (styles, style) => ({
           ...styles,
           ...style,
-        }
-      ), {})
-  );
+        }),
+        {}
+      );
 
   resolveblockRenderMap = () => {
     let blockRenderMap = this.props.plugins
-      .filter((plug) => plug.blockRenderMap !== undefined)
+      .filter(plug => plug.blockRenderMap !== undefined)
       .reduce((maps, plug) => maps.merge(plug.blockRenderMap), Map({}));
     if (this.props.defaultBlockRenderMap) {
       blockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
@@ -267,12 +284,12 @@ class PluginEditor extends Component {
       blockRenderMap = blockRenderMap.merge(this.props.blockRenderMap);
     }
     return blockRenderMap;
-  }
+  };
 
   resolveAccessibilityProps = () => {
     let accessibilityProps = {};
     const plugins = [this.props, ...this.resolvePlugins()];
-    plugins.forEach((plugin) => {
+    plugins.forEach(plugin => {
       if (typeof plugin.getAccessibilityProps !== 'function') return;
       const props = plugin.getAccessibilityProps();
       const popupProps = {};
@@ -314,7 +331,9 @@ class PluginEditor extends Component {
         blockRenderMap={blockRenderMap}
         onChange={this.onChange}
         editorState={this.props.editorState}
-        ref={(element) => { this.editor = element; }}
+        ref={element => {
+          this.editor = element;
+        }}
       />
     );
   }

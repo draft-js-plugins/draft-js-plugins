@@ -24,8 +24,16 @@ export default (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
   return {
-    UndoButton: decorateComponentWithProps(UndoButton, { theme, store, children: undoContent }),
-    RedoButton: decorateComponentWithProps(RedoButton, { theme, store, children: redoContent }),
+    UndoButton: decorateComponentWithProps(UndoButton, {
+      theme,
+      store,
+      children: undoContent,
+    }),
+    RedoButton: decorateComponentWithProps(RedoButton, {
+      theme,
+      store,
+      children: redoContent,
+    }),
     initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;

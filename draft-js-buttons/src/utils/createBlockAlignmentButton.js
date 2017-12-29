@@ -2,21 +2,24 @@
 import React, { Component } from 'react';
 import unionClassNames from 'union-class-names';
 
-export default ({ alignment, children }) => (
+export default ({ alignment, children }) =>
   class BlockAlignmentButton extends Component {
-
-    activate = (event) => {
+    activate = event => {
       event.preventDefault();
       this.props.setAlignment({ alignment });
-    }
+    };
 
-    preventBubblingUp = (event) => { event.preventDefault(); }
+    preventBubblingUp = event => {
+      event.preventDefault();
+    };
 
     isActive = () => this.props.alignment === alignment;
 
     render() {
       const { theme } = this.props;
-      const className = this.isActive() ? unionClassNames(theme.button, theme.active) : theme.button;
+      const className = this.isActive()
+        ? unionClassNames(theme.button, theme.active)
+        : theme.button;
       return (
         <div
           className={theme.buttonWrapper}
@@ -31,5 +34,4 @@ export default ({ alignment, children }) => (
         </div>
       );
     }
-  }
-);
+  };

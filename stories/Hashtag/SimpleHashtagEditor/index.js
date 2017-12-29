@@ -10,12 +10,11 @@ Try it yourself by starting a word with a # (hash character) …
 `;
 
 export default class SimpleHashtagEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -32,7 +31,9 @@ export default class SimpleHashtagEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
       </div>
     );

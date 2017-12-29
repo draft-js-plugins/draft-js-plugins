@@ -4,7 +4,7 @@ import createEmojiPlugin from 'draft-js-emoji-plugin';
 import editorStyles from './editorStyles.css';
 
 const emojiPlugin = createEmojiPlugin({
-  useNativeArt: true
+  useNativeArt: true,
 });
 const { EmojiSuggestions, EmojiSelect } = emojiPlugin;
 const plugins = [emojiPlugin];
@@ -12,12 +12,11 @@ const text = `Cool, we can have all sorts of Emojis here. 🙌
 🌿☃️🎉🙈 aaaand maybe a few more here 🐲☀️🗻 Quite fun!`;
 
 export default class CustomEmojiEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -35,7 +34,9 @@ export default class CustomEmojiEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
           <EmojiSuggestions />
         </div>

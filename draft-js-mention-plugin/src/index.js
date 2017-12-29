@@ -21,10 +21,14 @@ export default (config = {}) => {
     // CSS class for suggestions component
     mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
     // CSS classes for an entry in the suggestions component
-    mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
-    mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
-    mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
-    mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
+    mentionSuggestionsEntry:
+      mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
+    mentionSuggestionsEntryFocused:
+      mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
+    mentionSuggestionsEntryText:
+      mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
+    mentionSuggestionsEntryAvatar:
+      mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
   };
 
   const callbacks = {
@@ -53,10 +57,10 @@ export default (config = {}) => {
   const store = {
     getEditorState: undefined,
     setEditorState: undefined,
-    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
+    getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
     getAllSearches: () => searches,
-    isEscaped: (offsetKey) => escapedSearch === offsetKey,
-    escapeSearch: (offsetKey) => {
+    isEscaped: offsetKey => escapedSearch === offsetKey,
+    escapeSearch: offsetKey => {
       escapedSearch = offsetKey;
     },
 
@@ -64,7 +68,7 @@ export default (config = {}) => {
       escapedSearch = undefined;
     },
 
-    register: (offsetKey) => {
+    register: offsetKey => {
       searches = searches.set(offsetKey, offsetKey);
     },
 
@@ -72,13 +76,15 @@ export default (config = {}) => {
       clientRectFunctions = clientRectFunctions.set(offsetKey, func);
     },
 
-    unregister: (offsetKey) => {
+    unregister: offsetKey => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
 
     getIsOpened: () => isOpened,
-    setIsOpened: (nextIsOpened) => { isOpened = nextIsOpened; },
+    setIsOpened: nextIsOpened => {
+      isOpened = nextIsOpened;
+    },
   };
 
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
@@ -108,39 +114,49 @@ export default (config = {}) => {
     mentionPrefix,
   };
   return {
-    MentionSuggestions: decorateComponentWithProps(mentionSuggestionsComponent, mentionSearchProps),
+    MentionSuggestions: decorateComponentWithProps(
+      mentionSuggestionsComponent,
+      mentionSearchProps
+    ),
     decorators: [
       {
         strategy: mentionStrategy(mentionTrigger),
-        component: decorateComponentWithProps(Mention, { theme, mentionComponent }),
+        component: decorateComponentWithProps(Mention, {
+          theme,
+          mentionComponent,
+        }),
       },
       {
         strategy: mentionSuggestionsStrategy(mentionTrigger, mentionRegExp),
-        component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
+        component: decorateComponentWithProps(MentionSuggestionsPortal, {
+          store,
+        }),
       },
     ],
-    getAccessibilityProps: () => (
-      {
-        role: 'combobox',
-        ariaAutoComplete: 'list',
-        ariaHasPopup: ariaProps.ariaHasPopup,
-        ariaExpanded: ariaProps.ariaExpanded,
-        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
-        ariaOwneeID: ariaProps.ariaOwneeID,
-      }
-    ),
+    getAccessibilityProps: () => ({
+      role: 'combobox',
+      ariaAutoComplete: 'list',
+      ariaHasPopup: ariaProps.ariaHasPopup,
+      ariaExpanded: ariaProps.ariaExpanded,
+      ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
+      ariaOwneeID: ariaProps.ariaOwneeID,
+    }),
 
     initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;
     },
 
-    onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
-    onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
-    onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
-    onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
-    handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
-    onChange: (editorState) => {
+    onDownArrow: keyboardEvent =>
+      callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
+    onTab: keyboardEvent => callbacks.onTab && callbacks.onTab(keyboardEvent),
+    onUpArrow: keyboardEvent =>
+      callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
+    onEscape: keyboardEvent =>
+      callbacks.onEscape && callbacks.onEscape(keyboardEvent),
+    handleReturn: keyboardEvent =>
+      callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
+    onChange: editorState => {
       if (callbacks.onChange) return callbacks.onChange(editorState);
       return editorState;
     },

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 export default class TwitterButton extends Component {
-
   componentDidMount() {
     const twitterscript = document.createElement('script');
     twitterscript.src = '//platform.twitter.com/widgets.js';
@@ -23,19 +22,19 @@ export default class TwitterButton extends Component {
   renderWidget = () => {
     const text = this.props.text ? this.props.text : '';
     const size = this.props.size ? this.props.size : 'default';
-    window.twttr.widgets.createShareButton(
-      this.props.url,
-      this.twitterbutton,
-      {
-        text,
-        size,
-      }
-    );
+    window.twttr.widgets.createShareButton(this.props.url, this.twitterbutton, {
+      text,
+      size,
+    });
   };
 
   render() {
     return (
-      <span ref={(element) => { this.twitterbutton = element; }} />
+      <span
+        ref={element => {
+          this.twitterbutton = element;
+        }}
+      />
     );
   }
 }

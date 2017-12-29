@@ -21,12 +21,11 @@ Note that the color changes when you pass one of the following limits:
 `;
 
 export default class CustomCounterEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({ editorState });
   };
 
@@ -36,7 +35,7 @@ export default class CustomCounterEditor extends Component {
 
   // eslint-disable-next-line class-methods-use-this
   customCountFunction(str) {
-    const wordArray = str.match(/\S+/g);  // matches words according to whitespace
+    const wordArray = str.match(/\S+/g); // matches words according to whitespace
     return wordArray ? wordArray.length : 0;
   }
 
@@ -48,12 +47,20 @@ export default class CustomCounterEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
         </div>
-        <div><CharCounter limit={200} /> characters</div>
-        <div><WordCounter limit={30} /> words</div>
-        <div><LineCounter limit={10} /> lines</div>
+        <div>
+          <CharCounter limit={200} /> characters
+        </div>
+        <div>
+          <WordCounter limit={30} /> words
+        </div>
+        <div>
+          <LineCounter limit={10} /> lines
+        </div>
         <div>
           <CustomCounter limit={40} countFunction={this.customCountFunction} />
           <span> words (custom function)</span>

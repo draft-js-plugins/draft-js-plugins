@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './styles.css';
 
 export default class Heading extends Component {
-
   render() {
     let style;
     switch (this.props.level) {
@@ -19,10 +18,6 @@ export default class Heading extends Component {
         style = styles.level2;
     }
 
-    return (
-      <h2 className={style}>
-        {this.props.children}
-      </h2>
-    );
+    return <h2 className={style}>{this.props.children}</h2>;
   }
 }

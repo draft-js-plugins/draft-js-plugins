@@ -4,41 +4,43 @@ import { mount } from 'enzyme';
 import Toolbar from '../index';
 
 describe('Toolbar', () => {
-  it('allows children to override the content', (done) => {
-    const structure = [class Child extends Component {
-      componentDidMount() {
-        setTimeout(() => {
-          this.props.onOverrideContent(() => {
-            setTimeout(() => {
-              this.props.onOverrideContent(undefined);
+  it('allows children to override the content', done => {
+    const structure = [
+      class Child extends Component {
+        componentDidMount() {
+          setTimeout(() => {
+            this.props.onOverrideContent(() => {
+              setTimeout(() => {
+                this.props.onOverrideContent(undefined);
+              });
+              return <span className="overridden" />;
             });
-            return <span className="overridden" />;
           });
-        });
-      }
-      render() {
-        return <span className="initial" />;
-      }
-    }];
+        }
+        render() {
+          return <span className="initial" />;
+        }
+      },
+    ];
 
     const theme = { toolbarStyles: {} };
 
     const store = {
       subscribeToItem() {},
       unsubscribeFromItem() {},
-      getItem: (name) => ({
-        getEditorState: () => ({
-          getSelection: () => ({ isCollapsed: () => true, getHasFocus: () => true })
-        })
-      }[name])
+      getItem: name =>
+        ({
+          getEditorState: () => ({
+            getSelection: () => ({
+              isCollapsed: () => true,
+              getHasFocus: () => true,
+            }),
+          }),
+        }[name]),
     };
 
     const wrapper = mount(
-      <Toolbar
-        store={store}
-        theme={theme}
-        structure={structure}
-      />
+      <Toolbar store={store} theme={theme} structure={structure} />
     );
 
     expect(wrapper.find('.initial').length).to.equal(1);

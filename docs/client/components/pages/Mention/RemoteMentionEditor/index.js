@@ -7,7 +7,6 @@ import createMentionPlugin from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 
 export default class SimpleMentionEditor extends Component {
-
   constructor(props) {
     super(props);
 
@@ -19,7 +18,7 @@ export default class SimpleMentionEditor extends Component {
     suggestions: [],
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -39,8 +38,8 @@ export default class SimpleMentionEditor extends Component {
     }
 
     fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         this.setState({
           suggestions: data,
         });
@@ -61,7 +60,9 @@ export default class SimpleMentionEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
         <MentionSuggestions
           onSearchChange={this.onSearchChange}

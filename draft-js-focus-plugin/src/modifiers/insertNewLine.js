@@ -11,7 +11,9 @@ export default function insertNewLine(editorState) {
   const newEditorState = editorState;
   const contentState = newEditorState.getCurrentContent();
   const selectionState = newEditorState.getSelection();
-  const currentBlock = contentState.getBlockForKey(selectionState.getFocusKey());
+  const currentBlock = contentState.getBlockForKey(
+    selectionState.getFocusKey()
+  );
 
   const fragmentArray = [
     currentBlock,
@@ -28,7 +30,7 @@ export default function insertNewLine(editorState) {
   const withUnstyledBlock = Modifier.replaceWithFragment(
     contentState,
     selectionState,
-    fragment,
+    fragment
   );
 
   const newContent = withUnstyledBlock.merge({

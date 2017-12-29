@@ -37,7 +37,7 @@ class HeadlinesPicker extends Component {
   onWindowClick = () =>
     // Call `onOverrideContent` again with `undefined`
     // so the toolbar can show its regular content again.
-    this.props.onOverrideContent(undefined)
+    this.props.onOverrideContent(undefined);
 
   render() {
     const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
@@ -57,7 +57,7 @@ class HeadlinesButton extends Component {
     // A button can call `onOverrideContent` to replace the content
     // of the toolbar. This can be useful for displaying sub
     // menus or requesting additional information from the user.
-    this.props.onOverrideContent(HeadlinesPicker)
+    this.props.onOverrideContent(HeadlinesPicker);
 
   render() {
     return (
@@ -94,17 +94,17 @@ const text =
 export default class CustomInlineToolbarEditor extends Component {
   state = {
     editorState: createEditorStateWithText(text),
-  }
+  };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
-  }
+  };
 
   focus = () => {
     this.editor.focus();
-  }
+  };
 
   render() {
     return (
@@ -113,7 +113,7 @@ export default class CustomInlineToolbarEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => {
+          ref={element => {
             this.editor = element;
           }}
         />

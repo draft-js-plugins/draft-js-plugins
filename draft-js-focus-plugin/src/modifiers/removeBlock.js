@@ -2,7 +2,7 @@ import { Modifier, EditorState, SelectionState } from 'draft-js';
 
 /* NOT USED at the moment, but might be valuable if we want to fix atomic block behaviour */
 
-export default function (store, blockKey) {
+export default function(store, blockKey) {
   const editorState = store.getEditorState();
   let content = editorState.getCurrentContent();
 
@@ -20,11 +20,7 @@ export default function (store, blockKey) {
     });
     // change the blocktype and remove the characterList entry with the sticker
     content = Modifier.removeRange(content, targetRange, 'backward');
-    content = Modifier.setBlockType(
-      content,
-      targetRange,
-      'unstyled'
-    );
+    content = Modifier.setBlockType(content, targetRange, 'unstyled');
     const newState = EditorState.push(editorState, content, 'remove-block');
 
     // force to new selection

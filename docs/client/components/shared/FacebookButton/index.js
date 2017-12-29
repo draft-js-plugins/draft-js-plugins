@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 export default class FacebookLikeButton extends Component {
-
   componentDidMount() {
     const fbscript = document.createElement('script');
     fbscript.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5';
@@ -35,7 +34,9 @@ export default class FacebookLikeButton extends Component {
     return (
       <div
         id="fbbutton"
-        ref={(element) => { this.fbbutton = element; }}
+        ref={element => {
+          this.fbbutton = element;
+        }}
         className="fb-like"
         data-href={this.props.url}
         data-layout="standard"

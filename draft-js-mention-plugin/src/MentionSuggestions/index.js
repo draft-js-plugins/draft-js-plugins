@@ -9,24 +9,19 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
-const suggestionsHoc = (Comp) => (props) => {
+const suggestionsHoc = Comp => props => {
   if (List.isList(props.suggestions)) {
-    console.warn('Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead'); // eslint-disable-line no-console
+    console.warn(
+      'Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead'
+    ); // eslint-disable-line no-console
   }
 
-  return (<Comp
-    {...props}
-    suggestions={fromJS(props.suggestions)}
-  />);
+  return <Comp {...props} suggestions={fromJS(props.suggestions)} />;
 };
 
 export class MentionSuggestions extends Component {
   static propTypes = {
-    entityMutability: PropTypes.oneOf([
-      'SEGMENTED',
-      'IMMUTABLE',
-      'MUTABLE',
-    ]),
+    entityMutability: PropTypes.oneOf(['SEGMENTED', 'IMMUTABLE', 'MUTABLE']),
     entryComponent: PropTypes.func,
     onAddMention: PropTypes.func,
     suggestions: (props, propName, componentName) => {
@@ -52,7 +47,11 @@ export class MentionSuggestions extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.suggestions.size === 0 && this.state.isActive) {
       this.closeDropdown();
-    } else if (nextProps.suggestions.size > 0 && !nextProps.suggestions.equals(this.props.suggestions) && !this.state.isActive) {
+    } else if (
+      nextProps.suggestions.size > 0 &&
+      !nextProps.suggestions.equals(this.props.suggestions) &&
+      !this.state.isActive
+    ) {
       this.openDropdown();
     }
   }
@@ -77,7 +76,9 @@ export class MentionSuggestions extends Component {
         return;
       }
 
-      const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
+      const decoratorRect = this.props.store.getPortalClientRect(
+        this.activeOffsetKey
+      );
       const newStyles = this.props.positionSuggestions({
         decoratorRect,
         prevProps,
@@ -86,7 +87,7 @@ export class MentionSuggestions extends Component {
         state: this.state,
         popover: this.popover,
       });
-      Object.keys(newStyles).forEach((key) => {
+      Object.keys(newStyles).forEach(key => {
         this.popover.style[key] = newStyles[key];
       });
     }
@@ -96,7 +97,7 @@ export class MentionSuggestions extends Component {
     this.props.callbacks.onChange = undefined;
   };
 
-  onEditorStateChange = (editorState) => {
+  onEditorStateChange = editorState => {
     const searches = this.props.store.getAllSearches();
 
     // if no search portal is active there is no need to show the popover
@@ -116,22 +117,23 @@ export class MentionSuggestions extends Component {
     const anchorOffset = selection.getAnchorOffset();
 
     // the list should not be visible if a range is selected or the editor has no focus
-    if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
+    if (!selection.isCollapsed() || !selection.getHasFocus())
+      return removeList();
 
     // identify the start & end positon of each search-text
-    const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
+    const offsetDetails = searches.map(offsetKey => decodeOffsetKey(offsetKey));
 
     // a leave can be empty when it is removed due e.g. using backspace
     const leaves = offsetDetails
       .filter(({ blockKey }) => blockKey === anchorKey)
-      .map(({ blockKey, decoratorKey, leafKey }) => (
+      .map(({ blockKey, decoratorKey, leafKey }) =>
         editorState
           .getBlockTree(blockKey)
           .getIn([decoratorKey, 'leaves', leafKey])
-      ));
+      );
 
     // if all leaves are undefined the popover should be removed
-    if (leaves.every((leave) => leave === undefined)) {
+    if (leaves.every(leave => leave === undefined)) {
       return removeList();
     }
 
@@ -140,27 +142,36 @@ export class MentionSuggestions extends Component {
     // the @ causes troubles due selection confusion.
     const plainText = editorState.getCurrentContent().getPlainText();
     const selectionIsInsideWord = leaves
-      .filter((leave) => leave !== undefined)
-      .map(({ start, end }) => (
-        (start === 0
-         && anchorOffset === this.props.mentionTrigger.length
-         && plainText.charAt(anchorOffset) !== this.props.mentionTrigger
-         && new RegExp(String.raw({ raw: `${escapeRegExp(this.props.mentionTrigger)}` }), 'g').test(plainText)
-         && anchorOffset <= end)
-         || // @ is the first character
-           (anchorOffset > start + this.props.mentionTrigger.length
-         && anchorOffset <= end) // @ is in the text or at the end
-      ));
+      .filter(leave => leave !== undefined)
+      .map(
+        ({ start, end }) =>
+          (start === 0 &&
+            anchorOffset === this.props.mentionTrigger.length &&
+            plainText.charAt(anchorOffset) !== this.props.mentionTrigger &&
+            new RegExp(
+              String.raw({ raw: `${escapeRegExp(this.props.mentionTrigger)}` }),
+              'g'
+            ).test(plainText) &&
+            anchorOffset <= end) || // @ is the first character
+          (anchorOffset > start + this.props.mentionTrigger.length &&
+            anchorOffset <= end) // @ is in the text or at the end
+      );
 
-    if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
+    if (selectionIsInsideWord.every(isInside => isInside === false))
+      return removeList();
 
     const lastActiveOffsetKey = this.activeOffsetKey;
     this.activeOffsetKey = selectionIsInsideWord
-      .filter((value) => value === true)
+      .filter(value => value === true)
       .keySeq()
       .first();
 
-    this.onSearchChange(editorState, selection, this.activeOffsetKey, lastActiveOffsetKey);
+    this.onSearchChange(
+      editorState,
+      selection,
+      this.activeOffsetKey,
+      lastActiveOffsetKey
+    );
 
     // make sure the escaped search is reseted in the cursor since the user
     // already switched to another mention search
@@ -171,14 +182,19 @@ export class MentionSuggestions extends Component {
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will show again.
-    if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (
+      !this.state.isActive &&
+      !this.props.store.isEscaped(this.activeOffsetKey)
+    ) {
       this.openDropdown();
     }
 
     // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another mention search
-    if (this.lastSelectionIsInsideWord === undefined ||
-        !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
+    if (
+      this.lastSelectionIsInsideWord === undefined ||
+      !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)
+    ) {
       this.setState({
         focusedOptionIndex: 0,
       });
@@ -189,40 +205,57 @@ export class MentionSuggestions extends Component {
     return editorState;
   };
 
-  onSearchChange = (editorState, selection, activeOffsetKey, lastActiveOffsetKey) => {
-    const { word } = getSearchText(editorState, selection, this.props.mentionTrigger);
-    const searchValue = word.substring(this.props.mentionTrigger.length, word.length);
+  onSearchChange = (
+    editorState,
+    selection,
+    activeOffsetKey,
+    lastActiveOffsetKey
+  ) => {
+    const { word } = getSearchText(
+      editorState,
+      selection,
+      this.props.mentionTrigger
+    );
+    const searchValue = word.substring(
+      this.props.mentionTrigger.length,
+      word.length
+    );
 
-    if (this.lastSearchValue !== searchValue || activeOffsetKey !== lastActiveOffsetKey) {
+    if (
+      this.lastSearchValue !== searchValue ||
+      activeOffsetKey !== lastActiveOffsetKey
+    ) {
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ value: searchValue });
     }
   };
 
-  onDownArrow = (keyboardEvent) => {
+  onDownArrow = keyboardEvent => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
     this.onMentionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
   };
 
-  onTab = (keyboardEvent) => {
+  onTab = keyboardEvent => {
     keyboardEvent.preventDefault();
     this.commitSelection();
   };
 
-  onUpArrow = (keyboardEvent) => {
+  onUpArrow = keyboardEvent => {
     keyboardEvent.preventDefault();
     if (this.props.suggestions.size > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
-      this.onMentionFocus(newIndex < 0 ? this.props.suggestions.size - 1 : newIndex);
+      this.onMentionFocus(
+        newIndex < 0 ? this.props.suggestions.size - 1 : newIndex
+      );
     }
   };
 
-  onEscape = (keyboardEvent) => {
+  onEscape = keyboardEvent => {
     keyboardEvent.preventDefault();
 
     const activeOffsetKey = this.lastSelectionIsInsideWord
-      .filter((value) => value === true)
+      .filter(value => value === true)
       .keySeq()
       .first();
     this.props.store.escapeSearch(activeOffsetKey);
@@ -232,7 +265,7 @@ export class MentionSuggestions extends Component {
     this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
-  onMentionSelect = (mention) => {
+  onMentionSelect = mention => {
     // Note: This can happen in case a user typed @xxx (invalid mention) and
     // then hit Enter. Then the mention will be undefined.
     if (!mention) {
@@ -249,12 +282,12 @@ export class MentionSuggestions extends Component {
       mention,
       this.props.mentionPrefix,
       this.props.mentionTrigger,
-      this.props.entityMutability,
+      this.props.entityMutability
     );
     this.props.store.setEditorState(newEditorState);
   };
 
-  onMentionFocus = (index) => {
+  onMentionFocus = index => {
     const descendant = `mention-option-${this.key}-${index}`;
     this.props.ariaProps.ariaActiveDescendantID = descendant;
     this.setState({
@@ -270,7 +303,9 @@ export class MentionSuggestions extends Component {
       return 'not-handled';
     }
 
-    this.onMentionSelect(this.props.suggestions.get(this.state.focusedOptionIndex));
+    this.onMentionSelect(
+      this.props.suggestions.get(this.state.focusedOptionIndex)
+    );
     return 'handled';
   };
 
@@ -285,7 +320,9 @@ export class MentionSuggestions extends Component {
     this.props.callbacks.handleReturn = this.commitSelection;
     this.props.callbacks.onTab = this.onTab;
 
-    const descendant = `mention-option-${this.key}-${this.state.focusedOptionIndex}`;
+    const descendant = `mention-option-${this.key}-${
+      this.state.focusedOptionIndex
+    }`;
     this.props.ariaProps.ariaActiveDescendantID = descendant;
     this.props.ariaProps.ariaOwneeID = `mentions-list-${this.key}`;
     this.props.ariaProps.ariaHasPopup = 'true';
@@ -340,7 +377,8 @@ export class MentionSuggestions extends Component {
       positionSuggestions, // eslint-disable-line no-unused-vars
       mentionTrigger, // eslint-disable-line no-unused-vars
       mentionPrefix, // eslint-disable-line no-unused-vars
-      ...elementProps } = this.props;
+      ...elementProps
+    } = this.props;
 
     return React.cloneElement(
       popoverComponent,
@@ -349,22 +387,26 @@ export class MentionSuggestions extends Component {
         className: theme.mentionSuggestions,
         role: 'listbox',
         id: `mentions-list-${this.key}`,
-        ref: (element) => { this.popover = element; },
+        ref: element => {
+          this.popover = element;
+        },
       },
-      this.props.suggestions.map((mention, index) => (
-        <Entry
-          key={mention.has('id') ? mention.get('id') : mention.get('name')}
-          onMentionSelect={this.onMentionSelect}
-          onMentionFocus={this.onMentionFocus}
-          isFocused={this.state.focusedOptionIndex === index}
-          mention={mention}
-          index={index}
-          id={`mention-option-${this.key}-${index}`}
-          theme={theme}
-          searchValue={this.lastSearchValue}
-          entryComponent={entryComponent || defaultEntryComponent}
-        />
-      )).toJS()
+      this.props.suggestions
+        .map((mention, index) => (
+          <Entry
+            key={mention.has('id') ? mention.get('id') : mention.get('name')}
+            onMentionSelect={this.onMentionSelect}
+            onMentionFocus={this.onMentionFocus}
+            isFocused={this.state.focusedOptionIndex === index}
+            mention={mention}
+            index={index}
+            id={`mention-option-${this.key}-${index}`}
+            theme={theme}
+            searchValue={this.lastSearchValue}
+            entryComponent={entryComponent || defaultEntryComponent}
+          />
+        ))
+        .toJS()
     );
   }
 }

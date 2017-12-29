@@ -8,19 +8,19 @@ import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 
 const inlineToolbarPlugin = createInlineToolbarPlugin({
-  theme: { buttonStyles, toolbarStyles }
+  theme: { buttonStyles, toolbarStyles },
 });
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
-const text = 'In this editor a toolbar with a lot more options shows up once you select part of the text …';
+const text =
+  'In this editor a toolbar with a lot more options shows up once you select part of the text …';
 
 export default class ThemedInlineToolbarEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -37,7 +37,9 @@ export default class ThemedInlineToolbarEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
         <InlineToolbar />
       </div>

@@ -8,18 +8,28 @@ const store = {
   setEditorState: undefined,
 };
 
-const createSetResizeData = (contentBlock, { getEditorState, setEditorState }) => (data) => {
+const createSetResizeData = (
+  contentBlock,
+  { getEditorState, setEditorState }
+) => data => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
     const contentState = editorState.getCurrentContent();
     contentState.mergeEntityData(entityKey, { ...data });
-    setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
+    setEditorState(
+      EditorState.forceSelection(editorState, editorState.getSelection())
+    );
   }
 };
 
-export default (config) => ({
-  initialize: ({ getEditorRef, getReadOnly, getEditorState, setEditorState }) => {
+export default config => ({
+  initialize: ({
+    getEditorRef,
+    getReadOnly,
+    getEditorState,
+    setEditorState,
+  }) => {
     store.getReadOnly = getReadOnly;
     store.getEditorRef = getEditorRef;
     store.getEditorState = getEditorState;
@@ -33,8 +43,11 @@ export default (config) => ({
     return {
       props: {
         resizeData,
-        setResizeData: createSetResizeData(contentBlock, { getEditorState, setEditorState }),
+        setResizeData: createSetResizeData(contentBlock, {
+          getEditorState,
+          setEditorState,
+        }),
       },
     };
-  }
+  },
 });

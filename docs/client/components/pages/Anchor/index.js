@@ -27,20 +27,18 @@ export default class App extends Component {
           <Heading level={2}>Link</Heading>
           <Heading level={3}>Supported Environment</Heading>
           <ul className={styles.list}>
-            <li className={styles.listEntry}>
-              Desktop: Yes
-            </li>
-            <li className={styles.listEntry}>
-              Mobile: No
-            </li>
-            <li className={styles.listEntry}>
-              Screen-reader: No
-            </li>
+            <li className={styles.listEntry}>Desktop: Yes</li>
+            <li className={styles.listEntry}>Mobile: No</li>
+            <li className={styles.listEntry}>Screen-reader: No</li>
           </ul>
         </Container>
         <AlternateContainer>
           <Heading level={2}>Getting Started</Heading>
-          <p>This plugin allows you to add link entities via the <Link to="/plugin/inline-toolbar">inline toolbar</Link>. It also provides a decorator that formats the created entities.</p>
+          <p>
+            This plugin allows you to add link entities via the{' '}
+            <Link to="/plugin/inline-toolbar">inline toolbar</Link>. It also
+            provides a decorator that formats the created entities.
+          </p>
           <Code code="npm install draft-js-plugins-editor" />
           <Code code="npm install draft-js-anchor-plugin" />
           <Code code="npm install draft-js-inline-toolbar-plugin" />
@@ -48,7 +46,16 @@ export default class App extends Component {
           <p>
             The plugin ships with a default styling available at this location:
             &nbsp;
-            <InlineCode code={'node_modules/draft-js-anchor-plugin/lib/plugin.css'} />. If you want to use the default styles, you can include this stylesheet (<ExternalLink target="_blank" href="https://webpack.js.org/loaders/style-loader/">Webpack usage</ExternalLink>). Otherwise you can supply your own styles via the `theme` config option.
+            <InlineCode
+              code={'node_modules/draft-js-anchor-plugin/lib/plugin.css'}
+            />. If you want to use the default styles, you can include this
+            stylesheet (<ExternalLink
+              target="_blank"
+              href="https://webpack.js.org/loaders/style-loader/"
+            >
+              Webpack usage
+            </ExternalLink>). Otherwise you can supply your own styles via the
+            `theme` config option.
           </p>
         </AlternateContainer>
         <Container>
@@ -73,7 +80,9 @@ export default class App extends Component {
           </div>
           <div>
             <span className={styles.paramName}>placeholder</span>
-            <span>The placeholder that is shown when the input field is empty.</span>
+            <span>
+              The placeholder that is shown when the input field is empty.
+            </span>
           </div>
           <div>
             <span className={styles.paramName}>linkTarget</span>

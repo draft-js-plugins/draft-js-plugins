@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './styles.css';
 
 export default class Separator extends Component {
-
   state = {
     separator1ClassName: styles.separatorBase,
     separator2ClassName: styles.separatorBase,
@@ -14,15 +13,19 @@ export default class Separator extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState({
-      separator1ClassName: styles.separatorPart1,
-      separator2ClassName: styles.separatorPart2,
-      separator3ClassName: styles.separatorPart3,
-      separator4ClassName: styles.separatorPart4,
-      separator5ClassName: styles.separatorPart5,
-      separator6ClassName: styles.separatorPart6,
-      separatorRootClassName: styles.rootFinal,
-    }), 1800);
+    setTimeout(
+      () =>
+        this.setState({
+          separator1ClassName: styles.separatorPart1,
+          separator2ClassName: styles.separatorPart2,
+          separator3ClassName: styles.separatorPart3,
+          separator4ClassName: styles.separatorPart4,
+          separator5ClassName: styles.separatorPart5,
+          separator6ClassName: styles.separatorPart6,
+          separatorRootClassName: styles.rootFinal,
+        }),
+      1800
+    );
   }
 
   render() {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 export default class GithubButton extends Component {
-
   componentDidMount() {
     const githubScript = document.createElement('script');
     githubScript.src = '//buttons.github.io/buttons.js';
@@ -25,7 +24,9 @@ export default class GithubButton extends Component {
     // Note: all of the attributes including the className 'github-button' are required
     return (
       <a
-        ref={(element) => { this.githubButton = element; }}
+        ref={element => {
+          this.githubButton = element;
+        }}
         className="github-button"
         href={`https://github.com/${user}/${repo}`}
         data-size={size}

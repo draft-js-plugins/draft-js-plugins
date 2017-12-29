@@ -6,6 +6,7 @@ import { Router, browserHistory } from 'react-router';
 // eslint-disable-next-line import/no-named-as-default
 import routes from './routes';
 
-render((
-  <Router routes={routes} history={browserHistory} />
-), document.getElementById('root'));
+render(
+  <Router routes={routes} history={browserHistory} />,
+  document.getElementById('root')
+);

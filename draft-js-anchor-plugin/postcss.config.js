@@ -1,7 +1,5 @@
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  plugins: [
-    autoprefixer({ browsers: ['> 1%'] })
-  ]
+  plugins: [autoprefixer({ browsers: ['> 1%'] })],
 };

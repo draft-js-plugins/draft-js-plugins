@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import styles from './styles.css';
 
 export default class NavBar extends Component {
-
   render() {
     return (
       <div className={styles.pluginsWrapper}>
@@ -97,14 +96,25 @@ export default class NavBar extends Component {
             </li>
             <li className={styles.plugin}>
               <Link to="/plugin/drag-n-drop" className={styles.link}>
-                {'Drag\'n\'Drop'}
+                {"Drag'n'Drop"}
               </Link>
             </li>
           </ul>
         </div>
-        <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: 13, color: '#aaa' }}>
-          The documentation currently represents the 2.0.1 release.<br />For troubleshooting please checkout the
-          <a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md" className={styles.link}>
+        <div
+          style={{
+            textAlign: 'center',
+            marginTop: '3rem',
+            fontSize: 13,
+            color: '#aaa',
+          }}
+        >
+          The documentation currently represents the 2.0.1 release.<br />For
+          troubleshooting please checkout the
+          <a
+            href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md"
+            className={styles.link}
+          >
             FAQ
           </a>
         </div>

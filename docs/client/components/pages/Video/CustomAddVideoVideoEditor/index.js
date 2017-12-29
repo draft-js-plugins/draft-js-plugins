@@ -10,12 +10,11 @@ const videoPlugin = createVideoPlugin();
 const plugins = [videoPlugin];
 
 export default class CustomVideoEditor extends Component {
-
   state = {
     editorState: EditorState.createEmpty(),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -28,12 +27,12 @@ export default class CustomVideoEditor extends Component {
   render() {
     return (
       <div>
-        <div className={editorStyles.editor} onClick={this.focus} >
+        <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={(element) => {
+            ref={element => {
               this.editor = element;
             }}
           />

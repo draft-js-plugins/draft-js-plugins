@@ -17,14 +17,15 @@ import {
   BlockquoteButton,
   CodeBlockButton,
   SubButton,
-  SupButton
+  SupButton,
 } from 'draft-js-buttons';
 import editorStyles from './editorStyles.css';
 
-
 class HeadlinesPicker extends Component {
   componentDidMount() {
-    setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
+    setTimeout(() => {
+      window.addEventListener('click', this.onWindowClick);
+    });
   }
 
   componentWillUnmount() {
@@ -40,9 +41,10 @@ class HeadlinesPicker extends Component {
     const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
     return (
       <div>
-        {buttons.map((Button, i) => // eslint-disable-next-line
-          <Button key={i} {...this.props} />
-        )}
+        {buttons.map((
+          Button,
+          i // eslint-disable-next-line
+        ) => <Button key={i} {...this.props} />)}
       </div>
     );
   }
@@ -79,20 +81,20 @@ const toolbarPlugin = createToolbarPlugin({
     BlockquoteButton,
     CodeBlockButton,
     SubButton,
-    SupButton
-  ]
+    SupButton,
+  ],
 });
 const { Toolbar } = toolbarPlugin;
 const plugins = [toolbarPlugin];
-const text = 'Remember to place the <Toolbar> component bellow the Editor component …';
+const text =
+  'Remember to place the <Toolbar> component bellow the Editor component …';
 
 export default class CustomToolbarEditor extends Component {
-
   state = {
     editorState: createEditorStateWithText(text),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -112,9 +114,11 @@ export default class CustomToolbarEditor extends Component {
             plugins={plugins}
             customStyleMap={{
               SUBSCRIPT: { fontSize: '0.6em', verticalAlign: 'sub' },
-              SUPERSCRIPT: { fontSize: '0.6em', verticalAlign: 'super' }
+              SUPERSCRIPT: { fontSize: '0.6em', verticalAlign: 'super' },
             }}
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
           <Toolbar />
         </div>

@@ -10,12 +10,7 @@ const linkPlugin = createLinkPlugin();
 
 // Pass the `linkPlugin.LinkButton` into the structure of the inline toolbar.
 const inlineToolbarPlugin = createInlineToolbarPlugin({
-  structure: [
-    BoldButton,
-    ItalicButton,
-    UnderlineButton,
-    linkPlugin.LinkButton
-  ]
+  structure: [BoldButton, ItalicButton, UnderlineButton, linkPlugin.LinkButton],
 });
 
 const { InlineToolbar } = inlineToolbarPlugin;
@@ -23,11 +18,7 @@ const plugins = [inlineToolbarPlugin, linkPlugin];
 
 const MyEditor = ({ editorState, onChange }) => (
   <div>
-    <Editor
-      editorState={editorState}
-      onChange={onChange}
-      plugins={plugins}
-    />
+    <Editor editorState={editorState} onChange={onChange} plugins={plugins} />
     <InlineToolbar />
   </div>
 );

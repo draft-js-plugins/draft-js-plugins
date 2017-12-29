@@ -9,12 +9,11 @@ const { UndoButton, RedoButton } = undoPlugin;
 const plugins = [undoPlugin];
 
 export default class SimpleUndoEditor extends Component {
-
   state = {
     editorState: EditorState.createEmpty(),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -32,7 +31,9 @@ export default class SimpleUndoEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={(element) => { this.editor = element; }}
+            ref={element => {
+              this.editor = element;
+            }}
           />
         </div>
         <div className={editorStyles.options}>

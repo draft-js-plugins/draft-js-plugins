@@ -2,7 +2,8 @@ const mentions = [
   {
     name: 'Matthew Russell',
     link: 'https://twitter.com/mrussell247',
-    avatar: 'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
+    avatar:
+      'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
   },
   {
     name: 'Julian Krispel-Samsel',
@@ -17,7 +18,8 @@ const mentions = [
   {
     name: 'Max Stoiber',
     link: 'https://twitter.com/mxstbr',
-    avatar: 'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg',
+    avatar:
+      'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg',
   },
   {
     name: 'Nik Graf',
@@ -27,7 +29,8 @@ const mentions = [
   {
     name: 'Pascal Brandt',
     link: 'https://twitter.com/psbrandt',
-    avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
+    avatar:
+      'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
   },
 ];
 

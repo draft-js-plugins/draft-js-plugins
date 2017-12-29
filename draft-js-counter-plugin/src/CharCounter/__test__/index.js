@@ -5,7 +5,7 @@ import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
 describe('CounterPlugin Character Counter', () => {
-  const createEditorStateFromText = (text) => {
+  const createEditorStateFromText = text => {
     const contentState = ContentState.createFromText(text);
     return EditorState.createWithContent(contentState);
   };
@@ -23,9 +23,7 @@ describe('CounterPlugin Character Counter', () => {
     });
     const { CharCounter } = counterPlugin;
 
-    const result = mount(
-      <CharCounter />
-    );
+    const result = mount(<CharCounter />);
     expect(result).to.have.text('12');
   });
 
@@ -36,9 +34,7 @@ describe('CounterPlugin Character Counter', () => {
     });
     const { CharCounter } = counterPlugin;
 
-    const result = mount(
-      <CharCounter />
-    );
+    const result = mount(<CharCounter />);
     expect(result).to.have.text('3');
   });
 });

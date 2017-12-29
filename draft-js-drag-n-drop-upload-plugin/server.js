@@ -32,7 +32,7 @@ module.exports = function uploadEndpoint(options) {
   function afterUpload(req, res) {
     const files = req.files;
     setTimeout(() => {
-      req.files.forEach((file) => {
+      req.files.forEach(file => {
         fs.unlink(file.path, () => {
           // if (err) console.error(err);
         });
@@ -40,7 +40,7 @@ module.exports = function uploadEndpoint(options) {
     }, 1 * 60000);
     res.json({
       success: true,
-      files: files.map((file) => ({
+      files: files.map(file => ({
         encoding: file.encoding,
         filename: file.filename,
         mimetype: file.mimetype,

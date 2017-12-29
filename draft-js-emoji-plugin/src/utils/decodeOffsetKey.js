@@ -1,4 +1,4 @@
-const decodeOffsetKey = (offsetKey) => {
+const decodeOffsetKey = offsetKey => {
   const [blockKey, decoratorKey, leafKey] = offsetKey.split('-');
   return {
     blockKey,
