@@ -20,6 +20,13 @@ export default class Entry extends Component {
     this.mouseDown = false;
   }
 
+  onTouchStart = (event) => {
+    // this fixes an issue with onMouseDown and onMouseUp events not firing on mobile devices, making it
+    // difficult if not impossible to tap on entries to select them
+    event.preventDefault();
+    this.props.onMentionSelect(this.props.mention);
+  };
+
   onMouseUp = () => {
     if (this.mouseDown) {
       this.props.onMentionSelect(this.props.mention);
@@ -45,6 +52,7 @@ export default class Entry extends Component {
     return (
       <EntryComponent
         className={className}
+        onTouchStart={this.onTouchStart}
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
         onMouseEnter={this.onMouseEnter}
