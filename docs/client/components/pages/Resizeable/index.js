@@ -89,6 +89,14 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>
+          <div className={styles.param}>
+            <span className={styles.paramName}>defaultHorizontalWidth</span>
+            <span>Default width for horizontal mode. Default value is 40.</span>
+          </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>defaultVerticalHeight</span>
+            <span>Default height for vertical mode. Default value is 40.</span>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Resizeable Example</Heading>
