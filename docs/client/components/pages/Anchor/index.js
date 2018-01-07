@@ -83,6 +83,10 @@ export default class App extends Component {
             <span className={styles.paramName}>Link</span>
             <span>Specify the link component that will be rendered.</span>
           </div>
+          <div>
+            <span className={styles.paramName}>wrapIcon</span>
+            <span>Function to wrap icon to your icon. (defaultIcon, hasLinkSelected) =&gt; IconComponent </span>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Link Plugin Example</Heading>

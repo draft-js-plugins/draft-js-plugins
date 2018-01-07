@@ -8,7 +8,13 @@ import linkStyles from './linkStyles.css';
 export default (config = {}) => {
   const defaultTheme = linkStyles;
 
-  const { theme = defaultTheme, placeholder, Link, linkTarget } = config;
+  const {
+    theme = defaultTheme,
+    placeholder,
+    Link,
+    linkTarget,
+    wrapIcon,
+  } = config;
 
   const store = {
     getEditorState: undefined,
@@ -36,6 +42,7 @@ export default (config = {}) => {
       ownTheme: theme,
       store,
       placeholder,
+      wrapIcon,
       onRemoveLinkAtSelection: () => store.setEditorState(
         EditorUtils.removeLinkAtSelection(store.getEditorState())
       )

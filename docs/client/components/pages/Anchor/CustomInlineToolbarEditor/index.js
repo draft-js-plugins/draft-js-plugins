@@ -14,7 +14,10 @@ import linkStyles from './linkStyles.css';
 
 const linkPlugin = createLinkPlugin({
   theme: linkStyles,
-  placeholder: 'http://…'
+  placeholder: 'http://…',
+  wrapIcon: (defaultIcon) => (
+    <span className="my-class">{defaultIcon}</span>
+  )
 });
 const inlineToolbarPlugin = createInlineToolbarPlugin({
   theme: { buttonStyles, toolbarStyles },
