@@ -29,13 +29,22 @@ export default class Toolbar extends React.Component {
   onOverrideContent = (overrideContent) => this.setState({ overrideContent });
 
   render() {
-    const { theme, store, structure } = this.props;
+    const {
+      theme,
+      store,
+      structure,
+      wrapIcon,
+      extra
+    } = this.props;
     const { overrideContent: OverrideContent } = this.state;
     const childrenProps = {
       theme: theme.buttonStyles,
       getEditorState: store.getItem('getEditorState'),
       setEditorState: store.getItem('setEditorState'),
-      onOverrideContent: this.onOverrideContent
+      onOverrideContent: this.onOverrideContent,
+      wrapIcon,
+      store,
+      extra
     };
 
     return (

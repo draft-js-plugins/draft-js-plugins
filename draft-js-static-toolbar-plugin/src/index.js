@@ -24,14 +24,16 @@ export default (config = {}) => {
       UnderlineButton,
       CodeButton,
     ],
-    wrapIcon
+    wrapIcon,
+    extra,
   } = config;
 
   const toolbarProps = {
     store,
     structure,
     theme,
-    wrapIcon
+    wrapIcon,
+    extra
   };
 
   return {
