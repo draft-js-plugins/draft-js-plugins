@@ -22,8 +22,15 @@ export default ({ style, children }) => (
     styleIsActive = () => this.props.getEditorState && this.props.getEditorState().getCurrentInlineStyle().has(style);
 
     render() {
-      const { theme } = this.props;
-      const className = this.styleIsActive() ? unionClassNames(theme.button, theme.active) : theme.button;
+      const { theme, wrapIcon } = this.props;
+      const isActive = this.styleIsActive();
+      const className = isActive ? unionClassNames(theme.button, theme.active) : theme.button;
+      let icon = children;
+
+      if (wrapIcon) {
+        icon = wrapIcon(icon, isActive);
+      }
+
       return (
         <div
           className={theme.buttonWrapper}
@@ -33,7 +40,7 @@ export default ({ style, children }) => (
             className={className}
             onClick={this.toggleStyle}
             type="button"
-            children={children}
+            children={icon}
           />
         </div>
       );

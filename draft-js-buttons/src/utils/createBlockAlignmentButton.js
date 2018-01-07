@@ -15,8 +15,15 @@ export default ({ alignment, children }) => (
     isActive = () => this.props.alignment === alignment;
 
     render() {
-      const { theme } = this.props;
-      const className = this.isActive() ? unionClassNames(theme.button, theme.active) : theme.button;
+      const { theme, wrapIcon } = this.props;
+      const isActive = this.isActive();
+      const className = isActive ? unionClassNames(theme.button, theme.active) : theme.button;
+      let icon = children;
+
+      if (wrapIcon) {
+        icon = wrapIcon(icon, isActive);
+      }
+
       return (
         <div
           className={theme.buttonWrapper}
@@ -26,7 +33,7 @@ export default ({ alignment, children }) => (
             className={className}
             onClick={this.activate}
             type="button"
-            children={children}
+            children={icon}
           />
         </div>
       );

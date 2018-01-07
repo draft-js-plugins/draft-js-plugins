@@ -25,13 +25,15 @@ export default (config = {}) => {
       ItalicButton,
       UnderlineButton,
       CodeButton,
-    ]
+    ],
+    wrapIcon,
   } = config;
 
   const toolbarProps = {
     store,
     structure,
     theme,
+    wrapIcon
   };
 
   return {

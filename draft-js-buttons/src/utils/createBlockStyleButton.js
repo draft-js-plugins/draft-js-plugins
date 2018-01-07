@@ -33,8 +33,15 @@ export default ({ blockType, children }) => (
     }
 
     render() {
-      const { theme } = this.props;
-      const className = this.blockTypeIsActive() ? unionClassNames(theme.button, theme.active) : theme.button;
+      const { theme, wrapIcon } = this.props;
+      const isActive = this.blockTypeIsActive();
+      const className = isActive ? unionClassNames(theme.button, theme.active) : theme.button;
+      let icon = children;
+
+      if (wrapIcon) {
+        icon = wrapIcon(icon, isActive);
+      }
+
       return (
         <div
           className={theme.buttonWrapper}
@@ -44,7 +51,7 @@ export default ({ blockType, children }) => (
             className={className}
             onClick={this.toggleStyle}
             type="button"
-            children={children}
+            children={icon}
           />
         </div>
       );

@@ -76,7 +76,8 @@ const toolbarPlugin = createToolbarPlugin({
     OrderedListButton,
     BlockquoteButton,
     CodeBlockButton
-  ]
+  ],
+  wrapIcon: (icon) => <span className="my-class">{icon}</span>
 });
 const { Toolbar } = toolbarPlugin;
 const plugins = [toolbarPlugin];
