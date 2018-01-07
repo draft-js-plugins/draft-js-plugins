@@ -97,7 +97,8 @@ export default class Toolbar extends React.Component {
       theme,
       store,
       structure,
-      wrapIcon
+      wrapIcon,
+      extra
     } = this.props;
     const { overrideContent: OverrideContent } = this.state;
     const childrenProps = {
@@ -106,6 +107,8 @@ export default class Toolbar extends React.Component {
       setEditorState: store.getItem('setEditorState'),
       onOverrideContent: this.onOverrideContent,
       wrapIcon,
+      store,
+      extra
     };
 
     return (

@@ -27,13 +27,15 @@ export default (config = {}) => {
       CodeButton,
     ],
     wrapIcon,
+    extra,
   } = config;
 
   const toolbarProps = {
     store,
     structure,
     theme,
-    wrapIcon
+    wrapIcon,
+    extra
   };
 
   return {
