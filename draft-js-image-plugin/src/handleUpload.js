@@ -4,21 +4,11 @@ import removeBlock from './modifiers/removeBlock';
 import { readImages } from './utils/file';
 import { getBlocksWhereEntityData } from './utils/block';
 
-/* function defaultHandleBlock(state, selection, data, defaultBlockType) {
-  return addBlock(state, selection, defaultBlockType, data);
-} */
+export default (config) => {
+  let uploadingId = 1;
+  const uploadingImages = {};
 
-let uploadingId = 1;
-const uploadingImages = {};
-
-export default function onDropFile(config) {
-  return function onDropFileInner(selection, files, { getEditorState, setEditorState }) {
-    // TODO need to make sure the correct image block is added
-    // TODO -> addImage must be passed in. content type matching should happen
-
-    // TODO make sure the Form building also works fine with S3 direct upload
-
-    // Get upload function from config or editor props
+  return (selection, files, { getEditorState, setEditorState }) => {
     const {
       handleUpload,
       handleProgress,
@@ -36,7 +26,9 @@ export default function onDropFile(config) {
         }
       }
 
-      setEditorState(EditorState.acceptSelection(getEditorState(), selection));
+      if (selection) {
+        setEditorState(EditorState.acceptSelection(getEditorState(), selection));
+      }
 
       const handleUploaded = (uploadResult, success) => {
         let newEditorState = getEditorState();
@@ -116,4 +108,4 @@ export default function onDropFile(config) {
 
     return undefined;
   };
-}
+};

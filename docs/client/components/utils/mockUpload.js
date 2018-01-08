@@ -1,6 +1,6 @@
-import { readImage } from 'draft-js-drag-n-drop-upload-plugin/utils/file';
+import { readImage } from 'draft-js-image-plugin/utils/file';
 
-let becomeFailed = true;
+let becomeFailed = false;
 
 export default function mockUpload(data, success, failed, progress) {
   function doProgress(percent) {
@@ -12,7 +12,7 @@ export default function mockUpload(data, success, failed, progress) {
           .then((placholder) => placholder.src)
           .then((src) => {
             if (becomeFailed) {
-              alert('upload error');
+              alert('upload error on purpose!');
               failed([{ file }]);
             } else {
               alert('upload finished');
