@@ -4,7 +4,7 @@ import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
 import createImagePlugin from 'draft-js-image-plugin';
 
-import BlockTypeSelect from 'draft-js-side-toolbar-plugin/components/BlockTypeSelect';
+import BlockTypeSelect from 'draft-js-side-toolbar-plugin/components/BlockTypeSelect'; // eslint-disable-line
 
 import {
   HeadlineOneButton,

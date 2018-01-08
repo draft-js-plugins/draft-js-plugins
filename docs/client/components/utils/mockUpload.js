@@ -1,4 +1,4 @@
-import { readImage } from 'draft-js-image-plugin/utils/file';
+import { readImage } from 'draft-js-image-plugin/utils/file'; // eslint-disable-line
 
 let becomeFailed = false;
 
