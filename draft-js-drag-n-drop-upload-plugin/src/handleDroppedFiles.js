@@ -59,7 +59,7 @@ export default function onDropFile(config) {
                 newEditorState = EditorState.push(newEditorState, newContentState, 'move-block');
               }
               if (handleError) {
-                newEditorState = handleError(newEditorState, file);
+                newEditorState = handleError(newEditorState, blocks.first(), file);
               }
             }
           }

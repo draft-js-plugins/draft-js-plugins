@@ -3,7 +3,6 @@ import handleDroppedFiles from './handleDroppedFiles';
 import defaultTheme from './imageUploadingStyle.css';
 
 const createDndFileUploadPlugin = (config = {}) => {
-
   const theme = config.theme || defaultTheme;
 
   return ({
