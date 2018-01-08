@@ -43,7 +43,7 @@ export default class LinkButton extends Component {
     );
 
     if (wrapIcon) {
-      icon = wrapIcon(icon, hasLinkSelected);
+      icon = wrapIcon('link', null, icon, hasLinkSelected);
     }
 
     return (

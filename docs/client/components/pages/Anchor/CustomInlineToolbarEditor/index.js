@@ -15,7 +15,7 @@ import linkStyles from './linkStyles.css';
 const linkPlugin = createLinkPlugin({
   theme: linkStyles,
   placeholder: 'http://…',
-  wrapIcon: (defaultIcon) => (
+  wrapIcon: (buttonType, style, defaultIcon, isActive) => ( // eslint-disable-line no-unused-vars
     <span className="my-class">{defaultIcon}</span>
   )
 });

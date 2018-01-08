@@ -28,7 +28,7 @@ export default ({ style, children }) => (
       let icon = children;
 
       if (wrapIcon) {
-        icon = wrapIcon(icon, isActive);
+        icon = wrapIcon('inline', style, icon, isActive);
       }
 
       return (

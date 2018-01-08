@@ -85,7 +85,7 @@ export default class App extends Component {
           </div>
           <div>
             <span className={styles.paramName}>wrapIcon</span>
-            <span>Function to wrap icon to your icon. (defaultIcon, hasLinkSelected) =&gt; IconComponent </span>
+            <span>Function to wrap icon to your icon. (buttonType, style, defaultIcon, hasLinkSelected) =&gt; IconComponent </span>
           </div>
         </Container>
         <Container>

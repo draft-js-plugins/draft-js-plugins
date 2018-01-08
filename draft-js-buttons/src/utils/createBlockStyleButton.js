@@ -39,7 +39,7 @@ export default ({ blockType, children }) => (
       let icon = children;
 
       if (wrapIcon) {
-        icon = wrapIcon(icon, isActive);
+        icon = wrapIcon('block', blockType, icon, isActive);
       }
 
       return (

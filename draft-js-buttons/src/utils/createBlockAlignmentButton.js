@@ -21,7 +21,7 @@ export default ({ alignment, children }) => (
       let icon = children;
 
       if (wrapIcon) {
-        icon = wrapIcon(icon, isActive);
+        icon = wrapIcon('alignment', alignment, icon, isActive);
       }
 
       return (

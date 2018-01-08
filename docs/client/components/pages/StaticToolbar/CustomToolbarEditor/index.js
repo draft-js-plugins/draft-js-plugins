@@ -77,7 +77,7 @@ const toolbarPlugin = createToolbarPlugin({
     BlockquoteButton,
     CodeBlockButton
   ],
-  wrapIcon: (icon) => <span className="my-class">{icon}</span>
+  wrapIcon: (buttonType, style, icon, isActive) => <span className="my-class">{icon}</span> // eslint-disable-line no-unused-vars
 });
 const { Toolbar } = toolbarPlugin;
 const plugins = [toolbarPlugin];
