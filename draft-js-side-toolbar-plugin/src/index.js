@@ -17,13 +17,17 @@ export default (config = {}) => {
     theme = defaultTheme,
     structure = [
       DefaultBlockTypeSelect
-    ]
+    ],
+    wrapIcon,
+    extra
   } = config;
 
   const toolbarProps = {
     store,
     structure,
     theme,
+    wrapIcon,
+    extra
   };
 
   return {

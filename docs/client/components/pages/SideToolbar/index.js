@@ -83,6 +83,17 @@ export default class App extends Component {
           </p>
         </AlternateContainer>
         <Container>
+          <Heading level={2}>Configuration Parameters</Heading>
+          <div>
+            <span className={styles.paramName}>wrapIcon</span>
+            <span>Function to wrap icon to your icon. (defaultIcon: Component, isActive: boolean) =&gt; IconComponent </span>
+          </div>
+          <div>
+            <span className={styles.paramName}>extra</span>
+            <span>Extra params passed to buttons.</span>
+          </div>
+        </Container>
+        <Container>
           <Heading level={2}>Simple Side Toolbar Example</Heading>
           <SimpleSideToolbarEditor />
           <Code code={simpleExampleCode} name="SimpleSideToolbarEditor.js" />

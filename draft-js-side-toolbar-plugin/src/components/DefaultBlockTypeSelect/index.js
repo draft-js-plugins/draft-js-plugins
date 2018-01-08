@@ -11,7 +11,14 @@ import {
 
 import BlockTypeSelect from '../BlockTypeSelect';
 
-const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme }) => (
+const DefaultBlockTypeSelect = ({
+  getEditorState,
+  setEditorState,
+  theme,
+  store,
+  wrapIcon,
+  extra
+}) => (
   <BlockTypeSelect
     getEditorState={getEditorState}
     setEditorState={setEditorState}
@@ -24,6 +31,9 @@ const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme }) => (
       BlockquoteButton,
       CodeBlockButton,
     ]}
+    store={store}
+    wrapIcon={wrapIcon}
+    extra={extra}
   />
 );
 

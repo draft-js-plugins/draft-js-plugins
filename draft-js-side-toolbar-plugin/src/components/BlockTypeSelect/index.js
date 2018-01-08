@@ -32,7 +32,14 @@ export default class BlockTypeSelect extends React.Component {
   }
 
   render() {
-    const { theme, getEditorState, setEditorState } = this.props;
+    const {
+      theme,
+      getEditorState,
+      setEditorState,
+      wrapIcon,
+      extra,
+      store
+    } = this.props;
     return (
       <div
         onMouseEnter={this.onMouseEnter}
@@ -57,6 +64,9 @@ export default class BlockTypeSelect extends React.Component {
               getEditorState={getEditorState}
               setEditorState={setEditorState}
               theme={theme.buttonStyles}
+              store={store}
+              extra={extra}
+              wrapIcon={wrapIcon}
             />
           ))}
         </div>

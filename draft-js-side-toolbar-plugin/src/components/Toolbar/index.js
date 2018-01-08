@@ -51,7 +51,7 @@ export default class Toolbar extends React.Component {
   }
 
   render() {
-    const { theme, store } = this.props;
+    const { theme, store, wrapIcon, extra } = this.props;
     return (
       <div
         className={theme.toolbarStyles.wrapper}
@@ -63,6 +63,9 @@ export default class Toolbar extends React.Component {
             getEditorState={store.getItem('getEditorState')}
             setEditorState={store.getItem('setEditorState')}
             theme={theme}
+            store={store}
+            wrapIcon={wrapIcon}
+            extra={extra}
           />
         ))}
       </div>
