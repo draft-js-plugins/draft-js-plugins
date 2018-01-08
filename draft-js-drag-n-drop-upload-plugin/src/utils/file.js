@@ -1,19 +1,5 @@
-// Check if drag event contains files (not text)
-export function containsFiles(event) {
-  if (event.dataTransfer.types) {
-    for (let i = 0; i < event.dataTransfer.types.length; i += 1) {
-      if (event.dataTransfer.types[i] === 'Files') {
-        return true;
-      }
-    }
-  }
-
-  return false;
-}
-
-// Read file contents intelligently as plain text/json, image as dataUrl or
-// anything else as binary
-export function readFile(file) {
+// Read image as dataUrl
+export function readImage(file) {
   return new Promise((resolve) => {
     const reader = new FileReader();
 
@@ -33,17 +19,15 @@ export function readFile(file) {
       });
     };
 
-    if (file.type.indexOf('text/') === 0 || file.type === 'application/json') {
-      reader.readAsText(file);
-    } else if (file.type.indexOf('image/') === 0) {
+    if (file.type.indexOf('image/') === 0) {
       reader.readAsDataURL(file);
     } else {
-      reader.readAsBinaryString(file);
+      resolve(null);
     }
   });
 }
 
 // Read multiple files using above function
-export function readFiles(files) {
-  return Promise.all(files.map(readFile));
+export function readImages(files) {
+  return Promise.all(files.map(readImage)).then((images) => images.filter((image) => !!image));
 }

@@ -1,12 +1,15 @@
-// import replaceBlock from './modifiers/replaceBlock';
-// import modifyBlockData from './modifiers/modifyBlockData';
 import { EditorState } from 'draft-js';
-import { readFiles } from './utils/file';
-// import { getBlocksWhereEntityData } from './utils/block';
+import modifyBlockData from './modifiers/modifyBlockData';
+import removeBlock from './modifiers/removeBlock';
+import { readImages } from './utils/file';
+import { getBlocksWhereEntityData } from './utils/block';
 
 /* function defaultHandleBlock(state, selection, data, defaultBlockType) {
   return addBlock(state, selection, defaultBlockType, data);
 } */
+
+let uploadingId = 1;
+const uploadingImages = {};
 
 export default function onDropFile(config) {
   return function onDropFileInner(selection, files, { getEditorState, setEditorState }) {
@@ -18,87 +21,94 @@ export default function onDropFile(config) {
     // Get upload function from config or editor props
     const {
       handleUpload,
+      handleProgress,
+      removeImageOnError = true,
+      handleError
     } = config;
 
     if (handleUpload) {
-      const formData = new FormData();
-
-      // Set data {files: [Array of files], formData: FormData}
-      const data = { files: [], formData };
+      // Set data {files: [{ id, file }], formData: FormData}
+      const data = { files: [] };
       for (const key in files) { // eslint-disable-line no-restricted-syntax
         if (files[key] && files[key] instanceof File) {
-          data.formData.append('files', files[key]);
-          data.files.push(files[key]);
+          const file = files[key];
+          data.files.push(file);
         }
       }
 
       setEditorState(EditorState.acceptSelection(getEditorState(), selection));
 
+      const handleUploaded = (uploadResult, success) => {
+        let newEditorState = getEditorState();
+        uploadResult.forEach(({ src, file }) => {
+          const id = uploadingImages[file];
+          if (!id) {
+            return;
+          }
+          const blocks = getBlocksWhereEntityData(newEditorState, (block) => block.imageUploadingId === id);
+          if (blocks.size) {
+            if (success) {
+              newEditorState = modifyBlockData(
+                newEditorState,
+                blocks.first().get('key'),
+                { imageUploadProgress: undefined, imageUploadingId: null, src }
+              );
+            } else {
+              if (removeImageOnError) {
+                const newContentState = removeBlock(newEditorState.getCurrentContent(), blocks.first().get('key'));
+                newEditorState = EditorState.push(newEditorState, newContentState, 'move-block');
+              }
+              if (handleError) {
+                newEditorState = handleError(newEditorState, file);
+              }
+            }
+          }
+          uploadingImages[file] = null;
+          uploadingImages[id] = null;
+        });
+
+        setEditorState(newEditorState);
+      };
+
       // Read files on client side
-      readFiles(data.files).then((placeholders) => {
+      readImages(data.files).then((placeholders) => {
         // Add blocks for each image before uploading
         let editorState = getEditorState();
-        placeholders.forEach((placeholder) => {
-          editorState = config.addImage(editorState, placeholder.src);
+        placeholders.forEach((placeholder, index) => {
+          const file = data.files[index];
+          uploadingImages[file] = uploadingId;
+          uploadingImages[uploadingId] = file;
+          editorState = config.addImage(editorState, placeholder.src, {
+            imageUploadProgress: 0,
+            imageUploadingId: uploadingId,
+          });
+          uploadingId += 1;
         });
         setEditorState(editorState);
 
         // Perform upload
-        // handleUpload(data, (uploadedFiles, { retainSrc }) => {
-        //   // Success, remove 'progress' and 'src'
-        //   let newEditorState = getEditorState();
-        //   uploadedFiles.forEach((file) => {
-        //     const blocks = getBlocksWhereEntityData(state, (block) => block.src === file.src && block.progress !== undefined);
-        //     if (blocks.size) {
-        //       const newEditorStateOrBlockType = handleBlock
-        //         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-        //         : defaultBlockType;
-        //
-        //       newEditorState = replaceBlock(
-        //         modifyBlockData(
-        //           newEditorState,
-        //           blocks.first().get('key'),
-        //           retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
-        //         ),
-        //         blocks.first().get('key'),
-        //         newEditorStateOrBlockType
-        //       );
-        //     } /* else {
-        //       const newEditorStateOrBlockType = handleBlock
-        //         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-        //         : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
-        //
-        //       if (!newEditorStateOrBlockType) {
-        //         newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
-        //       } else if (typeof newEditorStateOrBlockType === 'string') {
-        //         newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
-        //       } else {
-        //         newEditorState = newEditorStateOrBlockType;
-        //       }
-        //     } */
-        //   });
-        //
-        //   // Propagate progress
-        //   if (handleProgress) handleProgress(null);
-        //   setEditorState(newEditorState);
-        // }, () => {
-        //   // console.error(err);
-        // }, (percent) => {
-        //   // On progress, set entity data's progress field
-        //   let newEditorState = getEditorState();
-        //   placeholders.forEach((placeholder) => {
-        //     const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
-        //     if (blocks.size) {
-        //       newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
-        //     }
-        //   });
-        //   setEditorState(newEditorState);
-        //
-        //   // Propagate progress
-        //   if (handleProgress) {
-        //     handleProgress(percent);
-        //   }
-        // });
+        handleUpload(data, (uploadedFiles) => {
+          handleUploaded(uploadedFiles, true);
+        }, (errorFiles) => {
+          handleUploaded(errorFiles, false);
+        }, (file, percent) => {
+          // On progress, set entity data's progress field
+          const id = uploadingImages[file];
+          if (!id) {
+            return;
+          }
+          let newEditorState = getEditorState();
+          const blocks = getBlocksWhereEntityData(newEditorState, (block) => block.imageUploadingId === id);
+          if (blocks.size) {
+            newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { imageUploadProgress: percent });
+          }
+          setEditorState(newEditorState);
+
+          // Propagate progress
+          if (handleProgress) {
+            handleProgress(file, percent);
+          }
+        });
       });
 
       return 'handled';
