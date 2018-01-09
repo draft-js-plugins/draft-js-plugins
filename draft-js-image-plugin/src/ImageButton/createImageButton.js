@@ -34,7 +34,13 @@ export default ({ children }) =>
     };
 
     render() {
-      const { theme } = this.props;
+      const { theme, wrapIcon } = this.props;
+
+      let icon = children;
+      if (wrapIcon) {
+        icon = wrapIcon('image', null, icon, false);
+      }
+
       return (
         <div
           className={theme.buttonWrapper}
@@ -44,7 +50,7 @@ export default ({ children }) =>
             className={theme.button}
             onClick={this.onClick}
             type="button"
-            children={children}
+            children={icon}
           />
 
           <div className={theme.addImage}>
