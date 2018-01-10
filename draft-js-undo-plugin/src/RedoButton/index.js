@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import unionClassNames from 'union-class-names';
 
-class RedoButton extends Component {
+import ListenToSelection from '../ListenToSelection';
+
+class RedoButton extends ListenToSelection {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -11,18 +13,18 @@ class RedoButton extends Component {
   };
 
   onClick = () => {
-    this.props.store.setEditorState(EditorState.redo(this.props.store.getEditorState()));
+    this.setEditorState(EditorState.redo(this.getEditorState()));
   };
 
   render() {
     const { theme = {}, children, className } = this.props;
     const combinedClassName = unionClassNames(theme.redo, className);
+    const editorState = this.getEditorState();
+
     return (
       <button
         disabled={
-          !this.props.store ||
-          !this.props.store.getEditorState ||
-          this.props.store.getEditorState().getRedoStack().isEmpty()
+          !editorState || editorState.getRedoStack().isEmpty()
         }
         type="button"
         onClick={this.onClick}

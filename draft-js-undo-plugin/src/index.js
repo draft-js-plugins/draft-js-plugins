@@ -1,4 +1,5 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
+import createStore from './utils/createStore';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
 import styles from './styles.css';
@@ -11,10 +12,7 @@ const defaultTheme = {
 export default (config = {}) => {
   const undoContent = config.undoContent ? config.undoContent : '↺';
   const redoContent = config.redoContent ? config.redoContent : '↻';
-  const store = {
-    getEditorState: undefined,
-    setEditorState: undefined,
-  };
+  const store = createStore();
 
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
@@ -27,8 +25,12 @@ export default (config = {}) => {
     UndoButton: decorateComponentWithProps(UndoButton, { theme, store, children: undoContent }),
     RedoButton: decorateComponentWithProps(RedoButton, { theme, store, children: redoContent }),
     initialize: ({ getEditorState, setEditorState }) => {
-      store.getEditorState = getEditorState;
-      store.setEditorState = setEditorState;
+      store.updateItem('getEditorState', getEditorState);
+      store.updateItem('setEditorState', setEditorState);
+    },
+    onChange: (editorState) => {
+      store.updateItem('selection', editorState.getSelection());
+      return editorState;
     },
   };
 };

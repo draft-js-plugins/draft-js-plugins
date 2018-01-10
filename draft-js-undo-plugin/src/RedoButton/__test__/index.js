@@ -6,16 +6,17 @@ import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 import { EditorState, Modifier } from 'draft-js';
 import Redo from '../index';
+import createStore from '../../utils/createStore';
 
 chai.use(sinonChai);
 
 describe('RedoButton', () => {
   const onChange = () => sinon.spy();
   let editorState;
-  let store = {
+  let store = createStore({
     getEditorState: () => editorState,
     setEditorState: onChange,
-  };
+  });
 
   beforeEach(() => {
     editorState = EditorState.createEmpty();
@@ -77,10 +78,10 @@ describe('RedoButton', () => {
     );
     const newEditorState = EditorState.push(editorState, newContent, 'insert-text');
     const undoEditorState = EditorState.undo(newEditorState);
-    store = {
+    store = createStore({
       getEditorState: () => undoEditorState,
       setEditorState: onChange,
-    };
+    });
     const result = shallow(
       <Redo
         store={store}
