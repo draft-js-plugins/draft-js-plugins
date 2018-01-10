@@ -6,16 +6,17 @@ import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 import { EditorState, Modifier } from 'draft-js';
 import Undo from '../index';
+import createStore from '../../utils/createStore';
 
 chai.use(sinonChai);
 
 describe('UndoButton', () => {
   const onChange = () => sinon.spy();
   let editorState;
-  let store = {
+  let store = createStore({
     getEditorState: () => editorState,
     setEditorState: onChange,
-  };
+  });
 
   beforeEach(() => {
     editorState = EditorState.createEmpty();
@@ -76,10 +77,10 @@ describe('UndoButton', () => {
       'hello'
     );
     const newEditorState = EditorState.push(editorState, newContent, 'insert-text');
-    store = {
+    store = createStore({
       getEditorState: () => newEditorState,
       setEditorState: onChange,
-    };
+    });
     const result = shallow(
       <Undo
         store={store}
