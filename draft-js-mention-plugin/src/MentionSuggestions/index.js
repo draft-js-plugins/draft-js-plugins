@@ -49,14 +49,6 @@ export class MentionSuggestions extends Component {
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.suggestions.size === 0 && this.state.isActive) {
-      this.closeDropdown();
-    } else if (nextProps.suggestions.size > 0 && !nextProps.suggestions.equals(this.props.suggestions) && !this.state.isActive) {
-      this.openDropdown();
-    }
-  }
-
   componentDidUpdate = (prevProps, prevState) => {
     if (this.popover) {
       // In case the list shrinks there should be still an option focused.
@@ -200,9 +192,11 @@ export class MentionSuggestions extends Component {
   };
 
   onDownArrow = (keyboardEvent) => {
-    keyboardEvent.preventDefault();
-    const newIndex = this.state.focusedOptionIndex + 1;
-    this.onMentionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
+    if (this.state.isActive) {
+      keyboardEvent.preventDefault();
+      const newIndex = this.state.focusedOptionIndex + 1;
+      this.onMentionFocus(newIndex >= this.props.suggestions.size ? 0 : newIndex);
+    }
   };
 
   onTab = (keyboardEvent) => {
@@ -211,10 +205,12 @@ export class MentionSuggestions extends Component {
   };
 
   onUpArrow = (keyboardEvent) => {
-    keyboardEvent.preventDefault();
-    if (this.props.suggestions.size > 0) {
-      const newIndex = this.state.focusedOptionIndex - 1;
-      this.onMentionFocus(newIndex < 0 ? this.props.suggestions.size - 1 : newIndex);
+    if (this.state.isActive) {
+      keyboardEvent.preventDefault();
+      if (this.props.suggestions.size > 0) {
+        const newIndex = this.state.focusedOptionIndex - 1;
+        this.onMentionFocus(newIndex < 0 ? this.props.suggestions.size - 1 : newIndex);
+      }
     }
   };
 
