@@ -6,6 +6,7 @@ const defaultEntryComponent = (props) => {
     mention,
     theme,
     searchValue, // eslint-disable-line no-unused-vars
+    isFocused,
     ...parentProps
   } = props;
 
