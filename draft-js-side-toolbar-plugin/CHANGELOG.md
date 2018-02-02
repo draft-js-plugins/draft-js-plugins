@@ -5,4 +5,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- Fixed positioning when the editor has a parent node that is positioned (i.e. `relative`, `absolute` or `fixed`).
+
 ### Released the first working of DraftJS Side Toolbar Plugin
