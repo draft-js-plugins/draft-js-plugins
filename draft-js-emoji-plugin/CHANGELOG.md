@@ -25,6 +25,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Make the emoji highlightable. Thanks to @AndrewHamm [#635](https://github.com/draft-js-plugins/draft-js-plugins/pull/635)
 - Update the list of Emojis from Emojione `2.1.2` to `2.2.7`. Thanks to @mzbac and @dineshvgp
+- Don't fetch all EmojiOne emoji as soon as the `<EmojiSelect />` is rendered. Fetch them section-by-section once the `<EmojiSelect />` has been opened.
 
 ### Added
 
