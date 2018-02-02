@@ -2,19 +2,6 @@
 import React from 'react';
 import { getVisibleSelectionRect } from 'draft-js';
 
-const getRelativeParent = (element) => {
-  if (!element) {
-    return null;
-  }
-
-  const position = window.getComputedStyle(element).getPropertyValue('position');
-  if (position !== 'static') {
-    return element;
-  }
-
-  return getRelativeParent(element.parentElement);
-};
-
 export default class Toolbar extends React.Component {
 
   state = {
@@ -52,16 +39,30 @@ export default class Toolbar extends React.Component {
     // when focusing editor with already present selection
     setTimeout(() => {
       if (!this.toolbar) return;
-      const relativeParent = getRelativeParent(this.toolbar.parentElement);
-      const toolbarHeight = this.toolbar.clientHeight;
-      const relativeRect = (relativeParent || document.body).getBoundingClientRect();
-      const selectionRect = getVisibleSelectionRect(window);
 
+      // The editor root should be two levels above the node from
+      // `getEditorRef`. In case this changes in the future, we
+      // attempt to find the node dynamically by traversing upwards.
+      let editorRoot = this.props.store.getItem('getEditorRef')().refs.editor;
+      while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
+        editorRoot = editorRoot.parentNode;
+      }
+      const editorRootRect = editorRoot.getBoundingClientRect();
+
+      const selectionRect = getVisibleSelectionRect(window);
       if (!selectionRect) return;
 
+      // The toolbar shouldn't be positioned directly on top of the selected text,
+      // but rather with a small offset so the caret doesn't overlap with the text.
+      const extraTopOffset = -5;
+
       const position = {
-        top: (selectionRect.top - relativeRect.top) - toolbarHeight,
-        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+        top: (editorRoot.offsetTop - this.toolbar.offsetHeight)
+          + (selectionRect.top - editorRootRect.top)
+          + extraTopOffset,
+        left: editorRoot.offsetLeft
+          + (selectionRect.left - editorRootRect.left)
+          + (selectionRect.width / 2)
       };
       this.setState({ position });
     });
