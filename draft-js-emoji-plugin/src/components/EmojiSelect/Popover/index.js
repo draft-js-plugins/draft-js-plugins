@@ -185,20 +185,22 @@ export default class Popover extends Component {
         <h3 className={theme.emojiSelectPopoverTitle}>
           {groups[activeGroup].title}
         </h3>
-        <Groups
-          theme={theme}
-          groups={groups}
-          emojis={emojis}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
-          checkMouseDown={this.checkMouseDown}
-          onEmojiSelect={this.onEmojiSelect}
-          onEmojiMouseDown={this.onEmojiMouseDown}
-          onGroupScroll={this.onGroupScroll}
-          ref={(element) => { this.groups = element; }}
-          useNativeArt={useNativeArt}
-        />
+        {isOpen && (
+          <Groups
+            theme={theme}
+            groups={groups}
+            emojis={emojis}
+            imagePath={imagePath}
+            imageType={imageType}
+            cacheBustParam={cacheBustParam}
+            checkMouseDown={this.checkMouseDown}
+            onEmojiSelect={this.onEmojiSelect}
+            onEmojiMouseDown={this.onEmojiMouseDown}
+            onGroupScroll={this.onGroupScroll}
+            ref={(element) => { this.groups = element; }}
+            useNativeArt={useNativeArt}
+          />
+        )}
         <Nav
           theme={theme}
           groups={groups}
