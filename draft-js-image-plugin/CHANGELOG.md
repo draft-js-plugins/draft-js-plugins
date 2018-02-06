@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## To Be Released
+- add blockStyleFn to omitted prop list to support draft-js 0.10.5
+
 ## 2.0.0-rc9 - 2016-11-07
 - fix addImage method (place cursor after inserted image)
 - fixed critical bug in combination with focus plugin
