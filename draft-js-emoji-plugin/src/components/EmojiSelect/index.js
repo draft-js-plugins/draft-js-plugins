@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import strategy from 'emojione/emoji.json';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
+import emojiToDelete from '../../constants/emojiToDelete';
 import Popover from './Popover';
+
+emojiToDelete.forEach((name) => {
+  delete strategy[name];
+});
 
 const emojis = createEmojisFromStrategy(strategy);
 
