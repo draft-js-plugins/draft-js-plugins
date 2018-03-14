@@ -1,1 +1,1 @@
-import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
+import 'draft-js-static-toolbar-plugin/lib/plugin.css';
