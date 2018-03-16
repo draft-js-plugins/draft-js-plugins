@@ -43,7 +43,9 @@ export default class Toolbar extends React.Component {
       // The editor root should be two levels above the node from
       // `getEditorRef`. In case this changes in the future, we
       // attempt to find the node dynamically by traversing upwards.
-      let editorRoot = this.props.store.getItem('getEditorRef')().refs.editor;
+      const editorRef = this.props.store.getItem('getEditorRef')();
+      if (!editorRef) return;
+      let editorRoot = editorRef.refs.editor;
       while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
         editorRoot = editorRoot.parentNode;
       }
