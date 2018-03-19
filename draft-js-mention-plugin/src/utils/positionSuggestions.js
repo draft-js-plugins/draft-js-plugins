@@ -21,12 +21,12 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
 
     const relativeParentRect = relativeParent.getBoundingClientRect();
     relativeRect.left = decoratorRect.left - relativeParentRect.left;
-    relativeRect.top = decoratorRect.top - relativeParentRect.top;
+    relativeRect.top = decoratorRect.bottom - relativeParentRect.top;
   } else {
     relativeRect.scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     relativeRect.scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-    relativeRect.top = decoratorRect.top;
+    relativeRect.top = decoratorRect.bottom;
     relativeRect.left = decoratorRect.left;
   }
 

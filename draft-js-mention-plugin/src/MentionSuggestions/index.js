@@ -122,12 +122,13 @@ export class MentionSuggestions extends Component {
     const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
 
     // a leave can be empty when it is removed due e.g. using backspace
+    // do not check leaves, use full decorated portal text
     const leaves = offsetDetails
       .filter(({ blockKey }) => blockKey === anchorKey)
-      .map(({ blockKey, decoratorKey, leafKey }) => (
+      .map(({ blockKey, decoratorKey }) => (
         editorState
           .getBlockTree(blockKey)
-          .getIn([decoratorKey, 'leaves', leafKey])
+          .getIn([decoratorKey])
       ));
 
     // if all leaves are undefined the popover should be removed
