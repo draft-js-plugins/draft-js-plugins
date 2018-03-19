@@ -15,12 +15,7 @@ export default class Popover extends Component {
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     emojis: PropTypes.object.isRequired,
     toneSelectOpenDelay: PropTypes.number.isRequired,
-    isOpen: PropTypes.bool,
     useNativeArt: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    isOpen: false,
   };
 
   state = {
@@ -167,12 +162,9 @@ export default class Popover extends Component {
       theme = {},
       groups = [],
       emojis,
-      isOpen = false,
       useNativeArt,
     } = this.props;
-    const className = isOpen ?
-      theme.emojiSelectPopover :
-      theme.emojiSelectPopoverClosed;
+    const className = theme.emojiSelectPopover;
     const { activeGroup } = this.state;
 
     return (
