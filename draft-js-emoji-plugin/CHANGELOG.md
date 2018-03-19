@@ -17,6 +17,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## To Be Released
 
 ### Fixed
+
+- Fixed [this](https://github.com/draft-js-plugins/draft-js-plugins/issues/1041)
+- Fixed editing behavior for emoji-plugin
+
+### Fixed
 - Added type="button" to EmojiSelect button to prevent submitting forms, thanks to @alanwflood [for the pr](https://github.com/draft-js-plugins/draft-js-plugins/pull/829)
 
 ### Removed
