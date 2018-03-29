@@ -37,12 +37,16 @@ export default class Toolbar extends React.Component {
     setTimeout(() => {
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
       const top = node.getBoundingClientRect().top;
-      const editor = this.props.store.getItem('getEditorRef')().editor;
+
+      const editorComp = this.props.store.getItem('getEditorRef')();
+      // this keeps backwards-compatibility with react 15
+      const editorNode = editorComp.refs.editor ? editorComp.refs.editor : editorComp.editor;
+
       const scrollY = window.scrollY == null ? window.pageYOffset : window.scrollY;
       this.setState({
         position: {
           top: (top + scrollY),
-          left: editor.getBoundingClientRect().left - 80,
+          left: editorNode.getBoundingClientRect().left - 80,
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
         },
