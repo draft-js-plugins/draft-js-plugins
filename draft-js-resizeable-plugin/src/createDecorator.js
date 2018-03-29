@@ -88,7 +88,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     const doDrag = (dragEvent) => {
       let width = (startWidth + dragEvent.clientX) - startX;
       let height = (startHeight + dragEvent.clientY) - startY;
-      const block = store.getEditorRef().refs.editor;
+      const block = store.getEditorRef().editor;
       width = block.clientWidth < width ? block.clientWidth : width;
       height = block.clientHeight < height ? block.clientHeight : height;
 
