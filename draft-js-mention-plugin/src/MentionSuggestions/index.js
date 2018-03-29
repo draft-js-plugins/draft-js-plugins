@@ -10,7 +10,7 @@ import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
 const suggestionsHoc = (Comp) => (props) => {
-  if (List.isList(props.suggestions)) {
+  if (List.isList(props.suggestions) && process.env.NODE_ENV !== 'production') {
     console.warn('Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead'); // eslint-disable-line no-console
   }
 
