@@ -47,6 +47,10 @@ class HeadlinesPicker extends Component {
 }
 
 class HeadlinesButton extends Component {
+  // When using a click event inside overriden content we have
+  // to cancel click events from the toolbar itself unfortunately
+  onMouseDown = (event) => event.preventDefault()
+
   onClick = () =>
     // A button can call `onOverrideContent` to replace the content
     // of the toolbar. This can be useful for displaying sub
@@ -55,7 +59,7 @@ class HeadlinesButton extends Component {
 
   render() {
     return (
-      <div className={editorStyles.headlineButtonWrapper}>
+      <div onMouseDown={this.onMouseDown} className={editorStyles.headlineButtonWrapper}>
         <button onClick={this.onClick} className={editorStyles.headlineButton}>
           H
         </button>
