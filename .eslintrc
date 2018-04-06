@@ -35,6 +35,7 @@
       "draft-js-buttons/lib/plugin.css",
       "draft-js-counter-plugin",
       "draft-js-counter-plugin/lib/plugin.css",
+      "draft-js-plugins-utils",
       "draft-js-drag-n-drop-plugin",
       "draft-js-drag-n-drop-plugin/lib/plugin.css",
       "draft-js-drag-n-drop-upload-plugin",

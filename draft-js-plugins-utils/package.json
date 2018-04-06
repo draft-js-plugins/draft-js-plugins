@@ -1,11 +1,10 @@
 {
-  "name": "draft-js-anchor-plugin",
+  "name": "draft-js-plugins-utils",
   "version": "2.0.2",
-  "description": "Link Plugin for DraftJS",
+  "description": "Plugin utilities for draft js",
   "author": {
-    "name": "Jan Amann",
-    "email": "jan@amann.me",
-    "url": "http://amann.me"
+    "name": "Julian Krispel-Smasel",
+    "email": "julian@reactrocket.com"
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,6 @@
     "ux",
     "components",
     "widget",
-    "link",
     "react-component"
   ],
   "scripts": {
@@ -31,17 +29,7 @@
     "prepublish": "npm run build"
   },
   "license": "MIT",
-  "dependencies": {
-    "decorate-component-with-props": "^1.0.2",
-    "prepend-http": "1.0.4",
-    "draft-js-plugins-utils": "2.0.2",
-    "prop-types": "^15.5.8",
-    "tlds": "^1.197.0",
-    "union-class-names": "^1.0.0"
-  },
   "peerDependencies": {
-    "draft-js": "^0.10.1",
-    "react": "^15.5.0 || ^16.0.0-rc",
-    "react-dom": "^15.5.0 || ^16.0.0-rc"
+    "draft-js": "^0.10.1"
   }
 }

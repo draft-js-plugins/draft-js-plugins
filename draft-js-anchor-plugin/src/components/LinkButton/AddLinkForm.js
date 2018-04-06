@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import unionClassNames from 'union-class-names';
 import URLUtils from '../../utils/URLUtils';
-import EditorUtils from '../../utils/EditorUtils';
+import EditorUtils from 'draft-js-plugins-utils';
 
 export default class AddLinkForm extends Component {
   static propTypes = {

@@ -59,6 +59,11 @@ npm install
 npm publish
 rm -rf node_modules
 cd ..
+cd draft-js-plugins-utils
+npm install
+npm publish
+rm -rf node_modules
+cd ..
 cd draft-js-sticker-plugin
 npm publish
 cd ..
