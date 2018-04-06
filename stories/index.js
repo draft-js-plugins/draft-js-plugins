@@ -17,6 +17,9 @@ import CustomCounterEditor from './Counter/CustomCounterEditor';
 // DragNDrop
 import DragNDropImageEditor from './DragNDrop/CustomImageEditor';
 
+// DragNDropUpload
+import DragNDropUploadImageEditor from './DragNDropUpload/CustomImageEditor';
+
 // Emoji
 import SimpleEmojiEditor from './Emoji/SimpleEmojiEditor';
 import CustomEmojiEditor from './Emoji/CustomEmojiEditor';
@@ -129,6 +132,9 @@ storiesOf('Sticker Plugin')
 storiesOf('Undo Plugin')
   .add('Editor with Undo Plugin', () => <SimpleUndoEditor />)
   .add('Editor with custom themed Undo Plugin', () => <CustomUndoEditor />);
+
+storiesOf('Drag N Drop Upload Plugin')
+  .add('Image Editor with Drag N Drop Upload Plugin', () => <DragNDropUploadImageEditor />);
 
 storiesOf('Video Plugin')
   .add('Editor with Video Plugin', () => <SimpleVideoEditor />)

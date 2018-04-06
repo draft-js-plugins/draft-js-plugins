@@ -1,7 +1,9 @@
-import { Modifier, EditorState, SelectionState } from 'draft-js';
+import { BlockMapBuilder, Modifier, EditorState, SelectionState } from 'draft-js';
 
-export default function (editorState, blockKey, newType) {
-  let content = editorState.getCurrentContent();
+
+export default function (editorState, newBlock, oldBlock) {
+  const content = editorState.getCurrentContent();
+  const blockKey = oldBlock.getKey();
 
   const targetRange = new SelectionState({
     anchorKey: blockKey,
@@ -10,14 +12,18 @@ export default function (editorState, blockKey, newType) {
     focusOffset: 1,
   });
 
-  // change the blocktype and remove the characterList entry with the block
-  content = Modifier.setBlockType(
+  const contentWithReplacedBlock = Modifier.replaceWithFragment(
     content,
     targetRange,
-    newType
+    BlockMapBuilder.createFromArray([newBlock])
   );
 
-  // force to new selection
-  const newState = EditorState.push(editorState, content, 'modify-block');
+  const newState = EditorState.push(
+    editorState,
+    contentWithReplacedBlock,
+    'modify-block'
+  );
+
+  // restore selection
   return EditorState.forceSelection(newState, editorState.getSelection());
 }
