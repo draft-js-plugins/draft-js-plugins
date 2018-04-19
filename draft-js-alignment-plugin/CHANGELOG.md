@@ -6,4 +6,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 2.0.2
 - added options to configure styling of alignment buttons
 
-### Released the first working of DraftJS State Plugin
+### Released the first working of DraftJS Alignment Plugin
