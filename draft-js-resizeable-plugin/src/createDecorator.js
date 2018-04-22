@@ -101,24 +101,10 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       const heightPerc = (100 / editorNode.clientHeight) * height;
 
       const newState = {};
-      switch (true) {
-        case isRight && horizontal === 'relative':
-          newState.width = resizeSteps ? round(widthPerc, resizeSteps) : widthPerc;
-          break;
-
-        case isRight && horizontal === 'absolute':
-          newState.width = resizeSteps ? round(width, resizeSteps) : width;
-          break;
-
-        case isLeft && horizontal === 'relative':
-          newState.width = resizeSteps ? round(widthPerc, resizeSteps) : widthPerc;
-          break;
-
-        case isLeft && horizontal === 'absolute':
-          newState.width = resizeSteps ? round(width, resizeSteps) : width;
-          break;
-
-        default:
+      if ((isLeft || isRight) && horizontal === 'relative') {
+        newState.width = resizeSteps ? round(widthPerc, resizeSteps) : widthPerc;
+      } else if ((isLeft || isRight) && horizontal === 'absolute') {
+        newState.width = resizeSteps ? round(width, resizeSteps) : width;
       }
 
       if ((isTop || isBottom) && vertical === 'relative') {
