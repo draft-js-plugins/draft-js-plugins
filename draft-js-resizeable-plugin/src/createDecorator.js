@@ -82,7 +82,6 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     const pane = ReactDOM.findDOMNode(this);
     const startX = event.clientX;
     const startY = event.clientY;
-    
     const startWidth = parseInt(document.defaultView.getComputedStyle(pane).width, 10);
     const startHeight = parseInt(document.defaultView.getComputedStyle(pane).height, 10);
 
@@ -102,7 +101,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       const heightPerc = (100 / editorNode.clientHeight) * height;
 
       const newState = {};
-      switch (true){
+      switch (true) {
         case isRight && horizontal === 'relative':
           newState.width = resizeSteps ? round(widthPerc, resizeSteps) : widthPerc;
           break;
@@ -118,6 +117,8 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
         case isLeft && horizontal === 'absolute':
           newState.width = resizeSteps ? round(width, resizeSteps) : width;
           break;
+
+        default:
       }
 
       if ((isTop || isBottom) && vertical === 'relative') {
