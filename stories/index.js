@@ -73,6 +73,9 @@ import CustomToolbarEditor from './StaticToolbar/CustomToolbarEditor';
 import ThemedToolbarEditor from './StaticToolbar/ThemedToolbarEditor';
 import SimpleToolbarEditor from './StaticToolbar/SimpleToolbarEditor';
 
+// Divider
+import DividerWithSideToolbarEditor from './Divider/DividerWithSideToolbarEditor';
+
 storiesOf('Alignment Plugin', module)
   .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />)
   .add('Editor with custom themed Alignment Plugin', () => <ThemedAlignmentEditor />);
@@ -141,3 +144,6 @@ storiesOf('StaticToolbar Plugin')
   .add('CustomToolbarEditor', () => <CustomToolbarEditor />)
   .add('Simple toolbar editor', () => <SimpleToolbarEditor />)
   .add('ThemedToolbarEditor', () => <ThemedToolbarEditor />);
+
+storiesOf('Divider Plugin')
+  .add('Divider with SideToolbar', () => <DividerWithSideToolbarEditor />);
