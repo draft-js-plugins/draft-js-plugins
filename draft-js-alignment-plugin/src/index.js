@@ -3,6 +3,8 @@ import decorateComponentWithProps from 'decorate-component-with-props';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
 import createStore from './utils/createStore';
+import buttonStyles from './buttonStyles.css';
+import alignmentToolStyles from './alignmentToolStyles.css';
 
 const store = createStore({
   isVisible: false,
@@ -18,10 +20,21 @@ const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) =>
   }
 };
 
-export default (config) => {
-  const alignmentToolProps = {
-    store
+export default (config = {}) => {
+  const defaultAlignmentToolTheme = {
+    buttonStyles,
+    alignmentToolStyles,
   };
+
+  const {
+    theme = defaultAlignmentToolTheme,
+  } = config;
+
+  const alignmentToolProps = {
+    store,
+    theme,
+  };
+
   return {
     initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
       store.updateItem('getReadOnly', getReadOnly);
