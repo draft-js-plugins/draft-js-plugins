@@ -8,8 +8,8 @@ import {
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
-import buttonStyles from './buttonStyles.css';
-import toolbarStyles from './toolbarStyles.css';
+import buttonStyles from './buttonStyles.module.css';
+import toolbarStyles from './toolbarStyles.module.css';
 
 export default (config = {}) => {
   const defaultTheme = { buttonStyles, toolbarStyles };

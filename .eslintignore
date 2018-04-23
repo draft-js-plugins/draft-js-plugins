@@ -4,3 +4,6 @@ lib/**
 draft-js-*/lib/**
 scripts/**
 docs/build/**
+docs/node_modules/**
+node_modules/.staging/**
+
