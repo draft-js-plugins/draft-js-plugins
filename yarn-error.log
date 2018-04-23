@@ -86,6 +86,7 @@ npm manifest:
       "estraverse-fb": "^1.3.1",
       "express": "^4.15.0",
       "extract-text-webpack-plugin": "^2.0.0",
+      "fbjs": "^0.8.16",
       "flow-bin": "^0.69.0",
       "jest-cli": "^18.1.0",
       "jsdom": "^11.3.0",
@@ -118,7 +119,7 @@ npm manifest:
       "emojione": "^2.2.7",
       "eslint-plugin-import": "^2.2.0",
       "find-with-regex": "^1.0.2",
-      "immutable": "^3.8.1",
+      "immutable": "4.0.0-rc.9",
       "linkify-it": "^2.0.3",
       "loader-utils": "^1.0.2",
       "lodash.escaperegexp": "^4.1.2",
@@ -4111,6 +4112,10 @@ Lockfile:
   ignore@^3.2.0:
     version "3.3.7"
     resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
+  
+  immutable@4.0.0-rc.9:
+    version "4.0.0-rc.9"
+    resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.9.tgz#1e6e0094e649013ec3742d2b5aeeca5eeda4f0bf"
   
   immutable@^3.8.1:
     version "3.8.2"

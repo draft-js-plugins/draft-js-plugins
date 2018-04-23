@@ -1,26 +1,34 @@
 [ignore]
 .*/node_modules/babel.*
 .*/node_modules/editions/.*
-.*/node_modules/fbjs/.*
-.*/node_modules/immutable/.*
-.*/node_modules/.*.json
-.*/node_modules/react/.*
 .*/node_modules/radium/.*
-.*/node_modules/chalk/.*
-.*/node_modules/documentation/.*
-.*/docs/.*
+.*/docs/node_modules/fbjs/.*
 .*/docs/node_modules/.*
+.*/node_modules/config-chain/.*
+.*/draft-js-anchor-plugin/node_modules/.*
+.*/node_modules/chalk/.*
+.*/node_modules/relay-compiler/.*
+.*/node_modules/relay-runtime/.*
+.*/node_modules/documentation/.*
+.*/node_modules/draft-js/lib/BlockNode.js.flow
+.*/node_modules/draft-js/lib/DraftEditorDragHandler.js.flow
+.*/node_modules/draft-js/lib/DraftEditorLeaf.react.js.flow
+.*/node_modules/draft-js/lib/DraftEditor.react.js.flow
+
 
 [include]
+flow-typed
 
 [libs]
 flow-lib
 
 [options]
-esproposal.class_static_fields=enable
-esproposal.class_instance_fields=enable
-module.name_mapper='.*\(.css\)' -> 'CSSModule'
 module.system=haste
+module.use_strict=true
+module.name_mapper='.*\(.css\)' -> 'CSSModule'
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.css
 
 [version]
 ^0.69.0
