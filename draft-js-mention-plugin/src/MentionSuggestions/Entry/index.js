@@ -49,6 +49,7 @@ export default class Entry extends Component {
         onMouseUp={this.onMouseUp}
         onMouseEnter={this.onMouseEnter}
         role="option"
+        aria-selected={isFocused ? 'true' : null}
         theme={theme}
         mention={mention}
         isFocused={isFocused}

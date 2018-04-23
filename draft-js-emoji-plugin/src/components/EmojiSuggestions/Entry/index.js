@@ -36,8 +36,8 @@ export default class Entry extends Component {
   };
 
   render() {
-    const { theme = {}, imagePath, imageType, cacheBustParam, useNativeArt } = this.props;
-    const className = this.props.isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
+    const { theme = {}, imagePath, imageType, cacheBustParam, useNativeArt, isFocused } = this.props;
+    const className = isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
 
     let emojiDisplay = null;
     if (useNativeArt === true) {
@@ -63,6 +63,7 @@ export default class Entry extends Component {
         onMouseUp={this.onMouseUp}
         onMouseEnter={this.onMouseEnter}
         role="option"
+        aria-selected={isFocused ? 'true' : null}
       >
         {emojiDisplay}
         <span className={theme.emojiSuggestionsEntryText}>
