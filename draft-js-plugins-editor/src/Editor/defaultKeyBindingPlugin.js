@@ -1,11 +1,9 @@
+// @flow
 import { getDefaultKeyBinding } from 'draft-js';
 
 /**
- * Handle default key bindings.
- *
- * @param {Event} event
- * @return {String} defaultCommand
+ * Handles default key bindings, returns a command (string)
  */
-export function keyBindingFn(event) {
+export function keyBindingFn(event: SyntheticKeyboardEvent): ?string {
   return getDefaultKeyBinding(event);
 }
