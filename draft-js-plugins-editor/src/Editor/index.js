@@ -285,8 +285,8 @@ class PluginEditor extends Component {
 
       if (accessibilityProps.ariaExpanded === undefined) {
         popupProps.ariaExpanded = props.ariaExpanded;
-      } else if (props.ariaExpanded === 'true') {
-        popupProps.ariaExpanded = 'true';
+      } else if (props.ariaExpanded === true) {
+        popupProps.ariaExpanded = true;
       }
 
       accessibilityProps = {

@@ -79,7 +79,7 @@ export default (config = {}) => {
 
   const ariaProps = {
     ariaHasPopup: 'false',
-    ariaExpanded: 'false',
+    ariaExpanded: false,
     ariaOwneeID: undefined,
     ariaActiveDescendantID: undefined,
   };

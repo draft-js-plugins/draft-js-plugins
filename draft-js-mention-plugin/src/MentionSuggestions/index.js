@@ -290,7 +290,7 @@ export class MentionSuggestions extends Component {
     this.props.ariaProps.ariaActiveDescendantID = descendant;
     this.props.ariaProps.ariaOwneeID = `mentions-list-${this.key}`;
     this.props.ariaProps.ariaHasPopup = 'true';
-    this.props.ariaProps.ariaExpanded = 'true';
+    this.props.ariaProps.ariaExpanded = true;
     this.setState({
       isActive: true,
     });
@@ -308,7 +308,7 @@ export class MentionSuggestions extends Component {
     this.props.callbacks.onEscape = undefined;
     this.props.callbacks.handleReturn = undefined;
     this.props.ariaProps.ariaHasPopup = 'false';
-    this.props.ariaProps.ariaExpanded = 'false';
+    this.props.ariaProps.ariaExpanded = false;
     this.props.ariaProps.ariaActiveDescendantID = undefined;
     this.props.ariaProps.ariaOwneeID = undefined;
     this.setState({
