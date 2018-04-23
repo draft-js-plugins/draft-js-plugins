@@ -34,7 +34,7 @@ export type EditorProps = {
   textAlignment?: DraftTextAlignment,
   textDirectionality?: BidiDirection,
   placeholder?: string,
-  plugins?: Array<PluginInstance>,
+  plugins?: Array<Plugin>,
   readOnly?: boolean,
   tabIndex?: number,
   spellCheck?: boolean,
@@ -89,15 +89,7 @@ type OnLeftArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => void;
 type OnBlur = (e: SyntheticEvent<>, PluginMethods) => void;
 type OnFocus = (e: SyntheticEvent<>, PluginMethods) => void;
 
-export type EventHandler = (e: SyntheticKeyboardEvent<>) => void | (e: SyntheticEvent<>) => void;
-
-export type PluginEventHandlers = OnEscape | OnTab | OnUpArrow | OnRightArrow | OnDownArrow | OnLeftArrow | OnBlur | OnFocus
-
-export type EventHandlerNames = 'onEscape' | 'onTab' | 'onUpArrow' | 'onRightArrow' | 'onDownArrow' | 'onLeftArrow' | 'onBlur' | 'onFocus'
-
-export type HandlerNames = 'handleReturn' | 'handleKeyCommand' | 'handleBeforeInput' | 'handlePastedText' | 'handlePastedFiles' | 'handleDroppedFiles' | 'handleDrop'
-
-export type PluginInstance = {
+export type Plugin = {
   blockRendererFn?: (block: BlockNodeRecord, PluginMethods) => ?Object,
   blockStyleFn?: (block: BlockNodeRecord, PluginMethods) => string,
   keyBindingFn?: (e: SyntheticKeyboardEvent<>, PluginMethods) => ?string,
@@ -136,12 +128,10 @@ export type PluginInstance = {
   willUnmount?: (PluginMethods) => void,
 }
 
-export type Plugin = (config?: Object) => PluginInstance;
-
-export type EventHook = (event: SyntheticEvent<>, PluginMethods) => void;
+export type PluginCreator = (config?: Object) => Plugin;
 
 export type PluginMethods = {
-  getPlugins: () => Array<PluginInstance>,
+  getPlugins: () => Array<Plugin>,
   getProps: () => EditorProps,
   setEditorState: EditorState => void,
   getEditorState: () => EditorState,

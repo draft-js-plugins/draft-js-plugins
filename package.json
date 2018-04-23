@@ -38,7 +38,6 @@
   "lint-staged": {
     "lint:eslint": "*.js"
   },
-  "pre-commit": "lint:staged",
   "devDependencies": {
     "@storybook/react": "^3.2.8",
     "alex": "^4.0.1",

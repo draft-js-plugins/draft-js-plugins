@@ -16,7 +16,7 @@ import proxies from './proxies';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import resolveDecorators from './resolveDecorators';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
-import { type HandlerNames, type EventHandler, type PluginInstance, type Handler, type EventHandlerNames, type EventHook, type EditorProps, type PluginMethods, type Plugin } from "../"
+import { type Plugin, type Handler, type EditorProps, type PluginMethods } from "../"
 
 const hooks = {
   fn: [
@@ -162,7 +162,7 @@ class PluginEditor extends Component<EditorProps, State> {
     }
   };
 
-  getPlugins = (): Array<PluginInstance> => {
+  getPlugins = (): Array<Plugin> => {
     if (this.props.plugins != null) {
       return this.props.plugins.slice(0);
     } else {
@@ -192,7 +192,7 @@ class PluginEditor extends Component<EditorProps, State> {
     getEditorRef: this.getEditorRef,
   });
 
-  createEventHooks = (methodName: string, plugins: Array<PluginInstance|EditorProps>): EventHandler => event => {
+	createEventHooks = (methodName: string, plugins: Array<Plugin|EditorProps>) => (event: SyntheticKeyboardEvent<> | SyntheticEvent<>) => {
     const pluginMethods = this.getPluginMethods()
 
     plugins.some((plugin) => {
@@ -203,7 +203,7 @@ class PluginEditor extends Component<EditorProps, State> {
     });
   };
 
-  createHandleHooks = (methodName: string, plugins: Array<PluginInstance|EditorProps>) => (firstArg: any, ...args:any):string => {
+  createHandleHooks = (methodName: string, plugins: Array<Plugin|EditorProps>) => (firstArg: any, ...args:any):string => {
     const newArgs = [firstArg, ...args, this.getPluginMethods()];
 
     return plugins.some((plugin) => {
@@ -212,7 +212,7 @@ class PluginEditor extends Component<EditorProps, State> {
     }) ? 'handled' : 'not-handled';
   };
 
-  createBlockRendererFn = (plugins: Array<PluginInstance|EditorProps>, pluginMethods: PluginMethods) => (blockNode: BlockNodeRecord) => {
+  createBlockRendererFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (blockNode: BlockNodeRecord) => {
     const finalBlock = plugins
       .reduce((block, plugin) => {
         if (plugin.blockRendererFn == null) {
@@ -232,7 +232,7 @@ class PluginEditor extends Component<EditorProps, State> {
     return finalBlock.component != null ? finalBlock : false;
   }
 
-  createBlockStyleFn = (plugins: Array<PluginInstance|EditorProps>, pluginMethods: PluginMethods) => (block: BlockNodeRecord):string => {
+  createBlockStyleFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (block: BlockNodeRecord):string => {
     return plugins
       .reduce((styles, plugin) => {
           if (plugin.blockStyleFn == null) {
@@ -245,7 +245,7 @@ class PluginEditor extends Component<EditorProps, State> {
         }, []).join(' ');
   }
 
-  createCustomStyleFn = (plugins: Array<PluginInstance|EditorProps>, pluginMethods: PluginMethods) => (style: DraftInlineStyle, block: BlockNodeRecord) => {
+  createCustomStyleFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (style: DraftInlineStyle, block: BlockNodeRecord) => {
     return plugins.reduce((styles, plugin) => {
       if (plugin.customStyleFn == null) {
         return styles
@@ -261,7 +261,7 @@ class PluginEditor extends Component<EditorProps, State> {
     }, {})
   }
 
-  createKeyBindingFn = (plugins: Array<PluginInstance|EditorProps>, pluginMethods: PluginMethods) => (event: SyntheticKeyboardEvent<>): ?string => {
+  createKeyBindingFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (event: SyntheticKeyboardEvent<>): ?string => {
     let result;
 
     const wasHandled = plugins.some((plugin) => {
@@ -273,7 +273,7 @@ class PluginEditor extends Component<EditorProps, State> {
     return wasHandled ? result : null;
   }
 
-  createFnHooks = (methodName:string, plugins: Array<PluginInstance|EditorProps>) => {
+  createFnHooks = (methodName:string, plugins: Array<Plugin|EditorProps>) => {
     const pluginMethods = this.getPluginMethods()
 
     if (methodName === 'blockRendererFn') {
@@ -313,7 +313,7 @@ class PluginEditor extends Component<EditorProps, State> {
     }), {})
   };
 
-  resolvePlugins = (): Array<PluginInstance> => {
+  resolvePlugins = (): Array<Plugin> => {
     const { plugins: _plugins, defaultKeyBindings } = this.props
     const plugins = _plugins && _plugins.length > 0 ? [..._plugins] : []
 
