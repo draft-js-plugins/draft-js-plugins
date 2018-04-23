@@ -4,19 +4,23 @@
 .*/node_modules/fbjs/.*
 .*/node_modules/immutable/.*
 .*/node_modules/.*.json
-.*/node_modules/draft-js/.*
 .*/node_modules/react/.*
 .*/node_modules/radium/.*
+.*/node_modules/chalk/.*
+.*/node_modules/documentation/.*
+.*/docs/.*
+.*/docs/node_modules/.*
 
 [include]
 
 [libs]
-./interfaces/CSSModule.js
-./interfaces/findWithRegex.js
+flow-lib
 
 [options]
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
 module.name_mapper='.*\(.css\)' -> 'CSSModule'
-module.name_mapper='draft-js' -> 'Draft'
 module.system=haste
+
+[version]
+^0.69.0
