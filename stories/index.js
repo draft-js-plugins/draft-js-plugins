@@ -7,6 +7,7 @@ import { storiesOf } from '@storybook/react';
 
 // Alignment
 import SimpleAlignmentEditor from './Alignment/SimpleAlignmentEditor';
+import ThemedAlignmentEditor from './Alignment/ThemedAlignmentEditor';
 
 // Anchor
 import AnchorSimpleLinkPluginEditor from './Anchor/SimpleLinkPluginEditor';
@@ -75,7 +76,8 @@ import ThemedToolbarEditor from './StaticToolbar/ThemedToolbarEditor';
 import SimpleToolbarEditor from './StaticToolbar/SimpleToolbarEditor';
 
 storiesOf('Alignment Plugin', module)
-  .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />);
+  .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />)
+  .add('Editor with custom themed Alignment Plugin', () => <ThemedAlignmentEditor />);
 
 storiesOf('Anchor Plugin', module)
   .add('Editor with Anchor Plugin', () => <AnchorSimpleLinkPluginEditor />);

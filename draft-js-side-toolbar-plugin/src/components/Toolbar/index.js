@@ -42,7 +42,10 @@ export default class Toolbar extends React.Component {
       // attempt to find the node dynamically by traversing upwards.
       const editorRef = this.props.store.getItem('getEditorRef')();
       if (!editorRef) return;
-      let editorRoot = editorRef.refs.editor;
+
+      // this keeps backwards-compatibility with react 15
+      let editorRoot = editorRef.refs && editorRef.refs.editor
+        ? editorRef.refs.editor : editorRef.editor;
       while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
         editorRoot = editorRoot.parentNode;
       }

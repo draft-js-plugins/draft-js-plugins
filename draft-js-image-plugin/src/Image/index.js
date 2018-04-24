@@ -20,6 +20,7 @@ export default class Image extends Component {
       selection, // eslint-disable-line no-unused-vars
       tree, // eslint-disable-line no-unused-vars
       contentState,
+      blockStyleFn,
       ...elementProps
     } = otherProps;
     const combinedClassName = unionClassNames(theme.image, className);

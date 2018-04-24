@@ -6,15 +6,15 @@ import {
   AlignBlockCenterButton,
   AlignBlockRightButton,
 } from 'draft-js-buttons';
-import styles from '../alignmentToolStyles.css';
-import buttonStyles from '../buttonStyles.css';
 
 const getRelativeParent = (element) => {
   if (!element) {
     return null;
   }
 
-  const position = window.getComputedStyle(element).getPropertyValue('position');
+  const position = window
+    .getComputedStyle(element)
+    .getPropertyValue('position');
   if (position !== 'static') {
     return element;
   }
@@ -23,11 +23,10 @@ const getRelativeParent = (element) => {
 };
 
 export default class AlignmentTool extends React.Component {
-
   state = {
     position: {},
     alignment: null,
-  }
+  };
 
   componentWillMount() {
     this.props.store.subscribeToItem('visibleBlock', this.onVisibilityChanged);
@@ -35,7 +34,10 @@ export default class AlignmentTool extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.store.unsubscribeFromItem('visibleBlock', this.onVisibilityChanged);
+    this.props.store.unsubscribeFromItem(
+      'visibleBlock',
+      this.onVisibilityChanged,
+    );
     this.props.store.unsubscribeFromItem('alignment', this.onAlignmentChange);
   }
 
@@ -68,7 +70,7 @@ export default class AlignmentTool extends React.Component {
     this.setState({
       alignment,
     });
-  }
+  };
 
   render() {
     const defaultButtons = [
@@ -77,11 +79,16 @@ export default class AlignmentTool extends React.Component {
       AlignBlockCenterButton,
       AlignBlockRightButton,
     ];
+
+    const { theme } = this.props;
+
     return (
       <div
-        className={styles.alignmentTool}
+        className={theme.alignmentToolStyles.alignmentTool}
         style={this.state.position}
-        ref={(toolbar) => { this.toolbar = toolbar; }}
+        ref={(toolbar) => {
+          this.toolbar = toolbar;
+        }}
       >
         {defaultButtons.map((Button, index) => (
           <Button
@@ -89,7 +96,7 @@ export default class AlignmentTool extends React.Component {
             key={index}
             alignment={this.state.alignment}
             setAlignment={this.props.store.getItem('setAlignment')}
-            theme={buttonStyles}
+            theme={theme.buttonStyles}
           />
         ))}
       </div>
