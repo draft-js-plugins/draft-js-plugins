@@ -2,11 +2,10 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { fromJS } from 'immutable';
 
 import { MentionSuggestions } from '../index';
 
-const mentions = fromJS([
+const mentions = [
   {
     name: 'Matthew Russell',
     link: 'https://twitter.com/mrussell247',
@@ -37,7 +36,7 @@ const mentions = fromJS([
     link: 'https://twitter.com/psbrandt',
     avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
   },
-]);
+];
 
 
 function defaultProps() {
@@ -76,7 +75,7 @@ describe('MentionSuggestions Component', () => {
     expect(suggestions.state().isActive).to.equal(true);
 
     suggestions.setProps({
-      suggestions: fromJS([]),
+      suggestions: [],
     });
     expect(suggestions.state().isActive).to.equal(false);
   });
@@ -100,7 +99,7 @@ describe('MentionSuggestions Component', () => {
     let called = false;
     const PopoverComponent = ({ children, ...props }) => {
       called = true;
-      expect(React.Children.count(children)).to.equal(mentions.size);
+      expect(React.Children.count(children)).to.equal(mentions.length);
       return <div {...props}>{children}</div>;
     };
 

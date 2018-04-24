@@ -14,18 +14,20 @@ import defaultPositionSuggestions from './utils/positionSuggestions';
 
 export { default as MentionSuggestions } from './MentionSuggestions';
 
+export const defaultTheme = {
+  // CSS class for mention text
+  mention: mentionStyles.mention,
+  // CSS class for suggestions component
+  mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
+  // CSS classes for an entry in the suggestions component
+  mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
+  mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
+  mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
+  mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
+};
+
+
 export default (config = {}) => {
-  const defaultTheme = {
-    // CSS class for mention text
-    mention: mentionStyles.mention,
-    // CSS class for suggestions component
-    mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
-    // CSS classes for an entry in the suggestions component
-    mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
-    mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
-    mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
-    mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
-  };
 
   const callbacks = {
     keyBindingFn: undefined,

@@ -1,15 +1,15 @@
 import React from 'react';
 import { render } from 'enzyme';
-import { fromJS, Map } from 'immutable';
+import { Map } from 'immutable';
 import { ContentState } from 'draft-js';
 import { expect } from 'chai';
 import Mention from '../index';
 
 describe('Mention', () => {
   it('renders an Anchor tag in case a link is provided', () => {
-    const mention = fromJS({
+    const mention = {
       link: 'https://www.example.com/john',
-    });
+    };
     const contentState = ContentState.createFromText('');
     const contentStateWithEntity = contentState.createEntity('mention', 'SEGMENTED', { mention });
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
@@ -18,7 +18,7 @@ describe('Mention', () => {
   });
 
   it('renders a Span tag in case no link is provided', () => {
-    const mention = fromJS({});
+    const mention = {};
     const contentState = ContentState.createFromText('');
     const contentStateWithEntity = contentState.createEntity('mention', 'SEGMENTED', { mention });
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
