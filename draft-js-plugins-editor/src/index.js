@@ -80,14 +80,14 @@ export type EditorProps = {
   ariaHasPopup?: boolean
 }
 
-type OnEscape = (e: SyntheticKeyboardEvent<>, PluginMethods) => void;
-type OnTab = (e: SyntheticKeyboardEvent<>, PluginMethods) => void;
-type OnUpArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => void;
-type OnRightArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => void;
-type OnDownArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => void;
-type OnLeftArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => void;
-type OnBlur = (e: SyntheticEvent<>, PluginMethods) => void;
-type OnFocus = (e: SyntheticEvent<>, PluginMethods) => void;
+type OnEscape = (e: SyntheticKeyboardEvent<>, PluginMethods) => ?boolean;
+type OnTab = (e: SyntheticKeyboardEvent<>, PluginMethods) => ?boolean;
+type OnUpArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => ?boolean;
+type OnRightArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => ?boolean;
+type OnDownArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => ?boolean;
+type OnLeftArrow = (e: SyntheticKeyboardEvent<>, PluginMethods) => ?boolean;
+type OnBlur = (e: SyntheticEvent<>, PluginMethods) => ?boolean;
+type OnFocus = (e: SyntheticEvent<>, PluginMethods) => ?boolean;
 
 export type Plugin = {
   blockRendererFn?: (block: BlockNodeRecord, PluginMethods) => ?Object,

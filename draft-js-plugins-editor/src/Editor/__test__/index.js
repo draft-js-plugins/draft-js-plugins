@@ -121,11 +121,15 @@ describe('Editor', () => {
     it('calls the on-hooks of the plugin', () => {
       const plugins = [
         {
-          onUpArrow: sinon.spy(),
-          onDragEnter: sinon.spy(),
           onEscape: sinon.spy(),
           onTab: sinon.spy(),
           onChange: sinon.spy(),
+          onUpArrow: sinon.spy(),
+          onRightArrow: sinon.spy(),
+          onDownArrow: sinon.spy(),
+          onLeftArrow: sinon.spy(),
+          onBlur: sinon.spy(),
+          onFocus: sinon.spy(),
         },
       ];
       const result = shallow(
@@ -140,8 +144,16 @@ describe('Editor', () => {
       const plugin = plugins[0];
       draftEditor.props.onUpArrow();
       expect(plugin.onUpArrow).has.been.calledOnce();
-      draftEditor.props.onDragEnter();
-      expect(plugin.onDragEnter).has.been.calledOnce();
+      draftEditor.props.onRightArrow();
+      expect(plugin.onRightArrow).has.been.calledOnce();
+      draftEditor.props.onLeftArrow();
+      expect(plugin.onLeftArrow).has.been.calledOnce();
+      draftEditor.props.onDownArrow();
+      expect(plugin.onDownArrow).has.been.calledOnce();
+      draftEditor.props.onBlur();
+      expect(plugin.onBlur).has.been.calledOnce();
+      draftEditor.props.onFocus();
+      expect(plugin.onFocus).has.been.calledOnce();
       draftEditor.props.onEscape();
       expect(plugin.onEscape).has.been.calledOnce();
       draftEditor.props.onTab();
@@ -201,24 +213,25 @@ describe('Editor', () => {
           willUnmount: sinon.spy(),
         },
       ];
+      const willUnmount = sinon.spy()
       const result = mount(
         <PluginEditor
           editorState={editorState}
           onChange={changeSpy}
+          willUnmount={willUnmount}
           plugins={plugins}
         />
       );
 
       const pluginEditor = result.node;
       const plugin = plugins[0];
-      const expectedArgument = {
-        getEditorState: pluginEditor.getEditorState,
-        setEditorState: pluginEditor.onChange,
-      };
+      const expectedArgument = pluginEditor.getPluginMethods();
       result.unmount();
 
       expect(plugin.willUnmount).has.been.calledOnce();
       expect(plugin.willUnmount).has.been.calledWith(expectedArgument);
+      expect(willUnmount).has.been.calledOnce();
+      expect(willUnmount).has.been.calledWith(expectedArgument);
     });
 
     it('calls the handle- and on-hooks of the first plugin and not the second in case it was handeled', () => {

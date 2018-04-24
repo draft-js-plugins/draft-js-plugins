@@ -1,3 +1,5 @@
+// @flow
+
 import {
   EditorState,
   SelectionState,
@@ -11,7 +13,7 @@ import {
  * without the editor having had focus yet. It still works to place the
  * Selection at a specific location by clicking on the text.
  */
-const moveSelectionToEnd = (editorState) => {
+const moveSelectionToEnd = (editorState: EditorState): EditorState => {
   const content = editorState.getCurrentContent();
   const blockMap = content.getBlockMap();
 

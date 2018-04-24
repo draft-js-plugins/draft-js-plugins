@@ -139,7 +139,7 @@ class PluginEditor extends Component<EditorProps, State> {
 
   componentWillUnmount() {
     const pluginMethods = this.getPluginMethods();
-    this.resolvePlugins().forEach((plugin) => {
+    [this.props, ...this.resolvePlugins()].forEach((plugin) => {
       if (plugin.willUnmount != null) {
         plugin.willUnmount(pluginMethods);
       }
@@ -192,13 +192,13 @@ class PluginEditor extends Component<EditorProps, State> {
     getEditorRef: this.getEditorRef,
   });
 
-	createEventHooks = (methodName: string, plugins: Array<Plugin|EditorProps>) => (event: SyntheticKeyboardEvent<> | SyntheticEvent<>) => {
+  createEventHooks = (methodName: string, plugins: Array<Plugin|EditorProps>) => (event: SyntheticKeyboardEvent<> | SyntheticEvent<>) => {
     const pluginMethods = this.getPluginMethods()
 
-    plugins.some((plugin) => {
+    return plugins.some((plugin) => {
       const method = plugin[methodName]
       if (method != null) {
-        method(event, pluginMethods)
+        return method(event, pluginMethods) === true
       }
     });
   };
@@ -345,21 +345,25 @@ class PluginEditor extends Component<EditorProps, State> {
 
     let map = Map({})
 
-    if (plugins != null) {
-      map = plugins
-        .reduce((maps, plug) => 
-          plug.blockRenderMap != null
-            ? maps.merge(plug.blockRenderMap)
-            : maps
-        , Map({}));
+    /*
+     * TODO: Add this to docs probably doctypes
+     * props.blockRenderMap > plugin.blockRenderMap  > DefaultDraftBlockRenderMap
+     */ 
+    if (defaultBlockRenderMap === true) {
+      map = map.merge(DefaultDraftBlockRenderMap);
     }
 
-    if (defaultBlockRenderMap === true) {
-      map = DefaultDraftBlockRenderMap.merge(blockRenderMap);
+    if (plugins != null) {
+      map = plugins
+        .reduce((styles, plug) => 
+          plug.blockRenderMap != null
+            ? styles.merge(plug.blockRenderMap)
+            : styles
+        , map);
     }
 
     if (blockRenderMap != null) {
-      map = blockRenderMap.merge(blockRenderMap);
+      map = map.merge(blockRenderMap);
     }
 
     return map;

@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * Creates a composite decorator based on the provided plugins
  */
