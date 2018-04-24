@@ -60,7 +60,7 @@ export default class App extends Component {
           <p>
             The plugin ships with a default styling available at this location in the installed package:
             &nbsp;
-            <InlineCode code={'node_modules/draft-js-alignment-plugin/lib/plugin.css'} />
+            <InlineCode code={'node_modules/draft-js-focus-plugin/lib/plugin.css'} />
           </p>
           <Heading level={4}>Webpack Usage</Heading>
           <ul className={styles.list}>

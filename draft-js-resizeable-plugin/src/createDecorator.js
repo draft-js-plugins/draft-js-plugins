@@ -61,6 +61,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     const hasNewHoverPositions = Object.keys(newHoverPosition).filter(
       (key) => hoverPosition[key] !== newHoverPosition[key]
     );
+
     if (hasNewHoverPositions.length) {
       this.setState({ hoverPosition: newHoverPosition });
     }
@@ -88,12 +89,16 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     const doDrag = (dragEvent) => {
       let width = (startWidth + dragEvent.clientX) - startX;
       let height = (startHeight + dragEvent.clientY) - startY;
-      const block = store.getEditorRef().refs.editor;
-      width = block.clientWidth < width ? block.clientWidth : width;
-      height = block.clientHeight < height ? block.clientHeight : height;
 
-      const widthPerc = (100 / block.clientWidth) * width;
-      const heightPerc = (100 / block.clientHeight) * height;
+      const editorComp = store.getEditorRef();
+      // this keeps backwards-compatibility with react 15
+      const editorNode = editorComp.refs.editor ? editorComp.refs.editor : editorComp.editor;
+
+      width = editorNode.clientWidth < width ? editorNode.clientWidth : width;
+      height = editorNode.clientHeight < height ? editorNode.clientHeight : height;
+
+      const widthPerc = (100 / editorNode.clientWidth) * width;
+      const heightPerc = (100 / editorNode.clientHeight) * height;
 
       const newState = {};
       if ((isLeft || isRight) && horizontal === 'relative') {

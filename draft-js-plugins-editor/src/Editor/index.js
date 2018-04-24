@@ -73,7 +73,7 @@ class PluginEditor extends Component {
     if (currDec === nextDec) return;
     // If the old and the new decorator are the same, but no the same object, also don't call onChange to avoid infinite loops
     if (currDec && nextDec && currDec.decorators.size === nextDec.decorators.size) return;
-
+ 
     const editorState = EditorState.set(next.editorState, { decorator: currDec });
     this.onChange(moveSelectionToEnd(editorState));
   }
