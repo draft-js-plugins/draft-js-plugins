@@ -87,15 +87,15 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
 
     // Do the actual drag operation
     const doDrag = (dragEvent) => {
-      let width = (startWidth + dragEvent.clientX) - startX;
+      let width = startWidth + (isLeft ? startX - dragEvent.clientX : dragEvent.clientX - startX);
       let height = (startHeight + dragEvent.clientY) - startY;
 
       const editorComp = store.getEditorRef();
       // this keeps backwards-compatibility with react 15
       const editorNode = editorComp.refs.editor ? editorComp.refs.editor : editorComp.editor;
 
-      width = editorNode.clientWidth < width ? editorNode.clientWidth : width;
-      height = editorNode.clientHeight < height ? editorNode.clientHeight : height;
+      width = Math.min(editorNode.clientWidth, width);
+      height = Math.min(editorNode.clientHeight, height);
 
       const widthPerc = (100 / editorNode.clientWidth) * width;
       const heightPerc = (100 / editorNode.clientHeight) * height;
