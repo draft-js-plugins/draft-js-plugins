@@ -47,8 +47,9 @@ class HeadlinesPicker extends Component {
 }
 
 class HeadlinesButton extends Component {
-  // When using a click event inside overriden content we have
-  // to cancel click events from the toolbar itself unfortunately
+  // When using a click event inside overridden content, mouse down
+  // events needs to be prevented so the focus stays in the editor
+  // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
   onMouseDown = (event) => event.preventDefault()
 
   onClick = () =>
