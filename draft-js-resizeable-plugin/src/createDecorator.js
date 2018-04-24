@@ -73,6 +73,8 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     if (!this.state.hoverPosition.canResize) {
       return;
     }
+
+    event.preventDefault();    
     const { resizeSteps, vertical, horizontal } = this.props;
     const { hoverPosition } = this.state;
     const { isTop, isLeft, isRight, isBottom } = hoverPosition;
