@@ -61,7 +61,7 @@ export default class Toolbar extends React.Component {
    */
   onOverrideContent = (overrideContent) => {
     this.setState({ overrideContent });
-  }
+  };
 
   onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate
@@ -79,31 +79,58 @@ export default class Toolbar extends React.Component {
         shift: null,
         shiftValue: 0
       };
-
+      // boundings of the selected text
       const selectionRect = getVisibleSelectionRect(window);
       if (!selectionRect) return;
 
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
+      if (relativeParent) {
+        // avoid false
+        const fontSize = window.getComputedStyle(relativeParent, null).getPropertyValue('font-size');
+        // exit if no selection was made
+        if (selectionRect.left === selectionRect.right && selectionRect.height === parseFloat(fontSize)) {
+          return;
+        }
+      }
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
 
-      // if parentWidth is wider than the toolbar, we must forcibly set its
+      // if parent block width is wider than the toolbar, we must forcibly set its
       // height to prevent unexpected geometry changes
       if (relativeRect.width > this.toolbar.offsetWidth) {
         this.toolbar.style.width = `${this.state.width}px`;
       }
 
       const toolbarHalfWidth = this.toolbar.offsetWidth / 2;
-
+      // calculating the middle of the text selection
       const fromBeginningToMiddle = (selectionRect.left + (selectionRect.width / 2));
+      // calculating the distance from editor left side to the text selection middle
       const fromParentBeginning = fromBeginningToMiddle - relativeRect.left;
+      // the same but against editor right side
       const beforeParentEnd = relativeRect.right - fromBeginningToMiddle;
 
       // the selection is closer to parent beginning than half of the toolbar
+      // +-----------------------------------------------+
+      // |          vv toolbar                           |
+      // | +------------------+                          |
+      // | +------------------+                          |
+      // |                                               |
+      // |  +--+                                         |
+      // |   ^^ selection                                |
+      // +-----------------------------------------------+
       if (fromParentBeginning < toolbarHalfWidth) {
         metrics.ruleValue = toolbarHalfWidth;
         metrics.shift = 'left';
       } else if (beforeParentEnd < toolbarHalfWidth) {
         // the same, but relative to the parent end
+        // +-----------------------------------------------+
+        // |                                 vvv toolbar   |
+        // |                            +---------------+  |
+        // |                            +---------------+  |
+        // |                                               |
+        // |                                      +--+     |
+        // |                             selection ^^      |
+        // |                                               |
+        // +-----------------------------------------------+
         metrics.ruleValue = -toolbarHalfWidth;
         metrics.rule = 'right';
         metrics.shift = 'right';
@@ -114,6 +141,9 @@ export default class Toolbar extends React.Component {
           + (selectionRect.width / 2);
       }
 
+      // ok, why we have to use external style elements here? Because, we are
+      // moving pointer position each time and it can be set via `before`,
+      // `after` css-pseudo classes
       const pointerClassName = 'draft-js-inline-toolbar-pointer';
       const styleId = 'draft-js-inline-toolbar-pointer-pseudo';
 
@@ -122,7 +152,7 @@ export default class Toolbar extends React.Component {
       }
       // We are recreating style element on every toolbar appearance. It is
       // better for us to use individual style element rather than join new
-      // styles to some of the existent elements, because we can easely remove
+      // styles to some of the existent elements, because we can easily remove
       // it next time
       if (document.getElementById(`${styleId}-${this.state.nonce}`)) {
         document.head.removeChild(
@@ -137,11 +167,11 @@ export default class Toolbar extends React.Component {
         this.toolbar.classList.add(pointerClassName);
 
         if (metrics.shift === 'left') {
-          metrics.shiftValue = toolbarHalfWidth - metrics.ruleValue -
+          metrics.shiftValue = (toolbarHalfWidth - metrics.ruleValue) +
             fromParentBeginning;
         } else {
           metrics.shiftValue = this.toolbar.offsetWidth -
-            (relativeRect.right - (selectionRect.right + (selectionRect.width / 2)));
+            (relativeRect.right - (selectionRect.right - (selectionRect.width / 2)));
         }
 
         styleEl.sheet.insertRule(`.${pointerClassName}::after { left: ${metrics.shiftValue}px}`, 0);
