@@ -36,17 +36,24 @@ export default class Toolbar extends React.Component {
     // Note: need to wait on tick to make sure the DOM node has been create by Draft.js
     setTimeout(() => {
       const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
-      const top = node.getBoundingClientRect().top;
 
-      const editorComp = this.props.store.getItem('getEditorRef')();
+      // The editor root should be two levels above the node from
+      // `getEditorRef`. In case this changes in the future, we
+      // attempt to find the node dynamically by traversing upwards.
+      const editorRef = this.props.store.getItem('getEditorRef')();
+      if (!editorRef) return;
+
       // this keeps backwards-compatibility with react 15
-      const editorNode = editorComp.refs.editor ? editorComp.refs.editor : editorComp.editor;
+      let editorRoot = editorRef.refs && editorRef.refs.editor
+        ? editorRef.refs.editor : editorRef.editor;
+      while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
+        editorRoot = editorRoot.parentNode;
+      }
 
-      const scrollY = window.scrollY == null ? window.pageYOffset : window.scrollY;
       this.setState({
         position: {
-          top: (top + scrollY),
-          left: editorNode.getBoundingClientRect().left - 80,
+          top: node.offsetTop + editorRoot.offsetTop,
+          left: editorRoot.offsetLeft - 80,
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
         },

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'style-loader!css-loader!draft-js/dist/Draft.css'; // eslint-disable-line import/no-unresolved
 
 import { storiesOf } from '@storybook/react';
 // import { action } from '@storybook/addon-actions';
@@ -54,6 +55,7 @@ import MentionEditorWithCustomTrigger from './Mention/MentionEditorWithCustomTri
 // SideToolbar
 import SimpleSideToolbarEditor from './SideToolbar/SimpleSideToolbarEditor';
 import CustomSideToolbarEditor from './SideToolbar/CustomSideToolbarEditor';
+import RelativeParentSideToolbarEditor from './SideToolbar/RelativeParentSideToolbarEditor';
 
 // Sticker
 import SimpleStickerEditor from './Sticker/SimpleStickerEditor';
@@ -122,7 +124,8 @@ storiesOf('Mention Plugin')
 
 storiesOf('Side Toolbar Plugin')
   .add('Editor with SideToolbar Plugin', () => <SimpleSideToolbarEditor />)
-  .add('Editor with custom themed SideToolbar Plugin', () => <CustomSideToolbarEditor />);
+  .add('Editor with custom themed SideToolbar Plugin', () => <CustomSideToolbarEditor />)
+  .add('Relatively positioned parent', () => <RelativeParentSideToolbarEditor />);
 
 storiesOf('Sticker Plugin')
   .add('Editor with Sticker Plugin', () => <SimpleStickerEditor />)
