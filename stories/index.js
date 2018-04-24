@@ -1,4 +1,5 @@
 import React from 'react';
+import 'style-loader!css-loader!draft-js/dist/Draft.css'; // eslint-disable-line import/no-unresolved
 
 import { storiesOf } from '@storybook/react';
 // import { action } from '@storybook/addon-actions';
@@ -37,6 +38,7 @@ import AddImageEditor from './Image/AddImageEditor';
 import SimpleInlineToolbarEditor from './InlineToolbar/SimpleInlineToolbarEditor';
 import CustomInlineToolbarEditor from './InlineToolbar/CustomInlineToolbarEditor';
 import ThemedInlineToolbarEditor from './InlineToolbar/ThemedInlineToolbarEditor';
+import RelativeParentInlineToolbarEditor from './InlineToolbar/RelativeParentInlineToolbarEditor';
 
 // Linkify
 import SimpleLinkifyEditor from './Linkify/SimpleLinkifyEditor';
@@ -104,7 +106,8 @@ storiesOf('Image Plugin')
 storiesOf('Inline Toolbar Plugin')
   .add('Editor with default inline toolbar plugin', () => <SimpleInlineToolbarEditor />)
   .add('Editor with inline toolbar plugin containing all buttons', () => <CustomInlineToolbarEditor />)
-  .add('Editor with custom themed toolbar plugin', () => <ThemedInlineToolbarEditor />);
+  .add('Editor with custom themed toolbar plugin', () => <ThemedInlineToolbarEditor />)
+  .add('Relatively positioned parent', () => <RelativeParentInlineToolbarEditor />);
 
 storiesOf('Linkify Plugin')
   .add('Editor with Linkify Plugin', () => <SimpleLinkifyEditor />)
