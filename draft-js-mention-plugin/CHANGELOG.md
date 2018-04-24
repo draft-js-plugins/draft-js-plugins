@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 3.0.0
-- Deprecate immutable suggestions (breaking change)
+- Deprecate immutable suggestions (breaking change), use arrays from now on
 - export default theme (in case we want to extend it)
 
 ## 2.0.2
