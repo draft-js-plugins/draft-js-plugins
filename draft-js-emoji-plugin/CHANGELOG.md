@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - render props.children instead, fixes editing behaviour
 
 ## To Be Released
+- Added `aria-selected="true"` for the suggestions listbox focused option.
 
 ### Fixed
 - Added type="button" to EmojiSelect button to prevent submitting forms, thanks to @alanwflood [for the pr](https://github.com/draft-js-plugins/draft-js-plugins/pull/829)

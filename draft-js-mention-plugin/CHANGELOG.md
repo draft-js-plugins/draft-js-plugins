@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Updated dependencies to support react 16
 
 ## To Be Released
+- Added `aria-selected="true"` for the suggestions listbox focused option.
 
 ### Added
 
