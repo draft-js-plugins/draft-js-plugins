@@ -5,6 +5,9 @@ import DefaultBlockTypeSelect from './components/DefaultBlockTypeSelect';
 import buttonStyles from './buttonStyles.css';
 import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 import toolbarStyles from './toolbarStyles.css';
+import BlockTypeSelect from './components/BlockTypeSelect';
+
+export { BlockTypeSelect };
 
 export default (config = {}) => {
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
