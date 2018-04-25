@@ -44,6 +44,7 @@ export class MentionSuggestions extends Component {
     focusedOptionIndex: 0,
   };
 
+
   componentWillMount() {
     this.key = genKey();
     this.props.callbacks.onChange = this.onEditorStateChange;
@@ -97,6 +98,9 @@ export class MentionSuggestions extends Component {
   };
 
   onEditorStateChange = (editorState) => {
+    if (this.ignoreEditorChange) {
+      return editorState;
+    }
     const searches = this.props.store.getAllSearches();
 
     // if no search portal is active there is no need to show the popover
@@ -252,7 +256,11 @@ export class MentionSuggestions extends Component {
       this.props.mentionTrigger,
       this.props.entityMutability,
     );
+    this.setIgnoreEditorChange(true);
+    // async callback, ignore changes until it's finished to not overwrite
+    // current state
     this.props.store.setEditorState(newEditorState);
+    this.setIgnoreEditorChange(false);
   };
 
   onMentionFocus = (index) => {
@@ -265,6 +273,12 @@ export class MentionSuggestions extends Component {
     // to force a re-render of the outer component to change the aria props
     this.props.store.setEditorState(this.props.store.getEditorState());
   };
+
+  setIgnoreEditorChange(ignore) {
+    this.ignoreEditorChange = ignore;
+  }
+
+  ignoreEditorChange = false;
 
   commitSelection = () => {
     if (!this.props.store.getIsOpened()) {
