@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 3.0.1
 - Added `aria-selected="true"` for the suggestions listbox focused option.
+- Update aria attributes to use booleans
 
 ## 3.0.0
 - Deprecate immutable suggestions (breaking change), use arrays from now on
