@@ -54,7 +54,7 @@ export default class Toolbar extends React.Component {
        * pointerClassName internals here. It could look like: "{ left: 1px; }"
        * @type {number|string}
        */
-      shift: 0
+      pointerShift: 0
     };
 
     // we need to flush toolbar styles on each appearance (especially its width)
@@ -90,7 +90,6 @@ export default class Toolbar extends React.Component {
         this.setState({ width: this.toolbar.offsetWidth });
       }
 
-      const newState = {};
       const metrics = {
         rule: 'left',
         ruleValue: 0,
@@ -159,28 +158,18 @@ export default class Toolbar extends React.Component {
           + (selectionRect.width / 2);
       }
 
-      if (typeof metrics.shift === 'string') {
-        if (metrics.shift === 'left') {
-          metrics.shiftValue = fromBeginningToMiddle - this.props.toolbarMargin;
-        } else {
-          metrics.shiftValue = this.toolbar.offsetWidth -
-            (windowWidth - (selectionRect.right - (selectionRect.width / 2)) -
-            this.props.toolbarMargin);
-        }
-
-        newState.shift = `{ left: ${metrics.shiftValue}px; }`;
-      } else {
-        // explicitly set to zero, because it may already be mutated
-        newState.shift = 0;
-      }
-
       const position = {
         top: (selectionRect.top - relativeRect.top) - this.toolbar.offsetHeight - 10,
         [metrics.rule]: metrics.ruleValue
       };
       this.setState({
         position,
-        ...newState
+        pointerShift: this.calculatePointerPosition(
+          metrics.shift,
+          selectionRect,
+          fromBeginningToMiddle,
+          windowWidth
+        )
       });
     });
   };
@@ -206,13 +195,38 @@ export default class Toolbar extends React.Component {
     return style;
   }
 
+  /**
+   * calculate toolbar pointer (css arrow) position
+   * @param shift
+   * @param selectionRect
+   * @param fromBeginningToMiddle
+   * @param windowWidth
+   * @returns {string|number}
+   */
+  calculatePointerPosition = (
+    shift, selectionRect, fromBeginningToMiddle, windowWidth
+  ) => {
+    if (typeof shift === 'string') {
+      if (shift === 'left') {
+        return `{ left: ${fromBeginningToMiddle - this.props.toolbarMargin}px; }`;
+      }
+
+      return `{ left: ${this.toolbar.offsetWidth -
+      (windowWidth - (selectionRect.right - (selectionRect.width / 2)) -
+        this.props.toolbarMargin)}px; }`;
+    }
+
+    // explicitly set to zero, because it may already be mutated
+    return 0;
+  };
+
   handleToolbarRef = (node) => {
     this.toolbar = node;
   };
 
   render() {
     const { theme, store, structure } = this.props;
-    const { overrideContent: OverrideContent, pointerClassName, shift } = this.state;
+    const { overrideContent: OverrideContent, pointerClassName, pointerShift } = this.state;
     const childrenProps = {
       theme: theme.buttonStyles,
       getEditorState: store.getItem('getEditorState'),
@@ -226,8 +240,8 @@ export default class Toolbar extends React.Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        {shift !== 0 &&
-          <style>{`.${pointerClassName}::before, .${pointerClassName}::after${shift};`}</style>}
+        {pointerShift !== 0 &&
+          <style>{`.${pointerClassName}::before, .${pointerClassName}::after${pointerShift};`}</style>}
         {OverrideContent
           ? <OverrideContent {...childrenProps} />
           : structure.map((Component, index) =>
