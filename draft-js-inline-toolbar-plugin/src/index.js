@@ -35,9 +35,10 @@ export default (config = {}) => {
   };
 
   return {
-    initialize: ({ getEditorState, setEditorState }) => {
+    initialize: ({ getEditorState, setEditorState, getEditorRef }) => {
       store.updateItem('getEditorState', getEditorState);
       store.updateItem('setEditorState', setEditorState);
+      store.updateItem('getEditorRef', getEditorRef);
     },
     // Re-Render the text-toolbar on selection change
     onChange: (editorState) => {
