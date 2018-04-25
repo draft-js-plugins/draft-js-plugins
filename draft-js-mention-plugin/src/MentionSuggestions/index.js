@@ -10,7 +10,7 @@ import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/defaultEntryComponent';
 
 const suggestionsHoc = (Comp) => (props) => {
-  if (List.isList(props.suggestions)) {
+  if (List.isList(props.suggestions) && process.env.NODE_ENV !== 'production') {
     console.warn('Immutable.List for the "suggestions" prop will be deprecated in the next major version, please use an array instead'); // eslint-disable-line no-console
   }
 
@@ -122,12 +122,13 @@ export class MentionSuggestions extends Component {
     const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
 
     // a leave can be empty when it is removed due e.g. using backspace
+    // do not check leaves, use full decorated portal text
     const leaves = offsetDetails
       .filter(({ blockKey }) => blockKey === anchorKey)
-      .map(({ blockKey, decoratorKey, leafKey }) => (
+      .map(({ blockKey, decoratorKey }) => (
         editorState
           .getBlockTree(blockKey)
-          .getIn([decoratorKey, 'leaves', leafKey])
+          .getIn([decoratorKey])
       ));
 
     // if all leaves are undefined the popover should be removed
@@ -171,7 +172,7 @@ export class MentionSuggestions extends Component {
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will show again.
-    if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey) && this.props.suggestions.size > 0) {
       this.openDropdown();
     }
 

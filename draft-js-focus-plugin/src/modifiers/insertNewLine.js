@@ -1,39 +1,44 @@
 import { List } from 'immutable';
 import {
-  Modifier,
   ContentBlock,
   EditorState,
   BlockMapBuilder,
   genKey as generateRandomKey,
 } from 'draft-js';
 
-export default function insertNewLine(editorState) {
-  const newEditorState = editorState;
-  const contentState = newEditorState.getCurrentContent();
-  const selectionState = newEditorState.getSelection();
-  const currentBlock = contentState.getBlockForKey(selectionState.getFocusKey());
-
-  const fragmentArray = [
-    currentBlock,
-    new ContentBlock({
-      key: generateRandomKey(),
-      type: 'unstyled',
-      text: '',
-      characterList: List(),
-    }),
-  ];
-
-  const fragment = BlockMapBuilder.createFromArray(fragmentArray);
-
-  const withUnstyledBlock = Modifier.replaceWithFragment(
-    contentState,
-    selectionState,
-    fragment,
-  );
-
-  const newContent = withUnstyledBlock.merge({
-    selectionAfter: withUnstyledBlock.getSelectionAfter().set('hasFocus', true),
+const insertBlockAfterSelection = (contentState, selectionState, newBlock) => {
+  const targetKey = selectionState.getStartKey();
+  const array = [];
+  contentState.getBlockMap().forEach((block, blockKey) => {
+    array.push(block);
+    if (blockKey !== targetKey) return;
+    array.push(newBlock);
   });
+  return contentState.merge({
+    blockMap: BlockMapBuilder.createFromArray(array),
+    selectionBefore: selectionState,
+    selectionAfter: selectionState.merge({
+      anchorKey: newBlock.getKey(),
+      anchorOffset: newBlock.getLength(),
+      focusKey: newBlock.getKey(),
+      focusOffset: newBlock.getLength(),
+      isBackward: false,
+    }),
+  });
+};
 
-  return EditorState.push(newEditorState, newContent, 'insert-fragment');
+export default function insertNewLine(editorState) {
+  const contentState = editorState.getCurrentContent();
+  const selectionState = editorState.getSelection();
+  const newLineBlock = new ContentBlock({
+    key: generateRandomKey(),
+    type: 'unstyled',
+    text: '',
+    characterList: List(),
+  });
+  const withNewLine = insertBlockAfterSelection(contentState, selectionState, newLineBlock);
+  const newContent = withNewLine.merge({
+    selectionAfter: withNewLine.getSelectionAfter().set('hasFocus', true),
+  });
+  return EditorState.push(editorState, newContent, 'insert-fragment');
 }

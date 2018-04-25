@@ -53,6 +53,11 @@ class HeadlinesPicker extends Component {
 }
 
 class HeadlinesButton extends Component {
+  // When using a click event inside overridden content, mouse down
+  // events needs to be prevented so the focus stays in the editor
+  // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
+  onMouseDown = (event) => event.preventDefault()
+
   onClick = () =>
     // A button can call `onOverrideContent` to replace the content
     // of the toolbar. This can be useful for displaying sub
@@ -61,7 +66,7 @@ class HeadlinesButton extends Component {
 
   render() {
     return (
-      <div className={editorStyles.headlineButtonWrapper}>
+      <div onMouseDown={this.onMouseDown} className={editorStyles.headlineButtonWrapper}>
         <button onClick={this.onClick} className={editorStyles.headlineButton}>
           H
         </button>
