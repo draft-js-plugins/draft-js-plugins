@@ -33,7 +33,6 @@ export default class Toolbar extends React.Component {
     this.state = {
       isVisible: false,
       position: undefined,
-
       /**
        * If this is set, the toolbar will render this instead of the regular
        * structure and will also be shown when the editor loses focus.
@@ -41,15 +40,21 @@ export default class Toolbar extends React.Component {
        */
       overrideContent: undefined,
       /**
-       * We should use different classNames for toolbars within different Editor
-       * instances
-       */
-      nonce: null,
-      /**
        * We are holding default toolbar width to prevent geometry changing, that
        * happens very often
        */
-      width: null
+      width: null,
+      /**
+       * this is an additional unique toolbar class that will be used to
+       * manipulate css arrow position
+       * @type {string}
+       */
+      pointerClassName: '',
+      /**
+       * pointerClassName internals here. It could look like: "{ left: 1px; }"
+       * @type {number|string}
+       */
+      shift: 0
     };
 
     // we need to flush toolbar styles on each appearance (especially its width)
@@ -58,7 +63,7 @@ export default class Toolbar extends React.Component {
 
   componentWillMount() {
     this.props.store.subscribeToItem('selection', this.onSelectionChanged);
-    this.setState({ nonce: genKey() });
+    this.setState({ pointerClassName: `draft-js-inline-toolbar-pointer-${genKey()}` });
   }
 
   componentWillUnmount() {
@@ -85,6 +90,7 @@ export default class Toolbar extends React.Component {
         this.setState({ width: this.toolbar.offsetWidth });
       }
 
+      const newState = {};
       const metrics = {
         rule: 'left',
         ruleValue: 0,
@@ -153,30 +159,8 @@ export default class Toolbar extends React.Component {
           + (selectionRect.width / 2);
       }
 
-      // ok, why we have to use external style elements here? Because, we are
-      // moving pointer position each time and it can be set via `before`,
-      // `after` css-pseudo classes
-      const pointerClassName = 'draft-js-inline-toolbar-pointer';
-      const styleId = 'draft-js-inline-toolbar-pointer-pseudo';
-
-      if (this.toolbar.classList.contains(pointerClassName)) {
-        this.toolbar.classList.remove(pointerClassName);
-      }
-      // We are recreating style element on every toolbar appearance. It is
-      // better for us to use individual style element rather than join new
-      // styles to some of the existent elements, because we can easily remove
-      // it next time
-      if (document.getElementById(`${styleId}-${this.state.nonce}`)) {
-        document.head.removeChild(
-          document.getElementById(`${styleId}-${this.state.nonce}`)
-        );
-      }
-
       if (typeof metrics.shift === 'string') {
-        const styleEl = document.createElement('style');
-        styleEl.setAttribute('id', `${styleId}-${this.state.nonce}`);
-        document.head.appendChild(styleEl);
-        this.toolbar.classList.add(pointerClassName);
+        this.toolbar.classList.add(this.state.pointerClassName);
 
         if (metrics.shift === 'left') {
           metrics.shiftValue = fromBeginningToMiddle - this.props.toolbarMargin;
@@ -186,15 +170,20 @@ export default class Toolbar extends React.Component {
             this.props.toolbarMargin);
         }
 
-        styleEl.sheet.insertRule(`.${pointerClassName}::after { left: ${metrics.shiftValue}px}`, 0);
-        styleEl.sheet.insertRule(`.${pointerClassName}::before { left: ${metrics.shiftValue}px}`, 0);
+        newState.shift = `{ left: ${metrics.shiftValue}px; }`;
+      } else {
+        // explicitly set to zero, because it may already be mutated
+        newState.shift = 0;
       }
 
       const position = {
         top: (selectionRect.top - relativeRect.top) - this.toolbar.offsetHeight - 10,
         [metrics.rule]: metrics.ruleValue
       };
-      this.setState({ position });
+      this.setState({
+        position,
+        ...newState
+      });
     });
   };
 
@@ -225,7 +214,7 @@ export default class Toolbar extends React.Component {
 
   render() {
     const { theme, store, structure } = this.props;
-    const { overrideContent: OverrideContent } = this.state;
+    const { overrideContent: OverrideContent, pointerClassName, shift } = this.state;
     const childrenProps = {
       theme: theme.buttonStyles,
       getEditorState: store.getItem('getEditorState'),
@@ -239,6 +228,8 @@ export default class Toolbar extends React.Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
+        {shift !== 0 &&
+          <style>{`.${pointerClassName}::before, .${pointerClassName}::after${shift};`}</style>}
         {OverrideContent
           ? <OverrideContent {...childrenProps} />
           : structure.map((Component, index) =>
