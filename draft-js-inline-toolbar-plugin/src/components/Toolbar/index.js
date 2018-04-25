@@ -160,8 +160,6 @@ export default class Toolbar extends React.Component {
       }
 
       if (typeof metrics.shift === 'string') {
-        this.toolbar.classList.add(this.state.pointerClassName);
-
         if (metrics.shift === 'left') {
           metrics.shiftValue = fromBeginningToMiddle - this.props.toolbarMargin;
         } else {
@@ -224,7 +222,7 @@ export default class Toolbar extends React.Component {
 
     return (
       <div
-        className={theme.toolbarStyles.toolbar}
+        className={[theme.toolbarStyles.toolbar, pointerClassName].join(' ')}
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
