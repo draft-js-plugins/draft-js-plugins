@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.3
+- Added `aria-selected="true"` for the suggestions listbox focused option.
+
 ## 2.0.2
 (Much thanks to "dem" aka "Michael Deryugin" - https://github.com/dem)
 - fix suggestions dropdown position in case of line wrap
@@ -10,8 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed bug where a user typed not existing mention @xxx and cursor is not moved with up/down arrow key
 - Updated dependencies to support react 16
 
-## To Be Released
-- Added `aria-selected="true"` for the suggestions listbox focused option.
+## 2.0 alpha
 
 ### Added
 
