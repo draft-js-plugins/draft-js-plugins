@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getVisibleSelectionRect, genKey } from 'draft-js';
 
 const getRelativeParent = (element) => {
@@ -16,6 +17,17 @@ const getRelativeParent = (element) => {
 };
 
 export default class Toolbar extends React.Component {
+  static propTypes = {
+    /**
+     * An indents from the left / right window borders
+     */
+    toolbarMargin: PropTypes.number
+  };
+
+  static defaultProps = {
+    toolbarMargin: 5
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -86,20 +98,19 @@ export default class Toolbar extends React.Component {
 
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
+      const windowWidth = document.documentElement.clientWidth;
 
       // if parent block width is wider than the toolbar, we must forcibly set its
       // height to prevent unexpected geometry changes
-      if (relativeRect.width > this.toolbar.offsetWidth) {
+      if (windowWidth > this.toolbar.offsetWidth) {
         this.toolbar.style.width = `${this.state.width}px`;
       }
 
       const toolbarHalfWidth = this.toolbar.offsetWidth / 2;
       // calculating the middle of the text selection
       const fromBeginningToMiddle = (selectionRect.left + (selectionRect.width / 2));
-      // calculating the distance from editor left side to the text selection middle
-      const fromParentBeginning = fromBeginningToMiddle - relativeRect.left;
       // the same but against editor right side
-      const beforeParentEnd = relativeRect.right - fromBeginningToMiddle;
+      const beforeWindowEnd = windowWidth - fromBeginningToMiddle;
 
       // the selection is closer to parent beginning than half of the toolbar
       // +-----------------------------------------------+
@@ -110,10 +121,14 @@ export default class Toolbar extends React.Component {
       // |  +--+                                         |
       // |   ^^ selection                                |
       // +-----------------------------------------------+
-      if (fromParentBeginning < toolbarHalfWidth) {
-        metrics.ruleValue = toolbarHalfWidth;
+      if (fromBeginningToMiddle < toolbarHalfWidth) {
+        // shift computations are different for relative editor and body
+        const leftShift = relativeParent
+          ? relativeRect.left
+          : 0;
+        metrics.ruleValue = (toolbarHalfWidth - leftShift) + this.props.toolbarMargin;
         metrics.shift = 'left';
-      } else if (beforeParentEnd < toolbarHalfWidth) {
+      } else if (beforeWindowEnd < toolbarHalfWidth) {
         // the same, but relative to the parent end
         // +-----------------------------------------------+
         // |                                 vvv toolbar   |
@@ -124,7 +139,11 @@ export default class Toolbar extends React.Component {
         // |                             selection ^^      |
         // |                                               |
         // +-----------------------------------------------+
-        metrics.ruleValue = -toolbarHalfWidth;
+        // shift computations are different for relative editor and body
+        const rightShift = relativeParent
+          ? windowWidth - relativeRect.right
+          : 0;
+        metrics.ruleValue = (-toolbarHalfWidth - rightShift) + this.props.toolbarMargin;
         metrics.rule = 'right';
         metrics.shift = 'right';
       } else {
@@ -160,11 +179,11 @@ export default class Toolbar extends React.Component {
         this.toolbar.classList.add(pointerClassName);
 
         if (metrics.shift === 'left') {
-          metrics.shiftValue = (toolbarHalfWidth - metrics.ruleValue) +
-            fromParentBeginning;
+          metrics.shiftValue = fromBeginningToMiddle - this.props.toolbarMargin;
         } else {
           metrics.shiftValue = this.toolbar.offsetWidth -
-            (relativeRect.right - (selectionRect.right - (selectionRect.width / 2)));
+            (windowWidth - (selectionRect.right - (selectionRect.width / 2)) -
+            this.props.toolbarMargin);
         }
 
         styleEl.sheet.insertRule(`.${pointerClassName}::after { left: ${metrics.shiftValue}px}`, 0);
