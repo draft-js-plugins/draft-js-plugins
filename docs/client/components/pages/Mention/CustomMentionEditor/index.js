@@ -10,7 +10,7 @@ const positionSuggestions = ({ state, props }) => {
   let transform;
   let transition;
 
-  if (state.isActive && props.suggestions.size > 0) {
+  if (state.isActive && props.suggestions.length > 0) {
     transform = 'scaleY(1)';
     transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
   } else if (state.isActive) {
@@ -38,7 +38,7 @@ const Entry = (props) => {
       <div className={theme.mentionSuggestionsEntryContainer}>
         <div className={theme.mentionSuggestionsEntryContainerLeft}>
           <img
-            src={mention.get('avatar')}
+            src={mention.avatar}
             className={theme.mentionSuggestionsEntryAvatar}
             role="presentation"
           />
@@ -46,11 +46,11 @@ const Entry = (props) => {
 
         <div className={theme.mentionSuggestionsEntryContainerRight}>
           <div className={theme.mentionSuggestionsEntryText}>
-            {mention.get('name')}
+            {mention.name}
           </div>
 
           <div className={theme.mentionSuggestionsEntryTitle}>
-            {mention.get('title')}
+            {mention.title}
           </div>
         </div>
       </div>
