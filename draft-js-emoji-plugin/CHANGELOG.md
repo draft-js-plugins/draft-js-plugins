@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.4
+- bumped find-with-regex
+
 ## 2.0.3
 - Added `aria-selected="true"` for the suggestions listbox focused option.
 - Fix aria attributes to use booleans rather than strings (that was a draft-js update that we missed)

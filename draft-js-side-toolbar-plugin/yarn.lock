@@ -38,7 +38,7 @@ fbjs@^0.8.16:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
 
-find-with-regex@^1.0.2:
+find-with-regex@^1.1.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/find-with-regex/-/find-with-regex-1.0.2.tgz#d3b36286539f14c527e31f194159c6d251651a45"
 

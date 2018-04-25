@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2.0.2
 - extracted utilities into separate lib
+- bumped find-with-regex
+
+## 2.0.1
+- 2.0 release
 
 ## 2.0.0-rc11 - 2017-11-07
 ### Add support for mailto:username@domain syntax (to support email links)

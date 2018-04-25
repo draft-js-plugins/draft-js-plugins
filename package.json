@@ -102,7 +102,7 @@
     "draft-js": "^0.10.5",
     "emojione": "^2.2.7",
     "eslint-plugin-import": "^2.2.0",
-    "find-with-regex": "^1.0.2",
+    "find-with-regex": "^1.1.2",
     "immutable": "^3.8.1",
     "linkify-it": "^2.0.3",
     "loader-utils": "^1.0.2",
