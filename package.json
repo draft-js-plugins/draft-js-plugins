@@ -32,7 +32,8 @@
     "lint:staged": "lint-staged",
     "alex": "alex README.md",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "precommit": "lint:staged"
   },
   "lint-staged": {
     "lint:eslint": "*.js"

@@ -20,7 +20,7 @@ const addMention = (editorState, mention, mentionPrefix, mentionTrigger, entityM
   let mentionReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
     mentionTextSelection,
-    `${mentionPrefix}${mention.get('name')}`,
+    `${mentionPrefix}${mention.name}`,
     null, // no inline style needed
     entityKey
   );

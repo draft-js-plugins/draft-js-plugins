@@ -3,8 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.0.3
+## 3.0.1
 - Added `aria-selected="true"` for the suggestions listbox focused option.
+
+## 3.0.0
+- Deprecate immutable suggestions (breaking change), use arrays from now on
+- export default theme (in case we want to extend it)
 
 ## 2.0.2
 (Much thanks to "dem" aka "Michael Deryugin" - https://github.com/dem)
