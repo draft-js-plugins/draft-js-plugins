@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.0.4
+## 2.0.4 - 2.0.5
 - bumped find-with-regex
 
 ### 2.0.3
