@@ -1,9 +1,11 @@
-import { RichUtils, EditorState } from 'draft-js';
+// @flow
+
+import { RichUtils, EditorState, ContentState, SelectionState } from 'draft-js';
+import type DraftEntityInstance from "draft-js/lib/DraftEntityInstance";
 
 export default {
-  createLinkAtSelection(editorState, url) {
-    const contentState = editorState.getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', { url });
+  createLinkAtSelection(editorState: EditorState, url: string): EditorState {
+    const contentState = editorState.getCurrentContent() .createEntity('LINK', 'MUTABLE', { url });
     const entityKey = contentState.getLastCreatedEntityKey();
     const withLink = RichUtils.toggleLink(
       editorState,
@@ -15,12 +17,12 @@ export default {
     );
   },
 
-  removeLinkAtSelection(editorState) {
+  removeLinkAtSelection(editorState: EditorState): EditorState {
     const selection = editorState.getSelection();
     return RichUtils.toggleLink(editorState, selection, null);
   },
 
-  getCurrentEntityKey(editorState) {
+  getCurrentEntityKey(editorState: EditorState): ?string {
     const selection = editorState.getSelection();
     const anchorKey = selection.getAnchorKey();
     const contentState = editorState.getCurrentContent();
@@ -30,13 +32,13 @@ export default {
     return anchorBlock.getEntityAt(index);
   },
 
-  getCurrentEntity(editorState) {
+  getCurrentEntity(editorState: EditorState): ?DraftEntityInstance {
     const contentState = editorState.getCurrentContent();
     const entityKey = this.getCurrentEntityKey(editorState);
     return entityKey ? contentState.getEntity(entityKey) : null;
   },
 
-  hasEntity(editorState, entityType) {
+  hasEntity(editorState: EditorState, entityType: string): boolean {
     const entity = this.getCurrentEntity(editorState);
     return entity && entity.getType() === entityType;
   },
