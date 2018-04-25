@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.4
+- use capitalised image entity type "IMAGE" instead of "image" - now works with convertFromHTML
+
 ## 2.0.3
 - bumped find-with-regex
 
