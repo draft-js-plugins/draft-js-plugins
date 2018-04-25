@@ -1,11 +1,11 @@
 // @flow
 
-import { RichUtils, EditorState, ContentState, SelectionState } from 'draft-js';
-import type DraftEntityInstance from "draft-js/lib/DraftEntityInstance";
+import { RichUtils, EditorState } from 'draft-js';
+import type DraftEntityInstance from 'draft-js/lib/DraftEntityInstance';
 
 export default {
   createLinkAtSelection(editorState: EditorState, url: string): EditorState {
-    const contentState = editorState.getCurrentContent() .createEntity('LINK', 'MUTABLE', { url });
+    const contentState = editorState.getCurrentContent().createEntity('LINK', 'MUTABLE', { url });
     const entityKey = contentState.getLastCreatedEntityKey();
     const withLink = RichUtils.toggleLink(
       editorState,
