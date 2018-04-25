@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import unionClassNames from 'union-class-names';
-import EditorUtils from '../../utils/EditorUtils';
+import EditorUtils from 'draft-js-plugins-utils';
 import AddLinkForm from './AddLinkForm';
 
 export default class LinkButton extends Component {
