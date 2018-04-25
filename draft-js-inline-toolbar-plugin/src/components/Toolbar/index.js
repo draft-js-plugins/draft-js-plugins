@@ -81,17 +81,10 @@ export default class Toolbar extends React.Component {
       };
       // boundings of the selected text
       const selectionRect = getVisibleSelectionRect(window);
-      if (!selectionRect) return;
+      const selection = this.props.store.getItem('getEditorState')().getSelection();
+      if (!selectionRect || selection.isCollapsed()) return;
 
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
-      if (relativeParent) {
-        // avoid false
-        const fontSize = window.getComputedStyle(relativeParent, null).getPropertyValue('font-size');
-        // exit if no selection was made
-        if (selectionRect.left === selectionRect.right && selectionRect.height === parseFloat(fontSize)) {
-          return;
-        }
-      }
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
 
       // if parent block width is wider than the toolbar, we must forcibly set its
