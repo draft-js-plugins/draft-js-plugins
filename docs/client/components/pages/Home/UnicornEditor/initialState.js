@@ -7,7 +7,7 @@
 const initialState = {
   entityMap: {
     '0': {
-      type: 'image',
+      type: 'IMAGE',
       mutability: 'IMMUTABLE',
       data: {
         src: '/images/canada-landscape-small.jpg',
