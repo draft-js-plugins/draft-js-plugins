@@ -25,7 +25,6 @@
 .*/draft-js-sticker-plugin/node_modules/.*
 .*/draft-js-undo-plugin/node_modules/.*
 .*/draft-js-video-plugin/node_modules/.*
-
 .*/node_modules/chalk/.*
 .*/node_modules/relay-compiler/.*
 .*/node_modules/relay-runtime/.*
