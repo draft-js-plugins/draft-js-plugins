@@ -13,7 +13,7 @@ const defaultEntryComponent = (props) => {
   return (
     <div {...parentProps}>
       <Avatar mention={mention} theme={theme} />
-      <span className={theme.mentionSuggestionsEntryText}>{mention.get('name')}</span>
+      <span className={theme.mentionSuggestionsEntryText}>{mention.name}</span>
     </div>
   );
 };

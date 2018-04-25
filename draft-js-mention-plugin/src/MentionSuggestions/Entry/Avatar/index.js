@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Avatar = ({ mention, theme = {} }) => {
-  if (mention.has('avatar')) {
+  if (mention.avatar) {
     return (
       <img
-        src={mention.get('avatar')}
+        src={mention.avatar}
         className={theme.mentionSuggestionsEntryAvatar}
         role="presentation"
       />
