@@ -26,9 +26,7 @@ export const defaultTheme = {
   mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
 };
 
-
 export default (config = {}) => {
-
   const callbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,

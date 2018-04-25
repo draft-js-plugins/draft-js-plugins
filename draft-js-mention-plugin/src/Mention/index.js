@@ -1,5 +1,4 @@
 import React from 'react';
-import { fromJS } from 'immutable';
 import unionClassNames from 'union-class-names';
 
 const MentionLink = ({ mention, children, className }) =>
