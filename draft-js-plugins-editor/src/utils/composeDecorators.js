@@ -1,3 +1,5 @@
+// @flow
+
 // This code originally has been copied from Recompose
 // https://github.com/acdlite/recompose/blob/master/src/packages/recompose/compose.js
 export default (...funcs) => {

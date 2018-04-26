@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';

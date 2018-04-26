@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * Create an editor state with some text in it already
  */
@@ -7,6 +9,6 @@ import {
   EditorState,
 } from 'draft-js';
 
-export default (text) => EditorState.createWithContent(
+export default (text: string): EditorState => EditorState.createWithContent(
   ContentState.createFromText(text)
 );

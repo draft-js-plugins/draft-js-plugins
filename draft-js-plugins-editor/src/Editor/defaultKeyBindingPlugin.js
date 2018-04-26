@@ -1,4 +1,5 @@
 // @flow
+
 import { getDefaultKeyBinding } from 'draft-js';
 
 /**
