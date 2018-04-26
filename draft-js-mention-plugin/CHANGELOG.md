@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 3.0.2 - 3.0.3
 - bumped find-with-regex
+- Added an `id` attribute on the listbox options so the `aria-activedescendant` value refers to the focused option.
 
 ## 3.0.1
 - Added `aria-selected="true"` for the suggestions listbox focused option.
