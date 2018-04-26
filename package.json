@@ -33,7 +33,7 @@
     "alex": "alex README.md",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "build-storybook": "build-storybook",
-    "precommit": "lint:staged"
+    "precommit": "yarn test && yarn lint:flow && yarn lint:staged"
   },
   "lint-staged": {
     "lint:eslint": "*.js"
