@@ -5,6 +5,7 @@ module.exports = {
   resolve: {
     alias: {
       'draft-js-plugins-editor': path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
+      'draft-js-plugins-utils': path.join(__dirname, '..', 'draft-js-plugins-utils', 'src'),
       'draft-js-hashtag-plugin': path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
       'draft-js-linkify-plugin': path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
       'draft-js-anchor-plugin': path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
@@ -40,6 +41,7 @@ module.exports = {
         loader: ['babel-loader'],
         include: [
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
+          path.join(__dirname, '..', 'draft-js-plugins-utils', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
@@ -65,6 +67,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader' }),
         include: [
           path.join(__dirname, '..', 'draft-js-plugins-editor', 'src'),
+          path.join(__dirname, '..', 'draft-js-plugins-utils', 'src'),
           path.join(__dirname, '..', 'draft-js-hashtag-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-linkify-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-anchor-plugin', 'src'),
