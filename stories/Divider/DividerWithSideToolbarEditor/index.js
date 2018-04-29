@@ -4,7 +4,6 @@ import { convertFromRaw, EditorState } from 'draft-js';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
-// eslint-disable-next-line
 import createDividerPlugin from 'draft-js-divider-plugin';
 // eslint-disable-next-line
 import BlockTypeSelect from 'draft-js-side-toolbar-plugin/components/BlockTypeSelect';
@@ -46,7 +45,7 @@ const initialState = {
     {
       key: '9gm3s',
       text:
-        'This is a simple example for divider plugin. Click on the block to focus on it.',
+        'This is a simple example for divider plugin. Click side toolbar divider button.',
       type: 'unstyled',
       depth: 0,
       inlineStyleRanges: [],

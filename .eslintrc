@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "plugins": [ "mocha" ],
+  "plugins": ["mocha"],
   "env": {
     "browser": true,
     "mocha": true,
@@ -23,7 +23,7 @@
     "import/no-webpack-loader-syntax": 0,
     "import/extensions": 0,
     "jsx-a11y/img-has-alt": 0,
-    "react/require-default-props": 0,
+    "react/require-default-props": 0
   },
   "settings": {
     "import/core-modules": [
@@ -67,7 +67,9 @@
       "draft-js-undo-plugin",
       "draft-js-undo-plugin/lib/plugin.css",
       "draft-js-video-plugin",
-      "draft-js-video-plugin/lib/plugin.css"
+      "draft-js-video-plugin/lib/plugin.css",
+      "draft-js-divider-plugin",
+      "draft-js-divider-plugin/lib/plugin.css"
     ]
   }
 }
