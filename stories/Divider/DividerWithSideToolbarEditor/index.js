@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import { convertFromRaw, EditorState } from 'draft-js';
+
+import Editor, { composeDecorators } from 'draft-js-plugins-editor';
+import createFocusPlugin from 'draft-js-focus-plugin';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 // eslint-disable-next-line
 import createDividerPlugin from 'draft-js-divider-plugin';
 // eslint-disable-next-line
 import BlockTypeSelect from 'draft-js-side-toolbar-plugin/components/BlockTypeSelect';
-
 import editorStyles from './editorStyles.css';
 
-const dividerPlugin = createDividerPlugin();
+const focusPlugin = createFocusPlugin();
+
+const decorator = composeDecorators(focusPlugin.decorator);
+
+const dividerPlugin = createDividerPlugin({ decorator });
+
 const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme }) => (
   <BlockTypeSelect
     getEditorState={getEditorState}
@@ -17,22 +24,62 @@ const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme }) => (
     structure={[dividerPlugin.DividerButton]}
   />
 );
+
 const sideToolbarPlugin = createSideToolbarPlugin({
-  structure: [DefaultBlockTypeSelect],
+  structure: [DefaultBlockTypeSelect]
 });
+
 const { SideToolbar } = sideToolbarPlugin;
-const plugins = [sideToolbarPlugin, dividerPlugin];
-const text = 'Once you click into the text field the sidebar plugin will show up …';
 
-export default class SimpleSideToolbarEditor extends Component {
+const plugins = [focusPlugin, dividerPlugin, sideToolbarPlugin];
 
+/* eslint-disable */
+const initialState = {
+  entityMap: {
+    '0': {
+      type: 'divider',
+      mutability: 'IMMUTABLE',
+      data: {}
+    }
+  },
+  blocks: [
+    {
+      key: '9gm3s',
+      text:
+        'This is a simple example for divider plugin. Click on the block to focus on it.',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {}
+    },
+    {
+      key: 'ov7r',
+      text: ' ',
+      type: 'atomic',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [
+        {
+          offset: 0,
+          length: 1,
+          key: 0
+        }
+      ],
+      data: {}
+    }
+  ]
+};
+/* eslint-enable */
+
+export default class CustomImageEditor extends Component {
   state = {
-    editorState: createEditorStateWithText(text),
+    editorState: EditorState.createWithContent(convertFromRaw(initialState))
   };
 
   onChange = (editorState) => {
     this.setState({
-      editorState,
+      editorState
     });
   };
 
@@ -47,8 +94,11 @@ export default class SimpleSideToolbarEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={(element) => {
+            this.editor = element;
+          }}
         />
+
         <SideToolbar />
       </div>
     );

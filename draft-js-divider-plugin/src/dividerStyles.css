@@ -1,4 +1,4 @@
-.dividerBlock {
+.divider {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@
   text-align: center;
 }
 
-.dividerBlock::after {
+.divider::after {
   margin-left: 48px;
   color: rgba(0, 0, 0, 0.26); /* pick a color */
   font-size: 2.125rem;
