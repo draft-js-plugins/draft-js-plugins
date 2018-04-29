@@ -24,9 +24,10 @@ module.exports = {
       'draft-js-resizeable-plugin': path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
       'draft-js-buttons': path.join(__dirname, '..', 'draft-js-buttons', 'src'),
       'draft-js-video-plugin': path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
-      react: path.join(__dirname, 'node_modules', 'react'),
+      'draft-js-divider-plugin': path.join(__dirname, '..', 'draft-js-divider-plugin', 'src'),
+      react: path.join(__dirname, 'node_modules', 'react')
     },
-    extensions: ['.js'],
+    extensions: ['.js']
   },
   module: {
     rules: [
@@ -34,8 +35,9 @@ module.exports = {
         // match all js files except example.js
         test: /^(?!.*example\.js$).*\.js$/,
         use: ['babel-loader'],
-        exclude: /node_modules\/(?!url-regex)/,
-      }, {
+        exclude: /node_modules\/(?!url-regex)/
+      },
+      {
         test: /\.js$/,
         loader: ['babel-loader'],
         include: [
@@ -59,8 +61,10 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-buttons', 'src'),
           path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
-        ],
-      }, {
+          path.join(__dirname, '..', 'draft-js-divider-plugin', 'src')
+        ]
+      },
+      {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader' }),
         include: [
@@ -84,29 +88,27 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-resizeable-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-buttons', 'src'),
           path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
-          path.join(__dirname, 'client/components'),
-        ],
-      }, {
+          path.join(__dirname, '..', 'draft-js-divider-plugin', 'src'),
+          path.join(__dirname, 'client/components')
+        ]
+      },
+      {
         test: /\.(scss|sass)$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader!sass-loader',
+          use: 'css-loader?modules&importLoaders=1&localIdentName=[local]___[hash:base64:5]!postcss-loader!sass-loader'
         }),
-        include: [
-          path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src'),
-        ],
-      }, {
+        include: [path.join(__dirname, '..', 'draft-js-emoji-plugin', 'src')]
+      },
+      {
         test: /prism\.css$/,
         loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }),
-        include: [
-          path.join(__dirname, 'node_modules/prismjs/themes/'),
-        ],
-      }, {
-        test: /\.(png|jpg|gif|ico)$/,
-        use: [
-          { loader: 'file-loader', options: { name: '[name].[ext]' } },
-        ],
+        include: [path.join(__dirname, 'node_modules/prismjs/themes/')]
       },
-    ],
-  },
+      {
+        test: /\.(png|jpg|gif|ico)$/,
+        use: [{ loader: 'file-loader', options: { name: '[name].[ext]' } }]
+      }
+    ]
+  }
 };

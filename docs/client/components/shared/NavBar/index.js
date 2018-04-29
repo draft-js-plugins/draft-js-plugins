@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import styles from './styles.css';
 
 export default class NavBar extends Component {
-
   render() {
     return (
       <div className={styles.pluginsWrapper}>
@@ -97,7 +96,12 @@ export default class NavBar extends Component {
             </li>
             <li className={styles.plugin}>
               <Link to="/plugin/drag-n-drop" className={styles.link}>
-                {'Drag\'n\'Drop'}
+                {"Drag'n'Drop"}
+              </Link>
+            </li>
+            <li className={styles.plugin}>
+              <Link to="/plugin/divider" className={styles.link}>
+                Divider
               </Link>
             </li>
           </ul>
