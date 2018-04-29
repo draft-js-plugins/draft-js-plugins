@@ -68,3 +68,6 @@ cd ..
 cd draft-js-video-plugin
 npm publish
 cd ..
+cd draft-js-divider-plugin
+npm publish
+cd ..
