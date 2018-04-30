@@ -1,5 +1,3 @@
-// @flow
-
 import Draft from 'draft-js';
 import { expect } from 'chai';
 import MultiDecorator from '../MultiDecorator';
