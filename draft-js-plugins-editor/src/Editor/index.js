@@ -12,6 +12,17 @@ import moveSelectionToEnd from './moveSelectionToEnd';
 import resolveDecorators from './resolveDecorators';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
 
+const getDecoratorLength = obj => {
+  let decorators;
+  if (obj.decorators) {
+    decorators = obj.decorators
+  } else if(obj._decorators) {
+    decorators = obj._decorators
+  }
+
+  return decorators.size != null ? decorators.size : decorators.length
+}
+
 /**
  * The main editor component
  */
@@ -72,7 +83,7 @@ class PluginEditor extends Component {
     // If the current decorator is the same as the new one, don't call onChange to avoid infinite loops
     if (currDec === nextDec) return;
     // If the old and the new decorator are the same, but no the same object, also don't call onChange to avoid infinite loops
-    if (currDec && nextDec && currDec.decorators.size === nextDec.decorators.size) return;
+    if (currDec && nextDec && getDecoratorLength(currDec) === getDecoratorLength(nextDec)) return;
 
     const editorState = EditorState.set(next.editorState, { decorator: currDec });
     this.onChange(moveSelectionToEnd(editorState));
