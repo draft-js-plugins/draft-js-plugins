@@ -1,5 +1,7 @@
 // @flow
 
+/* eslint-disable no-undef */
+
 import { getDefaultKeyBinding } from 'draft-js';
 
 /**

@@ -1,9 +1,7 @@
 // @flow
 
 import Immutable, { List } from 'immutable';
-import { ContentBlock, ContentState, CompositeDecorator } from 'draft-js'
-import { Component } from 'react'
-import { type DraftDecoratorType } from "draft-js/lib/DraftDecoratorType";
+import { ContentBlock, ContentState, CompositeDecorator } from 'draft-js';
 
 const KEY_SEPARATOR = '-';
 
@@ -17,7 +15,7 @@ class MultiDecorator {
   /**
    * Return list of decoration IDs per character
    */
-   getDecorations(block: ContentBlock, contentState: ContentState): List<string|null> {
+  getDecorations(block: ContentBlock, contentState: ContentState): List<string|null> {
     const decorations = new Array(block.getText().length).fill(null);
 
     this.decorators.forEach((decorator, i) => {

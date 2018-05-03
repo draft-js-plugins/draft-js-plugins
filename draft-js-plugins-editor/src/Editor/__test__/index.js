@@ -213,7 +213,7 @@ describe('Editor', () => {
           willUnmount: sinon.spy(),
         },
       ];
-      const willUnmount = sinon.spy()
+      const willUnmount = sinon.spy();
       const result = mount(
         <PluginEditor
           editorState={editorState}

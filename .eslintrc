@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["mocha"],
+  "plugins": [ "mocha", "flowtype" ],
   "env": {
     "browser": true,
     "mocha": true,

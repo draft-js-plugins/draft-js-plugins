@@ -1,30 +1,43 @@
 // @flow
 
-import React, { Component } from 'react'
-import { type BlockNodeRecord } from "draft-js/lib/BlockNodeRecord"
-import { type DraftDragType } from "draft-js/lib/DraftDragType"
-import { type DraftTextAlignment } from "draft-js/lib/DraftTextAlignment"
-import { type DraftEditorCommand } from "draft-js/lib/DraftEditorCommand"
-import { type DraftDecoratorType } from "draft-js/lib/DraftDecoratorType";
-import { type DraftHandleValue } from "draft-js/lib/DraftHandleValue"
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-undef */
+
+import { type BlockNodeRecord } from 'draft-js/lib/BlockNodeRecord';
+import { type DraftDragType } from 'draft-js/lib/DraftDragType';
+import { type DraftTextAlignment } from 'draft-js/lib/DraftTextAlignment';
+import { type DraftEditorCommand } from 'draft-js/lib/DraftEditorCommand';
+import { type DraftDecoratorType } from 'draft-js/lib/DraftDecoratorType';
+import { type DraftHandleValue } from 'draft-js/lib/DraftHandleValue';
 import { type BidiDirection } from 'fbjs/lib/UnicodeBidiDirection';
-import { type DraftBlockRenderMap } from "draft-js/lib/DraftBlockRenderMap"
-import { EditorState } from "draft-js"
+import { type DraftBlockRenderMap } from 'draft-js/lib/DraftBlockRenderMap';
+import { EditorState, SelectionState } from 'draft-js';
 import createEditorStateWithTextFn from './utils/createEditorStateWithText';
 import composeDecoratorsFn from './utils/composeDecorators';
 
 // eslint-disable-next-line import/no-named-as-default
 import Editor from './Editor';
+
 export const createEditorStateWithText = createEditorStateWithTextFn;
 export const composeDecorators = composeDecoratorsFn;
+
+export type PluginMethods = {
+  getPlugins: () => Array<Plugin>,
+  getProps: () => EditorProps,
+  setEditorState: EditorState => void,
+  getEditorState: () => EditorState,
+  getReadOnly: () => boolean,
+  setReadOnly: (boolean) => void,
+  getEditorRef: () => ?HTMLElement,
+}
 
 type HandleReturn = (e: SyntheticKeyboardEvent<>, editorState: EditorState, PluginMethods) => DraftHandleValue;
 type HandleKeyCommand = (command: DraftEditorCommand | string, editorState: EditorState, PluginMethods) => DraftHandleValue;
 type HandleBeforeInput = (chars: string, editorState: EditorState, PluginMethods) => DraftHandleValue;
 type HandlePastedText = (text: string, html?: string, editorState: EditorState, PluginMethods) => DraftHandleValue;
 type HandlePastedFiles = (files: Array<Blob>, PluginMethods) => DraftHandleValue
-type HandleDroppedFiles = (selection: SelectionState, files: Array<Blob>, PluginMethods) => DraftHandleValue
-type HandleDrop = (selection: SelectionState, dataTransfer: Object, isInternal: DraftDragType, PluginMethods) => DraftHandleValue
+type HandleDroppedFiles = (selection: SelectionState, files: Array<Blob>, PluginMethods) => DraftHandleValue;
+type HandleDrop = (selection: SelectionState, dataTransfer: Object, isInternal: DraftDragType, PluginMethods) => DraftHandleValue;
 
 export type Handler = HandleReturn | HandleKeyCommand | HandleBeforeInput | HandlePastedText | HandlePastedFiles | HandleDroppedFiles | HandleDrop
 
@@ -130,14 +143,4 @@ export type Plugin = {
 
 export type PluginCreator = (config?: Object) => Plugin;
 
-export type PluginMethods = {
-  getPlugins: () => Array<Plugin>,
-  getProps: () => EditorProps,
-  setEditorState: EditorState => void,
-  getEditorState: () => EditorState,
-  getReadOnly: () => boolean,
-  setReadOnly: (boolean) => void,
-  getEditorRef: () => ?HTMLElement,
-}
-
-export default Editor
+export default Editor;

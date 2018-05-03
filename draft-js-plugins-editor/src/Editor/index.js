@@ -1,6 +1,6 @@
 // @flow
 
-/* eslint-disable no-continue,no-restricted-syntax */
+/* eslint-disable no-continue, no-restricted-syntax, no-undef */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -8,15 +8,15 @@ import {
   Editor,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
-import { type DraftBlockRenderMap } from "draft-js/lib/DraftBlockRenderMap"
+import { type DraftBlockRenderMap } from 'draft-js/lib/DraftBlockRenderMap';
 import { Map } from 'immutable';
-import { type BlockNodeRecord } from "draft-js/lib/BlockNodeRecord"
+import { type BlockNodeRecord } from 'draft-js/lib/BlockNodeRecord';
 
 import proxies from './proxies';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import resolveDecorators from './resolveDecorators';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
-import { type Plugin, type Handler, type EditorProps, type PluginMethods } from "../"
+import { type Plugin, type EditorProps, type PluginMethods } from '../';
 
 const hooks = {
   fn: [
@@ -78,12 +78,6 @@ class PluginEditor extends Component<EditorProps, State> {
     decorators: PropTypes.array,
   };
 
-  editor: ?HTMLElement
-
-  state = {
-    readOnly: false
-  }
-
   static defaultProps = {
     defaultBlockRenderMap: true,
     defaultKeyBindings: true,
@@ -96,7 +90,7 @@ class PluginEditor extends Component<EditorProps, State> {
     super(props);
 
     const plugins = [this.props, ...this.resolvePlugins()];
-    const pluginMethods = this.getPluginMethods()
+    const pluginMethods = this.getPluginMethods();
 
     plugins.forEach((plugin) => {
       if (plugin.initialize != null) {
@@ -112,6 +106,10 @@ class PluginEditor extends Component<EditorProps, State> {
         this.editor[method](...args)
       );
     });
+  }
+
+  state = {
+    readOnly: false
   }
 
   componentWillMount() {
@@ -150,7 +148,7 @@ class PluginEditor extends Component<EditorProps, State> {
   // changed (or didn't)
   onChange = (editorState: EditorState) => {
     let newEditorState = editorState;
-    const pluginMethods = this.getPluginMethods()
+    const pluginMethods = this.getPluginMethods();
     this.resolvePlugins().forEach((plugin) => {
       if (plugin.onChange != null && newEditorState != null) {
         newEditorState = plugin.onChange(newEditorState, pluginMethods);
@@ -165,9 +163,8 @@ class PluginEditor extends Component<EditorProps, State> {
   getPlugins = (): Array<Plugin> => {
     if (this.props.plugins != null) {
       return this.props.plugins.slice(0);
-    } else {
-      return []
     }
+    return [];
   }
 
   getProps = (): EditorProps => ({ ...this.props });
@@ -192,13 +189,16 @@ class PluginEditor extends Component<EditorProps, State> {
     getEditorRef: this.getEditorRef,
   });
 
-  createEventHooks = (methodName: string, plugins: Array<Plugin|EditorProps>) => (event: SyntheticKeyboardEvent<> | SyntheticEvent<>) => {
-    const pluginMethods = this.getPluginMethods()
+  editor: ?HTMLElement
 
+  createEventHooks = (methodName: string, plugins: Array<Plugin|EditorProps>) => (event: SyntheticKeyboardEvent<> | SyntheticEvent<>) => {
+    const pluginMethods = this.getPluginMethods();
+
+    // eslint-disable-next-line array-callback-return, consistent-return
     return plugins.some((plugin) => {
-      const method = plugin[methodName]
+      const method = plugin[methodName];
       if (method != null) {
-        return method(event, pluginMethods) === true
+        return method(event, pluginMethods) === true;
       }
     });
   };
@@ -207,8 +207,8 @@ class PluginEditor extends Component<EditorProps, State> {
     const newArgs = [firstArg, ...args, this.getPluginMethods()];
 
     return plugins.some((plugin) => {
-      const method = plugin[methodName]
-      return method != null && method(...newArgs) === 'handled'
+      const method = plugin[methodName];
+      return method != null && method(...newArgs) === 'handled';
     }) ? 'handled' : 'not-handled';
   };
 
@@ -216,7 +216,7 @@ class PluginEditor extends Component<EditorProps, State> {
     const finalBlock = plugins
       .reduce((block, plugin) => {
         if (plugin.blockRendererFn == null) {
-          return block
+          return block;
         }
         const result = plugin.blockRendererFn(blockNode, pluginMethods);
 
@@ -226,40 +226,36 @@ class PluginEditor extends Component<EditorProps, State> {
           return { ...rest, ...pluginRest, props: { ...props, ...pluginProps } };
         }
 
-        return block
+        return block;
       }, { props: {} });
 
     return finalBlock.component != null ? finalBlock : false;
   }
 
-  createBlockStyleFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (block: BlockNodeRecord):string => {
-    return plugins
+  createBlockStyleFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (block: BlockNodeRecord):string => plugins
       .reduce((styles, plugin) => {
-          if (plugin.blockStyleFn == null) {
-            return styles;
-          }
-
-          const result = plugin.blockStyleFn(block, pluginMethods);
-          if (result != null) styles.push(result)
+        if (plugin.blockStyleFn == null) {
           return styles;
-        }, []).join(' ');
-  }
+        }
 
-  createCustomStyleFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (style: DraftInlineStyle, block: BlockNodeRecord) => {
-    return plugins.reduce((styles, plugin) => {
-      if (plugin.customStyleFn == null) {
-        return styles
-      }
+        const result = plugin.blockStyleFn(block, pluginMethods);
+        if (result != null) styles.push(result);
+        return styles;
+      }, []).join(' ')
 
-      let newStyles = styles
+  createCustomStyleFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (style: DraftInlineStyle, block: BlockNodeRecord) => plugins.reduce((styles, plugin) => {
+    if (plugin.customStyleFn == null) {
+      return styles;
+    }
 
-      const result = plugin.customStyleFn(style, block, pluginMethods)
-      if (result != null) {
-        newStyles = {...newStyles, ...result}
-      }
-      return newStyles
-    }, {})
-  }
+    let newStyles = styles;
+
+    const result = plugin.customStyleFn(style, block, pluginMethods);
+    if (result != null) {
+      newStyles = { ...newStyles, ...result };
+    }
+    return newStyles;
+  }, {})
 
   createKeyBindingFn = (plugins: Array<Plugin|EditorProps>, pluginMethods: PluginMethods) => (event: SyntheticKeyboardEvent<>): ?string => {
     let result;
@@ -274,17 +270,17 @@ class PluginEditor extends Component<EditorProps, State> {
   }
 
   createFnHooks = (methodName:string, plugins: Array<Plugin|EditorProps>) => {
-    const pluginMethods = this.getPluginMethods()
+    const pluginMethods = this.getPluginMethods();
 
     if (methodName === 'blockRendererFn') {
-      return this.createBlockRendererFn(plugins, pluginMethods)
+      return this.createBlockRendererFn(plugins, pluginMethods);
     } else if (methodName === 'blockStyleFn') {
-      return this.createBlockStyleFn(plugins, pluginMethods)
+      return this.createBlockStyleFn(plugins, pluginMethods);
     } else if (methodName === 'customStyleFn') {
-      return this.createCustomStyleFn(plugins, pluginMethods)
+      return this.createCustomStyleFn(plugins, pluginMethods);
     }
 
-    return this.createKeyBindingFn(plugins, pluginMethods)
+    return this.createKeyBindingFn(plugins, pluginMethods);
   };
 
   createPluginHooks = () => {
@@ -294,28 +290,28 @@ class PluginEditor extends Component<EditorProps, State> {
     // becomes
     // { handleReturn: 'handle', handleEnter: 'handle' }
     const hookMethods = Object.keys(hooks)
-      .reduce((methods, key) => ({...methods, ...hooks[key].reduce((acc, val) => ({ ...acc, [val]: key }), {})}), {})
-    const hookMethodNames = Object.keys(hookMethods)
+      .reduce((methods, key) => ({ ...methods, ...hooks[key].reduce((acc, val) => ({ ...acc, [val]: key }), {}) }), {});
+    const hookMethodNames = Object.keys(hookMethods);
 
     const createMethods = {
       event: this.createEventHooks,
       fn: this.createFnHooks,
       handle: this.createHandleHooks,
-    }
+    };
 
     // spreading a set makes this array unique
-    return [...new Set(props.reduce((acc, val) => [ ...acc, ...Object.keys(val)], []))]
+    return [...new Set(props.reduce((acc, val) => [...acc, ...Object.keys(val)], []))]
     // filter methods which are valid
-    .filter(val => hookMethodNames.includes(val))
+    .filter((val) => hookMethodNames.includes(val))
     .reduce((acc, val) => ({
       ...acc,
       [val]: createMethods[hookMethods[val]](val, props)
-    }), {})
+    }), {});
   };
 
   resolvePlugins = (): Array<Plugin> => {
-    const { plugins: _plugins, defaultKeyBindings } = this.props
-    const plugins = _plugins && _plugins.length > 0 ? [..._plugins] : []
+    const { plugins: _plugins, defaultKeyBindings } = this.props;
+    const plugins = _plugins && _plugins.length > 0 ? [..._plugins] : [];
 
     if (defaultKeyBindings === true) {
       plugins.push(defaultKeyBindingPlugin);
@@ -325,41 +321,40 @@ class PluginEditor extends Component<EditorProps, State> {
   };
 
   resolveCustomStyleMap = () => {
-    const { plugins, customStyleMap } = this.props
-    let styleMaps = []
+    const { plugins, customStyleMap } = this.props;
+    let styleMaps = [];
     if (plugins != null) {
       styleMaps = plugins
         .filter((plug) => plug.customStyleMap != null)
-        .map((plug) => plug.customStyleMap)
+        .map((plug) => plug.customStyleMap);
     }
 
     if (customStyleMap != null) {
-      styleMaps = styleMaps.concat([customStyleMap])
+      styleMaps = styleMaps.concat([customStyleMap]);
     }
 
-    return styleMaps.reduce((styles, style) => ({ ...styles, ...style, }), {})
+    return styleMaps.reduce((styles, style) => ({ ...styles, ...style, }), {});
   }
 
   resolveblockRenderMap = (): DraftBlockRenderMap => {
-    const { defaultBlockRenderMap, blockRenderMap, plugins } = this.props
+    const { defaultBlockRenderMap, blockRenderMap, plugins } = this.props;
 
-    let map = Map({})
+    let map = Map({});
 
     /*
      * TODO: Add this to docs probably doctypes
      * props.blockRenderMap > plugin.blockRenderMap  > DefaultDraftBlockRenderMap
-     */ 
+     */
     if (defaultBlockRenderMap === true) {
       map = map.merge(DefaultDraftBlockRenderMap);
     }
 
     if (plugins != null) {
       map = plugins
-        .reduce((styles, plug) => 
+        .reduce((styles, plug) => (
           plug.blockRenderMap != null
             ? styles.merge(plug.blockRenderMap)
-            : styles
-        , map);
+            : styles), map);
     }
 
     if (blockRenderMap != null) {

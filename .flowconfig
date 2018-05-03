@@ -33,6 +33,9 @@
 .*/node_modules/draft-js/lib/DraftEditorDragHandler.js.flow
 .*/node_modules/draft-js/lib/DraftEditorLeaf.react.js.flow
 .*/node_modules/draft-js/lib/DraftEditor.react.js.flow
+.*/examples/.*
+.*/new-docs/.*
+
 
 [include]
 flow-typed
