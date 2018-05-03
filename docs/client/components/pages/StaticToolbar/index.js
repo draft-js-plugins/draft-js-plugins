@@ -12,6 +12,10 @@ import themedExampleCode from '!!../../../loaders/prism-loader?language=javascri
 // eslint-disable-next-line import/no-unresolved
 import themedExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./ThemedToolbarEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
+import themedExampleButtonStylesCode from '!!../../../loaders/prism-loader?language=css!./ThemedToolbarEditor/buttonStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import themedExampleToolbarStylesCode from '!!../../../loaders/prism-loader?language=css!./ThemedToolbarEditor/toolbarStyles.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
@@ -104,6 +108,8 @@ export default class App extends Component {
           <ThemedToolbarEditor />
           <Code code={themedExampleCode} name="ThemedToolbarEditor.js" />
           <Code code={themedExampleEditorStylesCode} name="editorStyles.css" />
+          <Code code={themedExampleButtonStylesCode} name="buttonStyles.css" />
+          <Code code={themedExampleToolbarStylesCode} name="toolbarStyles.css" />
         </Container>
         <SocialBar />
       </div>

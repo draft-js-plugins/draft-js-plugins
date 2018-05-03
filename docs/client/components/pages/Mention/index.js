@@ -228,7 +228,7 @@ export default class App extends Component {
           <Heading level={2}>Custom Themed Mention Example</Heading>
           <CustomMentionEditor />
           <Code code={customExampleCode} name="CustomMentionEditor.js" />
-          <Code code={customExampleMentionsStylesCode} name="mentionsStyles.js" />
+          <Code code={customExampleMentionsStylesCode} name="mentionsStyles.css" />
           <Code code={customExampleMentionsCode} name="mentions.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
