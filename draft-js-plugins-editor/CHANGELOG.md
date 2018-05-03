@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.8
+- fix decorator resolution for custom decorators - "size" of undefined error #1034
+
 ## 2.0.6 - 2.0.7
 - bumped find-with-regex
 
