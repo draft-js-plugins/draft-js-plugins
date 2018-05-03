@@ -11,6 +11,7 @@
     "arrow-parens": ["error", "always"],
     "max-len": 0,
     "comma-dangle": 0,
+    "no-underscore-dangle": 0,
     "new-cap": 0,
     "react/prop-types": 0,
     "react/forbid-prop-types": 0,

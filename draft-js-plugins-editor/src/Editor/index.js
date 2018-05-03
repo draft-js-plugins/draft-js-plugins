@@ -12,16 +12,17 @@ import moveSelectionToEnd from './moveSelectionToEnd';
 import resolveDecorators from './resolveDecorators';
 import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
 
-const getDecoratorLength = obj => {
+const getDecoratorLength = (obj) => {
   let decorators;
-  if (obj.decorators) {
-    decorators = obj.decorators
-  } else if(obj._decorators) {
-    decorators = obj._decorators
+
+  if (obj.decorators != null) {
+    decorators = obj.decorators;
+  } else if (obj._decorators != null) {
+    decorators = obj._decorators;
   }
 
-  return decorators.size != null ? decorators.size : decorators.length
-}
+  return decorators.size != null ? decorators.size : decorators.length;
+};
 
 /**
  * The main editor component
