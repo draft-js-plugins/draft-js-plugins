@@ -9,6 +9,9 @@ import { storiesOf } from '@storybook/react';
 import SimpleAlignmentEditor from './Alignment/SimpleAlignmentEditor';
 import ThemedAlignmentEditor from './Alignment/ThemedAlignmentEditor';
 
+// Dynamic Plugins
+import DynamicPluginsEditor from './DynamicPluginsEditor';
+
 // Anchor
 import AnchorSimpleLinkPluginEditor from './Anchor/SimpleLinkPluginEditor';
 
@@ -144,6 +147,10 @@ storiesOf('Video Plugin')
   .add('Editor with Video Plugin', () => <SimpleVideoEditor />)
   .add('Editor with custom themed Video Plugin', () => <CustomVideoEditor />)
   .add('Editor with Video Plugin and Add Video Button', () => <CustomAddVideoEditor />);
+
+
+storiesOf('Dynamic Plugins Editor')
+  .add('resolves plugins correctly when updated dynamically', () => <DynamicPluginsEditor />);
 
 storiesOf('StaticToolbar Plugin')
   .add('CustomToolbarEditor', () => <CustomToolbarEditor />)

@@ -1,14 +1,15 @@
 // @flow
 
 import Immutable, { List } from 'immutable';
-import { ContentBlock, ContentState, CompositeDecorator } from 'draft-js';
+import { ContentBlock, ContentState } from 'draft-js';
+import { type DraftDecoratorType } from 'draft-js/lib/DraftDecoratorType';
 
 const KEY_SEPARATOR = '-';
 
 class MultiDecorator {
-  decorators: List<CompositeDecorator>
+  decorators: List<DraftDecoratorType>
 
-  constructor(decorators: Array<CompositeDecorator> | List<CompositeDecorator>) {
+  constructor(decorators: List<DraftDecoratorType>) {
     this.decorators = Immutable.List(decorators);
   }
 
@@ -59,7 +60,7 @@ class MultiDecorator {
    * @param {String} key
    * @return {Decorator}
    */
-  getDecoratorForKey(key: string): CompositeDecorator {
+  getDecoratorForKey(key: string): DraftDecoratorType {
     const parts = key.split(KEY_SEPARATOR);
     const index = Number(parts[0]);
 

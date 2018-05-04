@@ -684,20 +684,5 @@ describe('Editor', () => {
       expect(customPluginDecorator).has.been.called();
       expect(decoratorStrategy).has.been.called();
     });
-
-    it('reassigns decorators to editorState when props are updated with naked editorState', (done) => {
-      const props = { plugins, text };
-      const comp = mount(<TestEditor {...props} />);
-
-      const decoratorNumber = comp.state('editorState').getDecorator().decorators.size;
-
-      setTimeout(() => {
-        const newText = 'Yoyoyoyo dude';
-        comp.setProps({ text: newText });
-        expect(comp.state('editorState').getDecorator().decorators.size).to.eq(decoratorNumber);
-        expect(comp.state('editorState').getCurrentContent().getPlainText()).to.eq(newText);
-        done();
-      }, 100);
-    });
   });
 });

@@ -8,6 +8,8 @@ import {
   Editor,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
+import shallowEqual from 'shallowequal';
+
 import { type DraftBlockRenderMap } from 'draft-js/lib/DraftBlockRenderMap';
 import { Map } from 'immutable';
 import { type BlockNodeRecord } from 'draft-js/lib/BlockNodeRecord';
@@ -88,24 +90,7 @@ class PluginEditor extends Component<EditorProps, State> {
 
   constructor(props: EditorProps) {
     super(props);
-
-    const plugins = [this.props, ...this.resolvePlugins()];
-    const pluginMethods = this.getPluginMethods();
-
-    plugins.forEach((plugin) => {
-      if (plugin.initialize != null) {
-        plugin.initialize(pluginMethods);
-      }
-    });
-
-    // attach proxy methods like `focus` or `blur`
-    proxies.forEach((method) => {
-      // $FlowFixMe
-      this[method] = (...args) => (
-        // $FlowFixMe
-        this.editor[method](...args)
-      );
-    });
+    this.setupPlugins();
   }
 
   state = {
@@ -119,20 +104,21 @@ class PluginEditor extends Component<EditorProps, State> {
     this.onChange(moveSelectionToEnd(editorState));
   }
 
-  componentWillReceiveProps(next: EditorProps) {
+  componentDidUpdate(prev: EditorProps) {
     const curr = this.props;
-    const currDec = curr.editorState.getDecorator();
-    const nextDec = next.editorState.getDecorator();
 
-    // If there is not current decorator, there's nothing to carry over to the next editor state
-    if (!currDec) return;
-    // If the current decorator is the same as the new one, don't call onChange to avoid infinite loops
-    if (currDec === nextDec) return;
-    // If the old and the new decorator are the same, but no the same object, also don't call onChange to avoid infinite loops
-    if (currDec && nextDec && getDecoratorLength(currDec) === getDecoratorLength(nextDec)) return;
+    // check if props.plugins or props.decorators are still the same, only then reset
+    if (!shallowEqual(curr.plugins, prev.plugins) ||
+        !shallowEqual(curr.decorators, prev.decorators)
+    ) {
+      const editorState = EditorState.set(
+        curr.editorState,
+        { decorator: resolveDecorators(curr, this.getEditorState, this.onChange) }
+      );
 
-    const editorState = EditorState.set(next.editorState, { decorator: currDec });
-    this.onChange(moveSelectionToEnd(editorState));
+      this.onChange(editorState);
+      this.setupPlugins();
+    }
   }
 
   componentWillUnmount() {
@@ -159,6 +145,26 @@ class PluginEditor extends Component<EditorProps, State> {
       this.props.onChange(newEditorState, pluginMethods);
     }
   };
+
+  setupPlugins = () => {
+    const plugins = [this.props, ...this.resolvePlugins()];
+    const pluginMethods = this.getPluginMethods();
+
+    plugins.forEach((plugin) => {
+      if (plugin.initialize != null) {
+        plugin.initialize(pluginMethods);
+      }
+    });
+
+    // attach proxy methods like `focus` or `blur`
+    proxies.forEach((method) => {
+      // $FlowFixMe
+      this[method] = (...args) => (
+        // $FlowFixMe
+        this.editor[method](...args)
+      );
+    });
+  }
 
   getPlugins = (): Array<Plugin> => {
     if (this.props.plugins != null) {
