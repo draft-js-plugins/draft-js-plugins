@@ -48,18 +48,6 @@ const hooks = {
   ]
 };
 
-const getDecoratorLength = (obj) => {
-  let decorators;
-
-  if (obj.decorators != null) {
-    decorators = obj.decorators;
-  } else if (obj._decorators != null) {
-    decorators = obj._decorators;
-  }
-
-  return decorators.size != null ? decorators.size : decorators.length;
-};
-
 /**
  * The main editor component
  */
