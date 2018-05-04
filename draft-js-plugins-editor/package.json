@@ -23,13 +23,16 @@
     "react-component"
   ],
   "scripts": {
-    "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "build": "yarn build:js && yarn build:flow",
+    "build:js": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "build:flow": "yarn flow-copy-source -i node_modules -i __test__ src lib",
     "prepublish": "npm run build"
   },
   "license": "MIT",
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "find-with-regex": "^1.1.3",
+    "flow-copy-source": "^1.3.0",
     "immutable": "~3.7.4",
     "prop-types": "^15.5.8",
     "shallowequal": "^1.0.2",
