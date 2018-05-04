@@ -3,8 +3,6 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.0.1
-- New release
+# 1.0.0
 
-## 1.0.0 - 2016-04-20
-### Released the first working version of DraftJS Counter Plugin
+- First release under the draft-js-plugins umbrella, added stories and doc examples with focus-plugin
