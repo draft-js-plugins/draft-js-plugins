@@ -171,13 +171,24 @@ export class MentionSuggestions extends Component {
     return editorState;
   };
 
-  onSearchChange = (editorState, selection, activeOffsetKey, lastActiveOffsetKey) => {
-    const { word } = getSearchText(editorState, selection, this.props.mentionTrigger);
-    const searchValue = word.substring(this.props.mentionTrigger.length, word.length);
+  // onSearchChange = (editorState, selection, activeOffsetKey, lastActiveOffsetKey) => {
+  //   const { word } = getSearchText(editorState, selection, this.props.mentionTrigger);
+  //   const searchValue = word.substring(this.props.mentionTrigger.length, word.length);
+  //
+  //   console.log('word',word)
+  //
+  //   if (this.lastSearchValue !== searchValue || activeOffsetKey !== lastActiveOffsetKey) {
+  //     this.lastSearchValue = searchValue;
+  //     this.props.onSearchChange({ value: searchValue });
+  //   }
+  // };
 
-    if (this.lastSearchValue !== searchValue || activeOffsetKey !== lastActiveOffsetKey) {
-      this.lastSearchValue = searchValue;
-      this.props.onSearchChange({ value: searchValue });
+  onSearchChange = (editorState, selection) => {
+    const { matchingString } = getSearchText(editorState, selection, this.props.mentionTrigger);
+
+    if (this.lastSearchValue !== matchingString) {
+      this.lastSearchValue = matchingString;
+      this.props.onSearchChange({ value: matchingString });
     }
   };
 
