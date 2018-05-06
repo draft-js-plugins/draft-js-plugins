@@ -1,12 +1,11 @@
-import getWordAt from './getWordAt';
+import getSearchTextAt from './getSearchTextAt';
 
-const getSearchText = (editorState, selection, mentionTrigger) => {
+export default (editorState, selection, mentionTrigger) => {
   const anchorKey = selection.getAnchorKey();
-  const anchorOffset = selection.getAnchorOffset() - mentionTrigger.length;
+  const anchorOffset = selection.getAnchorOffset();
   const currentContent = editorState.getCurrentContent();
   const currentBlock = currentContent.getBlockForKey(anchorKey);
   const blockText = currentBlock.getText();
-  return getWordAt(blockText, anchorOffset);
+  const searchText = getSearchTextAt(blockText, anchorOffset, mentionTrigger);
+  return searchText;
 };
-
-export default getSearchText;
