@@ -7,4 +7,3 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - fixed positioning of the toolbar within a limited space;
 - fixed spontaneous change of toolbar sizes;
-- added external prop `toolbarMargin`;

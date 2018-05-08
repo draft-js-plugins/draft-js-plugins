@@ -1,7 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { getVisibleSelectionRect, genKey } from 'draft-js';
+import { getVisibleSelectionRect } from 'draft-js';
 
 const getRelativeParent = (element) => {
   if (!element) {
@@ -16,54 +15,40 @@ const getRelativeParent = (element) => {
   return getRelativeParent(element.parentElement);
 };
 
+const getMargin = (element, side = 'left') => {
+  const elementStyles = window.getComputedStyle
+    ? getComputedStyle(element, null)
+    : element.currentStyle;
+  return parseInt(
+    elementStyles[`margin${`${side.charAt(0).toUpperCase()}${side.slice(1)}`}`],
+    10
+  );
+};
+
 export default class Toolbar extends React.Component {
-  static propTypes = {
+  state = {
+    isVisible: false,
+    position: undefined,
     /**
-     * An indents from the left / right window borders
+     * If this is set, the toolbar will render this instead of the regular
+     * structure and will also be shown when the editor loses focus.
+     * @type {Component}
      */
-    toolbarMargin: PropTypes.number
+    overrideContent: undefined,
+    /**
+     * We are holding default toolbar width to prevent geometry changing, that
+     * happens very often
+     */
+    width: null,
+    /**
+     * pointerClassName internals here. It could look like: "{ left: 1px; }"
+     * @type {string}
+     */
+    pointerCSS: null,
   };
 
-  static defaultProps = {
-    toolbarMargin: 5
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false,
-      position: undefined,
-      /**
-       * If this is set, the toolbar will render this instead of the regular
-       * structure and will also be shown when the editor loses focus.
-       * @type {Component}
-       */
-      overrideContent: undefined,
-      /**
-       * We are holding default toolbar width to prevent geometry changing, that
-       * happens very often
-       */
-      width: null,
-      /**
-       * this is an additional unique toolbar class that will be used to
-       * manipulate css arrow position
-       * @type {string}
-       */
-      pointerClassName: '',
-      /**
-       * pointerClassName internals here. It could look like: "{ left: 1px; }"
-       * @type {number|string}
-       */
-      pointerShift: 0
-    };
-
-    // we need to flush toolbar styles on each appearance (especially its width)
-    this.toolbar = null;
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     this.props.store.subscribeToItem('selection', this.onSelectionChanged);
-    this.setState({ pointerClassName: `draft-js-inline-toolbar-pointer-${genKey()}` });
   }
 
   componentWillUnmount() {
@@ -88,6 +73,10 @@ export default class Toolbar extends React.Component {
 
       if (typeof this.state.width !== 'number') {
         this.setState({ width: this.toolbar.offsetWidth });
+      } else {
+        // toolbar width must forcibly overwritten to prevent unexpected geometry
+        // changes
+        this.toolbar.style.width = `${this.state.width}px`;
       }
 
       const metrics = {
@@ -104,18 +93,18 @@ export default class Toolbar extends React.Component {
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
       const windowWidth = document.documentElement.clientWidth;
-
-      // if parent block width is wider than the toolbar, we must forcibly set its
-      // height to prevent unexpected geometry changes
-      if (windowWidth > this.toolbar.offsetWidth) {
-        this.toolbar.style.width = `${this.state.width}px`;
-      }
+      // we should take into account a case when we don't have relative parent,
+      // but our body has a margin
+      const bodyMargin = relativeParent ? 0 : getMargin(document.body);
 
       const toolbarHalfWidth = this.toolbar.offsetWidth / 2;
       // calculating the middle of the text selection
       const fromBeginningToMiddle = (selectionRect.left + (selectionRect.width / 2));
       // the same but against editor right side
       const beforeWindowEnd = windowWidth - fromBeginningToMiddle;
+
+      const leftToolbarMargin = getMargin(this.toolbar);
+      const rightToolbarMargin = getMargin(this.toolbar, 'right');
 
       // the selection is closer to parent beginning than half of the toolbar
       // +-----------------------------------------------+
@@ -126,14 +115,14 @@ export default class Toolbar extends React.Component {
       // |  +--+                                         |
       // |   ^^ selection                                |
       // +-----------------------------------------------+
-      if (fromBeginningToMiddle < toolbarHalfWidth) {
+      if (fromBeginningToMiddle < (toolbarHalfWidth + (2 * leftToolbarMargin))) {
         // shift computations are different for relative editor and body
         const leftShift = relativeParent
           ? relativeRect.left
           : 0;
-        metrics.ruleValue = (toolbarHalfWidth - leftShift) + this.props.toolbarMargin;
+        metrics.ruleValue = (toolbarHalfWidth - leftShift) + leftToolbarMargin;
         metrics.shift = 'left';
-      } else if (beforeWindowEnd < toolbarHalfWidth) {
+      } else if (beforeWindowEnd < (toolbarHalfWidth + (2 * rightToolbarMargin))) {
         // the same, but relative to the parent end
         // +-----------------------------------------------+
         // |                                 vvv toolbar   |
@@ -148,14 +137,14 @@ export default class Toolbar extends React.Component {
         const rightShift = relativeParent
           ? windowWidth - relativeRect.right
           : 0;
-        metrics.ruleValue = (-toolbarHalfWidth - rightShift) + this.props.toolbarMargin;
+        metrics.ruleValue = (-toolbarHalfWidth - rightShift) + rightToolbarMargin;
         metrics.rule = 'right';
         metrics.shift = 'right';
       } else {
         // selection somewhere in the middle within the parent and there is a
         // free place for toolbar
         metrics.ruleValue = (selectionRect.left - relativeRect.left)
-          + (selectionRect.width / 2);
+          + (((selectionRect.width / 2) + bodyMargin) - leftToolbarMargin);
       }
 
       const position = {
@@ -164,7 +153,7 @@ export default class Toolbar extends React.Component {
       };
       this.setState({
         position,
-        pointerShift: this.calculatePointerPosition(
+        pointerCSS: this.calculatePointerPosition(
           metrics.shift,
           selectionRect,
           fromBeginningToMiddle,
@@ -208,16 +197,15 @@ export default class Toolbar extends React.Component {
   ) => {
     if (typeof shift === 'string') {
       if (shift === 'left') {
-        return `{ left: ${fromBeginningToMiddle - this.props.toolbarMargin}px; }`;
+        return `{ left: ${fromBeginningToMiddle - (2 * getMargin(this.toolbar))}px; }`;
       }
 
       return `{ left: ${this.toolbar.offsetWidth -
       (windowWidth - (selectionRect.right - (selectionRect.width / 2)) -
-        this.props.toolbarMargin)}px; }`;
+        (2 * getMargin(this.toolbar, 'right')))}px; }`;
     }
 
-    // explicitly set to zero, because it may already be mutated
-    return 0;
+    return null;
   };
 
   handleToolbarRef = (node) => {
@@ -226,7 +214,7 @@ export default class Toolbar extends React.Component {
 
   render() {
     const { theme, store, structure } = this.props;
-    const { overrideContent: OverrideContent, pointerClassName, pointerShift } = this.state;
+    const { overrideContent: OverrideContent, pointerCSS } = this.state;
     const childrenProps = {
       theme: theme.buttonStyles,
       getEditorState: store.getItem('getEditorState'),
@@ -236,12 +224,15 @@ export default class Toolbar extends React.Component {
 
     return (
       <div
-        className={[theme.toolbarStyles.toolbar, pointerClassName].join(' ')}
+        className={theme.toolbarStyles.toolbar}
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        {pointerShift !== 0 &&
-          <style>{`.${pointerClassName}::before, .${pointerClassName}::after${pointerShift};`}</style>}
+        {typeof pointerCSS === 'string' &&
+          <style>
+            {`.${theme.toolbarStyles.toolbar}::before, .${
+            theme.toolbarStyles.toolbar}::after${pointerCSS};`}
+          </style>}
         {OverrideContent
           ? <OverrideContent {...childrenProps} />
           : structure.map((Component, index) =>

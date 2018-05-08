@@ -1,4 +1,5 @@
 .toolbar {
+  margin: 0 5px;
   transform: translate(-50%) scale(0);
   position: absolute;
   border: 1px solid #ddd;
