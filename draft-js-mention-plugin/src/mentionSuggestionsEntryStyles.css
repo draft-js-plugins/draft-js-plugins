@@ -8,7 +8,7 @@
 }
 
 .mentionSuggestionsEntryFocused {
-  composes: mentionSuggestionsEntry;
+/*   composes: mentionSuggestionsEntry; */
   background-color: #e6f3ff;
 }
 
