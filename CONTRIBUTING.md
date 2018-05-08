@@ -116,6 +116,23 @@ For your CSS loader in webpack, ensure you enable CSS modules:
   ]
 }
 ```
+If using Webpack 2+ (say for example in an ejected Create-React-App project), you can enable CSS modules by:
+
+```js
+{
+  test: /\.css$/,
+  use: [
+    require.resolve('style-loader'),
+     {
+       loader: require.resolve('css-loader'),
+       options: {
+         importLoaders: 1,
+         modules: true,
+        },
+      },
+    ]
+},
+```
 
 You'll need to use Babel Stage-0 if you aren't already. First, install it:
 
@@ -130,6 +147,18 @@ Then use it as a preset when loading your JS:
   test: /\.js$/,
   loader: 'babel-loader',
   query: {
+    presets: ['es2015', 'react', 'stage-0'],
+  },
+}
+```
+
+Webpack 2+
+
+```js
+{
+  test: /\.js$/,
+  loader: 'babel-loader',
+  options: {
     presets: ['es2015', 'react', 'stage-0'],
   },
 }
