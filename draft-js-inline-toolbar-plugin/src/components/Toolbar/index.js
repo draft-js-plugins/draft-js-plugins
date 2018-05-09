@@ -75,16 +75,13 @@ export default class Toolbar extends React.Component {
         this.setState({ width: this.toolbar.offsetWidth });
       }
 
-      const metrics = {
-        rule: 'left',
-        ruleValue: 0,
-        shift: null,
-        shiftValue: 0
-      };
+      let alignment = null;
+      let horizontalOffset = 0;
+
       // boundings of the selected text
       const selectionRect = getVisibleSelectionRect(window);
       const selection = this.props.store.getItem('getEditorState')().getSelection();
-      if (!selectionRect || selection.isCollapsed()) return;
+      if (selection.isCollapsed()) return;
 
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
@@ -116,8 +113,8 @@ export default class Toolbar extends React.Component {
         const leftShift = relativeParent
           ? relativeRect.left
           : 0;
-        metrics.ruleValue = (toolbarHalfWidth - leftShift) + leftToolbarMargin;
-        metrics.shift = 'left';
+        horizontalOffset = (toolbarHalfWidth - leftShift) + leftToolbarMargin;
+        alignment = 'left';
       } else if (beforeWindowEnd < (toolbarHalfWidth + (2 * rightToolbarMargin))) {
         // the same, but relative to the parent end
         // +-----------------------------------------------+
@@ -133,24 +130,23 @@ export default class Toolbar extends React.Component {
         const rightShift = relativeParent
           ? windowWidth - relativeRect.right
           : 0;
-        metrics.ruleValue = (-toolbarHalfWidth - rightShift) + rightToolbarMargin;
-        metrics.rule = 'right';
-        metrics.shift = 'right';
+        horizontalOffset = (-toolbarHalfWidth - rightShift) + rightToolbarMargin;
+        alignment = 'right';
       } else {
         // selection somewhere in the middle within the parent and there is a
         // free place for toolbar
-        metrics.ruleValue = (selectionRect.left - relativeRect.left)
+        horizontalOffset = (selectionRect.left - relativeRect.left)
           + (((selectionRect.width / 2) + bodyMargin) - leftToolbarMargin);
       }
 
       const position = {
         top: (selectionRect.top - relativeRect.top) - this.toolbar.offsetHeight - 10,
-        [metrics.rule]: metrics.ruleValue
+        [alignment || 'left']: horizontalOffset
       };
       this.setState({
         position,
         pointerCSS: this.calculatePointerPosition(
-          metrics.shift,
+          alignment,
           selectionRect,
           fromBeginningToMiddle,
           windowWidth
@@ -185,17 +181,17 @@ export default class Toolbar extends React.Component {
 
   /**
    * calculate toolbar pointer (css arrow) position
-   * @param shift
+   * @param alignment
    * @param selectionRect
    * @param fromBeginningToMiddle
    * @param windowWidth
    * @returns {string|number}
    */
   calculatePointerPosition = (
-    shift, selectionRect, fromBeginningToMiddle, windowWidth
+    alignment, selectionRect, fromBeginningToMiddle, windowWidth
   ) => {
-    if (typeof shift === 'string') {
-      if (shift === 'left') {
+    if (typeof alignment === 'string') {
+      if (alignment === 'left') {
         return `{ left: ${fromBeginningToMiddle - (2 * getMargin(this.toolbar))}px; }`;
       }
 
