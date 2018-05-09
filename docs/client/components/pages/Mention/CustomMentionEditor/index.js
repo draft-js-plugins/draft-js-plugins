@@ -69,6 +69,7 @@ export default class CustomMentionEditor extends Component {
       theme: mentionsStyles,
       positionSuggestions,
       mentionPrefix: '@',
+      supportWhitespace: true
     });
   }
 
