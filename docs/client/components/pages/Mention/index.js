@@ -168,6 +168,10 @@ export default class App extends Component {
             <span>Allows you to overwrite the regular expression for initiating the dropdown. By default this supports any alphanumeric character as well as Chinese, Japanese & Korean characters. We are happy to accept pull requests to extend the default mentionRegExp as well.</span>
           </div>
           <div className={styles.param}>
+            <span className={styles.paramName}>supportWhitespace</span>
+            <span>Allows you to support a whitespace while typing a search option, useful for searching first and last names. By default this is set to `false`</span>
+          </div>
+          <div className={styles.param}>
             <span className={styles.paramName}>mentionComponent</span>
             <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className & decoratedText</span>
           </div>
