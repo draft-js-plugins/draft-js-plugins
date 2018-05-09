@@ -62,15 +62,6 @@ describe('mentionSuggestionsStrategy', () => {
       expect(callback.lastCall.args).to.deep.equal([0, 5]);
     });
 
-    it('should match only 20 characters', () => {
-      whitespaceStrategy(getBlock('@the walking dead tv show'), callback);
-      expect(callback.callCount).to.equal(1);
-      expect(callback.lastCall.args).to.deep.equal([0, 21]);
-
-      whitespaceStrategy(getBlock('@the walking dead tv '), callback);
-      expect(callback.lastCall.args).to.deep.equal([0, 21]);
-    });
-
     it('should match multiple mentions with spaces', () => {
       whitespaceStrategy(getBlock('@the walking dead tv @the white house'), callback);
       expect(callback.callCount).to.equal(2);
