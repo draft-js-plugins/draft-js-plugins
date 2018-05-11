@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { getVisibleSelectionRect } from 'draft-js';
+import inCodeBlock from './../../utils/inCodeBlock';
 
 export default class Toolbar extends React.Component {
 
@@ -76,10 +77,11 @@ export default class Toolbar extends React.Component {
   getStyle() {
     const { store } = this.props;
     const { overrideContent, position } = this.state;
-    const selection = store.getItem('getEditorState')().getSelection();
+    const editorState = store.getItem('getEditorState')();
+    const selection = editorState.getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
-    const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
+    const isVisible = (!selection.isCollapsed() && selection.getHasFocus() && !inCodeBlock(editorState)) || overrideContent;
     const style = { ...position };
 
     if (isVisible) {
