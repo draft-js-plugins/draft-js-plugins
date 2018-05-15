@@ -323,6 +323,7 @@ export class MentionSuggestions extends Component {
       positionSuggestions, // eslint-disable-line no-unused-vars
       mentionTrigger, // eslint-disable-line no-unused-vars
       mentionPrefix, // eslint-disable-line no-unused-vars
+      renderMention, // eslint-disable-line no-unused-vars
       ...elementProps } = this.props;
 
     return React.cloneElement(

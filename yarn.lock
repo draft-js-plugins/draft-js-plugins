@@ -3410,9 +3410,9 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-find-with-regex@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/find-with-regex/-/find-with-regex-1.1.2.tgz#ce6fd971e25d73158b81849f30ccf867a580ef06"
+find-with-regex@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/find-with-regex/-/find-with-regex-1.1.3.tgz#d6c6f2debee898d36b6a77e05709b13dd5dc8a26"
 
 flat-cache@^1.2.1:
   version "1.3.0"

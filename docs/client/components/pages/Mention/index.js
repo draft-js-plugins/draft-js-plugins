@@ -23,6 +23,10 @@ import customComponentExampleCode from '!!../../../loaders/prism-loader?language
 // eslint-disable-next-line import/no-unresolved
 import customComponentExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomComponentMentionEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
+import arbitraryDataExampleCode from '!!../../../loaders/prism-loader?language=javascript!./ArbitraryDataMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import arbitraryDataExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./ArbitraryDataMentionEditor/mentions.js';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
 // eslint-disable-next-line import/no-unresolved
 import webpackImport from '!!../../../loaders/prism-loader?language=javascript!./webpackImport';
@@ -36,6 +40,7 @@ import SimpleMentionEditor from './SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor';
 import RemoteMentionEditor from './RemoteMentionEditor';
 import CustomComponentMentionEditor from './CustomComponentMentionEditor';
+import ArbitraryDataMentionEditor from './ArbitraryDataMentionEditor';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
 import Separator from '../../shared/Separator';
@@ -106,47 +111,35 @@ export default class App extends Component {
           </ul>
           <Heading level={4}>Browserify Usage</Heading>
           <p>
-            Please help, by submiting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Mention/index.js">documentation</ExternalLink>.
+            Please help, by submitting a Pull Request to the <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Mention/index.js">documentation</ExternalLink>.
           </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>
           <div className={styles.param}>
-            <span className={styles.paramName}>theme</span>
+            <div className={styles.paramName}>theme</div>
             <span>Object of CSS classes with the following keys.</span>
             <div className={styles.subParams}>
-              <div className={styles.subParam}>
-                <span className={styles.subParamName}>mention:</span>
-                CSS class for mention text.
-              </div>
-              <div className={styles.subParam}>
-                <span className={styles.subParamName}>mentionSuggestions:</span>
-                CSS class for suggestions component.
-              </div>
-              <div className={styles.subParam}>
-                <span className={styles.subParamName}>mentionSuggestionsEntry:</span>
-                CSS class for an entry in the suggestions component.
-              </div>
-              <div className={styles.subParam}>
-                <span className={styles.subParamName}>mentionSuggestionsEntryFocused:</span>
-                CSS class for the focused entry in the suggestions component.
-              </div>
-              <div className={styles.subParam}>
-                <span className={styles.subParamName}>mentionSuggestionsEntryText:</span>
-                CSS class for an entry’s text in the suggestions component.
-              </div>
-              <div className={styles.subParam}>
-                <span className={styles.subParamName}>mentionSuggestionsEntryAvatar:</span>
-                CSS class for an entry’s avatar image in the suggestions component.
-              </div>
+              <span className={styles.subParamName}>mention:</span>
+              CSS class for mention text.
+              <span className={styles.subParamName}>mentionSuggestions:</span>
+              CSS class for suggestions component.
+              <span className={styles.subParamName}>mentionSuggestionsEntry:</span>
+              CSS class for an entry in the suggestions component.
+              <span className={styles.subParamName}>mentionSuggestionsEntryFocused:</span>
+              CSS class for the focused entry in the suggestions component.
+              <span className={styles.subParamName}>mentionSuggestionsEntryText:</span>
+              CSS class for an entry’s text in the suggestions component.
+              <span className={styles.subParamName}>mentionSuggestionsEntryAvatar:</span>
+              CSS class for an entry’s avatar image in the suggestions component.
             </div>
           </div>
           <div className={styles.param}>
-            <span className={styles.paramName}>positionSuggestions</span>
+            <div className={styles.paramName}>positionSuggestions</div>
             <span>The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state & props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span>
           </div>
           <div className={styles.param}>
-            <span className={styles.paramName}>entityMutability</span>
+            <div className={styles.paramName}>entityMutability</div>
             <span>Can be one of: &quot;IMMUTABLE&quot;, &quot;SEGMENTED&quot; or &quot;MUTABLE&quot;. Read in detail about it
               <ExternalLink
                 href="https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability"
@@ -156,19 +149,23 @@ export default class App extends Component {
             </span>
           </div>
           <div className={styles.param}>
-            <span className={styles.paramName}>mentionPrefix</span>
+            <div className={styles.paramName}>mentionPrefix</div>
             <span>By default it is an empty String. For Twitter or Slack like mention behaviour you can provide an `@`</span>
           </div>
           <div className={styles.param}>
-            <span className={styles.paramName}>mentionTrigger</span>
+            <div className={styles.paramName}>renderMention</div>
+            <span>This function --if supplied-- is used to render the text highlighted in a mention. Should return a string. Takes 2 arguments: mentionPrefix and the selected mention object.</span>
+          </div>
+          <div className={styles.param}>
+            <div className={styles.paramName}>mentionTrigger</div>
             <span>Allows you to provide a custom character to change when the search is triggered. By default it is set to `@`. By default typing `@` will trigger the search for mentions. Note: the implementation does not support a multi-character mentionTrigger.</span>
           </div>
           <div className={styles.param}>
-            <span className={styles.paramName}>mentionRegExp</span>
+            <div className={styles.paramName}>mentionRegExp</div>
             <span>Allows you to overwrite the regular expression for initiating the dropdown. By default this supports any alphanumeric character as well as Chinese, Japanese & Korean characters. We are happy to accept pull requests to extend the default mentionRegExp as well.</span>
           </div>
           <div className={styles.param}>
-            <span className={styles.paramName}>mentionComponent</span>
+            <div className={styles.paramName}>mentionComponent</div>
             <span>If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className & decoratedText</span>
           </div>
           <Heading level={3}>MentionSuggestions</Heading>
@@ -243,6 +240,12 @@ export default class App extends Component {
           <CustomComponentMentionEditor />
           <Code code={customComponentExampleCode} name="CustomComponentMentionEditor.js" />
           <Code code={customComponentExampleStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>Arbitrary Mention Data Example</Heading>
+          <ArbitraryDataMentionEditor />
+          <Code code={arbitraryDataExampleCode} name="ArbitraryDataMentionEditor.js" />
+          <Code code={arbitraryDataExampleMentionsCode} name="mentions.js" />
         </Container>
         <SocialBar />
       </div>
