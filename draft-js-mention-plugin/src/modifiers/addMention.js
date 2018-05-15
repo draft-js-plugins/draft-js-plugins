@@ -2,7 +2,7 @@ import { Modifier, EditorState } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 import getTypeByTrigger from '../utils/getTypeByTrigger';
 
-const addMention = (editorState, mention, mentionPrefix, mentionTrigger, entityMutability) => {
+const addMention = (editorState, mention, renderMention, mentionPrefix, mentionTrigger, entityMutability) => {
   const contentStateWithEntity = editorState.getCurrentContent().createEntity(
     getTypeByTrigger(mentionTrigger), entityMutability, { mention }
   );
@@ -20,7 +20,7 @@ const addMention = (editorState, mention, mentionPrefix, mentionTrigger, entityM
   let mentionReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
     mentionTextSelection,
-    `${mentionPrefix}${mention.name}`,
+    (renderMention && renderMention(mentionPrefix, mention)) || `${mentionPrefix}${mention.name}`,
     null, // no inline style needed
     entityKey
   );

@@ -229,6 +229,7 @@ export class MentionSuggestions extends Component {
     const newEditorState = addMention(
       this.props.store.getEditorState(),
       mention,
+      this.props.renderMention,
       this.props.mentionPrefix,
       this.props.mentionTrigger,
       this.props.entityMutability,
