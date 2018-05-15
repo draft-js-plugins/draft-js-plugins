@@ -9,13 +9,15 @@
 
 .paramName {
   font-weight: bold;
-  width: 125px;
-  display: inline-block;
+  padding: 10px 0;
 }
 
 .subParams {
-  margin-left: 125px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
   margin-top: 10px;
+  margin-left: 50px;
 }
 
 .subParam {
