@@ -176,35 +176,35 @@ export default class App extends Component {
             The MentionSuggestions component is part of the plugin and should placed somewhere in the
             JSX after the Editor. It takes the following props:
             <div className={styles.param}>
-              <span className={styles.paramName}>onSearchChange</span>
-              <span>A callback which is triggered whenever the search term changes. The first argument is an object which constains the search term in the property value.</span>
+              <div className={styles.paramName}>onSearchChange</div>
+              <span>A callback which is triggered whenever the search term changes. The first argument is an object which contains the search term in the property value.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>suggestions</span>
+              <div className={styles.paramName}>suggestions</div>
               <span>The list of suggestions to be shown.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>onOpen</span>
+              <div className={styles.paramName}>onOpen</div>
               <span>A callback which is triggered whenever the suggestions popover opens.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>onClose</span>
+              <div className={styles.paramName}>onClose</div>
               <span>A callback which is triggered whenever the suggestions popover closes.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>entryComponent</span>
+              <div className={styles.paramName}>entryComponent</div>
               <span>Component to be used as the template for each of the suggestions entry.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>onAddMention</span>
+              <div className={styles.paramName}>onAddMention</div>
               <span>A callback which is triggered whenever the mention is about to be added. The first argument of this callback will contain the mention entry.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>popoverComponent</span>
+              <div className={styles.paramName}>popoverComponent</div>
               <span>Component to be used as the template for the popover (the parent of entryComponent).  Defaults to a div.</span>
             </div>
             <div className={styles.param}>
-              <span className={styles.paramName}>mentionSuggestionsComponent</span>
+              <div className={styles.paramName}>mentionSuggestionsComponent</div>
               <span>Component to be used to render the suggestions dropdown. It must implement the same interface like <InlineCode code="MentionSuggestions" />.  Defaults to <InlineCode code="MentionSuggestions" />.</span>
             </div>
             <div className={styles.param}>
