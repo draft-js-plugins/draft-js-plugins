@@ -27,18 +27,9 @@ const head = `<meta charset="utf-8"/>
 <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css" />`;
 
-const scripts = `<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-75176147-1', 'auto');
-  ga('send', 'pageview');
-</script>`;
-
 const Html = ({
   bundle = '/app.js',
-  body = '',
+  body = ''
   // favicon = 'favicon.ico',
 }) => (
   <html lang="en">
@@ -46,7 +37,6 @@ const Html = ({
     <body>
       <div id="root" dangerouslySetInnerHTML={{ __html: body }} />
       <script src={bundle} />
-      <span dangerouslySetInnerHTML={{ __html: scripts }} />
     </body>
   </html>
 );
