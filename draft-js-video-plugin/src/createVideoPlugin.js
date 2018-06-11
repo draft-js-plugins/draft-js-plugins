@@ -18,6 +18,7 @@ const videoPlugin = (config = {}) => {
       if (block.getType() === types.ATOMIC) {
         // TODO subject to change for draft-js next release
         const contentState = getEditorState().getCurrentContent();
+        if (!block.getEntityAt(0)) return null;
         const entity = contentState.getEntity(block.getEntityAt(0));
         const type = entity.getType();
         const { src } = entity.getData();
