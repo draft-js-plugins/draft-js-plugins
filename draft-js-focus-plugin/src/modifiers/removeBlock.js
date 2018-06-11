@@ -2,8 +2,7 @@ import { Modifier, EditorState, SelectionState } from 'draft-js';
 
 /* NOT USED at the moment, but might be valuable if we want to fix atomic block behaviour */
 
-export default function (store, blockKey) {
-  const editorState = store.getEditorState();
+export default function (editorState, blockKey) {
   let content = editorState.getCurrentContent();
 
   const beforeKey = content.getKeyBefore(blockKey);

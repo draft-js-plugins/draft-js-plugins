@@ -1,4 +1,4 @@
-import { EditorState } from 'draft-js';
+import { EditorState, Modifier } from 'draft-js';
 import insertNewLine from './modifiers/insertNewLine';
 import setSelection from './modifiers/setSelection';
 import setSelectionToBlock from './modifiers/setSelectionToBlock';
@@ -6,6 +6,7 @@ import createDecorator from './createDecorator';
 import createBlockKeyStore from './utils/createBlockKeyStore';
 import blockInSelection from './utils/blockInSelection';
 import getBlockMapKeys from './utils/getBlockMapKeys';
+import removeBlock from './modifiers/removeBlock'
 import defaultTheme from './style.css';
 
 const focusableBlockIsSelected = (editorState, blockKeyStore) => {
@@ -37,21 +38,10 @@ export default (config = {}) => {
     },
     handleKeyCommand: (command, editorState, { setEditorState }) => {
       if (deleteCommands.includes(command) && focusableBlockIsSelected(editorState, blockKeyStore)) {
-        const selection = editorState.getSelection();
-        const content = editorState.getCurrentContent();
-        const startKey = selection.getStartKey();
-        const blockMap = content.getBlockMap().delete(startKey);
-        const withoutAtomicBlock = content.merge({
-          blockMap,
-          selectionAfter: selection,
-        });
-        if (withoutAtomicBlock !== content) {
-          const newState = EditorState.push(
-            editorState,
-            withoutAtomicBlock,
-            'remove-range',
-          );
-          setEditorState(EditorState.forceSelection(newState, withoutAtomicBlock.getSelectionAfter()));
+        const key = editorState.getSelection().getStartKey();
+        const newEditorState = removeBlock(editorState, key);
+        if (newEditorState !== editorState) {
+          setEditorState(newEditorState);
           return 'handled';
         }
       }
