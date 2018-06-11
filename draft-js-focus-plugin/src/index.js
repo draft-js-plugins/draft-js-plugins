@@ -1,4 +1,4 @@
-import { EditorState, Modifier } from 'draft-js';
+import { EditorState } from 'draft-js';
 import insertNewLine from './modifiers/insertNewLine';
 import setSelection from './modifiers/setSelection';
 import setSelectionToBlock from './modifiers/setSelectionToBlock';
@@ -6,7 +6,7 @@ import createDecorator from './createDecorator';
 import createBlockKeyStore from './utils/createBlockKeyStore';
 import blockInSelection from './utils/blockInSelection';
 import getBlockMapKeys from './utils/getBlockMapKeys';
-import removeBlock from './modifiers/removeBlock'
+import removeBlock from './modifiers/removeBlock';
 import defaultTheme from './style.css';
 
 const focusableBlockIsSelected = (editorState, blockKeyStore) => {
