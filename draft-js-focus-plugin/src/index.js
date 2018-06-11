@@ -18,6 +18,8 @@ const focusableBlockIsSelected = (editorState, blockKeyStore) => {
   return blockKeyStore.includes(block.getKey());
 };
 
+const deleteCommands = ['backspace', 'backspace-word', 'backspace-to-start-of-line', 'delete', 'delete-word', 'delete-to-end-of-block'];
+
 export default (config = {}) => {
   const blockKeyStore = createBlockKeyStore({});
   const theme = config.theme ? config.theme : defaultTheme;
@@ -34,7 +36,7 @@ export default (config = {}) => {
       return 'not-handled';
     },
     handleKeyCommand: (command, editorState, { setEditorState }) => {
-      if (command === 'backspace' && focusableBlockIsSelected(editorState, blockKeyStore)) {
+      if (deleteCommands.includes(command) && focusableBlockIsSelected(editorState, blockKeyStore)) {
         const selection = editorState.getSelection();
         const content = editorState.getCurrentContent();
         const startKey = selection.getStartKey();
