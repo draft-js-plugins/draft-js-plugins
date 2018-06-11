@@ -11,7 +11,6 @@ import SocialBar from '../../shared/SocialBar';
 import GithubButton from '../../shared/GithubButton';
 import NavBar from '../../shared/NavBar';
 import ExternalLink from '../../shared/Link';
-import MailchimpForm from '../../shared/MailchimpForm';
 
 export default class App extends Component {
 
@@ -253,7 +252,6 @@ export default class App extends Component {
           <p className={styles.center}>
             by signing up to our newsletter
           </p>
-          <MailchimpForm />
         </Container>
       </div>
     );
