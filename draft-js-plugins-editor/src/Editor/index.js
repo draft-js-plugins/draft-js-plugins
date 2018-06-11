@@ -10,7 +10,8 @@ import { Map } from 'immutable';
 import proxies from './proxies';
 import moveSelectionToEnd from './moveSelectionToEnd';
 import resolveDecorators from './resolveDecorators';
-import * as defaultKeyBindingPlugin from './defaultKeyBindingPlugin';
+import defaultKeyBindings from './defaultKeyBindings';
+import defaultKeyCommands from './defaultKeyCommands';
 
 const getDecoratorLength = (obj) => {
   let decorators;
@@ -28,12 +29,12 @@ const getDecoratorLength = (obj) => {
  * The main editor component
  */
 class PluginEditor extends Component {
-
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     plugins: PropTypes.array,
     defaultKeyBindings: PropTypes.bool,
+    defaultKeyCommands: PropTypes.bool,
     defaultBlockRenderMap: PropTypes.bool,
     customStyleMap: PropTypes.object,
     // eslint-disable-next-line react/no-unused-prop-types
@@ -43,6 +44,7 @@ class PluginEditor extends Component {
   static defaultProps = {
     defaultBlockRenderMap: true,
     defaultKeyBindings: true,
+    defaultKeyCommands: true,
     customStyleMap: {},
     plugins: [],
     decorators: [],
@@ -250,8 +252,11 @@ class PluginEditor extends Component {
 
   resolvePlugins = () => {
     const plugins = this.props.plugins.slice(0);
-    if (this.props.defaultKeyBindings) {
-      plugins.push(defaultKeyBindingPlugin);
+    if (this.props.defaultKeyBindings === true) {
+      plugins.push(defaultKeyBindings);
+    }
+    if (this.props.defaultKeyCommands === true) {
+      plugins.push(defaultKeyCommands);
     }
 
     return plugins;
