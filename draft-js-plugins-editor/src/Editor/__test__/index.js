@@ -96,12 +96,13 @@ describe('Editor', () => {
       expect(pluginEditor.resolvePlugins()[0]).to.include.keys('keyBindingFn');
     });
 
-    it('without the defaultKeyBindings plugin if deactivated', () => {
+    it('without the defaultKeyBindings and defaulteyCommands plugin if deactivated', () => {
       const result = mount(
         <PluginEditor
           editorState={editorState}
           onChange={changeSpy}
           defaultKeyBindings={false}
+          defaultKeyCommands={false}
         />
       );
       const pluginEditor = result.instance();
@@ -181,7 +182,7 @@ describe('Editor', () => {
         setReadOnly: pluginEditor.setReadOnly,
         getEditorRef: pluginEditor.getEditorRef,
       };
-      draftEditor.props.handleKeyCommand('command');
+      draftEditor.props.handleKeyCommand('command', pluginEditor.getEditorState(), expectedSecondArgument);
       expect(plugin.handleKeyCommand).has.been.calledOnce();
       expect(plugin.handleKeyCommand).has.been.calledWith('command', expectedSecondArgument);
       draftEditor.props.handlePastedText('command');
@@ -240,8 +241,19 @@ describe('Editor', () => {
         />
       );
 
+      const pluginEditor = result.instance();
+      const expectedSecondArgument = {
+        getEditorState: pluginEditor.getEditorState,
+        setEditorState: pluginEditor.onChange,
+        getPlugins: pluginEditor.getPlugins,
+        getProps: pluginEditor.getProps,
+        getReadOnly: pluginEditor.getReadOnly,
+        setReadOnly: pluginEditor.setReadOnly,
+        getEditorRef: pluginEditor.getEditorRef,
+      };
+
       const draftEditor = result.node;
-      draftEditor.props.handleKeyCommand('command');
+      draftEditor.props.handleKeyCommand('command', pluginEditor.getEditorState(), expectedSecondArgument);
       expect(plugins[0].handleKeyCommand).has.been.calledOnce();
       expect(plugins[1].handleKeyCommand).has.not.been.called();
 
