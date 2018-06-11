@@ -33,6 +33,28 @@ export default (config = {}) => {
       }
       return 'not-handled';
     },
+    handleKeyCommand: (command, editorState, { setEditorState }) => {
+      if (command === 'backspace' && focusableBlockIsSelected(editorState, blockKeyStore)) {
+        const selection = editorState.getSelection();
+        const content = editorState.getCurrentContent();
+        const startKey = selection.getStartKey();
+        const blockMap = content.getBlockMap().delete(startKey);
+        const withoutAtomicBlock = content.merge({
+          blockMap,
+          selectionAfter: selection,
+        });
+        if (withoutAtomicBlock !== content) {
+          const newState = EditorState.push(
+            editorState,
+            withoutAtomicBlock,
+            'remove-range',
+          );
+          setEditorState(EditorState.forceSelection(newState, withoutAtomicBlock.getSelectionAfter()));
+          return 'handled';
+        }
+      }
+      return 'not-handled';
+    },
     onChange: (editorState) => {
       // in case the content changed there is no need to re-render blockRendererFn
       // since if a block was added it will be rendered anyway and if it was text
