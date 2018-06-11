@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.1
+- Use only part of RichUtils.handleKeyCommand, since we don't want to automatically assume that code, bold, italic and the likes are included in an editor
+
 ## 2.1.0
 - Add defaultKeyCommands
 - This fixes removing atomic block entities on backspace and also automatically adds richutils keycommand behaviour as detailed here https://draftjs.org/docs/quickstart-rich-styling.html#richutils-and-key-commands
