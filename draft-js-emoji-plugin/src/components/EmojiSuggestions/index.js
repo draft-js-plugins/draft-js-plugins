@@ -275,9 +275,6 @@ export default class EmojiSuggestions extends Component {
     this.filteredEmojis = this.getEmojisForFilter();
     const {
       theme = {},
-      cacheBustParam,
-      imagePath,
-      imageType,
       ariaProps, // eslint-disable-line no-unused-vars
       callbacks, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
@@ -310,9 +307,6 @@ export default class EmojiSuggestions extends Component {
               index={index}
               id={`emoji-option-${this.key}-${index}`}
               theme={theme}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
               useNativeArt={useNativeArt}
             />
           )).toJS()

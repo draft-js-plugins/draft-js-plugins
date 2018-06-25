@@ -6,9 +6,6 @@ import convertShortNameToUnicode from '../../../../utils/convertShortNameToUnico
 
 export default class Entry extends Component {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     emoji: PropTypes.string.isRequired,
     mouseDown: PropTypes.bool,
@@ -57,7 +54,7 @@ export default class Entry extends Component {
   mouseDown = this.props.mouseDown;
 
   render() {
-    const { cacheBustParam, imagePath, imageType, theme = {}, emoji, useNativeArt } = this.props;
+    const { theme = {}, emoji, useNativeArt } = this.props;
     const { isFocused } = this.state;
 
     let emojiDisplay = null;
@@ -67,11 +64,9 @@ export default class Entry extends Component {
     } else {
       // short name to image url code steal from emojione source code
       const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
-      const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
       emojiDisplay = (
-        <img
-          src={fullImagePath}
-          className={theme.emojiSelectPopoverEntryIcon}
+        <span
+          className={`${theme.emojiSuggestionsEntryIcon} ${theme.emojiSpritePrefix} ${theme.emojiSpritePrefix}-${shortNameForImage}`}
           draggable={false}
           role="presentation"
         />

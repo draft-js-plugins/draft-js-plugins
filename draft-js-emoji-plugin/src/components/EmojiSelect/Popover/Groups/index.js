@@ -5,9 +5,6 @@ import Group from './Group';
 
 export default class Groups extends Component {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     emojis: PropTypes.object.isRequired,
@@ -78,9 +75,6 @@ export default class Groups extends Component {
 
   render() {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       groups = [],
       emojis,
@@ -114,9 +108,6 @@ export default class Groups extends Component {
               theme={theme}
               group={group}
               emojis={emojis}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
               checkMouseDown={checkMouseDown}
               onEmojiSelect={onEmojiSelect}
               onEmojiMouseDown={onEmojiMouseDown}

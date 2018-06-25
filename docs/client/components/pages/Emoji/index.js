@@ -139,6 +139,10 @@ export default class App extends Component {
                 CSS class for the emoji wrapper.
               </div>
               <div className={styles.subParam}>
+                <span className={styles.subParamName}>emojiSpritePrefix:</span>
+                Emojis are displayed using the prefix CSS class, the sprite CSS file must map in the following format: {'`${emojiSpritePrefix}-${unicode}`'}.
+              </div>
+              <div className={styles.subParam}>
                 <span className={styles.subParamName}>emojiSuggestions:</span>
                 CSS class for suggestions component.
               </div>
@@ -261,18 +265,6 @@ export default class App extends Component {
                 CSS class for scrollbar thumb in the emoji select popup.
               </div>
             </div>
-          </div>
-          <div className={styles.paramBig}>
-            <span className={styles.paramName}>imagePath</span>
-            <span>The Emojis are displayed using SVGs. The full path is constructed of multiple parts like this: {'`${imagePath}${unicode}.${imageType}${cacheBustParam}`'}. The default imagePath is: &apos;//cdn.jsdelivr.net/emojione/assets/svg/&apos;, but can be overwritten with this config.</span>
-          </div>
-          <div className={styles.paramBig}>
-            <span className={styles.paramName}>imageType</span>
-            <span>The default imageType is: &apos;svg&apos;, but can be overwritten with this config.</span>
-          </div>
-          <div className={styles.paramBig}>
-            <span className={styles.paramName}>allowImageCache</span>
-            <span>By default {'${cacheBustParam}'} is being changed with the new version. If you want to skip the cache busting, you can use this property. The default value of allowImageCache is:&nbsp;<InlineCode code={'false'} /></span>
           </div>
           <div className={styles.paramBig}>
             <span className={styles.paramName}>positionSuggestions</span>

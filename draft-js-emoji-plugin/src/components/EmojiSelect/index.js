@@ -9,9 +9,6 @@ const emojis = createEmojisFromStrategy(strategy);
 
 export default class EmojiSelect extends Component {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
     selectGroups: PropTypes.arrayOf(PropTypes.shape({
@@ -80,9 +77,6 @@ export default class EmojiSelect extends Component {
 
   render() {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       store,
       selectGroups,
@@ -104,9 +98,6 @@ export default class EmojiSelect extends Component {
           {selectButtonContent}
         </button>
         <Popover
-          cacheBustParam={cacheBustParam}
-          imagePath={imagePath}
-          imageType={imageType}
           theme={theme}
           store={store}
           groups={selectGroups}

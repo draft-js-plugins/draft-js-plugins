@@ -7,9 +7,6 @@ import ToneSelect from './ToneSelect';
 
 export default class Popover extends Component {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -118,7 +115,7 @@ export default class Popover extends Component {
 
   renderToneSelect = () => {
     if (this.state.showToneSelect) {
-      const { cacheBustParam, imagePath, imageType, theme = {} } = this.props;
+      const { theme = {} } = this.props;
 
       const containerBounds = this.container.getBoundingClientRect();
       const areaBounds = this.groups.container.getBoundingClientRect();
@@ -148,9 +145,6 @@ export default class Popover extends Component {
           theme={theme}
           bounds={bounds}
           toneSet={this.toneSet}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
           onEmojiSelect={this.onEmojiSelect}
         />
       );
@@ -161,9 +155,6 @@ export default class Popover extends Component {
 
   render() {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       groups = [],
       emojis,
@@ -189,9 +180,6 @@ export default class Popover extends Component {
           theme={theme}
           groups={groups}
           emojis={emojis}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
           checkMouseDown={this.checkMouseDown}
           onEmojiSelect={this.onEmojiSelect}
           onEmojiMouseDown={this.onEmojiMouseDown}

@@ -4,9 +4,6 @@ import Entry from '../../Entry';
 
 export default class Group extends Component {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     group: PropTypes.object.isRequired,
     emojis: PropTypes.object.isRequired,
@@ -20,9 +17,6 @@ export default class Group extends Component {
 
   renderCategory = (category) => {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       emojis,
       checkMouseDown,
@@ -41,9 +35,6 @@ export default class Group extends Component {
         <Entry
           emoji={categoryEmojis[key][0]}
           theme={theme}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
           toneSet={categoryEmojis[key].length > 1 ? categoryEmojis[key] : null}
           checkMouseDown={checkMouseDown}
           onEmojiSelect={onEmojiSelect}

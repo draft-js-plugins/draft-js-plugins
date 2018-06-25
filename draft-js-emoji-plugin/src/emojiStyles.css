@@ -1,8 +1,6 @@
 .emoji {
-  background-position: center;
   /* make sure the background the image is only shown once */
   background-repeat: no-repeat;
-  background-size: contain;
   /* move it a bit further down to align it nicer with the text */
   vertical-align: middle;
 
@@ -28,11 +26,4 @@
   work in recent iOS version.
   */
   color: transparent;
-
-  /*
-  Some SVG files (say 2764 for :heart:) don't have default width/height, thus
-  may not be rendered properly on some platforms/browsers (e.g., Windows 10 +
-  Chrome 61).
-  */
-  min-width: 1em;
 }

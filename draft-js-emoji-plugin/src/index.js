@@ -1,4 +1,4 @@
-import { Map, List } from 'immutable';
+import { List, Map } from 'immutable';
 
 import keys from 'lodash.keys';
 import decorateComponentWithProps from 'decorate-component-with-props';
@@ -16,16 +16,14 @@ import emojiSelectStyles from './emojiSelectStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
-
-const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
-const defaultImageType = 'svg';
-const defaultCacheBustParam = '?v=2.2.7';
+import './emojiSprite.css';
 
 // TODO activate/deactivate different the conversion or search part
 
 export default (config = {}) => {
   const defaultTheme = {
     emoji: emojiStyles.emoji,
+    emojiSpritePrefix: 'emojione',
 
     emojiSuggestions: emojiSuggestionsStyles.emojiSuggestions,
 
@@ -124,9 +122,6 @@ export default (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const {
     theme = defaultTheme,
-    imagePath = defaultImagePath,
-    imageType = defaultImageType,
-    allowImageCache,
     positionSuggestions = defaultPositionSuggestions,
     priorityList,
     selectGroups,
@@ -135,16 +130,11 @@ export default (config = {}) => {
     useNativeArt,
   } = config;
 
-  const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
-
   // if priorityList is configured in config then set priorityList
   if (priorityList) emojiList.setPriorityList(priorityList);
   const suggestionsProps = {
     ariaProps,
-    cacheBustParam,
     callbacks,
-    imagePath,
-    imageType,
     theme,
     store,
     positionSuggestions,
@@ -152,9 +142,6 @@ export default (config = {}) => {
     useNativeArt,
   };
   const selectProps = {
-    cacheBustParam,
-    imagePath,
-    imageType,
     theme,
     store,
     selectGroups,
@@ -168,7 +155,7 @@ export default (config = {}) => {
     decorators: [
       {
         strategy: emojiStrategy,
-        component: decorateComponentWithProps(Emoji, { theme, imagePath, imageType, cacheBustParam, useNativeArt }),
+        component: decorateComponentWithProps(Emoji, { theme, useNativeArt }),
       },
       {
         strategy: emojiSuggestionsStrategy,
