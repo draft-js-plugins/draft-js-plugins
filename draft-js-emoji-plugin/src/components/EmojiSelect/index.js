@@ -38,7 +38,7 @@ export default class EmojiSelect extends Component {
 
   // Start the selector closed
   state = {
-    isOpen: false,
+    isOpen: this.props && this.props.isOpen ? this.props.isOpen : false,
   };
 
   // When the selector is open and users click anywhere on the page,
