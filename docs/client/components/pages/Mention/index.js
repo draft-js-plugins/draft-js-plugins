@@ -208,6 +208,10 @@ export default class App extends Component {
               <span>Component to be used to render the suggestions dropdown. It must implement the same interface like <InlineCode code="MentionSuggestions" />.  Defaults to <InlineCode code="MentionSuggestions" />.</span>
             </div>
             <div className={styles.param}>
+              <span className={styles.paramName}>addMentionToEditor</span>
+              <span>For advanced usage: if you need to handle the creation of the DraftJS Entity on your own, you can provide this function.</span>
+            </div>
+            <div className={styles.param}>
               <span>Additional properties are passed to the <InlineCode code="popoverComponent" /></span>
             </div>
           </div>
