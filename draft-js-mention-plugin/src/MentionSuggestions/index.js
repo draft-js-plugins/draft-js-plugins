@@ -17,6 +17,7 @@ export class MentionSuggestions extends Component {
     ]),
     entryComponent: PropTypes.func,
     onAddMention: PropTypes.func,
+    addMentionToEditor: PropTypes.func,
     suggestions: PropTypes.array,
   };
 
@@ -226,7 +227,7 @@ export class MentionSuggestions extends Component {
     }
 
     this.closeDropdown();
-    const newEditorState = addMention(
+    const newEditorState = (this.props.addMentionToEditor ? this.props.addMentionToEditor : addMention)(
       this.props.store.getEditorState(),
       mention,
       this.props.mentionPrefix,
