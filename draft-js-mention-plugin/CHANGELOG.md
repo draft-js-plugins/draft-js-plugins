@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## NEXT
+- Added `addMentionToEditor` function to `MentionSuggestions` to allow custom entity creation.
+
 ## 3.0.4
 - Added an `id` attribute on the listbox options so the `aria-activedescendant` value refers to the focused option.
 
