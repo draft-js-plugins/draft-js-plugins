@@ -20,7 +20,17 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
     relativeRect.scrollTop = relativeParent.scrollTop;
 
     const relativeParentRect = relativeParent.getBoundingClientRect();
+    const innerWidth = window.innerWidth;
+    /* Get relativeParentRect width */
+    const containerWidth = innerWidth - relativeParentRect.left;
+    /* mention suggestion list width */
+    const popoverWidth = popover.offsetWidth;
     relativeRect.left = decoratorRect.left - relativeParentRect.left;
+    
+    /* Push suggestions list to left its spilling out of viewport */
+    if (relativeRect.left + popoverWidth > containerWidth) {
+      relativeRect.left = containerWidth - popoverWidth;
+    }
     relativeRect.top = decoratorRect.bottom - relativeParentRect.top;
   } else {
     relativeRect.scrollTop = window.pageYOffset || document.documentElement.scrollTop;
