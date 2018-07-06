@@ -26,7 +26,7 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
     /* mention suggestion list width */
     const popoverWidth = popover.offsetWidth;
     relativeRect.left = decoratorRect.left - relativeParentRect.left;
-    
+
     /* Push suggestions list to left its spilling out of viewport */
     if (relativeRect.left + popoverWidth > containerWidth) {
       relativeRect.left = containerWidth - popoverWidth;
