@@ -52,7 +52,7 @@ export default class Toolbar extends React.Component {
 
       this.setState({
         position: {
-          top: node.offsetTop + editorRoot.offsetTop,
+          top: node.offsetTop,
           left: editorRoot.offsetLeft - 80,
           transform: 'scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
