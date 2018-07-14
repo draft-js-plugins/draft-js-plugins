@@ -162,6 +162,7 @@ export default (config = {}) => {
     toneSelectOpenDelay,
     useNativeArt,
   };
+  let getEditorReadOnly;
   return {
     EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, suggestionsProps),
     EmojiSelect: decorateComponentWithProps(EmojiSelect, selectProps),
@@ -186,9 +187,10 @@ export default (config = {}) => {
       }
     ),
 
-    initialize: ({ getEditorState, setEditorState }) => {
+    initialize: ({ getEditorState, setEditorState, getReadOnly }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;
+      getEditorReadOnly = getReadOnly;
     },
 
     onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
@@ -198,8 +200,12 @@ export default (config = {}) => {
     handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
+      const isEditorEditable = !getEditorReadOnly();
+      const isContentDifferent = !newEditorState.getCurrentContent().equals(
+        editorState.getCurrentContent()
+      );
 
-      if (!newEditorState.getCurrentContent().equals(editorState.getCurrentContent())) {
+      if (isContentDifferent && isEditorEditable) {
         // Forcing the current selection ensures that it will be at it's right place.
         // This solves the issue where inserting an Emoji on OSX with Apple's Emoji
         // selector led to the right selection the data, but wrong position in
