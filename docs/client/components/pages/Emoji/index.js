@@ -306,6 +306,10 @@ export default class App extends Component {
             <span className={styles.paramName}>useNativeArt</span>
             <span>If set to <InlineCode code={'true'} />, uses host system art for emojis instead of EmojiOne art. Default value is <InlineCode code={'false'} />.</span>
           </div>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>closePopupOnEmojiSelect</span>
+            <span>If set to <InlineCode code={'true'} />, closes emoji popup after an emoji has been selected. Default value is <InlineCode code={'false'} />.</span>
+          </div>
           <Heading level={3}>EmojiSuggestions</Heading>
           <div>
             The EmojiSuggestions component is part of the plugin and should placed somewhere in the

@@ -17,6 +17,7 @@ export default class Popover extends Component {
     toneSelectOpenDelay: PropTypes.number.isRequired,
     isOpen: PropTypes.bool,
     useNativeArt: PropTypes.bool,
+    onSelect: PropTypes.func,
   };
 
   static defaultProps = {
@@ -64,6 +65,7 @@ export default class Popover extends Component {
       emoji,
     );
     this.props.store.setEditorState(newEditorState);
+    this.props.onSelect && this.props.onSelect();
   };
 
   onEmojiMouseDown = (emojiEntry, toneSet) => {
