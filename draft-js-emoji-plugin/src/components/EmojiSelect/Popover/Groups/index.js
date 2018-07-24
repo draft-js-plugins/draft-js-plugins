@@ -18,6 +18,10 @@ export default class Groups extends Component {
     useNativeArt: PropTypes.bool,
   };
 
+  state = {
+    activeGroup: 0,
+  }
+
   componentDidMount() {
     this.calculateBounds();
   }
@@ -32,6 +36,7 @@ export default class Groups extends Component {
     groups.forEach((group, index) => {
       if (values.scrollTop >= group.top) {
         activeGroup = index;
+        this.setState({ activeGroup });
       }
     });
     onGroupScroll(activeGroup);
@@ -90,6 +95,7 @@ export default class Groups extends Component {
       useNativeArt,
     } = this.props;
 
+    const { activeGroup } = this.state;
     return (
       <div
         className={theme.emojiSelectPopoverGroups}
@@ -124,6 +130,7 @@ export default class Groups extends Component {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
               useNativeArt={useNativeArt}
+              isActive={activeGroup === index || activeGroup + 1 === index}
             />
           ))}
         </Scrollbars>
