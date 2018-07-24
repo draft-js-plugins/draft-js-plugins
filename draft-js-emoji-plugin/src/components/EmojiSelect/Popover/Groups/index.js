@@ -16,6 +16,7 @@ export default class Groups extends Component {
     onEmojiMouseDown: PropTypes.func.isRequired,
     onGroupScroll: PropTypes.func.isRequired,
     useNativeArt: PropTypes.bool,
+    isOpen: PropTypes.bool,
   };
 
   state = {
@@ -81,6 +82,14 @@ export default class Groups extends Component {
     }
   }
 
+
+  isRenderedGroupActive = (index) => {
+    const { activeGroup } = this.state;
+    const { isOpen } = this.props;
+    return activeGroup === index ||
+           (isOpen && activeGroup + 1 === index); // we also preload next group when popup is open
+  }
+
   render() {
     const {
       cacheBustParam,
@@ -95,7 +104,6 @@ export default class Groups extends Component {
       useNativeArt,
     } = this.props;
 
-    const { activeGroup } = this.state;
     return (
       <div
         className={theme.emojiSelectPopoverGroups}
@@ -130,7 +138,7 @@ export default class Groups extends Component {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
               useNativeArt={useNativeArt}
-              isActive={activeGroup === index || activeGroup + 1 === index}
+              isActive={this.isRenderedGroupActive(index)}
             />
           ))}
         </Scrollbars>
