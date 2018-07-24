@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.0.7
+## [Unreleased]
 - Added closePopupOnEmojiSelect option to configuration which when enabled closes emoji select popup after emoji has been clicked.
 
 ## 2.0.6
