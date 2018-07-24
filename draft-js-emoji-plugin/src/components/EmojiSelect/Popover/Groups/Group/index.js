@@ -22,7 +22,7 @@ export default class Group extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isActiveGroup) {
+    if (nextProps.isActive) {
       this.setState({ hasRenderedEmoji: true });
     }
   }
