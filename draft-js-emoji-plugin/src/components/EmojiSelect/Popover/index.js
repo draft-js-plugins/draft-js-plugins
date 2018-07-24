@@ -65,7 +65,9 @@ export default class Popover extends Component {
       emoji,
     );
     this.props.store.setEditorState(newEditorState);
-    this.props.onSelect && this.props.onSelect();
+    if (this.props.onSelect) {
+      this.props.onSelect();
+    }
   };
 
   onEmojiMouseDown = (emojiEntry, toneSet) => {
