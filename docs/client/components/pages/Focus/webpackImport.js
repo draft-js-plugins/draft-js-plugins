@@ -1,1 +1,1 @@
-import 'draft-js-image-plugin/lib/plugin.css';
+import 'draft-js-focus-plugin/lib/plugin.css';
