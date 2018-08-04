@@ -97,7 +97,7 @@ describe('RedoButton', () => {
         children="redo"
       />
     );
-    result.find('button').simulate('click');
+    result.find('button').simulate('click', { stopPropagation: ()=> undefined });
     expect(onChange).to.have.been.calledOnce;
   });
 });
