@@ -10,7 +10,8 @@ class UndoButton extends Component {
     theme: PropTypes.any,
   };
 
-  onClick = () => {
+  onClick = (event) => {
+    event.stopPropagation();
     this.props.store.setEditorState(EditorState.undo(this.props.store.getEditorState()));
   };
 

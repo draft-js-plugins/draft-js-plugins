@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+### 2.0.2
+
+- button not working while it's in the same container with editor [#1139](https://github.com/draft-js-plugins/draft-js-plugins/issues/1139)
+
 ### Fixed
 
 - Fixed an issue during initialization [#740](https://github.com/draft-js-plugins/draft-js-plugins/pull/740). Thanks to @terryoy
