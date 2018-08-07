@@ -86,7 +86,7 @@ All functions receive an additional argument. This argument is an object contain
 In addition the a plugin accepts 
 
 - `initialize: (PluginFunctions) => void`
-- `onChange: (EditorState) => EditorState`
+- `onChange: (EditorState, PluginFunctions) => EditorState`
 - `willUnmount: (PluginFunctions) => void`
 - `decorators: Array<Decorator> => void`
 - `getAccessibilityProps: () => { ariaHasPopup: string, ariaExpanded: string }`
