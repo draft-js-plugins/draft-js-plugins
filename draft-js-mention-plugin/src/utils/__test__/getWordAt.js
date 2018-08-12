@@ -11,13 +11,22 @@ describe('getWordAt', () => {
     expect(getWordAt('this is a test', 5)).to.deep.equal(expected);
   });
 
-  it('finds the first word', () => {
+  it('finds the first word from begin position of word', () => {
     const expected = {
       word: 'this',
       begin: 0,
       end: 4,
     };
     expect(getWordAt('this is a test', 0)).to.deep.equal(expected);
+  });
+
+  it('finds the first word from end position of word', () => {
+    const expected = {
+      word: 'this',
+      begin: 0,
+      end: 4,
+    };
+    expect(getWordAt('this is a test', 4)).to.deep.equal(expected);
   });
 
   it('finds the last word', () => {
