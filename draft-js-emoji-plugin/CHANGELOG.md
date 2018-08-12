@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.7
+- Fixed getWordAt failure when mentionTrigger is empty.
+
 ## 2.0.6
 - Added an `id` attribute on the listbox options so the `aria-activedescendant` value refers to the focused option.
 

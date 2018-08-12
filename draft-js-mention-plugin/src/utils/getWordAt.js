@@ -5,7 +5,8 @@ const getWordAt = (string, position) => {
   const pos = Number(position) >>> 0;
 
   // Search for the word's beginning and end.
-  const left = str.slice(0, pos + 1).search(/\S+$/);
+  // Do NOT adjust pos if it already at the end of word.(Happens when mentiontrigger is empty(''))
+  const left = str.slice(0, str.charAt(pos) === ' ' ? pos : pos + 1).search(/\S+$/);
   const right = str.slice(pos).search(/\s/);
 
   // The last word in the string is a special case.
