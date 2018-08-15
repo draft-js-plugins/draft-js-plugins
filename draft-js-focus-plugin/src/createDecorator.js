@@ -11,7 +11,7 @@ export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFo
   static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
-  componentWillMount() {
+  componentDidMount() {
     blockKeyStore.add(this.props.block.getKey());
   }
 
