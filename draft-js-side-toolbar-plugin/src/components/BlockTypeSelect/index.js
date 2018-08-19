@@ -51,14 +51,7 @@ export default class BlockTypeSelect extends React.Component {
         */}
         <div className={theme.blockTypeSelectStyles.spacer} />
         <div className={theme.blockTypeSelectStyles.popup} style={this.state.style}>
-          {this.props.structure.map((Component, index) => (
-            <Component
-              key={index}
-              getEditorState={getEditorState}
-              setEditorState={setEditorState}
-              theme={theme.buttonStyles}
-            />
-          ))}
+          {this.props.children(getEditorState, setEditorState, theme.buttonStyles)}
         </div>
       </div>
     );

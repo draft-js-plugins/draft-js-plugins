@@ -1,8 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import PropTypes from 'prop-types';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+import BlockTypeSelect from '../BlockTypeSelect';
 
-export default class Toolbar extends React.Component {
+class Toolbar extends React.Component {
 
   state = {
     position: {
@@ -63,20 +65,25 @@ export default class Toolbar extends React.Component {
 
   render() {
     const { theme, store } = this.props;
+
     return (
       <div
         className={theme.toolbarStyles.wrapper}
         style={this.state.position}
       >
-        {this.props.structure.map((Component, index) => (
-          <Component
-            key={index}
-            getEditorState={store.getItem('getEditorState')}
-            setEditorState={store.getItem('setEditorState')}
-            theme={theme}
-          />
-        ))}
+        <BlockTypeSelect
+          getEditorState={store.getItem('getEditorState')}
+          setEditorState={store.getItem('setEditorState')}
+          theme={theme}>
+          {this.props.children}
+        </BlockTypeSelect>
       </div>
     );
   }
 }
+
+Toolbar.propTypes = {
+  children: PropTypes.func.isRequired
+};
+
+export default Toolbar;
