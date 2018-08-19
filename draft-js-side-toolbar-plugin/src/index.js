@@ -6,6 +6,8 @@ import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 
 export default (config = {}) => {
+  const defaultPostion = 'left';
+
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
   const store = createStore({
@@ -13,12 +15,14 @@ export default (config = {}) => {
   });
 
   const {
+    position = defaultPostion,
     theme = defaultTheme,
   } = config;
 
   const toolbarProps = {
     store,
     theme,
+    position,
   };
 
   return {

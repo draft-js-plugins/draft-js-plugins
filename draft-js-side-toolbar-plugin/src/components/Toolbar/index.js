@@ -52,13 +52,21 @@ class Toolbar extends React.Component {
         editorRoot = editorRoot.parentNode;
       }
 
+      const position = {
+        top: node.offsetTop + editorRoot.offsetTop,
+        transform: 'scale(1)',
+        transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+      };
+      // TODO: remove the hard code(width for the hover element)
+      if (this.props.position === 'right') {
+        position.left = editorRoot.offsetLeft + editorRoot.offsetWidth + 80 - 36;
+      }else {
+        position.left = editorRoot.offsetLeft - 80;
+      }
+
+
       this.setState({
-        position: {
-          top: node.offsetTop + editorRoot.offsetTop,
-          left: editorRoot.offsetLeft - 80,
-          transform: 'scale(1)',
-          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-        },
+        position,
       });
     }, 0);
   }

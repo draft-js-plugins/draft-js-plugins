@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### 2.0.6
 - Swap structure prop in side toolbar for render prop
+- Add `position` configuration for positioning left side or right side.
 
 ## 2.0.4 - 2.0.5
 - bumped find-with-regex
