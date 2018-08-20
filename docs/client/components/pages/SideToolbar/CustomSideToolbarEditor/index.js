@@ -16,7 +16,9 @@ import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 
+// Setting the side Toolbar at right position(default is left) and styling with custom theme
 const sideToolbarPlugin = createSideToolbarPlugin({
+  position: 'right',
   theme: { buttonStyles, toolbarStyles, blockTypeSelectStyles }
 });
 const { SideToolbar } = sideToolbarPlugin;
