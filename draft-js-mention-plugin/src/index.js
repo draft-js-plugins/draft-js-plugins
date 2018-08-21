@@ -96,6 +96,7 @@ export default (config = {}) => {
     entityMutability = 'SEGMENTED',
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
+    supportWhitespace = false,
   } = config;
   const mentionSearchProps = {
     ariaProps,
@@ -115,7 +116,7 @@ export default (config = {}) => {
         component: decorateComponentWithProps(Mention, { theme, mentionComponent }),
       },
       {
-        strategy: mentionSuggestionsStrategy(mentionTrigger, mentionRegExp),
+        strategy: mentionSuggestionsStrategy(mentionTrigger, supportWhitespace, mentionRegExp),
         component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
       },
     ],
