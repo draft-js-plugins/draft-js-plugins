@@ -10,7 +10,8 @@ class RedoButton extends Component {
     theme: PropTypes.any,
   };
 
-  onClick = () => {
+  onClick = (event) => {
+    event.stopPropagation();
     this.props.store.setEditorState(EditorState.redo(this.props.store.getEditorState()));
   };
 
