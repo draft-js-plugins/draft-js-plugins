@@ -59,8 +59,9 @@ class Toolbar extends React.Component {
       };
       // TODO: remove the hard code(width for the hover element)
       if (this.props.position === 'right') {
+        // eslint-disable-next-line no-mixed-operators
         position.left = editorRoot.offsetLeft + editorRoot.offsetWidth + 80 - 36;
-      }else {
+      } else {
         position.left = editorRoot.offsetLeft - 80;
       }
 
@@ -82,7 +83,8 @@ class Toolbar extends React.Component {
         <BlockTypeSelect
           getEditorState={store.getItem('getEditorState')}
           setEditorState={store.getItem('setEditorState')}
-          theme={theme}>
+          theme={theme}
+        >
           {this.props.children}
         </BlockTypeSelect>
       </div>

@@ -52,7 +52,7 @@ export default class CustomSideToolbarEditor extends Component {
         />
         <SideToolbar>
           {(getEditorState, setEditorState, theme) => {
-            const buttonProps= {
+            const buttonProps = {
               getEditorState,
               setEditorState,
               theme
@@ -60,13 +60,13 @@ export default class CustomSideToolbarEditor extends Component {
 
             // may be use React.Fragment instead of div to improve perfomance after React 16
             return (<div>
-              <HeadlineOneButton {...buttonProps}/>
-              <HeadlineTwoButton {...buttonProps}/>
-              <BlockquoteButton {...buttonProps}/>
-              <CodeBlockButton {...buttonProps}/>
-              <UnorderedListButton {...buttonProps}/>
-              <OrderedListButton {...buttonProps}/>
-            </div>)
+              <HeadlineOneButton {...buttonProps} />
+              <HeadlineTwoButton {...buttonProps} />
+              <BlockquoteButton {...buttonProps} />
+              <CodeBlockButton {...buttonProps} />
+              <UnorderedListButton {...buttonProps} />
+              <OrderedListButton {...buttonProps} />
+            </div>);
           }}
         </SideToolbar>
       </div>
