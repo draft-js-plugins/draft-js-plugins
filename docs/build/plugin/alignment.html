@@ -1,0 +1,393 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="draft-js-plugins - High quality plugins for DraftJS with great UX" />
+<meta property="og:description" content="Facebook's rich-text editor framework DraftJS built on top of React allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own." />
+<meta property="og:url" content="https://www.draft-js-plugins.com" />
+<meta property="og:site_name" content="draft-js-plugins" />
+<meta property="og:image" content="https://www.draft-js-plugins.com/images/draft-js-plugins.png" />
+<title>DraftJS Plugins - High quality plugins with great UX</title>
+<script>
+  if (window.location.href.indexOf('draft-js-plugins.github.io/draft-js-plugins') !== -1) {
+    // TODO improve redirect to redirect with the proper path
+    window.location.href = 'https://www.draft-js-plugins.com/';
+  }
+</script>
+<link rel="stylesheet" href="/css/normalize.css"/>
+<link rel="stylesheet" href="/css/base.css"/>
+<link rel="stylesheet" href="/css/Draft.css"/>
+<link rel="stylesheet" href="/app.css"/>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css"/>
+<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'></head><body><div id="root"><div data-reactroot="" data-reactid="1" data-react-checksum="77459882"><div data-reactid="2"><div data-reactid="3"><div class="pluginsWrapper___3HNqa" data-reactid="4"><div class="wideContainer___2PUk8" data-reactid="5"><ul class="plugins___2Zxyu" data-reactid="6"><li class="plugin___1CqHF" data-reactid="7"><a class="link___3-bgR" href="/plugin/mention" data-reactid="8">Mention</a></li><li class="plugin___1CqHF" data-reactid="9"><a class="link___3-bgR" href="/plugin/emoji" data-reactid="10">Emoji</a></li><li class="plugin___1CqHF" data-reactid="11"><a class="link___3-bgR" href="/plugin/image" data-reactid="12">Image</a></li><li class="plugin___1CqHF" data-reactid="13"><a class="link___3-bgR" href="/plugin/video" data-reactid="14">Video</a></li></ul><ul class="plugins___2Zxyu" data-reactid="15"><li class="plugin___1CqHF" data-reactid="16"><a class="link___3-bgR" href="/plugin/sticker" data-reactid="17">Sticker</a></li><li class="plugin___1CqHF" data-reactid="18"><a class="link___3-bgR" href="/plugin/hashtag" data-reactid="19">Hashtag</a></li><li class="plugin___1CqHF" data-reactid="20"><a class="link___3-bgR" href="/plugin/inline-toolbar" data-reactid="21">Inline Toolbar</a></li><li class="plugin___1CqHF" data-reactid="22"><a class="link___3-bgR" href="/plugin/side-toolbar" data-reactid="23">Side Toolbar</a></li></ul><ul class="plugins___2Zxyu" data-reactid="24"><li class="plugin___1CqHF" data-reactid="25"><a class="link___3-bgR" href="/plugin/static-toolbar" data-reactid="26">Static Toolbar</a></li><li class="plugin___1CqHF" data-reactid="27"><a class="link___3-bgR" href="/plugin/undo" data-reactid="28">Undo</a></li><li class="plugin___1CqHF" data-reactid="29"><a class="link___3-bgR" href="/plugin/counter" data-reactid="30">Counter</a></li><li class="plugin___1CqHF" data-reactid="31"><a class="link___3-bgR" href="/plugin/anchor" data-reactid="32">Anchor</a></li><li class="plugin___1CqHF" data-reactid="33"><a class="link___3-bgR" href="/plugin/linkify" data-reactid="34">Linkify</a></li></ul><ul class="plugins___2Zxyu" data-reactid="35"><li class="plugin___1CqHF" data-reactid="36"><a class="link___3-bgR" href="/plugin/focus" data-reactid="37">Focus</a></li><li class="plugin___1CqHF" data-reactid="38"><a class="link___3-bgR" href="/plugin/alignment" data-reactid="39">Alignment</a></li><li class="plugin___1CqHF" data-reactid="40"><a class="link___3-bgR" href="/plugin/resizeable" data-reactid="41">Resizeable</a></li><li class="plugin___1CqHF" data-reactid="42"><a class="link___3-bgR" href="/plugin/drag-n-drop" data-reactid="43">Drag&#x27;n&#x27;Drop</a></li><li class="plugin___1CqHF" data-reactid="44"><a class="link___3-bgR" href="/plugin/divider" data-reactid="45">Divider</a></li></ul></div><div style="text-align:center;margin-top:3rem;font-size:13px;color:#aaa;" data-reactid="46"><!-- react-text: 47 -->The documentation currently represents the 2.0.1 release.<!-- /react-text --><br data-reactid="48"/><!-- react-text: 49 -->For troubleshooting please checkout the<!-- /react-text --><a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md" class="link___3-bgR" data-reactid="50">FAQ</a></div></div><div class="root___2951M" data-reactid="51"><div class="separatorBase___3ePf_" data-reactid="52"></div><div class="separatorBase___3ePf_" data-reactid="53"></div><div class="separatorBase___3ePf_" data-reactid="54"></div><div class="separatorBase___3ePf_" data-reactid="55"></div><div class="separatorBase___3ePf_" data-reactid="56"></div><div class="separatorBase___3ePf_" data-reactid="57"></div></div><div class="root___1BwYz" data-reactid="58"><div class="root___LJuK8" data-reactid="59"><h2 class="level2___ZSTcp" data-reactid="60">Alignment</h2><h2 class="level3___3tmSS" data-reactid="61">Prerequisite</h2><p data-reactid="62">This plugin exposes a decorator for blocks. You can use it in combination with any kind of plugin that manages a Draft.js block e.g. image or video. Keep in mind the plugin must accept a decorator for the block. The `Simple Alignment Example` further down contains an example plugin rendering a colored div. In addition this plugin only works in combination with the draft-js-focus-plugin.</p><h2 class="level3___3tmSS" data-reactid="63">Usage</h2><p data-reactid="64">Select (via mouse or keyboard) a block supporting alignment modifications. A tooltip will pop up and you can update the alignment.</p><h2 class="level3___3tmSS" data-reactid="65">Supported Environment</h2><ul class="list___RcRBq" data-reactid="66"><li class="listEntry___CSOF0" data-reactid="67">Desktop: Yes</li><li class="listEntry___CSOF0" data-reactid="68">Mobile: No</li><li class="listEntry___CSOF0" data-reactid="69">Screen-reader: No</li></ul></div></div><div class="root___3jr4h" data-reactid="70"><div class="root___LJuK8" data-reactid="71"><h2 class="level2___ZSTcp" data-reactid="72">Getting Started</h2><div class="root___-TPfX" data-reactid="73"><div class="hiddenName___1Ie0V" data-reactid="74"></div><pre data-reactid="75"><code data-reactid="76">npm install draft-js-plugins-editor</code></pre></div><div class="root___-TPfX" data-reactid="77"><div class="hiddenName___1Ie0V" data-reactid="78"></div><pre data-reactid="79"><code data-reactid="80">npm install draft-js-focus-plugin</code></pre></div><div class="root___-TPfX" data-reactid="81"><div class="hiddenName___1Ie0V" data-reactid="82"></div><pre data-reactid="83"><code data-reactid="84">npm install draft-js-alignment-plugin</code></pre></div><h2 class="level3___3tmSS" data-reactid="85">Importing the default styles</h2><p data-reactid="86"><!-- react-text: 87 -->The plugin ships with a default styling available at this location in the installed package:  <!-- /react-text --><span class="root___1V--j" data-reactid="88"><code data-reactid="89">node_modules/draft-js-alignment-plugin/lib/plugin.css</code></span></p><h2 class="level4___217Mp" data-reactid="90">Webpack Usage</h2><ul class="list___RcRBq" data-reactid="91"><li class="listEntry___CSOF0" data-reactid="92"><!-- react-text: 93 -->1. Install Webpack loaders:  <!-- /react-text --><span class="root___1V--j" data-reactid="94"><code data-reactid="95">npm i style-loader css-loader --save-dev</code></span></li><li class="listEntry___CSOF0" data-reactid="96"><!-- react-text: 97 -->2. Add the below section to Webpack config (if your config already has a loaders array, simply add the below loader object to your existing list.<!-- /react-text --><div class="root___-TPfX guideCodeBlock___1xYMP" data-reactid="98"><div class="hiddenName___1Ie0V" data-reactid="99"></div><pre data-reactid="100"><code data-reactid="101">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/plugin\.css$/</span><span class="token punctuation">,</span>
+        loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></li><li class="listEntry___CSOF0" data-reactid="102"><!-- react-text: 103 -->3. Add the below import line to your component to tell Webpack to inject the style to your component.<!-- /react-text --><div class="root___-TPfX guideCodeBlock___1xYMP" data-reactid="104"><div class="hiddenName___1Ie0V" data-reactid="105"></div><pre data-reactid="106"><code data-reactid="107"><span class="token keyword">import</span> <span class="token string">'draft-js-image-plugin/lib/plugin.css'</span><span class="token punctuation">;</span>
+</code></pre></div></li><li class="listEntry___CSOF0" data-reactid="108">4. Restart Webpack.</li></ul><h2 class="level4___217Mp" data-reactid="109">Browserify Usage</h2><p data-reactid="110"><!-- react-text: 111 -->Please help, by submiting a Pull Request to the<!-- /react-text --><!-- react-text: 112 --> <!-- /react-text --><a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js" class="root___3AHDO" data-reactid="113">documentation</a><!-- react-text: 114 -->.<!-- /react-text --></p></div></div><div class="root___1BwYz" data-reactid="115"><div class="root___LJuK8" data-reactid="116"><h2 class="level2___ZSTcp" data-reactid="117">Configuration Parameters</h2></div></div><div class="root___1BwYz" data-reactid="118"><div class="root___LJuK8" data-reactid="119"><h2 class="level2___ZSTcp" data-reactid="120">Simple Alignment Example</h2><div data-reactid="121"><div class="editor___Yq9St" data-reactid="122"><div class="DraftEditor-root" data-reactid="123"><div class="DraftEditor-editorContainer" data-reactid="124"><div aria-describedby="placeholder-29mj8" class="notranslate public-DraftEditor-content" contenteditable="true" role="textbox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="125"><div data-contents="true" data-reactid="126"><div class="" data-block="true" data-editor="29mj8" data-offset-key="9gm3s-0-0" data-reactid="127"><div data-offset-key="9gm3s-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="128"><span data-offset-key="9gm3s-0-0" data-reactid="129"><span data-text="true" data-reactid="130">This is a simple example. Focus the block by clicking on it and change alignment via the toolbar.</span></span></div></div><figure class="" data-block="true" data-editor="29mj8" data-offset-key="ov7r-0-0" contenteditable="false" data-reactid="131"><div direction="LTR" class="unfocused___2r0W6" style="width:200px;height:80px;background-color:#9bc0c7;" data-reactid="132"></div></figure><div class="" data-block="true" data-editor="29mj8" data-offset-key="e23a8-0-0" data-reactid="133"><div data-offset-key="e23a8-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="134"><span data-offset-key="e23a8-0-0" data-reactid="135"><span data-text="true" data-reactid="136">More text here to demonstrate how inline left/right alignment works …</span></span></div></div></div></div></div></div><div class="alignmentTool___3KZQG" data-reactid="137"><div class="buttonWrapper___3fLZF" data-reactid="138"><button class="button___1tM1C" type="button" data-reactid="139"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="140"><path d="M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M3,7 L3,17 L17,17 L17,7 L3,7 Z" data-reactid="141"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="142"></path></svg></button></div><div class="buttonWrapper___3fLZF" data-reactid="143"><button class="button___1tM1C" type="button" data-reactid="144"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="145"><path d="M21,15 L15,15 L15,17 L21,17 L21,15 Z M21,7 L15,7 L15,9 L21,9 L21,7 Z M15,13 L21,13 L21,11 L15,11 L15,13 Z M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M3,7 L3,17 L13,17 L13,7 L3,7 Z" data-reactid="146"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="147"></path></svg></button></div><div class="buttonWrapper___3fLZF" data-reactid="148"><button class="button___1tM1C" type="button" data-reactid="149"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="150"><path d="M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M5,7 L5,17 L19,17 L19,7 L5,7 Z" data-reactid="151"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="152"></path></svg></button></div><div class="buttonWrapper___3fLZF" data-reactid="153"><button class="button___1tM1C" type="button" data-reactid="154"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="155"><path d="M9,15 L3,15 L3,17 L9,17 L9,15 Z M9,7 L3,7 L3,9 L9,9 L9,7 Z M3,13 L9,13 L9,11 L3,11 L3,13 Z M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M11,7 L11,17 L21,17 L21,7 L11,7 Z" data-reactid="156"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="157"></path></svg></button></div></div></div></div><div class="root___-TPfX" data-reactid="158"><div class="name___9uJGf" data-reactid="159">SimpleAlignmentEditor.js</div><pre data-reactid="160"><code data-reactid="161"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+  convertFromRaw<span class="token punctuation">,</span>
+  EditorState<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> Editor<span class="token punctuation">,</span> <span class="token punctuation">{</span> composeDecorators <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> createAlignmentPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-alignment-plugin'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> createFocusPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-focus-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createColorBlockPlugin <span class="token keyword">from</span> <span class="token string">'./colorBlockPlugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> focusPlugin <span class="token operator">=</span> <span class="token function">createFocusPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> alignmentPlugin <span class="token operator">=</span> <span class="token function">createAlignmentPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> AlignmentTool <span class="token punctuation">}</span> <span class="token operator">=</span> alignmentPlugin<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> decorator <span class="token operator">=</span> <span class="token function">composeDecorators</span><span class="token punctuation">(</span>
+  alignmentPlugin<span class="token punctuation">.</span>decorator<span class="token punctuation">,</span>
+  focusPlugin<span class="token punctuation">.</span>decorator<span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> colorBlockPlugin <span class="token operator">=</span> <span class="token function">createColorBlockPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span> decorator <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span>focusPlugin<span class="token punctuation">,</span> alignmentPlugin<span class="token punctuation">,</span> colorBlockPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* eslint-disable */</span>
+<span class="token keyword">const</span> initialState <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"entityMap"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"0"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"colorBlock"</span><span class="token punctuation">,</span>
+            <span class="token string">"mutability"</span><span class="token punctuation">:</span> <span class="token string">"IMMUTABLE"</span><span class="token punctuation">,</span>
+            <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"blocks"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+        <span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token string">"9gm3s"</span><span class="token punctuation">,</span>
+        <span class="token string">"text"</span><span class="token punctuation">:</span> <span class="token string">"This is a simple example. Focus the block by clicking on it and change alignment via the toolbar."</span><span class="token punctuation">,</span>
+        <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"unstyled"</span><span class="token punctuation">,</span>
+        <span class="token string">"depth"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token string">"inlineStyleRanges"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"entityRanges"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        <span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token string">"ov7r"</span><span class="token punctuation">,</span>
+        <span class="token string">"text"</span><span class="token punctuation">:</span> <span class="token string">" "</span><span class="token punctuation">,</span>
+        <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"atomic"</span><span class="token punctuation">,</span>
+        <span class="token string">"depth"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token string">"inlineStyleRanges"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"entityRanges"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+            <span class="token string">"offset"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token string">"length"</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+            <span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token number">0</span>
+        <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        <span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token string">"e23a8"</span><span class="token punctuation">,</span>
+        <span class="token string">"text"</span><span class="token punctuation">:</span> <span class="token string">"More text here to demonstrate how inline left/right alignment works …"</span><span class="token punctuation">,</span>
+        <span class="token string">"type"</span><span class="token punctuation">:</span> <span class="token string">"unstyled"</span><span class="token punctuation">,</span>
+        <span class="token string">"depth"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token string">"inlineStyleRanges"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"entityRanges"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token string">"data"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">/* eslint-enable */</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">SimpleAlignmentEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> EditorState<span class="token punctuation">.</span><span class="token function">createWithContent</span><span class="token punctuation">(</span><span class="token function">convertFromRaw</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">></span>
+        <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>Editor
+            editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+            onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+            plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+            ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token operator">/</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>AlignmentTool <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="162"><div class="name___9uJGf" data-reactid="163">colorBlockPlugin.js</div><pre data-reactid="164"><code data-reactid="165"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> ColorBlock <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+  block<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  blockProps<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  customStyleMap<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  customStyleFn<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  decorator<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  forceSelection<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  offsetKey<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  selection<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  tree<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  contentState<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+  style<span class="token punctuation">,</span>
+  <span class="token operator">...</span>elementProps
+<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>div
+    <span class="token punctuation">{</span><span class="token operator">...</span>elementProps<span class="token punctuation">}</span>
+    style<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> width<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span> <span class="token number">80</span><span class="token punctuation">,</span> backgroundColor<span class="token punctuation">:</span> <span class="token string">'#9bc0c7'</span><span class="token punctuation">,</span> <span class="token operator">...</span>style <span class="token punctuation">}</span><span class="token punctuation">}</span>
+  <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">createColorBlockPlugin</span> <span class="token operator">=</span> <span class="token punctuation">(</span>config <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> component <span class="token operator">=</span> config<span class="token punctuation">.</span>decorator <span class="token operator">?</span> config<span class="token punctuation">.</span><span class="token function">decorator</span><span class="token punctuation">(</span>ColorBlock<span class="token punctuation">)</span> <span class="token punctuation">:</span> ColorBlock<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    blockRendererFn<span class="token punctuation">:</span> <span class="token punctuation">(</span>block<span class="token punctuation">,</span> <span class="token punctuation">{</span> getEditorState <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>block<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'atomic'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> contentState <span class="token operator">=</span> <span class="token function">getEditorState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getCurrentContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> entity <span class="token operator">=</span> contentState<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span>block<span class="token punctuation">.</span><span class="token function">getEntityAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> type <span class="token operator">=</span> entity<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">'colorBlock'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            component<span class="token punctuation">,</span>
+            editable<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> createColorBlockPlugin<span class="token punctuation">;</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="166"><div class="name___9uJGf" data-reactid="167">editorStyles.css</div><pre data-reactid="168"><code data-reactid="169"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.options</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___1BwYz" data-reactid="170"><div class="root___LJuK8" data-reactid="171"><h2 class="level2___ZSTcp" data-reactid="172">Themed Alignment Example</h2><div data-reactid="173"><div class="editor___2PtgG" data-reactid="174"><div class="DraftEditor-root" data-reactid="175"><div class="DraftEditor-editorContainer" data-reactid="176"><div aria-describedby="placeholder-37nu6" class="notranslate public-DraftEditor-content" contenteditable="true" role="textbox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="177"><div data-contents="true" data-reactid="178"><div class="" data-block="true" data-editor="37nu6" data-offset-key="9gm3s-0-0" data-reactid="179"><div data-offset-key="9gm3s-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="180"><span data-offset-key="9gm3s-0-0" data-reactid="181"><span data-text="true" data-reactid="182">This is a simple example. Focus the block by clicking on it and change alignment via the toolbar.</span></span></div></div><figure class="" data-block="true" data-editor="37nu6" data-offset-key="ov7r-0-0" contenteditable="false" data-reactid="183"><div direction="LTR" class="unfocused___2r0W6" style="width:200px;height:80px;background-color:#9bc0c7;" data-reactid="184"></div></figure><div class="" data-block="true" data-editor="37nu6" data-offset-key="e23a8-0-0" data-reactid="185"><div data-offset-key="e23a8-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="186"><span data-offset-key="e23a8-0-0" data-reactid="187"><span data-text="true" data-reactid="188">More text here to demonstrate how inline left/right alignment works …</span></span></div></div></div></div></div></div><div class="alignmentTool___33X_x" data-reactid="189"><div class="buttonWrapper___13Kwv" data-reactid="190"><button class="button___2NxE2" type="button" data-reactid="191"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="192"><path d="M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M3,7 L3,17 L17,17 L17,7 L3,7 Z" data-reactid="193"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="194"></path></svg></button></div><div class="buttonWrapper___13Kwv" data-reactid="195"><button class="button___2NxE2" type="button" data-reactid="196"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="197"><path d="M21,15 L15,15 L15,17 L21,17 L21,15 Z M21,7 L15,7 L15,9 L21,9 L21,7 Z M15,13 L21,13 L21,11 L15,11 L15,13 Z M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M3,7 L3,17 L13,17 L13,7 L3,7 Z" data-reactid="198"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="199"></path></svg></button></div><div class="buttonWrapper___13Kwv" data-reactid="200"><button class="button___2NxE2" type="button" data-reactid="201"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="202"><path d="M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M5,7 L5,17 L19,17 L19,7 L5,7 Z" data-reactid="203"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="204"></path></svg></button></div><div class="buttonWrapper___13Kwv" data-reactid="205"><button class="button___2NxE2" type="button" data-reactid="206"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="207"><path d="M9,15 L3,15 L3,17 L9,17 L9,15 Z M9,7 L3,7 L3,9 L9,9 L9,7 Z M3,13 L9,13 L9,11 L3,11 L3,13 Z M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M11,7 L11,17 L21,17 L21,7 L11,7 Z" data-reactid="208"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="209"></path></svg></button></div></div></div></div><div class="root___-TPfX" data-reactid="210"><div class="name___9uJGf" data-reactid="211">SimpleAlignmentEditor.js</div><pre data-reactid="212"><code data-reactid="213"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> convertFromRaw<span class="token punctuation">,</span> EditorState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Editor<span class="token punctuation">,</span> <span class="token punctuation">{</span> composeDecorators <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createAlignmentPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-alignment-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createFocusPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-focus-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createColorBlockPlugin <span class="token keyword">from</span> <span class="token string">'./colorBlockPlugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> alignmentToolStyles <span class="token keyword">from</span> <span class="token string">'./alignmentToolStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> buttonStyles <span class="token keyword">from</span> <span class="token string">'./buttonStyles.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> focusPlugin <span class="token operator">=</span> <span class="token function">createFocusPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> alignmentPlugin <span class="token operator">=</span> <span class="token function">createAlignmentPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  theme<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    alignmentToolStyles<span class="token punctuation">,</span>
+    buttonStyles<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> AlignmentTool <span class="token punctuation">}</span> <span class="token operator">=</span> alignmentPlugin<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> decorator <span class="token operator">=</span> <span class="token function">composeDecorators</span><span class="token punctuation">(</span>
+  alignmentPlugin<span class="token punctuation">.</span>decorator<span class="token punctuation">,</span>
+  focusPlugin<span class="token punctuation">.</span>decorator<span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> colorBlockPlugin <span class="token operator">=</span> <span class="token function">createColorBlockPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span> decorator <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span>focusPlugin<span class="token punctuation">,</span> alignmentPlugin<span class="token punctuation">,</span> colorBlockPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* eslint-disable */</span>
+<span class="token keyword">const</span> initialState <span class="token operator">=</span> <span class="token punctuation">{</span>
+  entityMap<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">'0'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      type<span class="token punctuation">:</span> <span class="token string">'colorBlock'</span><span class="token punctuation">,</span>
+      mutability<span class="token punctuation">:</span> <span class="token string">'IMMUTABLE'</span><span class="token punctuation">,</span>
+      data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  blocks<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      key<span class="token punctuation">:</span> <span class="token string">'9gm3s'</span><span class="token punctuation">,</span>
+      text<span class="token punctuation">:</span>
+        <span class="token string">'This is a simple example. Focus the block by clicking on it and change alignment via the toolbar.'</span><span class="token punctuation">,</span>
+      type<span class="token punctuation">:</span> <span class="token string">'unstyled'</span><span class="token punctuation">,</span>
+      depth<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      inlineStyleRanges<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      entityRanges<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      key<span class="token punctuation">:</span> <span class="token string">'ov7r'</span><span class="token punctuation">,</span>
+      text<span class="token punctuation">:</span> <span class="token string">' '</span><span class="token punctuation">,</span>
+      type<span class="token punctuation">:</span> <span class="token string">'atomic'</span><span class="token punctuation">,</span>
+      depth<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      inlineStyleRanges<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      entityRanges<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          offset<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+          length<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+          key<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      key<span class="token punctuation">:</span> <span class="token string">'e23a8'</span><span class="token punctuation">,</span>
+      text<span class="token punctuation">:</span>
+        <span class="token string">'More text here to demonstrate how inline left/right alignment works …'</span><span class="token punctuation">,</span>
+      type<span class="token punctuation">:</span> <span class="token string">'unstyled'</span><span class="token punctuation">,</span>
+      depth<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      inlineStyleRanges<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      entityRanges<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">/* eslint-enable */</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">ThemedAlignmentEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> EditorState<span class="token punctuation">.</span><span class="token function">createWithContent</span><span class="token punctuation">(</span><span class="token function">convertFromRaw</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">></span>
+        <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>Editor
+            editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+            onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+            plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+            ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+              <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token operator">/</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>AlignmentTool <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="214"><div class="name___9uJGf" data-reactid="215">editorStyles.css</div><pre data-reactid="216"><code data-reactid="217"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.options</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="218"><div class="name___9uJGf" data-reactid="219">alignmentToolStyles.css</div><pre data-reactid="220"><code data-reactid="221"><span class="token selector">.alignmentTool</span> <span class="token punctuation">{</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-50%<span class="token punctuation">)</span> <span class="token function">scale</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #111<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 4px<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> 0px 1px 3px 0px <span class="token function">rgba</span><span class="token punctuation">(</span>220, 220, 220, 1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">z-index</span><span class="token punctuation">:</span> 2<span class="token punctuation">;</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.alignmentTool:after,
+.alignmentTool:before</span> <span class="token punctuation">{</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> solid transparent<span class="token punctuation">;</span>
+  <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">pointer-events</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.alignmentTool:after</span> <span class="token punctuation">{</span>
+  <span class="token property">border-color</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span>255, 255, 255, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">border-top-color</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
+  <span class="token property">border-width</span><span class="token punctuation">:</span> 4px<span class="token punctuation">;</span>
+  <span class="token property">margin-left</span><span class="token punctuation">:</span> -4px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.alignmentTool:before</span> <span class="token punctuation">{</span>
+  <span class="token property">border-color</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span>221, 221, 221, 0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">border-top-color</span><span class="token punctuation">:</span> #111<span class="token punctuation">;</span>
+  <span class="token property">border-width</span><span class="token punctuation">:</span> 6px<span class="token punctuation">;</span>
+  <span class="token property">margin-left</span><span class="token punctuation">:</span> -6px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="222"><div class="name___9uJGf" data-reactid="223">buttonStyles.css</div><pre data-reactid="224"><code data-reactid="225"><span class="token selector">.buttonWrapper</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.button</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #ddd<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 18px<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">padding-top</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+  <span class="token property">vertical-align</span><span class="token punctuation">:</span> bottom<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 34px<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 36px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 4px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.button svg</span> <span class="token punctuation">{</span>
+  <span class="token property">fill</span><span class="token punctuation">:</span> #ddd<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.button:hover,
+.button:focus</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #444<span class="token punctuation">;</span>
+  <span class="token property">outline</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span> <span class="token comment">/* reset for :focus */</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.active</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #6a9cc9<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.active svg</span> <span class="token punctuation">{</span>
+  <span class="token property">fill</span><span class="token punctuation">:</span> #6a9cc9<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___288m_" data-reactid="226"><div class="githubButtonWrapper___f8mkg" data-reactid="227"><a class="github-button" href="https://github.com/draft-js-plugins/draft-js-plugins" data-size="large" data-show-count="true" aria-label="Star draft-js-plugins/draft-js-plugins on GitHub" data-reactid="228">Github</a></div><div class="twitterButtonWrapper___37ybj" data-reactid="229"><span data-reactid="230"></span></div><div class="facebookButtonWrapper___3Op0o" data-reactid="231"><div id="fbbutton" class="fb-like" data-href="https://www.draft-js-plugins.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="290" data-reactid="232"></div></div></div></div></div><footer class="footer___3c9ZC" data-reactid="233"><!-- react-text: 234 -->Built with <!-- /react-text --><span class="heart___3qO39" data-reactid="235">❤</span><!-- react-text: 236 --> on Planet Earth<!-- /react-text --><div class="emojiAttribution___3XF0y" data-reactid="237"><!-- react-text: 238 -->Emoji art provided free by <!-- /react-text --><a href="http://emojione.com/" class="root___3AHDO" data-reactid="239">Emoji One</a></div></footer></div></div><script src="/app.js"></script></body></html>

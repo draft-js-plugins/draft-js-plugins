@@ -1,0 +1,323 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="draft-js-plugins - High quality plugins for DraftJS with great UX" />
+<meta property="og:description" content="Facebook's rich-text editor framework DraftJS built on top of React allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own." />
+<meta property="og:url" content="https://www.draft-js-plugins.com" />
+<meta property="og:site_name" content="draft-js-plugins" />
+<meta property="og:image" content="https://www.draft-js-plugins.com/images/draft-js-plugins.png" />
+<title>DraftJS Plugins - High quality plugins with great UX</title>
+<script>
+  if (window.location.href.indexOf('draft-js-plugins.github.io/draft-js-plugins') !== -1) {
+    // TODO improve redirect to redirect with the proper path
+    window.location.href = 'https://www.draft-js-plugins.com/';
+  }
+</script>
+<link rel="stylesheet" href="/css/normalize.css"/>
+<link rel="stylesheet" href="/css/base.css"/>
+<link rel="stylesheet" href="/css/Draft.css"/>
+<link rel="stylesheet" href="/app.css"/>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css"/>
+<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'></head><body><div id="root"><div data-reactroot="" data-reactid="1" data-react-checksum="1953702712"><div data-reactid="2"><div data-reactid="3"><div class="pluginsWrapper___3HNqa" data-reactid="4"><div class="wideContainer___2PUk8" data-reactid="5"><ul class="plugins___2Zxyu" data-reactid="6"><li class="plugin___1CqHF" data-reactid="7"><a class="link___3-bgR" href="/plugin/mention" data-reactid="8">Mention</a></li><li class="plugin___1CqHF" data-reactid="9"><a class="link___3-bgR" href="/plugin/emoji" data-reactid="10">Emoji</a></li><li class="plugin___1CqHF" data-reactid="11"><a class="link___3-bgR" href="/plugin/image" data-reactid="12">Image</a></li><li class="plugin___1CqHF" data-reactid="13"><a class="link___3-bgR" href="/plugin/video" data-reactid="14">Video</a></li></ul><ul class="plugins___2Zxyu" data-reactid="15"><li class="plugin___1CqHF" data-reactid="16"><a class="link___3-bgR" href="/plugin/sticker" data-reactid="17">Sticker</a></li><li class="plugin___1CqHF" data-reactid="18"><a class="link___3-bgR" href="/plugin/hashtag" data-reactid="19">Hashtag</a></li><li class="plugin___1CqHF" data-reactid="20"><a class="link___3-bgR" href="/plugin/inline-toolbar" data-reactid="21">Inline Toolbar</a></li><li class="plugin___1CqHF" data-reactid="22"><a class="link___3-bgR" href="/plugin/side-toolbar" data-reactid="23">Side Toolbar</a></li></ul><ul class="plugins___2Zxyu" data-reactid="24"><li class="plugin___1CqHF" data-reactid="25"><a class="link___3-bgR" href="/plugin/static-toolbar" data-reactid="26">Static Toolbar</a></li><li class="plugin___1CqHF" data-reactid="27"><a class="link___3-bgR" href="/plugin/undo" data-reactid="28">Undo</a></li><li class="plugin___1CqHF" data-reactid="29"><a class="link___3-bgR" href="/plugin/counter" data-reactid="30">Counter</a></li><li class="plugin___1CqHF" data-reactid="31"><a class="link___3-bgR" href="/plugin/anchor" data-reactid="32">Anchor</a></li><li class="plugin___1CqHF" data-reactid="33"><a class="link___3-bgR" href="/plugin/linkify" data-reactid="34">Linkify</a></li></ul><ul class="plugins___2Zxyu" data-reactid="35"><li class="plugin___1CqHF" data-reactid="36"><a class="link___3-bgR" href="/plugin/focus" data-reactid="37">Focus</a></li><li class="plugin___1CqHF" data-reactid="38"><a class="link___3-bgR" href="/plugin/alignment" data-reactid="39">Alignment</a></li><li class="plugin___1CqHF" data-reactid="40"><a class="link___3-bgR" href="/plugin/resizeable" data-reactid="41">Resizeable</a></li><li class="plugin___1CqHF" data-reactid="42"><a class="link___3-bgR" href="/plugin/drag-n-drop" data-reactid="43">Drag&#x27;n&#x27;Drop</a></li><li class="plugin___1CqHF" data-reactid="44"><a class="link___3-bgR" href="/plugin/divider" data-reactid="45">Divider</a></li></ul></div><div style="text-align:center;margin-top:3rem;font-size:13px;color:#aaa;" data-reactid="46"><!-- react-text: 47 -->The documentation currently represents the 2.0.1 release.<!-- /react-text --><br data-reactid="48"/><!-- react-text: 49 -->For troubleshooting please checkout the<!-- /react-text --><a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md" class="link___3-bgR" data-reactid="50">FAQ</a></div></div><div class="root___2951M" data-reactid="51"><div class="separatorBase___3ePf_" data-reactid="52"></div><div class="separatorBase___3ePf_" data-reactid="53"></div><div class="separatorBase___3ePf_" data-reactid="54"></div><div class="separatorBase___3ePf_" data-reactid="55"></div><div class="separatorBase___3ePf_" data-reactid="56"></div><div class="separatorBase___3ePf_" data-reactid="57"></div></div><div class="root___1BwYz" data-reactid="58"><div class="root___LJuK8" data-reactid="59"><h2 class="level2___ZSTcp" data-reactid="60">InlineToolbar</h2><h2 class="level3___3tmSS" data-reactid="61">Supported Environment</h2><ul class="list___mEDwR" data-reactid="62"><li class="listEntry___1Q535" data-reactid="63">Desktop: Yes</li><li class="listEntry___1Q535" data-reactid="64">Mobile: No</li><li class="listEntry___1Q535" data-reactid="65">Screen-reader: No</li></ul></div></div><div class="root___3jr4h" data-reactid="66"><div class="root___LJuK8" data-reactid="67"><h2 class="level2___ZSTcp" data-reactid="68">Getting Started</h2><div class="root___-TPfX" data-reactid="69"><div class="hiddenName___1Ie0V" data-reactid="70"></div><pre data-reactid="71"><code data-reactid="72">npm install draft-js-plugins-editor</code></pre></div><div class="root___-TPfX" data-reactid="73"><div class="hiddenName___1Ie0V" data-reactid="74"></div><pre data-reactid="75"><code data-reactid="76">npm install draft-js-inline-toolbar-plugin</code></pre></div><div class="root___-TPfX" data-reactid="77"><div class="name___9uJGf" data-reactid="78">gettingStarted.js</div><pre data-reactid="79"><code data-reactid="80"><span class="token comment">// It is important to import the Editor which accepts plugins.</span>
+<span class="token keyword">import</span> Editor <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createInlineToolbarPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-inline-toolbar-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Creates an Instance. At this step, a configuration object can be passed in</span>
+<span class="token comment">// as an argument.</span>
+<span class="token keyword">const</span> inlineToolbarPlugin <span class="token operator">=</span> <span class="token function">createInlineToolbarPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The Editor accepts an array of plugins. In this case, only the inlineToolbarPlugin</span>
+<span class="token comment">// is passed in, although it is possible to pass in multiple plugins.</span>
+<span class="token keyword">const</span> <span class="token function-variable function">MyEditor</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> editorState<span class="token punctuation">,</span> onChange <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>Editor
+    editorState<span class="token operator">=</span><span class="token punctuation">{</span>editorState<span class="token punctuation">}</span>
+    onChange<span class="token operator">=</span><span class="token punctuation">{</span>onChange<span class="token punctuation">}</span>
+    plugins<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">[</span>inlineToolbarPlugin<span class="token punctuation">]</span><span class="token punctuation">}</span>
+  <span class="token operator">/</span><span class="token operator">></span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> MyEditor<span class="token punctuation">;</span>
+</code></pre></div><h2 class="level3___3tmSS" data-reactid="81">Importing the default styles</h2><p data-reactid="82"><!-- react-text: 83 -->The plugin ships with a default styling available at this location in the installed package:  <!-- /react-text --><span class="root___1V--j" data-reactid="84"><code data-reactid="85">node_modules/draft-js-inline-toolbar-plugin/lib/plugin.css</code></span></p><h2 class="level4___217Mp" data-reactid="86">Webpack Usage</h2><ul class="list___mEDwR" data-reactid="87"><li class="listEntry___1Q535" data-reactid="88"><!-- react-text: 89 -->1. Install Webpack loaders:  <!-- /react-text --><span class="root___1V--j" data-reactid="90"><code data-reactid="91">npm i style-loader css-loader --save-dev</code></span></li><li class="listEntry___1Q535" data-reactid="92"><!-- react-text: 93 -->2. Add the below section to Webpack config (if your config already has a loaders array, simply add the below loader object to your existing list.<!-- /react-text --><div class="root___-TPfX guideCodeBlock___1yJxh" data-reactid="94"><div class="hiddenName___1Ie0V" data-reactid="95"></div><pre data-reactid="96"><code data-reactid="97">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/plugin\.css$/</span><span class="token punctuation">,</span>
+        loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></li><li class="listEntry___1Q535" data-reactid="98"><!-- react-text: 99 -->3. Add the below import line to your component to tell Webpack to inject the style to your component.<!-- /react-text --><div class="root___-TPfX guideCodeBlock___1yJxh" data-reactid="100"><div class="hiddenName___1Ie0V" data-reactid="101"></div><pre data-reactid="102"><code data-reactid="103"><span class="token keyword">import</span> <span class="token string">'draft-js-inline-toolbar-plugin/lib/plugin.css'</span><span class="token punctuation">;</span>
+</code></pre></div></li><li class="listEntry___1Q535" data-reactid="104">4. Restart Webpack.</li></ul><h2 class="level4___217Mp" data-reactid="105">Browserify Usage</h2><p data-reactid="106"><!-- react-text: 107 -->Please help, by submiting a Pull Request to the <!-- /react-text --><a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/InlineToolbar/index.js" class="root___3AHDO" data-reactid="108">documentation</a><!-- react-text: 109 -->.<!-- /react-text --></p></div></div><div class="root___1BwYz" data-reactid="110"><div class="root___LJuK8" data-reactid="111"><h2 class="level2___ZSTcp" data-reactid="112">Simple Inline Toolbar Example</h2><div class="editor___D3mZi" data-reactid="113"><div class="DraftEditor-root" data-reactid="114"><div class="DraftEditor-editorContainer" data-reactid="115"><div aria-describedby="placeholder-4fhvm" class="notranslate public-DraftEditor-content" contenteditable="true" role="textbox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="116"><div data-contents="true" data-reactid="117"><div class="" data-block="true" data-editor="4fhvm" data-offset-key="1o3ps-0-0" data-reactid="118"><div data-offset-key="1o3ps-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="119"><span data-offset-key="1o3ps-0-0" data-reactid="120"><span data-text="true" data-reactid="121">In this editor a toolbar shows up once you select part of the text …</span></span></div></div></div></div></div></div><div class="toolbar___3T5rQ" style="transform:translate(-50%) scale(0);visibility:hidden;" data-reactid="122"><div class="buttonWrapper___tHTx-" data-reactid="123"><button class="button___2osFv" type="button" data-reactid="124"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="125"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z" data-reactid="126"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="127"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="128"><button class="button___2osFv" type="button" data-reactid="129"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="130"><path d="M0 0h24v24H0z" fill="none" data-reactid="131"></path><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z" data-reactid="132"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="133"><button class="button___2osFv" type="button" data-reactid="134"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="135"><path d="M0 0h24v24H0z" fill="none" data-reactid="136"></path><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z" data-reactid="137"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="138"><button class="button___2osFv" type="button" data-reactid="139"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="140"><path d="M0 0h24v24H0V0z" fill="none" data-reactid="141"></path><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" data-reactid="142"></path></svg></button></div></div></div><div class="root___-TPfX" data-reactid="143"><div class="name___9uJGf" data-reactid="144">SimpleInlineToolbarEditor.js</div><pre data-reactid="145"><code data-reactid="146"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Editor<span class="token punctuation">,</span> <span class="token punctuation">{</span> createEditorStateWithText <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createInlineToolbarPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-inline-toolbar-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> inlineToolbarPlugin <span class="token operator">=</span> <span class="token function">createInlineToolbarPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> InlineToolbar <span class="token punctuation">}</span> <span class="token operator">=</span> inlineToolbarPlugin<span class="token punctuation">;</span>
+<span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span>inlineToolbarPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token string">'In this editor a toolbar shows up once you select part of the text …'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">SimpleInlineToolbarEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> <span class="token function">createEditorStateWithText</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Editor
+          editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+          plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>InlineToolbar <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="147"><div class="name___9uJGf" data-reactid="148">editorStyles.css</div><pre data-reactid="149"><code data-reactid="150"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___1BwYz" data-reactid="151"><div class="root___LJuK8" data-reactid="152"><h2 class="level2___ZSTcp" data-reactid="153">Custom Inline Toolbar Example</h2><div class="editor___39VMo" data-reactid="154"><div class="DraftEditor-root" data-reactid="155"><div class="DraftEditor-editorContainer" data-reactid="156"><div aria-describedby="placeholder-6083n" class="notranslate public-DraftEditor-content" contenteditable="true" role="textbox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="157"><div data-contents="true" data-reactid="158"><div class="" data-block="true" data-editor="6083n" data-offset-key="9kv7c-0-0" data-reactid="159"><div data-offset-key="9kv7c-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="160"><span data-offset-key="9kv7c-0-0" data-reactid="161"><span data-text="true" data-reactid="162">In this editor a toolbar shows up once you select part of the text …</span></span></div></div></div></div></div></div><div class="toolbar___3T5rQ" style="transform:translate(-50%) scale(0);visibility:hidden;" data-reactid="163"><div class="buttonWrapper___tHTx-" data-reactid="164"><button class="button___2osFv" type="button" data-reactid="165"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="166"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z" data-reactid="167"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="168"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="169"><button class="button___2osFv" type="button" data-reactid="170"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="171"><path d="M0 0h24v24H0z" fill="none" data-reactid="172"></path><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z" data-reactid="173"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="174"><button class="button___2osFv" type="button" data-reactid="175"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="176"><path d="M0 0h24v24H0z" fill="none" data-reactid="177"></path><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z" data-reactid="178"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="179"><button class="button___2osFv" type="button" data-reactid="180"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="181"><path d="M0 0h24v24H0V0z" fill="none" data-reactid="182"></path><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" data-reactid="183"></path></svg></button></div><div class="separator___2Ejpg" data-reactid="184"></div><div class="headlineButtonWrapper___-4I3A" data-reactid="185"><button class="headlineButton___1C3ol" data-reactid="186">H</button></div><div class="buttonWrapper___tHTx-" data-reactid="187"><button class="button___2osFv" type="button" data-reactid="188"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="189"><path d="M4 10.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm0-6c-.83 0-1.5.67-1.5 1.5S3.17 7.5 4 7.5 5.5 6.83 5.5 6 4.83 4.5 4 4.5zm0 12c-.83 0-1.5.68-1.5 1.5s.68 1.5 1.5 1.5 1.5-.68 1.5-1.5-.67-1.5-1.5-1.5zM7 19h14v-2H7v2zm0-6h14v-2H7v2zm0-8v2h14V5H7z" data-reactid="190"></path><path d="M0 0h24v24H0V0z" fill="none" data-reactid="191"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="192"><button class="button___2osFv" type="button" data-reactid="193"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="194"><path d="M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z" data-reactid="195"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="196"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="197"><button class="button___2osFv" type="button" data-reactid="198"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="199"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" data-reactid="200"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="201"></path></svg></button></div><div class="buttonWrapper___tHTx-" data-reactid="202"><button class="button___2osFv" type="button" data-reactid="203"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="204"><path d="M0 0h24v24H0V0z" fill="none" data-reactid="205"></path><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" data-reactid="206"></path></svg></button></div></div></div><div class="root___-TPfX" data-reactid="207"><div class="name___9uJGf" data-reactid="208">CustomInlineToolbarEditor.js</div><pre data-reactid="209"><code data-reactid="210"><span class="token comment">/* eslint-disable react/no-multi-comp */</span>
+<span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> Editor<span class="token punctuation">,</span> <span class="token punctuation">{</span> createEditorStateWithText <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> createInlineToolbarPlugin<span class="token punctuation">,</span> <span class="token punctuation">{</span> Separator <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-inline-toolbar-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>
+  ItalicButton<span class="token punctuation">,</span>
+  BoldButton<span class="token punctuation">,</span>
+  UnderlineButton<span class="token punctuation">,</span>
+  CodeButton<span class="token punctuation">,</span>
+  HeadlineOneButton<span class="token punctuation">,</span>
+  HeadlineTwoButton<span class="token punctuation">,</span>
+  HeadlineThreeButton<span class="token punctuation">,</span>
+  UnorderedListButton<span class="token punctuation">,</span>
+  OrderedListButton<span class="token punctuation">,</span>
+  BlockquoteButton<span class="token punctuation">,</span>
+  CodeBlockButton<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-buttons'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">HeadlinesPicker</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onWindowClick<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onWindowClick<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function-variable function">onWindowClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+    <span class="token comment">// Call `onOverrideContent` again with `undefined`</span>
+    <span class="token comment">// so the toolbar can show its regular content again.</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">onOverrideContent</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> buttons <span class="token operator">=</span> <span class="token punctuation">[</span>HeadlineOneButton<span class="token punctuation">,</span> HeadlineTwoButton<span class="token punctuation">,</span> HeadlineThreeButton<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div<span class="token operator">></span>
+        <span class="token punctuation">{</span>buttons<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>Button<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token comment">// eslint-disable-next-line</span>
+          <span class="token operator">&lt;</span>Button key<span class="token operator">=</span><span class="token punctuation">{</span>i<span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token punctuation">)</span><span class="token punctuation">}</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">HeadlinesButton</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  <span class="token comment">// When using a click event inside overridden content, mouse down</span>
+  <span class="token comment">// events needs to be prevented so the focus stays in the editor</span>
+  <span class="token comment">// and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()</span>
+  <span class="token function-variable function">onMouseDown</span> <span class="token operator">=</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token operator">=></span> event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token function-variable function">onClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+    <span class="token comment">// A button can call `onOverrideContent` to replace the content</span>
+    <span class="token comment">// of the toolbar. This can be useful for displaying sub</span>
+    <span class="token comment">// menus or requesting additional information from the user.</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">onOverrideContent</span><span class="token punctuation">(</span>HeadlinesPicker<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div onMouseDown<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onMouseDown<span class="token punctuation">}</span> className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>headlineButtonWrapper<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onClick<span class="token punctuation">}</span> className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>headlineButton<span class="token punctuation">}</span><span class="token operator">></span>
+          H
+        <span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> inlineToolbarPlugin <span class="token operator">=</span> <span class="token function">createInlineToolbarPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  structure<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    BoldButton<span class="token punctuation">,</span>
+    ItalicButton<span class="token punctuation">,</span>
+    UnderlineButton<span class="token punctuation">,</span>
+    CodeButton<span class="token punctuation">,</span>
+    Separator<span class="token punctuation">,</span>
+    HeadlinesButton<span class="token punctuation">,</span>
+    UnorderedListButton<span class="token punctuation">,</span>
+    OrderedListButton<span class="token punctuation">,</span>
+    BlockquoteButton<span class="token punctuation">,</span>
+    CodeBlockButton
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> InlineToolbar <span class="token punctuation">}</span> <span class="token operator">=</span> inlineToolbarPlugin<span class="token punctuation">;</span>
+<span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span>inlineToolbarPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token string">'In this editor a toolbar shows up once you select part of the text …'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">CustomInlineToolbarEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> <span class="token function">createEditorStateWithText</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Editor
+          editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+          plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>InlineToolbar <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="211"><div class="name___9uJGf" data-reactid="212">editorStyles.css</div><pre data-reactid="213"><code data-reactid="214"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.headlineButtonWrapper</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.headlineButton</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fbfbfb<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #888<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 18px<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+  <span class="token property">padding-top</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+  <span class="token property">vertical-align</span><span class="token punctuation">:</span> bottom<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 34px<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 36px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.headlineButton:hover,
+.headlineButton:focus</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #f3f3f3<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___1BwYz" data-reactid="215"><div class="root___LJuK8" data-reactid="216"><h2 class="level2___ZSTcp" data-reactid="217">Themed Inline Toolbar Example</h2><div class="editor___1U7VD" data-reactid="218"><div class="DraftEditor-root" data-reactid="219"><div class="DraftEditor-editorContainer" data-reactid="220"><div aria-describedby="placeholder-kc1r" class="notranslate public-DraftEditor-content" contenteditable="true" role="textbox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="221"><div data-contents="true" data-reactid="222"><div class="" data-block="true" data-editor="kc1r" data-offset-key="fkrhl-0-0" data-reactid="223"><div data-offset-key="fkrhl-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="224"><span data-offset-key="fkrhl-0-0" data-reactid="225"><span data-text="true" data-reactid="226">In this editor a toolbar with a lot more options shows up once you select part of the text …</span></span></div></div></div></div></div></div><div class="toolbar___1yhs2" style="transform:translate(-50%) scale(0);visibility:hidden;" data-reactid="227"><div class="buttonWrapper___1Xxix" data-reactid="228"><button class="button___3aysP" type="button" data-reactid="229"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="230"><path d="M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4H7v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zM10 6.5h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9H10v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z" data-reactid="231"></path><path d="M0 0h24v24H0z" fill="none" data-reactid="232"></path></svg></button></div><div class="buttonWrapper___1Xxix" data-reactid="233"><button class="button___3aysP" type="button" data-reactid="234"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="235"><path d="M0 0h24v24H0z" fill="none" data-reactid="236"></path><path d="M10 4v3h2.21l-3.42 8H6v3h8v-3h-2.21l3.42-8H18V4z" data-reactid="237"></path></svg></button></div><div class="buttonWrapper___1Xxix" data-reactid="238"><button class="button___3aysP" type="button" data-reactid="239"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="240"><path d="M0 0h24v24H0z" fill="none" data-reactid="241"></path><path d="M12 17c3.31 0 6-2.69 6-6V3h-2.5v8c0 1.93-1.57 3.5-3.5 3.5S8.5 12.93 8.5 11V3H6v8c0 3.31 2.69 6 6 6zm-7 2v2h14v-2H5z" data-reactid="242"></path></svg></button></div><div class="buttonWrapper___1Xxix" data-reactid="243"><button class="button___3aysP" type="button" data-reactid="244"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" data-reactid="245"><path d="M0 0h24v24H0V0z" fill="none" data-reactid="246"></path><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" data-reactid="247"></path></svg></button></div></div></div><div class="root___-TPfX" data-reactid="248"><div class="name___9uJGf" data-reactid="249">ThemedInlineToolbarEditor.js</div><pre data-reactid="250"><code data-reactid="251"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> Editor<span class="token punctuation">,</span> <span class="token punctuation">{</span> createEditorStateWithText <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> createInlineToolbarPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-inline-toolbar-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> buttonStyles <span class="token keyword">from</span> <span class="token string">'./buttonStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> toolbarStyles <span class="token keyword">from</span> <span class="token string">'./toolbarStyles.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> inlineToolbarPlugin <span class="token operator">=</span> <span class="token function">createInlineToolbarPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  theme<span class="token punctuation">:</span> <span class="token punctuation">{</span> buttonStyles<span class="token punctuation">,</span> toolbarStyles <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> InlineToolbar <span class="token punctuation">}</span> <span class="token operator">=</span> inlineToolbarPlugin<span class="token punctuation">;</span>
+<span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span>inlineToolbarPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token string">'In this editor a toolbar with a lot more options shows up once you select part of the text …'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">ThemedInlineToolbarEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> <span class="token function">createEditorStateWithText</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Editor
+          editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+          plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>InlineToolbar <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="252"><div class="name___9uJGf" data-reactid="253">editorStyles.css</div><pre data-reactid="254"><code data-reactid="255"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___288m_" data-reactid="256"><div class="githubButtonWrapper___f8mkg" data-reactid="257"><a class="github-button" href="https://github.com/draft-js-plugins/draft-js-plugins" data-size="large" data-show-count="true" aria-label="Star draft-js-plugins/draft-js-plugins on GitHub" data-reactid="258">Github</a></div><div class="twitterButtonWrapper___37ybj" data-reactid="259"><span data-reactid="260"></span></div><div class="facebookButtonWrapper___3Op0o" data-reactid="261"><div id="fbbutton" class="fb-like" data-href="https://www.draft-js-plugins.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="290" data-reactid="262"></div></div></div></div></div><footer class="footer___3c9ZC" data-reactid="263"><!-- react-text: 264 -->Built with <!-- /react-text --><span class="heart___3qO39" data-reactid="265">❤</span><!-- react-text: 266 --> on Planet Earth<!-- /react-text --><div class="emojiAttribution___3XF0y" data-reactid="267"><!-- react-text: 268 -->Emoji art provided free by <!-- /react-text --><a href="http://emojione.com/" class="root___3AHDO" data-reactid="269">Emoji One</a></div></footer></div></div><script src="/app.js"></script></body></html>

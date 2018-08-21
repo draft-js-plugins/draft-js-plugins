@@ -1,0 +1,549 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="draft-js-plugins - High quality plugins for DraftJS with great UX" />
+<meta property="og:description" content="Facebook's rich-text editor framework DraftJS built on top of React allows you to create powerful editors. We built a plugin architecture on top of it that aims to provide you with plug & play extensions. It comes with a set of plugins with great UX serving mobile & desktop as well as screen-readers. You can combine them in any way you want to or build your own." />
+<meta property="og:url" content="https://www.draft-js-plugins.com" />
+<meta property="og:site_name" content="draft-js-plugins" />
+<meta property="og:image" content="https://www.draft-js-plugins.com/images/draft-js-plugins.png" />
+<title>DraftJS Plugins - High quality plugins with great UX</title>
+<script>
+  if (window.location.href.indexOf('draft-js-plugins.github.io/draft-js-plugins') !== -1) {
+    // TODO improve redirect to redirect with the proper path
+    window.location.href = 'https://www.draft-js-plugins.com/';
+  }
+</script>
+<link rel="stylesheet" href="/css/normalize.css"/>
+<link rel="stylesheet" href="/css/base.css"/>
+<link rel="stylesheet" href="/css/Draft.css"/>
+<link rel="stylesheet" href="/app.css"/>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css"/>
+<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'></head><body><div id="root"><div data-reactroot="" data-reactid="1" data-react-checksum="-974458526"><div data-reactid="2"><div data-reactid="3"><div class="pluginsWrapper___3HNqa" data-reactid="4"><div class="wideContainer___2PUk8" data-reactid="5"><ul class="plugins___2Zxyu" data-reactid="6"><li class="plugin___1CqHF" data-reactid="7"><a class="link___3-bgR" href="/plugin/mention" data-reactid="8">Mention</a></li><li class="plugin___1CqHF" data-reactid="9"><a class="link___3-bgR" href="/plugin/emoji" data-reactid="10">Emoji</a></li><li class="plugin___1CqHF" data-reactid="11"><a class="link___3-bgR" href="/plugin/image" data-reactid="12">Image</a></li><li class="plugin___1CqHF" data-reactid="13"><a class="link___3-bgR" href="/plugin/video" data-reactid="14">Video</a></li></ul><ul class="plugins___2Zxyu" data-reactid="15"><li class="plugin___1CqHF" data-reactid="16"><a class="link___3-bgR" href="/plugin/sticker" data-reactid="17">Sticker</a></li><li class="plugin___1CqHF" data-reactid="18"><a class="link___3-bgR" href="/plugin/hashtag" data-reactid="19">Hashtag</a></li><li class="plugin___1CqHF" data-reactid="20"><a class="link___3-bgR" href="/plugin/inline-toolbar" data-reactid="21">Inline Toolbar</a></li><li class="plugin___1CqHF" data-reactid="22"><a class="link___3-bgR" href="/plugin/side-toolbar" data-reactid="23">Side Toolbar</a></li></ul><ul class="plugins___2Zxyu" data-reactid="24"><li class="plugin___1CqHF" data-reactid="25"><a class="link___3-bgR" href="/plugin/static-toolbar" data-reactid="26">Static Toolbar</a></li><li class="plugin___1CqHF" data-reactid="27"><a class="link___3-bgR" href="/plugin/undo" data-reactid="28">Undo</a></li><li class="plugin___1CqHF" data-reactid="29"><a class="link___3-bgR" href="/plugin/counter" data-reactid="30">Counter</a></li><li class="plugin___1CqHF" data-reactid="31"><a class="link___3-bgR" href="/plugin/anchor" data-reactid="32">Anchor</a></li><li class="plugin___1CqHF" data-reactid="33"><a class="link___3-bgR" href="/plugin/linkify" data-reactid="34">Linkify</a></li></ul><ul class="plugins___2Zxyu" data-reactid="35"><li class="plugin___1CqHF" data-reactid="36"><a class="link___3-bgR" href="/plugin/focus" data-reactid="37">Focus</a></li><li class="plugin___1CqHF" data-reactid="38"><a class="link___3-bgR" href="/plugin/alignment" data-reactid="39">Alignment</a></li><li class="plugin___1CqHF" data-reactid="40"><a class="link___3-bgR" href="/plugin/resizeable" data-reactid="41">Resizeable</a></li><li class="plugin___1CqHF" data-reactid="42"><a class="link___3-bgR" href="/plugin/drag-n-drop" data-reactid="43">Drag&#x27;n&#x27;Drop</a></li><li class="plugin___1CqHF" data-reactid="44"><a class="link___3-bgR" href="/plugin/divider" data-reactid="45">Divider</a></li></ul></div><div style="text-align:center;margin-top:3rem;font-size:13px;color:#aaa;" data-reactid="46"><!-- react-text: 47 -->The documentation currently represents the 2.0.1 release.<!-- /react-text --><br data-reactid="48"/><!-- react-text: 49 -->For troubleshooting please checkout the<!-- /react-text --><a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md" class="link___3-bgR" data-reactid="50">FAQ</a></div></div><div class="root___2951M" data-reactid="51"><div class="separatorBase___3ePf_" data-reactid="52"></div><div class="separatorBase___3ePf_" data-reactid="53"></div><div class="separatorBase___3ePf_" data-reactid="54"></div><div class="separatorBase___3ePf_" data-reactid="55"></div><div class="separatorBase___3ePf_" data-reactid="56"></div><div class="separatorBase___3ePf_" data-reactid="57"></div></div><div class="root___1BwYz" data-reactid="58"><div class="root___LJuK8" data-reactid="59"><h2 class="level2___ZSTcp" data-reactid="60">Mention</h2><p data-reactid="61">Mentions for everyone! This plugin allows the user to choose an entry from a list. After selection an entry the search text will be replace with the selected entity. The list of suggestions mentions needs to contain at least a name to display. If desired a link and/or an avatar image can be provided.</p><h2 class="level3___3tmSS" data-reactid="62">Escape Behaviour</h2><p data-reactid="63">While the suggestion popover is open, the user can close it by pressing ESC. This will be stored for as long as the the selection stays inside the word that triggered the search. After the selection left this word once the escape behaviour will be reset. The suggestions will appear again once the user selects the word that that triggered the selection.</p><h2 class="level3___3tmSS" data-reactid="64">Supported Environment</h2><ul class="list___fNr0Z" data-reactid="65"><li class="listEntry___1m_SB" data-reactid="66">Desktop: Yes</li><li class="listEntry___1m_SB" data-reactid="67">Mobile: Yes</li><li class="listEntry___1m_SB" data-reactid="68">Screen-reader: Yes</li></ul></div></div><div class="root___3jr4h" data-reactid="69"><div class="root___LJuK8" data-reactid="70"><h2 class="level2___ZSTcp" data-reactid="71">Getting Started</h2><div class="root___-TPfX" data-reactid="72"><div class="hiddenName___1Ie0V" data-reactid="73"></div><pre data-reactid="74"><code data-reactid="75">npm install draft-js-plugins-editor</code></pre></div><div class="root___-TPfX" data-reactid="76"><div class="hiddenName___1Ie0V" data-reactid="77"></div><pre data-reactid="78"><code data-reactid="79">npm install draft-js-mention-plugin</code></pre></div><div class="root___-TPfX" data-reactid="80"><div class="hiddenName___1Ie0V" data-reactid="81"></div><pre data-reactid="82"><code data-reactid="83">Please checkout the 'Simple Example' further down the page.</code></pre></div><h2 class="level3___3tmSS" data-reactid="84">Importing the default styles</h2><p data-reactid="85"><!-- react-text: 86 -->The plugin ships with a default styling available at this location in the installed package:  <!-- /react-text --><span class="root___1V--j" data-reactid="87"><code data-reactid="88">node_modules/draft-js-mention-plugin/lib/plugin.css</code></span></p><h2 class="level4___217Mp" data-reactid="89">Webpack Usage</h2><ul class="list___fNr0Z" data-reactid="90"><li class="listEntry___1m_SB" data-reactid="91"><!-- react-text: 92 -->1. Install Webpack loaders:  <!-- /react-text --><span class="root___1V--j" data-reactid="93"><code data-reactid="94">npm i style-loader css-loader --save-dev</code></span></li><li class="listEntry___1m_SB" data-reactid="95"><!-- react-text: 96 -->2. Add the below section to Webpack config (if your config already has a loaders array, simply add the below loader object to your existing list.<!-- /react-text --><div class="root___-TPfX guideCodeBlock___2Exzm" data-reactid="97"><div class="hiddenName___1Ie0V" data-reactid="98"></div><pre data-reactid="99"><code data-reactid="100">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  module<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        test<span class="token punctuation">:</span> <span class="token regex">/plugin\.css$/</span><span class="token punctuation">,</span>
+        loaders<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token string">'style-loader'</span><span class="token punctuation">,</span> <span class="token string">'css'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></li><li class="listEntry___1m_SB" data-reactid="101"><!-- react-text: 102 -->3. Add the below import line to your component to tell Webpack to inject the style to your component.<!-- /react-text --><div class="root___-TPfX guideCodeBlock___2Exzm" data-reactid="103"><div class="hiddenName___1Ie0V" data-reactid="104"></div><pre data-reactid="105"><code data-reactid="106"><span class="token keyword">import</span> <span class="token string">'draft-js-mention-plugin/lib/plugin.css'</span><span class="token punctuation">;</span>
+</code></pre></div></li><li class="listEntry___1m_SB" data-reactid="107">4. Restart Webpack.</li></ul><h2 class="level4___217Mp" data-reactid="108">Browserify Usage</h2><p data-reactid="109"><!-- react-text: 110 -->Please help, by submiting a Pull Request to the <!-- /react-text --><a href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Mention/index.js" class="root___3AHDO" data-reactid="111">documentation</a><!-- react-text: 112 -->.<!-- /react-text --></p></div></div><div class="root___1BwYz" data-reactid="113"><div class="root___LJuK8" data-reactid="114"><h2 class="level2___ZSTcp" data-reactid="115">Configuration Parameters</h2><div class="param___1w5RH" data-reactid="116"><span class="paramName___3rpHq" data-reactid="117">theme</span><span data-reactid="118">Object of CSS classes with the following keys.</span><div class="subParams___29rbj" data-reactid="119"><div class="subParam___2l0Qg" data-reactid="120"><span class="subParamName___2UrkD" data-reactid="121">mention:</span><!-- react-text: 122 -->CSS class for mention text.<!-- /react-text --></div><div class="subParam___2l0Qg" data-reactid="123"><span class="subParamName___2UrkD" data-reactid="124">mentionSuggestions:</span><!-- react-text: 125 -->CSS class for suggestions component.<!-- /react-text --></div><div class="subParam___2l0Qg" data-reactid="126"><span class="subParamName___2UrkD" data-reactid="127">mentionSuggestionsEntry:</span><!-- react-text: 128 -->CSS class for an entry in the suggestions component.<!-- /react-text --></div><div class="subParam___2l0Qg" data-reactid="129"><span class="subParamName___2UrkD" data-reactid="130">mentionSuggestionsEntryFocused:</span><!-- react-text: 131 -->CSS class for the focused entry in the suggestions component.<!-- /react-text --></div><div class="subParam___2l0Qg" data-reactid="132"><span class="subParamName___2UrkD" data-reactid="133">mentionSuggestionsEntryText:</span><!-- react-text: 134 -->CSS class for an entry’s text in the suggestions component.<!-- /react-text --></div><div class="subParam___2l0Qg" data-reactid="135"><span class="subParamName___2UrkD" data-reactid="136">mentionSuggestionsEntryAvatar:</span><!-- react-text: 137 -->CSS class for an entry’s avatar image in the suggestions component.<!-- /react-text --></div></div></div><div class="param___1w5RH" data-reactid="138"><span class="paramName___3rpHq" data-reactid="139">positionSuggestions</span><span data-reactid="140">The function can be used to manipulate the position of the popover containing the suggestions. It receives one object as arguments containing the visible rectangle surrounding the decorated search string including the @. In addition the object contains prevProps, prevState, state &amp; props. An object should be returned which can contain all sorts of styles. The defined properties will be applied as inline-styles.</span></div><div class="param___1w5RH" data-reactid="141"><span class="paramName___3rpHq" data-reactid="142">entityMutability</span><span data-reactid="143"><!-- react-text: 144 -->Can be one of: &quot;IMMUTABLE&quot;, &quot;SEGMENTED&quot; or &quot;MUTABLE&quot;. Read in detail about it<!-- /react-text --><a href="https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability" class="root___3AHDO" data-reactid="145"> here</a></span></div><div class="param___1w5RH" data-reactid="146"><span class="paramName___3rpHq" data-reactid="147">mentionPrefix</span><span data-reactid="148">By default it is an empty String. For Twitter or Slack like mention behaviour you can provide an `@`</span></div><div class="param___1w5RH" data-reactid="149"><span class="paramName___3rpHq" data-reactid="150">mentionTrigger</span><span data-reactid="151">Allows you to provide a custom character to change when the search is triggered. By default it is set to `@`. By default typing `@` will trigger the search for mentions. Note: the implementation does not support a multi-character mentionTrigger.</span></div><div class="param___1w5RH" data-reactid="152"><span class="paramName___3rpHq" data-reactid="153">mentionRegExp</span><span data-reactid="154">Allows you to overwrite the regular expression for initiating the dropdown. By default this supports any alphanumeric character as well as Chinese, Japanese &amp; Korean characters. We are happy to accept pull requests to extend the default mentionRegExp as well.</span></div><div class="param___1w5RH" data-reactid="155"><span class="paramName___3rpHq" data-reactid="156">supportWhitespace</span><span data-reactid="157">Allows you to support a whitespace while typing a search option, useful for searching first and last names. By default this is set to `false`</span></div><div class="param___1w5RH" data-reactid="158"><span class="paramName___3rpHq" data-reactid="159">mentionComponent</span><span data-reactid="160">If provided the passed component is used to render a Mention. It receives the following props: entityKey, mention, className &amp; decoratedText</span></div><h2 class="level3___3tmSS" data-reactid="161">MentionSuggestions</h2><div data-reactid="162"><!-- react-text: 163 -->The MentionSuggestions component is part of the plugin and should placed somewhere in the JSX after the Editor. It takes the following props:<!-- /react-text --><div class="param___1w5RH" data-reactid="164"><span class="paramName___3rpHq" data-reactid="165">onSearchChange</span><span data-reactid="166">A callback which is triggered whenever the search term changes. The first argument is an object which constains the search term in the property value.</span></div><div class="param___1w5RH" data-reactid="167"><span class="paramName___3rpHq" data-reactid="168">suggestions</span><span data-reactid="169">The list of suggestions to be shown.</span></div><div class="param___1w5RH" data-reactid="170"><span class="paramName___3rpHq" data-reactid="171">onOpen</span><span data-reactid="172">A callback which is triggered whenever the suggestions popover opens.</span></div><div class="param___1w5RH" data-reactid="173"><span class="paramName___3rpHq" data-reactid="174">onClose</span><span data-reactid="175">A callback which is triggered whenever the suggestions popover closes.</span></div><div class="param___1w5RH" data-reactid="176"><span class="paramName___3rpHq" data-reactid="177">entryComponent</span><span data-reactid="178">Component to be used as the template for each of the suggestions entry.</span></div><div class="param___1w5RH" data-reactid="179"><span class="paramName___3rpHq" data-reactid="180">onAddMention</span><span data-reactid="181">A callback which is triggered whenever the mention is about to be added. The first argument of this callback will contain the mention entry.</span></div><div class="param___1w5RH" data-reactid="182"><span class="paramName___3rpHq" data-reactid="183">popoverComponent</span><span data-reactid="184">Component to be used as the template for the popover (the parent of entryComponent).  Defaults to a div.</span></div><div class="param___1w5RH" data-reactid="185"><span class="paramName___3rpHq" data-reactid="186">mentionSuggestionsComponent</span><span data-reactid="187"><!-- react-text: 188 -->Component to be used to render the suggestions dropdown. It must implement the same interface like <!-- /react-text --><span class="root___1V--j" data-reactid="189"><code data-reactid="190">MentionSuggestions</code></span><!-- react-text: 191 -->.  Defaults to <!-- /react-text --><span class="root___1V--j" data-reactid="192"><code data-reactid="193">MentionSuggestions</code></span><!-- react-text: 194 -->.<!-- /react-text --></span></div><div class="param___1w5RH" data-reactid="195"><span data-reactid="196"><!-- react-text: 197 -->Additional properties are passed to the <!-- /react-text --><span class="root___1V--j" data-reactid="198"><code data-reactid="199">popoverComponent</code></span></span></div></div><h2 class="level3___3tmSS" data-reactid="200">Additional Exports</h2><div data-reactid="201"><!-- react-text: 202 -->In addition to the plugin the module exports `defaultSuggestionsFilter`. As first argument it takes the search term as a String. The second argument is an array of mentions. The function returns the filter list based on substring matches.<!-- /react-text --><div class="root___-TPfX" data-reactid="203"><div class="hiddenName___1Ie0V" data-reactid="204"></div><pre data-reactid="205"><code data-reactid="206">import { defaultSuggestionsFilter } from 'draft-js-mention-plugin';</code></pre></div></div></div></div><div class="root___1BwYz" data-reactid="207"><div class="root___LJuK8" data-reactid="208"><h2 class="level2___ZSTcp" data-reactid="209">Simple Example</h2><div class="editor___1aYE1" data-reactid="210"><div class="DraftEditor-root" data-reactid="211"><div class="DraftEditor-editorContainer" data-reactid="212"><div aria-autocomplete="list" aria-describedby="placeholder-9bplo" aria-expanded="false" class="notranslate public-DraftEditor-content" contenteditable="true" role="combobox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="213"><div data-contents="true" data-reactid="214"><div class="" data-block="true" data-editor="9bplo" data-offset-key="1049l-0-0" data-reactid="215"><div data-offset-key="1049l-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="216"><span data-offset-key="1049l-0-0" data-reactid="217"><br data-text="true" data-reactid="218"/></span></div></div></div></div></div></div><!-- react-empty: 219 --></div><div class="root___-TPfX" data-reactid="220"><div class="name___9uJGf" data-reactid="221">SimpleMentionEditor.js</div><pre data-reactid="222"><code data-reactid="223"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> EditorState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Editor <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createMentionPlugin<span class="token punctuation">,</span> <span class="token punctuation">{</span> defaultSuggestionsFilter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-mention-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> mentions <span class="token keyword">from</span> <span class="token string">'./mentions'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">SimpleMentionEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin <span class="token operator">=</span> <span class="token function">createMentionPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> EditorState<span class="token punctuation">.</span><span class="token function">createEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    suggestions<span class="token punctuation">:</span> mentions<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onSearchChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      suggestions<span class="token punctuation">:</span> <span class="token function">defaultSuggestionsFilter</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> mentions<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onAddMention</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token comment">// get the mention object selected</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> MentionSuggestions <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Editor
+          editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+          plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>MentionSuggestions
+          onSearchChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onSearchChange<span class="token punctuation">}</span>
+          suggestions<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>suggestions<span class="token punctuation">}</span>
+          onAddMention<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onAddMention<span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="224"><div class="name___9uJGf" data-reactid="225">mentions.js</div><pre data-reactid="226"><code data-reactid="227"><span class="token keyword">const</span> mentions <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Matthew Russell'</span><span class="token punctuation">,</span>
+    link<span class="token punctuation">:</span> <span class="token string">'https://twitter.com/mrussell247'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Julian Krispel-Samsel'</span><span class="token punctuation">,</span>
+    link<span class="token punctuation">:</span> <span class="token string">'https://twitter.com/juliandoesstuff'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://avatars2.githubusercontent.com/u/1188186?v=3&amp;s=400'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Jyoti Puri'</span><span class="token punctuation">,</span>
+    link<span class="token punctuation">:</span> <span class="token string">'https://twitter.com/jyopur'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://avatars0.githubusercontent.com/u/2182307?v=3&amp;s=400'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Max Stoiber'</span><span class="token punctuation">,</span>
+    link<span class="token punctuation">:</span> <span class="token string">'https://twitter.com/mxstbr'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Nik Graf'</span><span class="token punctuation">,</span>
+    link<span class="token punctuation">:</span> <span class="token string">'https://twitter.com/nikgraf'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://avatars0.githubusercontent.com/u/223045?v=3&amp;s=400'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Pascal Brandt'</span><span class="token punctuation">,</span>
+    link<span class="token punctuation">:</span> <span class="token string">'https://twitter.com/psbrandt'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> mentions<span class="token punctuation">;</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="228"><div class="name___9uJGf" data-reactid="229">editorStyles.css</div><pre data-reactid="230"><code data-reactid="231"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___1BwYz" data-reactid="232"><div class="root___LJuK8" data-reactid="233"><h2 class="level2___ZSTcp" data-reactid="234">Custom Themed Mention Example</h2><div class="editor___2RE7M" data-reactid="235"><div class="DraftEditor-root" data-reactid="236"><div class="DraftEditor-editorContainer" data-reactid="237"><div aria-autocomplete="list" aria-describedby="placeholder-fg25p" aria-expanded="false" class="notranslate public-DraftEditor-content" contenteditable="true" role="combobox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="238"><div data-contents="true" data-reactid="239"><div class="" data-block="true" data-editor="fg25p" data-offset-key="7jubg-0-0" data-reactid="240"><div data-offset-key="7jubg-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="241"><span data-offset-key="7jubg-0-0" data-reactid="242"><br data-text="true" data-reactid="243"/></span></div></div></div></div></div></div><!-- react-empty: 244 --></div><div class="root___-TPfX" data-reactid="245"><div class="name___9uJGf" data-reactid="246">CustomMentionEditor.js</div><pre data-reactid="247"><code data-reactid="248"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> EditorState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Editor <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createMentionPlugin<span class="token punctuation">,</span> <span class="token punctuation">{</span> defaultSuggestionsFilter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-mention-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> mentionsStyles <span class="token keyword">from</span> <span class="token string">'./mentionsStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> mentions <span class="token keyword">from</span> <span class="token string">'./mentions'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">positionSuggestions</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> state<span class="token punctuation">,</span> props <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> transform<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> transition<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>state<span class="token punctuation">.</span>isActive <span class="token operator">&amp;&amp;</span> props<span class="token punctuation">.</span>suggestions<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    transform <span class="token operator">=</span> <span class="token string">'scaleY(1)'</span><span class="token punctuation">;</span>
+    transition <span class="token operator">=</span> <span class="token string">'all 0.25s cubic-bezier(.3,1.2,.2,1)'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>state<span class="token punctuation">.</span>isActive<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    transform <span class="token operator">=</span> <span class="token string">'scaleY(0)'</span><span class="token punctuation">;</span>
+    transition <span class="token operator">=</span> <span class="token string">'all 0.25s cubic-bezier(.3,1,.2,1)'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    transform<span class="token punctuation">,</span>
+    transition<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">Entry</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    mention<span class="token punctuation">,</span>
+    theme<span class="token punctuation">,</span>
+    searchValue<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+    isFocused<span class="token punctuation">,</span> <span class="token comment">// eslint-disable-line no-unused-vars</span>
+    <span class="token operator">...</span>parentProps
+  <span class="token punctuation">}</span> <span class="token operator">=</span> props<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div <span class="token punctuation">{</span><span class="token operator">...</span>parentProps<span class="token punctuation">}</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">.</span>mentionSuggestionsEntryContainer<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">.</span>mentionSuggestionsEntryContainerLeft<span class="token punctuation">}</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>img
+            src<span class="token operator">=</span><span class="token punctuation">{</span>mention<span class="token punctuation">.</span>avatar<span class="token punctuation">}</span>
+            className<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">.</span>mentionSuggestionsEntryAvatar<span class="token punctuation">}</span>
+            role<span class="token operator">=</span><span class="token string">"presentation"</span>
+          <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+
+        <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">.</span>mentionSuggestionsEntryContainerRight<span class="token punctuation">}</span><span class="token operator">></span>
+          <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">.</span>mentionSuggestionsEntryText<span class="token punctuation">}</span><span class="token operator">></span>
+            <span class="token punctuation">{</span>mention<span class="token punctuation">.</span>name<span class="token punctuation">}</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+
+          <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>theme<span class="token punctuation">.</span>mentionSuggestionsEntryTitle<span class="token punctuation">}</span><span class="token operator">></span>
+            <span class="token punctuation">{</span>mention<span class="token punctuation">.</span>title<span class="token punctuation">}</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">CustomMentionEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin <span class="token operator">=</span> <span class="token function">createMentionPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      mentions<span class="token punctuation">,</span>
+      entityMutability<span class="token punctuation">:</span> <span class="token string">'IMMUTABLE'</span><span class="token punctuation">,</span>
+      theme<span class="token punctuation">:</span> mentionsStyles<span class="token punctuation">,</span>
+      positionSuggestions<span class="token punctuation">,</span>
+      mentionPrefix<span class="token punctuation">:</span> <span class="token string">'@'</span><span class="token punctuation">,</span>
+      supportWhitespace<span class="token punctuation">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> EditorState<span class="token punctuation">.</span><span class="token function">createEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    suggestions<span class="token punctuation">:</span> mentions<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onSearchChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      suggestions<span class="token punctuation">:</span> <span class="token function">defaultSuggestionsFilter</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> mentions<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> MentionSuggestions <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Editor
+          editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+          plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>MentionSuggestions
+          onSearchChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onSearchChange<span class="token punctuation">}</span>
+          suggestions<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>suggestions<span class="token punctuation">}</span>
+          entryComponent<span class="token operator">=</span><span class="token punctuation">{</span>Entry<span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="249"><div class="name___9uJGf" data-reactid="250">mentionsStyles.css</div><pre data-reactid="251"><code data-reactid="252"><span class="token selector">.mention</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #4a85bb<span class="token punctuation">;</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestions</span> <span class="token punctuation">{</span>
+  <span class="token property">border-top</span><span class="token punctuation">:</span> 1px solid #eee<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+  <span class="token property">padding-top</span><span class="token punctuation">:</span> 8px<span class="token punctuation">;</span>
+  <span class="token property">padding-bottom</span><span class="token punctuation">:</span> 8px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-direction</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">transform-origin</span><span class="token punctuation">:</span> 50% 0%<span class="token punctuation">;</span>
+  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scaleY</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> -16px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryContainer</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryContainerLeft,
+.mentionSuggestionsEntryContainerRight</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> table-cell<span class="token punctuation">;</span>
+  <span class="token property">vertical-align</span><span class="token punctuation">:</span> middle<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryContainerRight</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token property">padding-left</span><span class="token punctuation">:</span> 8px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntry</span> <span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 7px 10px 3px 10px<span class="token punctuation">;</span>
+  <span class="token property">transition</span><span class="token punctuation">:</span> background-color 0.4s <span class="token function">cubic-bezier</span><span class="token punctuation">(</span>.27,1.27,.48,.56<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntry:active</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #cce7ff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryFocused</span> <span class="token punctuation">{</span>
+  <span class="token property">composes</span><span class="token punctuation">:</span> mentionSuggestionsEntry<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #e6f3ff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryText,
+.mentionSuggestionsEntryTitle</span> <span class="token punctuation">{</span>
+  <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+  <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryText</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryTitle</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 80%<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #a7a7a7<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.mentionSuggestionsEntryAvatar</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="253"><div class="name___9uJGf" data-reactid="254">mentions.js</div><pre data-reactid="255"><code data-reactid="256"><span class="token keyword">const</span> mentions <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Matthew Russell'</span><span class="token punctuation">,</span>
+    title<span class="token punctuation">:</span> <span class="token string">'Senior Software Engineer'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Julian Krispel-Samsel'</span><span class="token punctuation">,</span>
+    title<span class="token punctuation">:</span> <span class="token string">'United Kingdom'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://avatars2.githubusercontent.com/u/1188186?v=3&amp;s=400'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Jyoti Puri'</span><span class="token punctuation">,</span>
+    title<span class="token punctuation">:</span> <span class="token string">'New Delhi, India'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://avatars0.githubusercontent.com/u/2182307?v=3&amp;s=400'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Max Stoiber'</span><span class="token punctuation">,</span>
+    title<span class="token punctuation">:</span> <span class="token string">'Travels around the world, brews coffee, skis mountains and makes stuff on the web.'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Nik Graf'</span><span class="token punctuation">,</span>
+    title<span class="token punctuation">:</span> <span class="token string">'Passionate about Software Architecture, UX, Skiing &amp; Triathlons'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://avatars0.githubusercontent.com/u/223045?v=3&amp;s=400'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'Pascal Brandt'</span><span class="token punctuation">,</span>
+    title<span class="token punctuation">:</span> <span class="token string">'HeathIT hacker and researcher'</span><span class="token punctuation">,</span>
+    avatar<span class="token punctuation">:</span> <span class="token string">'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> mentions<span class="token punctuation">;</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="257"><div class="name___9uJGf" data-reactid="258">editorStyles.css</div><pre data-reactid="259"><code data-reactid="260"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___1BwYz" data-reactid="261"><div class="root___LJuK8" data-reactid="262"><h2 class="level2___ZSTcp" data-reactid="263">Remote Data Mention Example</h2><div class="editor___26aEF" data-reactid="264"><div class="DraftEditor-root" data-reactid="265"><div class="DraftEditor-editorContainer" data-reactid="266"><div aria-autocomplete="list" aria-describedby="placeholder-8hu3i" aria-expanded="false" class="notranslate public-DraftEditor-content" contenteditable="true" role="combobox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="267"><div data-contents="true" data-reactid="268"><div class="" data-block="true" data-editor="8hu3i" data-offset-key="8moil-0-0" data-reactid="269"><div data-offset-key="8moil-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="270"><span data-offset-key="8moil-0-0" data-reactid="271"><br data-text="true" data-reactid="272"/></span></div></div></div></div></div></div><!-- react-empty: 273 --></div><div class="root___-TPfX" data-reactid="274"><div class="name___9uJGf" data-reactid="275">RemoteMentionEditor.js</div><pre data-reactid="276"><code data-reactid="277"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> EditorState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> Editor <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> createMentionPlugin <span class="token keyword">from</span> <span class="token string">'draft-js-mention-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">SimpleMentionEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin <span class="token operator">=</span> <span class="token function">createMentionPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> EditorState<span class="token punctuation">.</span><span class="token function">createEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    suggestions<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onSearchChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token comment">// An import statment would break server-side rendering.</span>
+    <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'whatwg-fetch'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// eslint-disable-line global-require</span>
+
+    <span class="token comment">// while you normally would have a dynamic server that takes the value as</span>
+    <span class="token comment">// a workaround we use this workaround to show different results</span>
+    <span class="token keyword">let</span> url <span class="token operator">=</span> <span class="token string">'/data/mentionsA.json'</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      url <span class="token operator">=</span> <span class="token string">'/data/mentionsB.json'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      url <span class="token operator">=</span> <span class="token string">'/data/mentionsC.json'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token operator">=></span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          suggestions<span class="token punctuation">:</span> data<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> MentionSuggestions <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Editor
+          editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+          plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>MentionSuggestions
+          onSearchChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onSearchChange<span class="token punctuation">}</span>
+          suggestions<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>suggestions<span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="278"><div class="name___9uJGf" data-reactid="279">editorStyles.css</div><pre data-reactid="280"><code data-reactid="281"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___1BwYz" data-reactid="282"><div class="root___LJuK8" data-reactid="283"><h2 class="level2___ZSTcp" data-reactid="284">Custom Mention Component Example</h2><div class="editor___-U8qH" data-reactid="285"><div class="DraftEditor-root" data-reactid="286"><div class="DraftEditor-editorContainer" data-reactid="287"><div aria-autocomplete="list" aria-describedby="placeholder-a4sdq" aria-expanded="false" class="notranslate public-DraftEditor-content" contenteditable="true" role="combobox" spellcheck="false" style="outline:none;user-select:text;-webkit-user-select:text;white-space:pre-wrap;word-wrap:break-word;" data-reactid="288"><div data-contents="true" data-reactid="289"><div class="" data-block="true" data-editor="a4sdq" data-offset-key="aeaq6-0-0" data-reactid="290"><div data-offset-key="aeaq6-0-0" class="public-DraftStyleDefault-block public-DraftStyleDefault-ltr" data-reactid="291"><span data-offset-key="aeaq6-0-0" data-reactid="292"><br data-text="true" data-reactid="293"/></span></div></div></div></div></div></div><!-- react-empty: 294 --></div><div class="root___-TPfX" data-reactid="295"><div class="name___9uJGf" data-reactid="296">CustomComponentMentionEditor.js</div><pre data-reactid="297"><code data-reactid="298"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> EditorState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Editor <span class="token keyword">from</span> <span class="token string">'draft-js-plugins-editor'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> createMentionPlugin<span class="token punctuation">,</span> <span class="token punctuation">{</span> defaultSuggestionsFilter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'draft-js-mention-plugin'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> editorStyles <span class="token keyword">from</span> <span class="token string">'./editorStyles.css'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> mentions <span class="token keyword">from</span> <span class="token string">'./mentions'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">CustomMentionEditor</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin <span class="token operator">=</span> <span class="token function">createMentionPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      mentions<span class="token punctuation">,</span>
+      mentionComponent<span class="token punctuation">:</span> <span class="token punctuation">(</span>mentionProps<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>span
+          className<span class="token operator">=</span><span class="token punctuation">{</span>mentionProps<span class="token punctuation">.</span>className<span class="token punctuation">}</span>
+          <span class="token comment">// eslint-disable-next-line no-alert</span>
+          onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Clicked on the Mention!'</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+        <span class="token operator">></span>
+          <span class="token punctuation">{</span>mentionProps<span class="token punctuation">.</span>children<span class="token punctuation">}</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>
+    editorState<span class="token punctuation">:</span> EditorState<span class="token punctuation">.</span><span class="token function">createEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    suggestions<span class="token punctuation">:</span> mentions<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>editorState<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      editorState<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">onSearchChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      suggestions<span class="token punctuation">:</span> <span class="token function">defaultSuggestionsFilter</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> mentions<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function-variable function">focus</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>editor<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> MentionSuggestions <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> plugins <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>mentionPlugin<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token punctuation">{</span>editorStyles<span class="token punctuation">.</span>editor<span class="token punctuation">}</span> onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>focus<span class="token punctuation">}</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>Editor
+          editorState<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>editorState<span class="token punctuation">}</span>
+          onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+          plugins<span class="token operator">=</span><span class="token punctuation">{</span>plugins<span class="token punctuation">}</span>
+          ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>editor <span class="token operator">=</span> element<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>MentionSuggestions
+          onSearchChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onSearchChange<span class="token punctuation">}</span>
+          suggestions<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>suggestions<span class="token punctuation">}</span>
+        <span class="token operator">/</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="root___-TPfX" data-reactid="299"><div class="name___9uJGf" data-reactid="300">editorStyles.css</div><pre data-reactid="301"><code data-reactid="302"><span class="token selector">.editor</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">box-shadow</span><span class="token punctuation">:</span> inset 0px 1px 8px -3px #ABABAB<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fefefe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.editor :global(.public-DraftEditor-content)</span> <span class="token punctuation">{</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><div class="root___288m_" data-reactid="303"><div class="githubButtonWrapper___f8mkg" data-reactid="304"><a class="github-button" href="https://github.com/draft-js-plugins/draft-js-plugins" data-size="large" data-show-count="true" aria-label="Star draft-js-plugins/draft-js-plugins on GitHub" data-reactid="305">Github</a></div><div class="twitterButtonWrapper___37ybj" data-reactid="306"><span data-reactid="307"></span></div><div class="facebookButtonWrapper___3Op0o" data-reactid="308"><div id="fbbutton" class="fb-like" data-href="https://www.draft-js-plugins.com/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" data-width="290" data-reactid="309"></div></div></div></div></div><footer class="footer___3c9ZC" data-reactid="310"><!-- react-text: 311 -->Built with <!-- /react-text --><span class="heart___3qO39" data-reactid="312">❤</span><!-- react-text: 313 --> on Planet Earth<!-- /react-text --><div class="emojiAttribution___3XF0y" data-reactid="314"><!-- react-text: 315 -->Emoji art provided free by <!-- /react-text --><a href="http://emojione.com/" class="root___3AHDO" data-reactid="316">Emoji One</a></div></footer></div></div><script src="/app.js"></script></body></html>
