@@ -5,6 +5,14 @@ import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 import createDividerPlugin from 'draft-js-divider-plugin';
+import {
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  BlockquoteButton,
+  CodeBlockButton,
+  UnorderedListButton,
+  OrderedListButton,
+} from 'draft-js-buttons';
 // eslint-disable-next-line
 import BlockTypeSelect from 'draft-js-side-toolbar-plugin/components/BlockTypeSelect';
 import editorStyles from './editorStyles.css';
@@ -98,7 +106,25 @@ export default class CustomImageEditor extends Component {
           }}
         />
 
-        <SideToolbar />
+        <SideToolbar>
+          {(getEditorState, setEditorState, theme) => {
+            const buttonProps= {
+              getEditorState,
+              setEditorState,
+              theme
+            };
+
+            // may be use React.Fragment instead of div to improve perfomance after React 16
+            return (<div>
+              <HeadlineOneButton {...buttonProps}/>
+              <HeadlineTwoButton {...buttonProps}/>
+              <BlockquoteButton {...buttonProps}/>
+              <CodeBlockButton {...buttonProps}/>
+              <UnorderedListButton {...buttonProps}/>
+              <OrderedListButton {...buttonProps}/>
+            </div>)
+          }}
+        </SideToolbar>
       </div>
     );
   }
