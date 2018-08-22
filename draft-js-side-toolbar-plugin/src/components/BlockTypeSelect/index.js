@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class BlockTypeSelect extends React.Component {
+class BlockTypeSelect extends React.Component {
 
   state = {
     style: {
@@ -51,9 +52,20 @@ export default class BlockTypeSelect extends React.Component {
         */}
         <div className={theme.blockTypeSelectStyles.spacer} />
         <div className={theme.blockTypeSelectStyles.popup} style={this.state.style}>
-          {this.props.children(getEditorState, setEditorState, theme.buttonStyles)}
+          {this.props.children({
+            getEditorState,
+            setEditorState,
+            theme: theme.buttonStyles
+          })}
         </div>
       </div>
     );
   }
 }
+
+BlockTypeSelect.propTypes = {
+  children: PropTypes.func
+};
+
+export default BlockTypeSelect;
+

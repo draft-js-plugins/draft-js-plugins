@@ -2,9 +2,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+import {
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  BlockquoteButton,
+  CodeBlockButton,
+  UnorderedListButton,
+  OrderedListButton,
+} from 'draft-js-buttons';
 import BlockTypeSelect from '../BlockTypeSelect';
 
 class Toolbar extends React.Component {
+
+  static defaultProps = {
+    children: (externalProps) => (
+      // may be use React.Fragment instead of div to improve perfomance after React 16
+      <div>
+        <HeadlineOneButton {...externalProps} />
+        <HeadlineTwoButton {...externalProps} />
+        <BlockquoteButton {...externalProps} />
+        <CodeBlockButton {...externalProps} />
+        <UnorderedListButton {...externalProps} />
+        <OrderedListButton {...externalProps} />
+      </div>
+    )
+  }
 
   state = {
     position: {
@@ -19,6 +41,7 @@ class Toolbar extends React.Component {
   componentWillUnmount() {
     this.props.store.unsubscribeFromItem('editorState', this.onEditorStateChange);
   }
+
 
   onEditorStateChange = (editorState) => {
     const selection = editorState.getSelection();
@@ -93,7 +116,7 @@ class Toolbar extends React.Component {
 }
 
 Toolbar.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.func
 };
 
 export default Toolbar;
