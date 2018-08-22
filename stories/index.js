@@ -52,6 +52,7 @@ import RemoteMentionEditor from './Mention/RemoteMentionEditor';
 import CustomMentionEditor from './Mention/CustomMentionEditor';
 import CustomComponentMentionEditor from './Mention/CustomComponentMentionEditor';
 import MentionEditorWithCustomTrigger from './Mention/MentionEditorWithCustomTrigger';
+import MentionEditorWithoutMentionTrigger from './Mention/MentionEditorWithoutMentionTrigger';
 
 // SideToolbar
 import SimpleSideToolbarEditor from './SideToolbar/SimpleSideToolbarEditor';
@@ -125,7 +126,8 @@ storiesOf('Mention Plugin')
   .add('Editor with Mention Plugin and asynchronously loaded Suggestions', () => <RemoteMentionEditor />)
   .add('Editor with custom themed Mention Plugin', () => <CustomMentionEditor />)
   .add('Editor with Mention Plugin and custom themed Suggestions', () => <CustomComponentMentionEditor />)
-  .add('Editor with mention trigger which needs to be escaped', () => <MentionEditorWithCustomTrigger />);
+  .add('Editor with mention trigger which needs to be escaped', () => <MentionEditorWithCustomTrigger />)
+  .add('Editor with Mention Plugin without Mention Trigger', () => <MentionEditorWithoutMentionTrigger />);
 
 storiesOf('Side Toolbar Plugin')
   .add('Editor with SideToolbar Plugin', () => <SimpleSideToolbarEditor />)
