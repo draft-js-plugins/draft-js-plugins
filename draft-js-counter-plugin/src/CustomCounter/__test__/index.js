@@ -55,4 +55,31 @@ describe('CounterPlugin Line Counter', () => {
     );
     expect(result).to.have.text('6');
   });
+
+
+  it('instantiates plugin with custom component', () => {
+    const text = 'Hello there, how are you?';
+    const editorState = createEditorStateFromText(text);
+    counterPlugin.initialize({
+      getEditorState: () => editorState
+    });
+    const { CustomCounter } = counterPlugin;
+
+    const countFunction = () => 10;
+
+    const component = (props) => (
+      <div className={props.className}>I count {props.count}/{props.limit} characters</div>
+    );
+    const result = mount(
+      <CustomCounter
+        className="my-counter"
+        component={component}
+        countFunction={countFunction}
+        limit={50}
+      />
+    );
+
+    expect(result.first().props().className).to.equal('my-counter');
+    expect(result).to.have.text('I count 10/50 characters');
+  });
 });

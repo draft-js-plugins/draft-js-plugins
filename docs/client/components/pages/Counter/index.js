@@ -44,7 +44,7 @@ export default class App extends Component {
             <li>Line Counter</li>
             <li>Custom Counter</li>
           </ul>
-          <p>The Custom Counter allows you to bring your own counting function. This will be a function that takes plain text (as a string) from the editor as input and returns a numerical value.</p>
+          <p>The Custom Counter allows you to bring your own counting function. This will be a function that takes plain text (as a string) from the editor as input and returns a numerical value. It also allows you to provide your own component for rendering.</p>
           <Heading level={3}>Supported Environment</Heading>
           <ul className={styles.list}>
             <li className={styles.listEntry}>
@@ -108,6 +108,10 @@ export default class App extends Component {
           <div className={styles.param}>
             <div className={styles.paramName}>limit</div>
             <div>A limit to indicate to the user that a threshold has passed.</div>
+          </div>
+          <div className={styles.param}>
+            <div className={styles.paramName}>component</div>
+            <div>A custom component for the Custom Counter. This component will be used to render the counter. It will accept classNames, count and limit as props.</div>
           </div>
           <div className={styles.param}>
             <div className={styles.paramName}>countFunction</div>
