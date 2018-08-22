@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.7
+- fixed a potential bug with shared state [#1176](https://github.com/draft-js-plugins/draft-js-plugins/issues/1176)
+
 ## 2.0.5 - 2.0.6
 - bumped find-with-regex
 
