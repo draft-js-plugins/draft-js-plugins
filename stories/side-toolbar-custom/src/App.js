@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-
+import {
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  BlockquoteButton,
+  CodeBlockButton,
+  UnorderedListButton,
+  OrderedListButton,
+} from 'draft-js-buttons';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
@@ -42,7 +49,17 @@ export default class CustomSideToolbarEditor extends Component {
           plugins={plugins}
           ref={(element) => { this.editor = element; }}
         />
-        <SideToolbar />
+        <SideToolbar>{
+          (externalProps) => {
+            // may be use React.Fragment instead of div to improve perfomance after React 16
+            return (<div>
+              <HeadlineOneButton {...externalProps} />
+              <HeadlineTwoButton {...externalProps} />
+              <BlockquoteButton {...externalProps} />
+              <CodeBlockButton {...externalProps} />
+            </div>);
+          }
+        }</SideToolbar>
       </div>
     );
   }
