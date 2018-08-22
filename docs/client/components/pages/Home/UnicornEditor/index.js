@@ -14,14 +14,6 @@ import createImagePlugin from 'draft-js-image-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
-import {
-  HeadlineOneButton,
-  HeadlineTwoButton,
-  BlockquoteButton,
-  CodeBlockButton,
-  UnorderedListButton,
-  OrderedListButton,
-} from 'draft-js-buttons';
 import { convertFromRaw, EditorState } from 'draft-js';
 import styles from './styles.css';
 import stickers from './stickers';
@@ -108,25 +100,7 @@ export default class UnicornEditor extends Component {
               this.editor = element;
             }}
           />
-          <SideToolbar>
-            {(getEditorState, setEditorState, theme) => {
-              const buttonProps = {
-                getEditorState,
-                setEditorState,
-                theme
-              };
-
-              // may be use React.Fragment instead of div to improve perfomance after React 16
-              return (<div>
-                <HeadlineOneButton {...buttonProps} />
-                <HeadlineTwoButton {...buttonProps} />
-                <BlockquoteButton {...buttonProps} />
-                <CodeBlockButton {...buttonProps} />
-                <UnorderedListButton {...buttonProps} />
-                <OrderedListButton {...buttonProps} />
-              </div>);
-            }}
-          </SideToolbar>
+          <SideToolbar />
           <InlineToolbar />
           <AlignmentTool />
         </div>

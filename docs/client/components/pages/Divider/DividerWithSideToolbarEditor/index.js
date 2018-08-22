@@ -5,16 +5,7 @@ import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 import createDividerPlugin from 'draft-js-divider-plugin';
-import {
-  HeadlineOneButton,
-  HeadlineTwoButton,
-  BlockquoteButton,
-  CodeBlockButton,
-  UnorderedListButton,
-  OrderedListButton,
-} from 'draft-js-buttons';
-// eslint-disable-next-line
-import BlockTypeSelect from 'draft-js-side-toolbar-plugin/components/BlockTypeSelect';
+
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
@@ -22,20 +13,9 @@ const focusPlugin = createFocusPlugin();
 const decorator = composeDecorators(focusPlugin.decorator);
 
 const dividerPlugin = createDividerPlugin({ decorator });
+const { DividerButton } = dividerPlugin;
 
-const DefaultBlockTypeSelect = ({ getEditorState, setEditorState, theme }) => (
-  <BlockTypeSelect
-    getEditorState={getEditorState}
-    setEditorState={setEditorState}
-    theme={theme}
-    structure={[dividerPlugin.DividerButton]}
-  />
-);
-
-const sideToolbarPlugin = createSideToolbarPlugin({
-  structure: [DefaultBlockTypeSelect]
-});
-
+const sideToolbarPlugin = createSideToolbarPlugin();
 const { SideToolbar } = sideToolbarPlugin;
 
 const plugins = [focusPlugin, dividerPlugin, sideToolbarPlugin];
@@ -107,21 +87,10 @@ export default class CustomImageEditor extends Component {
         />
 
         <SideToolbar>
-          {(getEditorState, setEditorState, theme) => {
-            const buttonProps = {
-              getEditorState,
-              setEditorState,
-              theme
-            };
-
+          {(externalProps) => {
             // may be use React.Fragment instead of div to improve perfomance after React 16
             return (<div>
-              <HeadlineOneButton {...buttonProps} />
-              <HeadlineTwoButton {...buttonProps} />
-              <BlockquoteButton {...buttonProps} />
-              <CodeBlockButton {...buttonProps} />
-              <UnorderedListButton {...buttonProps} />
-              <OrderedListButton {...buttonProps} />
+              <DividerButton {...externalProps} />
             </div>);
           }}
         </SideToolbar>
