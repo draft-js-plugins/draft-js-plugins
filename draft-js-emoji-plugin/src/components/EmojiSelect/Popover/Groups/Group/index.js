@@ -21,12 +21,6 @@ export default class Group extends Component {
     hasRenderedEmoji: false,
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isActive) {
-      this.setState({ hasRenderedEmoji: true });
-    }
-  }
-
   shouldComponentUpdate = (nextProps) => {
     if (this.state.hasRenderedEmoji) {
       return false;
@@ -34,6 +28,12 @@ export default class Group extends Component {
 
     return nextProps.isActive;
   };
+
+  componentDidUpdate() {
+    if (this.props.isActive) {
+      this.setState({ hasRenderedEmoji: true }); // eslint-disable-line
+    }
+  }
 
   renderCategory = (category) => {
     const {
