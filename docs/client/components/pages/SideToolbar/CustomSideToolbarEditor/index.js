@@ -49,15 +49,17 @@ export default class CustomSideToolbarEditor extends Component {
           ref={(element) => { this.editor = element; }}
         />
         <SideToolbar>
-          {(externalProps) => {
+          {
             // may be use React.Fragment instead of div to improve perfomance after React 16
-            return (<div>
-              <HeadlineOneButton {...externalProps} />
-              <HeadlineTwoButton {...externalProps} />
-              <BlockquoteButton {...externalProps} />
-              <CodeBlockButton {...externalProps} />
-            </div>);
-          }}
+            (externalProps) => (
+              <div>
+                <HeadlineOneButton {...externalProps} />
+                <HeadlineTwoButton {...externalProps} />
+                <BlockquoteButton {...externalProps} />
+                <CodeBlockButton {...externalProps} />
+              </div>
+            )
+          }
         </SideToolbar>
       </div>
     );

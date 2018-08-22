@@ -5,8 +5,6 @@ import {
   HeadlineTwoButton,
   BlockquoteButton,
   CodeBlockButton,
-  UnorderedListButton,
-  OrderedListButton,
 } from 'draft-js-buttons';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 
@@ -50,15 +48,15 @@ export default class CustomSideToolbarEditor extends Component {
           ref={(element) => { this.editor = element; }}
         />
         <SideToolbar>{
-          (externalProps) => {
-            // may be use React.Fragment instead of div to improve perfomance after React 16
-            return (<div>
+          // may be use React.Fragment instead of div to improve perfomance after React 16
+          (externalProps) => (
+            <div>
               <HeadlineOneButton {...externalProps} />
               <HeadlineTwoButton {...externalProps} />
               <BlockquoteButton {...externalProps} />
               <CodeBlockButton {...externalProps} />
-            </div>);
-          }
+            </div>
+          )
         }</SideToolbar>
       </div>
     );
