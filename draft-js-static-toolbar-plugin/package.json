@@ -1,6 +1,6 @@
 {
   "name": "draft-js-static-toolbar-plugin",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "Static Toolbar Plugin for DraftJS",
   "author": {
     "name": "Julian Krispel",
