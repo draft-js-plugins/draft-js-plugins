@@ -15,6 +15,8 @@ Note that the color changes when you pass one of the following limits:
 - 10 lines
 `;
 
+const CustomComponent = ({ count }) => <div>{count} words (custom function)</div>;
+
 export default class SimpleCounterEditor extends Component {
 
   state = {
@@ -48,10 +50,7 @@ export default class SimpleCounterEditor extends Component {
         <div><CharCounter limit={200} /> characters</div>
         <div><WordCounter limit={30} /> words</div>
         <div><LineCounter limit={10} /> lines</div>
-        <div>
-          <CustomCounter limit={40} countFunction={this.customCountFunction} />
-          <span> words (custom function)</span>
-        </div>
+        <CustomCounter limit={40} component={CustomComponent} countFunction={this.customCountFunction} />
         <br />
         <br />
       </div>
