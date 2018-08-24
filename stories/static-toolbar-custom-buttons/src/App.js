@@ -66,22 +66,7 @@ class HeadlinesButton extends Component {
   }
 }
 
-const toolbarPlugin = createToolbarPlugin({
-  structure: [
-    BoldButton,
-    ItalicButton,
-    UnderlineButton,
-    CodeButton,
-    Separator,
-    HeadlinesButton,
-    UnorderedListButton,
-    OrderedListButton,
-    BlockquoteButton,
-    CodeBlockButton,
-    SubButton,
-    SupButton
-  ]
-});
+const toolbarPlugin = createToolbarPlugin();
 const { Toolbar } = toolbarPlugin;
 const plugins = [toolbarPlugin];
 const text = 'Remember to place the <Toolbar> component bellow the Editor component …';
@@ -116,7 +101,27 @@ export default class CustomToolbarEditor extends Component {
             }}
             ref={(element) => { this.editor = element; }}
           />
-          <Toolbar />
+          <Toolbar>
+            {
+              // may be use React.Fragment instead of div to improve perfomance after React 16
+              (externalProps) => (
+                <div>
+                  <BoldButton {...externalProps} />
+                  <ItalicButton {...externalProps} />
+                  <UnderlineButton {...externalProps} />
+                  <CodeButton {...externalProps} />
+                  <Separator {...externalProps} />
+                  <HeadlinesButton {...externalProps} />
+                  <UnorderedListButton {...externalProps} />
+                  <OrderedListButton {...externalProps} />
+                  <BlockquoteButton {...externalProps} />
+                  <CodeBlockButton {...externalProps} />
+                  <SubButton {...externalProps} />
+                  <SupButton {...externalProps} />
+                </div>
+              )
+            }
+          </Toolbar>
         </div>
       </div>
     );
