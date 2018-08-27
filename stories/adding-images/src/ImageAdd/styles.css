@@ -19,7 +19,7 @@
   display: none;
 }
 
-.addImageButton {
+.addImageButton, .addImagePressedButton {
   box-sizing: border-box;
   background: #fff;
   border: 1px solid #ddd;
@@ -48,7 +48,6 @@
 }
 
 .addImagePressedButton {
-  composes: addImageButton;
   background: #ededed;
 }
 
