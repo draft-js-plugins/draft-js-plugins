@@ -8,7 +8,9 @@
     "react-scripts": "1.1.5",
     "draft-js-plugins-editor": "latest",
     "draft-js-image-plugin": "latest",
+    "draft-js-alignment-plugin": "latest",
     "draft-js-focus-plugin": "latest",
+    "draft-js-resizable-plugin": "latest",
     "draft-js-drag-n-drop-plugin": "latest"
   },
   "scripts": {

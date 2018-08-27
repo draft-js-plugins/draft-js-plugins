@@ -7,9 +7,12 @@
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.5",
     "draft-js-plugins-editor": "latest",
-    "draft-js-image-plugin": "latest",
-    "draft-js-focus-plugin": "latest",
-    "draft-js-drag-n-drop-plugin": "latest"
+    "draft-js-sticker-plugin": "latest",
+    "draft-js-linkify-plugin": "latest",
+    "draft-js-emoji-plugin": "latest",
+    "draft-js-undo-plugin": "latest",
+    "draft-js-mention-plugin": "latest",
+    "draft-js-hashtag-plugin": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

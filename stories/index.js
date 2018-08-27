@@ -15,23 +15,26 @@ import AnchorSimpleLinkPluginEditor from './anchor-simple-inline-toolbar-editor/
 import SimpleCounterEditor from './counter-plugin-simple-editor/src/App';
 
 // DragNDrop
-import DragNDropImageEditor from './DragNDrop/CustomImageEditor';
+import DragNDropImageEditor from './drag-n-drop-plugin-simple-editor/src/App';
 
 // Emoji
-import SimpleEmojiEditor from './Emoji/SimpleEmojiEditor';
-import CustomEmojiEditor from './Emoji/CustomEmojiEditor';
+import SimpleEmojiEditor from './emoji-plugin-simple-editor/src/App';
+import CustomEmojiEditor from './emoji-plugin-themed-editor/src/App';
 
 // Focus
-import SimpleFocusEditor from './Focus/SimpleFocusEditor';
+import SimpleFocusEditor from './focus-plugin-simple-editor/src/App';
+
+// Kitchen Sink
+import KitchenSink from './kitchensink-editor/src/App';
 
 // HashTag
-import SimpleHashtagEditor from './Hashtag/SimpleHashtagEditor';
-import CustomHashtagEditor from './Hashtag/CustomHashtagEditor';
+import SimpleHashtagEditor from './hashtag-plugin-simple-editor/src/App';
+import CustomHashtagEditor from './hashtag-plugin-themed-editor/src/App';
 
 // Image
-import SimpleImageEditor from './Image/SimpleImageEditor';
-import CustomImageEditor from './Image/CustomImageEditor';
-import AddImageEditor from './Image/AddImageEditor';
+import SimpleImageEditor from './displaying-images/src/App';
+import CustomImageEditor from './align-drag-focus-and-resize-images/src/App';
+import AddImageEditor from './adding-images/src/App';
 
 // InlineToolbar
 import SimpleInlineToolbarEditor from './InlineToolbar/SimpleInlineToolbarEditor';
@@ -142,6 +145,10 @@ storiesOf('Video Plugin')
   .add('Editor with Video Plugin', () => <SimpleVideoEditor />)
   .add('Editor with custom themed Video Plugin', () => <CustomVideoEditor />)
   .add('Editor with Video Plugin and Add Video Button', () => <CustomAddVideoEditor />);
+
+
+storiesOf('Kitchen Sink')
+  .add('Kitchen Sink', () => <KitchenSink />);
 
 storiesOf('StaticToolbar Plugin')
   .add('CustomToolbarEditor', () => <CustomToolbarEditor />)
