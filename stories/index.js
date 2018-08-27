@@ -37,7 +37,7 @@ import CustomImageEditor from './align-drag-focus-and-resize-images/src/App';
 import AddImageEditor from './adding-images/src/App';
 
 // InlineToolbar
-import SimpleInlineToolbarEditor from './InlineToolbar/SimpleInlineToolbarEditor';
+import SimpleInlineToolbarEditor from './inline-toolbar/src/App';
 import CustomInlineToolbarEditor from './InlineToolbar/CustomInlineToolbarEditor';
 import ThemedInlineToolbarEditor from './InlineToolbar/ThemedInlineToolbarEditor';
 import RelativeParentInlineToolbarEditor from './InlineToolbar/RelativeParentInlineToolbarEditor';
