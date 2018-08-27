@@ -6,15 +6,13 @@ import { storiesOf } from '@storybook/react';
 // import { linkTo } from '@storybook/addon-links';
 
 // Alignment
-import SimpleAlignmentEditor from './Alignment/SimpleAlignmentEditor';
-import ThemedAlignmentEditor from './Alignment/ThemedAlignmentEditor';
+import SimpleAlignmentEditor from './simple-alignment-editor/src/App';
 
 // Anchor
-import AnchorSimpleLinkPluginEditor from './Anchor/SimpleLinkPluginEditor';
+import AnchorSimpleLinkPluginEditor from './anchor-simple-inline-toolbar-editor/src/App';
 
 // Counter
-import SimpleCounterEditor from './Counter/SimpleCounterEditor';
-import CustomCounterEditor from './Counter/CustomCounterEditor';
+import SimpleCounterEditor from './counter-plugin-simple-editor/src/App';
 
 // DragNDrop
 import DragNDropImageEditor from './DragNDrop/CustomImageEditor';
@@ -78,18 +76,16 @@ import ThemedToolbarEditor from './StaticToolbar/ThemedToolbarEditor';
 import SimpleToolbarEditor from './StaticToolbar/SimpleToolbarEditor';
 
 // Divider
-import DividerWithSideToolbarEditor from './Divider/DividerWithSideToolbarEditor';
+import DividerWithSideToolbarEditor from './divider-with-side-toolbar-editor/src/App';
 
 storiesOf('Alignment Plugin', module)
-  .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />)
-  .add('Editor with custom themed Alignment Plugin', () => <ThemedAlignmentEditor />);
+  .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />);
 
 storiesOf('Anchor Plugin', module)
   .add('Editor with Anchor Plugin', () => <AnchorSimpleLinkPluginEditor />);
 
 storiesOf('Counter Plugin', module)
-  .add('Editor with Counter Plugin', () => <SimpleCounterEditor />)
-  .add('Editor with custom themed Counter Plugin', () => <CustomCounterEditor />);
+  .add('Editor with Counter Plugin', () => <SimpleCounterEditor />);
 
 storiesOf('DragNDrop Plugin', module)
   .add('Editor with DragNDrop plugin and image plugin', () => <DragNDropImageEditor />);
