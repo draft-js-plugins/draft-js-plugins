@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class EmojiSuggestionsPortal extends Component {
 
   constructor(props) {
-  	super(props);
+    super(props);
     this.searchPortalRef = (element) => { this.searchPortal = element; };
   }
 
