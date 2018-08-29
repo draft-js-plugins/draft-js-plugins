@@ -27,10 +27,6 @@ export default class LinkButton extends Component {
 
   render() {
     const { theme, onRemoveLinkAtSelection } = this.props;
-    const className = hasLinkSelected
-      ? unionClassNames(theme.button, theme.active)
-      : theme.button;
-
     let hasLinkSelected = '';
 
     try {
@@ -41,6 +37,10 @@ export default class LinkButton extends Component {
     } catch (e) {
       hasLinkSelected = '';
     }
+
+    const className = hasLinkSelected
+      ? unionClassNames(theme.button, theme.active)
+      : theme.button;
 
     return (
       <div
