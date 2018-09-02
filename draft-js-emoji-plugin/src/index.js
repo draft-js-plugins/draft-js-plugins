@@ -3,7 +3,7 @@ import { Map, List } from 'immutable';
 import keys from 'lodash.keys';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
-import Emoji from './components/Emoji';
+import DefaultEmoji from './components/Emoji';
 import EmojiSuggestions from './components/EmojiSuggestions';
 import EmojiSuggestionsPortal from './components/EmojiSuggestionsPortal';
 import EmojiSelect from './components/EmojiSelect';
@@ -123,6 +123,7 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const {
+    Emoji = DefaultEmoji,
     theme = defaultTheme,
     imagePath = defaultImagePath,
     imageType = defaultImageType,
