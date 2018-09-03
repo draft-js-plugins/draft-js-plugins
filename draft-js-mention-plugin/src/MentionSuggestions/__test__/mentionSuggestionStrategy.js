@@ -2,11 +2,12 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { genKey, convertFromRaw } from 'draft-js';
 import mentionSuggestionsStrategy from '../../mentionSuggestionsStrategy';
+import defaultRegExp from '../../defaultRegExp';
 
 let callback;
 const trigger = '@';
-const nonWhitespaceStrategy = mentionSuggestionsStrategy(trigger, false);
-const whitespaceStrategy = mentionSuggestionsStrategy(trigger, true, 20);
+const nonWhitespaceStrategy = mentionSuggestionsStrategy(trigger, false, defaultRegExp);
+const whitespaceStrategy = mentionSuggestionsStrategy(trigger, true, defaultRegExp);
 const getBlock = (text, entityRanges = [], entityMap = {}) => {
   const contentState = convertFromRaw({
     blocks: [{
@@ -30,6 +31,13 @@ describe('mentionSuggestionsStrategy', () => {
   context('when whitespace support is disabled', () => {
     it('should match a word', () => {
       nonWhitespaceStrategy(getBlock('@the'), callback);
+      expect(callback.callCount).to.equal(1);
+      expect(callback.lastCall.args).to.deep.equal([0, 4]);
+    });
+
+
+    it('should match a word with special characters', () => {
+      nonWhitespaceStrategy(getBlock('@ęĻŌ'), callback);
       expect(callback.callCount).to.equal(1);
       expect(callback.lastCall.args).to.deep.equal([0, 4]);
     });
@@ -67,6 +75,14 @@ describe('mentionSuggestionsStrategy', () => {
       expect(callback.callCount).to.equal(2);
       expect(callback.firstCall.args).to.deep.equal([0, 21]);
       expect(callback.secondCall.args).to.deep.equal([21, 37]);
+    });
+
+
+    it('should match multiple mentions with spaces and special characters', () => {
+      whitespaceStrategy(getBlock('@Thomas Müller @Mario Götze'), callback);
+      expect(callback.callCount).to.equal(2);
+      expect(callback.firstCall.args).to.deep.equal([0, 15]);
+      expect(callback.secondCall.args).to.deep.equal([15, 27]);
     });
 
     it('should not match entities', () => {

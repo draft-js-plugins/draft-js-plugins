@@ -24,8 +24,8 @@ const findWithRegex = (regex, contentBlock, callback) => {
 
 export default (trigger: string, supportWhiteSpace: boolean, regExp: string) => { //eslint-disable-line
   const MENTION_REGEX = supportWhiteSpace ?
-    new RegExp(`${escapeRegExp(trigger)}[\\w\\s]{0,}`, 'g') :
-    new RegExp(`(\\s|^)${escapeRegExp(trigger)}[\\w]*`, 'g');
+    new RegExp(`${escapeRegExp(trigger)}(${regExp}|\\s){0,}`, 'g') :
+    new RegExp(`(\\s|^)${escapeRegExp(trigger)}${regExp}`, 'g');
 
   return (contentBlock: Object, callback: Function) => {
     findWithRegex(MENTION_REGEX, contentBlock, callback);

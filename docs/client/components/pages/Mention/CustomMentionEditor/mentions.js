@@ -29,6 +29,11 @@ const mentions = [
     title: 'HeathIT hacker and researcher',
     avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
   },
+  {
+    name: 'Łukasz Bąk',
+    title: 'Randomly Generated User',
+    avatar: 'https://randomuser.me/api/portraits/men/36.jpg',
+  },
 ];
 
 export default mentions;
