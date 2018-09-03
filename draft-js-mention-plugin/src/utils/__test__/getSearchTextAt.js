@@ -21,4 +21,13 @@ describe('getSearchTextAt', () => {
     };
     expect(getSearchTextAt('hi @The Walking Dead', 15, trigger)).to.deep.equal(expected);
   });
+
+  it('finds the matching string following empty trigger', () => {
+    const expected = {
+      matchingString: 'Max',
+      begin: -1,
+      end: 3,
+    };
+    expect(getSearchTextAt('Max', 3, trigger)).to.deep.equal(expected);
+  });
 });
