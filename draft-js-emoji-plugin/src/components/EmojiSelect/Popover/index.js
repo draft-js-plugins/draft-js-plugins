@@ -198,6 +198,7 @@ export default class Popover extends Component {
           onGroupScroll={this.onGroupScroll}
           ref={(element) => { this.groups = element; }}
           useNativeArt={useNativeArt}
+          isOpen={isOpen}
         />
         <Nav
           theme={theme}

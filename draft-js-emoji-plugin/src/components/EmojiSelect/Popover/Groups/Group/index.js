@@ -14,9 +14,26 @@ export default class Group extends Component {
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func.isRequired,
     useNativeArt: PropTypes.bool,
+    isActive: PropTypes.bool,
   };
 
-  shouldComponentUpdate = () => false;
+  state = {
+    hasRenderedEmoji: false,
+  }
+
+  shouldComponentUpdate = (nextProps) => {
+    if (this.state.hasRenderedEmoji) {
+      return false;
+    }
+
+    return nextProps.isActive;
+  };
+
+  componentDidUpdate() {
+    if (this.props.isActive) {
+      this.setState({ hasRenderedEmoji: true }); // eslint-disable-line
+    }
+  }
 
   renderCategory = (category) => {
     const {
@@ -29,6 +46,7 @@ export default class Group extends Component {
       onEmojiSelect,
       onEmojiMouseDown,
       useNativeArt,
+      isActive,
     } = this.props;
 
     const categoryEmojis = emojis[category];
@@ -38,7 +56,7 @@ export default class Group extends Component {
         key={categoryEmojis[key][0]}
         className={theme.emojiSelectPopoverGroupItem}
       >
-        <Entry
+        {isActive && <Entry
           emoji={categoryEmojis[key][0]}
           theme={theme}
           imagePath={imagePath}
@@ -49,7 +67,7 @@ export default class Group extends Component {
           onEmojiSelect={onEmojiSelect}
           onEmojiMouseDown={onEmojiMouseDown}
           useNativeArt={useNativeArt}
-        />
+        />}
       </li>
     ));
   };
