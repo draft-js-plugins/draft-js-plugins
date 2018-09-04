@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.1.2
+- Allow empty `mentionTrigger` with `supportWhitespace: true` #1182
+
 ## 3.1.1
 - Fix regression for special characters in mention strategy.
 
