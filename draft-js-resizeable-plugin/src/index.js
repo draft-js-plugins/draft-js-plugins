@@ -1,13 +1,6 @@
 import { EditorState } from 'draft-js';
 import createDecorator from './createDecorator';
 
-const store = {
-  getEditorRef: undefined,
-  getReadOnly: undefined,
-  getEditorState: undefined,
-  setEditorState: undefined,
-};
-
 const createSetResizeData = (contentBlock, { getEditorState, setEditorState }) => (data) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
@@ -18,23 +11,32 @@ const createSetResizeData = (contentBlock, { getEditorState, setEditorState }) =
   }
 };
 
-export default (config) => ({
-  initialize: ({ getEditorRef, getReadOnly, getEditorState, setEditorState }) => {
-    store.getReadOnly = getReadOnly;
-    store.getEditorRef = getEditorRef;
-    store.getEditorState = getEditorState;
-    store.setEditorState = setEditorState;
-  },
-  decorator: createDecorator({ config, store }),
-  blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
-    const entityKey = contentBlock.getEntityAt(0);
-    const contentState = getEditorState().getCurrentContent();
-    const resizeData = entityKey ? contentState.getEntity(entityKey).data : {};
-    return {
-      props: {
-        resizeData,
-        setResizeData: createSetResizeData(contentBlock, { getEditorState, setEditorState }),
-      },
-    };
-  }
+export default (config) => (() => {
+  const store = {
+    getEditorRef: undefined,
+    getReadOnly: undefined,
+    getEditorState: undefined,
+    setEditorState: undefined,
+  };
+  return {
+    initialize: ({ getEditorRef, getReadOnly, getEditorState, setEditorState }) => {
+      store.getReadOnly = getReadOnly;
+      store.getEditorRef = getEditorRef;
+      store.getEditorState = getEditorState;
+      store.setEditorState = setEditorState;
+    },
+    decorator: createDecorator({ config, store }),
+    blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
+      const entityKey = contentBlock.getEntityAt(0);
+      const contentState = getEditorState()
+        .getCurrentContent();
+      const resizeData = entityKey ? contentState.getEntity(entityKey).data : {};
+      return {
+        props: {
+          resizeData,
+          setResizeData: createSetResizeData(contentBlock, { getEditorState, setEditorState }),
+        },
+      };
+    }
+  };
 });

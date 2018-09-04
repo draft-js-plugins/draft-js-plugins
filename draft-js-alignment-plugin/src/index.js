@@ -6,10 +6,6 @@ import createStore from './utils/createStore';
 import buttonStyles from './buttonStyles.css';
 import alignmentToolStyles from './alignmentToolStyles.css';
 
-const store = createStore({
-  isVisible: false,
-});
-
 const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) => (data) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
@@ -21,6 +17,10 @@ const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) =>
 };
 
 export default (config = {}) => {
+  const store = createStore({
+    isVisible: false,
+  });
+
   const defaultAlignmentToolTheme = {
     buttonStyles,
     alignmentToolStyles,
