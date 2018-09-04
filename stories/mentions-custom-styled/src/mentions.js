@@ -5,7 +5,7 @@ const mentions = [
     avatar: 'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
   },
   {
-    name: 'julian',
+    name: 'Júlian',
     title: 'United Kingdom',
     avatar: 'https://avatars2.githubusercontent.com/u/1188186?v=3&s=400',
   },
