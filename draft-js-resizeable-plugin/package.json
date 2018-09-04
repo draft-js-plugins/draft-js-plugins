@@ -1,6 +1,6 @@
 {
   "name": "draft-js-resizeable-plugin",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Resizeable Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
