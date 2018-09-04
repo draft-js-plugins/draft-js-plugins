@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 export default class EmojiSuggestionsPortal extends Component {
 
+  constructor(props) {
+    super(props);
+    this.searchPortalRef = (element) => { this.searchPortal = element; };
+  }
+
   componentWillMount() {
     this.props.store.register(this.props.offsetKey);
     this.updatePortalClientRect(this.props);
@@ -31,7 +36,7 @@ export default class EmojiSuggestionsPortal extends Component {
     return (
       <span
         className={this.key}
-        ref={(element) => { this.searchPortal = element; }}
+        ref={this.searchPortalRef}
       >
         {this.props.children}
       </span>
