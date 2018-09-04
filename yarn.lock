@@ -6637,7 +6637,7 @@ react-split-pane@^0.1.68:
     prop-types "^15.5.10"
     react-style-proptype "^3.0.0"
 
-react-static-webpack-plugin@^2.1.0:
+react-static-webpack-plugin@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-static-webpack-plugin/-/react-static-webpack-plugin-2.1.0.tgz#15dec7f69cdfe40036b50e78296246d5c841e04b"
   dependencies:
