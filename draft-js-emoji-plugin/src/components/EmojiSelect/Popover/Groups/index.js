@@ -16,7 +16,12 @@ export default class Groups extends Component {
     onEmojiMouseDown: PropTypes.func.isRequired,
     onGroupScroll: PropTypes.func.isRequired,
     useNativeArt: PropTypes.bool,
+    isOpen: PropTypes.bool,
   };
+
+  state = {
+    activeGroup: 0,
+  }
 
   componentDidMount() {
     this.calculateBounds();
@@ -32,6 +37,7 @@ export default class Groups extends Component {
     groups.forEach((group, index) => {
       if (values.scrollTop >= group.top) {
         activeGroup = index;
+        this.setState({ activeGroup });
       }
     });
     onGroupScroll(activeGroup);
@@ -74,6 +80,14 @@ export default class Groups extends Component {
         group.topList = listTop - containerTop; // eslint-disable-line no-param-reassign
       });
     }
+  }
+
+
+  isRenderedGroupActive = (index) => {
+    const { activeGroup } = this.state;
+    const { isOpen } = this.props;
+    return activeGroup === index ||
+           (isOpen && activeGroup + 1 === index); // we also preload next group when popup is open
   }
 
   render() {
@@ -124,6 +138,7 @@ export default class Groups extends Component {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
               useNativeArt={useNativeArt}
+              isActive={this.isRenderedGroupActive(index)}
             />
           ))}
         </Scrollbars>
