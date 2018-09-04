@@ -1,8 +1,32 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import PropTypes from 'prop-types';
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
+import {
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  BlockquoteButton,
+  CodeBlockButton,
+  UnorderedListButton,
+  OrderedListButton,
+} from 'draft-js-buttons';
+import BlockTypeSelect from '../BlockTypeSelect';
 
-export default class Toolbar extends React.Component {
+class Toolbar extends React.Component {
+
+  static defaultProps = {
+    children: (externalProps) => (
+      // may be use React.Fragment instead of div to improve perfomance after React 16
+      <div>
+        <HeadlineOneButton {...externalProps} />
+        <HeadlineTwoButton {...externalProps} />
+        <BlockquoteButton {...externalProps} />
+        <CodeBlockButton {...externalProps} />
+        <UnorderedListButton {...externalProps} />
+        <OrderedListButton {...externalProps} />
+      </div>
+    )
+  }
 
   state = {
     position: {
@@ -17,6 +41,7 @@ export default class Toolbar extends React.Component {
   componentWillUnmount() {
     this.props.store.unsubscribeFromItem('editorState', this.onEditorStateChange);
   }
+
 
   onEditorStateChange = (editorState) => {
     const selection = editorState.getSelection();
@@ -50,33 +75,48 @@ export default class Toolbar extends React.Component {
         editorRoot = editorRoot.parentNode;
       }
 
+      const position = {
+        top: node.offsetTop + editorRoot.offsetTop,
+        transform: 'scale(1)',
+        transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+      };
+      // TODO: remove the hard code(width for the hover element)
+      if (this.props.position === 'right') {
+        // eslint-disable-next-line no-mixed-operators
+        position.left = editorRoot.offsetLeft + editorRoot.offsetWidth + 80 - 36;
+      } else {
+        position.left = editorRoot.offsetLeft - 80;
+      }
+
+
       this.setState({
-        position: {
-          top: node.offsetTop + editorRoot.offsetTop,
-          left: editorRoot.offsetLeft - 80,
-          transform: 'scale(1)',
-          transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-        },
+        position,
       });
     }, 0);
   }
 
   render() {
     const { theme, store } = this.props;
+
     return (
       <div
         className={theme.toolbarStyles.wrapper}
         style={this.state.position}
       >
-        {this.props.structure.map((Component, index) => (
-          <Component
-            key={index}
-            getEditorState={store.getItem('getEditorState')}
-            setEditorState={store.getItem('setEditorState')}
-            theme={theme}
-          />
-        ))}
+        <BlockTypeSelect
+          getEditorState={store.getItem('getEditorState')}
+          setEditorState={store.getItem('setEditorState')}
+          theme={theme}
+        >
+          {this.props.children}
+        </BlockTypeSelect>
       </div>
     );
   }
 }
+
+Toolbar.propTypes = {
+  children: PropTypes.func
+};
+
+export default Toolbar;

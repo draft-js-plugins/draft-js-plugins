@@ -1,12 +1,13 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
-import DefaultBlockTypeSelect from './components/DefaultBlockTypeSelect';
 import buttonStyles from './buttonStyles.css';
 import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 
 export default (config = {}) => {
+  const defaultPostion = 'left';
+
   const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
   const store = createStore({
@@ -14,16 +15,14 @@ export default (config = {}) => {
   });
 
   const {
+    position = defaultPostion,
     theme = defaultTheme,
-    structure = [
-      DefaultBlockTypeSelect
-    ]
   } = config;
 
   const toolbarProps = {
     store,
-    structure,
     theme,
+    position,
   };
 
   return {

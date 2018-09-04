@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-
+import {
+  HeadlineOneButton,
+  HeadlineTwoButton,
+  BlockquoteButton,
+  CodeBlockButton,
+} from 'draft-js-buttons';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';
 import blockTypeSelectStyles from './blockTypeSelectStyles.css';
 
+// Setting the side Toolbar at right position(default is left) and styling with custom theme
 const sideToolbarPlugin = createSideToolbarPlugin({
+  position: 'right',
   theme: { buttonStyles, toolbarStyles, blockTypeSelectStyles }
 });
 const { SideToolbar } = sideToolbarPlugin;
@@ -40,7 +47,17 @@ export default class CustomSideToolbarEditor extends Component {
           plugins={plugins}
           ref={(element) => { this.editor = element; }}
         />
-        <SideToolbar />
+        <SideToolbar>{
+          // may be use React.Fragment instead of div to improve perfomance after React 16
+          (externalProps) => (
+            <div>
+              <HeadlineOneButton {...externalProps} />
+              <HeadlineTwoButton {...externalProps} />
+              <BlockquoteButton {...externalProps} />
+              <CodeBlockButton {...externalProps} />
+            </div>
+          )
+        }</SideToolbar>
       </div>
     );
   }
