@@ -11,7 +11,7 @@ const createSetResizeData = (contentBlock, { getEditorState, setEditorState }) =
   }
 };
 
-export default (config) => (() => {
+export default (config) => {
   const store = {
     getEditorRef: undefined,
     getReadOnly: undefined,
@@ -39,4 +39,4 @@ export default (config) => (() => {
       };
     }
   };
-});
+};
