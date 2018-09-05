@@ -1,4 +1,6 @@
 git checkout master
+git branch -D gh-pages
+git branch -D tmp-gh-pages
 git checkout -b tmp-gh-pages
 rm .gitignore
 
