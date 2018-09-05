@@ -22,6 +22,20 @@ export default {
     return RichUtils.toggleLink(editorState, selection, null);
   },
 
+  collapseToEnd(editorState: EditorState): EditorState {
+    const selection = editorState.getSelection();
+
+    return EditorState.forceSelection(
+      editorState,
+      selection.merge({
+        anchorKey: selection.getEndKey(),
+        focusKey: selection.getEndKey(),
+        anchorOffset: selection.getEndOffset(),
+        focusOffset: selection.getEndOffset(),
+      })
+    );
+  },
+
   getCurrentEntityKey(editorState: EditorState): ?string {
     const selection = editorState.getSelection();
     const anchorKey = selection.getAnchorKey();

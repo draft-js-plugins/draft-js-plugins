@@ -6,6 +6,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 - Emoji select popup now closes after emoji has been clicked.
 
+## 2.1.1
+- Move searchPortal ref function to constructor 
+
+## 2.1.0
+- Don't fetch all EmojiOne emoji as soon as the `<EmojiSelect />` is rendered. Fetch them on demand.
+
 ## 2.0.6
 - Added an `id` attribute on the listbox options so the `aria-activedescendant` value refers to the focused option.
 

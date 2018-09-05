@@ -88,6 +88,20 @@ export default class App extends Component {
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>
+          <div className={styles.param}>
+            <span className={styles.paramName}>theme</span>
+            <span>Object of CSS classes with the following keys:</span>
+            <div className={styles.subParams}>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>focused:</span>
+                CSS class for the focused item.
+              </div>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>unfocused:</span>
+                CSS class for the unfocused item.
+              </div>
+            </div>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Focus Example</Heading>

@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.2.0
+- Fix blockKeyStore behaviour so it is not accidentally deleted before the component has finished mounting.
+
 ## 2.1.0
 - Fix removeBlock behaviour (replace with unstyled block when no previous block...)
 

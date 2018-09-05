@@ -1,7 +1,7 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
 
 import DefaultDivider from './components/DefaultDivider';
-import DividerButton from './components/DividerButton';
+import DefaultButton from './components/DividerButton';
 
 import addDivider from './modifiers/addDivider';
 
@@ -14,6 +14,7 @@ const defaultTheme = {
 const createDividerPlugin = ({
   entityType = 'divider',
   dividerComponent = DefaultDivider,
+  buttonComponent = DefaultButton,
   theme = defaultTheme,
   decorator
 } = {}) => {
@@ -42,7 +43,7 @@ const createDividerPlugin = ({
 
       return null;
     },
-    DividerButton: decorateComponentWithProps(DividerButton, {
+    DividerButton: decorateComponentWithProps(buttonComponent, {
       entityType,
       addDivider: addDivider(entityType)
     }),
