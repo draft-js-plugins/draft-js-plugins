@@ -75,8 +75,21 @@ class Toolbar extends React.Component {
         editorRoot = editorRoot.parentNode;
       }
 
+      const topWithNoScroll = node.offsetTop + editorRoot.offsetTop;
+
+      let valueTop = 0;
+      if (this.props.scrollParent) {
+        const scrollParent = document.querySelectorAll(this.props.scrollParent)[0];
+
+        let element = node;
+        do {
+          valueTop += element.scrollTop || 0;
+          element = element.parentNode;
+        } while (element && element !== scrollParent);
+      }
+
       const position = {
-        top: node.offsetTop + editorRoot.offsetTop,
+        top: topWithNoScroll - valueTop,
         transform: 'scale(1)',
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       };

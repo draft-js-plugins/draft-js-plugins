@@ -4,6 +4,10 @@ import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascri
 // eslint-disable-next-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleSideToolbarEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
+import simpleExampleCodeWithScroll from '!!../../../loaders/prism-loader?language=javascript!./SimpleSideToolbarEditorWithScroll';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorWithScrollStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleSideToolbarEditorWithScroll/editorStyles.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomSideToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomSideToolbarEditor/editorStyles.css';
@@ -26,6 +30,7 @@ import styles from './styles.css';
 import Code from '../../shared/Code';
 import InlineCode from '../../shared/InlineCode';
 import SimpleSideToolbarEditor from './SimpleSideToolbarEditor';
+import SimpleSideToolbarEditorWithScroll from './SimpleSideToolbarEditorWithScroll';
 import CustomSideToolbarEditor from './CustomSideToolbarEditor';
 import SocialBar from '../../shared/SocialBar';
 import NavBar from '../../shared/NavBar';
@@ -115,6 +120,19 @@ export default class App extends Component {
           <SimpleSideToolbarEditor />
           <Code code={simpleExampleCode} name="SimpleSideToolbarEditor.js" />
           <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>Simple Side Toolbar Example With Scroll Support</Heading>
+          <SimpleSideToolbarEditorWithScroll />
+          <Code code={simpleExampleCodeWithScroll} name="SimpleSideToolbarEditorWithScroll.js" />
+          <Code code={simpleExampleEditorWithScrollStylesCode} name="editorStyles.css" />
+        </Container>
+        <Container>
+          <Heading level={2}>Configuration Parameters</Heading>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>scrollParent</span>
+            <span>String, query selector, that is the parent of scrolled element.(If none is provided, scroll will not be taken into account for positioning.)</span>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Custom Side Toolbar Example</Heading>
