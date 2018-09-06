@@ -5,7 +5,7 @@ import Toolbar from '../index';
 
 describe('Toolbar', () => {
   it('allows children to override the content', (done) => {
-    const structure = [class Child extends Component {
+    class Child extends Component {
       componentDidMount() {
         setTimeout(() => {
           this.props.onOverrideContent(() => {
@@ -19,7 +19,7 @@ describe('Toolbar', () => {
       render() {
         return <span className="initial" />;
       }
-    }];
+    }
 
     const theme = { toolbarStyles: {} };
 
@@ -37,8 +37,9 @@ describe('Toolbar', () => {
       <Toolbar
         store={store}
         theme={theme}
-        structure={structure}
-      />
+      >{
+        (externalProps) => <Child {...externalProps} />
+      }</Toolbar>
     );
 
     expect(wrapper.find('.initial').length).to.equal(1);
