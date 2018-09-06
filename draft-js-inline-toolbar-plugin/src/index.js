@@ -1,10 +1,4 @@
 import decorateComponentWithProps from 'decorate-component-with-props';
-import {
-  ItalicButton,
-  BoldButton,
-  UnderlineButton,
-  CodeButton,
-} from 'draft-js-buttons';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
@@ -19,18 +13,11 @@ export default (config = {}) => {
   });
 
   const {
-    theme = defaultTheme,
-    structure = [
-      BoldButton,
-      ItalicButton,
-      UnderlineButton,
-      CodeButton,
-    ]
+    theme = defaultTheme
   } = config;
 
   const toolbarProps = {
     store,
-    structure,
     theme,
   };
 

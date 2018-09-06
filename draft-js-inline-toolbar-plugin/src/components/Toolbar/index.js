@@ -1,16 +1,34 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { getVisibleSelectionRect } from 'draft-js';
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+  CodeButton,
+} from 'draft-js-buttons';
 
 export default class Toolbar extends React.Component {
+
+  static defaultProps = {
+    children: (externalProps) => (
+      // may be use React.Fragment instead of div to improve perfomance after React 16
+      <div>
+        <ItalicButton {...externalProps} />
+        <BoldButton {...externalProps} />
+        <UnderlineButton {...externalProps} />
+        <CodeButton {...externalProps} />
+      </div>
+    )
+  }
 
   state = {
     isVisible: false,
     position: undefined,
 
     /**
-     * If this is set, the toolbar will render this instead of the regular
-     * structure and will also be shown when the editor loses focus.
+     * If this is set, the toolbar will render this instead of the children
+     * prop and will also be shown when the editor loses focus.
      * @type {Component}
      */
     overrideContent: undefined
@@ -26,7 +44,7 @@ export default class Toolbar extends React.Component {
 
   /**
    * This can be called by a child in order to render custom content instead
-   * of the regular structure. It's the responsibility of the callee to call
+   * of the children prop. It's the responsibility of the callee to call
    * this function again with `undefined` in order to reset `overrideContent`.
    * @param {Component} overrideContent
    */
@@ -99,7 +117,7 @@ export default class Toolbar extends React.Component {
   };
 
   render() {
-    const { theme, store, structure } = this.props;
+    const { theme, store } = this.props;
     const { overrideContent: OverrideContent } = this.state;
     const childrenProps = {
       theme: theme.buttonStyles,
@@ -116,8 +134,7 @@ export default class Toolbar extends React.Component {
       >
         {OverrideContent
           ? <OverrideContent {...childrenProps} />
-          : structure.map((Component, index) =>
-            <Component key={index} {...childrenProps} />)}
+          : this.props.children({...childrenProps})}
       </div>
     );
   }
