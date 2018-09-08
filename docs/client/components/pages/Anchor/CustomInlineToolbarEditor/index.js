@@ -17,13 +17,7 @@ const linkPlugin = createLinkPlugin({
   placeholder: 'http://…'
 });
 const inlineToolbarPlugin = createInlineToolbarPlugin({
-  theme: { buttonStyles, toolbarStyles },
-  structure: [
-    BoldButton,
-    ItalicButton,
-    UnderlineButton,
-    linkPlugin.LinkButton
-  ]
+  theme: { buttonStyles, toolbarStyles }
 });
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin, linkPlugin];
@@ -49,7 +43,19 @@ export default class ThemedInlineToolbarEditor extends Component {
           plugins={plugins}
           ref={(element) => { this.editor = element; }}
         />
-        <InlineToolbar />
+        <InlineToolbar>
+          {
+            // may be use React.Fragment instead of div to improve perfomance after React 16
+            (externalProps) => (
+              <div>
+                <BoldButton {...externalProps} />
+                <ItalicButton {...externalProps} />
+                <UnderlineButton {...externalProps} />
+                <linkPlugin.LinkButton {...externalProps} />
+              </div>
+            )
+          }
+        </InlineToolbar>
       </div>
     );
   }
