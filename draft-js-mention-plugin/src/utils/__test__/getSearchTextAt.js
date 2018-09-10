@@ -25,9 +25,9 @@ describe('getSearchTextAt', () => {
   it('finds the matching string following empty trigger', () => {
     const expected = {
       matchingString: 'Max',
-      begin: -1,
+      begin: 0,
       end: 3,
     };
-    expect(getSearchTextAt('Max', 3, trigger)).to.deep.equal(expected);
+    expect(getSearchTextAt('Max', 3, '')).to.deep.equal(expected);
   });
 });
