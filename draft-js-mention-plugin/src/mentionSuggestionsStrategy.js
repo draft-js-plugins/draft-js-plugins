@@ -18,7 +18,7 @@ const findWithRegex = (regex, contentBlock, callback) => {
       // Force update regex's lastIndex to avoid Infinite loop
       while ((matchArr = regex.exec(text)) !== null) { // eslint-disable-line
         if (regex.lastIndex === prevLastIndex) {
-          regex.lastIndex += 1;
+          regex.lastIndex += 1; // eslint-disable-line no-param-reassign
         }
         prevLastIndex = regex.lastIndex;
         start = nonEntityStart + matchArr.index;
