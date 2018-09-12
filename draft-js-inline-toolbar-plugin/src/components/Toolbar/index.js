@@ -134,7 +134,7 @@ export default class Toolbar extends React.Component {
       >
         {OverrideContent
           ? <OverrideContent {...childrenProps} />
-          : this.props.children({...childrenProps})}
+          : this.props.children(childrenProps)}
       </div>
     );
   }
