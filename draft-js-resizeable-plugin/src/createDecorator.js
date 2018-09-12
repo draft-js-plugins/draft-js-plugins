@@ -144,6 +144,8 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       vertical,
       horizontal,
       style,
+      initialHeight,
+      initialWidth,
       // using destructuring to make sure unused props are not passed down to the block
       resizeSteps, // eslint-disable-line no-unused-vars
       ...elementProps
@@ -156,17 +158,17 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     if (horizontal === 'auto') {
       styles.width = 'auto';
     } else if (horizontal === 'relative') {
-      styles.width = `${(width || blockProps.resizeData.width || 40)}%`;
+      styles.width = `${(width || blockProps.resizeData.width || initialWidth)}%`;
     } else if (horizontal === 'absolute') {
-      styles.width = `${(width || blockProps.resizeData.width || 40)}px`;
+      styles.width = `${(width || blockProps.resizeData.width || initialWidth)}px`;
     }
 
     if (vertical === 'auto') {
       styles.height = 'auto';
     } else if (vertical === 'relative') {
-      styles.height = `${(height || blockProps.resizeData.height || 40)}%`;
+      styles.height = `${(height || blockProps.resizeData.height || initialHeight)}%`;
     } else if (vertical === 'absolute') {
-      styles.height = `${(height || blockProps.resizeData.height || 40)}px`;
+      styles.height = `${(height || blockProps.resizeData.height || initialHeight)}px`;
     }
 
     // Handle cursor
