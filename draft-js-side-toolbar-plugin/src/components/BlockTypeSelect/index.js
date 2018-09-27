@@ -38,7 +38,7 @@ class BlockTypeSelect extends React.Component {
       <div
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        onMouseDown={this.onClick}
+        onMouseDown={this.onMouseDown}
       >
         <div className={theme.blockTypeSelectStyles.blockType}>
           <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
