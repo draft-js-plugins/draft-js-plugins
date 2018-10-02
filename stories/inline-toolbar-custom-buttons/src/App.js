@@ -76,22 +76,7 @@ class HeadlinesButton extends Component {
   }
 }
 
-const inlineToolbarPlugin = createInlineToolbarPlugin({
-  structure: [
-    BoldButton,
-    ItalicButton,
-    UnderlineButton,
-    SubButton,
-    SupButton,
-    CodeButton,
-    Separator,
-    HeadlinesButton,
-    UnorderedListButton,
-    OrderedListButton,
-    BlockquoteButton,
-    CodeBlockButton,
-  ],
-});
+const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
 const plugins = [inlineToolbarPlugin];
 const text =
@@ -123,7 +108,25 @@ export default class CustomInlineToolbarEditor extends Component {
             this.editor = element;
           }}
         />
-        <InlineToolbar />
+        <InlineToolbar>{
+          // may be use React.Fragment instead of div to improve perfomance after React 16
+          (externalProps) => (
+            <div>
+              <BoldButton {...externalProps} />
+              <ItalicButton {...externalProps} />
+              <UnderlineButton {...externalProps} />
+              <SubButton {...externalProps} />
+              <SupButton {...externalProps} />
+              <CodeButton {...externalProps} />
+              <Separator {...externalProps} />
+              <HeadlinesButton {...externalProps} />
+              <UnorderedListButton {...externalProps} />
+              <OrderedListButton {...externalProps} />
+              <BlockquoteButton {...externalProps} />
+              <CodeBlockButton {...externalProps} />
+            </div>
+          )
+        }</InlineToolbar>
       </div>
     );
   }
