@@ -12,9 +12,15 @@ const findWithRegex = (regex, contentBlock, callback) => {
       const text = contentBlockText.slice(nonEntityStart, nonEntityEnd);
       let matchArr;
       let start;
+      let prevLastIndex = regex.lastIndex;
 
       // Go through all matches in the text and return the indices to the callback
+      // Break the loop if lastIndex is not changed
       while ((matchArr = regex.exec(text)) !== null) { // eslint-disable-line
+        if (regex.lastIndex === prevLastIndex) {
+          break;
+        }
+        prevLastIndex = regex.lastIndex;
         start = nonEntityStart + matchArr.index;
         callback(start, start + matchArr[0].length);
       }
