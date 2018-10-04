@@ -79,13 +79,25 @@ export default class Toolbar extends React.Component {
       // but rather with a small offset so the caret doesn't overlap with the text.
       const extraTopOffset = -5;
 
+      let left = (
+        editorRoot.offsetLeft
+        + (selectionRect.left - editorRootRect.left)
+        + (selectionRect.width / 2)
+      );
+
+      // Make sure toolbar fits inside viewport
+      const halfToolbarWidth = this.toolbar.offsetWidth / 2; // offsetWidth returns width before transform
+      const viewportOffset = 5;
+      const leftBound = (viewportOffset - editorRootRect.left) + halfToolbarWidth;
+      const rightBound = ((window.innerWidth - editorRootRect.left) - viewportOffset) - halfToolbarWidth;
+
+      left = Math.max(leftBound, Math.min(rightBound, left));
+
       const position = {
         top: (editorRoot.offsetTop - this.toolbar.offsetHeight)
           + (selectionRect.top - editorRootRect.top)
           + extraTopOffset,
-        left: editorRoot.offsetLeft
-          + (selectionRect.left - editorRootRect.left)
-          + (selectionRect.width / 2)
+        left
       };
       this.setState({ position });
     });
