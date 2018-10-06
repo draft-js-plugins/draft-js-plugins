@@ -19,7 +19,8 @@
   display: none;
 }
 
-.selectButton {
+.selectButton,
+.selectPressedButton {
   box-sizing: border-box;
   background: #fff;
   border: 1px solid #ddd;
@@ -35,20 +36,22 @@
   margin: 0;
 }
 
-.selectButton:focus {
+.selectButton:focus,
+.selectPressedButton:focus {
   outline: 0; /* reset for :focus */
 }
 
-.selectButton:hover {
+.selectButton:hover,
+.selectPressedButton:hover {
   background: #f3f3f3;
 }
 
-.selectButton:active {
+.selectButton:active,
+.selectPressedButton:active {
   background: #e6e6e6;
 }
 
 .selectPressedButton {
-  composes: selectButton;
   background: #ededed;
 }
 

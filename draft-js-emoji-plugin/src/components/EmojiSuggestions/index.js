@@ -287,8 +287,9 @@ export default class EmojiSuggestions extends Component {
       shortNames, // eslint-disable-line no-unused-vars
       store, // eslint-disable-line no-unused-vars
       useNativeArt,
-      ...restProps,
+      ...restProps
     } = this.props;
+
     return (
       <div
         {...restProps}

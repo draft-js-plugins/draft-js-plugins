@@ -24,7 +24,7 @@
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
     "build": "npm run clean && npm run build:js && npm run build:css",
-    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
+    "build:js": "NODE_ENV=production ../node_modules/.bin/babel --config-file=../babel.plugin-config.js --out-dir=lib src",
     "build:css": "node ../scripts/concatCssFiles $(pwd) && ../node_modules/.bin/rimraf lib-css",
     "prepublish": "npm run build"
   },
@@ -41,5 +41,6 @@
     "draft-js": "^0.10.1",
     "react": "^15.5.0 || ^16.0.0-rc",
     "react-dom": "^15.5.0 || ^16.0.0-rc"
-  }
+  },
+  "devDependencies": {}
 }

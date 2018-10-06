@@ -23,7 +23,7 @@
     "react-component"
   ],
   "scripts": {
-    "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "build": "rm -rf lib && NODE_ENV=production ../node_modules/.bin/babel --config-file ../babel.plugin-config.js --out-dir=lib src",
     "prepublish": "npm run build"
   },
   "license": "MIT",
