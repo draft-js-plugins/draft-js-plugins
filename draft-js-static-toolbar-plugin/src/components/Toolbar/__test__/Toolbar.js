@@ -21,14 +21,15 @@ describe('Toolbar', () => {
       }
     }];
 
-    const theme = { toolbarStyles: {} };
+    const theme = { toolbarStyles: { toolbar: '' }, buttonStyles: { button: '', active: '' } };
 
     const store = {
       subscribeToItem() {},
       unsubscribeFromItem() {},
       getItem: (name) => ({
         getEditorState: () => ({
-          getSelection: () => ({ isCollapsed: () => true, getHasFocus: () => true })
+          getSelection: () => ({ isCollapsed: () => true, getHasFocus: () => true }),
+          getCurrentInlineStyle: () => ({ has: () => true })
         })
       }[name])
     };

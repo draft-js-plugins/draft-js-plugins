@@ -12,30 +12,6 @@
     "type": "git",
     "url": "https://github.com/nikgraf/draft-js-plugins.git"
   },
-  "workspaces": [
-    "draft-js-alignment-plugin",
-    "draft-js-anchor-plugin",
-    "draft-js-buttons",
-    "draft-js-counter-plugin",
-    "draft-js-divider-plugin",
-    "draft-js-drag-n-drop-plugin",
-    "draft-js-drag-n-drop-upload-plugin",
-    "draft-js-emoji-plugin",
-    "draft-js-focus-plugin",
-    "draft-js-hashtag-plugin",
-    "draft-js-image-plugin",
-    "draft-js-inline-toolbar-plugin",
-    "draft-js-linkify-plugin",
-    "draft-js-mention-plugin",
-    "draft-js-plugins-editor",
-    "draft-js-plugins-utils",
-    "draft-js-resizeable-plugin",
-    "draft-js-side-toolbar-plugin",
-    "draft-js-static-toolbar-plugin",
-    "draft-js-sticker-plugin",
-    "draft-js-undo-plugin",
-    "draft-js-video-plugin"
-  ],
   "main": "lib/index.js",
   "keywords": [
     "editor",
@@ -48,7 +24,7 @@
     "react-component"
   ],
   "scripts": {
-    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js \"./{,!(node_modules)/**/}/__test__/*.js\"",
+    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js \"./draft-js-*/{,!(node_modules)/**/}/__test__/*.js\"",
     "test:watch": "npm test -- --watch",
     "lint": "npm run lint:eslint && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' ./",
@@ -100,6 +76,7 @@
     "flow-bin": "^0.69.0",
     "jest-cli": "^18.1.0",
     "jsdom": "^11.3.0",
+    "lerna": "^3.4.3",
     "lint-staged": "^3.3.1",
     "mocha": "^3.0.2",
     "multer": "^1.3.0",
@@ -126,7 +103,7 @@
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "draft-js": "^0.10.5",
-    "emojione": "^2.2.7",
+    "emojione": "^4.0.0",
     "eslint-plugin-import": "^2.2.0",
     "find-with-regex": "^1.1.3",
     "immutable": "^3.8.1",
