@@ -45,6 +45,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 - [Toolbar](https://github.com/vacenz/last-draft-js-plugins) by [StevenIseki](https://github.com/StevenIseki)
 - [Divider](https://github.com/simsim0709/draft-js-plugins/tree/master/draft-js-divider-plugin) by [simsim0709](https://github.com/simsim0709)
 - [Code Editor](https://github.com/withspectrum/draft-js-code-editor-plugin) by [Max Stroiber/Spectrum](https://github.com/withspectrum)
+- [Checkable List](https://github.com/sugarshin/draft-js-checkable-list-plugin) by [Shingo Sato](https://github.com/sugarshin)
 
 ## Live Example & Documentation
 
