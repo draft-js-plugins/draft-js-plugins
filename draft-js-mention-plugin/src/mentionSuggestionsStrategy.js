@@ -1,6 +1,6 @@
 /* @flow */
 
-import escapeRegExp from 'lodash/escapeRegExp';
+import escapeRegExp from 'lodash.escapeRegExp';
 
 const findWithRegex = (regex, contentBlock, callback) => {
   const contentBlockText = contentBlock.getText();
