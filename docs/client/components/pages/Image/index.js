@@ -11,6 +11,8 @@ import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?langu
 // eslint-disable-next-line import/no-unresolved
 import addImageExampleCode from '!!../../../loaders/prism-loader?language=javascript!./AddImageEditor';
 // eslint-disable-next-line import/no-unresolved
+import imageAddExampleCode from '!!../../../loaders/prism-loader?language=javascript!./AddImageEditor/ImageAdd/index.js';
+// eslint-disable-next-line import/no-unresolved
 import addImageExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./AddImageEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
@@ -150,6 +152,7 @@ export default class App extends Component {
           <AddImageEditor />
           <Code code={addImageExampleCode} name="AddImageEditor.js" />
           <Code code={addImageExampleEditorStylesCode} name="editorStyles.css" />
+          <Code code={imageAddExampleCode} name="ImageAdd/index.js" />
         </Container>
         <SocialBar />
       </div>
