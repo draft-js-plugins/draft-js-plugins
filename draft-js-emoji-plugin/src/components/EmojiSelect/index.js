@@ -28,6 +28,7 @@ export default class EmojiSelect extends Component {
     ]),
     toneSelectOpenDelay: PropTypes.number,
     useNativeArt: PropTypes.bool,
+    ref: PropTypes.object,
   };
 
   static defaultProps = {
