@@ -12,7 +12,12 @@ const getRelativeParent = (element) => {
 };
 
 const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
-  const relativeParent = getRelativeParent(popover.parentElement);
+  let relativeParent = null;
+  if (popover.parentElement) {
+    relativeParent = getRelativeParent(popover.parentElement);
+  } else {
+    relativeParent = getRelativeParent(popover.container.parentElement);
+  }
   const relativeRect = {};
 
   if (relativeParent) {

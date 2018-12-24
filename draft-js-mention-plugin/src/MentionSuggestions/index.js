@@ -68,7 +68,11 @@ export class MentionSuggestions extends Component {
         popover: this.popover,
       });
       Object.keys(newStyles).forEach((key) => {
-        this.popover.style[key] = newStyles[key];
+        if (this.popover.style) {
+          this.popover.style[key] = newStyles[key];
+        } else {
+          this.popover.container.style[key] = newStyles[key];
+        }
       });
     }
   };
