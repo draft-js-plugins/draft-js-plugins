@@ -334,7 +334,7 @@ export class MentionSuggestions extends Component {
       },
       this.props.suggestions.map((mention, index) => (
         <Entry
-          key={mention.id != null ? mention.id : mention.name}
+          key={mention.id != null ? mention.id : index} //index will be always unique in this loop.
           onMentionSelect={this.onMentionSelect}
           onMentionFocus={this.onMentionFocus}
           isFocused={this.state.focusedOptionIndex === index}
