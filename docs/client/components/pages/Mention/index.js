@@ -160,6 +160,10 @@ export default class App extends Component {
             <span>By default it is an empty String. For Twitter or Slack like mention behaviour you can provide an `@`</span>
           </div>
           <div className={styles.param}>
+            <span className={styles.paramName}>mentionPostfix</span>
+            <span>By default it is an empty String. To provide an ending character or use in conjunction with the mentionPrefix to wrap a mention.</span>
+          </div>
+          <div className={styles.param}>
             <span className={styles.paramName}>mentionTrigger</span>
             <span>Allows you to provide a custom character to change when the search is triggered. By default it is set to `@`. By default typing `@` will trigger the search for mentions. Note: the implementation does not support a multi-character mentionTrigger.</span>
           </div>
