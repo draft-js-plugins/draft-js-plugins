@@ -24,6 +24,7 @@ const deleteCommands = ['backspace', 'backspace-word', 'backspace-to-start-of-li
 export default (config = {}) => {
   const blockKeyStore = createBlockKeyStore({});
   const theme = config.theme ? config.theme : defaultTheme;
+  const types = config.types ? config.types : ['atomic'];
   let lastSelection;
   let lastContentState;
 
@@ -126,7 +127,7 @@ export default (config = {}) => {
         const currentBlock = editorState.getCurrentContent().getBlockForKey(selectionKey);
         const afterBlock = editorState.getCurrentContent().getBlockAfter(selectionKey);
         const notAtomicAndLastPost =
-          currentBlock.getType() !== 'atomic' &&
+          !types.includes(currentBlock.getType()) &&
           currentBlock.getLength() === selection.getFocusOffset();
         if (afterBlock && notAtomicAndLastPost && blockKeyStore.includes(afterBlock.getKey())) {
           setSelection(getEditorState, setEditorState, 'down', evt);
@@ -139,7 +140,7 @@ export default (config = {}) => {
       // since all the selection checks are not necessary.
       // In case there is a use-case where focus makes sense for none atomic blocks we can add it
       // in the future.
-      if (contentBlock.getType() !== 'atomic') {
+      if (!types.includes(contentBlock.getType())) {
         return undefined;
       }
 
