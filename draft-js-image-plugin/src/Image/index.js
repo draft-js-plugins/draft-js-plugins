@@ -31,6 +31,9 @@ export default class Image extends Component {
         src={src}
         role="presentation"
         className={combinedClassName}
+        style={{
+          maxWidth: "100%"
+        }}
       />
     );
   }
