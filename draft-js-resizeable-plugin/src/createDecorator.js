@@ -87,6 +87,9 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     const startWidth = parseInt(document.defaultView.getComputedStyle(pane).width, 10);
     const startHeight = parseInt(document.defaultView.getComputedStyle(pane).height, 10);
 
+    const imageRect = pane.getBoundingClientRect(); // !
+    const imageRatio = imageRect.width / imageRect.height; // ! get image ratio
+
     // Do the actual drag operation
     const doDrag = (dragEvent) => {
       let width = startWidth + (isLeft ? startX - dragEvent.clientX : dragEvent.clientX - startX);
@@ -96,10 +99,12 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       // this keeps backwards-compatibility with react 15
       const editorNode = editorComp.refs.editor ? editorComp.refs.editor : editorComp.editor;
 
-      width = Math.min(editorNode.clientWidth, width);
-      height = Math.min(editorNode.clientHeight, height);
+      width = editorNode.clientWidth < width ? editorNode.clientWidth : width;
+      height = editorNode.clientHeight < height ? editorNode.clientHeight : height;
 
-      const widthPerc = (100 / editorNode.clientWidth) * width;
+      const widthForPercCalculation = (isTop || isBottom) && vertical === 'relative' ? height * imageRatio : width; // ! calculate new width value in percents
+
+      const widthPerc = (100 / editorNode.clientWidth) * widthForPercCalculation; // !;
       const heightPerc = (100 / editorNode.clientHeight) * height;
 
       const newState = {};
@@ -110,7 +115,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       }
 
       if ((isTop || isBottom) && vertical === 'relative') {
-        newState.height = resizeSteps ? round(heightPerc, resizeSteps) : heightPerc;
+        newState.width = resizeSteps ? round(widthPerc, resizeSteps) : widthPerc; // ! here we update width not height value
       } else if ((isTop || isBottom) && vertical === 'absolute') {
         newState.height = resizeSteps ? round(height, resizeSteps) : height;
       }

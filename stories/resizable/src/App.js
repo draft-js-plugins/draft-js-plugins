@@ -13,7 +13,10 @@ import createColorBlockPlugin from './colorBlockPlugin';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
-const resizeablePlugin = createResizeablePlugin();
+const resizeablePlugin = createResizeablePlugin({
+  vertical: 'relative',
+  horizontal: 'relative'
+});
 
 const decorator = composeDecorators(
   resizeablePlugin.decorator,
