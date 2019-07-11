@@ -1,4 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
 import EditorUtils from 'draft-js-plugins-utils';
 
 import DefaultLink from './components/Link';
@@ -16,6 +15,23 @@ export default (config = {}) => {
     setEditorState: undefined
   };
 
+  const DecoratedDefaultLink = props => {
+    return <DefaultLink {...props} className={theme.link} target={linkTarget} />
+  }
+
+  const DecoratedLinkButton = props => {
+    return (
+      <LinkButton
+        ownTheme={theme}
+        store={store}
+        placeholder={placeholder}
+        onRemoveLinkAtSelection={() => store.setEditorState(
+          EditorUtils.removeLinkAtSelection(store.getEditorState())
+        )}
+      />
+    )
+  }
+
   return {
     initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
@@ -26,20 +42,10 @@ export default (config = {}) => {
       {
         strategy: linkStrategy,
         matchesEntityType,
-        component: Link || decorateComponentWithProps(DefaultLink, {
-          className: theme.link,
-          target: linkTarget
-        })
+        component: Link || DecoratedDefaultLink
       }
     ],
 
-    LinkButton: decorateComponentWithProps(LinkButton, {
-      ownTheme: theme,
-      store,
-      placeholder,
-      onRemoveLinkAtSelection: () => store.setEditorState(
-        EditorUtils.removeLinkAtSelection(store.getEditorState())
-      )
-    })
+    LinkButton: DecoratedLinkButton
   };
 };

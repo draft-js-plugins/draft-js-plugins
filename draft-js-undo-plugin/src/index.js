@@ -1,4 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
 import styles from './styles.css';
@@ -23,9 +22,23 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
+  const DecoratedUndoButton = props => {
+    return (
+      <UndoButton {...props} theme={theme} store={store}>
+        {undoContent}
+      </UndoButton>
+    );
+  };
+  const DecoratedRedoButton = props => {
+    return (
+      <RedoButton {...props} theme={theme} store={store}>
+        {redoContent}
+      </RedoButton>
+    );
+  };
   return {
-    UndoButton: decorateComponentWithProps(UndoButton, { theme, store, children: undoContent }),
-    RedoButton: decorateComponentWithProps(RedoButton, { theme, store, children: redoContent }),
+    UndoButton: DecoratedUndoButton,
+    RedoButton: DecoratedRedoButton,
     initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;

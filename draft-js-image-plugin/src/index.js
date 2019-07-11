@@ -1,4 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
 import addImage from './modifiers/addImage';
 import ImageComponent from './Image';
 import imageStyles from './imageStyles.css';
@@ -13,7 +12,9 @@ export default (config = {}) => {
   if (config.decorator) {
     Image = config.decorator(Image);
   }
-  const ThemedImage = decorateComponentWithProps(Image, { theme });
+  const ThemedImage = props => {
+    return <Image {...props} theme={theme} />
+  }
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === 'atomic') {

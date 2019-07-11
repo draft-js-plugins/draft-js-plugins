@@ -4,14 +4,19 @@
 
 import { List } from 'immutable';
 import { CompositeDecorator } from 'draft-js';
-import decorateComponentWithProps from 'decorate-component-with-props';
 
 export default (decorators, getEditorState, setEditorState) => {
   const convertedDecorators = List(decorators)
-    .map((decorator) => ({
-      ...decorator,
-      component: decorateComponentWithProps(decorator.component, { getEditorState, setEditorState }),
-    }))
+    .map((decorator) => {
+      const Component = decorator.component
+      const DecoratedComponent = props => {
+        return <Component {...props} getEditorState={getEditorState} setEditorState={setEditorState} />
+      }
+      return {
+        ...decorator,
+        component: DecoratedComponent,
+      };
+    })
     .toJS();
 
   return new CompositeDecorator(convertedDecorators);

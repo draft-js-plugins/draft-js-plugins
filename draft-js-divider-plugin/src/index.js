@@ -1,5 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
-
 import DefaultDivider from './components/DefaultDivider';
 import DefaultButton from './components/DividerButton';
 
@@ -24,7 +22,13 @@ const createDividerPlugin = ({
     Divider = decorator(Divider);
   }
 
-  const ThemedDivider = decorateComponentWithProps(Divider, { theme });
+  const ThemedDivider = props => {
+    return <Divider {...props} theme={theme} />
+  };
+  let Button = buttonComponent;
+  const DecoratedButton = props => {
+    return <Button {...props} entityType={entityType} addDivider={addDivider(entityType)} />
+  }
 
   return {
     blockRendererFn: (block, { getEditorState }) => {
@@ -43,10 +47,7 @@ const createDividerPlugin = ({
 
       return null;
     },
-    DividerButton: decorateComponentWithProps(buttonComponent, {
-      entityType,
-      addDivider: addDivider(entityType)
-    }),
+    DividerButton: DecoratedButton,
     addDivider: addDivider(entityType)
   };
 };

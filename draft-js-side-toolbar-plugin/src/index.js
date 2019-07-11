@@ -1,4 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import buttonStyles from './buttonStyles.css';
@@ -19,10 +18,8 @@ export default (config = {}) => {
     theme = defaultTheme,
   } = config;
 
-  const toolbarProps = {
-    store,
-    theme,
-    position,
+  const SideToolbar = props => {
+    return <Toolbar {...props} store={store} theme={thene} position={position} />
   };
 
   return {
@@ -36,6 +33,6 @@ export default (config = {}) => {
       store.updateItem('editorState', editorState);
       return editorState;
     },
-    SideToolbar: decorateComponentWithProps(Toolbar, toolbarProps),
+    SideToolbar,
   };
 };

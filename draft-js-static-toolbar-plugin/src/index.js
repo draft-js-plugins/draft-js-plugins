@@ -1,4 +1,3 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
@@ -14,10 +13,9 @@ export default (config = {}) => {
     theme = defaultTheme,
   } = config;
 
-  const toolbarProps = {
-    store,
-    theme,
-  };
+  const StaticToolbar = props => {
+    return <Toolbar {...props} store={store} theme={theme} />
+  }
 
   return {
     initialize: ({ getEditorState, setEditorState }) => {
@@ -30,7 +28,7 @@ export default (config = {}) => {
       store.updateItem('selection', editorState.getSelection());
       return editorState;
     },
-    Toolbar: decorateComponentWithProps(Toolbar, toolbarProps),
+    Toolbar: StaticToolbar,
   };
 };
 
