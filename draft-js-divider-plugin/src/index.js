@@ -26,7 +26,7 @@ const createDividerPlugin = ({
   const ThemedDivider = (props) =>
     <Divider {...props} theme={theme} />;
   const Button = buttonComponent;
-  const DecoratedButton = (props) =>
+  const DividerButton = (props) =>
     <Button {...props} entityType={entityType} addDivider={addDivider(entityType)} />;
 
   return {
@@ -46,7 +46,7 @@ const createDividerPlugin = ({
 
       return null;
     },
-    DividerButton: DecoratedButton,
+    DividerButton,
     addDivider: addDivider(entityType)
   };
 };
