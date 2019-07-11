@@ -1,5 +1,5 @@
-import unionClassNames from 'union-class-names';
 import React, { Component } from 'react';
+import clsx from 'clsx';
 
 export default class Image extends Component {
   render() {
@@ -23,7 +23,7 @@ export default class Image extends Component {
       blockStyleFn,
       ...elementProps
     } = otherProps;
-    const combinedClassName = unionClassNames(theme.image, className);
+    const combinedClassName = clsx(theme.image, className);
     const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
     return (
       <img

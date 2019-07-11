@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 import EditorUtils from 'draft-js-plugins-utils';
 
 import URLUtils from '../../utils/URLUtils';
@@ -74,7 +74,7 @@ export default class AddLinkForm extends Component {
     } = this.props;
     const { value, isInvalid } = this.state;
     const className = isInvalid
-      ? unionClassNames(theme.input, theme.inputInvalid)
+      ? clsx(theme.input, theme.inputInvalid)
       : theme.input;
 
     return (

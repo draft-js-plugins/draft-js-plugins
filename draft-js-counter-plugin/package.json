@@ -31,11 +31,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "clsx": "^1.0.4",
     "decorate-component-with-props": "^1.0.2",
-    "punycode": "^2.0.1",
-    "union-class-names": "^1.0.0",
     "immutable": "~3.7.4",
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.5.8",
+    "punycode": "^2.0.1"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1",

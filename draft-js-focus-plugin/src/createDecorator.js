@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 // Get a component's display name
 const getDisplayName = (WrappedComponent) => {
@@ -30,8 +30,8 @@ export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFo
     const { blockProps, className } = this.props;
     const { isFocused } = blockProps;
     const combinedClassName = isFocused
-      ? unionClassNames(className, theme.focused)
-      : unionClassNames(className, theme.unfocused);
+      ? clsx(className, theme.focused)
+      : clsx(className, theme.unfocused);
     return (
       <WrappedComponent
         {...this.props}

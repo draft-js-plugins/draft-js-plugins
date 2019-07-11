@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import React, { Component } from 'react';
 import { RichUtils } from 'draft-js';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 export default ({ blockType, children }) => (
   class BlockStyleButton extends Component {
@@ -34,7 +34,7 @@ export default ({ blockType, children }) => (
 
     render() {
       const { theme } = this.props;
-      const className = this.blockTypeIsActive() ? unionClassNames(theme.button, theme.active) : theme.button;
+      const className = this.blockTypeIsActive() ? clsx(theme.button, theme.active) : theme.button;
       return (
         <div
           className={theme.buttonWrapper}

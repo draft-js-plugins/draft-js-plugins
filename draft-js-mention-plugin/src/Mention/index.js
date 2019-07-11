@@ -1,5 +1,5 @@
 import React from 'react';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 const MentionLink = ({ mention, children, className }) =>
   <a
@@ -29,7 +29,7 @@ const Mention = (props) => {
     contentState,
   } = props;
 
-  const combinedClassName = unionClassNames(theme.mention, className);
+  const combinedClassName = clsx(theme.mention, className);
   const mention = contentState.getEntity(entityKey).getData().mention;
 
   const Component = (

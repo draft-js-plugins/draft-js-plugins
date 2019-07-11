@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { shouldComponentUpdate } from 'react-addons-pure-render-mixin';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 import 'prismjs/themes/prism.css';
 import styles from './styles.css';
 
@@ -17,7 +17,7 @@ export default class Code extends Component {
 
   render() {
     const { className } = this.props;
-    const combinedRootClassName = unionClassNames(styles.root, className);
+    const combinedRootClassName = clsx(styles.root, className);
     const nameClassname = this.props.name ? styles.name : styles.hiddenName;
     return (
       <div className={combinedRootClassName}>

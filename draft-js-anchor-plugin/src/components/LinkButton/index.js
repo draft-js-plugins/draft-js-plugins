@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 import EditorUtils from 'draft-js-plugins-utils';
 import AddLinkForm from './AddLinkForm';
 
@@ -32,7 +32,7 @@ export default class LinkButton extends Component {
       'LINK'
     );
     const className = hasLinkSelected
-      ? unionClassNames(theme.button, theme.active)
+      ? clsx(theme.button, theme.active)
       : theme.button;
 
     return (

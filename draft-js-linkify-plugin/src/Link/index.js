@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 import linkifyIt from 'linkify-it';
 import tlds from 'tlds';
 
@@ -25,7 +25,7 @@ export default class Link extends Component {
       ...otherProps
     } = this.props;
 
-    const combinedClassName = unionClassNames(theme.link, className);
+    const combinedClassName = clsx(theme.link, className);
     const links = linkify.match(decoratedText);
     const href = links && links[0] ? links[0].url : '';
 
