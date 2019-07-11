@@ -1,6 +1,6 @@
 import { Map, List } from 'immutable';
 
-import keys from 'lodash.keys';
+import keys from 'lodash/keys';
 import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
 import Emoji from './components/Emoji';
