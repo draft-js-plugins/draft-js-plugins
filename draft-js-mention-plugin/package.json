@@ -24,23 +24,32 @@
   ],
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
-    "build": "npm run clean && npm run build:js && npm run build:css",
-    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
-    "build:css": "node ../scripts/concatCssFiles $(pwd) && ../node_modules/.bin/rimraf lib-css",
-    "prepublish": "npm run build"
+    "build": "yarn clean && yarn build:js && yarn build:css",
+    "build:js": "babel src --out-dir=lib --ignore='__test__/*'",
+    "build:css": "linaria \"src/**/*.js\" -o lib-css && node ../scripts/concatCssFiles $(pwd) && ../node_modules/.bin/rimraf lib-css",
+    "prepublish": "yarn build"
   },
   "license": "MIT",
   "dependencies": {
     "decorate-component-with-props": "^1.0.2",
     "find-with-regex": "^1.1.3",
     "immutable": "~3.7.4",
-    "prop-types": "^15.5.8",
     "lodash.escaperegexp": "^4.1.2",
+    "prop-types": "^15.5.8",
     "union-class-names": "^1.0.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1",
     "react": "^15.5.0 || ^16.0.0-rc",
     "react-dom": "^15.5.0 || ^16.0.0-rc"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "linaria": "^1.3.1"
   }
 }
