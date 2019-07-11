@@ -1,3 +1,4 @@
+import React from 'react';
 import addVideo from './video/modifiers/addVideo';
 import DefaultVideoComponent from './video/components/DefaultVideoComponent';
 import * as types from './video/constants';
@@ -11,9 +12,8 @@ const videoPlugin = (config = {}) => {
   if (config.decorator) {
     Video = config.decorator(Video);
   }
-  const ThemedVideo = props => {
-    return <Video {...props} theme={theme} />
-  }
+  const ThemedVideo = (props) =>
+    <Video {...props} theme={theme} />;
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === types.ATOMIC) {

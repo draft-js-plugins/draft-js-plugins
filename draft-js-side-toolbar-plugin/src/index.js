@@ -1,3 +1,4 @@
+import React from 'react';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import buttonStyles from './buttonStyles.css';
@@ -18,9 +19,8 @@ export default (config = {}) => {
     theme = defaultTheme,
   } = config;
 
-  const SideToolbar = props => {
-    return <Toolbar {...props} store={store} theme={thene} position={position} />
-  };
+  const SideToolbar = (props) =>
+    <Toolbar {...props} store={store} theme={theme} position={position} />;
 
   return {
     initialize: ({ setEditorState, getEditorState, getEditorRef }) => {

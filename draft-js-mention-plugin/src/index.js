@@ -1,3 +1,4 @@
+import React from 'react';
 import { Map } from 'immutable';
 import Mention from './Mention';
 import MentionSuggestions from './MentionSuggestions'; // eslint-disable-line import/no-named-as-default
@@ -107,15 +108,12 @@ export default (config = {}) => {
     mentionTrigger,
     mentionPrefix,
   };
-  const DecoratedMentionSuggestionsComponent = props => {
-    return <MentionSuggestionsComponent {...props} {...mentionSearchProps} />
-  }
-  const DecoratedMention = props => {
-    return <Mention {...props} theme={theme} mentionComponent={mentionComponent} />
-  }
-  const DecoratedMentionSuggestionsPortal = props => {
-    return <MentionSuggestionsPortal {...props} store={store} />
-  }
+  const DecoratedMentionSuggestionsComponent = (props) =>
+    <MentionSuggestionsComponent {...props} {...mentionSearchProps} />;
+  const DecoratedMention = (props) =>
+    <Mention {...props} theme={theme} mentionComponent={mentionComponent} />;
+  const DecoratedMentionSuggestionsPortal = (props) =>
+    <MentionSuggestionsPortal {...props} store={store} />;
   return {
     MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [

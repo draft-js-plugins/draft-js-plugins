@@ -1,5 +1,5 @@
+import React from 'react';
 import { Map, List } from 'immutable';
-
 import keys from 'lodash/keys';
 import { EditorState } from 'draft-js';
 import Emoji from './components/Emoji';
@@ -161,27 +161,22 @@ export default (config = {}) => {
     toneSelectOpenDelay,
     useNativeArt,
   };
-  const DecoratedEmojiSuggestions = props => {
-    return <EmojiSuggestions {...props} {...suggestionsProps} />
-  }
-  const DecoratedEmojiSelect = props => {
-    return <EmojiSelect {...props} {...selectProps} />
-  }
-  const DecoratedEmoji = props => {
-    return (
-      <Emoji
-        {...props}
-        theme={theme}
-        imagePath={imagePath}
-        imageType={imageType}
-        cacheBustParam={cacheBustParam}
-        useNativeArt={useNativeArt}
-      />
-    )
-  }
-  const DecoratedEmojiSuggestionsPortal = props => {
-    return <EmojiSuggestionsPortal {...props} store={store} />
-  }
+  const DecoratedEmojiSuggestions = (props) =>
+    <EmojiSuggestions {...props} {...suggestionsProps} />;
+  const DecoratedEmojiSelect = (props) =>
+    <EmojiSelect {...props} {...selectProps} />;
+  const DecoratedEmoji = (props) => (
+    <Emoji
+      {...props}
+      theme={theme}
+      imagePath={imagePath}
+      imageType={imageType}
+      cacheBustParam={cacheBustParam}
+      useNativeArt={useNativeArt}
+    />
+  );
+  const DecoratedEmojiSuggestionsPortal = (props) =>
+    <EmojiSuggestionsPortal {...props} store={store} />;
   return {
     EmojiSuggestions: DecoratedEmojiSuggestions,
     EmojiSelect: DecoratedEmojiSelect,

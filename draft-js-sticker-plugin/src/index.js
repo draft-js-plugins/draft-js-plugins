@@ -1,3 +1,4 @@
+import React from 'react';
 import { Map } from 'immutable';
 import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
@@ -39,26 +40,22 @@ export default (config = {}) => {
 
   // default to true if not explicitly set to false
   const attachRemoveButton = config.attachRemoveButton !== false;
-  const DecoratedSticker = props => {
-    return (
-      <Sticker
-        {...props}
-        attachRemoveButton={attachRemoveButton}
-        stickers={stickers}
-        theme={theme}
-      />
-    );
-  };
-  const DecoratedStickerSelect = props => {
-    return (
-      <StickerSelect
-        {...props}
-        selectButtonContent={selectButtonContent}
-        stickers={stickers}
-        theme={theme}
-      />
-    );
-  };
+  const DecoratedSticker = (props) => (
+    <Sticker
+      {...props}
+      attachRemoveButton={attachRemoveButton}
+      stickers={stickers}
+      theme={theme}
+    />
+  );
+  const DecoratedStickerSelect = (props) => (
+    <StickerSelect
+      {...props}
+      selectButtonContent={selectButtonContent}
+      stickers={stickers}
+      theme={theme}
+    />
+  );
   const blockRendererConfig = {
     ...config,
     Sticker: DecoratedSticker,

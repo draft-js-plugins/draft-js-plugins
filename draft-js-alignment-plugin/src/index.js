@@ -1,3 +1,4 @@
+import React from 'react';
 import { EditorState } from 'draft-js';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
@@ -29,9 +30,8 @@ export default (config = {}) => {
     theme = defaultAlignmentToolTheme,
   } = config;
 
-  const DecoratedAlignmentTool = props => {
-    return <AlignmentTool {...props} store={store} theme={theme} />
-  }
+  const DecoratedAlignmentTool = (props) =>
+    <AlignmentTool {...props} store={store} theme={theme} />;
 
   return {
     initialize: ({ getReadOnly, getEditorState, setEditorState }) => {

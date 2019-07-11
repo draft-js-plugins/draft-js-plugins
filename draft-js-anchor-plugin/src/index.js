@@ -1,3 +1,4 @@
+import React from 'react';
 import EditorUtils from 'draft-js-plugins-utils';
 
 import DefaultLink from './components/Link';
@@ -15,22 +16,20 @@ export default (config = {}) => {
     setEditorState: undefined
   };
 
-  const DecoratedDefaultLink = props => {
-    return <DefaultLink {...props} className={theme.link} target={linkTarget} />
-  }
+  const DecoratedDefaultLink = (props) =>
+    <DefaultLink {...props} className={theme.link} target={linkTarget} />;
 
-  const DecoratedLinkButton = props => {
-    return (
-      <LinkButton
-        ownTheme={theme}
-        store={store}
-        placeholder={placeholder}
-        onRemoveLinkAtSelection={() => store.setEditorState(
-          EditorUtils.removeLinkAtSelection(store.getEditorState())
-        )}
-      />
-    )
-  }
+  const DecoratedLinkButton = (props) => (
+    <LinkButton
+      {...props}
+      ownTheme={theme}
+      store={store}
+      placeholder={placeholder}
+      onRemoveLinkAtSelection={() => store.setEditorState(
+        EditorUtils.removeLinkAtSelection(store.getEditorState())
+      )}
+    />
+  );
 
   return {
     initialize: ({ getEditorState, setEditorState }) => {

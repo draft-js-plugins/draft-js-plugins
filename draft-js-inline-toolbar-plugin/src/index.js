@@ -1,3 +1,4 @@
+import React from 'react';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
@@ -15,9 +16,8 @@ export default (config = {}) => {
     theme = defaultTheme
   } = config;
 
-  const InlineToolbar = props => {
-    return <Toolbar {...props} store={store} theme={theme} />
-  }
+  const InlineToolbar = (props) =>
+    <Toolbar {...props} store={store} theme={theme} />;
 
   return {
     initialize: ({ getEditorState, setEditorState, getEditorRef }) => {
