@@ -48,7 +48,7 @@
     "react-component"
   ],
   "scripts": {
-    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js \"./{,!(node_modules)/**/}/__test__/*.js\"",
+    "test": "mocha --compilers js:babel-core/register --require testHelper.js \"./{,!(node_modules)/**/}/__test__/*.js\"",
     "test:watch": "npm test -- --watch",
     "lint": "npm run lint:eslint && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' ./",
