@@ -33,7 +33,6 @@
   "dependencies": {
     "clsx": "^1.0.4",
     "decorate-component-with-props": "^1.0.2",
-    "immutable": "~3.7.4",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
