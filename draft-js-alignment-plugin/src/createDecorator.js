@@ -7,7 +7,7 @@ const getDisplayName = (WrappedComponent) => {
 };
 
 export default ({ store }) => (WrappedComponent) => class BlockAlignmentDecorator extends Component {
-  static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
+  static displayName = `Alignment(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
 
   componentDidUpdate = () => {
