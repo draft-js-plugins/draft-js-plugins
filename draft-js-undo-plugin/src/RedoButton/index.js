@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 class RedoButton extends Component {
 
@@ -17,7 +17,7 @@ class RedoButton extends Component {
 
   render() {
     const { theme = {}, children, className } = this.props;
-    const combinedClassName = unionClassNames(theme.redo, className);
+    const combinedClassName = clsx(theme.redo, className);
     return (
       <button
         disabled={

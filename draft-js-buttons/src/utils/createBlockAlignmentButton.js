@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
 import React, { Component } from 'react';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 export default ({ alignment, children }) => (
   class BlockAlignmentButton extends Component {
@@ -16,7 +16,7 @@ export default ({ alignment, children }) => (
 
     render() {
       const { theme } = this.props;
-      const className = this.isActive() ? unionClassNames(theme.button, theme.active) : theme.button;
+      const className = this.isActive() ? clsx(theme.button, theme.active) : theme.button;
       return (
         <div
           className={theme.buttonWrapper}

@@ -31,12 +31,12 @@
   },
   "license": "MIT",
   "dependencies": {
+    "clsx": "^1.0.4",
     "decorate-component-with-props": "^1.0.2",
-    "union-class-names": "^1.0.0",
-    "linkify-it": "^2.0.3",
-    "tlds": "^1.189.0",
     "immutable": "~3.7.4",
-    "prop-types": "^15.5.8"
+    "linkify-it": "^2.0.3",
+    "prop-types": "^15.5.8",
+    "tlds": "^1.189.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1",

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 class DividerButton extends Component {
   onClick = (event) => {
@@ -29,7 +28,7 @@ class DividerButton extends Component {
   render() {
     const { theme } = this.props;
     const className = this.blockTypeIsActive()
-      ? unionClassNames(theme.button, theme.active)
+      ? clsx(theme.button, theme.active)
       : theme.button;
 
     return (
