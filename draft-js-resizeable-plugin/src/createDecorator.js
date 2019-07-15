@@ -9,7 +9,7 @@ const getDisplayName = (WrappedComponent) => {
 const round = (x, steps) => Math.ceil(x / steps) * steps;
 
 export default ({ config, store }) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
-  static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
+  static displayName = `Resizable(${getDisplayName(WrappedComponent)})`;
   static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
   static defaultProps = {
     horizontal: 'relative',
