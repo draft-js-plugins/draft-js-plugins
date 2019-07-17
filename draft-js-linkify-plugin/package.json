@@ -34,7 +34,6 @@
     "clsx": "^1.0.4",
     "immutable": "~3.7.4",
     "linkify-it": "^2.0.3",
-    "prop-types": "^15.5.8",
     "tlds": "^1.189.0"
   },
   "peerDependencies": {
