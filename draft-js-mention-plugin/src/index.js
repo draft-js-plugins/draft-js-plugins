@@ -1,4 +1,4 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
+import React from 'react';
 import { Map } from 'immutable';
 import Mention from './Mention';
 import MentionSuggestions from './MentionSuggestions'; // eslint-disable-line import/no-named-as-default
@@ -92,7 +92,7 @@ export default (config = {}) => {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
     mentionComponent,
-    mentionSuggestionsComponent = MentionSuggestions,
+    mentionSuggestionsComponent: MentionSuggestionsComponent = MentionSuggestions,
     entityMutability = 'SEGMENTED',
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
@@ -108,16 +108,22 @@ export default (config = {}) => {
     mentionTrigger,
     mentionPrefix,
   };
+  const DecoratedMentionSuggestionsComponent = (props) =>
+    <MentionSuggestionsComponent {...props} {...mentionSearchProps} />;
+  const DecoratedMention = (props) =>
+    <Mention {...props} theme={theme} mentionComponent={mentionComponent} />;
+  const DecoratedMentionSuggestionsPortal = (props) =>
+    <MentionSuggestionsPortal {...props} store={store} />;
   return {
-    MentionSuggestions: decorateComponentWithProps(mentionSuggestionsComponent, mentionSearchProps),
+    MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [
       {
         strategy: mentionStrategy(mentionTrigger),
-        component: decorateComponentWithProps(Mention, { theme, mentionComponent }),
+        component: DecoratedMention,
       },
       {
         strategy: mentionSuggestionsStrategy(mentionTrigger, supportWhitespace, mentionRegExp),
-        component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
+        component: DecoratedMentionSuggestionsPortal,
       },
     ],
     getAccessibilityProps: () => (

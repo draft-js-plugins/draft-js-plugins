@@ -124,7 +124,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "decorate-component-with-props": "^1.0.2",
     "draft-js": "^0.10.5",
     "emojione": "^2.2.7",
     "eslint-plugin-import": "^2.2.0",
@@ -132,7 +131,6 @@
     "linkify-it": "^2.0.3",
     "loader-utils": "^1.0.2",
     "prepend-http": "1.0.4",
-    "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-custom-scrollbars": "^4.1.1",
     "react-dom": "^15.5.4",
