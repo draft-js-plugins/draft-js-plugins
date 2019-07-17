@@ -32,9 +32,7 @@
   "license": "MIT",
   "dependencies": {
     "clsx": "^1.0.4",
-    "decorate-component-with-props": "^1.0.2",
     "linkify-it": "^2.0.3",
-    "prop-types": "^15.5.8",
     "tlds": "^1.189.0"
   },
   "peerDependencies": {

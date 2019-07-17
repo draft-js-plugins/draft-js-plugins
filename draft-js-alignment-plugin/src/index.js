@@ -1,5 +1,5 @@
+import React from 'react';
 import { EditorState } from 'draft-js';
-import decorateComponentWithProps from 'decorate-component-with-props';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
 import createStore from './utils/createStore';
@@ -30,10 +30,8 @@ export default (config = {}) => {
     theme = defaultAlignmentToolTheme,
   } = config;
 
-  const alignmentToolProps = {
-    store,
-    theme,
-  };
+  const DecoratedAlignmentTool = (props) =>
+    <AlignmentTool {...props} store={store} theme={theme} />;
 
   return {
     initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
@@ -53,6 +51,6 @@ export default (config = {}) => {
         },
       };
     },
-    AlignmentTool: decorateComponentWithProps(AlignmentTool, alignmentToolProps),
+    AlignmentTool: DecoratedAlignmentTool,
   };
 };

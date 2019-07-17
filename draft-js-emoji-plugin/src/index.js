@@ -1,7 +1,6 @@
+import React from 'react';
 import { Map, List } from 'immutable';
-
 import keys from 'lodash/keys';
-import decorateComponentWithProps from 'decorate-component-with-props';
 import { EditorState } from 'draft-js';
 import Emoji from './components/Emoji';
 import EmojiSuggestions from './components/EmojiSuggestions';
@@ -162,17 +161,33 @@ export default (config = {}) => {
     toneSelectOpenDelay,
     useNativeArt,
   };
+  const DecoratedEmojiSuggestions = (props) =>
+    <EmojiSuggestions {...props} {...suggestionsProps} />;
+  const DecoratedEmojiSelect = (props) =>
+    <EmojiSelect {...props} {...selectProps} />;
+  const DecoratedEmoji = (props) => (
+    <Emoji
+      {...props}
+      theme={theme}
+      imagePath={imagePath}
+      imageType={imageType}
+      cacheBustParam={cacheBustParam}
+      useNativeArt={useNativeArt}
+    />
+  );
+  const DecoratedEmojiSuggestionsPortal = (props) =>
+    <EmojiSuggestionsPortal {...props} store={store} />;
   return {
-    EmojiSuggestions: decorateComponentWithProps(EmojiSuggestions, suggestionsProps),
-    EmojiSelect: decorateComponentWithProps(EmojiSelect, selectProps),
+    EmojiSuggestions: DecoratedEmojiSuggestions,
+    EmojiSelect: DecoratedEmojiSelect,
     decorators: [
       {
         strategy: emojiStrategy,
-        component: decorateComponentWithProps(Emoji, { theme, imagePath, imageType, cacheBustParam, useNativeArt }),
+        component: DecoratedEmoji,
       },
       {
         strategy: emojiSuggestionsStrategy,
-        component: decorateComponentWithProps(EmojiSuggestionsPortal, { store }),
+        component: DecoratedEmojiSuggestionsPortal,
       },
     ],
     getAccessibilityProps: () => (

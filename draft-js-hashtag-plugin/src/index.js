@@ -1,4 +1,4 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
+import React from 'react';
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
 import styles from './styles.css';
@@ -15,11 +15,13 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
+  const DecoratedHashtag = (props) =>
+    <Hashtag {...props} theme={theme} />;
   return {
     decorators: [
       {
         strategy: hashtagStrategy,
-        component: decorateComponentWithProps(Hashtag, { theme }),
+        component: DecoratedHashtag,
       },
     ],
   };
