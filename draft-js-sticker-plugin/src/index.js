@@ -1,5 +1,5 @@
+import React from 'react';
 import { Map } from 'immutable';
-import decorateComponentWithProps from 'decorate-component-with-props';
 import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
 import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
@@ -40,19 +40,25 @@ export default (config = {}) => {
 
   // default to true if not explicitly set to false
   const attachRemoveButton = config.attachRemoveButton !== false;
-  const stickerSelectProps = {
-    selectButtonContent,
-    stickers,
-    theme,
-  };
-  const stickerProps = {
-    attachRemoveButton,
-    stickers,
-    theme,
-  };
+  const DecoratedSticker = (props) => (
+    <Sticker
+      {...props}
+      attachRemoveButton={attachRemoveButton}
+      stickers={stickers}
+      theme={theme}
+    />
+  );
+  const DecoratedStickerSelect = (props) => (
+    <StickerSelect
+      {...props}
+      selectButtonContent={selectButtonContent}
+      stickers={stickers}
+      theme={theme}
+    />
+  );
   const blockRendererConfig = {
     ...config,
-    Sticker: decorateComponentWithProps(Sticker, stickerProps),
+    Sticker: DecoratedSticker,
   };
   return {
     blockRendererFn: blockRendererFn(blockRendererConfig),
@@ -60,6 +66,6 @@ export default (config = {}) => {
     add: addSticker,
     remove: removeSticker,
     blockRenderMap: Map({ sticker: { element: 'div' } }),
-    StickerSelect: decorateComponentWithProps(StickerSelect, stickerSelectProps),
+    StickerSelect: DecoratedStickerSelect,
   };
 };

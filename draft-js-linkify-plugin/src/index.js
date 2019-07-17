@@ -1,4 +1,4 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
+import * as React from 'react';
 import Link from './Link';
 import linkStrategy from './linkStrategy';
 import styles from './styles.css';
@@ -22,11 +22,14 @@ export default (config = {}) => {
     rel = 'noreferrer noopener'
   } = config;
 
+  const DecoratedLink = (props) =>
+    <Link {...props} theme={theme} target={target} rel={rel} component={component} />;
+
   return {
     decorators: [
       {
         strategy: linkStrategy,
-        component: decorateComponentWithProps(Link, { theme, target, rel, component }),
+        component: DecoratedLink,
       },
     ],
   };
