@@ -94,6 +94,9 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
     const doDrag = (dragEvent) => {
       let width = startWidth + (isLeft ? startX - dragEvent.clientX : dragEvent.clientX - startX);
       let height = (startHeight + dragEvent.clientY) - startY;
+      if (isTop) {
+        height = startHeight + (startY - dragEvent.clientY);
+      }
 
       const editorComp = store.getEditorRef();
       // this keeps backwards-compatibility with react 15
@@ -105,7 +108,7 @@ export default ({ config, store }) => (WrappedComponent) => class BlockResizeabl
       const widthForPercCalculation = (isTop || isBottom) && vertical === 'relative' ? height * imageRatio : width; // ! calculate new width value in percents
 
       const widthPerc = (100 / editorNode.clientWidth) * widthForPercCalculation; // !;
-      const heightPerc = (100 / editorNode.clientHeight) * height;
+      // const heightPerc = (100 / editorNode.clientHeight) * height;
 
       const newState = {};
       if ((isLeft || isRight) && horizontal === 'relative') {
