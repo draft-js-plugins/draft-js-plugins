@@ -95,8 +95,8 @@ const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
 
 const plugins = [
-  hashtagPlugin,
   linkifyPlugin,
+  hashtagPlugin,
 ];
 
 export default class UnicornEditor extends Component {
