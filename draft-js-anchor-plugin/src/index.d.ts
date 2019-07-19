@@ -14,6 +14,10 @@ export interface AnchorPluginConfig {
   linkTarget?: string;
 }
 
-declare const createAnchorPlugin: (config: AnchorPluginConfig) => EditorPlugin;
+export type AnchorPlugin = EditorPlugin & {
+  LinkButton: ComponentType<unknown>;
+};
+
+declare const createAnchorPlugin: (config: AnchorPluginConfig) => AnchorPlugin;
 
 export default createAnchorPlugin;

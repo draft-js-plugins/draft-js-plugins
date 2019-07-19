@@ -1,5 +1,17 @@
-import { DraftDecorator, Editor, EditorProps, EditorState } from "draft-js";
-import { Component, Ref } from "react";
+import {
+  ContentBlock,
+  DraftDecorator,
+  DraftDragType,
+  DraftEditorCommand,
+  DraftHandleValue,
+  DraftInlineStyle,
+  DraftStyleMap,
+  Editor,
+  EditorProps,
+  EditorState,
+  SelectionState
+} from "draft-js";
+import { Component, Ref, SyntheticEvent, KeyboardEvent } from "react";
 
 export interface PluginFunctions {
   getPlugins(): EditorPlugin[]; // a function returning a list of all the plugins
@@ -11,23 +23,7 @@ export interface PluginFunctions {
   getEditorRef(): Ref<any>; // a function to get the editor reference
 }
 
-// Plugins can define methods with the same name as props from EditorProps
-type EditorMappedFunctions = {
-  [K in Exclude<
-    keyof EditorProps,
-    "onChange" | "decorators"
-  >]: EditorProps[K] extends ((a: infer A, b: infer B, c: infer C) => infer R)
-    ? (a: A, b: B, c: C, pluginFunctions: PluginFunctions) => R
-    : EditorProps[K] extends ((a: infer A, b: infer B) => infer R)
-    ? (a: A, b: B, pluginFunctions: PluginFunctions) => R
-    : EditorProps[K] extends ((a: infer A) => infer R)
-    ? (a: A, pluginFunctions: PluginFunctions) => R
-    : EditorProps[K] extends (() => infer R)
-    ? (pluginFunctions: PluginFunctions) => R
-    : never;
-};
-
-export interface EditorPluginProps {
+export interface EditorPlugin {
   decorators?: DraftDecorator[];
   getAccessibilityProps?: () => {
     ariaHasPopup: string;
@@ -38,10 +34,67 @@ export interface EditorPluginProps {
     editorState: EditorState,
     pluginFunctions: PluginFunctions
   ) => EditorState;
-  willUnmount?: (funcs: PluginFunctions) => void;
-}
+  willUnmount?: (pluginFunctions: PluginFunctions) => void;
 
-export type EditorPlugin = EditorMappedFunctions & EditorPluginProps;
+  // Events passed from the draft-js editor back to all plugins
+  blockRendererFn?(block: ContentBlock, pluginFunctions: PluginFunctions): any;
+  blockStyleFn?(block: ContentBlock, pluginFunctions: PluginFunctions): string;
+  customStyleFn?: (
+    style: DraftInlineStyle,
+    block: ContentBlock,
+    pluginFunctions: PluginFunctions
+  ) => DraftStyleMap;
+  keyBindingFn?(
+    e: KeyboardEvent,
+    pluginFunctions: PluginFunctions
+  ): DraftEditorCommand | null;
+  handleReturn?(
+    e: KeyboardEvent,
+    editorState: EditorState,
+    pluginFunctions: PluginFunctions
+  ): DraftHandleValue;
+  handleKeyCommand?(
+    command: DraftEditorCommand,
+    editorState: EditorState,
+    eventTimeStamp: number,
+    pluginFunctions: PluginFunctions
+  ): DraftHandleValue;
+  handleBeforeInput?(
+    chars: string,
+    editorState: EditorState,
+    eventTimeStamp: number,
+    pluginFunctions: PluginFunctions
+  ): DraftHandleValue;
+  handlePastedText?(
+    text: string,
+    html: string | undefined,
+    editorState: EditorState,
+    pluginFunctions: PluginFunctions
+  ): DraftHandleValue;
+  handlePastedFiles?(
+    files: Array<Blob>,
+    pluginFunctions: PluginFunctions
+  ): DraftHandleValue;
+  handleDroppedFiles?(
+    selection: SelectionState,
+    files: Array<Blob>,
+    pluginFunctions: PluginFunctions
+  ): DraftHandleValue;
+  handleDrop?(
+    selection: SelectionState,
+    dataTransfer: Object,
+    isInternal: DraftDragType,
+    pluginFunctions: PluginFunctions
+  ): DraftHandleValue;
+  onEscape?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onTab?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onUpArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onDownArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onRightArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onLeftArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onBlur?(e: SyntheticEvent, pluginFunctions: PluginFunctions): void;
+  onFocus?(e: SyntheticEvent, pluginFunctions: PluginFunctions): void;
+}
 
 export const composeDecorators: (
   ...decorators: DraftDecorator[]

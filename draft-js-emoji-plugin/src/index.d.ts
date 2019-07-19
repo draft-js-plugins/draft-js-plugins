@@ -1,6 +1,6 @@
 import { EditorPlugin } from "draft-js-plugins-editor";
 import { List } from "immutable";
-import {ComponentType, CSSProperties, ReactNode} from "react";
+import { ComponentType, CSSProperties, ReactNode } from "react";
 
 export interface EmojiPluginTheme {
   emoji?: string;
@@ -69,16 +69,16 @@ export interface EmojiPluginConfig {
   }) => CSSProperties;
   priorityList?: { [k: string]: string | undefined };
   selectGroups?: EmojiSelectGroup[];
-  selectButtonContent?: string;
+  selectButtonContent?: ReactNode;
   toneSelectOpenDelay?: number;
   useNativeArt?: boolean;
 }
 
-type EmojiEditorPlugin = EditorPlugin & {
+export type EmojiPlugin = EditorPlugin & {
   EmojiSuggestions: ComponentType<unknown>;
   EmojiSelect: ComponentType<unknown>;
-}
+};
 
-declare const createEmojiPlugin: (config?: EmojiPluginConfig) => EmojiEditorPlugin;
+declare const createEmojiPlugin: (config?: EmojiPluginConfig) => EmojiPlugin;
 
 export default createEmojiPlugin;
