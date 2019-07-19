@@ -4,3 +4,4 @@ lib/**
 draft-js-*/lib/**
 scripts/**
 docs/build/**
+*.d.ts

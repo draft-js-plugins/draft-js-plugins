@@ -23,7 +23,9 @@
     "react-component"
   ],
   "scripts": {
-    "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
+    "build": "npm run build:js && npm run build:ts",
+    "build:js": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src ",
+    "build:ts": "../node_modules/.bin/cpx src/*.d.ts lib/",
     "prepublish": "npm run build"
   },
   "license": "MIT",
