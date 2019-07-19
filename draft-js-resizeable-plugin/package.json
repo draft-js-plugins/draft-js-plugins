@@ -28,9 +28,6 @@
     "prepublish": "npm run build"
   },
   "license": "MIT",
-  "dependencies": {
-    "find-with-regex": "^1.1.3"
-  },
   "peerDependencies": {
     "draft-js": "^0.10.1",
     "react": "^15.5.0 || ^16.0.0-rc",

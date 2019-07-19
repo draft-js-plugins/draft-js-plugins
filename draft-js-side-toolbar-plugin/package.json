@@ -31,7 +31,6 @@
   "license": "MIT",
   "dependencies": {
     "draft-js-buttons": "^2.0.1",
-    "find-with-regex": "^1.1.3",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
