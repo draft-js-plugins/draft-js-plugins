@@ -84,6 +84,7 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "cheerio": "^0.22.0",
+    "cpx": "^1.5.0",
     "css-loader": "^0.26.2",
     "css-modules-require-hook": "^4.0.2",
     "dirty-chai": "^1.2.2",
