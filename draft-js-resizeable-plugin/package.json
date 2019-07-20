@@ -28,9 +28,6 @@
     "prepublish": "npm run build"
   },
   "license": "MIT",
-  "dependencies": {
-    "immutable": "~3.7.4"
-  },
   "peerDependencies": {
     "draft-js": "^0.10.1",
     "react": "^15.5.0 || ^16.0.0-rc",

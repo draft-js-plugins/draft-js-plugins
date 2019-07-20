@@ -31,8 +31,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "clsx": "^1.0.4",
-    "immutable": "~3.7.4"
+    "clsx": "^1.0.4"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1",

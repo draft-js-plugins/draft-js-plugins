@@ -30,7 +30,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "immutable": "~3.7.4",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
