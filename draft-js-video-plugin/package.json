@@ -10,6 +10,9 @@
     "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
   },
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "editor",
     "video",
