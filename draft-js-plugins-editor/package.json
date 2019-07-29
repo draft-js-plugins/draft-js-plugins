@@ -26,10 +26,11 @@
     "react-component"
   ],
   "scripts": {
-    "build": "npm run build:js && npm run build:ts",
-    "build:js": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src ",
+    "clean": "../node_modules/.bin/rimraf lib",
+    "build": "yarn clean && yarn build:js && yarn build:ts",
+    "build:js": "node ../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
     "build:ts": "../node_modules/.bin/cpx src/*.d.ts lib/",
-    "prepublish": "npm run build"
+    "prepublish": "yarn build"
   },
   "license": "MIT",
   "dependencies": {

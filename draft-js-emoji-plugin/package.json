@@ -28,11 +28,11 @@
   ],
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
-    "build": "npm run clean && npm run build:js && npm run build:css && npm run build:ts",
-    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
-    "build:css": "node ../scripts/concatCssFiles $(pwd) && ../node_modules/.bin/rimraf lib-css",
+    "build": "yarn clean && yarn build:js && yarn build:ts && yarn build:css",
+    "build:js": "node ../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
     "build:ts": "../node_modules/.bin/cpx src/*.d.ts lib/",
-    "prepublish": "npm run build"
+    "build:css": "node ../scripts/build-css.js $(pwd)",
+    "prepublish": "yarn build"
   },
   "license": "MIT",
   "dependencies": {
