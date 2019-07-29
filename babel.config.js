@@ -3,10 +3,10 @@ module.exports = {
   plugins: [
     '@babel/proposal-class-properties',
     ['css-modules-transform', {
-      "generateScopedName": "[name]__[local]___[hash:base64:5]",
-      "extractCss": {
-        "dir": "lib-css"
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+      extractCss: {
+        dir: 'lib-css'
       }
     }]
   ]
-}
+};
