@@ -27,7 +27,7 @@
     "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js **/__test__/*.js",
     "clean": "../node_modules/.bin/rimraf lib",
     "build": "yarn clean && yarn build:js && yarn build:css",
-    "build:js": "node ../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
+    "build:js": "../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
     "build:css": "node ../scripts/build-css.js $(pwd)",
     "prepublish": "yarn build"
   },

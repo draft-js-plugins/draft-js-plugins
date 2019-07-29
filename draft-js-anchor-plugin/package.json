@@ -30,7 +30,7 @@
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
     "build": "yarn clean && yarn build:js && yarn build:css && yarn build:ts",
-    "build:js": "node ../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
+    "build:js": "../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
     "build:ts": "../node_modules/.bin/cpx src/*.d.ts lib/",
     "build:css": "node ../scripts/build-css.js $(pwd)",
     "prepublish": "yarn build"

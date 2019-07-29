@@ -27,7 +27,7 @@
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
     "build": "yarn clean && yarn build:js && yarn build:flow",
-    "build:js": "node ../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
+    "build:js": "../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
     "build:flow": "cp src/index.js lib/index.js.flow",
     "prepublish": "yarn build"
   },
