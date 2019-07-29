@@ -48,7 +48,7 @@
     "react-component"
   ],
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --require testHelper.js \"./{,!(node_modules)/**/}/__test__/*.js\"",
+    "test": "mocha --compilers @babel/register --require testHelper.js \"./{,!(node_modules)/**/}/__test__/*.js\"",
     "test:watch": "npm test -- --watch",
     "lint": "npm run lint:eslint && npm run lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' ./",
@@ -81,6 +81,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.5.5",
     "@storybook/react": "^3.2.8",
     "alex": "^4.0.1",
     "animateplus": "^1.4.0",
