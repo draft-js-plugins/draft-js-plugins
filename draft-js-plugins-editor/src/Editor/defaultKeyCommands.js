@@ -2,7 +2,7 @@ import { RichUtils } from 'draft-js';
 
 export default {
   // handle delete commands
-  handleKeyCommand: (command, editorState, { setEditorState }) => {
+  handleKeyCommand: (command, editorState, eventTimeStamp, { setEditorState }) => {
     let newState;
     switch (command) {
       case 'backspace':

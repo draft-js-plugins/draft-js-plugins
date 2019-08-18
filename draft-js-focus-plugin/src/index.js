@@ -36,7 +36,7 @@ export default (config = {}) => {
       }
       return 'not-handled';
     },
-    handleKeyCommand: (command, editorState, { setEditorState }) => {
+    handleKeyCommand: (command, editorState, eventTimeStamp, { setEditorState }) => {
       if (deleteCommands.includes(command) && focusableBlockIsSelected(editorState, blockKeyStore)) {
         const key = editorState.getSelection().getStartKey();
         const newEditorState = removeBlock(editorState, key);
