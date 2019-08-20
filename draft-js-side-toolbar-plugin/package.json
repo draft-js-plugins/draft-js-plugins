@@ -1,6 +1,6 @@
 {
   "name": "draft-js-side-toolbar-plugin",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Toolbar Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
