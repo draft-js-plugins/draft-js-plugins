@@ -33,7 +33,7 @@
 .*/node_modules/draft-js/lib/DraftEditorDragHandler.js.flow
 .*/node_modules/draft-js/lib/DraftEditorLeaf.react.js.flow
 .*/node_modules/draft-js/lib/DraftEditor.react.js.flow
-
+.*/node_modules/draft-js/lib/convertFromHTMLToContentBlocks.js.flow
 
 [include]
 flow-typed
@@ -42,7 +42,6 @@ flow-typed
 flow-lib
 
 [options]
-module.system=haste
 module.use_strict=true
 module.name_mapper='.*\(.css\)' -> 'CSSModule'
 module.file_ext=.js
