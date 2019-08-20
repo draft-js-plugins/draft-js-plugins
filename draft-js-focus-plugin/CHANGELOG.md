@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.0
+
+- Upgrade to draft-js v0.11; the new version is incompatible with v0.10
+- Remove unused dependencies
+- Add typescript typings
+
 ## 2.2.0
 - Fix blockKeyStore behaviour so it is not accidentally deleted before the component has finished mounting.
 

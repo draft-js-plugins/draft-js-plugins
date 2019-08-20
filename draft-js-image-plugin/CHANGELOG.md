@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.7
+
+- Allow draft-js v0.11
+- Remove unused dependencies
+- Add typescript typings
 
 ## 2.0.6
 - accept saved images with "image" as the entity type from old saved data for backwards compatibility
