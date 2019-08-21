@@ -78,10 +78,6 @@ export default (config = {}) => {
   const callbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
-    onDownArrow: undefined,
-    onUpArrow: undefined,
-    onTab: undefined,
-    onEscape: undefined,
     handleReturn: undefined,
     onChange: undefined,
   };
@@ -217,13 +213,8 @@ export default (config = {}) => {
       store.setEditorState = setEditorState;
     },
 
-    onDownArrow: keyboardEvent =>
-      callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
-    onTab: keyboardEvent => callbacks.onTab && callbacks.onTab(keyboardEvent),
-    onUpArrow: keyboardEvent =>
-      callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
-    onEscape: keyboardEvent =>
-      callbacks.onEscape && callbacks.onEscape(keyboardEvent),
+    keyBindingFn: keyboardEvent =>
+      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
     handleReturn: keyboardEvent =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: editorState => {

@@ -45,10 +45,7 @@ function defaultProps() {
   return {
     suggestions: mentions,
     callbacks: {
-      onDownArrow: sinon.spy(),
-      onUpArrow: sinon.spy(),
-      onTab: sinon.spy(),
-      onEscape: sinon.spy(),
+      keyBindingFn: sinon.spy(),
       handleReturn: sinon.spy(),
     },
     store: {

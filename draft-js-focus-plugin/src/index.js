@@ -43,6 +43,7 @@ export default (config = {}) => {
       }
       return 'not-handled';
     },
+
     handleKeyCommand: (
       command,
       editorState,
@@ -62,6 +63,7 @@ export default (config = {}) => {
       }
       return 'not-handled';
     },
+
     onChange: editorState => {
       // in case the content changed there is no need to re-render blockRendererFn
       // since if a block was added it will be rendered anyway and if it was text
@@ -116,6 +118,8 @@ export default (config = {}) => {
 
       return editorState;
     },
+
+    // TODO edgecase: if one block is selected and the user wants to expand the selection using the shift key
     keyBindingFn(evt, { getEditorState, setEditorState }) {
       const editorState = getEditorState();
       // TODO match by entitiy instead of block type
@@ -127,6 +131,15 @@ export default (config = {}) => {
         // arrow right
         if (evt.keyCode === 39) {
           setSelection(getEditorState, setEditorState, 'down', evt);
+        }
+        // arrow up
+        if (evt.keyCode === 38) {
+          setSelection(getEditorState, setEditorState, 'up', event);
+        }
+        // arrow down
+        if (evt.keyCode === 40) {
+          setSelection(getEditorState, setEditorState, 'down', event);
+          return;
         }
       }
 
@@ -153,6 +166,7 @@ export default (config = {}) => {
           setSelection(getEditorState, setEditorState, 'up', evt);
         }
       }
+
       // arrow right
       if (evt.keyCode === 39) {
         // Covering the case to select the after block
@@ -175,7 +189,32 @@ export default (config = {}) => {
           setSelection(getEditorState, setEditorState, 'down', evt);
         }
       }
+
+      // arrow up
+      if (evt.keyCode === 38) {
+        // Covering the case to select the before block with arrow up
+        const selectionKey = editorState.getSelection().getAnchorKey();
+        const beforeBlock = editorState
+          .getCurrentContent()
+          .getBlockBefore(selectionKey);
+        if (beforeBlock && blockKeyStore.includes(beforeBlock.getKey())) {
+          setSelection(getEditorState, setEditorState, 'up', event);
+        }
+      }
+
+      // arrow down
+      if (evt.keyCode === 40) {
+        // Covering the case to select the after block with arrow down
+        const selectionKey = editorState.getSelection().getAnchorKey();
+        const afterBlock = editorState
+          .getCurrentContent()
+          .getBlockAfter(selectionKey);
+        if (afterBlock && blockKeyStore.includes(afterBlock.getKey())) {
+          setSelection(getEditorState, setEditorState, 'down', event);
+        }
+      }
     },
+
     // Wrap all block-types in block-focus decorator
     blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
       // This makes it mandatory to have atomic blocks for focus but also improves performance
@@ -199,54 +238,7 @@ export default (config = {}) => {
         },
       };
     },
-    // Handle down/up arrow events and set activeBlock/selection if necessary
-    onDownArrow: (event, { getEditorState, setEditorState }) => {
-      // TODO edgecase: if one block is selected and the user wants to expand the selection using the shift key
 
-      const editorState = getEditorState();
-      if (focusableBlockIsSelected(editorState, blockKeyStore)) {
-        setSelection(getEditorState, setEditorState, 'down', event);
-        return;
-      }
-
-      // Don't manually overwrite in case the shift key is used to avoid breaking
-      // native behaviour that works anyway.
-      if (event.shiftKey) {
-        return;
-      }
-
-      // Covering the case to select the after block with arrow down
-      const selectionKey = editorState.getSelection().getAnchorKey();
-      const afterBlock = editorState
-        .getCurrentContent()
-        .getBlockAfter(selectionKey);
-      if (afterBlock && blockKeyStore.includes(afterBlock.getKey())) {
-        setSelection(getEditorState, setEditorState, 'down', event);
-      }
-    },
-    onUpArrow: (event, { getEditorState, setEditorState }) => {
-      // TODO edgecase: if one block is selected and the user wants to expand the selection using the shift key
-
-      const editorState = getEditorState();
-      if (focusableBlockIsSelected(editorState, blockKeyStore)) {
-        setSelection(getEditorState, setEditorState, 'up', event);
-      }
-
-      // Don't manually overwrite in case the shift key is used to avoid breaking
-      // native behaviour that works anyway.
-      if (event.shiftKey) {
-        return;
-      }
-
-      // Covering the case to select the before block with arrow up
-      const selectionKey = editorState.getSelection().getAnchorKey();
-      const beforeBlock = editorState
-        .getCurrentContent()
-        .getBlockBefore(selectionKey);
-      if (beforeBlock && blockKeyStore.includes(beforeBlock.getKey())) {
-        setSelection(getEditorState, setEditorState, 'up', event);
-      }
-    },
     decorator: createDecorator({ theme, blockKeyStore }),
   };
 };

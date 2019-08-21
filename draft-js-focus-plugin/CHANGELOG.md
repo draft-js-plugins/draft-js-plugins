@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## to be released
+
+- removed deprecated draft-js hooks (onUpArrow, onDownArrow) usage
+
 ## 3.0.0
 
 - Upgrade to draft-js v0.11; the new version is incompatible with v0.10
