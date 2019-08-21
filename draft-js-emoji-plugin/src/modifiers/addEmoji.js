@@ -15,8 +15,11 @@ const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
   const emoji = convertShortNameToUnicode(unicode);
 
   const contentState = editorState.getCurrentContent();
-  const contentStateWithEntity = contentState
-    .createEntity('emoji', 'IMMUTABLE', { emojiUnicode: emoji });
+  const contentStateWithEntity = contentState.createEntity(
+    'emoji',
+    'IMMUTABLE',
+    { emojiUnicode: emoji }
+  );
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   const currentSelectionState = editorState.getSelection();
 
@@ -41,7 +44,7 @@ const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
         targetSelection,
         emoji,
         null,
-        entityKey,
+        entityKey
       );
 
       emojiEndPos = targetSelection.getAnchorOffset();
@@ -85,16 +88,19 @@ const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
     emojiAddedContent = Modifier.insertText(
       emojiAddedContent,
       emojiAddedContent.getSelectionAfter(),
-      ' ',
+      ' '
     );
   }
 
   const newEditorState = EditorState.push(
     editorState,
     emojiAddedContent,
-    'insert-emoji',
+    'insert-emoji'
   );
-  return EditorState.forceSelection(newEditorState, emojiAddedContent.getSelectionAfter());
+  return EditorState.forceSelection(
+    newEditorState,
+    emojiAddedContent.getSelectionAfter()
+  );
 };
 
 export default addEmoji;

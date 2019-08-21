@@ -9,9 +9,8 @@ import {
 } from 'draft-js-buttons';
 
 export default class Toolbar extends React.Component {
-
   static defaultProps = {
-    children: (externalProps) => (
+    children: externalProps => (
       // may be use React.Fragment instead of div to improve perfomance after React 16
       <div>
         <ItalicButton {...externalProps} />
@@ -19,8 +18,8 @@ export default class Toolbar extends React.Component {
         <UnderlineButton {...externalProps} />
         <CodeButton {...externalProps} />
       </div>
-    )
-  }
+    ),
+  };
 
   state = {
     isVisible: false,
@@ -31,8 +30,8 @@ export default class Toolbar extends React.Component {
      * prop and will also be shown when the editor loses focus.
      * @type {Component}
      */
-    overrideContent: undefined
-  }
+    overrideContent: undefined,
+  };
 
   componentWillMount() {
     this.props.store.subscribeToItem('selection', this.onSelectionChanged);
@@ -48,9 +47,9 @@ export default class Toolbar extends React.Component {
    * this function again with `undefined` in order to reset `overrideContent`.
    * @param {Component} overrideContent
    */
-  onOverrideContent = (overrideContent) => {
+  onOverrideContent = overrideContent => {
     this.setState({ overrideContent });
-  }
+  };
 
   onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate
@@ -65,8 +64,10 @@ export default class Toolbar extends React.Component {
       if (!editorRef) return;
 
       // This keeps backwards compatibility with React 15
-      let editorRoot = editorRef.refs && editorRef.refs.editor
-        ? editorRef.refs.editor : editorRef.editor;
+      let editorRoot =
+        editorRef.refs && editorRef.refs.editor
+          ? editorRef.refs.editor
+          : editorRef.editor;
       while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
         editorRoot = editorRoot.parentNode;
       }
@@ -80,12 +81,15 @@ export default class Toolbar extends React.Component {
       const extraTopOffset = -5;
 
       const position = {
-        top: (editorRoot.offsetTop - this.toolbar.offsetHeight)
-          + (selectionRect.top - editorRootRect.top)
-          + extraTopOffset,
-        left: editorRoot.offsetLeft
-          + (selectionRect.left - editorRootRect.left)
-          + (selectionRect.width / 2)
+        top:
+          editorRoot.offsetTop -
+          this.toolbar.offsetHeight +
+          (selectionRect.top - editorRootRect.top) +
+          extraTopOffset,
+        left:
+          editorRoot.offsetLeft +
+          (selectionRect.left - editorRootRect.left) +
+          selectionRect.width / 2,
       };
       this.setState({ position });
     });
@@ -94,10 +98,13 @@ export default class Toolbar extends React.Component {
   getStyle() {
     const { store } = this.props;
     const { overrideContent, position } = this.state;
-    const selection = store.getItem('getEditorState')().getSelection();
+    const selection = store
+      .getItem('getEditorState')()
+      .getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
-    const isVisible = (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
+    const isVisible =
+      (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
     const style = { ...position };
 
     if (isVisible) {
@@ -112,7 +119,7 @@ export default class Toolbar extends React.Component {
     return style;
   }
 
-  handleToolbarRef = (node) => {
+  handleToolbarRef = node => {
     this.toolbar = node;
   };
 
@@ -123,7 +130,7 @@ export default class Toolbar extends React.Component {
       theme: theme.buttonStyles,
       getEditorState: store.getItem('getEditorState'),
       setEditorState: store.getItem('setEditorState'),
-      onOverrideContent: this.onOverrideContent
+      onOverrideContent: this.onOverrideContent,
     };
 
     return (
@@ -132,9 +139,11 @@ export default class Toolbar extends React.Component {
         style={this.getStyle()}
         ref={this.handleToolbarRef}
       >
-        {OverrideContent
-          ? <OverrideContent {...childrenProps} />
-          : this.props.children(childrenProps)}
+        {OverrideContent ? (
+          <OverrideContent {...childrenProps} />
+        ) : (
+          this.props.children(childrenProps)
+        )}
       </div>
     );
   }

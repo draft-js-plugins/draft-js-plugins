@@ -5,7 +5,7 @@ export default function createEmojisFromStrategy(strategy) {
   // categorise and nest emoji
   // sort ensures that modifiers appear unmodified keys
   const keys = Object.keys(strategy);
-  keys.forEach((key) => {
+  keys.forEach(key => {
     const value = strategy[key];
 
     // skip unknown categories

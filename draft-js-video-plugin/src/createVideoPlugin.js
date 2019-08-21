@@ -12,8 +12,7 @@ const videoPlugin = (config = {}) => {
   if (config.decorator) {
     Video = config.decorator(Video);
   }
-  const ThemedVideo = (props) =>
-    <Video {...props} theme={theme} />;
+  const ThemedVideo = props => <Video {...props} theme={theme} />;
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === types.ATOMIC) {

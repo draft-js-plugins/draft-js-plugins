@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Sticker extends Component {
-
-  remove = (event) => {
+  remove = event => {
     // Note: important to avoid a content edit change
     event.preventDefault();
     event.stopPropagation();

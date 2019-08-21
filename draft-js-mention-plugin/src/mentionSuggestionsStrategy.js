@@ -7,7 +7,7 @@ const findWithRegex = (regex, contentBlock, callback) => {
 
   // exclude entities, when matching
   contentBlock.findEntityRanges(
-    (character) => !character.getEntity(),
+    character => !character.getEntity(),
     (nonEntityStart, nonEntityEnd) => {
       const text = contentBlockText.slice(nonEntityStart, nonEntityEnd);
       let matchArr;
@@ -16,7 +16,8 @@ const findWithRegex = (regex, contentBlock, callback) => {
 
       // Go through all matches in the text and return the indices to the callback
       // Break the loop if lastIndex is not changed
-      while ((matchArr = regex.exec(text)) !== null) { // eslint-disable-line
+      while ((matchArr = regex.exec(text)) !== null) {
+        // eslint-disable-line
         if (regex.lastIndex === prevLastIndex) {
           break;
         }
@@ -28,10 +29,15 @@ const findWithRegex = (regex, contentBlock, callback) => {
   );
 };
 
-export default (trigger: string, supportWhiteSpace: boolean, regExp: string) => { //eslint-disable-line
-  const MENTION_REGEX = supportWhiteSpace ?
-    new RegExp(`${escapeRegExp(trigger)}(${regExp}|\\s){0,}`, 'g') :
-    new RegExp(`(\\s|^)${escapeRegExp(trigger)}${regExp}`, 'g');
+export default (
+  trigger: string,
+  supportWhiteSpace: boolean,
+  regExp: string
+) => {
+  //eslint-disable-line
+  const MENTION_REGEX = supportWhiteSpace
+    ? new RegExp(`${escapeRegExp(trigger)}(${regExp}|\\s){0,}`, 'g')
+    : new RegExp(`(\\s|^)${escapeRegExp(trigger)}${regExp}`, 'g');
 
   return (contentBlock: Object, callback: Function) => {
     findWithRegex(MENTION_REGEX, contentBlock, callback);

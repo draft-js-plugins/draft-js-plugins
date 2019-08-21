@@ -10,12 +10,11 @@ export default (config = {}) => {
 
   const store = createStore({});
 
-  const {
-    theme = defaultTheme,
-  } = config;
+  const { theme = defaultTheme } = config;
 
-  const StaticToolbar = (props) =>
-    <Toolbar {...props} store={store} theme={theme} />;
+  const StaticToolbar = props => (
+    <Toolbar {...props} store={store} theme={theme} />
+  );
 
   return {
     initialize: ({ getEditorState, setEditorState }) => {
@@ -24,7 +23,7 @@ export default (config = {}) => {
     },
 
     // Re-Render the text-toolbar on selection change
-    onChange: (editorState) => {
+    onChange: editorState => {
       store.updateItem('selection', editorState.getSelection());
       return editorState;
     },
@@ -32,6 +31,4 @@ export default (config = {}) => {
   };
 };
 
-export {
-  Separator,
-};
+export { Separator };

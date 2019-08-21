@@ -7,7 +7,6 @@ import emojiList from '../../../utils/emojiList';
 import convertShortNameToUnicode from '../../../utils/convertShortNameToUnicode';
 
 export default class Entry extends Component {
-
   constructor(props) {
     super(props);
     this.mouseDown = false;
@@ -24,7 +23,7 @@ export default class Entry extends Component {
     }
   };
 
-  onMouseDown = (event) => {
+  onMouseDown = event => {
     // Note: important to avoid a content edit change
     event.preventDefault();
 
@@ -36,8 +35,18 @@ export default class Entry extends Component {
   };
 
   render() {
-    const { theme = {}, imagePath, imageType, cacheBustParam, useNativeArt, isFocused, id } = this.props;
-    const className = isFocused ? theme.emojiSuggestionsEntryFocused : theme.emojiSuggestionsEntry;
+    const {
+      theme = {},
+      imagePath,
+      imageType,
+      cacheBustParam,
+      useNativeArt,
+      isFocused,
+      id,
+    } = this.props;
+    const className = isFocused
+      ? theme.emojiSuggestionsEntryFocused
+      : theme.emojiSuggestionsEntry;
 
     let emojiDisplay = null;
     if (useNativeArt === true) {
@@ -45,7 +54,10 @@ export default class Entry extends Component {
       emojiDisplay = convertShortNameToUnicode(unicode);
     } else {
       // short name to image url code steal from emojione source code
-      const shortNameForImage = emojione.emojioneList[this.props.emoji].unicode[emojione.emojioneList[this.props.emoji].unicode.length - 1];
+      const shortNameForImage =
+        emojione.emojioneList[this.props.emoji].unicode[
+          emojione.emojioneList[this.props.emoji].unicode.length - 1
+        ];
       const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
       emojiDisplay = (
         <img

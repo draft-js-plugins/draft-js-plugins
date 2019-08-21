@@ -14,11 +14,11 @@ export function containsFiles(event) {
 // Read file contents intelligently as plain text/json, image as dataUrl or
 // anything else as binary
 export function readFile(file) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const reader = new FileReader();
 
     // This is called when finished reading
-    reader.onload = (event) => {
+    reader.onload = event => {
       // Return an array with one image
       resolve({
         // These are attributes like size, name, type, ...

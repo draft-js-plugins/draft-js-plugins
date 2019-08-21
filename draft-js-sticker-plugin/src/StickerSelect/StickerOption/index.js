@@ -4,7 +4,6 @@ import React, { Component } from 'react';
  * Showcases a sticker one can then pick to add to the editor
  */
 export default class StickerOption extends Component {
-
   onClick = () => {
     this.props.onClick(this.props.id);
   };

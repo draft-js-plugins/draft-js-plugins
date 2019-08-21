@@ -21,7 +21,7 @@ export default class Groups extends Component {
 
   state = {
     activeGroup: 0,
-  }
+  };
 
   componentDidMount() {
     this.calculateBounds();
@@ -31,7 +31,7 @@ export default class Groups extends Component {
     this.calculateBounds();
   }
 
-  onScroll = (values) => {
+  onScroll = values => {
     const { groups, onGroupScroll } = this.props;
     let activeGroup = 0;
     groups.forEach((group, index) => {
@@ -41,11 +41,15 @@ export default class Groups extends Component {
       }
     });
     onGroupScroll(activeGroup);
-  }
+  };
 
-  onWheel = (e) => {
+  onWheel = e => {
     // Disable page scroll, but enable groups scroll
-    const { clientHeight, scrollHeight, scrollTop } = this.scrollbars.getValues();
+    const {
+      clientHeight,
+      scrollHeight,
+      scrollTop,
+    } = this.scrollbars.getValues();
     if (e.deltaY > 0) {
       if (scrollTop < scrollHeight - clientHeight - e.deltaY) {
         e.stopPropagation();
@@ -53,42 +57,42 @@ export default class Groups extends Component {
         this.scrollbars.scrollToBottom();
       }
     } else {
-      if (scrollTop > -e.deltaY) { // eslint-disable-line no-lonely-if
+      if (scrollTop > -e.deltaY) {
+        // eslint-disable-line no-lonely-if
         e.stopPropagation();
       } else {
         this.scrollbars.scrollTop();
       }
     }
-  }
+  };
 
-  scrollToGroup = (groupIndex) => {
+  scrollToGroup = groupIndex => {
     const { groups } = this.props;
 
     this.scrollbars.scrollTop(groups[groupIndex].topList);
-  }
+  };
 
   calculateBounds = () => {
     const { scrollHeight, scrollTop } = this.scrollbars.getValues();
     if (scrollHeight) {
       const { groups } = this.props;
-      const containerTop = this.container.getBoundingClientRect().top - scrollTop;
+      const containerTop =
+        this.container.getBoundingClientRect().top - scrollTop;
 
-      groups.forEach((group) => {
+      groups.forEach(group => {
         const groupTop = group.instance.container.getBoundingClientRect().top;
         const listTop = group.instance.list.getBoundingClientRect().top;
         group.top = groupTop - containerTop; // eslint-disable-line no-param-reassign
         group.topList = listTop - containerTop; // eslint-disable-line no-param-reassign
       });
     }
-  }
+  };
 
-
-  isRenderedGroupActive = (index) => {
+  isRenderedGroupActive = index => {
     const { activeGroup } = this.state;
     const { isOpen } = this.props;
-    return activeGroup === index ||
-           (isOpen && activeGroup + 1 === index); // we also preload next group when popup is open
-  }
+    return activeGroup === index || (isOpen && activeGroup + 1 === index); // we also preload next group when popup is open
+  };
 
   render() {
     const {
@@ -108,17 +112,24 @@ export default class Groups extends Component {
       <div
         className={theme.emojiSelectPopoverGroups}
         onWheel={this.onWheel}
-        ref={(element) => { this.container = element; }}
+        ref={element => {
+          this.container = element;
+        }}
       >
         <Scrollbars
           onScrollFrame={this.onScroll}
           renderTrackVertical={() => (
             <div className={theme.emojiSelectPopoverScrollbar} />
           )}
-          renderThumbVertical={(props) => (
-            <div {...props} className={theme.emojiSelectPopoverScrollbarThumb} />
+          renderThumbVertical={props => (
+            <div
+              {...props}
+              className={theme.emojiSelectPopoverScrollbarThumb}
+            />
           )}
-          ref={(element) => { this.scrollbars = element; }}
+          ref={element => {
+            this.scrollbars = element;
+          }}
         >
           {groups.map((group, index) => (
             <Group
@@ -134,7 +145,7 @@ export default class Groups extends Component {
               checkMouseDown={checkMouseDown}
               onEmojiSelect={onEmojiSelect}
               onEmojiMouseDown={onEmojiMouseDown}
-              ref={(element) => {
+              ref={element => {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
               useNativeArt={useNativeArt}

@@ -13,21 +13,24 @@ export default (config = {}) => {
 
   const store = {
     getEditorState: undefined,
-    setEditorState: undefined
+    setEditorState: undefined,
   };
 
-  const DecoratedDefaultLink = (props) =>
-    <DefaultLink {...props} className={theme.link} target={linkTarget} />;
+  const DecoratedDefaultLink = props => (
+    <DefaultLink {...props} className={theme.link} target={linkTarget} />
+  );
 
-  const DecoratedLinkButton = (props) => (
+  const DecoratedLinkButton = props => (
     <LinkButton
       {...props}
       ownTheme={theme}
       store={store}
       placeholder={placeholder}
-      onRemoveLinkAtSelection={() => store.setEditorState(
-        EditorUtils.removeLinkAtSelection(store.getEditorState())
-      )}
+      onRemoveLinkAtSelection={() =>
+        store.setEditorState(
+          EditorUtils.removeLinkAtSelection(store.getEditorState())
+        )
+      }
     />
   );
 
@@ -41,10 +44,10 @@ export default (config = {}) => {
       {
         strategy: linkStrategy,
         matchesEntityType,
-        component: Link || DecoratedDefaultLink
-      }
+        component: Link || DecoratedDefaultLink,
+      },
     ],
 
-    LinkButton: DecoratedLinkButton
+    LinkButton: DecoratedLinkButton,
   };
 };

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 class LineCounter extends Component {
-
   static propTypes = {
     theme: PropTypes.any,
     limit: PropTypes.number,

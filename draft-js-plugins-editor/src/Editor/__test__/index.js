@@ -9,7 +9,7 @@ import PluginEditor, { createEditorStateWithText } from '../../index';
 /* For use in integration tests, as in where you need to test the
  * Editor component as well */
 class TestEditor extends Component {
-  state = { };
+  state = {};
 
   componentWillMount() {
     this.state.editorState = createEditorStateWithText(this.props.text);
@@ -21,7 +21,7 @@ class TestEditor extends Component {
     });
   }
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -61,10 +61,7 @@ describe('Editor', () => {
 
     it('without the plugins property provided', () => {
       const result = mount(
-        <PluginEditor
-          editorState={editorState}
-          onChange={changeSpy}
-        />
+        <PluginEditor editorState={editorState} onChange={changeSpy} />
       );
       expect(result.node.props.onChange).to.eq(changeSpy);
       expect(result.node.props.editorState).to.eq(editorState);
@@ -87,10 +84,7 @@ describe('Editor', () => {
 
     it('and by default adds the defaultKeyBindings plugin', () => {
       const result = mount(
-        <PluginEditor
-          editorState={editorState}
-          onChange={changeSpy}
-        />
+        <PluginEditor editorState={editorState} onChange={changeSpy} />
       );
       const pluginEditor = result.instance();
       expect(pluginEditor.resolvePlugins()[0]).to.include.keys('keyBindingFn');
@@ -182,18 +176,35 @@ describe('Editor', () => {
         setReadOnly: pluginEditor.setReadOnly,
         getEditorRef: pluginEditor.getEditorRef,
       };
-      draftEditor.props.handleKeyCommand('command', editorState, expectedSecondArgument);
+      draftEditor.props.handleKeyCommand(
+        'command',
+        editorState,
+        expectedSecondArgument
+      );
       expect(plugin.handleKeyCommand).has.been.calledOnce();
-      expect(plugin.handleKeyCommand).has.been.calledWith('command', editorState, expectedSecondArgument);
+      expect(plugin.handleKeyCommand).has.been.calledWith(
+        'command',
+        editorState,
+        expectedSecondArgument
+      );
       draftEditor.props.handlePastedText('command');
       expect(plugin.handlePastedText).has.been.calledOnce();
-      expect(plugin.handlePastedText).has.been.calledWith('command', expectedSecondArgument);
+      expect(plugin.handlePastedText).has.been.calledWith(
+        'command',
+        expectedSecondArgument
+      );
       draftEditor.props.handleReturn('command');
       expect(plugin.handleReturn).has.been.calledOnce();
-      expect(plugin.handleReturn).has.been.calledWith('command', expectedSecondArgument);
+      expect(plugin.handleReturn).has.been.calledWith(
+        'command',
+        expectedSecondArgument
+      );
       draftEditor.props.handleDrop('command');
       expect(plugin.handleDrop).has.been.calledOnce();
-      expect(plugin.handleDrop).has.been.calledWith('command', expectedSecondArgument);
+      expect(plugin.handleDrop).has.been.calledWith(
+        'command',
+        expectedSecondArgument
+      );
     });
 
     it('calls willUnmount', () => {
@@ -253,7 +264,11 @@ describe('Editor', () => {
       };
 
       const draftEditor = result.node;
-      draftEditor.props.handleKeyCommand('command', editorState, expectedSecondArgument);
+      draftEditor.props.handleKeyCommand(
+        'command',
+        editorState,
+        expectedSecondArgument
+      );
       expect(plugins[0].handleKeyCommand).has.been.calledOnce();
       expect(plugins[1].handleKeyCommand).has.not.been.called();
 
@@ -298,7 +313,6 @@ describe('Editor', () => {
         getEditorRef: pluginEditor.getEditorRef,
       };
 
-
       draftEditor.props.handleKeyCommand('command', editorState, pluginsObj);
       expect(plugins[0].handleKeyCommand).has.been.calledOnce();
       expect(plugins[1].handleKeyCommand).has.been.calledOnce();
@@ -339,10 +353,16 @@ describe('Editor', () => {
       };
       draftEditor.props.blockRendererFn('command');
       expect(plugin.blockRendererFn).has.been.calledOnce();
-      expect(plugin.blockRendererFn).has.been.calledWith('command', expectedSecondArgument);
+      expect(plugin.blockRendererFn).has.been.calledWith(
+        'command',
+        expectedSecondArgument
+      );
       draftEditor.props.keyBindingFn('command');
       expect(plugin.keyBindingFn).has.been.calledOnce();
-      expect(plugin.keyBindingFn).has.been.calledWith('command', expectedSecondArgument);
+      expect(plugin.keyBindingFn).has.been.calledWith(
+        'command',
+        expectedSecondArgument
+      );
     });
 
     it('combines the customStyleMaps from all plugins', () => {
@@ -493,10 +513,12 @@ describe('Editor', () => {
           plugins={plugins}
         />
       );
-      const expected = DefaultDraftBlockRenderMap.merge(Map({
-        sticker: { element: 'div' },
-        test: { element: 'test' },
-      }));
+      const expected = DefaultDraftBlockRenderMap.merge(
+        Map({
+          sticker: { element: 'div' },
+          test: { element: 'test' },
+        })
+      );
       const pluginEditor = result.instance();
       expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
     });
@@ -507,8 +529,7 @@ describe('Editor', () => {
           blockRenderMap: Map({ sticker: { element: 'div' } }),
         },
         {
-          blockRenderMap: Map({ test: { element: 'test' } },
-        ),
+          blockRenderMap: Map({ test: { element: 'test' } }),
         },
       ];
 
@@ -523,10 +544,12 @@ describe('Editor', () => {
         />
       );
 
-      const expected = DefaultDraftBlockRenderMap.merge(Map({
-        sticker: { element: 'customDiv' },
-        test: { element: 'test' },
-      }));
+      const expected = DefaultDraftBlockRenderMap.merge(
+        Map({
+          sticker: { element: 'customDiv' },
+          test: { element: 'test' },
+        })
+      );
 
       const pluginEditor = result.instance();
       expect(pluginEditor.resolveblockRenderMap()).to.deep.equal(expected);
@@ -534,9 +557,12 @@ describe('Editor', () => {
 
     it('returns the component reference when we call the getEditorRef inside of a plugin', () => {
       const spy = sinon.spy();
-      const plugins = [{
-        onChange: (state, pluginFunctions) => spy(pluginFunctions.getEditorRef())
-      }];
+      const plugins = [
+        {
+          onChange: (state, pluginFunctions) =>
+            spy(pluginFunctions.getEditorRef()),
+        },
+      ];
       const pluginEditorComponent = mount(
         <PluginEditor
           editorState={editorState}
@@ -544,7 +570,7 @@ describe('Editor', () => {
           onChange={changeSpy}
         />
       );
-      const draftEditorComponent = (pluginEditorComponent.find(Editor)).nodes[0];
+      const draftEditorComponent = pluginEditorComponent.find(Editor).nodes[0];
       draftEditorComponent.focus();
       expect(spy.getCall(1).args[0]).to.deep.equal(draftEditorComponent);
     });
@@ -686,8 +712,14 @@ describe('Editor', () => {
     });
 
     it('uses both custom and simple decorators in plugins', () => {
-      const simplePluginDecoratorStrategy = sinon.spy(plugin.decorators[0], 'strategy');
-      const customPluginDecorator = sinon.spy(plugin.decorators[1], 'getDecorations');
+      const simplePluginDecoratorStrategy = sinon.spy(
+        plugin.decorators[0],
+        'strategy'
+      );
+      const customPluginDecorator = sinon.spy(
+        plugin.decorators[1],
+        'getDecorations'
+      );
       const decoratorStrategy = sinon.spy(decorator, 'strategy');
 
       mount(<TestEditor {...{ plugins, decorators, text }} />);
@@ -697,17 +729,25 @@ describe('Editor', () => {
       expect(decoratorStrategy).has.been.called();
     });
 
-    it('reassigns decorators to editorState when props are updated with naked editorState', (done) => {
+    it('reassigns decorators to editorState when props are updated with naked editorState', done => {
       const props = { plugins, text };
       const comp = mount(<TestEditor {...props} />);
 
-      const decoratorNumber = comp.state('editorState').getDecorator().decorators.size;
+      const decoratorNumber = comp.state('editorState').getDecorator()
+        .decorators.size;
 
       setTimeout(() => {
         const newText = 'Yoyoyoyo dude';
         comp.setProps({ text: newText });
-        expect(comp.state('editorState').getDecorator().decorators.size).to.eq(decoratorNumber);
-        expect(comp.state('editorState').getCurrentContent().getPlainText()).to.eq(newText);
+        expect(comp.state('editorState').getDecorator().decorators.size).to.eq(
+          decoratorNumber
+        );
+        expect(
+          comp
+            .state('editorState')
+            .getCurrentContent()
+            .getPlainText()
+        ).to.eq(newText);
         done();
       }, 100);
     });

@@ -24,47 +24,34 @@ describe('RedoButton', () => {
   it('applies the className based on the theme property `redo`', () => {
     const theme = { redo: 'custom-class-name' };
     const result = shallow(
-      <Redo
-        store={store}
-        theme={theme}
-        children={'redo'}
-      />
+      <Redo store={store} theme={theme} children={'redo'} />
     );
     expect(result).to.have.prop('className', 'custom-class-name');
   });
 
   it('renders the passed in children', () => {
-    const result = shallow(
-      <Redo
-        store={store}
-        children="redo"
-      />
-    );
+    const result = shallow(<Redo store={store} children="redo" />);
     expect(result).to.have.prop('children', 'redo');
   });
 
   it('applies a custom className as well as the theme', () => {
     const theme = { redo: 'custom-class-name' };
     const result = shallow(
-      <Redo
-        store={store}
-        theme={theme}
-        className="redo"
-        children="redo"
-      />
+      <Redo store={store} theme={theme} className="redo" children="redo" />
     );
-    expect(result).to.have.prop('className').to.contain('redo');
-    expect(result).to.have.prop('className').to.contain('custom-class-name');
+    expect(result)
+      .to.have.prop('className')
+      .to.contain('redo');
+    expect(result)
+      .to.have.prop('className')
+      .to.contain('custom-class-name');
   });
 
   it('adds disabled attribute to button if the getRedoStack is empty', () => {
-    const result = shallow(
-      <Redo
-        store={store}
-        children="redo"
-      />
-    );
-    expect(result.find('button')).prop('disabled').to.equal(true);
+    const result = shallow(<Redo store={store} children="redo" />);
+    expect(result.find('button'))
+      .prop('disabled')
+      .to.equal(true);
   });
 
   it('removes disabled attribute from button if the getRedoStack is not empty', () => {
@@ -75,29 +62,27 @@ describe('RedoButton', () => {
       SelectionState,
       'hello'
     );
-    const newEditorState = EditorState.push(editorState, newContent, 'insert-text');
+    const newEditorState = EditorState.push(
+      editorState,
+      newContent,
+      'insert-text'
+    );
     const undoEditorState = EditorState.undo(newEditorState);
     store = {
       getEditorState: () => undoEditorState,
       setEditorState: onChange,
     };
-    const result = shallow(
-      <Redo
-        store={store}
-        children="redo"
-      />
-    );
-    expect(result.find('button')).prop('disabled').to.equal(false);
+    const result = shallow(<Redo store={store} children="redo" />);
+    expect(result.find('button'))
+      .prop('disabled')
+      .to.equal(false);
   });
 
   it('triggers an update with redo when the button is clicked', () => {
-    const result = shallow(
-      <Redo
-        store={store}
-        children="redo"
-      />
-    );
-    result.find('button').simulate('click', { stopPropagation: () => undefined });
+    const result = shallow(<Redo store={store} children="redo" />);
+    result
+      .find('button')
+      .simulate('click', { stopPropagation: () => undefined });
     expect(onChange).to.have.been.calledOnce;
   });
 });

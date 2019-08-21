@@ -1,17 +1,22 @@
 import { EditorState } from 'draft-js';
 import createDecorator from './createDecorator';
 
-const createSetResizeData = (contentBlock, { getEditorState, setEditorState }) => (data) => {
+const createSetResizeData = (
+  contentBlock,
+  { getEditorState, setEditorState }
+) => data => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
     const contentState = editorState.getCurrentContent();
     contentState.mergeEntityData(entityKey, { ...data });
-    setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
+    setEditorState(
+      EditorState.forceSelection(editorState, editorState.getSelection())
+    );
   }
 };
 
-export default (config) => {
+export default config => {
   const store = {
     getEditorRef: undefined,
     getReadOnly: undefined,
@@ -19,7 +24,12 @@ export default (config) => {
     setEditorState: undefined,
   };
   return {
-    initialize: ({ getEditorRef, getReadOnly, getEditorState, setEditorState }) => {
+    initialize: ({
+      getEditorRef,
+      getReadOnly,
+      getEditorState,
+      setEditorState,
+    }) => {
       store.getReadOnly = getReadOnly;
       store.getEditorRef = getEditorRef;
       store.getEditorState = getEditorState;
@@ -28,15 +38,19 @@ export default (config) => {
     decorator: createDecorator({ config, store }),
     blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
       const entityKey = contentBlock.getEntityAt(0);
-      const contentState = getEditorState()
-        .getCurrentContent();
-      const resizeData = entityKey ? contentState.getEntity(entityKey).data : {};
+      const contentState = getEditorState().getCurrentContent();
+      const resizeData = entityKey
+        ? contentState.getEntity(entityKey).data
+        : {};
       return {
         props: {
           resizeData,
-          setResizeData: createSetResizeData(contentBlock, { getEditorState, setEditorState }),
+          setResizeData: createSetResizeData(contentBlock, {
+            getEditorState,
+            setEditorState,
+          }),
         },
       };
-    }
+    },
   };
 };

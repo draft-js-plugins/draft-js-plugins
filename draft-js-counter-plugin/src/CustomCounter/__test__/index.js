@@ -5,7 +5,7 @@ import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
 describe('CounterPlugin Line Counter', () => {
-  const createEditorStateFromText = (text) => {
+  const createEditorStateFromText = text => {
     const contentState = ContentState.createFromText(text);
     return EditorState.createWithContent(contentState);
   };
@@ -25,14 +25,12 @@ describe('CounterPlugin Line Counter', () => {
     const { CustomCounter } = counterPlugin;
 
     // a function that takes a string and returns the number of words
-    const countFunction = (str) => {
-      const wordArray = str.match(/\S+/g);  // matches words according to whitespace
+    const countFunction = str => {
+      const wordArray = str.match(/\S+/g); // matches words according to whitespace
       return wordArray ? wordArray.length : 0;
     };
 
-    const result = mount(
-      <CustomCounter countFunction={countFunction} />
-    );
+    const result = mount(<CustomCounter countFunction={countFunction} />);
     expect(result).to.have.text('5');
   });
 
@@ -45,14 +43,12 @@ describe('CounterPlugin Line Counter', () => {
     const { CustomCounter } = counterPlugin;
 
     // a function that takes a string and returns the number of number characters
-    const countFunction = (str) => {
-      const numArray = str.match(/\d/g);  // matches only number characters
+    const countFunction = str => {
+      const numArray = str.match(/\d/g); // matches only number characters
       return numArray ? numArray.length : 0;
     };
 
-    const result = mount(
-      <CustomCounter countFunction={countFunction} />
-    );
+    const result = mount(<CustomCounter countFunction={countFunction} />);
     expect(result).to.have.text('6');
   });
 });

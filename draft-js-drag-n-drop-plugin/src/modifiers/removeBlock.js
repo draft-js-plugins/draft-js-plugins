@@ -1,6 +1,6 @@
 import { Modifier, SelectionState } from 'draft-js';
 
-export default function (contentState, blockKey) {
+export default function(contentState, blockKey) {
   const afterKey = contentState.getKeyAfter(blockKey);
   const afterBlock = contentState.getBlockForKey(afterKey);
   let targetRange;
@@ -8,10 +8,12 @@ export default function (contentState, blockKey) {
   // Only if the following block the last with no text then the whole block
   // should be removed. Otherwise the block should be reduced to an unstyled block
   // without any characters.
-  if (afterBlock &&
-        afterBlock.getType() === 'unstyled' &&
-        afterBlock.getLength() === 0 &&
-        afterBlock === contentState.getBlockMap().last()) {
+  if (
+    afterBlock &&
+    afterBlock.getType() === 'unstyled' &&
+    afterBlock.getLength() === 0 &&
+    afterBlock === contentState.getBlockMap().last()
+  ) {
     targetRange = new SelectionState({
       anchorKey: blockKey,
       anchorOffset: 0,

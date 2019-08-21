@@ -19,11 +19,18 @@ export default (config = {}) => {
     component,
     theme = defaultTheme,
     target = '_self',
-    rel = 'noreferrer noopener'
+    rel = 'noreferrer noopener',
   } = config;
 
-  const DecoratedLink = (props) =>
-    <Link {...props} theme={theme} target={target} rel={rel} component={component} />;
+  const DecoratedLink = props => (
+    <Link
+      {...props}
+      theme={theme}
+      target={target}
+      rel={rel}
+      component={component}
+    />
+  );
 
   return {
     decorators: [

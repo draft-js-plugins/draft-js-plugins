@@ -5,16 +5,16 @@ import type DraftEntityInstance from 'draft-js/lib/DraftEntityInstance';
 
 export default {
   createLinkAtSelection(editorState: EditorState, url: string): EditorState {
-    const contentState = editorState.getCurrentContent().createEntity('LINK', 'MUTABLE', { url });
+    const contentState = editorState
+      .getCurrentContent()
+      .createEntity('LINK', 'MUTABLE', { url });
     const entityKey = contentState.getLastCreatedEntityKey();
     const withLink = RichUtils.toggleLink(
       editorState,
       editorState.getSelection(),
       entityKey
     );
-    return EditorState.forceSelection(
-      withLink, editorState.getSelection()
-    );
+    return EditorState.forceSelection(withLink, editorState.getSelection());
   },
 
   removeLinkAtSelection(editorState: EditorState): EditorState {

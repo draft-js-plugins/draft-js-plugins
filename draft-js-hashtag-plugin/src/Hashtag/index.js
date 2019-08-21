@@ -16,8 +16,6 @@ export default class Hashtag extends Component {
       ...otherProps
     } = this.props; // eslint-disable-line no-use-before-define
     const combinedClassName = clsx(theme.hashtag, className);
-    return (
-      <span {...otherProps} className={combinedClassName} />
-    );
+    return <span {...otherProps} className={combinedClassName} />;
   }
 }

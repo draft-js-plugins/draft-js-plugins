@@ -24,7 +24,11 @@ describe('Hashtag', () => {
   it('applies a custom className as well as the theme', () => {
     const theme = { hashtag: 'custom-class-name' };
     const result = shallow(<Hashtag theme={theme} className="hashtag" />);
-    expect(result).to.have.prop('className').to.contain('hashtag');
-    expect(result).to.have.prop('className').to.contain('custom-class-name');
+    expect(result)
+      .to.have.prop('className')
+      .to.contain('hashtag');
+    expect(result)
+      .to.have.prop('className')
+      .to.contain('custom-class-name');
   });
 });

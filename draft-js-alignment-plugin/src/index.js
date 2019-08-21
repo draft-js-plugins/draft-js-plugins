@@ -6,13 +6,18 @@ import createStore from './utils/createStore';
 import buttonStyles from './buttonStyles.css';
 import alignmentToolStyles from './alignmentToolStyles.css';
 
-const createSetAlignment = (contentBlock, { getEditorState, setEditorState }) => (data) => {
+const createSetAlignment = (
+  contentBlock,
+  { getEditorState, setEditorState }
+) => data => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
     const contentState = editorState.getCurrentContent();
     contentState.mergeEntityData(entityKey, { ...data });
-    setEditorState(EditorState.forceSelection(editorState, editorState.getSelection()));
+    setEditorState(
+      EditorState.forceSelection(editorState, editorState.getSelection())
+    );
   }
 };
 
@@ -26,12 +31,11 @@ export default (config = {}) => {
     alignmentToolStyles,
   };
 
-  const {
-    theme = defaultAlignmentToolTheme,
-  } = config;
+  const { theme = defaultAlignmentToolTheme } = config;
 
-  const DecoratedAlignmentTool = (props) =>
-    <AlignmentTool {...props} store={store} theme={theme} />;
+  const DecoratedAlignmentTool = props => (
+    <AlignmentTool {...props} store={store} theme={theme} />
+  );
 
   return {
     initialize: ({ getReadOnly, getEditorState, setEditorState }) => {
@@ -43,11 +47,16 @@ export default (config = {}) => {
     blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
       const entityKey = contentBlock.getEntityAt(0);
       const contentState = getEditorState().getCurrentContent();
-      const alignmentData = entityKey ? contentState.getEntity(entityKey).data : {};
+      const alignmentData = entityKey
+        ? contentState.getEntity(entityKey).data
+        : {};
       return {
         props: {
           alignment: alignmentData.alignment || 'default',
-          setAlignment: createSetAlignment(contentBlock, { getEditorState, setEditorState }),
+          setAlignment: createSetAlignment(contentBlock, {
+            getEditorState,
+            setEditorState,
+          }),
         },
       };
     },

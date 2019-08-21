@@ -4,15 +4,16 @@ import { EditorState } from 'draft-js';
 import clsx from 'clsx';
 
 class RedoButton extends Component {
-
   static propTypes = {
     children: PropTypes.node.isRequired,
     theme: PropTypes.any,
   };
 
-  onClick = (event) => {
+  onClick = event => {
     event.stopPropagation();
-    this.props.store.setEditorState(EditorState.redo(this.props.store.getEditorState()));
+    this.props.store.setEditorState(
+      EditorState.redo(this.props.store.getEditorState())
+    );
   };
 
   render() {
@@ -23,7 +24,10 @@ class RedoButton extends Component {
         disabled={
           !this.props.store ||
           !this.props.store.getEditorState ||
-          this.props.store.getEditorState().getRedoStack().isEmpty()
+          this.props.store
+            .getEditorState()
+            .getRedoStack()
+            .isEmpty()
         }
         type="button"
         onClick={this.onClick}
