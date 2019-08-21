@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.2
+
+- Allow draft-js v0.11
+- Remove unused dependencies
+- Add typescript typings
+
 ## 2.1.1
 - Move searchPortal ref function to constructor 
 

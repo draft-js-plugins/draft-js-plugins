@@ -5,7 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
-### Added
+## 2.0.2
+
+- Allow draft-js v0.11
+- Remove unused dependencies
+
+## 2.0.0
 
 - Added rel attribute
 - The plugin now accepts a `component` config and if provided this component will be rendered instead of the default Anchor tag. Thanks to @antoinerey.

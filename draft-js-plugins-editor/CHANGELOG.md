@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.0
+
+- Upgrade to draft-js v0.11; the new version is incompatible with v0.10
+- Add typescript typings
+- Remove unused dependencies
+
 ## 2.1.1
 - Use only part of RichUtils.handleKeyCommand, since we don't want to automatically assume that code, bold, italic and the likes are included in an editor
 
