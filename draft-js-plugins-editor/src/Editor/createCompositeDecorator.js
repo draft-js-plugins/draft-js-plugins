@@ -8,10 +8,15 @@ import { CompositeDecorator } from 'draft-js';
 
 export default (decorators, getEditorState, setEditorState) => {
   const convertedDecorators = List(decorators)
-    .map((decorator) => {
+    .map(decorator => {
       const Component = decorator.component;
-      const DecoratedComponent = (props) =>
-        <Component {...props} getEditorState={getEditorState} setEditorState={setEditorState} />;
+      const DecoratedComponent = props => (
+        <Component
+          {...props}
+          getEditorState={getEditorState}
+          setEditorState={setEditorState}
+        />
+      );
       return {
         ...decorator,
         component: DecoratedComponent,

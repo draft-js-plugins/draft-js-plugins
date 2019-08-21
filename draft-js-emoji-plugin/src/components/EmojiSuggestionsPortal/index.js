@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 export default class EmojiSuggestionsPortal extends Component {
-
   constructor(props) {
     super(props);
-    this.searchPortalRef = (element) => { this.searchPortal = element; };
+    this.searchPortalRef = element => {
+      this.searchPortal = element;
+    };
   }
 
   componentWillMount() {
@@ -24,20 +25,14 @@ export default class EmojiSuggestionsPortal extends Component {
   }
 
   updatePortalClientRect(props) {
-    this.props.store.updatePortalClientRect(
-      props.offsetKey,
-      () => (
-        this.searchPortal.getBoundingClientRect()
-      ),
+    this.props.store.updatePortalClientRect(props.offsetKey, () =>
+      this.searchPortal.getBoundingClientRect()
     );
   }
 
   render() {
     return (
-      <span
-        className={this.key}
-        ref={this.searchPortalRef}
-      >
+      <span className={this.key} ref={this.searchPortalRef}>
         {this.props.children}
       </span>
     );

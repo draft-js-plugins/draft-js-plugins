@@ -12,12 +12,11 @@ export default (config = {}) => {
     isVisible: false,
   });
 
-  const {
-    theme = defaultTheme
-  } = config;
+  const { theme = defaultTheme } = config;
 
-  const InlineToolbar = (props) =>
-    <Toolbar {...props} store={store} theme={theme} />;
+  const InlineToolbar = props => (
+    <Toolbar {...props} store={store} theme={theme} />
+  );
 
   return {
     initialize: ({ getEditorState, setEditorState, getEditorRef }) => {
@@ -26,7 +25,7 @@ export default (config = {}) => {
       store.updateItem('getEditorRef', getEditorRef);
     },
     // Re-Render the text-toolbar on selection change
-    onChange: (editorState) => {
+    onChange: editorState => {
       store.updateItem('selection', editorState.getSelection());
       return editorState;
     },
@@ -34,6 +33,4 @@ export default (config = {}) => {
   };
 };
 
-export {
-  Separator,
-};
+export { Separator };

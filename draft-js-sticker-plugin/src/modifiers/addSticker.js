@@ -10,10 +10,7 @@ import {
   genKey,
   Modifier,
 } from 'draft-js';
-import {
-  List,
-  Repeat
-} from 'immutable';
+import { List, Repeat } from 'immutable';
 
 export default (editorState: Object, stickerId: any) => {
   const currentContentState = editorState.getCurrentContent();
@@ -43,18 +40,27 @@ export default (editorState: Object, stickerId: any) => {
     insertionTargetBlock = afterRemovalContentState;
   } else {
     // the only way to insert a new seems to be by splitting an existing in to two
-    insertionTargetBlock = Modifier.splitBlock(afterRemovalContentState, targetSelection);
+    insertionTargetBlock = Modifier.splitBlock(
+      afterRemovalContentState,
+      targetSelection
+    );
 
     // the position to insert our blocks
     insertionTargetSelection = insertionTargetBlock.getSelectionAfter();
   }
 
   // TODO not sure why we need it …
-  const newContentStateAfterSplit = Modifier.setBlockType(insertionTargetBlock, insertionTargetSelection, 'sticker');
+  const newContentStateAfterSplit = Modifier.setBlockType(
+    insertionTargetBlock,
+    insertionTargetSelection,
+    'sticker'
+  );
 
   // creating a new ContentBlock including the entity with data
   const contentStateWithEntity = newContentStateAfterSplit.createEntity(
-    'sticker', 'IMMUTABLE', { id: stickerId }
+    'sticker',
+    'IMMUTABLE',
+    { id: stickerId }
   );
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   const charDataOfSticker = CharacterMetadata.create({ entity: entityKey });
@@ -92,5 +98,8 @@ export default (editorState: Object, stickerId: any) => {
     contentStateWithSticker,
     'insert-sticker'
   );
-  return EditorState.forceSelection(newState, contentStateWithSticker.getSelectionAfter());
+  return EditorState.forceSelection(
+    newState,
+    contentStateWithSticker.getSelectionAfter()
+  );
 };

@@ -36,7 +36,11 @@ export default function insertNewLine(editorState) {
     text: '',
     characterList: List(),
   });
-  const withNewLine = insertBlockAfterSelection(contentState, selectionState, newLineBlock);
+  const withNewLine = insertBlockAfterSelection(
+    contentState,
+    selectionState,
+    newLineBlock
+  );
   const newContent = withNewLine.merge({
     selectionAfter: withNewLine.getSelectionAfter().set('hasFocus', true),
   });

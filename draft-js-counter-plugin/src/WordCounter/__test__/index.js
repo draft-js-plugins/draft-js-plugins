@@ -5,7 +5,7 @@ import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
 describe('CounterPlugin Word Counter', () => {
-  const createEditorStateFromText = (text) => {
+  const createEditorStateFromText = text => {
     const contentState = ContentState.createFromText(text);
     return EditorState.createWithContent(contentState);
   };
@@ -24,9 +24,7 @@ describe('CounterPlugin Word Counter', () => {
     });
     const { WordCounter } = counterPlugin;
 
-    const result = mount(
-      <WordCounter />
-    );
+    const result = mount(<WordCounter />);
     expect(result).to.have.text('5');
   });
 });

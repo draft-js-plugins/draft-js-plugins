@@ -13,9 +13,8 @@ import {
 import BlockTypeSelect from '../BlockTypeSelect';
 
 class Toolbar extends React.Component {
-
   static defaultProps = {
-    children: (externalProps) => (
+    children: externalProps => (
       // may be use React.Fragment instead of div to improve perfomance after React 16
       <div>
         <HeadlineOneButton {...externalProps} />
@@ -25,25 +24,27 @@ class Toolbar extends React.Component {
         <UnorderedListButton {...externalProps} />
         <OrderedListButton {...externalProps} />
       </div>
-    )
-  }
+    ),
+  };
 
   state = {
     position: {
       transform: 'scale(0)',
-    }
-  }
+    },
+  };
 
   componentDidMount() {
     this.props.store.subscribeToItem('editorState', this.onEditorStateChange);
   }
 
   componentWillUnmount() {
-    this.props.store.unsubscribeFromItem('editorState', this.onEditorStateChange);
+    this.props.store.unsubscribeFromItem(
+      'editorState',
+      this.onEditorStateChange
+    );
   }
 
-
-  onEditorStateChange = (editorState) => {
+  onEditorStateChange = editorState => {
     const selection = editorState.getSelection();
     if (!selection.getHasFocus()) {
       this.setState({
@@ -60,7 +61,9 @@ class Toolbar extends React.Component {
     const offsetKey = DraftOffsetKey.encode(currentBlock.getKey(), 0, 0);
     // Note: need to wait on tick to make sure the DOM node has been create by Draft.js
     setTimeout(() => {
-      const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
+      const node = document.querySelectorAll(
+        `[data-offset-key="${offsetKey}"]`
+      )[0];
 
       // The editor root should be two levels above the node from
       // `getEditorRef`. In case this changes in the future, we
@@ -69,8 +72,10 @@ class Toolbar extends React.Component {
       if (!editorRef) return;
 
       // this keeps backwards-compatibility with react 15
-      let editorRoot = editorRef.refs && editorRef.refs.editor
-        ? editorRef.refs.editor : editorRef.editor;
+      let editorRoot =
+        editorRef.refs && editorRef.refs.editor
+          ? editorRef.refs.editor
+          : editorRef.editor;
       while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
         editorRoot = editorRoot.parentNode;
       }
@@ -83,26 +88,23 @@ class Toolbar extends React.Component {
       // TODO: remove the hard code(width for the hover element)
       if (this.props.position === 'right') {
         // eslint-disable-next-line no-mixed-operators
-        position.left = editorRoot.offsetLeft + editorRoot.offsetWidth + 80 - 36;
+        position.left =
+          editorRoot.offsetLeft + editorRoot.offsetWidth + 80 - 36;
       } else {
         position.left = editorRoot.offsetLeft - 80;
       }
-
 
       this.setState({
         position,
       });
     }, 0);
-  }
+  };
 
   render() {
     const { theme, store } = this.props;
 
     return (
-      <div
-        className={theme.toolbarStyles.wrapper}
-        style={this.state.position}
-      >
+      <div className={theme.toolbarStyles.wrapper} style={this.state.position}>
         <BlockTypeSelect
           getEditorState={store.getItem('getEditorState')}
           setEditorState={store.getItem('setEditorState')}
@@ -116,7 +118,7 @@ class Toolbar extends React.Component {
 }
 
 Toolbar.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 export default Toolbar;

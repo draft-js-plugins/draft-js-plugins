@@ -36,11 +36,13 @@ export default (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
   const stickers = config.stickers;
-  const selectButtonContent = config.selectButtonContent ? config.selectButtonContent : '☺';
+  const selectButtonContent = config.selectButtonContent
+    ? config.selectButtonContent
+    : '☺';
 
   // default to true if not explicitly set to false
   const attachRemoveButton = config.attachRemoveButton !== false;
-  const DecoratedSticker = (props) => (
+  const DecoratedSticker = props => (
     <Sticker
       {...props}
       attachRemoveButton={attachRemoveButton}
@@ -48,7 +50,7 @@ export default (config = {}) => {
       theme={theme}
     />
   );
-  const DecoratedStickerSelect = (props) => (
+  const DecoratedStickerSelect = props => (
     <StickerSelect
       {...props}
       selectButtonContent={selectButtonContent}

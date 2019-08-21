@@ -1,6 +1,6 @@
 import { EditorState, AtomicBlockUtils } from 'draft-js';
 
-export default (entityType) => (editorState, data) => {
+export default entityType => (editorState, data) => {
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(
     entityType,

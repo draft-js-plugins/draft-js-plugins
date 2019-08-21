@@ -5,9 +5,7 @@ import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
 import decodeOffsetKey from '../../utils/decodeOffsetKey';
 
-
 export default class EmojiSuggestions extends Component {
-
   state = {
     isActive: false,
     focusedOptionIndex: 0,
@@ -34,7 +32,9 @@ export default class EmojiSuggestions extends Component {
         this.closeDropdown();
       }
 
-      const decoratorRect = this.props.store.getPortalClientRect(this.activeOffsetKey);
+      const decoratorRect = this.props.store.getPortalClientRect(
+        this.activeOffsetKey
+      );
       const newStyles = this.props.positionSuggestions({
         decoratorRect,
         prevProps,
@@ -44,7 +44,7 @@ export default class EmojiSuggestions extends Component {
         filteredEmojis: this.filteredEmojis,
         popover: this.popover,
       });
-      Object.keys(newStyles).forEach((key) => {
+      Object.keys(newStyles).forEach(key => {
         this.popover.style[key] = newStyles[key];
       });
     }
@@ -54,7 +54,7 @@ export default class EmojiSuggestions extends Component {
     this.props.callbacks.onChange = undefined;
   };
 
-  onEditorStateChange = (editorState) => {
+  onEditorStateChange = editorState => {
     const searches = this.props.store.getAllSearches();
 
     // if no search portal is active there is no need to show the popover
@@ -74,22 +74,23 @@ export default class EmojiSuggestions extends Component {
     const anchorOffset = selection.getAnchorOffset();
 
     // the list should not be visible if a range is selected or the editor has no focus
-    if (!selection.isCollapsed() || !selection.getHasFocus()) return removeList();
+    if (!selection.isCollapsed() || !selection.getHasFocus())
+      return removeList();
 
     // identify the start & end positon of each search-text
-    const offsetDetails = searches.map((offsetKey) => decodeOffsetKey(offsetKey));
+    const offsetDetails = searches.map(offsetKey => decodeOffsetKey(offsetKey));
 
     // a leave can be empty when it is removed due e.g. using backspace
     const leaves = offsetDetails
       .filter(({ blockKey }) => blockKey === anchorKey)
-      .map(({ blockKey, decoratorKey, leafKey }) => (
+      .map(({ blockKey, decoratorKey, leafKey }) =>
         editorState
           .getBlockTree(blockKey)
           .getIn([decoratorKey, 'leaves', leafKey])
-      ));
+      );
 
     // if all leaves are undefined the popover should be removed
-    if (leaves.every((leave) => leave === undefined)) {
+    if (leaves.every(leave => leave === undefined)) {
       return removeList();
     }
 
@@ -98,21 +99,22 @@ export default class EmojiSuggestions extends Component {
     // the @ causes troubles due selection confusion.
     const plainText = editorState.getCurrentContent().getPlainText();
     const selectionIsInsideWord = leaves
-      .filter((leave) => leave !== undefined)
-      .map(({ start, end }) => (
-        (start === 0
-         && anchorOffset === 1
-         && plainText.charAt(anchorOffset) !== ':'
-         && /(\s|^):[\w]*/.test(plainText)
-         && anchorOffset <= end)
-         || // : is the first character
-           (anchorOffset > start + 1
-         && anchorOffset <= end) // : is in the text or at the end
-      ));
-    if (selectionIsInsideWord.every((isInside) => isInside === false)) return removeList();
+      .filter(leave => leave !== undefined)
+      .map(
+        ({ start, end }) =>
+          ((start === 0 &&
+            anchorOffset === 1 &&
+            plainText.charAt(anchorOffset) !== ':' &&
+            /(\s|^):[\w]*/.test(plainText) &&
+            anchorOffset <= end) || // : is the first character
+          (anchorOffset > start + 1 &&
+            anchorOffset <= end) /*: is in the text or at the end*/)
+      );
+    if (selectionIsInsideWord.every(isInside => isInside === false))
+      return removeList();
 
     this.activeOffsetKey = selectionIsInsideWord
-      .filter((value) => value === true)
+      .filter(value => value === true)
       .keySeq()
       .first();
 
@@ -127,13 +129,19 @@ export default class EmojiSuggestions extends Component {
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will again.
-    if (!this.state.isActive && !this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (
+      !this.state.isActive &&
+      !this.props.store.isEscaped(this.activeOffsetKey)
+    ) {
       this.openDropdown();
     }
 
     // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another emoji search
-    if (this.lastSelectionIsInsideWord === undefined || !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)) {
+    if (
+      this.lastSelectionIsInsideWord === undefined ||
+      !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)
+    ) {
       this.setState({
         focusedOptionIndex: 0,
       });
@@ -147,24 +155,27 @@ export default class EmojiSuggestions extends Component {
   onSearchChange = (editorState, selection) => {
     const { word } = getSearchText(editorState, selection);
     const searchValue = word.substring(1, word.length);
-    if (this.lastSearchValue !== searchValue && typeof this.props.onSearchChange === 'function') {
+    if (
+      this.lastSearchValue !== searchValue &&
+      typeof this.props.onSearchChange === 'function'
+    ) {
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ value: searchValue });
     }
   };
 
-  onDownArrow = (keyboardEvent) => {
+  onDownArrow = keyboardEvent => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
     this.onEmojiFocus(newIndex >= this.filteredEmojis.size ? 0 : newIndex);
   };
 
-  onTab = (keyboardEvent) => {
+  onTab = keyboardEvent => {
     keyboardEvent.preventDefault();
     this.commitSelection();
   };
 
-  onUpArrow = (keyboardEvent) => {
+  onUpArrow = keyboardEvent => {
     keyboardEvent.preventDefault();
     if (this.filteredEmojis.size > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
@@ -172,11 +183,11 @@ export default class EmojiSuggestions extends Component {
     }
   };
 
-  onEscape = (keyboardEvent) => {
+  onEscape = keyboardEvent => {
     keyboardEvent.preventDefault();
 
     const activeOffsetKey = this.lastSelectionIsInsideWord
-      .filter((value) => value === true)
+      .filter(value => value === true)
       .keySeq()
       .first();
     this.props.store.escapeSearch(activeOffsetKey);
@@ -186,17 +197,17 @@ export default class EmojiSuggestions extends Component {
     this.props.store.setEditorState(this.props.store.getEditorState());
   };
 
-  onEmojiSelect = (emoji) => {
+  onEmojiSelect = emoji => {
     this.closeDropdown();
     const newEditorState = addEmoji(
       this.props.store.getEditorState(),
       emoji,
-      AddEmojiMode.REPLACE,
+      AddEmojiMode.REPLACE
     );
     this.props.store.setEditorState(newEditorState);
   };
 
-  onEmojiFocus = (index) => {
+  onEmojiFocus = index => {
     const descendant = `emoji-option-${this.key}-${index}`;
     this.props.ariaProps.ariaActiveDescendantID = descendant;
     this.setState({ focusedOptionIndex: index });
@@ -208,11 +219,14 @@ export default class EmojiSuggestions extends Component {
   // Get the first 6 emojis that match
   getEmojisForFilter = () => {
     const selection = this.props.store.getEditorState().getSelection();
-    const { word } = getSearchText(this.props.store.getEditorState(), selection);
+    const { word } = getSearchText(
+      this.props.store.getEditorState(),
+      selection
+    );
     const emojiValue = word.substring(1, word.length).toLowerCase();
-    const filteredValues = this.props.shortNames.filter((emojiShortName) => (
-      !emojiValue || emojiShortName.indexOf(emojiValue) > -1
-    ));
+    const filteredValues = this.props.shortNames.filter(
+      emojiShortName => !emojiValue || emojiShortName.indexOf(emojiValue) > -1
+    );
     const size = filteredValues.size < 9 ? filteredValues.size : 9;
     return filteredValues.setSize(size);
   };
@@ -287,7 +301,7 @@ export default class EmojiSuggestions extends Component {
       shortNames, // eslint-disable-line no-unused-vars
       store, // eslint-disable-line no-unused-vars
       useNativeArt,
-      ...restProps,
+      ...restProps
     } = this.props;
     return (
       <div
@@ -295,12 +309,12 @@ export default class EmojiSuggestions extends Component {
         className={theme.emojiSuggestions}
         role="listbox"
         id={`emojis-list-${this.key}`}
-        ref={(element) => {
+        ref={element => {
           this.popover = element;
         }}
       >
-        {
-          this.filteredEmojis.map((emoji, index) => (
+        {this.filteredEmojis
+          .map((emoji, index) => (
             <Entry
               key={emoji}
               onEmojiSelect={this.onEmojiSelect}
@@ -315,8 +329,8 @@ export default class EmojiSuggestions extends Component {
               cacheBustParam={cacheBustParam}
               useNativeArt={useNativeArt}
             />
-          )).toJS()
-        }
+          ))
+          .toJS()}
       </div>
     );
   }

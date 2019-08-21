@@ -5,17 +5,13 @@ const propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   entityKey: PropTypes.string,
-  getEditorState: PropTypes.func.isRequired
+  getEditorState: PropTypes.func.isRequired,
 };
 
-const Link = ({
-  children,
-  className,
-  entityKey,
-  getEditorState,
-  target
-}) => {
-  const entity = getEditorState().getCurrentContent().getEntity(entityKey);
+const Link = ({ children, className, entityKey, getEditorState, target }) => {
+  const entity = getEditorState()
+    .getCurrentContent()
+    .getEntity(entityKey);
   const entityData = entity ? entity.get('data') : undefined;
   const href = (entityData && entityData.url) || undefined;
 

@@ -37,8 +37,6 @@ export default class Link extends Component {
       className: combinedClassName,
     };
 
-    return component
-      ? React.createElement(component, props)
-      : <a {...props} />; // eslint-disable-line jsx-a11y/anchor-has-content
+    return component ? React.createElement(component, props) : <a {...props} />; // eslint-disable-line jsx-a11y/anchor-has-content
   }
 }

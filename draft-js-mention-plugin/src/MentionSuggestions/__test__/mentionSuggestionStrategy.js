@@ -6,18 +6,28 @@ import defaultRegExp from '../../defaultRegExp';
 
 let callback;
 const trigger = '@';
-const nonWhitespaceStrategy = mentionSuggestionsStrategy(trigger, false, defaultRegExp);
-const whitespaceStrategy = mentionSuggestionsStrategy(trigger, true, defaultRegExp);
+const nonWhitespaceStrategy = mentionSuggestionsStrategy(
+  trigger,
+  false,
+  defaultRegExp
+);
+const whitespaceStrategy = mentionSuggestionsStrategy(
+  trigger,
+  true,
+  defaultRegExp
+);
 const getBlock = (text, entityRanges = [], entityMap = {}) => {
   const contentState = convertFromRaw({
-    blocks: [{
-      key: genKey(),
-      text,
-      type: 'unstyled',
-      depth: 0,
-      inlineStyleRanges: [],
-      entityRanges,
-    }],
+    blocks: [
+      {
+        key: genKey(),
+        text,
+        type: 'unstyled',
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges,
+      },
+    ],
     entityMap,
   });
   return contentState.getFirstBlock();
@@ -34,7 +44,6 @@ describe('mentionSuggestionsStrategy', () => {
       expect(callback.callCount).to.equal(1);
       expect(callback.lastCall.args).to.deep.equal([0, 4]);
     });
-
 
     it('should match a word with special characters', () => {
       nonWhitespaceStrategy(getBlock('@ęĻŌ'), callback);
@@ -71,12 +80,14 @@ describe('mentionSuggestionsStrategy', () => {
     });
 
     it('should match multiple mentions with spaces', () => {
-      whitespaceStrategy(getBlock('@the walking dead tv @the white house'), callback);
+      whitespaceStrategy(
+        getBlock('@the walking dead tv @the white house'),
+        callback
+      );
       expect(callback.callCount).to.equal(2);
       expect(callback.firstCall.args).to.deep.equal([0, 21]);
       expect(callback.secondCall.args).to.deep.equal([21, 37]);
     });
-
 
     it('should match multiple mentions with spaces and special characters', () => {
       whitespaceStrategy(getBlock('@Thomas Müller @Mario Götze'), callback);
@@ -87,21 +98,26 @@ describe('mentionSuggestionsStrategy', () => {
 
     it('should not match entities', () => {
       const key = genKey();
-      whitespaceStrategy(getBlock(
-        '@the walking dead tv the white house',
-        [{
-          key,
-          offset: 20,
-          length: 15,
-        }],
-        {
-          [key]: {
-            type: 'mention',
-            mutability: 'IMMUTABLE',
-            data: {},
-          },
-        },
-      ), callback);
+      whitespaceStrategy(
+        getBlock(
+          '@the walking dead tv the white house',
+          [
+            {
+              key,
+              offset: 20,
+              length: 15,
+            },
+          ],
+          {
+            [key]: {
+              type: 'mention',
+              mutability: 'IMMUTABLE',
+              data: {},
+            },
+          }
+        ),
+        callback
+      );
       expect(callback.callCount).to.equal(1);
       expect(callback.lastCall.args).to.deep.equal([0, 20]);
     });

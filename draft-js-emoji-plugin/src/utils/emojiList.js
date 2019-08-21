@@ -1,9 +1,11 @@
 import emojione from 'emojione';
 
-const newEmojiListWithOutPriorityList = (priorityList) => {
+const newEmojiListWithOutPriorityList = priorityList => {
   const list = {};
-  for (const key in emojione.emojioneList) { // eslint-disable-line no-restricted-syntax
-    if (priorityList.hasOwnProperty(key)) { // eslint-disable-line no-prototype-builtins
+  for (const key in emojione.emojioneList) {
+    // eslint-disable-line no-restricted-syntax
+    if (priorityList.hasOwnProperty(key)) {
+      // eslint-disable-line no-prototype-builtins
       continue; // eslint-disable-line no-continue
     }
     list[key] = emojione.emojioneList[key].unicode;
@@ -14,7 +16,7 @@ const newEmojiListWithOutPriorityList = (priorityList) => {
 
 const emojiList = {};
 
-emojiList.setPriorityList = (newPriorityList) => {
+emojiList.setPriorityList = newPriorityList => {
   // re-generate emojiList when set PriorityList
   emojiList.list = newEmojiListWithOutPriorityList(newPriorityList);
 };

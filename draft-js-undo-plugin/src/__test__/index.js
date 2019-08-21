@@ -17,9 +17,7 @@ describe('UndoPlugin Config', () => {
       undoContent: 'custom-child',
     });
     const UndoButton = undoPlugin.UndoButton;
-    const result = shallow(
-      <UndoButton />
-    );
+    const result = shallow(<UndoButton />);
     expect(result).to.have.prop('children', 'custom-child');
   });
 
@@ -28,9 +26,7 @@ describe('UndoPlugin Config', () => {
       redoContent: 'custom-child',
     });
     const RedoButton = undoPlugin.RedoButton;
-    const result = shallow(
-      <RedoButton />
-    );
+    const result = shallow(<RedoButton />);
     expect(result).to.have.prop('children', 'custom-child');
   });
 
@@ -45,13 +41,13 @@ describe('UndoPlugin Config', () => {
       setEditorState: onChange,
     });
     const { UndoButton, RedoButton } = undoPlugin;
-    const redoResult = mount(
-      <RedoButton />
-    );
-    const undoResult = mount(
-      <UndoButton />
-    );
-    expect(redoResult.find('button')).to.have.prop('className').to.contain('custom-class-name');
-    expect(undoResult.find('button')).to.have.prop('className').to.contain('custom-class-name');
+    const redoResult = mount(<RedoButton />);
+    const undoResult = mount(<UndoButton />);
+    expect(redoResult.find('button'))
+      .to.have.prop('className')
+      .to.contain('custom-class-name');
+    expect(undoResult.find('button'))
+      .to.have.prop('className')
+      .to.contain('custom-class-name');
   });
 });

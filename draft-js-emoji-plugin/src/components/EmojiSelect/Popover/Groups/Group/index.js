@@ -19,9 +19,9 @@ export default class Group extends Component {
 
   state = {
     hasRenderedEmoji: false,
-  }
+  };
 
-  shouldComponentUpdate = (nextProps) => {
+  shouldComponentUpdate = nextProps => {
     if (this.state.hasRenderedEmoji) {
       return false;
     }
@@ -35,7 +35,7 @@ export default class Group extends Component {
     }
   }
 
-  renderCategory = (category) => {
+  renderCategory = category => {
     const {
       cacheBustParam,
       imagePath,
@@ -51,44 +51,49 @@ export default class Group extends Component {
 
     const categoryEmojis = emojis[category];
 
-    return Object.keys(categoryEmojis).map((key) => (
+    return Object.keys(categoryEmojis).map(key => (
       <li
         key={categoryEmojis[key][0]}
         className={theme.emojiSelectPopoverGroupItem}
       >
-        {isActive && <Entry
-          emoji={categoryEmojis[key][0]}
-          theme={theme}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
-          toneSet={categoryEmojis[key].length > 1 ? categoryEmojis[key] : null}
-          checkMouseDown={checkMouseDown}
-          onEmojiSelect={onEmojiSelect}
-          onEmojiMouseDown={onEmojiMouseDown}
-          useNativeArt={useNativeArt}
-        />}
+        {isActive && (
+          <Entry
+            emoji={categoryEmojis[key][0]}
+            theme={theme}
+            imagePath={imagePath}
+            imageType={imageType}
+            cacheBustParam={cacheBustParam}
+            toneSet={
+              categoryEmojis[key].length > 1 ? categoryEmojis[key] : null
+            }
+            checkMouseDown={checkMouseDown}
+            onEmojiSelect={onEmojiSelect}
+            onEmojiMouseDown={onEmojiMouseDown}
+            useNativeArt={useNativeArt}
+          />
+        )}
       </li>
     ));
   };
 
   render() {
-    const {
-      theme = {},
-      group,
-    } = this.props;
+    const { theme = {}, group } = this.props;
 
     return (
       <section
         className={theme.emojiSelectPopoverGroup}
-        ref={(element) => { this.container = element; }}
+        ref={element => {
+          this.container = element;
+        }}
       >
         <h3 className={theme.emojiSelectPopoverGroupTitle}>{group.title}</h3>
         <ul
           className={theme.emojiSelectPopoverGroupList}
-          ref={(element) => { this.list = element; }}
+          ref={element => {
+            this.list = element;
+          }}
         >
-          {group.categories.map((category) => this.renderCategory(category))}
+          {group.categories.map(category => this.renderCategory(category))}
         </ul>
       </section>
     );

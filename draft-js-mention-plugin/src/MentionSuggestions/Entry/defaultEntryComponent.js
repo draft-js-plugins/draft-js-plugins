@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from './Avatar';
 
-const defaultEntryComponent = (props) => {
+const defaultEntryComponent = props => {
   const {
     mention,
     theme,

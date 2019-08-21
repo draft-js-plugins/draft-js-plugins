@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Entry from './Entry';
 
-const Nav = ({
-  theme = {},
-  groups,
-  activeGroup,
-  onGroupSelect,
-}) => (
+const Nav = ({ theme = {}, groups, activeGroup, onGroupSelect }) => (
   <ul className={theme.emojiSelectPopoverNav}>
     {groups.map((group, index) => (
       <li

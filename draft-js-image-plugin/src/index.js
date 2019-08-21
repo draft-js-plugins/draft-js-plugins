@@ -13,8 +13,7 @@ export default (config = {}) => {
   if (config.decorator) {
     Image = config.decorator(Image);
   }
-  const ThemedImage = (props) =>
-    <Image {...props} theme={theme} />;
+  const ThemedImage = props => <Image {...props} theme={theme} />;
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === 'atomic') {

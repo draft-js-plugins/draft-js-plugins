@@ -56,13 +56,10 @@ export default class Popover extends Component {
     }
   };
 
-  onWheel = (e) => e.preventDefault();
+  onWheel = e => e.preventDefault();
 
-  onEmojiSelect = (emoji) => {
-    const newEditorState = addEmoji(
-      this.props.store.getEditorState(),
-      emoji,
-    );
+  onEmojiSelect = emoji => {
+    const newEditorState = addEmoji(this.props.store.getEditorState(), emoji);
     this.props.store.setEditorState(newEditorState);
   };
 
@@ -74,11 +71,11 @@ export default class Popover extends Component {
     }
   };
 
-  onGroupSelect = (groupIndex) => {
+  onGroupSelect = groupIndex => {
     this.groups.scrollToGroup(groupIndex);
   };
 
-  onGroupScroll = (groupIndex) => {
+  onGroupScroll = groupIndex => {
     if (groupIndex !== this.state.activeGroup) {
       this.setState({
         activeGroup: groupIndex,
@@ -86,14 +83,14 @@ export default class Popover extends Component {
     }
   };
 
-  openToneSelectWithTimer = (toneSet) => {
+  openToneSelectWithTimer = toneSet => {
     this.toneSelectTimer = setTimeout(() => {
       this.toneSelectTimer = null;
       this.openToneSelect(toneSet);
     }, this.props.toneSelectOpenDelay);
-  }
+  };
 
-  openToneSelect = (toneSet) => {
+  openToneSelect = toneSet => {
     this.toneSet = toneSet;
 
     this.setState({
@@ -140,7 +137,7 @@ export default class Popover extends Component {
           bottom: containerBounds.bottom - entryBounds.bottom,
           width: entryBounds.width,
           height: entryBounds.width,
-        }
+        },
       };
 
       return (
@@ -170,9 +167,9 @@ export default class Popover extends Component {
       isOpen = false,
       useNativeArt,
     } = this.props;
-    const className = isOpen ?
-      theme.emojiSelectPopover :
-      theme.emojiSelectPopoverClosed;
+    const className = isOpen
+      ? theme.emojiSelectPopover
+      : theme.emojiSelectPopoverClosed;
     const { activeGroup } = this.state;
 
     return (
@@ -180,7 +177,9 @@ export default class Popover extends Component {
         className={className}
         onMouseDown={this.onMouseDown}
         onWheel={this.onWheel}
-        ref={(element) => { this.container = element; }}
+        ref={element => {
+          this.container = element;
+        }}
       >
         <h3 className={theme.emojiSelectPopoverTitle}>
           {groups[activeGroup].title}
@@ -196,7 +195,9 @@ export default class Popover extends Component {
           onEmojiSelect={this.onEmojiSelect}
           onEmojiMouseDown={this.onEmojiMouseDown}
           onGroupScroll={this.onGroupScroll}
-          ref={(element) => { this.groups = element; }}
+          ref={element => {
+            this.groups = element;
+          }}
           useNativeArt={useNativeArt}
           isOpen={isOpen}
         />

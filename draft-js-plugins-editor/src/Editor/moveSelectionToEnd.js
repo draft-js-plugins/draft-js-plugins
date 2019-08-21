@@ -1,7 +1,4 @@
-import {
-  EditorState,
-  SelectionState,
-} from 'draft-js';
+import { EditorState, SelectionState } from 'draft-js';
 
 /**
  * Returns a new EditorState where the Selection is at the end.
@@ -11,7 +8,7 @@ import {
  * without the editor having had focus yet. It still works to place the
  * Selection at a specific location by clicking on the text.
  */
-const moveSelectionToEnd = (editorState) => {
+const moveSelectionToEnd = editorState => {
   const content = editorState.getCurrentContent();
   const blockMap = content.getBlockMap();
 

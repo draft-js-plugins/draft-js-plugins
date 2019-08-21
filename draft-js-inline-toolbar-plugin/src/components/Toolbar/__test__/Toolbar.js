@@ -4,7 +4,7 @@ import { mount } from 'enzyme';
 import Toolbar from '../index';
 
 describe('Toolbar', () => {
-  it('allows children to override the content', (done) => {
+  it('allows children to override the content', done => {
     class Child extends Component {
       componentDidMount() {
         setTimeout(() => {
@@ -26,20 +26,21 @@ describe('Toolbar', () => {
     const store = {
       subscribeToItem() {},
       unsubscribeFromItem() {},
-      getItem: (name) => ({
-        getEditorState: () => ({
-          getSelection: () => ({ isCollapsed: () => true, getHasFocus: () => true })
-        })
-      }[name])
+      getItem: name =>
+        ({
+          getEditorState: () => ({
+            getSelection: () => ({
+              isCollapsed: () => true,
+              getHasFocus: () => true,
+            }),
+          }),
+        }[name]),
     };
 
     const wrapper = mount(
-      <Toolbar
-        store={store}
-        theme={theme}
-      >{
-        (externalProps) => <Child {...externalProps} />
-      }</Toolbar>
+      <Toolbar store={store} theme={theme}>
+        {externalProps => <Child {...externalProps} />}
+      </Toolbar>
     );
 
     expect(wrapper.find('.initial').length).to.equal(1);

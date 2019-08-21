@@ -6,12 +6,7 @@ const YOUTUBE_PREFIX = 'https://www.youtube.com/embed/';
 const VIMEO_PREFIX = 'https://player.vimeo.com/video/';
 
 const getSrc = ({ src }) => {
-  const {
-    isYoutube,
-    getYoutubeSrc,
-    isVimeo,
-    getVimeoSrc,
-  } = utils;
+  const { isYoutube, getYoutubeSrc, isVimeo, getVimeoSrc } = utils;
   if (isYoutube(src)) {
     const { srcID } = getYoutubeSrc(src);
     return `${YOUTUBE_PREFIX}${srcID}`;
@@ -23,16 +18,11 @@ const getSrc = ({ src }) => {
   return undefined;
 };
 
-const DefaultVideoCompoent = ({
-  blockProps,
-  className = '',
-  style,
-  theme,
-}) => {
+const DefaultVideoCompoent = ({ blockProps, className = '', style, theme }) => {
   const src = getSrc(blockProps);
   if (src) {
     return (
-      <div style={style} >
+      <div style={style}>
         <div className={`${theme.iframeContainer} ${className}`}>
           <iframe
             className={theme.iframe}
@@ -45,7 +35,7 @@ const DefaultVideoCompoent = ({
     );
   }
 
-  return (<div className={theme.invalidVideoSrc}>invalid video source</div>);
+  return <div className={theme.invalidVideoSrc}>invalid video source</div>;
 };
 
 DefaultVideoCompoent.propTypes = {

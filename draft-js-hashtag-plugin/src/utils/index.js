@@ -8,7 +8,14 @@ export function extractHashtagsWithIndices(text) {
 
   var tags = [];
 
-  text.replace(regexes.validHashtag, function (match, before, hash, hashText, offset, chunk) {
+  text.replace(regexes.validHashtag, function(
+    match,
+    before,
+    hash,
+    hashText,
+    offset,
+    chunk
+  ) {
     const after = chunk.slice(offset + match.length);
     if (after.match(regexes.endHashtagMatch)) {
       return;

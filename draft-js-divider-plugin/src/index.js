@@ -7,7 +7,7 @@ import addDivider from './modifiers/addDivider';
 import dividerStyles from './dividerStyles.css';
 
 const defaultTheme = {
-  divider: dividerStyles.divider
+  divider: dividerStyles.divider,
 };
 
 const createDividerPlugin = ({
@@ -15,7 +15,7 @@ const createDividerPlugin = ({
   dividerComponent = DefaultDivider,
   buttonComponent = DefaultButton,
   theme = defaultTheme,
-  decorator
+  decorator,
 } = {}) => {
   let Divider = dividerComponent;
 
@@ -23,11 +23,15 @@ const createDividerPlugin = ({
     Divider = decorator(Divider);
   }
 
-  const ThemedDivider = (props) =>
-    <Divider {...props} theme={theme} />;
+  const ThemedDivider = props => <Divider {...props} theme={theme} />;
   const Button = buttonComponent;
-  const DividerButton = (props) =>
-    <Button {...props} entityType={entityType} addDivider={addDivider(entityType)} />;
+  const DividerButton = props => (
+    <Button
+      {...props}
+      entityType={entityType}
+      addDivider={addDivider(entityType)}
+    />
+  );
 
   return {
     blockRendererFn: (block, { getEditorState }) => {
@@ -39,7 +43,7 @@ const createDividerPlugin = ({
         if (type === entityType) {
           return {
             component: ThemedDivider,
-            editable: false
+            editable: false,
           };
         }
       }
@@ -47,7 +51,7 @@ const createDividerPlugin = ({
       return null;
     },
     DividerButton,
-    addDivider: addDivider(entityType)
+    addDivider: addDivider(entityType),
   };
 };
 

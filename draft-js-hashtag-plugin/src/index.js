@@ -15,8 +15,7 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
-  const DecoratedHashtag = (props) =>
-    <Hashtag {...props} theme={theme} />;
+  const DecoratedHashtag = props => <Hashtag {...props} theme={theme} />;
   return {
     decorators: [
       {

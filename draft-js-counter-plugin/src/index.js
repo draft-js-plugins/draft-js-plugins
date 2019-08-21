@@ -22,14 +22,18 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
-  const DecoratedCharCounter = (props) =>
-    <CharCounter {...props} theme={theme} store={store} />;
-  const DecoratedWordCounter = (props) =>
-    <WordCounter {...props} theme={theme} store={store} />;
-  const DecoratedLineCounter = (props) =>
-    <LineCounter {...props} theme={theme} store={store} />;
-  const DecoratedCustomCounter = (props) =>
-    <CustomCounter {...props} theme={theme} store={store} />;
+  const DecoratedCharCounter = props => (
+    <CharCounter {...props} theme={theme} store={store} />
+  );
+  const DecoratedWordCounter = props => (
+    <WordCounter {...props} theme={theme} store={store} />
+  );
+  const DecoratedLineCounter = props => (
+    <LineCounter {...props} theme={theme} store={store} />
+  );
+  const DecoratedCustomCounter = props => (
+    <CustomCounter {...props} theme={theme} store={store} />
+  );
   return {
     CharCounter: DecoratedCharCounter,
     WordCounter: DecoratedWordCounter,
