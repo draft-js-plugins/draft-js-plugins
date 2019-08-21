@@ -292,11 +292,25 @@ export class MentionSuggestions extends Component {
     // It assumes that the keyFunctions object will not loose its reference and
     // by this we can replace inner parameters spread over different modules.
     // This better be some registering & unregistering logic. PRs are welcome :)
-    this.props.callbacks.onDownArrow = this.onDownArrow;
-    this.props.callbacks.onUpArrow = this.onUpArrow;
-    this.props.callbacks.onEscape = this.onEscape;
     this.props.callbacks.handleReturn = this.commitSelection;
-    this.props.callbacks.onTab = this.onTab;
+    this.props.callbacks.keyBindingFn = keyboardEvent => {
+      // arrow down
+      if (keyboardEvent.keyCode === 40) {
+        this.onDownArrow(keyboardEvent);
+      }
+      // arrow up
+      if (keyboardEvent.keyCode === 38) {
+        this.onUpArrow(keyboardEvent);
+      }
+      // escape
+      if (keyboardEvent.keyCode === 27) {
+        this.onEscape(keyboardEvent);
+      }
+      // tab
+      if (keyboardEvent.keyCode === 9) {
+        this.onTab(keyboardEvent);
+      }
+    };
 
     const descendant = `mention-option-${this.key}-${this.state.focusedOptionIndex}`;
     this.props.ariaProps.ariaActiveDescendantID = descendant;
@@ -314,11 +328,8 @@ export class MentionSuggestions extends Component {
 
   closeDropdown = () => {
     // make sure none of these callbacks are triggered
-    this.props.callbacks.onDownArrow = undefined;
-    this.props.callbacks.onUpArrow = undefined;
-    this.props.callbacks.onTab = undefined;
-    this.props.callbacks.onEscape = undefined;
     this.props.callbacks.handleReturn = undefined;
+    this.props.callbacks.keyBindingFn = undefined;
     this.props.ariaProps.ariaHasPopup = 'false';
     this.props.ariaProps.ariaExpanded = false;
     this.props.ariaProps.ariaActiveDescendantID = undefined;

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## to be released 
+
+- removed deprecated draft-js hooks (onUpArrow, onDownArrow, onEscape, onTab) usage
+
 ## 3.1.4
 
 - Allow draft-js v0.11
