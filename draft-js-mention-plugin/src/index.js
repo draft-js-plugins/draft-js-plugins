@@ -6,29 +6,13 @@ import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import defaultRegExp from './defaultRegExp';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
-import mentionStyles from './mentionStyles.css';
-import mentionSuggestionsStyles from './mentionSuggestionsStyles.css';
-import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
+import { defaultTheme } from './theme.js';
 
 export { default as MentionSuggestions } from './MentionSuggestions';
 
-export const defaultTheme = {
-  // CSS class for mention text
-  mention: mentionStyles.mention,
-  // CSS class for suggestions component
-  mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
-  // CSS classes for an entry in the suggestions component
-  mentionSuggestionsEntry:
-    mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
-  mentionSuggestionsEntryFocused:
-    mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
-  mentionSuggestionsEntryText:
-    mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
-  mentionSuggestionsEntryAvatar:
-    mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
-};
+export { defaultTheme };
 
 export default (config = {}) => {
   const callbacks = {
