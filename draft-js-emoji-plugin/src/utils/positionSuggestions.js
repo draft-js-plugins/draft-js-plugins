@@ -45,7 +45,7 @@ const positionSuggestions = ({
   let transform;
   let transition;
   if (state.isActive) {
-    if (filteredEmojis.size > 0) {
+    if (filteredEmojis.length > 0) {
       transform = 'scale(1)';
       transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
     } else {

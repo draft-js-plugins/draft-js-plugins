@@ -10,6 +10,7 @@ export default class EmojiSuggestionsPortal extends Component {
 
   componentWillMount() {
     this.props.store.register(this.props.offsetKey);
+    this.props.store.setIsOpened(true);
     this.updatePortalClientRect(this.props);
 
     // trigger a re-render so the EmojiSuggestions becomes active
@@ -22,6 +23,7 @@ export default class EmojiSuggestionsPortal extends Component {
 
   componentWillUnmount() {
     this.props.store.unregister(this.props.offsetKey);
+    this.props.store.setIsOpened(false);
   }
 
   updatePortalClientRect(props) {

@@ -1,45 +1,43 @@
 import React from 'react';
 import clsx from 'clsx';
-import emojione from 'emojione';
+import { Emoji, getEmojiDataFromNative } from '@tunoltd/emoji-mart';
+import data from '@tunoltd/emoji-mart/data/all.json';
 
-const Emoji = ({
+const EmojiComponent = ({
   theme = {},
-  cacheBustParam,
-  imagePath,
-  imageType,
   className,
   decoratedText,
+  emojiSet,
   useNativeArt,
   ...props
 }) => {
-  const shortName = emojione.toShort(decoratedText);
+  const emojiData = getEmojiDataFromNative(decoratedText, emojiSet, data);
 
   let emojiDisplay = null;
-  if (useNativeArt === true) {
+  if (useNativeArt === true || !emojiData) {
     emojiDisplay = (
-      <span title={emojione.toShort(decoratedText)}>{props.children}</span>
+      <span title={emojiData ? emojiData.name : decoratedText}>
+        {props.children}
+      </span>
     );
   } else {
-    // short name to image url code steal from emojione source code
-    const shortNameForImage =
-      emojione.emojioneList[shortName].unicode[
-        emojione.emojioneList[shortName].unicode.length - 1
-      ];
-    const backgroundImage = `url(${imagePath}${shortNameForImage}.${imageType}${cacheBustParam})`;
     const combinedClassName = clsx(theme.emoji, className);
 
     emojiDisplay = (
-      <span
+      <Emoji
         className={combinedClassName}
-        title={emojione.toShort(decoratedText)}
-        style={{ backgroundImage }}
+        set={emojiSet}
+        skin={emojiData.skin || 1}
+        emoji={emojiData}
+        size={15}
+        tooltip
       >
         {props.children}
-      </span>
+      </Emoji>
     );
   }
 
   return emojiDisplay;
 };
 
-export default Emoji;
+export default EmojiComponent;

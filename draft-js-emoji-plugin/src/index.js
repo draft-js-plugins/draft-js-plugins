@@ -1,24 +1,19 @@
 import React from 'react';
-import { Map, List } from 'immutable';
-import keys from 'lodash/keys';
+import { Map } from 'immutable';
 import { EditorState } from 'draft-js';
+import { Picker } from '@tunoltd/emoji-mart';
+
 import Emoji from './components/Emoji';
 import EmojiSuggestions from './components/EmojiSuggestions';
 import EmojiSuggestionsPortal from './components/EmojiSuggestionsPortal';
-import EmojiSelect from './components/EmojiSelect';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import emojiStyles from './emojiStyles.css';
 import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
 import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
-import emojiSelectStyles from './emojiSelectStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
-import emojiList from './utils/emojiList';
-
-const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
-const defaultImageType = 'svg';
-const defaultCacheBustParam = '?v=2.2.7';
+import addEmoji from './modifiers/addEmoji';
 
 // TODO activate/deactivate different the conversion or search part
 
@@ -35,44 +30,6 @@ export default (config = {}) => {
       emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
     emojiSuggestionsEntryIcon:
       emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
-
-    emojiSelect: emojiSelectStyles.emojiSelect,
-
-    emojiSelectButton: emojiSelectStyles.emojiSelectButton,
-    emojiSelectButtonPressed: emojiSelectStyles.emojiSelectButtonPressed,
-
-    emojiSelectPopover: emojiSelectStyles.emojiSelectPopover,
-    emojiSelectPopoverClosed: emojiSelectStyles.emojiSelectPopoverClosed,
-    emojiSelectPopoverTitle: emojiSelectStyles.emojiSelectPopoverTitle,
-    emojiSelectPopoverGroups: emojiSelectStyles.emojiSelectPopoverGroups,
-
-    emojiSelectPopoverGroup: emojiSelectStyles.emojiSelectPopoverGroup,
-    emojiSelectPopoverGroupTitle:
-      emojiSelectStyles.emojiSelectPopoverGroupTitle,
-    emojiSelectPopoverGroupList: emojiSelectStyles.emojiSelectPopoverGroupList,
-    emojiSelectPopoverGroupItem: emojiSelectStyles.emojiSelectPopoverGroupItem,
-
-    emojiSelectPopoverToneSelect:
-      emojiSelectStyles.emojiSelectPopoverToneSelect,
-    emojiSelectPopoverToneSelectList:
-      emojiSelectStyles.emojiSelectPopoverToneSelectList,
-    emojiSelectPopoverToneSelectItem:
-      emojiSelectStyles.emojiSelectPopoverToneSelectItem,
-
-    emojiSelectPopoverEntry: emojiSelectStyles.emojiSelectPopoverEntry,
-    emojiSelectPopoverEntryFocused:
-      emojiSelectStyles.emojiSelectPopoverEntryFocused,
-    emojiSelectPopoverEntryIcon: emojiSelectStyles.emojiSelectPopoverEntryIcon,
-
-    emojiSelectPopoverNav: emojiSelectStyles.emojiSelectPopoverNav,
-    emojiSelectPopoverNavItem: emojiSelectStyles.emojiSelectPopoverNavItem,
-    emojiSelectPopoverNavEntry: emojiSelectStyles.emojiSelectPopoverNavEntry,
-    emojiSelectPopoverNavEntryActive:
-      emojiSelectStyles.emojiSelectPopoverNavEntryActive,
-
-    emojiSelectPopoverScrollbar: emojiSelectStyles.emojiSelectPopoverScrollbar,
-    emojiSelectPopoverScrollbarThumb:
-      emojiSelectStyles.emojiSelectPopoverScrollbarThumb,
   };
 
   const callbacks = {
@@ -92,6 +49,7 @@ export default (config = {}) => {
   let searches = Map();
   let escapedSearch;
   let clientRectFunctions = Map();
+  let isOpened;
 
   const store = {
     getEditorState: undefined,
@@ -119,6 +77,11 @@ export default (config = {}) => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
+
+    getIsOpened: () => isOpened,
+    setIsOpened: nextIsOpened => {
+      isOpened = nextIsOpened;
+    },
   };
 
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
@@ -129,60 +92,37 @@ export default (config = {}) => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const {
     theme = defaultTheme,
-    imagePath = defaultImagePath,
-    imageType = defaultImageType,
-    allowImageCache,
     positionSuggestions = defaultPositionSuggestions,
-    priorityList,
-    selectGroups,
-    selectButtonContent,
-    toneSelectOpenDelay,
     useNativeArt,
+    emojiSet = 'google',
   } = config;
 
-  const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
-
-  // if priorityList is configured in config then set priorityList
-  if (priorityList) emojiList.setPriorityList(priorityList);
+  const pickerProps = {
+    onClick(emoji) {
+      const newEditorState = addEmoji(store.getEditorState(), emoji.native);
+      store.setEditorState(newEditorState);
+    },
+    set: emojiSet,
+  };
   const suggestionsProps = {
     ariaProps,
-    cacheBustParam,
     callbacks,
-    imagePath,
-    imageType,
     theme,
     store,
     positionSuggestions,
-    shortNames: List(keys(emojiList.list)),
     useNativeArt,
+    emojiSet,
   };
-  const selectProps = {
-    cacheBustParam,
-    imagePath,
-    imageType,
+  const emojiProps = {
     theme,
-    store,
-    selectGroups,
-    selectButtonContent,
-    toneSelectOpenDelay,
     useNativeArt,
+    emojiSet,
   };
   const DecoratedEmojiSuggestions = props => (
     <EmojiSuggestions {...props} {...suggestionsProps} />
   );
-  const DecoratedEmojiSelect = props => (
-    <EmojiSelect {...props} {...selectProps} />
-  );
-  const DecoratedEmoji = props => (
-    <Emoji
-      {...props}
-      theme={theme}
-      imagePath={imagePath}
-      imageType={imageType}
-      cacheBustParam={cacheBustParam}
-      useNativeArt={useNativeArt}
-    />
-  );
+  const DecoratedEmojiSelect = props => <Picker {...props} {...pickerProps} />;
+  const DecoratedEmoji = props => <Emoji {...props} {...emojiProps} />;
   const DecoratedEmojiSuggestionsPortal = props => (
     <EmojiSuggestionsPortal {...props} store={store} />
   );
@@ -218,6 +158,7 @@ export default (config = {}) => {
     handleReturn: keyboardEvent =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: editorState => {
+      const currentSelectionState = editorState.getSelection();
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
 
       if (
@@ -231,7 +172,7 @@ export default (config = {}) => {
         // the contenteditable.
         newEditorState = EditorState.forceSelection(
           newEditorState,
-          newEditorState.getSelection()
+          currentSelectionState
         );
       }
 

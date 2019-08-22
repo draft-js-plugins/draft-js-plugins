@@ -2,9 +2,7 @@ import React, {
   // PropTypes,
   Component,
 } from 'react';
-import emojione from 'emojione';
-import emojiList from '../../../utils/emojiList';
-import convertShortNameToUnicode from '../../../utils/convertShortNameToUnicode';
+import { Emoji } from '@tunoltd/emoji-mart';
 
 export default class Entry extends Component {
   constructor(props) {
@@ -35,35 +33,22 @@ export default class Entry extends Component {
   };
 
   render() {
-    const {
-      theme = {},
-      imagePath,
-      imageType,
-      cacheBustParam,
-      useNativeArt,
-      isFocused,
-      id,
-    } = this.props;
+    const { theme = {}, useNativeArt, isFocused, id, emojiSet } = this.props;
     const className = isFocused
       ? theme.emojiSuggestionsEntryFocused
       : theme.emojiSuggestionsEntry;
 
     let emojiDisplay = null;
     if (useNativeArt === true) {
-      const unicode = emojiList.list[this.props.emoji][0];
-      emojiDisplay = convertShortNameToUnicode(unicode);
+      emojiDisplay = this.props.emoji.native;
     } else {
-      // short name to image url code steal from emojione source code
-      const shortNameForImage =
-        emojione.emojioneList[this.props.emoji].unicode[
-          emojione.emojioneList[this.props.emoji].unicode.length - 1
-        ];
-      const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
       emojiDisplay = (
-        <img
-          src={fullImagePath}
-          className={theme.emojiSuggestionsEntryIcon}
-          role="presentation"
+        <Emoji
+          set={emojiSet}
+          skin={this.props.emoji.skin || 1}
+          emoji={this.props.emoji}
+          size={18}
+          tooltip
         />
       );
     }
@@ -80,7 +65,7 @@ export default class Entry extends Component {
       >
         {emojiDisplay}
         <span className={theme.emojiSuggestionsEntryText}>
-          {this.props.emoji}
+          {this.props.emoji.colons}
         </span>
       </div>
     );

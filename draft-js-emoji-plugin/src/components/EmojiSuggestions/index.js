@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { genKey } from 'draft-js';
+import { NimbleEmojiIndex } from '@tunoltd/emoji-mart';
+import emojiData from '@tunoltd/emoji-mart/data/all';
+
 import Entry from './Entry';
 import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
@@ -21,11 +24,18 @@ export default class EmojiSuggestions extends Component {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
       // not fullfilled anymore.
-      const size = this.filteredEmojis.size;
+      const size = this.filteredEmojis.length;
       if (size > 0 && this.state.focusedOptionIndex >= size) {
         this.setState({
           focusedOptionIndex: size - 1,
         });
+      }
+
+      // Note: this is a simple protection for the error when componentDidUpdate
+      // try to get new getPortalClientRect, but the key already was deleted by
+      // previous action.
+      if (!this.props.store.getAllSearches().has(this.activeOffsetKey)) {
+        return;
       }
 
       if (size <= 0) {
@@ -167,7 +177,7 @@ export default class EmojiSuggestions extends Component {
   onDownArrow = keyboardEvent => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
-    this.onEmojiFocus(newIndex >= this.filteredEmojis.size ? 0 : newIndex);
+    this.onEmojiFocus(newIndex >= this.filteredEmojis.length ? 0 : newIndex);
   };
 
   onTab = keyboardEvent => {
@@ -177,7 +187,7 @@ export default class EmojiSuggestions extends Component {
 
   onUpArrow = keyboardEvent => {
     keyboardEvent.preventDefault();
-    if (this.filteredEmojis.size > 0) {
+    if (this.filteredEmojis.length > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
       this.onEmojiFocus(Math.max(newIndex, 0));
     }
@@ -201,7 +211,7 @@ export default class EmojiSuggestions extends Component {
     this.closeDropdown();
     const newEditorState = addEmoji(
       this.props.store.getEditorState(),
-      emoji,
+      emoji.native,
       AddEmojiMode.REPLACE
     );
     this.props.store.setEditorState(newEditorState);
@@ -224,15 +234,26 @@ export default class EmojiSuggestions extends Component {
       selection
     );
     const emojiValue = word.substring(1, word.length).toLowerCase();
-    const filteredValues = this.props.shortNames.filter(
-      emojiShortName => !emojiValue || emojiShortName.indexOf(emojiValue) > -1
-    );
-    const size = filteredValues.size < 9 ? filteredValues.size : 9;
-    return filteredValues.setSize(size);
+    const emojiIndex = new NimbleEmojiIndex(emojiData, this.props.emojiSet);
+
+    if (emojiValue.length === 0) {
+      return [
+        emojiIndex.search('+1')[0],
+        emojiIndex.search('-1')[0],
+        emojiIndex.search('white_check_mark')[0],
+        emojiIndex.search('100')[0],
+      ];
+    }
+
+    return emojiIndex.search(emojiValue).slice(0, 9);
   };
 
   commitSelection = () => {
-    this.onEmojiSelect(this.filteredEmojis.get(this.state.focusedOptionIndex));
+    if (!this.props.store.getIsOpened()) {
+      return 'not-handled';
+    }
+
+    this.onEmojiSelect(this.filteredEmojis[this.state.focusedOptionIndex]);
     return 'handled';
   };
 
@@ -300,18 +321,15 @@ export default class EmojiSuggestions extends Component {
     this.filteredEmojis = this.getEmojisForFilter();
     const {
       theme = {},
-      cacheBustParam,
-      imagePath,
-      imageType,
       ariaProps, // eslint-disable-line no-unused-vars
       callbacks, // eslint-disable-line no-unused-vars
       onClose, // eslint-disable-line no-unused-vars
       onOpen, // eslint-disable-line no-unused-vars
       onSearchChange, // eslint-disable-line no-unused-vars
       positionSuggestions, // eslint-disable-line no-unused-vars
-      shortNames, // eslint-disable-line no-unused-vars
       store, // eslint-disable-line no-unused-vars
       useNativeArt,
+      emojiSet,
       ...restProps
     } = this.props;
     return (
@@ -324,24 +342,20 @@ export default class EmojiSuggestions extends Component {
           this.popover = element;
         }}
       >
-        {this.filteredEmojis
-          .map((emoji, index) => (
-            <Entry
-              key={emoji}
-              onEmojiSelect={this.onEmojiSelect}
-              onEmojiFocus={this.onEmojiFocus}
-              isFocused={this.state.focusedOptionIndex === index}
-              emoji={emoji}
-              index={index}
-              id={`emoji-option-${this.key}-${index}`}
-              theme={theme}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
-              useNativeArt={useNativeArt}
-            />
-          ))
-          .toJS()}
+        {this.filteredEmojis.map((emoji, index) => (
+          <Entry
+            key={emoji.id}
+            onEmojiSelect={this.onEmojiSelect}
+            onEmojiFocus={this.onEmojiFocus}
+            isFocused={this.state.focusedOptionIndex === index}
+            emoji={emoji}
+            index={index}
+            id={`emoji-option-${this.key}-${index}`}
+            theme={theme}
+            useNativeArt={useNativeArt}
+            emojiSet={emojiSet}
+          />
+        ))}
       </div>
     );
   }
