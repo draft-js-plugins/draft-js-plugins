@@ -78,4 +78,4 @@ class MultiDecorator {
   }
 }
 
-module.exports = MultiDecorator;
+export default MultiDecorator;
