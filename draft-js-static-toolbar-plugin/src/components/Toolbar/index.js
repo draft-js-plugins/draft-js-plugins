@@ -18,7 +18,7 @@ class Toolbar extends React.Component {
     overrideContent: undefined,
   };
 
-  // componentWillMount() {
+  // UNSAFE_componentWillMount() {
   //   this.props.store.subscribeToItem('selection', () => this.forceUpdate());
   // }
 

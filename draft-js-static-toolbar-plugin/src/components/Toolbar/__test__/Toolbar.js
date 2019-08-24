@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import Toolbar from '../index';
 
-describe('Toolbar', () => {
+describe.skip('Toolbar', () => {
   it('allows children to override the content', done => {
     class Child extends Component {
       componentDidMount() {

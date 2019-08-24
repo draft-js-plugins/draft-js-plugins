@@ -12,10 +12,10 @@ export default class MentionSuggestionsPortal extends Component {
 
   // When inputting Japanese characters (or any complex alphabet which requires
   // hitting enter to commit the characters), that action was causing a race
-  // condition when we used componentWillMount. By using componentDidMount
-  // instead of componentWillMount, the component will unmount unregister and
+  // condition when we used UNSAFE_componentWillMount. By using componentDidMount
+  // instead of UNSAFE_componentWillMount, the component will unmount unregister and
   // then properly mount and register after. Prior to this change,
-  // componentWillMount would not fire after componentWillUnmount even though it
+  // UNSAFE_componentWillMount would not fire after componentWillUnmount even though it
   // was still in the DOM, so it wasn't re-registering the offsetkey.
   componentDidMount() {
     this.props.store.register(this.props.offsetKey);
@@ -26,7 +26,7 @@ export default class MentionSuggestionsPortal extends Component {
     this.props.setEditorState(this.props.getEditorState());
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.updatePortalClientRect(nextProps);
   }
 

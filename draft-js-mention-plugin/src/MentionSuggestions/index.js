@@ -21,12 +21,12 @@ export class MentionSuggestions extends Component {
     focusedOptionIndex: 0,
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.key = genKey();
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.suggestions.length === 0 && this.state.isActive) {
       this.closeDropdown();
     } else if (
@@ -38,7 +38,7 @@ export class MentionSuggestions extends Component {
     }
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate(prevProps, prevState) {
     if (this.popover) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
@@ -73,11 +73,11 @@ export class MentionSuggestions extends Component {
         this.popover.style[key] = newStyles[key];
       });
     }
-  };
+  }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     this.props.callbacks.onChange = undefined;
-  };
+  }
 
   onEditorStateChange = editorState => {
     const searches = this.props.store.getAllSearches();

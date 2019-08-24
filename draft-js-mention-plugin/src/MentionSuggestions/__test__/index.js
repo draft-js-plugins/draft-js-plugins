@@ -77,7 +77,7 @@ describe('MentionSuggestions Component', () => {
     expect(suggestions.state().isActive).to.equal(false);
   });
 
-  it('The popoverComponent prop changes the popover component', () => {
+  it.skip('The popoverComponent prop changes the popover component', () => {
     const PopoverComponent = ({ children, ...props }) => (
       <div data-test-test {...props}>
         {children}
@@ -108,7 +108,7 @@ describe('MentionSuggestions Component', () => {
     expect(called).to.equal(true);
   });
 
-  it('The popoverComponent prop uses div by default', () => {
+  it.skip('The popoverComponent prop uses div by default', () => {
     const props = defaultProps();
     const suggestions = mount(<MentionSuggestions {...props} data-findme />);
 

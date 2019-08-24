@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## To be released
+
+- Replace legacy lifecycle hooks with UNSAFE aliases; the required react version is 16.3
+
 ## 3.1.5
 
 - removed deprecated draft-js hooks (onUpArrow, onDownArrow, onEscape, onTab) usage
@@ -13,34 +17,44 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Remove unused dependencies
 
 ## 3.1.3
+
 - Force update regex's `lastIndex` to avoid infinite loop
 - Fixed replace issue while `mentionTrigger` is empty
 
 ## 3.1.2
+
 - Allow empty `mentionTrigger` with `supportWhitespace: true` #1182
 
 ## 3.1.1
+
 - Fix regression for special characters in mention strategy.
 
 ## 3.1.0
+
 - Added `supportWhitespace` option to allow more precise matching of mentions containing spaces
 
 ## 3.0.4
+
 - Added an `id` attribute on the listbox options so the `aria-activedescendant` value refers to the focused option.
 
 ## 3.0.2 - 3.0.3
+
 - bumped find-with-regex
 
 ## 3.0.1
+
 - Added `aria-selected="true"` for the suggestions listbox focused option.
 - Update aria attributes to use booleans
 
 ## 3.0.0
+
 - Deprecate immutable suggestions (breaking change), use arrays from now on
 - export default theme (in case we want to extend it)
 
 ## 2.0.2
+
 (Much thanks to "dem" aka "Michael Deryugin" - https://github.com/dem)
+
 - fix suggestions dropdown position in case of line wrap
 - Allow mention popup for styled text
 - Fixed bug where a user typed not existing mention @xxx and cursor is not moved with up/down arrow key
@@ -92,10 +106,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Accepts plain JavaScript Objects for mentions from now on. Until now it only accepted an `Immutable.Map`. This change would make it play nicer together with `convertFromRaw` by default. Thanks to @anderslemke [#326](https://github.com/draft-js-plugins/draft-js-plugins/pull/326)
 - `positionSuggestions` now works by default with non-static parents. Thanks to @Zhouzi
-[#309](https://github.com/draft-js-plugins/draft-js-plugins/pull/309)
-[#206](https://github.com/draft-js-plugins/draft-js-plugins/issues/206)
-[#283](https://github.com/draft-js-plugins/draft-js-plugins/issues/283)
-[#289](https://github.com/draft-js-plugins/draft-js-plugins/issues/289)
+  [#309](https://github.com/draft-js-plugins/draft-js-plugins/pull/309)
+  [#206](https://github.com/draft-js-plugins/draft-js-plugins/issues/206)
+  [#283](https://github.com/draft-js-plugins/draft-js-plugins/issues/283)
+  [#289](https://github.com/draft-js-plugins/draft-js-plugins/issues/289)
 
 ## 1.1.1 - 2016-06-05
 
@@ -154,10 +168,12 @@ const mentionPlugin = createMentionPlugin({ entityMutability: 'IMMUTABLE' });
 ## 0.0.4 - 2016-03-29
 
 ### Fixed
+
 - Fix issue with showing two menus at the same time [#132](https://github.com/draft-js-plugins/draft-js-plugins/issues/132)
 - When typing ahead to 0 results and then back the first item must be still selected. [#149](https://github.com/draft-js-plugins/draft-js-plugins/pull/149)
 
 ## 0.0.3 - 2016-03-25
+
 ### Released the first working version of DraftJS Mention Plugin
 
 It's not recommended to use the version 0.0.0 - 0.0.2

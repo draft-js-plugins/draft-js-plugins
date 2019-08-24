@@ -28,7 +28,7 @@ export default class AlignmentTool extends React.Component {
     alignment: null,
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.store.subscribeToItem('visibleBlock', this.onVisibilityChanged);
     this.props.store.subscribeToItem('alignment', this.onAlignmentChange);
   }

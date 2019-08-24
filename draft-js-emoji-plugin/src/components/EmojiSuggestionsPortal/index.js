@@ -8,7 +8,7 @@ export default class EmojiSuggestionsPortal extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.store.register(this.props.offsetKey);
     this.updatePortalClientRect(this.props);
 
@@ -16,7 +16,7 @@ export default class EmojiSuggestionsPortal extends Component {
     this.props.setEditorState(this.props.getEditorState());
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.updatePortalClientRect(nextProps);
   }
 
