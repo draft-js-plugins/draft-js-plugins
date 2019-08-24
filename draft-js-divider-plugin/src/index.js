@@ -1,14 +1,8 @@
 import React from 'react';
 import DefaultDivider from './components/DefaultDivider';
 import DefaultButton from './components/DividerButton';
-
 import addDivider from './modifiers/addDivider';
-
-import dividerStyles from './dividerStyles.css';
-
-const defaultTheme = {
-  divider: dividerStyles.divider,
-};
+import { defaultTheme } from './theme.js';
 
 const createDividerPlugin = ({
   entityType = 'divider',
