@@ -1,11 +1,7 @@
 import * as React from 'react';
 import Link from './Link';
 import linkStrategy from './linkStrategy';
-import styles from './styles.css';
-
-const defaultTheme = {
-  link: styles.link,
-};
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
