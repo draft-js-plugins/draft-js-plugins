@@ -3,12 +3,7 @@ import CharCounter from './CharCounter';
 import WordCounter from './WordCounter';
 import LineCounter from './LineCounter';
 import CustomCounter from './CustomCounter';
-import styles from './styles.css';
-
-const defaultTheme = {
-  counter: styles.counter,
-  counterOverLimit: styles.counterOverLimit,
-};
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
   const store = {
