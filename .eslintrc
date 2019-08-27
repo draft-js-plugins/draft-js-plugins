@@ -8,6 +8,8 @@
   },
   "extends": "airbnb",
   "rules": {
+    "no-multi-spaces": 0,
+    "padded-blocks": 0,
     "camelcase": 0,
     "react/sort-comp": 0,
     "no-cond-assign": 0,

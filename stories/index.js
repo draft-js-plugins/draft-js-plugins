@@ -1,5 +1,5 @@
 import React from 'react';
-import 'style-loader!css-loader!draft-js/dist/Draft.css'; // eslint-disable-line import/no-unresolved
+import 'draft-js/dist/Draft.css';
 
 import { storiesOf } from '@storybook/react';
 import SimpleAlignmentEditor from './alignment/src/App';
@@ -44,34 +44,69 @@ storiesOf('Draft.js Plugins', module)
   .add('Editor with Alignment Plugin', () => <SimpleAlignmentEditor />)
   .add('Editor with Anchor Plugin', () => <AnchorSimpleLinkPluginEditor />)
   .add('Editor with Counter Plugin', () => <SimpleCounterEditor />)
-  .add('Editor with DragNDrop plugin and image plugin', () => <DragNDropImageEditor />)
-  .add('Editor with Emoji Plugin using emoji-one plugins', () => <SimpleEmojiEditor />)
-  .add('Editor with Emoji Plugin using native emojis', () => <CustomEmojiEditor />)
+  .add('Editor with DragNDrop plugin and image plugin', () => (
+    <DragNDropImageEditor />
+  ))
+  .add('Editor with Emoji Plugin using emoji-one plugins', () => (
+    <SimpleEmojiEditor />
+  ))
+  .add('Editor with Emoji Plugin using native emojis', () => (
+    <CustomEmojiEditor />
+  ))
   .add('Editor with Focus Plugin', () => <SimpleFocusEditor />)
   .add('Editor with Hashtag Plugin', () => <SimpleHashtagEditor />)
-  .add('Editor with custom themed Hashtag Plugin', () => <CustomHashtagEditor />)
+  .add('Editor with custom themed Hashtag Plugin', () => (
+    <CustomHashtagEditor />
+  ))
   .add('Editor with Image Plugin', () => <SimpleImageEditor />)
-  .add('Editor with Image Plugin and a few others: drag and drop, alignment, resizable, focus', () => <CustomImageEditor />)
+  .add(
+    'Editor with Image Plugin and a few others: drag and drop, alignment, resizable, focus',
+    () => <CustomImageEditor />
+  )
   .add('Editor with Image Plugin and Add mechanism', () => <AddImageEditor />)
-  .add('Editor with default inline toolbar plugin', () => <SimpleInlineToolbarEditor />)
-  .add('Editor with inline toolbar plugin containing all buttons', () => <CustomInlineToolbarEditor />)
-  .add('Editor with custom themed toolbar plugin', () => <ThemedInlineToolbarEditor />)
-  .add('Inline Toolbar with relatively positioned parent', () => <RelativeParentInlineToolbarEditor />)
+  .add('Editor with default inline toolbar plugin', () => (
+    <SimpleInlineToolbarEditor />
+  ))
+  .add('Editor with inline toolbar plugin containing all buttons', () => (
+    <CustomInlineToolbarEditor />
+  ))
+  .add('Editor with custom themed toolbar plugin', () => (
+    <ThemedInlineToolbarEditor />
+  ))
+  .add('Inline Toolbar with relatively positioned parent', () => (
+    <RelativeParentInlineToolbarEditor />
+  ))
   .add('Editor with Linkify Plugin', () => <SimpleLinkifyEditor />)
-  .add('Editor with Linkify Plugin and configured to render links with - target: _blank', () => <CustomLinkifyEditor />)
+  .add(
+    'Editor with Linkify Plugin and configured to render links with - target: _blank',
+    () => <CustomLinkifyEditor />
+  )
   .add('Editor with Mention Plugin', () => <SimpleMentionEditor />)
-  .add('Editor with Mention Plugin and asynchronously loaded Suggestions', () => <RemoteMentionEditor />)
-  .add('Editor with custom themed Mention Plugin', () => <CustomMentionEditor />)
-  .add('Mentions with styled suggestions', () => <CustomComponentMentionEditor />)
-  .add('Mentions with a custom trigger', () => <MentionEditorWithCustomTrigger />)
+  .add(
+    'Editor with Mention Plugin and asynchronously loaded Suggestions',
+    () => <RemoteMentionEditor />
+  )
+  .add('Editor with custom themed Mention Plugin', () => (
+    <CustomMentionEditor />
+  ))
+  .add('Mentions with styled suggestions', () => (
+    <CustomComponentMentionEditor />
+  ))
+  .add('Mentions with a custom trigger', () => (
+    <MentionEditorWithCustomTrigger />
+  ))
   .add('Mentions with whitespace', () => <MentionEditorWithWhitespaceSupport />)
   .add('Sidebar', () => <SimpleSideToolbarEditor />)
   .add('Styled Sidebar', () => <CustomSideToolbarEditor />)
-  .add('Sidebar with relatively positioned parent', () => <RelativeParentSideToolbarEditor />)
+  .add('Sidebar with relatively positioned parent', () => (
+    <RelativeParentSideToolbarEditor />
+  ))
   .add('Editor with Sticker Plugin', () => <SimpleStickerEditor />)
   .add('Editor with Undo Plugin', () => <SimpleUndoEditor />)
   .add('Editor with Video Plugin', () => <SimpleVideoEditor />)
-  .add('Editor with Video Plugin and Add Video Button', () => <CustomAddVideoEditor />)
+  .add('Editor with Video Plugin and Add Video Button', () => (
+    <CustomAddVideoEditor />
+  ))
   .add('Kitchen Sink', () => <KitchenSink />)
   .add('Resizable Editor', () => <ResizableEditor />)
   .add('CustomToolbarEditor', () => <CustomToolbarEditor />)

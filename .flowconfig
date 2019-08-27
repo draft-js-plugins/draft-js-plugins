@@ -34,6 +34,7 @@
 .*/node_modules/draft-js/lib/DraftEditorLeaf.react.js.flow
 .*/node_modules/draft-js/lib/DraftEditor.react.js.flow
 .*/node_modules/draft-js/lib/convertFromHTMLToContentBlocks.js.flow
+.*/node_modules/polished/.*
 
 [include]
 flow-typed

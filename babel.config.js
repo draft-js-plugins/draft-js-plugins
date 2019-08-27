@@ -11,17 +11,5 @@ const removeLinariaImport = () => ({
 
 module.exports = {
   presets: ['@babel/env', '@babel/react', '@babel/flow', 'linaria/babel'],
-  plugins: [
-    '@babel/proposal-class-properties',
-    removeLinariaImport,
-    [
-      'css-modules-transform',
-      {
-        generateScopedName: '[name]__[local]___[hash:base64:5]',
-        extractCss: {
-          dir: 'lib-css',
-        },
-      },
-    ],
-  ],
+  plugins: ['@babel/proposal-class-properties', removeLinariaImport],
 };
