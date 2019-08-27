@@ -6,26 +6,7 @@ import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
 import blockRendererFn from './blockRendererFn';
 import Sticker from './Sticker';
 import StickerSelect from './StickerSelect';
-import stickerStyles from './stickerStyles.css';
-import selectStyles from './selectStyles.css';
-import selectStickerStyles from './selectStickerStyles.css';
-
-const defaultTheme = {
-  sticker: stickerStyles.sticker,
-  stickerImage: stickerStyles.stickerImage,
-  stickerRemoveButton: stickerStyles.stickerRemoveButton,
-
-  select: selectStyles.select,
-  selectPopover: selectStyles.selectPopover,
-  selectClosedPopover: selectStyles.selectClosedPopover,
-  selectBottomGradient: selectStyles.selectBottomGradient,
-  selectButton: selectStyles.selectButton,
-  selectPressedButton: selectStyles.selectPressedButton,
-  selectStickerList: selectStyles.selectStickerList,
-
-  selectSticker: selectStickerStyles.selectSticker,
-  selectStickerImage: selectStickerStyles.selectStickerImage,
-};
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
