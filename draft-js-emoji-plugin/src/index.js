@@ -8,13 +8,12 @@ import EmojiSuggestionsPortal from './components/EmojiSuggestionsPortal';
 import EmojiSelect from './components/EmojiSelect';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
-import emojiStyles from './emojiStyles.css';
-import emojiSuggestionsStyles from './emojiSuggestionsStyles.css';
-import emojiSuggestionsEntryStyles from './emojiSuggestionsEntryStyles.css';
-import emojiSelectStyles from './emojiSelectStyles.css';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
+import { defaultTheme } from './theme.js';
+
+export { defaultTheme };
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const defaultImageType = 'svg';
@@ -23,58 +22,6 @@ const defaultCacheBustParam = '?v=2.2.7';
 // TODO activate/deactivate different the conversion or search part
 
 export default (config = {}) => {
-  const defaultTheme = {
-    emoji: emojiStyles.emoji,
-
-    emojiSuggestions: emojiSuggestionsStyles.emojiSuggestions,
-
-    emojiSuggestionsEntry: emojiSuggestionsEntryStyles.emojiSuggestionsEntry,
-    emojiSuggestionsEntryFocused:
-      emojiSuggestionsEntryStyles.emojiSuggestionsEntryFocused,
-    emojiSuggestionsEntryText:
-      emojiSuggestionsEntryStyles.emojiSuggestionsEntryText,
-    emojiSuggestionsEntryIcon:
-      emojiSuggestionsEntryStyles.emojiSuggestionsEntryIcon,
-
-    emojiSelect: emojiSelectStyles.emojiSelect,
-
-    emojiSelectButton: emojiSelectStyles.emojiSelectButton,
-    emojiSelectButtonPressed: emojiSelectStyles.emojiSelectButtonPressed,
-
-    emojiSelectPopover: emojiSelectStyles.emojiSelectPopover,
-    emojiSelectPopoverClosed: emojiSelectStyles.emojiSelectPopoverClosed,
-    emojiSelectPopoverTitle: emojiSelectStyles.emojiSelectPopoverTitle,
-    emojiSelectPopoverGroups: emojiSelectStyles.emojiSelectPopoverGroups,
-
-    emojiSelectPopoverGroup: emojiSelectStyles.emojiSelectPopoverGroup,
-    emojiSelectPopoverGroupTitle:
-      emojiSelectStyles.emojiSelectPopoverGroupTitle,
-    emojiSelectPopoverGroupList: emojiSelectStyles.emojiSelectPopoverGroupList,
-    emojiSelectPopoverGroupItem: emojiSelectStyles.emojiSelectPopoverGroupItem,
-
-    emojiSelectPopoverToneSelect:
-      emojiSelectStyles.emojiSelectPopoverToneSelect,
-    emojiSelectPopoverToneSelectList:
-      emojiSelectStyles.emojiSelectPopoverToneSelectList,
-    emojiSelectPopoverToneSelectItem:
-      emojiSelectStyles.emojiSelectPopoverToneSelectItem,
-
-    emojiSelectPopoverEntry: emojiSelectStyles.emojiSelectPopoverEntry,
-    emojiSelectPopoverEntryFocused:
-      emojiSelectStyles.emojiSelectPopoverEntryFocused,
-    emojiSelectPopoverEntryIcon: emojiSelectStyles.emojiSelectPopoverEntryIcon,
-
-    emojiSelectPopoverNav: emojiSelectStyles.emojiSelectPopoverNav,
-    emojiSelectPopoverNavItem: emojiSelectStyles.emojiSelectPopoverNavItem,
-    emojiSelectPopoverNavEntry: emojiSelectStyles.emojiSelectPopoverNavEntry,
-    emojiSelectPopoverNavEntryActive:
-      emojiSelectStyles.emojiSelectPopoverNavEntryActive,
-
-    emojiSelectPopoverScrollbar: emojiSelectStyles.emojiSelectPopoverScrollbar,
-    emojiSelectPopoverScrollbarThumb:
-      emojiSelectStyles.emojiSelectPopoverScrollbarThumb,
-  };
-
   const callbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
