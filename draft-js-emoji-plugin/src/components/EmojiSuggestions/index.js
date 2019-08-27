@@ -11,12 +11,12 @@ export default class EmojiSuggestions extends Component {
     focusedOptionIndex: 0,
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.key = genKey();
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate(prevProps, prevState) {
     if (this.popover) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
@@ -48,11 +48,11 @@ export default class EmojiSuggestions extends Component {
         this.popover.style[key] = newStyles[key];
       });
     }
-  };
+  }
 
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     this.props.callbacks.onChange = undefined;
-  };
+  }
 
   onEditorStateChange = editorState => {
     const searches = this.props.store.getAllSearches();

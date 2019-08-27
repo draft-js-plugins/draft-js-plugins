@@ -8,7 +8,10 @@
   },
   "extends": "airbnb",
   "rules": {
+    "camelcase": 0,
+    "react/sort-comp": 0,
     "no-cond-assign": 0,
+    "react/no-did-update-set-state": 0,
     "no-restricted-syntax": 0,
     "no-lonely-if": 0,
     "no-prototype-builtins": 0,
