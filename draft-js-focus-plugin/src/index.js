@@ -7,7 +7,7 @@ import createBlockKeyStore from './utils/createBlockKeyStore';
 import blockInSelection from './utils/blockInSelection';
 import getBlockMapKeys from './utils/getBlockMapKeys';
 import removeBlock from './modifiers/removeBlock';
-import defaultTheme from './style.css';
+import { defaultTheme } from './theme.js';
 
 const focusableBlockIsSelected = (editorState, blockKeyStore) => {
   const selection = editorState.getSelection();
