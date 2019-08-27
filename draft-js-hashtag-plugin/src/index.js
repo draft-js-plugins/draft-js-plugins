@@ -1,11 +1,7 @@
 import React from 'react';
 import Hashtag from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
-import styles from './styles.css';
-
-const defaultTheme = {
-  hashtag: styles.hashtag,
-};
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.

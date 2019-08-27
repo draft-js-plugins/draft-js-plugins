@@ -3,12 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## To Be Released
+
+- Migrate styles to linaria
+
 ## 2.0.4
 
 - Allow draft-js v0.11
 - Remove unused dependencies
 
 ## 2.0.2 - 2.0.3
+
 - bumped find-with-regex
 
 ## 1.1.0
@@ -25,6 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Moved the option `theme` from an Immutable Map to a JavaScript object. This is more likely to become a standard.
 
 ## 0.0.4 - 2016-03-25
+
 ### Released the first working version of DraftJS Hashtag Plugin
 
 It's not recommended to use the version 0.0.0 - 0.0.3
