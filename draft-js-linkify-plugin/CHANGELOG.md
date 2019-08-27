@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- Migrate styles to linaria
+
 ## 2.0.2
 
 - Allow draft-js v0.11
