@@ -3,8 +3,7 @@ import { EditorState } from 'draft-js';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
 import createStore from './utils/createStore';
-import buttonStyles from './buttonStyles.css';
-import alignmentToolStyles from './alignmentToolStyles.css';
+import { defaultTheme } from './theme.js';
 
 const createSetAlignment = (
   contentBlock,
@@ -26,12 +25,7 @@ export default (config = {}) => {
     isVisible: false,
   });
 
-  const defaultAlignmentToolTheme = {
-    buttonStyles,
-    alignmentToolStyles,
-  };
-
-  const { theme = defaultAlignmentToolTheme } = config;
+  const { theme = defaultTheme } = config;
 
   const DecoratedAlignmentTool = props => (
     <AlignmentTool {...props} store={store} theme={theme} />
