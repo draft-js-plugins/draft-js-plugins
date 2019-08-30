@@ -2,12 +2,9 @@ import React from 'react';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
 import Separator from './components/Separator';
-import buttonStyles from './buttonStyles.css';
-import toolbarStyles from './toolbarStyles.css';
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
-  const defaultTheme = { buttonStyles, toolbarStyles };
-
   const store = createStore({});
 
   const { theme = defaultTheme } = config;

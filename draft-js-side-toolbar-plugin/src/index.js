@@ -1,14 +1,10 @@
 import React from 'react';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
-import buttonStyles from './buttonStyles.css';
-import blockTypeSelectStyles from './blockTypeSelectStyles.css';
-import toolbarStyles from './toolbarStyles.css';
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
   const defaultPostion = 'left';
-
-  const defaultTheme = { buttonStyles, blockTypeSelectStyles, toolbarStyles };
 
   const store = createStore({
     isVisible: false,
