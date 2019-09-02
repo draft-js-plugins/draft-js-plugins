@@ -1,10 +1,9 @@
 import React from 'react';
 import addImage from './modifiers/addImage';
 import ImageComponent from './Image';
-import imageStyles from './imageStyles.css';
 
 const defaultTheme = {
-  image: imageStyles.image,
+  image: null,
 };
 
 export default (config = {}) => {

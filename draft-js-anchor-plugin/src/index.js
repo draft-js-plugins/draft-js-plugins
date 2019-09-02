@@ -1,14 +1,11 @@
 import React from 'react';
 import EditorUtils from 'draft-js-plugins-utils';
-
 import DefaultLink from './components/Link';
 import LinkButton from './components/LinkButton';
 import linkStrategy, { matchesEntityType } from './linkStrategy';
-import linkStyles from './linkStyles.css';
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
-  const defaultTheme = linkStyles;
-
   const { theme = defaultTheme, placeholder, Link, linkTarget } = config;
 
   const store = {
