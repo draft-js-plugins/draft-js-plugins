@@ -2,9 +2,7 @@ import React from 'react';
 import addVideo from './video/modifiers/addVideo';
 import DefaultVideoComponent from './video/components/DefaultVideoComponent';
 import * as types from './video/constants';
-import videoStyles from './videoStyles.css';
-
-const defaultTheme = videoStyles;
+import { defaultTheme } from './theme.js';
 
 const videoPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;

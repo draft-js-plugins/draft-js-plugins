@@ -1,12 +1,7 @@
 import React from 'react';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
-import styles from './styles.css';
-
-const defaultTheme = {
-  redo: styles.button,
-  undo: styles.button,
-};
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
   const undoContent = config.undoContent ? config.undoContent : '↺';
