@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
@@ -10,27 +12,33 @@ const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 export default class SimpleMentionEditor extends Component {
-
   state = {
+    open: false,
+    search: '',
     editorState: EditorState.createEmpty(),
-    suggestions: mentions,
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
   };
 
+  onOpenChange = newOpen => {
+    this.setState({
+      open: newOpen,
+    });
+  };
+
   onSearchChange = ({ value }) => {
     this.setState({
-      suggestions: defaultSuggestionsFilter(value, mentions),
+      search: value,
     });
   };
 
   onAddMention = () => {
     // get the mention object selected
-  }
+  };
 
   focus = () => {
     this.editor.focus();
@@ -43,11 +51,15 @@ export default class SimpleMentionEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
         <MentionSuggestions
+          open={this.state.open}
+          suggestions={defaultSuggestionsFilter(this.state.search, mentions)}
+          onOpenChange={this.onOpenChange}
           onSearchChange={this.onSearchChange}
-          suggestions={this.state.suggestions}
           onAddMention={this.onAddMention}
         />
       </div>

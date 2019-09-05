@@ -13,7 +13,7 @@ const getRelativeParent = element => {
   return getRelativeParent(element.parentElement);
 };
 
-const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
+const positionSuggestions = ({ decoratorRect, popover, props }) => {
   const relativeParent = getRelativeParent(popover.parentElement);
   const relativeRect = {};
 
@@ -39,7 +39,7 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
 
   let transform;
   let transition;
-  if (state.isActive) {
+  if (props.open) {
     if (props.suggestions.length > 0) {
       transform = 'scale(1)';
       transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';

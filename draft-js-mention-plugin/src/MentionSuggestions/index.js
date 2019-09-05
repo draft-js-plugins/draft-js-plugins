@@ -10,35 +10,25 @@ import defaultEntryComponent from './Entry/defaultEntryComponent';
 
 export class MentionSuggestions extends Component {
   static propTypes = {
+    open: PropTypes.bool.isRequired,
+    onOpenChange: PropTypes.func.isRequired,
     entityMutability: PropTypes.oneOf(['SEGMENTED', 'IMMUTABLE', 'MUTABLE']),
     entryComponent: PropTypes.func,
     onAddMention: PropTypes.func,
-    suggestions: PropTypes.array,
+    suggestions: PropTypes.array.isRequired,
   };
 
   state = {
-    isActive: false,
     focusedOptionIndex: 0,
   };
 
-  UNSAFE_componentWillMount() {
+  constructor(props) {
+    super(props);
     this.key = genKey();
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.suggestions.length === 0 && this.state.isActive) {
-      this.closeDropdown();
-    } else if (
-      nextProps.suggestions.length > 0 &&
-      nextProps.suggestions !== this.props.suggestions &&
-      !this.state.isActive
-    ) {
-      this.openDropdown();
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.popover) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
@@ -64,9 +54,7 @@ export class MentionSuggestions extends Component {
       const newStyles = this.props.positionSuggestions({
         decoratorRect,
         prevProps,
-        prevState,
         props: this.props,
-        state: this.state,
         popover: this.popover,
       });
       Object.keys(newStyles).forEach(key => {
@@ -164,7 +152,7 @@ export class MentionSuggestions extends Component {
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will show again.
     if (
-      !this.state.isActive &&
+      !this.props.open &&
       !this.props.store.isEscaped(this.activeOffsetKey) &&
       this.props.suggestions.length > 0
     ) {
@@ -317,13 +305,7 @@ export class MentionSuggestions extends Component {
     this.props.ariaProps.ariaOwneeID = `mentions-list-${this.key}`;
     this.props.ariaProps.ariaHasPopup = 'true';
     this.props.ariaProps.ariaExpanded = true;
-    this.setState({
-      isActive: true,
-    });
-
-    if (this.props.onOpen) {
-      this.props.onOpen();
-    }
+    this.props.onOpenChange(true);
   };
 
   closeDropdown = () => {
@@ -334,25 +316,18 @@ export class MentionSuggestions extends Component {
     this.props.ariaProps.ariaExpanded = false;
     this.props.ariaProps.ariaActiveDescendantID = undefined;
     this.props.ariaProps.ariaOwneeID = undefined;
-    this.setState({
-      isActive: false,
-    });
-
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
+    this.props.onOpenChange(false);
   };
 
   render() {
-    if (!this.state.isActive) {
+    if (!this.props.open) {
       return null;
     }
 
     const {
       entryComponent,
       popoverComponent = <div />,
-      onClose, // eslint-disable-line no-unused-vars
-      onOpen, // eslint-disable-line no-unused-vars
+      onOpenChange, // eslint-disable-line no-unused-vars
       onAddMention, // eslint-disable-line no-unused-vars, no-shadow
       onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
       suggestions, // eslint-disable-line no-unused-vars
