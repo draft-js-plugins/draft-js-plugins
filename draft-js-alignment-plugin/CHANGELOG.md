@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Replace legacy lifecycle hooks with UNSAFE aliases; the required react version is 16.3
 - Migrate styles to linaria
+- Hide internals in single bundle
+- Add esm support
 
 ## 2.0.6
 

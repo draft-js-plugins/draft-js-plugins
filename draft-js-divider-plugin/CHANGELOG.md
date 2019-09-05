@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## To Be Released
 
 - Migrate styles to linaria
+- Hide internals in single bundle
+- Add esm support
 
 ## 1.1.1
 
