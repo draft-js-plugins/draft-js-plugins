@@ -11,7 +11,8 @@
     "type": "git",
     "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
   },
-  "main": "lib/index.js",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
   "files": [
     "lib"
@@ -29,7 +30,7 @@
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
     "build": "yarn clean && yarn build:js && yarn build:ts && yarn build:css",
-    "build:js": "../node_modules/.bin/babel src --out-dir=lib --root-mode=upward --ignore='__test__/*'",
+    "build:js": "../node_modules/.bin/rollup --config ../rollup.config.js",
     "build:ts": "../node_modules/.bin/cpx src/*.d.ts lib/",
     "build:css": "node ../scripts/build-css.js $(pwd)",
     "prepublish": "yarn build"

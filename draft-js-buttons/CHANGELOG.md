@@ -1,8 +1,12 @@
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+## To be released
+
+- Hide internals in single bundle
+- Add esm support
 
 ## 2.0.2
 
@@ -11,5 +15,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add typescript typings
 
 ## 2.0.0-rc9 - 2017-11-07
-- Added buttons for Superscript and Subscript.
 
+- Added buttons for Superscript and Subscript.
