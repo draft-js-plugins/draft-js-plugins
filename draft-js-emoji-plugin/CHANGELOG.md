@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Migrate styles to linaria
 - Hide internals in single bundle
 - Add esm support
+- Use lodash-es in esm bundle
 
 ## 2.1.3
 

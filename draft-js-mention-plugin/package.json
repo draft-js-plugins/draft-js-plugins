@@ -38,6 +38,7 @@
     "clsx": "^1.0.4",
     "immutable": "~3.7.4",
     "lodash": "^4.17.14",
+    "lodash-es": "^4.17.15",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {

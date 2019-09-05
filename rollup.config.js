@@ -23,6 +23,19 @@ export default [
       file: './lib/index.esm.js',
     },
     external,
-    plugins: [nodeResolve(), babel({ rootMode: 'upward' })],
+    plugins: [
+      nodeResolve(),
+      babel({
+        rootMode: 'upward',
+        plugins: [
+          [
+            'babel-plugin-transform-rename-import',
+            {
+              replacements: [{ original: 'lodash', replacement: 'lodash-es' }],
+            },
+          ],
+        ],
+      }),
+    ],
   },
 ];
