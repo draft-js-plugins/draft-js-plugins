@@ -151,7 +151,7 @@ export default ({ config, store }) => WrappedComponent =>
 
         const { width, height } = this.state;
         this.setState({ clicked: false });
-        this.setEntityData({ width, height });
+        this.setEntityData({ width: horizontal === 'relative' ? `${width}%` : width, height: vertical === 'relative' ? `${height}%` : height });
       };
 
       // TODO clean up event listeners
