@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add esm support
 - Use lodash-es in esm bundle
 - Added open and onOpenChange required props to make state controlled outside and prevent reacting on suggestions list
+- onOpen and onClose callbacks are removed in favour of onOpenChange
 - Made suggestions prop required (pass empty array for async suggestions)
 - Remove prevState and state from positionSuggestions
 

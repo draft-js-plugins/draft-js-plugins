@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import mentionsStyles from './mentionsStyles.css';
 import mentions from './mentions';
 
-const positionSuggestions = ({ state, props }) => {
+const positionSuggestions = ({ props }) => {
   let transform;
   let transition;
 
-  if (state.isActive && props.suggestions.length > 0) {
+  if (props.open && props.suggestions.length > 0) {
     transform = 'scaleY(1)';
     transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
-  } else if (state.isActive) {
+  } else if (props.open) {
     transform = 'scaleY(0)';
     transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
   }
@@ -24,7 +26,7 @@ const positionSuggestions = ({ state, props }) => {
   };
 };
 
-const Entry = (props) => {
+const Entry = props => {
   const {
     mention,
     theme,
@@ -59,7 +61,6 @@ const Entry = (props) => {
 };
 
 export default class CustomMentionEditor extends Component {
-
   constructor(props) {
     super(props);
 
@@ -69,18 +70,25 @@ export default class CustomMentionEditor extends Component {
       theme: mentionsStyles,
       positionSuggestions,
       mentionPrefix: '@',
-      supportWhitespace: true
+      supportWhitespace: true,
     });
   }
 
   state = {
+    open: false,
     editorState: EditorState.createEmpty(),
     suggestions: mentions,
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
+    });
+  };
+
+  onOpenChange = newOpen => {
+    this.setState({
+      open: newOpen,
     });
   };
 
@@ -104,11 +112,15 @@ export default class CustomMentionEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
         <MentionSuggestions
-          onSearchChange={this.onSearchChange}
+          open={this.state.open}
+          onOpenChange={this.onOpenChange}
           suggestions={this.state.suggestions}
+          onSearchChange={this.onSearchChange}
           entryComponent={Entry}
         />
       </div>
