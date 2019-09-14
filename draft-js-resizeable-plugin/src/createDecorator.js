@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
 const getDisplayName = WrappedComponent => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
-  return component.displayName || component.name || 'Component';
+  return component.displayName || component.name || "Component";
 };
 
 const round = (x, steps) => Math.ceil(x / steps) * steps;
@@ -14,14 +14,15 @@ export default ({ config, store }) => WrappedComponent =>
     static WrappedComponent =
       WrappedComponent.WrappedComponent || WrappedComponent;
     static defaultProps = {
-      horizontal: 'relative',
+      horizontal: "relative",
       vertical: false,
       resizeSteps: 1,
-      ...config,
+      isResizable: true,
+      ...config
     };
     state = {
       hoverPosition: {},
-      clicked: false,
+      clicked: false
     };
 
     setEntityData = data => {
@@ -39,7 +40,7 @@ export default ({ config, store }) => WrappedComponent =>
     // used to save the hoverPosition so it can be leveraged to determine if a
     // drag should happen on mousedown
     mouseMove = evt => {
-      const { vertical, horizontal } = this.props;
+      const { vertical, horizontal, isResizable } = this.props;
 
       const hoverPosition = this.state.hoverPosition;
       const tolerance = 6;
@@ -50,22 +51,22 @@ export default ({ config, store }) => WrappedComponent =>
       const x = evt.clientX - b.left;
       const y = evt.clientY - b.top;
 
-      const isTop = vertical && vertical !== 'auto' ? y < tolerance : false;
+      const isTop = vertical && vertical !== "auto" ? y < tolerance : false;
       const isLeft = horizontal ? x < tolerance : false;
       const isRight = horizontal ? x >= b.width - tolerance : false;
       const isBottom =
-        vertical && vertical !== 'auto'
+        vertical && vertical !== "auto"
           ? y >= b.height - tolerance && y < b.height
           : false;
 
-      const canResize = isTop || isLeft || isRight || isBottom;
+      const canResize = (isTop || isLeft || isRight || isBottom) && isResizable;
 
       const newHoverPosition = {
         isTop,
         isLeft,
         isRight,
         isBottom,
-        canResize,
+        canResize
       };
       const hasNewHoverPositions = Object.keys(newHoverPosition).filter(
         key => hoverPosition[key] !== newHoverPosition[key]
@@ -122,19 +123,19 @@ export default ({ config, store }) => WrappedComponent =>
         const heightPerc = (100 / editorNode.clientHeight) * height;
 
         const newState = {};
-        if ((isLeft || isRight) && horizontal === 'relative') {
+        if ((isLeft || isRight) && horizontal === "relative") {
           newState.width = resizeSteps
             ? round(widthPerc, resizeSteps)
             : widthPerc;
-        } else if ((isLeft || isRight) && horizontal === 'absolute') {
+        } else if ((isLeft || isRight) && horizontal === "absolute") {
           newState.width = resizeSteps ? round(width, resizeSteps) : width;
         }
 
-        if ((isTop || isBottom) && vertical === 'relative') {
+        if ((isTop || isBottom) && vertical === "relative") {
           newState.height = resizeSteps
             ? round(heightPerc, resizeSteps)
             : heightPerc;
-        } else if ((isTop || isBottom) && vertical === 'absolute') {
+        } else if ((isTop || isBottom) && vertical === "absolute") {
           newState.height = resizeSteps ? round(height, resizeSteps) : height;
         }
 
@@ -146,8 +147,8 @@ export default ({ config, store }) => WrappedComponent =>
       // Finished dragging
       const stopDrag = () => {
         // TODO clean up event listeners
-        document.removeEventListener('mousemove', doDrag, false);
-        document.removeEventListener('mouseup', stopDrag, false);
+        document.removeEventListener("mousemove", doDrag, false);
+        document.removeEventListener("mouseup", stopDrag, false);
 
         const { width, height } = this.state;
         this.setState({ clicked: false });
@@ -155,8 +156,8 @@ export default ({ config, store }) => WrappedComponent =>
       };
 
       // TODO clean up event listeners
-      document.addEventListener('mousemove', doDrag, false);
-      document.addEventListener('mouseup', stopDrag, false);
+      document.addEventListener("mousemove", doDrag, false);
+      document.addEventListener("mouseup", stopDrag, false);
 
       this.setState({ clicked: true });
     };
@@ -167,6 +168,7 @@ export default ({ config, store }) => WrappedComponent =>
         vertical,
         horizontal,
         style,
+        isResizable,
         // using destructuring to make sure unused props are not passed down to the block
         resizeSteps, // eslint-disable-line no-unused-vars
         ...elementProps
@@ -174,35 +176,37 @@ export default ({ config, store }) => WrappedComponent =>
       const { width, height, hoverPosition } = this.state;
       const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
-      const styles = { position: 'relative', ...style };
+      const styles = { position: "relative", ...style };
 
-      if (horizontal === 'auto') {
-        styles.width = 'auto';
-      } else if (horizontal === 'relative') {
+      if (horizontal === "auto") {
+        styles.width = "auto";
+      } else if (horizontal === "relative") {
         styles.width = `${width || blockProps.resizeData.width || 40}%`;
-      } else if (horizontal === 'absolute') {
+      } else if (horizontal === "absolute") {
         styles.width = `${width || blockProps.resizeData.width || 40}px`;
       }
 
-      if (vertical === 'auto') {
-        styles.height = 'auto';
-      } else if (vertical === 'relative') {
+      if (vertical === "auto") {
+        styles.height = "auto";
+      } else if (vertical === "relative") {
         styles.height = `${height || blockProps.resizeData.height || 40}%`;
-      } else if (vertical === 'absolute') {
+      } else if (vertical === "absolute") {
         styles.height = `${height || blockProps.resizeData.height || 40}px`;
       }
 
       // Handle cursor
-      if ((isRight && isBottom) || (isLeft && isTop)) {
-        styles.cursor = 'nwse-resize';
+      if (!isResizable) {
+        styles.cursor = "default";
+      } else if ((isRight && isBottom) || (isLeft && isTop)) {
+        styles.cursor = "nwse-resize";
       } else if ((isRight && isTop) || (isBottom && isLeft)) {
-        styles.cursor = 'nesw-resize';
+        styles.cursor = "nesw-resize";
       } else if (isRight || isLeft) {
-        styles.cursor = 'ew-resize';
+        styles.cursor = "ew-resize";
       } else if (isBottom || isTop) {
-        styles.cursor = 'ns-resize';
+        styles.cursor = "ns-resize";
       } else {
-        styles.cursor = 'default';
+        styles.cursor = "default";
       }
 
       const interactionProps = store.getReadOnly()
@@ -210,7 +214,7 @@ export default ({ config, store }) => WrappedComponent =>
         : {
             onMouseDown: this.mouseDown,
             onMouseMove: this.mouseMove,
-            onMouseLeave: this.mouseLeave,
+            onMouseLeave: this.mouseLeave
           };
 
       return (
