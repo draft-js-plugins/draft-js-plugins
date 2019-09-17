@@ -5,11 +5,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
-- Replace legacy lifecycle hooks with UNSAFE aliases; the required react version is 16.3
+- Remove legacy lifecycle hooks
+- Require react 16.3 and above version
 - Migrate styles to linaria
 - Hide internals in single bundle
 - Add esm support
 - Use lodash-es in esm bundle
+- Added open and onOpenChange required props to make state controlled outside and prevent reacting on suggestions list
+- onOpen and onClose callbacks are removed in favour of onOpenChange
+- Made suggestions prop required (pass empty array for async suggestions)
+- Remove prevState and state from positionSuggestions
 
 ## 3.1.5
 

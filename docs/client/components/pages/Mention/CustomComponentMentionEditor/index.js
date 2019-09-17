@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
 export default class CustomMentionEditor extends Component {
-
   constructor(props) {
     super(props);
 
     this.mentionPlugin = createMentionPlugin({
       mentions,
-      mentionComponent: (mentionProps) => (
+      mentionComponent: mentionProps => (
         <span
           className={mentionProps.className}
           // eslint-disable-next-line no-alert
@@ -25,13 +26,20 @@ export default class CustomMentionEditor extends Component {
   }
 
   state = {
+    open: false,
     editorState: EditorState.createEmpty(),
     suggestions: mentions,
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
+    });
+  };
+
+  onOpenChange = newOpen => {
+    this.setState({
+      open: newOpen,
     });
   };
 
@@ -55,11 +63,15 @@ export default class CustomMentionEditor extends Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
-          ref={(element) => { this.editor = element; }}
+          ref={element => {
+            this.editor = element;
+          }}
         />
         <MentionSuggestions
-          onSearchChange={this.onSearchChange}
+          open={this.state.open}
+          onOpenChange={this.onOpenChange}
           suggestions={this.state.suggestions}
+          onSearchChange={this.onSearchChange}
         />
       </div>
     );
