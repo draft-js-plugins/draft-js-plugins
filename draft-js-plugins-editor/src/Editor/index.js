@@ -77,10 +77,12 @@ class PluginEditor extends Component {
   UNSAFE_componentWillReceiveProps(next) {
     const curr = this.props;
     const currDec = curr.editorState.getDecorator();
-    const nextDec = next.editorState.getDecorator();
+    const nextDec = resolveDecorators(
+      this.props,
+      this.getEditorState,
+      this.onChange
+    );
 
-    // If there is not current decorator, there's nothing to carry over to the next editor state
-    if (!currDec) return;
     // If the current decorator is the same as the new one, don't call onChange to avoid infinite loops
     if (currDec === nextDec) return;
     // If the old and the new decorator are the same, but no the same object, also don't call onChange to avoid infinite loops
@@ -92,7 +94,7 @@ class PluginEditor extends Component {
       return;
 
     const editorState = EditorState.set(next.editorState, {
-      decorator: currDec,
+      decorator: nextDec,
     });
     this.onChange(moveSelectionToEnd(editorState));
   }
