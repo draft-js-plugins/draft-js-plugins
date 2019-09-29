@@ -60,10 +60,10 @@ class PluginEditor extends Component {
       this[method] = (...args) => this.editor[method](...args);
     });
 
-    this.state = {}; // TODO for Nik: ask ben why this is relevent
+    this.state = {}; // TODO for Nik: ask ben why this is relevant
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const decorator = resolveDecorators(
       this.props,
       this.getEditorState,
@@ -74,27 +74,27 @@ class PluginEditor extends Component {
     this.onChange(moveSelectionToEnd(editorState));
   }
 
-  UNSAFE_componentWillReceiveProps(next) {
+  componentDidUpdate(prevProps) {
     const curr = this.props;
     const currDec = curr.editorState.getDecorator();
-    const nextDec = resolveDecorators(
-      this.props,
-      this.getEditorState,
-      this.onChange
-    );
+    let prevDec = prevProps.editorState.getDecorator();
 
-    // If the current decorator is the same as the new one, don't call onChange to avoid infinite loops
-    if (currDec === nextDec) return;
+    // No previous decorator, see if we need any from the current props.
+    if (!prevDec) {
+      prevDec = resolveDecorators(curr, this.getEditorState, this.onChange);
+    }
+    // If the current decorator is the same as the old one, don't call onChange to avoid infinite loops
+    if (currDec === prevDec) return;
     // If the old and the new decorator are the same, but no the same object, also don't call onChange to avoid infinite loops
     if (
       currDec &&
-      nextDec &&
-      getDecoratorLength(currDec) === getDecoratorLength(nextDec)
+      prevDec &&
+      getDecoratorLength(currDec) === getDecoratorLength(prevDec)
     )
       return;
 
-    const editorState = EditorState.set(next.editorState, {
-      decorator: nextDec,
+    const editorState = EditorState.set(curr.editorState, {
+      decorator: prevDec,
     });
     this.onChange(moveSelectionToEnd(editorState));
   }
