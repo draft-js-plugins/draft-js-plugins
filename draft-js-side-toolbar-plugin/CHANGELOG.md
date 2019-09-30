@@ -9,6 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Hide internals in single bundle
 - Add esm support
 
+## 3.0.3
+- Added TS definitions
+
 ## 3.0.2
 
 - Allow draft-js v0.11
