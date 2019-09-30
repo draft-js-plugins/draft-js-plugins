@@ -35,7 +35,7 @@ export interface SideToolbarChildrenProps {
 }
 
 export interface SideToolbarProps {
-    children?: ComponentType<SideToolbarChildrenProps>;
+    children?: (externalProps: SideToolbarChildrenProps) => ReactNode;
 }
 
 export type SideToolbarPlugin = EditorPlugin & {
