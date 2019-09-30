@@ -28,7 +28,7 @@ export interface ToolbarChildrenProps {
 }
 
 export interface ToolbarProps {
-  children(externalProps: ToolbarChildrenProps): ReactNode;
+  children?: ComponentType<ToolbarChildrenProps>;
 }
 
 export type InlineToolBarPlugin = EditorPlugin & {
