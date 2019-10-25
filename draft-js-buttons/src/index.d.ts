@@ -1,5 +1,5 @@
-import { EditorState } from "draft-js";
-import { ComponentType, ReactNode } from "react";
+import { EditorState } from 'draft-js';
+import { ComponentType, ReactNode } from 'react';
 
 export interface DraftJsButtonTheme {
   // CSS classes to apply
@@ -35,13 +35,21 @@ export interface DraftJsStyleButtonProps extends DraftJsButtonProps {
 
 type DraftJsStyleButtonType = ComponentType<DraftJsStyleButtonProps>;
 
+interface CreateInlineButtonParam {
+  style: string;
+  children: ReactNode;
+}
+
+interface CreateBlockButtonParam {
+  blockType: string;
+  children: ReactNode;
+}
+
 export const createBlockStyleButton: (
-  alignment: string,
-  children: ReactNode
+  param: CreateBlockButtonParam
 ) => DraftJsStyleButtonType;
 export const createInlineStyleButton: (
-  alignment: string,
-  children: ReactNode
+  param: CreateInlineButtonParam
 ) => DraftJsStyleButtonType;
 
 export const BlockquoteButton: DraftJsStyleButtonType;
