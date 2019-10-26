@@ -9,9 +9,9 @@ import {
   Editor,
   EditorProps,
   EditorState,
-  SelectionState
-} from "draft-js";
-import { Component, Ref, SyntheticEvent, KeyboardEvent } from "react";
+  SelectionState,
+} from 'draft-js';
+import { Component, KeyboardEvent, Ref, SyntheticEvent } from 'react';
 
 export interface PluginFunctions {
   getPlugins(): EditorPlugin[]; // a function returning a list of all the plugins
@@ -47,14 +47,14 @@ export interface EditorPlugin {
   keyBindingFn?(
     e: KeyboardEvent,
     pluginFunctions: PluginFunctions
-  ): DraftEditorCommand | null | undefined;
+  ): DraftEditorCommand | string | null;
   handleReturn?(
     e: KeyboardEvent,
     editorState: EditorState,
     pluginFunctions: PluginFunctions
   ): DraftHandleValue;
   handleKeyCommand?(
-    command: DraftEditorCommand,
+    command: DraftEditorCommand | string,
     editorState: EditorState,
     eventTimeStamp: number,
     pluginFunctions: PluginFunctions
@@ -105,7 +105,7 @@ export interface PluginEditorProps extends EditorProps {
   defaultKeyBindings?: boolean;
   defaultKeyCommands?: boolean;
   defaultBlockRenderMap?: boolean;
-  
+
   keyBindingFn?(e: SyntheticKeyboardEvent): EditorCommand | null | undefined;
 
   // eslint-disable-next-line react/no-unused-prop-types
