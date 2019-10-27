@@ -10,8 +10,11 @@ import {
   EditorProps,
   EditorState,
   SelectionState,
-} from 'draft-js';
-import { Component, KeyboardEvent, Ref, SyntheticEvent } from 'react';
+  DraftBlockRenderMap
+} from "draft-js";
+import { Component, Ref, SyntheticEvent, KeyboardEvent } from "react";
+
+type EditorCommand = DraftEditorCommand | string;
 
 export interface PluginFunctions {
   getPlugins(): EditorPlugin[]; // a function returning a list of all the plugins
@@ -38,6 +41,7 @@ export interface EditorPlugin {
 
   // Events passed from the draft-js editor back to all plugins
   blockRendererFn?(block: ContentBlock, pluginFunctions: PluginFunctions): any;
+  blockRenderMap?: DraftBlockRenderMap;
   blockStyleFn?(block: ContentBlock, pluginFunctions: PluginFunctions): string;
   customStyleFn?: (
     style: DraftInlineStyle,
@@ -47,14 +51,14 @@ export interface EditorPlugin {
   keyBindingFn?(
     e: KeyboardEvent,
     pluginFunctions: PluginFunctions
-  ): DraftEditorCommand | string | null;
+  ): EditorCommand | null;
   handleReturn?(
     e: KeyboardEvent,
     editorState: EditorState,
     pluginFunctions: PluginFunctions
   ): DraftHandleValue;
   handleKeyCommand?(
-    command: DraftEditorCommand | string,
+    command: EditorCommand,
     editorState: EditorState,
     eventTimeStamp: number,
     pluginFunctions: PluginFunctions
