@@ -43,6 +43,8 @@ const mentions = [
 
 function defaultProps() {
   return {
+    open: false,
+    onOpenChange: sinon.spy(),
     suggestions: mentions,
     callbacks: {
       keyBindingFn: sinon.spy(),
@@ -64,20 +66,17 @@ function defaultProps() {
 }
 
 describe('MentionSuggestions Component', () => {
-  it('Closes when suggestions is empty', () => {
+  it('Controls open state', () => {
     const props = defaultProps();
     const suggestions = mount(<MentionSuggestions {...props} />);
 
     suggestions.instance().openDropdown();
-    expect(suggestions.state().isActive).to.equal(true);
-
-    suggestions.setProps({
-      suggestions: [],
-    });
-    expect(suggestions.state().isActive).to.equal(false);
+    expect(props.onOpenChange).has.been.calledWith(true);
+    suggestions.instance().closeDropdown();
+    expect(props.onOpenChange).has.been.calledWith(false);
   });
 
-  it.skip('The popoverComponent prop changes the popover component', () => {
+  it('The popoverComponent prop changes the popover component', () => {
     const PopoverComponent = ({ children, ...props }) => (
       <div data-test-test {...props}>
         {children}
@@ -85,10 +84,10 @@ describe('MentionSuggestions Component', () => {
     );
 
     const props = defaultProps();
+    props.open = true;
     props.popoverComponent = <PopoverComponent />;
     const suggestions = mount(<MentionSuggestions {...props} />);
 
-    suggestions.instance().openDropdown();
     expect(suggestions.find('[data-test-test]')).to.have.length(1);
   });
 
@@ -101,18 +100,16 @@ describe('MentionSuggestions Component', () => {
     };
 
     const props = defaultProps();
+    props.open = true;
     props.popoverComponent = <PopoverComponent />;
-    const suggestions = mount(<MentionSuggestions {...props} />);
-
-    suggestions.instance().openDropdown();
+    mount(<MentionSuggestions {...props} />);
     expect(called).to.equal(true);
   });
 
-  it.skip('The popoverComponent prop uses div by default', () => {
+  it('The popoverComponent prop uses div by default', () => {
     const props = defaultProps();
+    props.open = true;
     const suggestions = mount(<MentionSuggestions {...props} data-findme />);
-
-    suggestions.instance().openDropdown();
     expect(suggestions.find('div[data-findme]')).to.have.length(1);
   });
 });
