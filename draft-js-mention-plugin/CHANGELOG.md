@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
-
+- Add Arabic Support
 - Replace legacy lifecycle hooks with UNSAFE aliases; the required react version is 16.3
 - Migrate styles to linaria
 - Hide internals in single bundle
