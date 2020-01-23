@@ -13,9 +13,12 @@ const createSetAlignment = (
   if (entityKey) {
     const editorState = getEditorState();
     const contentState = editorState.getCurrentContent();
-    contentState.mergeEntityData(entityKey, { ...data });
+    const newContentState = contentState.mergeEntityData(entityKey, data);
     setEditorState(
-      EditorState.forceSelection(editorState, editorState.getSelection())
+      EditorState.forceSelection(
+        EditorState.push(editorState, newContentState, 'apply-entity'),
+        editorState.getSelection()
+      )
     );
   }
 };
