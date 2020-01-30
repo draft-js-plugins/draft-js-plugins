@@ -13,8 +13,9 @@ export default ({ theme, blockKeyStore }) => WrappedComponent =>
     static WrappedComponent =
       WrappedComponent.WrappedComponent || WrappedComponent;
 
-    componentDidMount() {
-      blockKeyStore.add(this.props.block.getKey());
+    constructor(props) {
+      super(props);
+      blockKeyStore.add(props.block.getKey());
     }
 
     componentWillUnmount() {
