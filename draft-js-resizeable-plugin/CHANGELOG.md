@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Hide internals in single bundle
 - Add esm support
+- Update entity editing for compatibility with [planned removal of `DraftEntity` from draft-js](https://draftjs.org/docs/v0-10-api-migration)
 
 ## 2.0.9
 
