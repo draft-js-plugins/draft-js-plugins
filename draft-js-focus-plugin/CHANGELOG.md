@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- Fix focus stuck when add a plugin that is already selected
 - Migrate styles to linaria
 - Hide internals in single bundle
 - Add esm support
