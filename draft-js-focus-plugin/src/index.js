@@ -70,6 +70,7 @@ export default (config = {}) => {
       // then the change was not a pure selection change
       const contentState = editorState.getCurrentContent();
       if (!contentState.equals(lastContentState)) {
+        lastSelection = editorState.getSelection();
         lastContentState = contentState;
         return editorState;
       }
