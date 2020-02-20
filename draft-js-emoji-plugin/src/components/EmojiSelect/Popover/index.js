@@ -181,6 +181,12 @@ export default class Popover extends Component {
           this.container = element;
         }}
       >
+        <Nav
+          theme={theme}
+          groups={groups}
+          activeGroup={activeGroup}
+          onGroupSelect={this.onGroupSelect}
+        />
         <h3 className={theme.emojiSelectPopoverTitle}>
           {groups[activeGroup].title}
         </h3>
@@ -201,12 +207,7 @@ export default class Popover extends Component {
           useNativeArt={useNativeArt}
           isOpen={isOpen}
         />
-        <Nav
-          theme={theme}
-          groups={groups}
-          activeGroup={activeGroup}
-          onGroupSelect={this.onGroupSelect}
-        />
+
         {this.renderToneSelect()}
       </div>
     );
