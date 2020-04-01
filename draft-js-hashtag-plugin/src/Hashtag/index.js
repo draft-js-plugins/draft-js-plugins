@@ -13,6 +13,7 @@ export default class Hashtag extends Component {
       offsetKey, // eslint-disable-line no-unused-vars
       setEditorState, // eslint-disable-line no-unused-vars
       contentState, // eslint-disable-line no-unused-vars
+      blockKey, // eslint-disable-line no-unused-vars
       ...otherProps
     } = this.props; // eslint-disable-line no-use-before-define
     const combinedClassName = clsx(theme.hashtag, className);
