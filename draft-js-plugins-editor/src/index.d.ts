@@ -105,6 +105,8 @@ export interface PluginEditorProps extends EditorProps {
   defaultKeyBindings?: boolean;
   defaultKeyCommands?: boolean;
   defaultBlockRenderMap?: boolean;
+  
+  keyBindingFn?(e: SyntheticKeyboardEvent): EditorCommand | null | undefined;
 
   // eslint-disable-next-line react/no-unused-prop-types
   decorators?: DraftDecorator[];
