@@ -37,6 +37,8 @@ export default class EmojiSelect extends Component {
     toneSelectOpenDelay: 500,
   };
 
+  emojiSelectRef = React.createRef();
+
   // Start the selector closed
   state = {
     isOpen: false,
@@ -45,17 +47,18 @@ export default class EmojiSelect extends Component {
   // When the selector is open and users click anywhere on the page,
   // the selector should close
   componentDidMount() {
-    document.addEventListener('click', this.closePopover);
+    document.addEventListener('click', this.closeIfClickedOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.closePopover);
+    document.removeEventListener('click', this.closeIfClickedOutside);
   }
 
-  onClick = e => {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-  };
+  closeIfClickedOutside = e => {
+    if (this.emojiSelectRef && !this.emojiSelectRef.contains(e.target)) {
+      this.closePopover();
+    }
+  }
 
   onButtonMouseUp = () =>
     this.state.isOpen ? this.closePopover() : this.openPopover();
@@ -95,7 +98,10 @@ export default class EmojiSelect extends Component {
       : theme.emojiSelectButton;
 
     return (
-      <div className={theme.emojiSelect} onClick={this.onClick}>
+      <div
+        ref={this.emojiSelectRef}
+        className={theme.emojiSelect}
+      >
         <button
           className={buttonClassName}
           onMouseUp={this.onButtonMouseUp}
