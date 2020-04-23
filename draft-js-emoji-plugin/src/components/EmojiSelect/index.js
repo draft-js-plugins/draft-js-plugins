@@ -55,7 +55,7 @@ export default class EmojiSelect extends Component {
   }
 
   closeIfClickedOutside = e => {
-    if (this.emojiSelectRef && !this.emojiSelectRef.contains(e.target)) {
+    if (this.emojiSelectRef && !this.emojiSelectRef.current.contains(e.target)) {
       this.closePopover();
     }
   }
