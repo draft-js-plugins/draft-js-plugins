@@ -56,9 +56,10 @@ export default class AlignmentTool extends React.Component {
           left: boundingRect.left - relativeRect.left + boundingRect.width / 2,
           transform: 'translate(-50%) scale(1)',
           transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
+	  visibility: 'hidden',
         };
       } else {
-        position = { transform: 'translate(-50%) scale(0)' };
+        position = { transform: 'translate(-50%) scale(0)', visibility: 'visible' };
       }
       const alignment = this.props.store.getItem('alignment') || 'default';
       this.setState({
@@ -86,6 +87,7 @@ export default class AlignmentTool extends React.Component {
 
     return (
       <div
+	      tabIndex={-1}
         className={theme.alignmentToolStyles.alignmentTool}
         style={this.state.position}
         ref={toolbar => {
@@ -96,6 +98,7 @@ export default class AlignmentTool extends React.Component {
           <Button
             /* the index can be used here as the buttons list won't change */
             key={index}
+	    tabIndex={-1}
             alignment={this.state.alignment}
             setAlignment={this.props.store.getItem('setAlignment')}
             theme={theme.buttonStyles}
