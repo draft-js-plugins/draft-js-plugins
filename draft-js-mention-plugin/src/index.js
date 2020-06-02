@@ -9,10 +9,12 @@ import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 import { defaultTheme } from './theme.js';
+import addMention from './modifiers/addMention';
 
 export { default as MentionSuggestions } from './MentionSuggestions';
 
 export { defaultTheme };
+export { addMention };
 
 export default (config = {}) => {
   const callbacks = {
