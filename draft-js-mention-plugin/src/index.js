@@ -84,6 +84,10 @@ export default (config = {}) => {
     mentionRegExp = defaultRegExp,
     supportWhitespace = false,
   } = config;
+  let { mentionTriggers } = config;
+  if (!mentionTriggers) {
+    mentionTriggers = [mentionTrigger];
+  }
   const mentionSearchProps = {
     ariaProps,
     callbacks,
@@ -91,7 +95,7 @@ export default (config = {}) => {
     store,
     entityMutability,
     positionSuggestions,
-    mentionTrigger,
+    mentionTriggers,
     mentionPrefix,
   };
   const DecoratedMentionSuggestionsComponent = props => (
@@ -107,12 +111,12 @@ export default (config = {}) => {
     MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [
       {
-        strategy: mentionStrategy(mentionTrigger),
+        strategy: mentionStrategy(mentionTriggers),
         component: DecoratedMention,
       },
       {
         strategy: mentionSuggestionsStrategy(
-          mentionTrigger,
+          mentionTriggers,
           supportWhitespace,
           mentionRegExp
         ),

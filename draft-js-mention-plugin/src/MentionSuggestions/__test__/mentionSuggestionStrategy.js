@@ -5,14 +5,14 @@ import mentionSuggestionsStrategy from '../../mentionSuggestionsStrategy';
 import defaultRegExp from '../../defaultRegExp';
 
 let callback;
-const trigger = '@';
+const triggers = ['@', '#'];
 const nonWhitespaceStrategy = mentionSuggestionsStrategy(
-  trigger,
+  triggers,
   false,
   defaultRegExp
 );
 const whitespaceStrategy = mentionSuggestionsStrategy(
-  trigger,
+  triggers,
   true,
   defaultRegExp
 );
@@ -64,6 +64,14 @@ describe('mentionSuggestionsStrategy', () => {
       expect(callback.secondCall.args).to.deep.equal([4, 13]);
       expect(callback.thirdCall.args).to.deep.equal([13, 19]);
     });
+
+    it('should match multiple triggers', () => {
+      nonWhitespaceStrategy(getBlock('@the #walking @dead'), callback);
+      expect(callback.callCount).to.equal(3);
+      expect(callback.firstCall.args).to.deep.equal([0, 4]);
+      expect(callback.secondCall.args).to.deep.equal([4, 13]);
+      expect(callback.thirdCall.args).to.deep.equal([13, 19]);
+    });
   });
 
   context('when whitespace support is enabled', () => {
@@ -94,6 +102,16 @@ describe('mentionSuggestionsStrategy', () => {
       expect(callback.callCount).to.equal(2);
       expect(callback.firstCall.args).to.deep.equal([0, 15]);
       expect(callback.secondCall.args).to.deep.equal([15, 27]);
+    });
+
+    it('should match multiple triggers with spaces', () => {
+      whitespaceStrategy(
+        getBlock('@the walking dead tv #the white house'),
+        callback
+      );
+      expect(callback.callCount).to.equal(2);
+      expect(callback.firstCall.args).to.deep.equal([0, 21]);
+      expect(callback.secondCall.args).to.deep.equal([21, 37]);
     });
 
     it('should not match entities', () => {

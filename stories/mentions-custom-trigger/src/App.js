@@ -7,7 +7,7 @@ import createMentionPlugin, {
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin({ mentionTrigger: '(' });
+const mentionPlugin = createMentionPlugin({ mentionTriggers: ['@', '#'] });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
@@ -15,7 +15,9 @@ export default class SimpleMentionEditor extends Component {
   state = {
     open: false,
     editorState: EditorState.createWithContent(
-      ContentState.createFromText('Type ( to make the mention dropdown appear')
+      ContentState.createFromText(
+        'Type @ or # to make the mention dropdown appear'
+      )
     ),
     suggestions: mentions,
   };

@@ -16,6 +16,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Made suggestions prop required (pass empty array for async suggestions)
 - Remove prevState and state from positionSuggestions
 
+## to be released
+
+- added support for multiple triggers
+
 ## 3.1.5
 
 - removed deprecated draft-js hooks (onUpArrow, onDownArrow, onEscape, onTab) usage

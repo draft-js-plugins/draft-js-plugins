@@ -1,37 +1,38 @@
 import { expect } from 'chai';
 import getSearchTextAt from '../getSearchTextAt';
 
-const trigger = '@';
-
 describe('getSearchTextAt', () => {
   it('finds the matching string following trigger', () => {
-    const expected = {
+    expect(getSearchTextAt('hi @The Walking Dead', 20, ['@'])).to.deep.equal({
       matchingString: 'The Walking Dead',
       begin: 3,
       end: 20,
-    };
-    expect(getSearchTextAt('hi @The Walking Dead', 20, trigger)).to.deep.equal(
-      expected
-    );
+    });
   });
 
   it('finds the matching string following trigger upto the position only', () => {
-    const expected = {
+    expect(getSearchTextAt('hi @The Walking Dead', 15, ['@'])).to.deep.equal({
       matchingString: 'The Walking',
       begin: 3,
       end: 15,
-    };
-    expect(getSearchTextAt('hi @The Walking Dead', 15, trigger)).to.deep.equal(
-      expected
-    );
+    });
   });
 
   it('finds the matching string following empty trigger', () => {
-    const expected = {
+    expect(getSearchTextAt('Max', 3, [''])).to.deep.equal({
       matchingString: 'Max',
       begin: 0,
       end: 3,
-    };
-    expect(getSearchTextAt('Max', 3, '')).to.deep.equal(expected);
+    });
+  });
+
+  it('finds the appropriate matching string despite multiple triggers', () => {
+    expect(
+      getSearchTextAt('one @two three #four five', 20, ['@', '#'])
+    ).to.deep.equal({
+      matchingString: 'four',
+      begin: 15,
+      end: 20,
+    });
   });
 });

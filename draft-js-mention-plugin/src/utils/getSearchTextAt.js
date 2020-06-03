@@ -3,11 +3,19 @@
 /**
  * Return tail end of the string matching trigger upto the position.
  */
-export default (blockText: string, position: number, trigger: string) => {
+export default (blockText: string, position: number, triggers: Array<string>) => {
   const str = blockText.substr(0, position);
-  const begin = trigger.length === 0 ? 0 : str.lastIndexOf(trigger);
+
+  const { begin, index } = triggers
+    .map((trigger, triggerIndex) => ({
+      begin: trigger.length === 0 ? 0 : str.lastIndexOf(trigger),
+      index: triggerIndex,
+    }))
+    .reduce((left, right) => (left.begin >= right.begin ? left : right));
   const matchingString =
-    trigger.length === 0 ? str : str.slice(begin + trigger.length);
+    triggers[index].length === 0
+      ? str
+      : str.slice(begin + triggers[index].length);
   const end = str.length;
 
   return {

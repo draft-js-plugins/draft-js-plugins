@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { genKey } from 'draft-js';
-import escapeRegExp from 'lodash/escapeRegExp';
 import Entry from './Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
@@ -109,37 +108,46 @@ export class MentionSuggestions extends Component {
     // Checks that the cursor is after the @ character but still somewhere in
     // the word (search term). Setting it to allow the cursor to be left of
     // the @ causes troubles due selection confusion.
-    const plainText = editorState.getCurrentContent().getPlainText();
-    const selectionIsInsideWord = leaves
+    const blockText = editorState
+      .getCurrentContent()
+      .getBlockForKey(anchorKey)
+      .getText();
+    const triggerForSelectionInsideWord = leaves
       .filter(leave => leave !== undefined)
       .map(
         ({ start, end }) =>
-          (start === 0 &&
-            anchorOffset === this.props.mentionTrigger.length &&
-            plainText.charAt(anchorOffset) !== this.props.mentionTrigger &&
-            new RegExp(
-              String.raw({ raw: `${escapeRegExp(this.props.mentionTrigger)}` }),
-              'g'
-            ).test(plainText) &&
-            anchorOffset <= end) || // @ is the first character
-          (anchorOffset > start + this.props.mentionTrigger.length &&
-            anchorOffset <= end) // @ is in the text or at the end
-      );
+          this.props.mentionTriggers
+            .map(trigger =>
+              // @ is the first character
+              (start === 0 &&
+                blockText.substr(0, trigger.length) === trigger &&
+                anchorOffset === trigger.length) ||
+              // @ is in the text or at the end
+              (blockText.substr(start + 1, trigger.length) === trigger &&
+                anchorOffset > start + trigger.length &&
+                anchorOffset <= end)
+                ? trigger
+                : undefined
+            )
+            .filter(trigger => trigger !== undefined)[0]
+      )
+      .filter(trigger => trigger !== undefined);
 
-    if (selectionIsInsideWord.every(isInside => isInside === false))
-      return removeList();
+    if (triggerForSelectionInsideWord.isEmpty()) return removeList();
 
+    const [
+      activeOffsetKey,
+      activeTrigger,
+    ] = triggerForSelectionInsideWord.entrySeq().first();
     const lastActiveOffsetKey = this.activeOffsetKey;
-    this.activeOffsetKey = selectionIsInsideWord
-      .filter(value => value === true)
-      .keySeq()
-      .first();
+    this.activeOffsetKey = activeOffsetKey;
 
     this.onSearchChange(
       editorState,
       selection,
       this.activeOffsetKey,
-      lastActiveOffsetKey
+      lastActiveOffsetKey,
+      activeTrigger
     );
 
     // make sure the escaped search is reseted in the cursor since the user
@@ -161,16 +169,11 @@ export class MentionSuggestions extends Component {
 
     // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another mention search
-    if (
-      this.lastSelectionIsInsideWord === undefined ||
-      !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)
-    ) {
+    if (lastActiveOffsetKey !== this.activeOffsetKey) {
       this.setState({
         focusedOptionIndex: 0,
       });
     }
-
-    this.lastSelectionIsInsideWord = selectionIsInsideWord;
 
     return editorState;
   };
@@ -179,20 +182,23 @@ export class MentionSuggestions extends Component {
     editorState,
     selection,
     activeOffsetKey,
-    lastActiveOffsetKey
+    lastActiveOffsetKey,
+    trigger
   ) => {
     const { matchingString: searchValue } = getSearchText(
       editorState,
       selection,
-      this.props.mentionTrigger
+      [trigger]
     );
 
     if (
+      this.lastActiveTrigger !== trigger ||
       this.lastSearchValue !== searchValue ||
       activeOffsetKey !== lastActiveOffsetKey
     ) {
+      this.lastActiveTrigger = trigger;
       this.lastSearchValue = searchValue;
-      this.props.onSearchChange({ value: searchValue });
+      this.props.onSearchChange({ trigger, value: searchValue });
     }
   };
 
@@ -222,11 +228,7 @@ export class MentionSuggestions extends Component {
   onEscape = keyboardEvent => {
     keyboardEvent.preventDefault();
 
-    const activeOffsetKey = this.lastSelectionIsInsideWord
-      .filter(value => value === true)
-      .keySeq()
-      .first();
-    this.props.store.escapeSearch(activeOffsetKey);
+    this.props.store.escapeSearch(this.activeOffsetKey);
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
@@ -249,7 +251,7 @@ export class MentionSuggestions extends Component {
       this.props.store.getEditorState(),
       mention,
       this.props.mentionPrefix,
-      this.props.mentionTrigger,
+      this.lastActiveTrigger,
       this.props.entityMutability
     );
     this.props.store.setEditorState(newEditorState);
@@ -337,7 +339,7 @@ export class MentionSuggestions extends Component {
       store, // eslint-disable-line no-unused-vars
       entityMutability, // eslint-disable-line no-unused-vars
       positionSuggestions, // eslint-disable-line no-unused-vars
-      mentionTrigger, // eslint-disable-line no-unused-vars
+      mentionTriggers, // eslint-disable-line no-unused-vars
       mentionPrefix, // eslint-disable-line no-unused-vars
       ...elementProps
     } = this.props;

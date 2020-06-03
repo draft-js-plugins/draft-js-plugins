@@ -1,6 +1,6 @@
 import getTypeByTrigger from './utils/getTypeByTrigger';
 
-const findMentionEntities = trigger => (
+const findMentionEntities = triggers => (
   contentBlock,
   callback,
   contentState
@@ -9,7 +9,11 @@ const findMentionEntities = trigger => (
     const entityKey = character.getEntity();
     return (
       entityKey !== null &&
-      contentState.getEntity(entityKey).getType() === getTypeByTrigger(trigger)
+      triggers.some(
+        trigger =>
+          contentState.getEntity(entityKey).getType() ===
+          getTypeByTrigger(trigger)
+      )
     );
   }, callback);
 };

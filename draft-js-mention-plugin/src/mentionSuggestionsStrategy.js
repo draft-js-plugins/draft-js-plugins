@@ -30,14 +30,17 @@ const findWithRegex = (regex, contentBlock, callback) => {
 };
 
 export default (
-  trigger: string,
+  triggers: Array<string>,
   supportWhiteSpace: boolean,
   regExp: string
 ) => {
+  const triggerPattern = `[${triggers
+    .map(trigger => escapeRegExp(trigger))
+    .join('')}]`;
   //eslint-disable-line
   const MENTION_REGEX = supportWhiteSpace
-    ? new RegExp(`${escapeRegExp(trigger)}(${regExp}|\\s){0,}`, 'g')
-    : new RegExp(`(\\s|^)${escapeRegExp(trigger)}${regExp}`, 'g');
+    ? new RegExp(`${triggerPattern}(${regExp}|\\s){0,}`, 'g')
+    : new RegExp(`(\\s|^)${triggerPattern}${regExp}`, 'g');
 
   return (contentBlock: Object, callback: Function) => {
     findWithRegex(MENTION_REGEX, contentBlock, callback);
