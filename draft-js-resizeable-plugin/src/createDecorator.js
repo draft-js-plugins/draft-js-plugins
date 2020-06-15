@@ -205,13 +205,14 @@ export default ({ config, store }) => WrappedComponent =>
         styles.cursor = 'default';
       }
 
-      const interactionProps = store.getReadOnly()
-        ? {}
-        : {
-            onMouseDown: this.mouseDown,
-            onMouseMove: this.mouseMove,
-            onMouseLeave: this.mouseLeave,
-          };
+      const interactionProps = 
+        !store.getReadOnly || store.getReadOnly()
+          ? {}
+          : {
+              onMouseDown: this.mouseDown,
+              onMouseMove: this.mouseMove,
+              onMouseLeave: this.mouseLeave,
+            };
 
       return (
         <WrappedComponent
