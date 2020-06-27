@@ -73,7 +73,8 @@ export default class Toolbar extends React.Component {
       }
       const editorRootRect = editorRoot.getBoundingClientRect();
 
-      const selectionRect = getVisibleSelectionRect(window);
+      const parentWindow = editorRoot.ownerDocument && editorRoot.ownerDocument.defaultView;
+      const selectionRect = getVisibleSelectionRect(parentWindow || window);
       if (!selectionRect) return;
 
       // The toolbar shouldn't be positioned directly on top of the selected text,
