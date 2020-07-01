@@ -35,14 +35,14 @@ export interface DraftJsStyleButtonProps extends DraftJsButtonProps {
 
 type DraftJsStyleButtonType = ComponentType<DraftJsStyleButtonProps>;
 
-export const createBlockStyleButton: (
-  alignment: string,
+export const createBlockStyleButton: ({
+  blockType: string,
   children: ReactNode
-) => DraftJsStyleButtonType;
-export const createInlineStyleButton: (
-  alignment: string,
+}) => DraftJsStyleButtonType;
+export const createInlineStyleButton: ({
+  style: string,
   children: ReactNode
-) => DraftJsStyleButtonType;
+}) => DraftJsStyleButtonType;
 
 export const BlockquoteButton: DraftJsStyleButtonType;
 export const BoldButton: DraftJsStyleButtonType;
