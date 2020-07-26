@@ -9,12 +9,12 @@
 
 .paramName {
   font-weight: bold;
-  width: 125px;
+  margin-right: 5px;
   display: inline-block;
 }
 
 .subParams {
-  margin-left: 125px;
+  margin-left: 52px;
   margin-top: 10px;
 }
 
