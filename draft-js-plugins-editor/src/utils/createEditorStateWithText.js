@@ -4,5 +4,6 @@
 
 import { ContentState, EditorState } from 'draft-js';
 
-export default text =>
-  EditorState.createWithContent(ContentState.createFromText(text));
+export default text => EditorState.createWithText
+  ? EditorState.createWithText(text)
+  : EditorState.createWithContent(ContentState.createFromText(text));
