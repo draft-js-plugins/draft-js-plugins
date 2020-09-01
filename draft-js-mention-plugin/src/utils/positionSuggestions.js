@@ -1,9 +1,11 @@
-const getRelativeParent = (element) => {
+const getRelativeParent = element => {
   if (!element) {
     return null;
   }
 
-  const position = window.getComputedStyle(element).getPropertyValue('position');
+  const position = window
+    .getComputedStyle(element)
+    .getPropertyValue('position');
   if (position !== 'static') {
     return element;
   }
@@ -11,7 +13,7 @@ const getRelativeParent = (element) => {
   return getRelativeParent(element.parentElement);
 };
 
-const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
+const positionSuggestions = ({ decoratorRect, popover, props }) => {
   const relativeParent = getRelativeParent(popover.parentElement);
   const relativeRect = {};
 
@@ -23,8 +25,10 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
     relativeRect.left = decoratorRect.left - relativeParentRect.left;
     relativeRect.top = decoratorRect.bottom - relativeParentRect.top;
   } else {
-    relativeRect.scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    relativeRect.scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    relativeRect.scrollTop =
+      window.pageYOffset || document.documentElement.scrollTop;
+    relativeRect.scrollLeft =
+      window.pageXOffset || document.documentElement.scrollLeft;
 
     relativeRect.top = decoratorRect.bottom;
     relativeRect.left = decoratorRect.left;
@@ -35,7 +39,7 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
 
   let transform;
   let transition;
-  if (state.isActive) {
+  if (props.open) {
     if (props.suggestions.length > 0) {
       transform = 'scale(1)';
       transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';

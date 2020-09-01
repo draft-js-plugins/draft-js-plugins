@@ -4,10 +4,17 @@ import {
   CharacterMetadata,
   BlockMapBuilder,
   ContentBlock,
-  genKey
+  genKey,
 } from 'draft-js';
 
-export default function (editorState, selection, type, data, entityType, text = ' ') {
+export default function(
+  editorState,
+  selection,
+  type,
+  data,
+  entityType,
+  text = ' '
+) {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = selection;
 
@@ -35,19 +42,28 @@ export default function (editorState, selection, type, data, entityType, text = 
     insertionTargetBlock = afterRemovalContentState;
   } else {
     // the only way to insert a new seems to be by splitting an existing in to two
-    insertionTargetBlock = Modifier.splitBlock(afterRemovalContentState, targetSelection);
+    insertionTargetBlock = Modifier.splitBlock(
+      afterRemovalContentState,
+      targetSelection
+    );
 
     // the position to insert our blocks
     insertionTargetSelection = insertionTargetBlock.getSelectionAfter();
   }
 
   // TODO not sure why we need it …
-  const newContentStateAfterSplit = Modifier.setBlockType(insertionTargetBlock, insertionTargetSelection, type);
+  const newContentStateAfterSplit = Modifier.setBlockType(
+    insertionTargetBlock,
+    insertionTargetSelection,
+    type
+  );
 
   // creating a new ContentBlock including the entity with data
   // Entity will be created with a specific type, if defined, else will fall back to the ContentBlock type
   const contentStateWithEntity = newContentStateAfterSplit.createEntity(
-    entityType || type, 'IMMUTABLE', { ...data }
+    entityType || type,
+    'IMMUTABLE',
+    { ...data }
   );
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   const charData = CharacterMetadata.create({ entity: entityKey });

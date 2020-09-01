@@ -57,7 +57,14 @@ export default class Entry extends Component {
   mouseDown = this.props.mouseDown;
 
   render() {
-    const { cacheBustParam, imagePath, imageType, theme = {}, emoji, useNativeArt } = this.props;
+    const {
+      cacheBustParam,
+      imagePath,
+      imageType,
+      theme = {},
+      emoji,
+      useNativeArt,
+    } = this.props;
     const { isFocused } = this.state;
 
     let emojiDisplay = null;
@@ -66,7 +73,10 @@ export default class Entry extends Component {
       emojiDisplay = convertShortNameToUnicode(unicode);
     } else {
       // short name to image url code steal from emojione source code
-      const shortNameForImage = emojione.emojioneList[emoji].unicode[emojione.emojioneList[emoji].unicode.length - 1];
+      const shortNameForImage =
+        emojione.emojioneList[emoji].unicode[
+          emojione.emojioneList[emoji].unicode.length - 1
+        ];
       const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
       emojiDisplay = (
         <img
@@ -81,14 +91,18 @@ export default class Entry extends Component {
     return (
       <button
         type="button"
-        className={isFocused ?
-          theme.emojiSelectPopoverEntryFocused :
-          theme.emojiSelectPopoverEntry}
+        className={
+          isFocused
+            ? theme.emojiSelectPopoverEntryFocused
+            : theme.emojiSelectPopoverEntry
+        }
         onMouseDown={this.onMouseDown}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onMouseUp={this.onMouseUp}
-        ref={(element) => { this.button = element; }}
+        ref={element => {
+          this.button = element;
+        }}
       >
         {emojiDisplay}
       </button>

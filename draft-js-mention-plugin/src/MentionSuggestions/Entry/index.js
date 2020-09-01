@@ -1,14 +1,11 @@
-import React, {
-  Component,
-} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Entry extends Component {
-
   static propTypes = {
     entryComponent: PropTypes.any.isRequired,
     searchValue: PropTypes.string,
-    onMentionSelect: PropTypes.func
+    onMentionSelect: PropTypes.func,
   };
 
   constructor(props) {
@@ -27,7 +24,7 @@ export default class Entry extends Component {
     }
   };
 
-  onMouseDown = (event) => {
+  onMouseDown = event => {
     // Note: important to avoid a content edit change
     event.preventDefault();
 
@@ -40,7 +37,9 @@ export default class Entry extends Component {
 
   render() {
     const { theme = {}, mention, searchValue, isFocused, id } = this.props;
-    const className = isFocused ? theme.mentionSuggestionsEntryFocused : theme.mentionSuggestionsEntry;
+    const className = isFocused
+      ? theme.mentionSuggestionsEntryFocused
+      : theme.mentionSuggestionsEntry;
     const EntryComponent = this.props.entryComponent;
     return (
       <EntryComponent

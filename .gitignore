@@ -14,6 +14,7 @@ bundle.js
 
 # build
 /lib/
+.linaria-cache
 
 # NPM debug
 npm-debug.log

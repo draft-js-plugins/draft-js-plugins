@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 import EditorUtils from 'draft-js-plugins-utils';
 
 import URLUtils from '../../utils/URLUtils';
@@ -11,23 +11,25 @@ export default class AddLinkForm extends Component {
     setEditorState: PropTypes.func.isRequired,
     onOverrideContent: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired,
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
   };
 
   static defaultProps = {
-    placeholder: 'Enter a URL and press enter'
+    placeholder: 'Enter a URL and press enter',
   };
 
   state = {
     value: '',
-    isInvalid: false
+    isInvalid: false,
   };
 
   componentDidMount() {
     this.input.focus();
   }
 
-  onRef = (node) => { this.input = node; }
+  onRef = node => {
+    this.input = node;
+  };
 
   onChange = ({ target: { value } }) => {
     const nextState = { value };
@@ -37,10 +39,9 @@ export default class AddLinkForm extends Component {
     this.setState(nextState);
   };
 
-  onClose = () =>
-    this.props.onOverrideContent(undefined);
+  onClose = () => this.props.onOverrideContent(undefined);
 
-  onKeyDown = (e) => {
+  onKeyDown = e => {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.submit();
@@ -48,7 +49,7 @@ export default class AddLinkForm extends Component {
       e.preventDefault();
       this.onClose();
     }
-  }
+  };
 
   submit() {
     const { getEditorState, setEditorState } = this.props;
@@ -68,13 +69,10 @@ export default class AddLinkForm extends Component {
   }
 
   render() {
-    const {
-      theme,
-      placeholder
-    } = this.props;
+    const { theme, placeholder } = this.props;
     const { value, isInvalid } = this.state;
     const className = isInvalid
-      ? unionClassNames(theme.input, theme.inputInvalid)
+      ? clsx(theme.input, theme.inputInvalid)
       : theme.input;
 
     return (

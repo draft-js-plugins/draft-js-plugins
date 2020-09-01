@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 class DividerButton extends Component {
-  onClick = (event) => {
+  onClick = event => {
     event.preventDefault();
 
     const editorState = this.props.getEditorState();
@@ -13,7 +12,7 @@ class DividerButton extends Component {
     this.props.setEditorState(newEditorState);
   };
 
-  preventBubblingUp = (event) => {
+  preventBubblingUp = event => {
     event.preventDefault();
   };
 
@@ -29,7 +28,7 @@ class DividerButton extends Component {
   render() {
     const { theme } = this.props;
     const className = this.blockTypeIsActive()
-      ? unionClassNames(theme.button, theme.active)
+      ? clsx(theme.button, theme.active)
       : theme.button;
 
     return (
@@ -54,11 +53,11 @@ DividerButton.propTypes = {
   theme: PropTypes.object,
   getEditorState: PropTypes.func.isRequired,
   setEditorState: PropTypes.func.isRequired,
-  addDivider: PropTypes.func.isRequired
+  addDivider: PropTypes.func.isRequired,
 };
 
 DividerButton.defaultProps = {
-  theme: {}
+  theme: {},
 };
 
 export default DividerButton;

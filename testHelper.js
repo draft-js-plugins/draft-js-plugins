@@ -2,6 +2,11 @@ import chai from 'chai';
 import dirtyChai from 'dirty-chai';
 import hook from 'css-modules-require-hook';
 
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
 process.env.NODE_ENV = 'test';
 
 hook({
@@ -15,11 +20,14 @@ const { window } = jsdom;
 
 function copyProps(src, target) {
   const props = Object.getOwnPropertyNames(src)
-    .filter((prop) => typeof target[prop] === 'undefined')
-    .reduce((result, prop) => ({
-      ...result,
-      [prop]: Object.getOwnPropertyDescriptor(src, prop),
-    }), {});
+    .filter(prop => typeof target[prop] === 'undefined')
+    .reduce(
+      (result, prop) => ({
+        ...result,
+        [prop]: Object.getOwnPropertyDescriptor(src, prop),
+      }),
+      {}
+    );
   Object.defineProperties(target, props);
 }
 
@@ -32,7 +40,7 @@ copyProps(window, global);
 
 const exposedProperties = ['window', 'navigator', 'document'];
 
-Object.keys(document.defaultView).forEach((property) => {
+Object.keys(document.defaultView).forEach(property => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);
     global[property] = document.defaultView[property];

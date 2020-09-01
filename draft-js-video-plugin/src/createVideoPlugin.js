@@ -1,10 +1,8 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
+import React from 'react';
 import addVideo from './video/modifiers/addVideo';
 import DefaultVideoComponent from './video/components/DefaultVideoComponent';
 import * as types from './video/constants';
-import videoStyles from './videoStyles.css';
-
-const defaultTheme = videoStyles;
+import { defaultTheme } from './theme.js';
 
 const videoPlugin = (config = {}) => {
   const theme = config.theme ? config.theme : defaultTheme;
@@ -12,7 +10,7 @@ const videoPlugin = (config = {}) => {
   if (config.decorator) {
     Video = config.decorator(Video);
   }
-  const ThemedVideo = decorateComponentWithProps(Video, { theme });
+  const ThemedVideo = props => <Video {...props} theme={theme} />;
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === types.ATOMIC) {

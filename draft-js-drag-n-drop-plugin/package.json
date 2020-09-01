@@ -1,6 +1,6 @@
 {
   "name": "draft-js-drag-n-drop-plugin",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Block Drag & Drop Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
@@ -10,7 +10,12 @@
     "type": "git",
     "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
   },
-  "main": "lib/index.js",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "editor",
     "wysiwyg",
@@ -23,20 +28,17 @@
   ],
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
-    "build": "npm run clean && npm run build:js",
-    "build:js": "WEBPACK_CONFIG=$(pwd)/webpack.config.js BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__test__/*' src",
-    "prepublish": "npm run build"
+    "build": "yarn clean && yarn build:js && yarn build:ts",
+    "build:js": "../node_modules/.bin/rollup --config ../rollup.config.js",
+    "build:ts": "../node_modules/.bin/cpx src/*.d.ts lib/",
+    "prepublish": "yarn build"
   },
   "license": "MIT",
   "dependencies": {
-    "decorate-component-with-props": "^1.0.2",
-    "find-with-regex": "^1.1.3",
-    "union-class-names": "^1.0.0",
-    "immutable": "~3.7.4",
-    "prop-types": "^15.5.8"
+    "immutable": "~3.7.4"
   },
   "peerDependencies": {
-    "draft-js": "^0.10.1",
+    "draft-js": "^0.10.1 || ^0.11.0",
     "react": "^15.5.0 || ^16.0.0-rc",
     "react-dom": "^15.5.0 || ^16.0.0-rc"
   }

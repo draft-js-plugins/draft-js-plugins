@@ -14,14 +14,15 @@ export default class EmojiSelect extends Component {
     imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
-    selectGroups: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      icon: PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.string,
-      ]).isRequired,
-      categories: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(emojis))).isRequired,
-    })),
+    selectGroups: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+          .isRequired,
+        categories: PropTypes.arrayOf(PropTypes.oneOf(Object.keys(emojis)))
+          .isRequired,
+      })
+    ),
     selectButtonContent: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.string,
@@ -51,14 +52,13 @@ export default class EmojiSelect extends Component {
     document.removeEventListener('click', this.closePopover);
   }
 
-  onClick = (e) => {
+  onClick = e => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
   };
 
-  onButtonMouseUp = () => (
-    this.state.isOpen ? this.closePopover() : this.openPopover()
-  );
+  onButtonMouseUp = () =>
+    this.state.isOpen ? this.closePopover() : this.openPopover();
 
   // Open the popover
   openPopover = () => {
@@ -90,9 +90,9 @@ export default class EmojiSelect extends Component {
       toneSelectOpenDelay,
       useNativeArt,
     } = this.props;
-    const buttonClassName = this.state.isOpen ?
-      theme.emojiSelectButtonPressed :
-      theme.emojiSelectButton;
+    const buttonClassName = this.state.isOpen
+      ? theme.emojiSelectButtonPressed
+      : theme.emojiSelectButton;
 
     return (
       <div className={theme.emojiSelect} onClick={this.onClick}>

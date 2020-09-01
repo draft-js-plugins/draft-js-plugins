@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 export default class Hashtag extends Component {
   render() {
@@ -13,11 +13,10 @@ export default class Hashtag extends Component {
       offsetKey, // eslint-disable-line no-unused-vars
       setEditorState, // eslint-disable-line no-unused-vars
       contentState, // eslint-disable-line no-unused-vars
+      blockKey, // eslint-disable-line no-unused-vars
       ...otherProps
     } = this.props; // eslint-disable-line no-use-before-define
-    const combinedClassName = unionClassNames(theme.hashtag, className);
-    return (
-      <span {...otherProps} className={combinedClassName} />
-    );
+    const combinedClassName = clsx(theme.hashtag, className);
+    return <span {...otherProps} className={combinedClassName} />;
   }
 }

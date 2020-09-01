@@ -1,29 +1,34 @@
 /* eslint-disable react/no-children-prop */
 import React, { Component } from 'react';
 import { RichUtils } from 'draft-js';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
-export default ({ style, children }) => (
+export default ({ style, children }) =>
   class InlineStyleButton extends Component {
-
-    toggleStyle = (event) => {
+    toggleStyle = event => {
       event.preventDefault();
       this.props.setEditorState(
-        RichUtils.toggleInlineStyle(
-          this.props.getEditorState(),
-          style
-        )
+        RichUtils.toggleInlineStyle(this.props.getEditorState(), style)
       );
-    }
+    };
 
-    preventBubblingUp = (event) => { event.preventDefault(); }
+    preventBubblingUp = event => {
+      event.preventDefault();
+    };
 
     // we check if this.props.getEditorstate is undefined first in case the button is rendered before the editor
-    styleIsActive = () => this.props.getEditorState && this.props.getEditorState().getCurrentInlineStyle().has(style);
+    styleIsActive = () =>
+      this.props.getEditorState &&
+      this.props
+        .getEditorState()
+        .getCurrentInlineStyle()
+        .has(style);
 
     render() {
       const { theme } = this.props;
-      const className = this.styleIsActive() ? unionClassNames(theme.button, theme.active) : theme.button;
+      const className = this.styleIsActive()
+        ? clsx(theme.button, theme.active)
+        : theme.button;
       return (
         <div
           className={theme.buttonWrapper}
@@ -38,5 +43,4 @@ export default ({ style, children }) => (
         </div>
       );
     }
-  }
-);
+  };

@@ -8,6 +8,12 @@ import customExampleCode from '!!../../../loaders/prism-loader?language=javascri
 // eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomSideToolbarEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
+import customExampleEditorButtonStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomSideToolbarEditor/buttonStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleEditorToolbarStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomSideToolbarEditor/toolbarStyles.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleEditorBlockTypeSelectStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomSideToolbarEditor/blockTypeSelectStyles.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!../../../loaders/prism-loader?language=javascript!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
@@ -83,6 +89,28 @@ export default class App extends Component {
           </p>
         </AlternateContainer>
         <Container>
+          <Heading level={2}>Configuration Parameters</Heading>
+          <div className={styles.param}>
+            <span className={styles.paramName}>theme</span>
+            <span>Object of CSS classes with the following keys.</span>
+            <div className={styles.subParams}>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>buttonStyles:</span> CSS class for the buttons.
+              </div>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>toolbarStyles:</span> CSS class for toolbar.
+              </div>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>blockTypeSelectStyles:</span> CSS class for the dot.
+              </div>
+            </div>
+          </div>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>position</span>
+            <span>String for the position to be rendered.(Default is left)</span>
+          </div>
+        </Container>
+        <Container>
           <Heading level={2}>Simple Side Toolbar Example</Heading>
           <SimpleSideToolbarEditor />
           <Code code={simpleExampleCode} name="SimpleSideToolbarEditor.js" />
@@ -93,6 +121,9 @@ export default class App extends Component {
           <CustomSideToolbarEditor />
           <Code code={customExampleCode} name="CustomSideToolbarEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
+          <Code code={customExampleEditorButtonStylesCode} name="buttonStyles.css" />
+          <Code code={customExampleEditorToolbarStylesCode} name="toolbarStyles.css" />
+          <Code code={customExampleEditorBlockTypeSelectStylesCode} name="blockTypeSelectStyles.css" />
         </Container>
         <SocialBar />
       </div>

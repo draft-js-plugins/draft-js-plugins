@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 class CustomCounter extends Component {
-
   static propTypes = {
     theme: PropTypes.any,
     limit: PropTypes.number,
@@ -12,14 +11,17 @@ class CustomCounter extends Component {
 
   getClassNames(count, limit) {
     const { theme = {}, className } = this.props;
-    const defaultStyle = unionClassNames(theme.counter, className);
-    const overLimitStyle = unionClassNames(theme.counterOverLimit, className);
+    const defaultStyle = clsx(theme.counter, className);
+    const overLimitStyle = clsx(theme.counterOverLimit, className);
     return count > limit ? overLimitStyle : defaultStyle;
   }
 
   render() {
     const { store, limit, countFunction } = this.props;
-    const plainText = store.getEditorState().getCurrentContent().getPlainText('');
+    const plainText = store
+      .getEditorState()
+      .getCurrentContent()
+      .getPlainText('');
     const count = countFunction(plainText);
     const classNames = this.getClassNames(count, limit);
 

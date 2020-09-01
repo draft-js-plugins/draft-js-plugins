@@ -39,9 +39,7 @@ class MultiDecorator {
    */
   getComponentForKey(key) {
     const decorator = this.getDecoratorForKey(key);
-    return decorator.getComponentForKey(
-      MultiDecorator.getInnerKey(key)
-    );
+    return decorator.getComponentForKey(MultiDecorator.getInnerKey(key));
   }
 
   /**
@@ -52,9 +50,7 @@ class MultiDecorator {
    */
   getPropsForKey(key) {
     const decorator = this.getDecoratorForKey(key);
-    return decorator.getPropsForKey(
-      MultiDecorator.getInnerKey(key)
-    );
+    return decorator.getPropsForKey(MultiDecorator.getInnerKey(key));
   }
 
   /**
@@ -82,4 +78,4 @@ class MultiDecorator {
   }
 }
 
-module.exports = MultiDecorator;
+export default MultiDecorator;

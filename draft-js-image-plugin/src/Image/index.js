@@ -1,14 +1,9 @@
-import unionClassNames from 'union-class-names';
 import React, { Component } from 'react';
+import clsx from 'clsx';
 
 export default class Image extends Component {
   render() {
-    const {
-      block,
-      className,
-      theme = {},
-      ...otherProps
-    } = this.props;
+    const { block, className, theme = {}, ...otherProps } = this.props;
     // leveraging destructuring to omit certain properties from props
     const {
       blockProps, // eslint-disable-line no-unused-vars
@@ -23,7 +18,7 @@ export default class Image extends Component {
       blockStyleFn,
       ...elementProps
     } = otherProps;
-    const combinedClassName = unionClassNames(theme.image, className);
+    const combinedClassName = clsx(theme.image, className);
     const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
     return (
       <img

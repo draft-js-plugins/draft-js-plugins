@@ -34,7 +34,10 @@ export default (
       entity.data,
       entity.type
     );
-    const contentStateAfterRemove = removeBlock(contentStateAfterInsert, blockKey);
+    const contentStateAfterRemove = removeBlock(
+      contentStateAfterInsert,
+      blockKey
+    );
 
     // force to new selection
     const newSelection = new SelectionState({
@@ -43,7 +46,11 @@ export default (
       focusKey: blockKey,
       focusOffset: 0,
     });
-    const newState = EditorState.push(editorState, contentStateAfterRemove, 'move-block');
+    const newState = EditorState.push(
+      editorState,
+      contentStateAfterRemove,
+      'move-block'
+    );
     setEditorState(EditorState.forceSelection(newState, newSelection));
   }
 

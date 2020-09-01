@@ -1,5 +1,5 @@
-import unionClassNames from 'union-class-names';
 import React from 'react';
+import clsx from 'clsx';
 
 const Divider = ({ block, className, theme = {}, ...otherProps }) => {
   const {
@@ -15,7 +15,7 @@ const Divider = ({ block, className, theme = {}, ...otherProps }) => {
     blockStyleFn,
     ...elementProps
   } = otherProps;
-  const combinedClassName = unionClassNames(theme.divider, className);
+  const combinedClassName = clsx(theme.divider, className);
   return <hr {...elementProps} className={combinedClassName} />;
 };
 

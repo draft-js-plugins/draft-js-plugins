@@ -58,12 +58,6 @@ A plugin accepts all standard props the Draft.js Editor Component uses. [See det
 - [handlePastedFiles](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handlepastedfiles)
 - [handleDroppedFiles](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handledroppedfiles)
 - [handleDrop](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handledrop)
-- [onEscape](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onescape)
-- [onTab](https://facebook.github.io/draft-js/docs/api-reference-editor.html#ontab)
-- [onUpArrow](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onuparrow)
-- [onRightArrow](https://draftjs.org/docs/api-reference-editor.html#onrightarrow)
-- [onDownArrow](https://facebook.github.io/draft-js/docs/api-reference-editor.html#ondownarrow)
-- [onLeftArrow](https://draftjs.org/docs/api-reference-editor.html#onleftarrow)
 - [onFocus](https://draftjs.org/docs/api-reference-editor.html#onfocus)
 - [onBlur](https://draftjs.org/docs/api-reference-editor.html#onblur)
 
@@ -83,10 +77,10 @@ All functions receive an additional argument. This argument is an object contain
 }
 ```
 
-In addition the a plugin accepts 
+In addition a plugin accepts 
 
 - `initialize: (PluginFunctions) => void`
-- `onChange: (EditorState) => EditorState`
+- `onChange: (EditorState, PluginFunctions) => EditorState`
 - `willUnmount: (PluginFunctions) => void`
 - `decorators: Array<Decorator> => void`
 - `getAccessibilityProps: () => { ariaHasPopup: string, ariaExpanded: string }`

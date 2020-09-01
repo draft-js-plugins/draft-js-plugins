@@ -3,31 +3,64 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## To be released
+
+- Replace legacy lifecycle hooks with UNSAFE aliases; the required react version is 16.3
+- Migrate styles to linaria
+- Hide internals in single bundle
+- Add esm support
+- Use lodash-es in esm bundle
+
+## 2.1.3
+
+- removed deprecated draft-js hooks (onUpArrow, onDownArrow, onEscape, onTab) usage
+
+## 2.1.2
+
+- Allow draft-js v0.11
+- Remove unused dependencies
+- Add typescript typings
+
+## 2.1.1
+
+- Move searchPortal ref function to constructor
+
+## 2.1.0
+
+- Don't fetch all EmojiOne emoji as soon as the `<EmojiSelect />` is rendered. Fetch them on demand.
+
 ## 2.0.6
+
 - Added an `id` attribute on the listbox options so the `aria-activedescendant` value refers to the focused option.
 
 ## 2.0.4 - 2.0.5
+
 - bumped find-with-regex
 
 ## 2.0.3
+
 - Added `aria-selected="true"` for the suggestions listbox focused option.
 - Fix aria attributes to use booleans rather than strings (that was a draft-js update that we missed)
 
 ## 2.0.2
+
 - Updated dependencies to support react 16
 - Fixed rendering of emoji 'heart' on Windows 10 + Chrome. By @steven-qi
 - Fixed [this](https://github.com/draft-js-plugins/draft-js-plugins/issues/1041)
 - Fixed editing behavior for emoji-plugin
 
 ## 2.0.0-rc10
+
 - fixed direct state assignment
 
 ## 2.0.0-rc9
 
 ### Fix native emojis
+
 - render props.children instead, fixes editing behaviour
 
 ### Fixed
+
 - Added type="button" to EmojiSelect button to prevent submitting forms, thanks to @alanwflood [for the pr](https://github.com/draft-js-plugins/draft-js-plugins/pull/829)
 
 ### Removed
@@ -43,7 +76,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Add EmojiSelect component. Thanks to @bashkos
-- Added {allowImageCache, imageType} properties to  config object.
+- Added {allowImageCache, imageType} properties to config object.
 - Add `emojione` as a dependency.
 - Add `lodash.keys` as a dependency.
 - The config object will accept a property `priorityList` which should contain Emoji entries used by EmojiOne. These entries will be show first in the EmojiSuggestions dropdown after typing `:`. Thanks to @mzbac
@@ -61,10 +94,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - `positionSuggestions` now works by default with non-static parents. Thanks to @Zhouzi
-[#309](https://github.com/draft-js-plugins/draft-js-plugins/pull/309)
-[#206](https://github.com/draft-js-plugins/draft-js-plugins/issues/206)
-[#283](https://github.com/draft-js-plugins/draft-js-plugins/issues/283)
-[#289](https://github.com/draft-js-plugins/draft-js-plugins/issues/289)
+  [#309](https://github.com/draft-js-plugins/draft-js-plugins/pull/309)
+  [#206](https://github.com/draft-js-plugins/draft-js-plugins/issues/206)
+  [#283](https://github.com/draft-js-plugins/draft-js-plugins/issues/283)
+  [#289](https://github.com/draft-js-plugins/draft-js-plugins/issues/289)
 
 ## 1.2.1 - 2016-06-05
 
@@ -121,10 +154,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 0.0.4 - 2016-03-29
 
 ### Fixed
+
 - Fix issue with showing two menus at the same time [#132](https://github.com/draft-js-plugins/draft-js-plugins/issues/132)
 - When typing ahead to 0 results and then back the first item must be still selected. [#149](https://github.com/draft-js-plugins/draft-js-plugins/pull/149)
 
 ## 0.0.3 - 2016-03-25
+
 ### Released the first working version of DraftJS Emoji Plugin
 
 It's not recommended to use the version 0.0.0 - 0.0.2

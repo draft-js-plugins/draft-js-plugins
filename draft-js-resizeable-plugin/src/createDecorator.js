@@ -1,203 +1,228 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-const getDisplayName = (WrappedComponent) => {
+const getDisplayName = WrappedComponent => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
 const round = (x, steps) => Math.ceil(x / steps) * steps;
 
-export default ({ config, store }) => (WrappedComponent) => class BlockResizeableDecorator extends Component {
-  static displayName = `BlockDraggable(${getDisplayName(WrappedComponent)})`;
-  static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
-  static defaultProps = {
-    horizontal: 'relative',
-    vertical: false,
-    resizeSteps: 1,
-    ...config
-  };
-  state = {
-    hoverPosition: {},
-    clicked: false,
-  };
-
-  setEntityData = (data) => {
-    this.props.blockProps.setResizeData(data);
-  }
-
-  // used to save the hoverPosition so it can be leveraged to determine if a
-  // drag should happen on mousedown
-  mouseLeave = () => {
-    if (!this.state.clicked) {
-      this.setState({ hoverPosition: {} });
-    }
-  }
-
-  // used to save the hoverPosition so it can be leveraged to determine if a
-  // drag should happen on mousedown
-  mouseMove = (evt) => {
-    const { vertical, horizontal } = this.props;
-
-    const hoverPosition = this.state.hoverPosition;
-    const tolerance = 6;
-    // TODO figure out if and how to achieve this without fetching the DOM node
-    // eslint-disable-next-line react/no-find-dom-node
-    const pane = ReactDOM.findDOMNode(this);
-    const b = pane.getBoundingClientRect();
-    const x = evt.clientX - b.left;
-    const y = evt.clientY - b.top;
-
-    const isTop = vertical && vertical !== 'auto' ? y < tolerance : false;
-    const isLeft = horizontal ? x < tolerance : false;
-    const isRight = horizontal ? x >= b.width - tolerance : false;
-    const isBottom = vertical && vertical !== 'auto' ? y >= b.height - tolerance && y < b.height : false;
-
-    const canResize = isTop || isLeft || isRight || isBottom;
-
-    const newHoverPosition = {
-      isTop, isLeft, isRight, isBottom, canResize
+export default ({ config, store }) => WrappedComponent =>
+  class BlockResizeableDecorator extends Component {
+    static displayName = `Resizable(${getDisplayName(WrappedComponent)})`;
+    static WrappedComponent =
+      WrappedComponent.WrappedComponent || WrappedComponent;
+    static defaultProps = {
+      horizontal: 'relative',
+      vertical: false,
+      resizeSteps: 1,
+      ...config,
     };
-    const hasNewHoverPositions = Object.keys(newHoverPosition).filter(
-      (key) => hoverPosition[key] !== newHoverPosition[key]
-    );
+    state = {
+      hoverPosition: {},
+      clicked: false,
+    };
 
-    if (hasNewHoverPositions.length) {
-      this.setState({ hoverPosition: newHoverPosition });
-    }
-  }
+    setEntityData = data => {
+      this.props.blockProps.setResizeData(data);
+    };
 
-  // Handle mousedown for resizing
-  mouseDown = (event) => {
-    // No mouse-hover-position data? Nothing to resize!
-    if (!this.state.hoverPosition.canResize) {
-      return;
-    }
+    // used to save the hoverPosition so it can be leveraged to determine if a
+    // drag should happen on mousedown
+    mouseLeave = () => {
+      if (!this.state.clicked) {
+        this.setState({ hoverPosition: {} });
+      }
+    };
 
-    event.preventDefault();
-    const { resizeSteps, vertical, horizontal } = this.props;
-    const { hoverPosition } = this.state;
-    const { isTop, isLeft, isRight, isBottom } = hoverPosition;
+    // used to save the hoverPosition so it can be leveraged to determine if a
+    // drag should happen on mousedown
+    mouseMove = evt => {
+      const { vertical, horizontal } = this.props;
 
-    // TODO figure out how to achieve this without fetching the DOM node
-    // eslint-disable-next-line react/no-find-dom-node
-    const pane = ReactDOM.findDOMNode(this);
-    const startX = event.clientX;
-    const startY = event.clientY;
-    const startWidth = parseInt(document.defaultView.getComputedStyle(pane).width, 10);
-    const startHeight = parseInt(document.defaultView.getComputedStyle(pane).height, 10);
+      const hoverPosition = this.state.hoverPosition;
+      const tolerance = 6;
+      // TODO figure out if and how to achieve this without fetching the DOM node
+      // eslint-disable-next-line react/no-find-dom-node
+      const pane = ReactDOM.findDOMNode(this);
+      const b = pane.getBoundingClientRect();
+      const x = evt.clientX - b.left;
+      const y = evt.clientY - b.top;
 
-    // Do the actual drag operation
-    const doDrag = (dragEvent) => {
-      let width = startWidth + (isLeft ? startX - dragEvent.clientX : dragEvent.clientX - startX);
-      let height = (startHeight + dragEvent.clientY) - startY;
+      const isTop = vertical && vertical !== 'auto' ? y < tolerance : false;
+      const isLeft = horizontal ? x < tolerance : false;
+      const isRight = horizontal ? x >= b.width - tolerance : false;
+      const isBottom =
+        vertical && vertical !== 'auto'
+          ? y >= b.height - tolerance && y < b.height
+          : false;
 
-      const editorComp = store.getEditorRef();
-      // this keeps backwards-compatibility with react 15
-      const editorNode = editorComp.refs.editor ? editorComp.refs.editor : editorComp.editor;
+      const canResize = isTop || isLeft || isRight || isBottom;
 
-      width = Math.min(editorNode.clientWidth, width);
-      height = Math.min(editorNode.clientHeight, height);
+      const newHoverPosition = {
+        isTop,
+        isLeft,
+        isRight,
+        isBottom,
+        canResize,
+      };
+      const hasNewHoverPositions = Object.keys(newHoverPosition).filter(
+        key => hoverPosition[key] !== newHoverPosition[key]
+      );
 
-      const widthPerc = (100 / editorNode.clientWidth) * width;
-      const heightPerc = (100 / editorNode.clientHeight) * height;
+      if (hasNewHoverPositions.length) {
+        this.setState({ hoverPosition: newHoverPosition });
+      }
+    };
 
-      const newState = {};
-      if ((isLeft || isRight) && horizontal === 'relative') {
-        newState.width = resizeSteps ? round(widthPerc, resizeSteps) : widthPerc;
-      } else if ((isLeft || isRight) && horizontal === 'absolute') {
-        newState.width = resizeSteps ? round(width, resizeSteps) : width;
+    // Handle mousedown for resizing
+    mouseDown = event => {
+      // No mouse-hover-position data? Nothing to resize!
+      if (!this.state.hoverPosition.canResize) {
+        return;
       }
 
-      if ((isTop || isBottom) && vertical === 'relative') {
-        newState.height = resizeSteps ? round(heightPerc, resizeSteps) : heightPerc;
-      } else if ((isTop || isBottom) && vertical === 'absolute') {
-        newState.height = resizeSteps ? round(height, resizeSteps) : height;
-      }
+      event.preventDefault();
+      const { resizeSteps, vertical, horizontal } = this.props;
+      const { hoverPosition } = this.state;
+      const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
-      dragEvent.preventDefault();
+      // TODO figure out how to achieve this without fetching the DOM node
+      // eslint-disable-next-line react/no-find-dom-node
+      const pane = ReactDOM.findDOMNode(this);
+      const startX = event.clientX;
+      const startY = event.clientY;
+      const startWidth = parseInt(
+        document.defaultView.getComputedStyle(pane).width,
+        10
+      );
+      const startHeight = parseInt(
+        document.defaultView.getComputedStyle(pane).height,
+        10
+      );
 
-      this.setState(newState);
-    };
+      // Do the actual drag operation
+      const doDrag = dragEvent => {
+        let width =
+          startWidth +
+          (isLeft ? startX - dragEvent.clientX : dragEvent.clientX - startX);
+        let height = startHeight + dragEvent.clientY - startY;
 
-    // Finished dragging
-    const stopDrag = () => {
-      // TODO clean up event listeners
-      document.removeEventListener('mousemove', doDrag, false);
-      document.removeEventListener('mouseup', stopDrag, false);
+        const editorComp = store.getEditorRef();
+        // this keeps backwards-compatibility with react 15
+        const editorNode = editorComp.refs.editor
+          ? editorComp.refs.editor
+          : editorComp.editor;
 
-      const { width, height } = this.state;
-      this.setState({ clicked: false });
-      this.setEntityData({ width, height });
-    };
+        width = Math.min(editorNode.clientWidth, width);
+        height = Math.min(editorNode.clientHeight, height);
 
-    // TODO clean up event listeners
-    document.addEventListener('mousemove', doDrag, false);
-    document.addEventListener('mouseup', stopDrag, false);
+        const widthPerc = (100 / editorNode.clientWidth) * width;
+        const heightPerc = (100 / editorNode.clientHeight) * height;
 
-    this.setState({ clicked: true });
-  }
+        const newState = {};
+        if ((isLeft || isRight) && horizontal === 'relative') {
+          newState.width = resizeSteps
+            ? round(widthPerc, resizeSteps)
+            : widthPerc;
+        } else if ((isLeft || isRight) && horizontal === 'absolute') {
+          newState.width = resizeSteps ? round(width, resizeSteps) : width;
+        }
 
-  render() {
-    const {
-      blockProps,
-      vertical,
-      horizontal,
-      style,
-      // using destructuring to make sure unused props are not passed down to the block
-      resizeSteps, // eslint-disable-line no-unused-vars
-      ...elementProps
-    } = this.props;
-    const { width, height, hoverPosition } = this.state;
-    const { isTop, isLeft, isRight, isBottom } = hoverPosition;
+        if ((isTop || isBottom) && vertical === 'relative') {
+          newState.height = resizeSteps
+            ? round(heightPerc, resizeSteps)
+            : heightPerc;
+        } else if ((isTop || isBottom) && vertical === 'absolute') {
+          newState.height = resizeSteps ? round(height, resizeSteps) : height;
+        }
 
-    const styles = { position: 'relative', ...style };
+        dragEvent.preventDefault();
 
-    if (horizontal === 'auto') {
-      styles.width = 'auto';
-    } else if (horizontal === 'relative') {
-      styles.width = `${(width || blockProps.resizeData.width || 40)}%`;
-    } else if (horizontal === 'absolute') {
-      styles.width = `${(width || blockProps.resizeData.width || 40)}px`;
-    }
-
-    if (vertical === 'auto') {
-      styles.height = 'auto';
-    } else if (vertical === 'relative') {
-      styles.height = `${(height || blockProps.resizeData.height || 40)}%`;
-    } else if (vertical === 'absolute') {
-      styles.height = `${(height || blockProps.resizeData.height || 40)}px`;
-    }
-
-    // Handle cursor
-    if ((isRight && isBottom) || (isLeft && isTop)) {
-      styles.cursor = 'nwse-resize';
-    } else if ((isRight && isTop) || (isBottom && isLeft)) {
-      styles.cursor = 'nesw-resize';
-    } else if (isRight || isLeft) {
-      styles.cursor = 'ew-resize';
-    } else if (isBottom || isTop) {
-      styles.cursor = 'ns-resize';
-    } else {
-      styles.cursor = 'default';
-    }
-
-    const interactionProps = store.getReadOnly()
-      ? {}
-      : {
-        onMouseDown: this.mouseDown,
-        onMouseMove: this.mouseMove,
-        onMouseLeave: this.mouseLeave,
+        this.setState(newState);
       };
 
-    return (
-      <WrappedComponent
-        {...elementProps}
-        {...interactionProps}
-        blockProps={blockProps}
-        ref={(element) => { this.wrapper = element; }}
-        style={styles}
-      />
-    );
-  }
-};
+      // Finished dragging
+      const stopDrag = () => {
+        // TODO clean up event listeners
+        document.removeEventListener('mousemove', doDrag, false);
+        document.removeEventListener('mouseup', stopDrag, false);
+
+        const { width, height } = this.state;
+        this.setState({ clicked: false });
+        this.setEntityData({ width, height });
+      };
+
+      // TODO clean up event listeners
+      document.addEventListener('mousemove', doDrag, false);
+      document.addEventListener('mouseup', stopDrag, false);
+
+      this.setState({ clicked: true });
+    };
+
+    render() {
+      const {
+        blockProps,
+        vertical,
+        horizontal,
+        style,
+        // using destructuring to make sure unused props are not passed down to the block
+        resizeSteps, // eslint-disable-line no-unused-vars
+        ...elementProps
+      } = this.props;
+      const { width, height, hoverPosition } = this.state;
+      const { isTop, isLeft, isRight, isBottom } = hoverPosition;
+
+      const styles = { position: 'relative', ...style };
+
+      if (horizontal === 'auto') {
+        styles.width = 'auto';
+      } else if (horizontal === 'relative') {
+        styles.width = `${width || blockProps.resizeData.width || 40}%`;
+      } else if (horizontal === 'absolute') {
+        styles.width = `${width || blockProps.resizeData.width || 40}px`;
+      }
+
+      if (vertical === 'auto') {
+        styles.height = 'auto';
+      } else if (vertical === 'relative') {
+        styles.height = `${height || blockProps.resizeData.height || 40}%`;
+      } else if (vertical === 'absolute') {
+        styles.height = `${height || blockProps.resizeData.height || 40}px`;
+      }
+
+      // Handle cursor
+      if ((isRight && isBottom) || (isLeft && isTop)) {
+        styles.cursor = 'nwse-resize';
+      } else if ((isRight && isTop) || (isBottom && isLeft)) {
+        styles.cursor = 'nesw-resize';
+      } else if (isRight || isLeft) {
+        styles.cursor = 'ew-resize';
+      } else if (isBottom || isTop) {
+        styles.cursor = 'ns-resize';
+      } else {
+        styles.cursor = 'default';
+      }
+
+      const interactionProps = store.getReadOnly()
+        ? {}
+        : {
+            onMouseDown: this.mouseDown,
+            onMouseMove: this.mouseMove,
+            onMouseLeave: this.mouseLeave,
+          };
+
+      return (
+        <WrappedComponent
+          {...elementProps}
+          {...interactionProps}
+          blockProps={blockProps}
+          ref={element => {
+            this.wrapper = element;
+          }}
+          style={styles}
+        />
+      );
+    }
+  };
