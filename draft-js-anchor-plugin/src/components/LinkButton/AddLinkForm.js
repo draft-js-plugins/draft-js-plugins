@@ -12,6 +12,7 @@ export default class AddLinkForm extends Component {
     onOverrideContent: PropTypes.func.isRequired,
     theme: PropTypes.object.isRequired,
     placeholder: PropTypes.string,
+    validateUrl: PropTypes.func,
   };
 
   static defaultProps = {
@@ -33,7 +34,7 @@ export default class AddLinkForm extends Component {
 
   onChange = ({ target: { value } }) => {
     const nextState = { value };
-    if (this.state.isInvalid && URLUtils.isUrl(URLUtils.normalizeUrl(value))) {
+    if (this.state.isInvalid && this.isUrl(URLUtils.normalizeUrl(value))) {
       nextState.isInvalid = false;
     }
     this.setState(nextState);
@@ -56,7 +57,7 @@ export default class AddLinkForm extends Component {
     let { value: url } = this.state;
     if (!URLUtils.isMail(URLUtils.normaliseMail(url))) {
       url = URLUtils.normalizeUrl(url);
-      if (!URLUtils.isUrl(url)) {
+      if (!this.isUrl(url)) {
         this.setState({ isInvalid: true });
         return;
       }
@@ -66,6 +67,10 @@ export default class AddLinkForm extends Component {
     setEditorState(EditorUtils.createLinkAtSelection(getEditorState(), url));
     this.input.blur();
     this.onClose();
+  }
+
+  isUrl(value) {
+    return this.props.validateUrl && this.props.validateUrl(value) || !this.props.validateUrl && URLUtils.isUrl(value);
   }
 
   render() {

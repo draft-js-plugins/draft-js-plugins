@@ -12,6 +12,7 @@ export interface AnchorPluginConfig {
   placeholder?: string;
   Link?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
   linkTarget?: string;
+  validateUrl?: (url: string) => boolean;
 }
 
 export type AnchorPlugin = EditorPlugin & {
