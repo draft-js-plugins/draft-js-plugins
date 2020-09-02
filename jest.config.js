@@ -11,7 +11,7 @@ module.exports = {
   moduleDirectories: ['node_modules', 'src'],
   testPathIgnorePatterns: ['./node_modules/'],
   collectCoverageFrom: [],
-  coveragePathIgnorePatterns: ['.stories.tsx'],
+  coveragePathIgnorePatterns: ['.stories.*'],
   coverageThreshold: {
     global: {},
   },

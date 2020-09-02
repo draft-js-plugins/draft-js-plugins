@@ -124,14 +124,14 @@
   "scripts": {
     "alex": "alex README.md",
     "build-storybook": "build-storybook",
-    "lint": "npm run lint:eslint && npm run lint:flow",
+    "lint": "yarn lint:eslint && yarn lint:flow",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests: 2' ./",
     "lint:flow": "flow status",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "test": "mocha --compilers @babel/register --require testHelper.js \"./*/src/**/__test__/*.js\"",
-    "test:watch": "npm test -- --watch",
-    "test:jest": "jest"
+    "test:watch": "yarn test -- --watch",
+    "test:jest": "jest --passWithNoTests"
   },
   "workspaces": [
     "draft-js-alignment-plugin",
