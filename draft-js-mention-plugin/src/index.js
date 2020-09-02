@@ -2,7 +2,7 @@ import React from 'react';
 import { Map } from 'immutable';
 import Mention from './Mention/Mention';
 import MentionSuggestions from './MentionSuggestions'; // eslint-disable-line import/no-named-as-default
-import MentionSuggestionsPortal from './MentionSuggestionsPortal';
+import MentionSuggestionsPortal from './MentionSuggestionsPortal/MentionSuggestionsPortal';
 import defaultRegExp from './defaultRegExp';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
