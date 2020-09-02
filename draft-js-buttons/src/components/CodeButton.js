@@ -1,8 +1,8 @@
 import React from 'react';
-import createBlockStyleButton from '../../utils/createBlockStyleButton';
+import createInlineStyleButton from '../utils/createInlineStyleButton';
 
-export default createBlockStyleButton({
-  blockType: 'code-block',
+export default createInlineStyleButton({
+  style: 'CODE',
   children: (
     <svg
       height="24"

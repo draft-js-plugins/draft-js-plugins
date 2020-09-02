@@ -1,5 +1,5 @@
 import React from 'react';
-import createBlockAlignmentButton from '../../utils/createBlockAlignmentButton';
+import createBlockAlignmentButton from '../utils/createBlockAlignmentButton';
 
 export default createBlockAlignmentButton({
   alignment: 'default',

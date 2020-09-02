@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-import { MentionSuggestions } from '../index';
+import { MentionSuggestions } from '../MentionSuggestions';
 
 const mentions = [
   {
