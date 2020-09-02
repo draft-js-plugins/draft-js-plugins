@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import editorStyles from './editorStyles.css';
@@ -15,46 +15,54 @@ Note that the color changes when you pass one of the following limits:
 - 10 lines
 `;
 
-export default class SimpleCounterEditor extends Component {
+const SimpleCounterEditor = () => {
+  const [editorState, setEditorState] = useState(
+    createEditorStateWithText(text)
+  );
+  const editor = useRef();
 
-  state = {
-    editorState: createEditorStateWithText(text),
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({ editorState });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
-
-  customCountFunction(str) {
-    const wordArray = str.match(/\S+/g);  // matches words according to whitespace
+  const customCountFunction = str => {
+    const wordArray = str.match(/\S+/g); // matches words according to whitespace
     return wordArray ? wordArray.length : 0;
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <div className={editorStyles.editor} onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            ref={(element) => { this.editor = element; }}
-          />
-        </div>
-        <div><CharCounter limit={200} /> characters</div>
-        <div><WordCounter limit={30} /> words</div>
-        <div><LineCounter limit={10} /> lines</div>
-        <div>
-          <CustomCounter limit={40} countFunction={this.customCountFunction} />
-          <span> words (custom function)</span>
-        </div>
-        <br />
-        <br />
+  return (
+    <div>
+      <div className={editorStyles.editor} onClick={focus}>
+        <Editor
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
+          ref={element => {
+            editor.current = element;
+          }}
+        />
       </div>
-    );
-  }
-}
+      <div>
+        <CharCounter limit={200} /> characters
+      </div>
+      <div>
+        <WordCounter limit={30} /> words
+      </div>
+      <div>
+        <LineCounter limit={10} /> lines
+      </div>
+      <div>
+        <CustomCounter limit={40} countFunction={customCountFunction} />
+        <span> words (custom function)</span>
+      </div>
+      <br />
+      <br />
+    </div>
+  );
+};
+
+export default SimpleCounterEditor;

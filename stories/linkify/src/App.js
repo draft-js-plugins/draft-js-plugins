@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { EditorState, ContentState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
@@ -7,31 +7,34 @@ import editorStyles from './editorStyles.css';
 const linkifyPlugin = createLinkifyPlugin();
 const plugins = [linkifyPlugin];
 
-export default class SimpleMentionEditor extends Component {
-  state = {
-    editorState: EditorState.createWithContent(ContentState.createFromText('Hello there google.com')),
+const SimpleMentionEditor = () => {
+  const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(
+      ContentState.createFromText('Hello there google.com')
+    )
+  );
+  const editor = useRef();
+
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
-        />
-      </div>
-    );
-  }
-}
+export default SimpleMentionEditor;

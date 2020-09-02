@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
@@ -10,41 +10,42 @@ import editorStyles from './editorStyles.css';
 const imagePlugin = createImagePlugin();
 const plugins = [imagePlugin];
 
-const text = 'Click on the + button below and insert "/images/canada-landscape-small.jpg" to add the landscape image. Alternativly you can use any image url on the web.';
+const text =
+  'Click on the + button below and insert "/images/canada-landscape-small.jpg" to add the landscape image. Alternativly you can use any image url on the web.';
 
-export default class CustomImageEditor extends Component {
+const CustomImageEditor = () => {
+  const [editorState, setEditorState] = useState(
+    createEditorStateWithText(text)
+  );
+  const editor = useRef();
 
-  state = {
-    editorState: createEditorStateWithText(text),
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
-
-  render() {
-    return (
-      <div>
-        <div className={editorStyles.editor} onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            ref={(element) => { this.editor = element; }}
-          />
-        </div>
-        <ImageAdd
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          modifier={imagePlugin.addImage}
+  return (
+    <div>
+      <div className={editorStyles.editor} onClick={focus}>
+        <Editor
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
+          ref={element => {
+            editor.current = element;
+          }}
         />
       </div>
-    );
-  }
-}
+      <ImageAdd
+        editorState={editorState}
+        onChange={onChange}
+        modifier={imagePlugin.addImage}
+      />
+    </div>
+  );
+};
+
+export default CustomImageEditor;
