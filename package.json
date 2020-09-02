@@ -29,10 +29,14 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.5.5",
     "@storybook/react": "^5.1.11",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^10.4.9",
+    "@testing-library/react-hooks": "^3.4.1",
     "alex": "^4.0.1",
     "animateplus": "^1.4.0",
     "autoprefixer": "^6.7.6",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^26.3.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "chai": "^3.5.0",
@@ -55,6 +59,7 @@
     "extract-text-webpack-plugin": "^2.0.0",
     "flow-bin": "^0.69.0",
     "husky": "^3.0.4",
+    "jest": "^26.4.2",
     "jsdom": "^11.3.0",
     "linaria": "^1.4.0-alpha.1",
     "lint-staged": "^9.2.3",
@@ -125,7 +130,8 @@
     "lint:flow": "flow status",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "test": "mocha --compilers @babel/register --require testHelper.js \"./*/src/**/__test__/*.js\"",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "test:jest": "jest"
   },
   "workspaces": [
     "draft-js-alignment-plugin",
