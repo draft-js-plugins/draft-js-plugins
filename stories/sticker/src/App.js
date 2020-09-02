@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createStickerPlugin from 'draft-js-sticker-plugin';
@@ -9,37 +9,43 @@ const stickerPlugin = createStickerPlugin({ stickers });
 const plugins = [stickerPlugin];
 const StickerSelect = stickerPlugin.StickerSelect;
 
-export default class SimpleMentionEditor extends Component {
+const SimpleMentionEditor = () => {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const editor = useRef();
 
-  state = {
-    editorState: EditorState.createEmpty(),
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
+  const focus = () => {
+    editor.current.focus();
+  };
+
+  // simulate `this`
+  const self = {
+    onChange,
+    state: {
       editorState,
-    });
+    },
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
-
-  render() {
-    return (
-      <div>
-        <div className={editorStyles.editor} onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            ref={(element) => { this.editor = element; }}
-          />
-        </div>
-        <div className={editorStyles.options}>
-          <StickerSelect editor={this} />
-        </div>
+  return (
+    <div>
+      <div className={editorStyles.editor} onClick={focus}>
+        <Editor
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
+          ref={element => {
+            editor.current = element;
+          }}
+        />
       </div>
-    );
-  }
-}
+      <div className={editorStyles.options}>
+        <StickerSelect editor={self} />
+      </div>
+    </div>
+  );
+};
+
+export default SimpleMentionEditor;
