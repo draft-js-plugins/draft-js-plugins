@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link from './Link';
+import Link from './Link/Link';
 import linkStrategy from './linkStrategy';
 import { defaultTheme } from './theme.js';
 
