@@ -1,5 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
-
 import chai from 'chai';
 import dirtyChai from 'dirty-chai';
 import hook from 'css-modules-require-hook';

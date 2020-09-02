@@ -3,7 +3,7 @@
 
 module.exports = {
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/testHelper.js'],
+  setupFilesAfterEnv: ['<rootDir>/jestHelper.js'],
   moduleFileExtensions: ['jsx', 'js'],
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
