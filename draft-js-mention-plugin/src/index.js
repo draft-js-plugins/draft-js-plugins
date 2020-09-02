@@ -1,6 +1,6 @@
 import React from 'react';
 import { Map } from 'immutable';
-import Mention from './Mention';
+import Mention from './Mention/Mention';
 import MentionSuggestions from './MentionSuggestions'; // eslint-disable-line import/no-named-as-default
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import defaultRegExp from './defaultRegExp';
