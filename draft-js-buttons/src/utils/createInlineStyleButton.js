@@ -1,46 +1,47 @@
 /* eslint-disable react/no-children-prop */
-import React, { Component } from 'react';
+import React from 'react';
 import { RichUtils } from 'draft-js';
 import clsx from 'clsx';
 
-export default ({ style, children }) =>
-  class InlineStyleButton extends Component {
-    toggleStyle = event => {
+const createInlineStyleButton = ({ style, children }) => {
+  const InlineStyleButton = props => {
+    const toggleStyle = event => {
       event.preventDefault();
-      this.props.setEditorState(
-        RichUtils.toggleInlineStyle(this.props.getEditorState(), style)
+      props.setEditorState(
+        RichUtils.toggleInlineStyle(props.getEditorState(), style)
       );
     };
 
-    preventBubblingUp = event => {
+    const preventBubblingUp = event => {
       event.preventDefault();
     };
 
     // we check if this.props.getEditorstate is undefined first in case the button is rendered before the editor
-    styleIsActive = () =>
-      this.props.getEditorState &&
-      this.props
+    const styleIsActive = () =>
+      props.getEditorState &&
+      props
         .getEditorState()
         .getCurrentInlineStyle()
         .has(style);
 
-    render() {
-      const { theme } = this.props;
-      const className = this.styleIsActive()
-        ? clsx(theme.button, theme.active)
-        : theme.button;
-      return (
-        <div
-          className={theme.buttonWrapper}
-          onMouseDown={this.preventBubblingUp}
-        >
-          <button
-            className={className}
-            onClick={this.toggleStyle}
-            type="button"
-            children={children}
-          />
-        </div>
-      );
-    }
+    const { theme } = props;
+    const className = styleIsActive()
+      ? clsx(theme.button, theme.active)
+      : theme.button;
+
+    return (
+      <div className={theme.buttonWrapper} onMouseDown={preventBubblingUp}>
+        <button
+          className={className}
+          onClick={toggleStyle}
+          type="button"
+          children={children}
+        />
+      </div>
+    );
   };
+
+  return InlineStyleButton;
+};
+
+export default createInlineStyleButton;

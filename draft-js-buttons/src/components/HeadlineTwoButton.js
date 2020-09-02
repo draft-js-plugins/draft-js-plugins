@@ -1,4 +1,4 @@
-import createBlockStyleButton from '../../utils/createBlockStyleButton';
+import createBlockStyleButton from '../utils/createBlockStyleButton';
 
 export default createBlockStyleButton({
   blockType: 'header-two',
