@@ -3,7 +3,7 @@ import { render } from 'enzyme';
 import { Map } from 'immutable';
 import { ContentState } from 'draft-js';
 import { expect } from 'chai';
-import Mention from '../index';
+import Mention from '../Mention';
 
 describe('Mention', () => {
   it('renders an Anchor tag in case a link is provided', () => {
