@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { expect } from 'chai';
+import { screen, render } from '@testing-library/react';
 import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
@@ -30,8 +29,8 @@ describe('CounterPlugin Line Counter', () => {
       return wordArray ? wordArray.length : 0;
     };
 
-    const result = mount(<CustomCounter countFunction={countFunction} />);
-    expect(result).to.have.text('5');
+    render(<CustomCounter countFunction={countFunction} />);
+    expect(screen.getByText('5')).toBeInTheDocument();
   });
 
   it('instantiates plugin with number counter and counts 6 number characters', () => {
@@ -48,7 +47,7 @@ describe('CounterPlugin Line Counter', () => {
       return numArray ? numArray.length : 0;
     };
 
-    const result = mount(<CustomCounter countFunction={countFunction} />);
-    expect(result).to.have.text('6');
+    render(<CustomCounter countFunction={countFunction} />);
+    expect(screen.getByText('6')).toBeInTheDocument();
   });
 });
