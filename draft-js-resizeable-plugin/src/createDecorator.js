@@ -205,7 +205,7 @@ export default ({ config, store }) => WrappedComponent =>
         styles.cursor = 'default';
       }
 
-      const interactionProps = 
+      const interactionProps =
         !store.getReadOnly || store.getReadOnly()
           ? {}
           : {
