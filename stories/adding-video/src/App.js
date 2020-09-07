@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createVideoPlugin from 'draft-js-video-plugin';
@@ -9,41 +9,37 @@ const videoPlugin = createVideoPlugin();
 
 const plugins = [videoPlugin];
 
-export default class CustomVideoEditor extends Component {
+const CustomVideoEditor = () => {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const editor = useRef();
 
-  state = {
-    editorState: EditorState.createEmpty(),
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
-
-  render() {
-    return (
-      <div>
-        <div className={editorStyles.editor} onClick={this.focus} >
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            ref={(element) => {
-              this.editor = element;
-            }}
-          />
-        </div>
-        <VideoAdd
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          modifier={videoPlugin.addVideo}
+  return (
+    <div>
+      <div className={editorStyles.editor} onClick={focus}>
+        <Editor
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
+          ref={element => {
+            editor.current = element;
+          }}
         />
       </div>
-    );
-  }
-}
+      <VideoAdd
+        editorState={editorState}
+        onChange={onChange}
+        modifier={videoPlugin.addVideo}
+      />
+    </div>
+  );
+};
+
+export default CustomVideoEditor;

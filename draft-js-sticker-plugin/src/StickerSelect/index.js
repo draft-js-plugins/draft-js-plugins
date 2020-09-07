@@ -62,6 +62,7 @@ export default class StickerSelect extends Component {
 
   // Add a sticker to the editor
   add = id => {
+    // TODO - review this approach
     const { editor } = this.props;
     editor.onChange(addSticker(editor.state.editorState, id));
   };

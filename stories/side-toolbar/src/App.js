@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 import editorStyles from './editorStyles.css';
@@ -6,35 +6,36 @@ import editorStyles from './editorStyles.css';
 const sideToolbarPlugin = createSideToolbarPlugin();
 const { SideToolbar } = sideToolbarPlugin;
 const plugins = [sideToolbarPlugin];
-const text = 'Once you click into the text field the sidebar plugin will show up …';
+const text =
+  'Once you click into the text field the sidebar plugin will show up …';
 
-export default class SimpleSideToolbarEditor extends Component {
+const SimpleSideToolbarEditor = () => {
+  const [editorState, setEditorState] = useState(
+    createEditorStateWithText(text)
+  );
+  const editor = useRef();
 
-  state = {
-    editorState: createEditorStateWithText(text),
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+      <SideToolbar />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
-        />
-        <SideToolbar />
-      </div>
-    );
-  }
-}
+export default SimpleSideToolbarEditor;

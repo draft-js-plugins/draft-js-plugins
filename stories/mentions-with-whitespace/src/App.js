@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { ContentState, EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, {
@@ -73,58 +73,54 @@ const Entry = props => {
   );
 };
 
-export default class CustomMentionEditor extends Component {
-  state = {
-    open: false,
-    editorState: EditorState.createWithContent(
+const CustomMentionEditor = () => {
+  const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(
       ContentState.createFromText(
         'Type a "@first last" name, mispelling the last name will drop the match'
       )
-    ),
-    suggestions: mentions,
+    )
+  );
+
+  const editor = useRef();
+  const [open, setOpen] = useState(false);
+  const [suggestions, setSuggestions] = useState(mentions);
+
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = editorState => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  onOpenChange = newOpen => {
-    this.setState({
-      open: newOpen,
-    });
+  const onOpenChange = newOpen => {
+    setOpen(newOpen);
   };
 
-  onSearchChange = ({ value }) => {
-    this.setState({
-      suggestions: defaultSuggestionsFilter(value, mentions),
-    });
+  const onSearchChange = ({ value }) => {
+    setSuggestions(defaultSuggestionsFilter(value, mentions));
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+      <MentionSuggestions
+        open={open}
+        onOpenChange={onOpenChange}
+        onSearchChange={onSearchChange}
+        suggestions={suggestions}
+        entryComponent={Entry}
+      />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={element => {
-            this.editor = element;
-          }}
-        />
-        <MentionSuggestions
-          open={this.state.open}
-          onOpenChange={this.onOpenChange}
-          onSearchChange={this.onSearchChange}
-          suggestions={this.state.suggestions}
-          entryComponent={Entry}
-        />
-      </div>
-    );
-  }
-}
+export default CustomMentionEditor;

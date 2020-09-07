@@ -49,7 +49,7 @@ const MyEditor = ({ editorState, onChange }) => (
 
 ## Can I use the same plugin for multiple plugin Editors?
 
-No, you need to instantiation multiple plugins in case you use multiple editors.
+No, you need to instantiate multiple plugins in case you use multiple editors.
 
 ```jsx
 const emojiPlugin = createEmojiPlugin();

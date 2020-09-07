@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
@@ -26,8 +26,8 @@ const initialState = {
     '0': {
       type: 'divider',
       mutability: 'IMMUTABLE',
-      data: {}
-    }
+      data: {},
+    },
   },
   blocks: [
     {
@@ -38,7 +38,7 @@ const initialState = {
       depth: 0,
       inlineStyleRanges: [],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: 'ov7r',
@@ -50,53 +50,50 @@ const initialState = {
         {
           offset: 0,
           length: 1,
-          key: 0
-        }
+          key: 0,
+        },
       ],
-      data: {}
-    }
-  ]
+      data: {},
+    },
+  ],
 };
 /* eslint-enable */
 
-export default class CustomImageEditor extends Component {
-  state = {
-    editorState: EditorState.createWithContent(convertFromRaw(initialState))
+const CustomImageEditor = () => {
+  const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(convertFromRaw(initialState))
+  );
+  const editor = useRef();
+
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => {
-            this.editor = element;
-          }}
-        />
+      <SideToolbar>
+        {// may be use React.Fragment instead of div to improve perfomance after React 16
+        externalProps => (
+          <div>
+            <DividerButton {...externalProps} />
+          </div>
+        )}
+      </SideToolbar>
+    </div>
+  );
+};
 
-        <SideToolbar>
-          {
-            // may be use React.Fragment instead of div to improve perfomance after React 16
-            (externalProps) => (
-              <div>
-                <DividerButton {...externalProps} />
-              </div>
-            )
-          }
-        </SideToolbar>
-      </div>
-    );
-  }
-}
+export default CustomImageEditor;
