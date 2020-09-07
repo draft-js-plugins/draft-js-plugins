@@ -19,6 +19,12 @@ const AddLinkForm = props => {
     input.current = node;
   };
 
+  const isUrl = urlValue => {
+    if (props.validateUrl) { return props.validateUrl(urlValue); }
+
+    return URLUtils.isUrl(urlValue);
+  };
+
   const onChange = e => {
     const newValue = e.target.value;
 
@@ -62,12 +68,6 @@ const AddLinkForm = props => {
     }
   };
 
-  const isUrl = value => {
-    if (props.validateUrl) { return props.validateUrl(value); }
-
-    return URLUtils.isUrl(value);
-  }
-
   const { theme, placeholder } = props;
   const className = isInvalid
     ? clsx(theme.input, theme.inputInvalid)
@@ -96,6 +96,7 @@ AddLinkForm.propTypes = {
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   placeholder: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
   validateUrl: PropTypes.func,
 };
 
