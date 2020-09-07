@@ -28,7 +28,7 @@ export default (config = {}) => {
           EditorUtils.removeLinkAtSelection(store.getEditorState())
         )
       }
-      ownUrlValidation={validateUrl}
+      validateUrl={validateUrl}
     />
   );
 

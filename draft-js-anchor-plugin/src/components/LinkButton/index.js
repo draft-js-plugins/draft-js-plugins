@@ -10,7 +10,7 @@ export default class LinkButton extends Component {
     store: PropTypes.object.isRequired,
     ownTheme: PropTypes.object.isRequired,
     onRemoveLinkAtSelection: PropTypes.func.isRequired,
-    ownUrlValidation: PropTypes.func,
+    validateUrl: PropTypes.func,
   };
 
   onMouseDown = event => {
@@ -20,9 +20,9 @@ export default class LinkButton extends Component {
   onAddLinkClick = e => {
     e.preventDefault();
     e.stopPropagation();
-    const { ownTheme, placeholder, onOverrideContent, ownUrlValidation } = this.props;
+    const { ownTheme, placeholder, onOverrideContent, validateUrl } = this.props;
     const content = props => (
-      <AddLinkForm {...props} placeholder={placeholder} theme={ownTheme} validateUrl={ownUrlValidation} />
+      <AddLinkForm {...props} placeholder={placeholder} theme={ownTheme} validateUrl={validateUrl} />
     );
     onOverrideContent(content);
   };

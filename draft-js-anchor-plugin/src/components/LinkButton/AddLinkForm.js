@@ -70,7 +70,9 @@ export default class AddLinkForm extends Component {
   }
 
   isUrl(value) {
-    return this.props.validateUrl && this.props.validateUrl(value) || !this.props.validateUrl && URLUtils.isUrl(value);
+    if (this.props.validateUrl) { return this.props.validateUrl(value); }
+
+    return URLUtils.isUrl(value);
   }
 
   render() {
