@@ -22,7 +22,7 @@ const AddLinkForm = props => {
   const onChange = e => {
     const newValue = e.target.value;
 
-    if (isInvalid && URLUtils.isUrl(URLUtils.normalizeUrl(newValue))) {
+    if (isInvalid && isUrl(URLUtils.normalizeUrl(newValue))) {
       setIsvalid(false);
     } else {
       setIsvalid(true);
@@ -40,7 +40,7 @@ const AddLinkForm = props => {
 
     if (!URLUtils.isMail(URLUtils.normaliseMail(url))) {
       url = URLUtils.normalizeUrl(url);
-      if (!URLUtils.isUrl(url)) {
+      if (!isUrl(url)) {
         setIsvalid(true);
         return;
       }
@@ -61,6 +61,12 @@ const AddLinkForm = props => {
       onClose();
     }
   };
+
+  const isUrl = value => {
+    if (props.validateUrl) { return props.validateUrl(value); }
+
+    return URLUtils.isUrl(value);
+  }
 
   const { theme, placeholder } = props;
   const className = isInvalid
@@ -90,6 +96,7 @@ AddLinkForm.propTypes = {
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   placeholder: PropTypes.string,
+  validateUrl: PropTypes.func,
 };
 
 AddLinkForm.defaultProps = {

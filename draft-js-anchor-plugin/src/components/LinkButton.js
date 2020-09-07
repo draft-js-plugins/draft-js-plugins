@@ -13,13 +13,14 @@ const LinkButton = props => {
     e.preventDefault();
     e.stopPropagation();
 
-    const { ownTheme, placeholder, onOverrideContent } = props;
+    const { ownTheme, placeholder, onOverrideContent, validateUrl } = props;
 
     const content = contentProps => (
       <AddLinkForm
         {...contentProps}
         placeholder={placeholder}
         theme={ownTheme}
+        validateUrl={validateUrl}
       />
     );
 
@@ -61,6 +62,7 @@ LinkButton.propTypes = {
   store: PropTypes.object.isRequired,
   ownTheme: PropTypes.object.isRequired,
   onRemoveLinkAtSelection: PropTypes.func.isRequired,
+  validateUrl: PropTypes.func,
 };
 
 export default LinkButton;
