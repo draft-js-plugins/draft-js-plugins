@@ -46,20 +46,20 @@ export default createCustomPlugin = (config) => {
 
 A plugin accepts all standard props the Draft.js Editor Component uses. [See details on Draft.js docs](https://draftjs.org/docs/api-reference-editor.html#content). Commonly used props:
 
-- [blockRendererFn](https://facebook.github.io/draft-js/docs/api-reference-editor.html#blockrendererfn)
-- [keyBindingFn](https://draftjs.org/docs/advanced-topics-key-bindings.html)
-- [blockStyleFn](https://facebook.github.io/draft-js/docs/api-reference-editor.html#blockstylefn)
-- [blockRenderMap](https://draftjs.org/docs/advanced-topics-custom-block-render-map.html)
-- [customStyleMap](https://facebook.github.io/draft-js/docs/api-reference-editor.html#customstylemap)
-- [handleReturn](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handlereturn)
-- [handleKeyCommand](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handlekeycommand)
-- [handleBeforeInput](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handlebeforeinput)
-- [handlePastedText](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handlepastedtext)
-- [handlePastedFiles](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handlepastedfiles)
-- [handleDroppedFiles](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handledroppedfiles)
-- [handleDrop](https://facebook.github.io/draft-js/docs/api-reference-editor.html#handledrop)
-- [onFocus](https://draftjs.org/docs/api-reference-editor.html#onfocus)
-- [onBlur](https://draftjs.org/docs/api-reference-editor.html#onblur)
+- [blockRendererFn](https://facebook.github.io/draft-js/docs/api-reference-editor#blockrendererfn)
+- [keyBindingFn](https://draftjs.org/docs/advanced-topics-key-bindings)
+- [blockStyleFn](https://facebook.github.io/draft-js/docs/api-reference-editor#blockstylefn)
+- [blockRenderMap](https://draftjs.org/docs/advanced-topics-custom-block-render-map)
+- [customStyleMap](https://facebook.github.io/draft-js/docs/api-reference-editor#customstylemap)
+- [handleReturn](https://facebook.github.io/draft-js/docs/api-reference-editor#handlereturn)
+- [handleKeyCommand](https://facebook.github.io/draft-js/docs/api-reference-editor#handlekeycommand)
+- [handleBeforeInput](https://facebook.github.io/draft-js/docs/api-reference-editor#handlebeforeinput)
+- [handlePastedText](https://facebook.github.io/draft-js/docs/api-reference-editor#handlepastedtext)
+- [handlePastedFiles](https://facebook.github.io/draft-js/docs/api-reference-editor#handlepastedfiles)
+- [handleDroppedFiles](https://facebook.github.io/draft-js/docs/api-reference-editor#handledroppedfiles)
+- [handleDrop](https://facebook.github.io/draft-js/docs/api-reference-editor#handledrop)
+- [onFocus](https://draftjs.org/docs/api-reference-editor#onfocus)
+- [onBlur](https://draftjs.org/docs/api-reference-editor#onblur)
 
 There is one difference compared to the original properties.
 All functions receive an additional argument. This argument is an object containing:
