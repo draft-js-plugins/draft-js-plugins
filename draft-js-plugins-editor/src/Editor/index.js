@@ -63,7 +63,7 @@ class PluginEditor extends Component {
     this.state = {}; // TODO for Nik: ask ben why this is relevent
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const decorator = resolveDecorators(
       this.props,
       this.getEditorState,
