@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+- Allow custom Url validation function
 - Migrate styles to linaria
 - Hide internals in single bundle
 - Add esm support

@@ -19,10 +19,16 @@ const AddLinkForm = props => {
     input.current = node;
   };
 
+  const isUrl = urlValue => {
+    if (props.validateUrl) { return props.validateUrl(urlValue); }
+
+    return URLUtils.isUrl(urlValue);
+  };
+
   const onChange = e => {
     const newValue = e.target.value;
 
-    if (isInvalid && URLUtils.isUrl(URLUtils.normalizeUrl(newValue))) {
+    if (isInvalid && isUrl(URLUtils.normalizeUrl(newValue))) {
       setIsvalid(false);
     } else {
       setIsvalid(true);
@@ -40,7 +46,7 @@ const AddLinkForm = props => {
 
     if (!URLUtils.isMail(URLUtils.normaliseMail(url))) {
       url = URLUtils.normalizeUrl(url);
-      if (!URLUtils.isUrl(url)) {
+      if (!isUrl(url)) {
         setIsvalid(true);
         return;
       }
@@ -90,6 +96,8 @@ AddLinkForm.propTypes = {
   onOverrideContent: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   placeholder: PropTypes.string,
+  // eslint-disable-next-line react/no-unused-prop-types
+  validateUrl: PropTypes.func,
 };
 
 AddLinkForm.defaultProps = {
