@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Migrate styles to linaria
 - Hide internals in single bundle
 - Add esm support
+- Fixed ts definition in order to be able to include the component without childs
 
 ## 3.0.1
 
