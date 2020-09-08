@@ -3,13 +3,13 @@ import { ComponentType, ReactNode } from "react";
 
 export interface DraftJsButtonTheme {
   // CSS classes to apply
-  active: string;
-  button: string;
-  buttonWrapper: string;
+  active?: string;
+  button?: string;
+  buttonWrapper?: string;
 }
 
 export interface DraftJsButtonProps {
-  theme?: DraftJsButtonTheme;
+  theme: DraftJsButtonTheme;
 }
 
 export interface DraftJsBlockAlignmentButtonProps extends DraftJsButtonProps {
