@@ -49,13 +49,11 @@ const DefaultVideoCompoent = ({ blockProps, className = '', style, theme, ...oth
     blockStyleFn,
     ...elementProps
   } = otherProps;
-  
   return (
     <video
       src={blockProps.src}
-      style={theme.video}
+      style={{...theme.video, ...style}}
       {...elementProps}
-      style={style}
       controls
     />
   );
