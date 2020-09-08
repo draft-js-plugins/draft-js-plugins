@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map } from 'immutable';
 import Mention from './Mention';
-import MentionSuggestions from './MentionSuggestions'; // eslint-disable-line import/no-named-as-default
+import MentionSuggestions from './MentionSuggestions/MentionSuggestions'; // eslint-disable-line import/no-named-as-default
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import defaultRegExp from './defaultRegExp';
 import mentionStrategy from './mentionStrategy';
@@ -9,10 +9,14 @@ import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
 import { defaultTheme } from './theme.js';
+import addMention from './modifiers/addMention';
 
-export { default as MentionSuggestions } from './MentionSuggestions';
+export {
+  default as MentionSuggestions,
+} from './MentionSuggestions/MentionSuggestions';
 
 export { defaultTheme };
+export { addMention };
 
 export default (config = {}) => {
   const callbacks = {

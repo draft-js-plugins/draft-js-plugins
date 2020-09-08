@@ -41,7 +41,7 @@
     "emojione": "^2.2.7",
     "find-with-regex": "^1.1.3",
     "immutable": "~3.7.4",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "lodash-es": "^4.17.15",
     "prop-types": "^15.5.8",
     "react-custom-scrollbars": "^4.2.0",

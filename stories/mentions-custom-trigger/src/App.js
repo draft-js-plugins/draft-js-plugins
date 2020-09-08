@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { EditorState, ContentState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
@@ -9,48 +11,56 @@ const mentionPlugin = createMentionPlugin({ mentionTrigger: '(' });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-export default class SimpleMentionEditor extends Component {
+const SimpleMentionEditor = () => {
+  const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(
+      ContentState.createFromText('Type ( to make the mention dropdown appear')
+    )
+  );
+  const editor = useRef();
 
-  state = {
-    editorState: EditorState.createWithContent(ContentState.createFromText('Type ( to make the mention dropdown appear')),
-    suggestions: mentions,
+  const [open, setOpen] = useState(false);
+  const [suggestions, setSuggestions] = useState(mentions);
+
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  onSearchChange = ({ value }) => {
-    this.setState({
-      suggestions: defaultSuggestionsFilter(value, mentions),
-    });
+  const onOpenChange = newOpen => {
+    setOpen(newOpen);
   };
 
-  onAddMention = () => {
+  const onSearchChange = ({ value }) => {
+    setSuggestions(defaultSuggestionsFilter(value, mentions));
+  };
+
+  const onAddMention = () => {
     // get the mention object selected
-  }
-
-  focus = () => {
-    this.editor.focus();
   };
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
-        />
-        <MentionSuggestions
-          onSearchChange={this.onSearchChange}
-          suggestions={this.state.suggestions}
-          onAddMention={this.onAddMention}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+      <MentionSuggestions
+        open={open}
+        onOpenChange={onOpenChange}
+        onSearchChange={onSearchChange}
+        suggestions={suggestions}
+        onAddMention={onAddMention}
+      />
+    </div>
+  );
+};
+
+export default SimpleMentionEditor;

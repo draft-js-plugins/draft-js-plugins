@@ -20,4 +20,6 @@ export default '[' +
   '\uAC00-\uD7A3' +
   // common chinese symbols: \u4e00-\u9eff - http://stackoverflow.com/a/1366113/837709
   '\u4e00-\u9eff' +
+  // Arabic https://en.wikipedia.org/wiki/Arabic_(Unicode_block)
+  '\u0600-\u06ff' +
   ']*';

@@ -1,7 +1,14 @@
 language: node_js
 node_js:
-- "8"
-sudo: false
+  - "12.13.0"
+cache:
+  yarn: true
+  directories: node_modules
+
+install:
+  - yarn install
+
 script:
-  - npm test
-  - npm run lint
+  - yarn test
+  - yarn test:jest
+  - yarn lint

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp */
-import React, { Component } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
@@ -24,57 +24,63 @@ import {
 } from 'draft-js-buttons';
 import editorStyles from './editorStyles.css';
 
-class HeadlinesPicker extends Component {
-  componentDidMount() {
-    setTimeout(() => {
-      window.addEventListener('click', this.onWindowClick);
-    });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this.onWindowClick);
-  }
-
-  onWindowClick = () =>
+const HeadlinesPicker = props => {
+  const onWindowClick = () =>
     // Call `onOverrideContent` again with `undefined`
     // so the toolbar can show its regular content again.
-    this.props.onOverrideContent(undefined)
+    props.onOverrideContent(undefined);
 
-  render() {
-    const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
-    return (
-      <div>
-        {buttons.map((
-          Button,
-          i // eslint-disable-next-line
-        ) => <Button key={i} {...this.props} />)}
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      window.addEventListener('click', onWindowClick);
+    });
 
-class HeadlinesButton extends Component {
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+
+      window.removeEventListener('click', onWindowClick);
+    };
+  });
+
+  const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
+  return (
+    <div>
+      {buttons.map((
+        Button,
+        i // eslint-disable-next-line
+      ) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <Button key={i} {...props} />
+      ))}
+    </div>
+  );
+};
+
+const HeadlinesButton = ({ onOverrideContent }) => {
   // When using a click event inside overridden content, mouse down
   // events needs to be prevented so the focus stays in the editor
   // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
-  onMouseDown = (event) => event.preventDefault()
+  const onMouseDown = event => event.preventDefault();
 
-  onClick = () =>
+  const onClick = () =>
     // A button can call `onOverrideContent` to replace the content
     // of the toolbar. This can be useful for displaying sub
     // menus or requesting additional information from the user.
-    this.props.onOverrideContent(HeadlinesPicker)
+    onOverrideContent(HeadlinesPicker);
 
-  render() {
-    return (
-      <div onMouseDown={this.onMouseDown} className={editorStyles.headlineButtonWrapper}>
-        <button onClick={this.onClick} className={editorStyles.headlineButton}>
-          H
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      onMouseDown={onMouseDown}
+      className={editorStyles.headlineButtonWrapper}
+    >
+      <button onClick={onClick} className={editorStyles.headlineButton}>
+        H
+      </button>
+    </div>
+  );
+};
 
 const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
@@ -82,52 +88,51 @@ const plugins = [inlineToolbarPlugin];
 const text =
   'In this editor a toolbar shows up once you select part of the text …';
 
-export default class CustomInlineToolbarEditor extends Component {
-  state = {
-    editorState: createEditorStateWithText(text),
-  }
+const CustomInlineToolbarEditor = () => {
+  const [editorState, setEditorState] = useState(
+    createEditorStateWithText(text)
+  );
+  const editor = useRef();
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
-  }
+  const onChange = value => {
+    setEditorState(value);
+  };
 
-  focus = () => {
-    this.editor.focus();
-  }
+  const focus = () => {
+    editor.current.focus();
+  };
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => {
-            this.editor = element;
-          }}
-        />
-        <InlineToolbar>{
-          // may be use React.Fragment instead of div to improve perfomance after React 16
-          (externalProps) => (
-            <div>
-              <BoldButton {...externalProps} />
-              <ItalicButton {...externalProps} />
-              <UnderlineButton {...externalProps} />
-              <SubButton {...externalProps} />
-              <SupButton {...externalProps} />
-              <CodeButton {...externalProps} />
-              <Separator {...externalProps} />
-              <HeadlinesButton {...externalProps} />
-              <UnorderedListButton {...externalProps} />
-              <OrderedListButton {...externalProps} />
-              <BlockquoteButton {...externalProps} />
-              <CodeBlockButton {...externalProps} />
-            </div>
-          )
-        }</InlineToolbar>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+      <InlineToolbar>
+        {// may be use React.Fragment instead of div to improve perfomance after React 16
+        externalProps => (
+          <div>
+            <BoldButton {...externalProps} />
+            <ItalicButton {...externalProps} />
+            <UnderlineButton {...externalProps} />
+            <SubButton {...externalProps} />
+            <SupButton {...externalProps} />
+            <CodeButton {...externalProps} />
+            <Separator {...externalProps} />
+            <HeadlinesButton {...externalProps} />
+            <UnorderedListButton {...externalProps} />
+            <OrderedListButton {...externalProps} />
+            <BlockquoteButton {...externalProps} />
+            <CodeBlockButton {...externalProps} />
+          </div>
+        )}
+      </InlineToolbar>
+    </div>
+  );
+};
+
+export default CustomInlineToolbarEditor;

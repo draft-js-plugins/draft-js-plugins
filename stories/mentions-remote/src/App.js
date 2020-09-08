@@ -1,30 +1,35 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 
 import Editor from 'draft-js-plugins-editor';
 
 import createMentionPlugin from 'draft-js-mention-plugin';
-import { fromJS } from 'immutable';
 import editorStyles from './editorStyles.css';
 
 const mentionPlugin = createMentionPlugin();
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-export default class SimpleMentionEditor extends Component {
+const SimpleMentionEditor = () => {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const editor = useRef();
 
-  state = {
-    editorState: EditorState.createEmpty(),
-    suggestions: fromJS([]),
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  onSearchChange = ({ value }) => {
+  const [open, setOpen] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+
+  const onOpenChange = newOpen => {
+    setOpen(newOpen);
+  };
+
+  const onSearchChange = ({ value }) => {
     // An import statment would break server-side rendering.
     require('whatwg-fetch'); // eslint-disable-line global-require
 
@@ -38,32 +43,30 @@ export default class SimpleMentionEditor extends Component {
     }
 
     fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          suggestions: fromJS(data),
-        });
+      .then(response => response.json())
+      .then(data => {
+        setSuggestions(data);
       });
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+      <MentionSuggestions
+        open={open}
+        onOpenChange={onOpenChange}
+        onSearchChange={onSearchChange}
+        suggestions={suggestions}
+      />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
-        />
-        <MentionSuggestions
-          onSearchChange={this.onSearchChange}
-          suggestions={this.state.suggestions}
-        />
-      </div>
-    );
-  }
-}
+export default SimpleMentionEditor;

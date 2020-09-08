@@ -1,18 +1,12 @@
 import { EditorPlugin } from "draft-js-plugins-editor";
 import { ComponentType, ReactNode } from "react";
 import { EditorState } from "draft-js";
+import { DraftJsButtonTheme } from 'draft-js-buttons';
 
 export interface InlineToolbarPluginTheme {
-  buttonStyles?: {
-    buttonWrapper?: string;
-    button?: string;
-    active?: string;
-  };
-  toolbarStyles?: {
+  buttonStyles: DraftJsButtonTheme;
+  toolbarStyles: {
     toolbar?: string;
-  };
-  separatorStyles?: {
-    separator?: string;
   };
 }
 
@@ -28,7 +22,7 @@ export interface ToolbarChildrenProps {
 }
 
 export interface ToolbarProps {
-  children(externalProps: ToolbarChildrenProps): ReactNode;
+  children?: (externalProps: ToolbarChildrenProps) => ReactNode;
 }
 
 export type InlineToolBarPlugin = EditorPlugin & {

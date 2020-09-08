@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
@@ -6,40 +6,38 @@ import editorStyles from './editorStyles.css';
 
 const linkifyPlugin = createLinkifyPlugin({
   target: '_blank',
-  component: (props) => (
+  component: props => (
     // eslint-disable-next-line no-alert, jsx-a11y/anchor-has-content
     <a {...props} onClick={() => alert('Clicked on Link!')} />
-  )
+  ),
 });
 
 const plugins = [linkifyPlugin];
 
-export default class CustomMentionEditor extends Component {
+const CustomMentionEditor = () => {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const editor = useRef();
 
-  state = {
-    editorState: EditorState.createEmpty(),
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  focus = () => {
-    this.editor.focus();
-  };
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
-        />
-      </div>
-    );
-  }
-}
+export default CustomMentionEditor;

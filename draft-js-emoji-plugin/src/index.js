@@ -166,6 +166,7 @@ export default (config = {}) => {
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: editorState => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
+      const selection = editorState.getSelection();
 
       if (
         !newEditorState
@@ -176,10 +177,7 @@ export default (config = {}) => {
         // This solves the issue where inserting an Emoji on OSX with Apple's Emoji
         // selector led to the right selection the data, but wrong position in
         // the contenteditable.
-        newEditorState = EditorState.forceSelection(
-          newEditorState,
-          newEditorState.getSelection()
-        );
+        newEditorState = EditorState.forceSelection(newEditorState, selection);
       }
 
       if (callbacks.onChange) return callbacks.onChange(newEditorState);

@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from 'draft-js-mention-plugin';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import createUndoPlugin from 'draft-js-undo-plugin';
-import {
-  ContentState,
-  EditorState,
-} from 'draft-js';
+import { ContentState, EditorState } from 'draft-js';
 import styles from './styles.css';
 import stickers from './stickers';
 import mentions from './mentions';
@@ -40,58 +39,72 @@ const contentState = ContentState.createFromText(
   'You can add Emojis by typing colon : or mentions with an @. Add Stickers and undo your actions with the undo button below …'
 );
 
-export default class UnicornEditor extends Component {
+const UnicornEditor = () => {
+  const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(contentState)
+  );
+  const editor = useRef();
 
-  state = {
-    editorState: EditorState.createWithContent(contentState),
-    suggestions: mentions,
+  const [suggestions, setSuggestions] = useState(mentions);
+  const [open, setOpen] = useState(false);
+
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
+  const onOpenChange = newOpen => {
+    setOpen(newOpen);
+  };
+
+  const focus = () => {
+    editor.current.focus();
+  };
+
+  const onMentionSearchChange = ({ value }) => {
+    setSuggestions(defaultSuggestionsFilter(value, mentions));
+  };
+
+  // simulate `this`
+  const self = {
+    onChange,
+    state: {
       editorState,
-    });
+    },
   };
 
-  onMentionSearchChange = ({ value }) => {
-    this.setState({
-      suggestions: defaultSuggestionsFilter(value, mentions),
-    });
-  };
-
-  focus = () => {
-    this.editor.focus();
-  };
-
-  render() {
-    return (
-      <div className={styles.root}>
-        <div className={styles.editor} onClick={this.focus}>
-          <Editor
-            editorState={this.state.editorState}
-            onChange={this.onChange}
-            plugins={plugins}
-            spellCheck
-            ref={(element) => { this.editor = element; }}
-          />
+  return (
+    <div className={styles.root}>
+      <div className={styles.editor} onClick={focus}>
+        <Editor
+          editorState={editorState}
+          onChange={onChange}
+          plugins={plugins}
+          spellCheck
+          ref={element => {
+            editor.current = element;
+          }}
+        />
+      </div>
+      <div>
+        <MentionSuggestions
+          onSearchChange={onMentionSearchChange}
+          suggestions={suggestions}
+          onOpenChange={onOpenChange}
+          open={open}
+        />
+        <EmojiSuggestions />
+        <div className={styles.editorButton}>
+          <StickerSelect editor={self} />
         </div>
-        <div>
-          <MentionSuggestions
-            onSearchChange={this.onMentionSearchChange}
-            suggestions={this.state.suggestions}
-          />
-          <EmojiSuggestions />
-          <div className={styles.editorButton}>
-            <StickerSelect editor={this} />
-          </div>
-          <div className={styles.editorButton}>
-            <UndoButton />
-          </div>
-          <div className={styles.editorButton}>
-            <RedoButton />
-          </div>
+        <div className={styles.editorButton}>
+          <UndoButton />
+        </div>
+        <div className={styles.editorButton}>
+          <RedoButton />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default UnicornEditor;

@@ -1,21 +1,25 @@
-import React, { Component } from 'react';
+import React, { useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';
 import mentionsStyles from './mentionsStyles.css';
 import mentions from './mentions';
 
-const positionSuggestions = ({ state, props }) => {
+const positionSuggestions = ({ props }) => {
   let transform;
   let transition;
 
-  if (state.isActive && props.suggestions.length > 0) {
-    transform = 'scaleY(1)';
-    transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
-  } else if (state.isActive) {
-    transform = 'scaleY(0)';
-    transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
+  if (props.open) {
+    if (props.suggestions.length > 0) {
+      transform = 'scaleY(1)';
+      transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
+    } else {
+      transform = 'scaleY(0)';
+      transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
+    }
   }
 
   return {
@@ -34,10 +38,11 @@ const mentionPlugin = createMentionPlugin({
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-const Entry = (props) => {
+const Entry = props => {
   const {
     mention,
     theme,
+    isFocused,
     searchValue, // eslint-disable-line no-unused-vars
     ...parentProps
   } = props;
@@ -67,44 +72,48 @@ const Entry = (props) => {
   );
 };
 
-export default class CustomMentionEditor extends Component {
+const CustomMentionEditor = () => {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const editor = useRef();
 
-  state = {
-    editorState: EditorState.createEmpty(),
-    suggestions: mentions,
+  const [open, setOpen] = useState(false);
+  const [suggestions, setSuggestions] = useState(mentions);
+
+  const onChange = value => {
+    setEditorState(value);
   };
 
-  onChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
+  const focus = () => {
+    editor.current.focus();
   };
 
-  onSearchChange = ({ value }) => {
-    this.setState({
-      suggestions: defaultSuggestionsFilter(value, mentions),
-    });
+  const onOpenChange = newOpen => {
+    setOpen(newOpen);
   };
 
-  focus = () => {
-    this.editor.focus();
+  const onSearchChange = ({ value }) => {
+    setSuggestions(defaultSuggestionsFilter(value, mentions));
   };
 
-  render() {
-    return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => { this.editor = element; }}
-        />
-        <MentionSuggestions
-          onSearchChange={this.onSearchChange}
-          suggestions={this.state.suggestions}
-          entryComponent={Entry}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={editorStyles.editor} onClick={focus}>
+      <Editor
+        editorState={editorState}
+        onChange={onChange}
+        plugins={plugins}
+        ref={element => {
+          editor.current = element;
+        }}
+      />
+      <MentionSuggestions
+        open={open}
+        onOpenChange={onOpenChange}
+        onSearchChange={onSearchChange}
+        suggestions={suggestions}
+        entryComponent={Entry}
+      />
+    </div>
+  );
+};
+
+export default CustomMentionEditor;
