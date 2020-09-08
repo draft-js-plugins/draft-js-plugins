@@ -17,6 +17,7 @@ export default ({ config, store }) => WrappedComponent =>
       horizontal: 'relative',
       vertical: false,
       resizeSteps: 1,
+      isResizable: true,
       ...config,
     };
     state = {
@@ -39,7 +40,7 @@ export default ({ config, store }) => WrappedComponent =>
     // used to save the hoverPosition so it can be leveraged to determine if a
     // drag should happen on mousedown
     mouseMove = evt => {
-      const { vertical, horizontal } = this.props;
+      const { vertical, horizontal, isResizable } = this.props;
 
       const hoverPosition = this.state.hoverPosition;
       const tolerance = 6;
@@ -58,7 +59,7 @@ export default ({ config, store }) => WrappedComponent =>
           ? y >= b.height - tolerance && y < b.height
           : false;
 
-      const canResize = isTop || isLeft || isRight || isBottom;
+      const canResize = (isTop || isLeft || isRight || isBottom) && isResizable;
 
       const newHoverPosition = {
         isTop,
@@ -169,6 +170,7 @@ export default ({ config, store }) => WrappedComponent =>
         initialWidth,
         initialHeight,
         style,
+        isResizable,
         // using destructuring to make sure unused props are not passed down to the block
         resizeSteps, // eslint-disable-line no-unused-vars
         ...elementProps
@@ -215,7 +217,9 @@ export default ({ config, store }) => WrappedComponent =>
       }
 
       // Handle cursor
-      if ((isRight && isBottom) || (isLeft && isTop)) {
+      if (!isResizable) {
+        styles.cursor = 'default';
+      } else if ((isRight && isBottom) || (isLeft && isTop)) {
         styles.cursor = 'nwse-resize';
       } else if ((isRight && isTop) || (isBottom && isLeft)) {
         styles.cursor = 'nesw-resize';

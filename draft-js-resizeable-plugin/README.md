@@ -7,7 +7,7 @@ Usage:
 ```js
 import createResizeablePlugin from 'draft-js-resizeable-plugin';
 
-const resizePlugin = createResizeablePlugin();
+const resizePlugin = createResizeablePlugin({ isResizable: true });
 ```
 
 This plugin does not require, but work better in combination with the `draft-js-focus-plugin`.
