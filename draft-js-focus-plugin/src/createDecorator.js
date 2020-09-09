@@ -1,43 +1,47 @@
-import React, { Component } from 'react';
-import unionClassNames from 'union-class-names';
+import React, { useEffect } from 'react';
+import clsx from 'clsx';
 
 // Get a component's display name
-const getDisplayName = (WrappedComponent) => {
+const getDisplayName = WrappedComponent => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ theme, blockKeyStore }) => (WrappedComponent) => class BlockFocusDecorator extends Component {
-  static displayName = `BlockFocus(${getDisplayName(WrappedComponent)})`;
-  static WrappedComponent = WrappedComponent.WrappedComponent || WrappedComponent;
+export default ({ theme, blockKeyStore }) => WrappedComponent => {
+  const BlockFocusDecorator = props => {
+    useEffect(() => {
+      blockKeyStore.add(props.block.getKey());
+      return () => {
+        blockKeyStore.remove(props.block.getKey());
+      };
+    }, []);
 
-  componentWillMount() {
-    blockKeyStore.add(this.props.block.getKey());
-  }
+    const onClick = evt => {
+      evt.preventDefault();
+      if (!props.blockProps.isFocused) {
+        props.blockProps.setFocusToBlock();
+      }
+    };
 
-  componentWillUnmount() {
-    blockKeyStore.remove(this.props.block.getKey());
-  }
-
-  onClick = (evt) => {
-    evt.preventDefault();
-    if (!this.props.blockProps.isFocused) {
-      this.props.blockProps.setFocusToBlock();
-    }
-  }
-
-  render() {
-    const { blockProps, className } = this.props;
+    const { blockProps, className } = props;
     const { isFocused } = blockProps;
     const combinedClassName = isFocused
-      ? unionClassNames(className, theme.focused)
-      : unionClassNames(className, theme.unfocused);
+      ? clsx(className, theme.focused)
+      : clsx(className, theme.unfocused);
     return (
       <WrappedComponent
-        {...this.props}
-        onClick={this.onClick}
+        {...props}
+        onClick={onClick}
         className={combinedClassName}
       />
     );
-  }
+  };
+
+  BlockFocusDecorator.displayName = `BlockFocus(${getDisplayName(
+    WrappedComponent
+  )})`;
+  BlockFocusDecorator.WrappedComponent =
+    WrappedComponent.WrappedComponent || WrappedComponent;
+
+  return BlockFocusDecorator;
 };

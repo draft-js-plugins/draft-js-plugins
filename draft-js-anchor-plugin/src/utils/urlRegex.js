@@ -2,7 +2,8 @@
 /* eslint-disable  no-confusing-arrow */
 import tlds from 'tlds';
 
-const v4 = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])){3}';
+const v4 =
+  '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])){3}';
 const v6seg = '[0-9a-fA-F]{1,4}';
 const v6 = `
 (
@@ -15,26 +16,39 @@ const v6 = `
 (?:${v6seg}:){1}(?:(:${v6seg}){0,4}:${v4}|(:${v6seg}){1,6}|:)| // 1::              1::3:4:5:6:7:8   1::8            1::3:4:5:6:7:1.2.3.4
 (?::((?::${v6seg}){0,5}:${v4}|(?::${v6seg}){1,7}|:))           // ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8  ::8             ::1.2.3.4
 )(%[0-9a-zA-Z]{1,})?                                           // %eth0            %1
-`.replace(/\s*\/\/.*$/gm, '').replace(/\n/g, '').trim();
+`
+  .replace(/\s*\/\/.*$/gm, '')
+  .replace(/\n/g, '')
+  .trim();
 
-const ipRegex = (opts) => opts && opts.exact
-  ? new RegExp(`(?:^${v4}$)|(?:^${v6}$)`)
-  : new RegExp(`(?:${v4})|(?:${v6})`, 'g');
+const ipRegex = opts =>
+  opts && opts.exact
+    ? new RegExp(`(?:^${v4}$)|(?:^${v6}$)`)
+    : new RegExp(`(?:${v4})|(?:${v6})`, 'g');
 
-ipRegex.v4 = (opts) => opts && opts.exact ? new RegExp(`^${v4}$`) : new RegExp(v4, 'g');
-ipRegex.v6 = (opts) => opts && opts.exact ? new RegExp(`^${v6}$`) : new RegExp(v6, 'g');
+ipRegex.v4 = opts =>
+  opts && opts.exact ? new RegExp(`^${v4}$`) : new RegExp(v4, 'g');
+ipRegex.v6 = opts =>
+  opts && opts.exact ? new RegExp(`^${v6}$`) : new RegExp(v6, 'g');
 
-export default (_opts) => {
+export default _opts => {
   const opts = Object.assign({ strict: true }, _opts);
   const protocol = `(?:(?:[a-z]+:)?//)${opts.strict ? '' : '?'}`;
   const auth = '(?:\\S+(?::\\S*)?@)?';
   const ip = ipRegex.v4().source;
   const host = '(?:(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)';
-  const domain = '(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*';
-  const tld = `(?:\\.${opts.strict ? '(?:[a-z\\u00a1-\\uffff]{2,})' : `(?:${tlds.sort((a, b) => b.length - a.length).join('|')})`})\\.?`;
+  const domain =
+    '(?:\\.(?:[a-z\\u00a1-\\uffff0-9]-*)*[a-z\\u00a1-\\uffff0-9]+)*';
+  const tld = `(?:\\.${
+    opts.strict
+      ? '(?:[a-z\\u00a1-\\uffff]{2,})'
+      : `(?:${tlds.sort((a, b) => b.length - a.length).join('|')})`
+  })\\.?`;
   const port = '(?::\\d{2,5})?';
   const path = '(?:[/?#][^\\s"]*)?';
   const regex = `(?:${protocol}|www\\.)${auth}(?:localhost|${ip}|${host}${domain}${tld})${port}${path}`;
 
-  return opts.exact ? new RegExp(`(?:^${regex}$)`, 'i') : new RegExp(regex, 'ig');
+  return opts.exact
+    ? new RegExp(`(?:^${regex}$)`, 'i')
+    : new RegExp(regex, 'ig');
 };

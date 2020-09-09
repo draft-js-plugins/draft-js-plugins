@@ -1,14 +1,9 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
+import React from 'react';
 import CharCounter from './CharCounter';
 import WordCounter from './WordCounter';
 import LineCounter from './LineCounter';
 import CustomCounter from './CustomCounter';
-import styles from './styles.css';
-
-const defaultTheme = {
-  counter: styles.counter,
-  counterOverLimit: styles.counterOverLimit,
-};
+import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
   const store = {
@@ -22,11 +17,23 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
+  const DecoratedCharCounter = props => (
+    <CharCounter {...props} theme={theme} store={store} />
+  );
+  const DecoratedWordCounter = props => (
+    <WordCounter {...props} theme={theme} store={store} />
+  );
+  const DecoratedLineCounter = props => (
+    <LineCounter {...props} theme={theme} store={store} />
+  );
+  const DecoratedCustomCounter = props => (
+    <CustomCounter {...props} theme={theme} store={store} />
+  );
   return {
-    CharCounter: decorateComponentWithProps(CharCounter, { theme, store }),
-    WordCounter: decorateComponentWithProps(WordCounter, { theme, store }),
-    LineCounter: decorateComponentWithProps(LineCounter, { theme, store }),
-    CustomCounter: decorateComponentWithProps(CustomCounter, { theme, store }),
+    CharCounter: DecoratedCharCounter,
+    WordCounter: DecoratedWordCounter,
+    LineCounter: DecoratedLineCounter,
+    CustomCounter: DecoratedCustomCounter,
     initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;

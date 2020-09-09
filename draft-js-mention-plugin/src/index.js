@@ -1,39 +1,27 @@
-import decorateComponentWithProps from 'decorate-component-with-props';
+import React from 'react';
 import { Map } from 'immutable';
 import Mention from './Mention';
-import MentionSuggestions from './MentionSuggestions'; // eslint-disable-line import/no-named-as-default
+import MentionSuggestions from './MentionSuggestions/MentionSuggestions'; // eslint-disable-line import/no-named-as-default
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
 import defaultRegExp from './defaultRegExp';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
-import mentionStyles from './mentionStyles.css';
-import mentionSuggestionsStyles from './mentionSuggestionsStyles.css';
-import mentionSuggestionsEntryStyles from './mentionSuggestionsEntryStyles.css';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import defaultPositionSuggestions from './utils/positionSuggestions';
+import { defaultTheme } from './theme.js';
+import addMention from './modifiers/addMention';
 
-export { default as MentionSuggestions } from './MentionSuggestions';
+export {
+  default as MentionSuggestions,
+} from './MentionSuggestions/MentionSuggestions';
 
-export const defaultTheme = {
-  // CSS class for mention text
-  mention: mentionStyles.mention,
-  // CSS class for suggestions component
-  mentionSuggestions: mentionSuggestionsStyles.mentionSuggestions,
-  // CSS classes for an entry in the suggestions component
-  mentionSuggestionsEntry: mentionSuggestionsEntryStyles.mentionSuggestionsEntry,
-  mentionSuggestionsEntryFocused: mentionSuggestionsEntryStyles.mentionSuggestionsEntryFocused,
-  mentionSuggestionsEntryText: mentionSuggestionsEntryStyles.mentionSuggestionsEntryText,
-  mentionSuggestionsEntryAvatar: mentionSuggestionsEntryStyles.mentionSuggestionsEntryAvatar,
-};
+export { defaultTheme };
+export { addMention };
 
 export default (config = {}) => {
   const callbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
-    onDownArrow: undefined,
-    onUpArrow: undefined,
-    onTab: undefined,
-    onEscape: undefined,
     handleReturn: undefined,
     onChange: undefined,
   };
@@ -53,10 +41,10 @@ export default (config = {}) => {
   const store = {
     getEditorState: undefined,
     setEditorState: undefined,
-    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
+    getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
     getAllSearches: () => searches,
-    isEscaped: (offsetKey) => escapedSearch === offsetKey,
-    escapeSearch: (offsetKey) => {
+    isEscaped: offsetKey => escapedSearch === offsetKey,
+    escapeSearch: offsetKey => {
       escapedSearch = offsetKey;
     },
 
@@ -64,7 +52,7 @@ export default (config = {}) => {
       escapedSearch = undefined;
     },
 
-    register: (offsetKey) => {
+    register: offsetKey => {
       searches = searches.set(offsetKey, offsetKey);
     },
 
@@ -72,13 +60,15 @@ export default (config = {}) => {
       clientRectFunctions = clientRectFunctions.set(offsetKey, func);
     },
 
-    unregister: (offsetKey) => {
+    unregister: offsetKey => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
 
     getIsOpened: () => isOpened,
-    setIsOpened: (nextIsOpened) => { isOpened = nextIsOpened; },
+    setIsOpened: nextIsOpened => {
+      isOpened = nextIsOpened;
+    },
   };
 
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
@@ -92,10 +82,11 @@ export default (config = {}) => {
     theme = defaultTheme,
     positionSuggestions = defaultPositionSuggestions,
     mentionComponent,
-    mentionSuggestionsComponent = MentionSuggestions,
+    mentionSuggestionsComponent: MentionSuggestionsComponent = MentionSuggestions,
     entityMutability = 'SEGMENTED',
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
+    supportWhitespace = false,
   } = config;
   const mentionSearchProps = {
     ariaProps,
@@ -107,40 +98,50 @@ export default (config = {}) => {
     mentionTrigger,
     mentionPrefix,
   };
+  const DecoratedMentionSuggestionsComponent = props => (
+    <MentionSuggestionsComponent {...props} {...mentionSearchProps} />
+  );
+  const DecoratedMention = props => (
+    <Mention {...props} theme={theme} mentionComponent={mentionComponent} />
+  );
+  const DecoratedMentionSuggestionsPortal = props => (
+    <MentionSuggestionsPortal {...props} store={store} />
+  );
   return {
-    MentionSuggestions: decorateComponentWithProps(mentionSuggestionsComponent, mentionSearchProps),
+    MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [
       {
         strategy: mentionStrategy(mentionTrigger),
-        component: decorateComponentWithProps(Mention, { theme, mentionComponent }),
+        component: DecoratedMention,
       },
       {
-        strategy: mentionSuggestionsStrategy(mentionTrigger, mentionRegExp),
-        component: decorateComponentWithProps(MentionSuggestionsPortal, { store }),
+        strategy: mentionSuggestionsStrategy(
+          mentionTrigger,
+          supportWhitespace,
+          mentionRegExp
+        ),
+        component: DecoratedMentionSuggestionsPortal,
       },
     ],
-    getAccessibilityProps: () => (
-      {
-        role: 'combobox',
-        ariaAutoComplete: 'list',
-        ariaHasPopup: ariaProps.ariaHasPopup,
-        ariaExpanded: ariaProps.ariaExpanded,
-        ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
-        ariaOwneeID: ariaProps.ariaOwneeID,
-      }
-    ),
+    getAccessibilityProps: () => ({
+      role: 'combobox',
+      ariaAutoComplete: 'list',
+      ariaHasPopup: ariaProps.ariaHasPopup,
+      ariaExpanded: ariaProps.ariaExpanded,
+      ariaActiveDescendantID: ariaProps.ariaActiveDescendantID,
+      ariaOwneeID: ariaProps.ariaOwneeID,
+    }),
 
     initialize: ({ getEditorState, setEditorState }) => {
       store.getEditorState = getEditorState;
       store.setEditorState = setEditorState;
     },
 
-    onDownArrow: (keyboardEvent) => callbacks.onDownArrow && callbacks.onDownArrow(keyboardEvent),
-    onTab: (keyboardEvent) => callbacks.onTab && callbacks.onTab(keyboardEvent),
-    onUpArrow: (keyboardEvent) => callbacks.onUpArrow && callbacks.onUpArrow(keyboardEvent),
-    onEscape: (keyboardEvent) => callbacks.onEscape && callbacks.onEscape(keyboardEvent),
-    handleReturn: (keyboardEvent) => callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
-    onChange: (editorState) => {
+    keyBindingFn: keyboardEvent =>
+      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
+    handleReturn: keyboardEvent =>
+      callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
+    onChange: editorState => {
       if (callbacks.onChange) return callbacks.onChange(editorState);
       return editorState;
     },

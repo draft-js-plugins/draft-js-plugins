@@ -1,6 +1,6 @@
 {
   "name": "draft-js-plugins-editor",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "Editor for DraftJS Plugins",
   "author": {
     "name": "Nik Graf",
@@ -11,7 +11,11 @@
     "type": "git",
     "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
   },
-  "main": "lib/index.js",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "editor",
     "wysiwyg",
@@ -23,20 +27,22 @@
     "react-component"
   ],
   "scripts": {
-    "build": "BABEL_ENV=production ../node_modules/.bin/babel --out-dir='lib' --ignore='__tests__/*' src",
-    "prepublish": "npm run build"
+    "clean": "../node_modules/.bin/rimraf lib",
+    "build": "yarn clean && yarn build:js && yarn build:ts",
+    "build:js": "../node_modules/.bin/rollup --config ../rollup.config.js",
+    "build:ts": "../node_modules/.bin/cpx src/*.d.ts lib/",
+    "prepublish": "yarn build"
   },
   "license": "MIT",
   "dependencies": {
-    "decorate-component-with-props": "^1.0.2",
-    "find-with-regex": "^1.1.3",
     "immutable": "~3.7.4",
-    "prop-types": "^15.5.8",
-    "union-class-names": "^1.0.0"
+    "prop-types": "^15.5.8"
   },
   "peerDependencies": {
-    "draft-js": "^0.10.1",
-    "react": "^15.5.0 || ^16.0.0-rc",
-    "react-dom": "^15.5.0 || ^16.0.0-rc"
+    "draft-js": "^0.11.0",
+    "react": "^16.3.0"
+  },
+  "devDependencies": {
+    "@types/draft-js": "^0.10.34"
   }
 }

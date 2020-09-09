@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import unionClassNames from 'union-class-names';
+import clsx from 'clsx';
 
 class WordCounter extends Component {
-
   static propTypes = {
     theme: PropTypes.any,
     limit: PropTypes.number,
@@ -11,16 +10,16 @@ class WordCounter extends Component {
 
   getWordCount(editorState) {
     const plainText = editorState.getCurrentContent().getPlainText('');
-    const regex = /(?:\r\n|\r|\n)/g;  // new line, carriage return, line feed
+    const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
     const cleanString = plainText.replace(regex, ' ').trim(); // replace above characters w/ space
-    const wordArray = cleanString.match(/\S+/g);  // matches words according to whitespace
+    const wordArray = cleanString.match(/\S+/g); // matches words according to whitespace
     return wordArray ? wordArray.length : 0;
   }
 
   getClassNames(count, limit) {
     const { theme = {}, className } = this.props;
-    const defaultStyle = unionClassNames(theme.counter, className);
-    const overLimitStyle = unionClassNames(theme.counterOverLimit, className);
+    const defaultStyle = clsx(theme.counter, className);
+    const overLimitStyle = clsx(theme.counterOverLimit, className);
     return count > limit ? overLimitStyle : defaultStyle;
   }
 

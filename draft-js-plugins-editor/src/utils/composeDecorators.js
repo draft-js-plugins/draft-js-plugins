@@ -2,7 +2,7 @@
 // https://github.com/acdlite/recompose/blob/master/src/packages/recompose/compose.js
 export default (...funcs) => {
   if (funcs.length === 0) {
-    return (arg) => arg;
+    return arg => arg;
   }
 
   if (funcs.length === 1) {

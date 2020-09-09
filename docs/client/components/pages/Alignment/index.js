@@ -97,7 +97,7 @@ export default class App extends Component {
           <Heading level={4}>Browserify Usage</Heading>
           <p>
             Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">
+            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Alignment/index.js">
               documentation
             </ExternalLink>.
           </p>

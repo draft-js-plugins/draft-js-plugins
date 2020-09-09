@@ -1,13 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class BlockTypeSelect extends React.Component {
-
+class BlockTypeSelect extends React.Component {
   state = {
     style: {
       transform: 'translate(-50%) scale(0)',
-    }
-  }
+    },
+  };
 
   onMouseEnter = () => {
     this.setState({
@@ -16,7 +16,7 @@ export default class BlockTypeSelect extends React.Component {
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       },
     });
-  }
+  };
 
   onMouseLeave = () => {
     this.setState({
@@ -24,12 +24,12 @@ export default class BlockTypeSelect extends React.Component {
         transform: 'translate(-50%) scale(0)',
       },
     });
-  }
+  };
 
-  onMouseDown = (clickEvent) => {
+  onMouseDown = clickEvent => {
     clickEvent.preventDefault();
     clickEvent.stopPropagation();
-  }
+  };
 
   render() {
     const { theme, getEditorState, setEditorState } = this.props;
@@ -37,10 +37,15 @@ export default class BlockTypeSelect extends React.Component {
       <div
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        onMouseDown={this.onClick}
+        onMouseDown={this.onMouseDown}
       >
         <div className={theme.blockTypeSelectStyles.blockType}>
-          <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path d="M0 0h24v24H0z" fill="none" />
             <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
           </svg>
@@ -50,17 +55,23 @@ export default class BlockTypeSelect extends React.Component {
           blockType div to the popup.
         */}
         <div className={theme.blockTypeSelectStyles.spacer} />
-        <div className={theme.blockTypeSelectStyles.popup} style={this.state.style}>
-          {this.props.structure.map((Component, index) => (
-            <Component
-              key={index}
-              getEditorState={getEditorState}
-              setEditorState={setEditorState}
-              theme={theme.buttonStyles}
-            />
-          ))}
+        <div
+          className={theme.blockTypeSelectStyles.popup}
+          style={this.state.style}
+        >
+          {this.props.children({
+            getEditorState,
+            setEditorState,
+            theme: theme.buttonStyles,
+          })}
         </div>
       </div>
     );
   }
 }
+
+BlockTypeSelect.propTypes = {
+  children: PropTypes.func,
+};
+
+export default BlockTypeSelect;

@@ -14,9 +14,9 @@ describe('createStore', () => {
     expect(store.getItem('age')).to.equal(74);
   });
 
-  it('should be possible to subscribe to an update', (done) => {
+  it('should be possible to subscribe to an update', done => {
     const store = createStore();
-    store.subscribeToItem('name', (item) => {
+    store.subscribeToItem('name', item => {
       expect(item).to.equal('Ada');
       done();
     });

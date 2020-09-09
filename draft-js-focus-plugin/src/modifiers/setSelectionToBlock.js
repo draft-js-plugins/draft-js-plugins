@@ -17,11 +17,16 @@ export default (getEditorState, setEditorState, newActiveBlock) => {
   selection.removeAllRanges();
   selection.addRange(range);
 
-  setEditorState(EditorState.forceSelection(editorState, new SelectionState({
-    anchorKey: newActiveBlock.getKey(),
-    anchorOffset: 0,
-    focusKey: newActiveBlock.getKey(),
-    focusOffset: 0,
-    isBackward: false,
-  })));
+  setEditorState(
+    EditorState.forceSelection(
+      editorState,
+      new SelectionState({
+        anchorKey: newActiveBlock.getKey(),
+        anchorOffset: 0,
+        focusKey: newActiveBlock.getKey(),
+        focusOffset: 0,
+        isBackward: false,
+      })
+    )
+  );
 };

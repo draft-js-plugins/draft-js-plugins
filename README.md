@@ -1,3 +1,7 @@
+## Looking for maintainers
+
+Unfortunately draft-js-plugins is currently without a maintainer. In fact - [we're actively looking or maintainers](https://github.com/draft-js-plugins/draft-js-plugins/issues/1407). If you're interested in becoming a maintainer please [go to this thread](https://github.com/draft-js-plugins/draft-js-plugins/issues/1407#issuecomment-629710454) and read the instructions, we'll update this further.
+
 # DraftJS Plugins
 
 ![Draft JS Plugins Logo](http://static.nikgraf.com/draft-js-plugins/draft-js-plugins.svg)
@@ -95,8 +99,8 @@ const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
 
 const plugins = [
-  hashtagPlugin,
   linkifyPlugin,
+  hashtagPlugin,
 ];
 
 export default class UnicornEditor extends Component {
@@ -140,9 +144,9 @@ In this talk Nik Graf explained the ContentState structure of a Draft.js Editor 
 
 [<img width="450" src="http://img.youtube.com/vi/gxNuHZXZMgs/maxresdefault.jpg" >](https://www.youtube.com/watch?v=gxNuHZXZMgs)
 
-## Maintainers
+## History
 
-This project was initiated by [Nik Graf](https://twitter.com/nikgraf) and is maintained by [Julian Krispel](https://twitter.com/juliandoesstuff). Julian is a draft.js consultant and available for hire, you can get in touch with him on his website, [react rocket](https://reactrocket.com)
+This project was initiated by [Nik Graf](https://twitter.com/nikgraf) but is currently going un-maintained. If you'd like to become a maintainer, please get involved by contributing, if you have any questions please feel free to [reach out in this https://github.com/draft-js-plugins/draft-js-plugins/issues/1407#issuecomment-629710454).
 
 ## License
 

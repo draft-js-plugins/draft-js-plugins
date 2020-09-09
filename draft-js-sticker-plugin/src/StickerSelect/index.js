@@ -61,14 +61,15 @@ export default class StickerSelect extends Component {
   };
 
   // Add a sticker to the editor
-  add = (id) => {
+  add = id => {
+    // TODO - review this approach
     const { editor } = this.props;
     editor.onChange(addSticker(editor.state.editorState, id));
   };
 
   render() {
     // Create the sticker selection elements
-    const stickerElements = this.props.stickers.get('data').map((sticker) => {
+    const stickerElements = this.props.stickers.get('data').map(sticker => {
       const id = sticker.get('id');
       const url = sticker.get('url');
       return (
@@ -83,12 +84,12 @@ export default class StickerSelect extends Component {
     });
 
     const { theme = {} } = this.props;
-    const popoverClassName = this.state.open ?
-      theme.selectPopover :
-      theme.selectClosedPopover;
-    const buttonClassName = this.state.open ?
-      theme.selectPressedButton :
-      theme.selectButton;
+    const popoverClassName = this.state.open
+      ? theme.selectPopover
+      : theme.selectClosedPopover;
+    const buttonClassName = this.state.open
+      ? theme.selectPressedButton
+      : theme.selectButton;
 
     return (
       <div className={theme.select}>
