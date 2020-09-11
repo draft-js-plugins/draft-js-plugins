@@ -1,11 +1,11 @@
 import React from 'react';
+import { Story, Meta } from '@storybook/react';
+
 import SimpleAlignmentEditor from './SimpleAlignmentEditor';
 
 export default {
-  title: 'EditorWithAlignmentPlugin',
+  title: 'Miscellaneous/Editor With Alignment Plugin',
   component: SimpleAlignmentEditor,
-};
+} as Meta;
 
-export const EditorWithAlignmentPlugin = () => <SimpleAlignmentEditor />;
-
-EditorWithAlignmentPlugin.storyName = 'Editor with Alignment Plugin';
+export const Default: Story = () => <SimpleAlignmentEditor />;
