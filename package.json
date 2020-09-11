@@ -86,7 +86,8 @@
     "superagent": "^3.5.0",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.17.1"
+    "webpack-hot-middleware": "^2.17.1",
+    "typescript": "4.0.2"
   },
   "husky": {
     "hooks": {
@@ -130,8 +131,8 @@
     "lint:flow": "flow status",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "test": "mocha --compilers @babel/register --require testHelper.js \"./*/src/**/__test__/*.js\"",
-    "test:watch": "yarn test -- --watch",
-    "test:jest": "jest --passWithNoTests"
+    "test:jest": "jest --passWithNoTests",
+    "test:watch": "yarn test -- --watch"
   },
   "workspaces": [
     "draft-js-alignment-plugin",
