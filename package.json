@@ -26,8 +26,8 @@
     "@babel/plugin-proposal-class-properties": "7.10.4",
     "@babel/preset-env": "7.11.5",
     "@babel/preset-flow": "7.10.4",
-    "@babel/preset-typescript": "7.10.4",
     "@babel/preset-react": "7.10.4",
+    "@babel/preset-typescript": "7.10.4",
     "@babel/register": "7.11.5",
     "@storybook/react": "^5.1.11",
     "@testing-library/jest-dom": "^5.11.4",
@@ -52,6 +52,7 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^14.1.0",
+    "eslint-import-resolver-typescript": "2.3.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-mocha": "^4.8.0",
     "eslint-plugin-react": "^6.10.0",
@@ -85,10 +86,10 @@
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.2",
     "superagent": "^3.5.0",
+    "typescript": "4.0.2",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.17.1",
-    "typescript": "4.0.2"
+    "webpack-hot-middleware": "^2.17.1"
   },
   "husky": {
     "hooks": {

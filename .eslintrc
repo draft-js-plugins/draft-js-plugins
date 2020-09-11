@@ -88,6 +88,10 @@
       "draft-js-video-plugin/lib/plugin.css",
       "draft-js-divider-plugin",
       "draft-js-divider-plugin/lib/plugin.css"
-    ]
+    ],
+    "import/resolver": {
+      "node": true,
+      "eslint-import-resolver-typescript": true
+    }
   }
 }
