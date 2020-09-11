@@ -87,6 +87,7 @@ export default (config = {}) => {
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
     supportWhitespace = false,
+    entryComponent,
   } = config;
   const mentionSearchProps = {
     ariaProps,
@@ -97,6 +98,7 @@ export default (config = {}) => {
     positionSuggestions,
     mentionTrigger,
     mentionPrefix,
+    entryComponent,
   };
   const DecoratedMentionSuggestionsComponent = props => (
     <MentionSuggestionsComponent {...props} {...mentionSearchProps} />

@@ -6,7 +6,7 @@ import Entry from './Entry/Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
-import defaultEntryComponent from './Entry/defaultEntryComponent';
+import defaultEntryComponent from './Entry/DefaultEntryComponent';
 
 export class MentionSuggestions extends Component {
   static propTypes = {
