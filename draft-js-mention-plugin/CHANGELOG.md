@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - onOpen and onClose callbacks are removed in favour of onOpenChange
 - Made suggestions prop required (pass empty array for async suggestions)
 - Remove prevState and state from positionSuggestions
+- add entryComponent to mention plugin
 
 ## 3.1.5
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from './Avatar/Avatar';
 
-const defaultEntryComponent = props => {
+const DefaultEntryComponent = props => {
   const {
     mention,
     theme,
@@ -18,4 +18,4 @@ const defaultEntryComponent = props => {
   );
 };
 
-export default defaultEntryComponent;
+export default DefaultEntryComponent;
