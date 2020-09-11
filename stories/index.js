@@ -2,7 +2,7 @@ import React from 'react';
 import 'draft-js/dist/Draft.css';
 
 import { storiesOf } from '@storybook/react';
-import SimpleAlignmentEditor from './alignment/src/App';
+import SimpleAlignmentEditor from './alignment/src/SimpleAlignmentEditor';
 import ResizableEditor from './resizable/src/App';
 import AnchorSimpleLinkPluginEditor from './inline-toolbar-with-anchor-plugin/src/App';
 import SimpleCounterEditor from './counter-plugin-simple/src/App';
