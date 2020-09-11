@@ -30,8 +30,8 @@ packages.forEach(name => {
   packagesAliases[name] = path.join(__dirname, '..', name, 'src');
 });
 
-module.exports = {
-  module: {
+module.exports = async ({ config }) => {
+  config.module = {
     rules: [
       {
         test: /\.css$/,
@@ -71,15 +71,17 @@ module.exports = {
         use: [{ loader: 'file-loader', options: { name: '[name].[ext]' } }],
       },
     ],
-  },
+  };
 
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
+  config.resolve = {
     alias: {
       ...packagesAliases,
       react: path.join(__dirname, '..', 'node_modules', 'react'),
       'prop-types': path.join(__dirname, '..', 'node_modules', 'prop-types'),
       lodash: path.join(__dirname, '..', 'node_modules', 'lodash'),
     },
-  },
+    extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
+  };
+
+  return config;
 };
