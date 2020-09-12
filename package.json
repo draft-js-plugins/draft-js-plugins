@@ -64,7 +64,7 @@
     "linaria": "^1.4.0-alpha.1",
     "lint-staged": "^9.2.3",
     "matched": "^4.0.0",
-    "mocha": "^3.0.2",
+    "mocha": "^5.0.0",
     "multer": "^1.3.0",
     "postcss-loader": "^1.3.3",
     "prettier": "^1.18.2",
@@ -129,7 +129,7 @@
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests: 2' ./",
     "lint:flow": "flow status",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
-    "test": "mocha --compilers @babel/register --require testHelper.js \"./*/src/**/__test__/*.js\"",
+    "test": "mocha --compilers @babel/register --exclude \"./*/src/**/__test__/*test.js\" --require testHelper.js \"./*/src/**/__test__/*.js\"",
     "test:watch": "yarn test -- --watch",
     "test:jest": "jest --passWithNoTests"
   },
