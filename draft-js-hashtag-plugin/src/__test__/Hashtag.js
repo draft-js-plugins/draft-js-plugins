@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import Hashtag from '../index';
+import Hashtag from '../Hashtag';
 
 describe('Hashtag', () => {
   it('applies the className based on the theme property `hashtag`', () => {

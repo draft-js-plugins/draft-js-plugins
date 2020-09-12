@@ -17,6 +17,7 @@ export default ({ config, store }) => WrappedComponent =>
       horizontal: 'relative',
       vertical: false,
       resizeSteps: 1,
+      isResizable: true,
       ...config,
     };
     state = {
@@ -39,7 +40,7 @@ export default ({ config, store }) => WrappedComponent =>
     // used to save the hoverPosition so it can be leveraged to determine if a
     // drag should happen on mousedown
     mouseMove = evt => {
-      const { vertical, horizontal } = this.props;
+      const { vertical, horizontal, isResizable } = this.props;
 
       const hoverPosition = this.state.hoverPosition;
       const tolerance = 6;
@@ -58,7 +59,7 @@ export default ({ config, store }) => WrappedComponent =>
           ? y >= b.height - tolerance && y < b.height
           : false;
 
-      const canResize = isTop || isLeft || isRight || isBottom;
+      const canResize = (isTop || isLeft || isRight || isBottom) && isResizable;
 
       const newHoverPosition = {
         isTop,
@@ -166,7 +167,10 @@ export default ({ config, store }) => WrappedComponent =>
         blockProps,
         vertical,
         horizontal,
+        initialWidth,
+        initialHeight,
         style,
+        isResizable,
         // using destructuring to make sure unused props are not passed down to the block
         resizeSteps, // eslint-disable-line no-unused-vars
         ...elementProps
@@ -179,21 +183,43 @@ export default ({ config, store }) => WrappedComponent =>
       if (horizontal === 'auto') {
         styles.width = 'auto';
       } else if (horizontal === 'relative') {
-        styles.width = `${width || blockProps.resizeData.width || 40}%`;
+        const value = width || blockProps.resizeData.width;
+        if (!value && initialWidth) {
+          styles.width = initialWidth;
+        } else {
+          styles.width = `${value || 40}%`;
+        }
       } else if (horizontal === 'absolute') {
-        styles.width = `${width || blockProps.resizeData.width || 40}px`;
+        const value = width || blockProps.resizeData.width;
+        if (!value && initialWidth) {
+          styles.width = initialWidth;
+        } else {
+          styles.width = `${value || 40}px`;
+        }
       }
 
       if (vertical === 'auto') {
         styles.height = 'auto';
       } else if (vertical === 'relative') {
-        styles.height = `${height || blockProps.resizeData.height || 40}%`;
+        const value = height || blockProps.resizeData.height;
+        if (!value && initialHeight) {
+          styles.height = initialHeight;
+        } else {
+          styles.height = `${value || 40}%`;
+        }
       } else if (vertical === 'absolute') {
-        styles.height = `${height || blockProps.resizeData.height || 40}px`;
+        const value = height || blockProps.resizeData.height;
+        if (!value && initialHeight) {
+          styles.height = initialHeight;
+        } else {
+          styles.height = `${value || 40}%`;
+        }
       }
 
       // Handle cursor
-      if ((isRight && isBottom) || (isLeft && isTop)) {
+      if (!isResizable) {
+        styles.cursor = 'default';
+      } else if ((isRight && isBottom) || (isLeft && isTop)) {
         styles.cursor = 'nwse-resize';
       } else if ((isRight && isTop) || (isBottom && isLeft)) {
         styles.cursor = 'nesw-resize';
@@ -205,13 +231,14 @@ export default ({ config, store }) => WrappedComponent =>
         styles.cursor = 'default';
       }
 
-      const interactionProps = store.getReadOnly()
-        ? {}
-        : {
-            onMouseDown: this.mouseDown,
-            onMouseMove: this.mouseMove,
-            onMouseLeave: this.mouseLeave,
-          };
+      const interactionProps =
+        !store.getReadOnly || store.getReadOnly()
+          ? {}
+          : {
+              onMouseDown: this.mouseDown,
+              onMouseMove: this.mouseMove,
+              onMouseLeave: this.mouseLeave,
+            };
 
       return (
         <WrappedComponent

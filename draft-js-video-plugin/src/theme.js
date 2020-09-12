@@ -21,4 +21,9 @@ export const defaultTheme = {
     background-color: #eaeaea;
     padding: 1em;
   `,
+
+  video: css`
+    width: 100%;
+    height: 100%;
+  `,
 };

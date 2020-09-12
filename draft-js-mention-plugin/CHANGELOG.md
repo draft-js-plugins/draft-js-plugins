@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
-
+- Add Arabic Support
 - Remove legacy lifecycle hooks
 - Require react 16.3 and above version
 - Migrate styles to linaria
@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - onOpen and onClose callbacks are removed in favour of onOpenChange
 - Made suggestions prop required (pass empty array for async suggestions)
 - Remove prevState and state from positionSuggestions
+- add entryComponent to mention plugin
 
 ## 3.1.5
 

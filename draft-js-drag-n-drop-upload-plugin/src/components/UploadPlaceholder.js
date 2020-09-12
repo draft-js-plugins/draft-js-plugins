@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class UploadPlaceholder extends Component {
-  render() {
-    const { blockProps, block } = this.props;
+const UploadPlaceholder = props => {
+  const { blockProps, block } = props;
 
-    return (
-      <span contentEditable={false} data-offset-key={`${block.get('key')}-0-0`}>
-        ![Uploading {blockProps.name}...](){' '}
-      </span>
-    );
-  }
-}
+  return (
+    <span contentEditable={false} data-offset-key={`${block.get('key')}-0-0`}>
+      ![Uploading {blockProps.name}...](){' '}
+    </span>
+  );
+};
 
 export default UploadPlaceholder;

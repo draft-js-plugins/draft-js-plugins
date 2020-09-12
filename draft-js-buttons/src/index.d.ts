@@ -3,13 +3,13 @@ import { ComponentType, ReactNode } from "react";
 
 export interface DraftJsButtonTheme {
   // CSS classes to apply
-  active: string;
-  button: string;
-  buttonWrapper: string;
+  active?: string;
+  button?: string;
+  buttonWrapper?: string;
 }
 
 export interface DraftJsButtonProps {
-  theme?: DraftJsButtonTheme;
+  theme: DraftJsButtonTheme;
 }
 
 export interface DraftJsBlockAlignmentButtonProps extends DraftJsButtonProps {
@@ -35,14 +35,14 @@ export interface DraftJsStyleButtonProps extends DraftJsButtonProps {
 
 type DraftJsStyleButtonType = ComponentType<DraftJsStyleButtonProps>;
 
-export const createBlockStyleButton: (
-  alignment: string,
+export const createBlockStyleButton: ({
+  blockType: string,
   children: ReactNode
-) => DraftJsStyleButtonType;
-export const createInlineStyleButton: (
-  alignment: string,
+}) => DraftJsStyleButtonType;
+export const createInlineStyleButton: ({
+  style: string,
   children: ReactNode
-) => DraftJsStyleButtonType;
+}) => DraftJsStyleButtonType;
 
 export const BlockquoteButton: DraftJsStyleButtonType;
 export const BoldButton: DraftJsStyleButtonType;

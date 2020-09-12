@@ -55,13 +55,17 @@ module.exports = {
       },
 
       {
-        test: /\.js$/,
-        loader: 'linaria/loader',
-        options: {
-          sourceMap: true,
-        },
+        test: /\.(js|jsx|ts|tsx)?$/,
+        use: [
+          { loader: 'babel-loader' },
+          {
+            loader: 'linaria/loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
-
       {
         test: /\.(png|jpg|gif|ico)$/,
         use: [{ loader: 'file-loader', options: { name: '[name].[ext]' } }],
@@ -70,6 +74,7 @@ module.exports = {
   },
 
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
     alias: {
       ...packagesAliases,
       react: path.join(__dirname, '..', 'node_modules', 'react'),

@@ -18,7 +18,7 @@ const getSrc = ({ src }) => {
   return undefined;
 };
 
-const DefaultVideoCompoent = ({ blockProps, className = '', style, theme }) => {
+const DefaultVideoCompoent = ({ blockProps, className = '', style, theme, ...otherProps }) => {
   const src = getSrc(blockProps);
   if (src) {
     return (
@@ -35,7 +35,28 @@ const DefaultVideoCompoent = ({ blockProps, className = '', style, theme }) => {
     );
   }
 
-  return <div className={theme.invalidVideoSrc}>invalid video source</div>;
+
+  const {
+    block,
+    customStyleMap, // eslint-disable-line no-unused-vars
+    customStyleFn, // eslint-disable-line no-unused-vars
+    decorator, // eslint-disable-line no-unused-vars
+    forceSelection, // eslint-disable-line no-unused-vars
+    offsetKey, // eslint-disable-line no-unused-vars
+    selection, // eslint-disable-line no-unused-vars
+    tree, // eslint-disable-line no-unused-vars
+    contentState,
+    blockStyleFn,
+    ...elementProps
+  } = otherProps;
+  return (
+    <video
+      src={blockProps.src}
+      style={{ ...theme.video, ...style }}
+      {...elementProps}
+      controls
+    />
+  );
 };
 
 DefaultVideoCompoent.propTypes = {

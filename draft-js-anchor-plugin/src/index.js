@@ -6,7 +6,7 @@ import linkStrategy, { matchesEntityType } from './linkStrategy';
 import { defaultTheme } from './theme.js';
 
 export default (config = {}) => {
-  const { theme = defaultTheme, placeholder, Link, linkTarget } = config;
+  const { theme = defaultTheme, placeholder, Link, linkTarget, validateUrl } = config;
 
   const store = {
     getEditorState: undefined,
@@ -28,6 +28,7 @@ export default (config = {}) => {
           EditorUtils.removeLinkAtSelection(store.getEditorState())
         )
       }
+      validateUrl={validateUrl}
     />
   );
 
