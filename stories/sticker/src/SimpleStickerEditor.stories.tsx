@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import SimpleStickerEditor from './SimpleStickerEditor';
 
 export default {
-  title: 'Miscellaneous/Editor with Sticker Plugin',
+  title: 'Sticker/Editor with Sticker Plugin',
   component: SimpleStickerEditor,
 } as Meta;
 

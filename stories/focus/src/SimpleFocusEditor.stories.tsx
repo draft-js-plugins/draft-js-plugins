@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import SimpleFocusEditor from './SimpleFocusEditor';
 
 export default {
-  title: 'Miscellaneous/Editor with Focus Plugin',
+  title: 'Focus/Editor with Focus Plugin',
   component: SimpleFocusEditor,
 } as Meta;
 

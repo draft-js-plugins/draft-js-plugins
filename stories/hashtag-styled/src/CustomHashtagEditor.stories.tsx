@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import CustomHashtagEditor from './CustomHashtagEditor';
 
 export default {
-  title: 'Miscellaneous/Editor with custom themed Hashtag Plugin',
+  title: 'Hashtag/Editor with custom themed Hashtag Plugin',
   component: CustomHashtagEditor,
 } as Meta;
 

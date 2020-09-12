@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import SimpleCounterEditor from './SimpleCounterEditor';
 
 export default {
-  title: 'Miscellaneous/Editor With Counter Plugin',
+  title: 'Counter/Editor With Counter Plugin',
   component: SimpleCounterEditor,
 } as Meta;
 

@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import SimpleUndoEditor from './SimpleUndoEditor';
 
 export default {
-  title: 'Miscellaneous/Editor with undo plugin',
+  title: 'Undo/Editor with undo plugin',
   component: SimpleUndoEditor
 } as Meta;
 

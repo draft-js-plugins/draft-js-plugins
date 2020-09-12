@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import KitchenSink from './KitchenSink';
 
 export default {
-  title: 'Miscellaneous/Kitchen sink',
+  title: 'Kitchen sink',
   component: KitchenSink,
 } as Meta;
 

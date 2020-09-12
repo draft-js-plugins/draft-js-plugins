@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import AnchorSimpleLinkPluginEditor from './AnchorSimpleLinkPluginEditor';
 
 export default {
-  title: 'Miscellaneous/Editor with Anchor Plugin',
+  title: 'Anchor/Editor with Anchor Plugin',
   component: AnchorSimpleLinkPluginEditor,
 } as Meta;
 
