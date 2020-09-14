@@ -1,32 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-class LineCounter extends Component {
-  static propTypes = {
-    theme: PropTypes.any,
-    limit: PropTypes.number,
-  };
-
-  getLineCount(editorState) {
+const LineCounter = ({ store, limit, theme = {}, className }) => {
+  const getLineCount = editorState => {
     const blockArray = editorState.getCurrentContent().getBlocksAsArray();
     return blockArray ? blockArray.length : null;
-  }
+  };
 
-  getClassNames(count, limit) {
-    const { theme = {}, className } = this.props;
+  const getClassNames = count => {
     const defaultStyle = clsx(theme.counter, className);
     const overLimitStyle = clsx(theme.counterOverLimit, className);
     return count > limit ? overLimitStyle : defaultStyle;
-  }
+  };
 
-  render() {
-    const { store, limit } = this.props;
-    const count = this.getLineCount(store.getEditorState());
-    const classNames = this.getClassNames(count, limit);
+  const count = getLineCount(store.getEditorState());
+  const classNames = getClassNames(count);
 
-    return <span className={classNames}>{count}</span>;
-  }
-}
+  return <span className={classNames}>{count}</span>;
+};
+
+LineCounter.propTypes = {
+  theme: PropTypes.any,
+  store: PropTypes.any,
+  className: PropTypes.any,
+  limit: PropTypes.number,
+};
 
 export default LineCounter;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { expect } from 'chai';
+import { screen, render } from '@testing-library/react';
 import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
@@ -23,8 +22,8 @@ describe('CounterPlugin Character Counter', () => {
     });
     const { CharCounter } = counterPlugin;
 
-    const result = mount(<CharCounter />);
-    expect(result).to.have.text('12');
+    render(<CharCounter />);
+    expect(screen.getByText('12')).toBeInTheDocument();
   });
 
   it('instantiates plugin and counts 3 unicode characters', () => {
@@ -34,7 +33,7 @@ describe('CounterPlugin Character Counter', () => {
     });
     const { CharCounter } = counterPlugin;
 
-    const result = mount(<CharCounter />);
-    expect(result).to.have.text('3');
+    render(<CharCounter />);
+    expect(screen.getByText('3')).toBeInTheDocument();
   });
 });

@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { expect } from 'chai';
+import { screen, render } from '@testing-library/react';
 import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
@@ -23,7 +22,7 @@ describe('CounterPlugin Line Counter', () => {
     });
     const { LineCounter } = counterPlugin;
 
-    const result = mount(<LineCounter />);
-    expect(result).to.have.text('3');
+    render(<LineCounter />);
+    expect(screen.getByText('3')).toBeInTheDocument();
   });
 });

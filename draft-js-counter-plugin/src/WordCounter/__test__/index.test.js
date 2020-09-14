@@ -1,6 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { expect } from 'chai';
+import { screen, render } from '@testing-library/react';
 import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
@@ -24,7 +23,7 @@ describe('CounterPlugin Word Counter', () => {
     });
     const { WordCounter } = counterPlugin;
 
-    const result = mount(<WordCounter />);
-    expect(result).to.have.text('5');
+    render(<WordCounter />);
+    expect(screen.getByText('5')).toBeInTheDocument();
   });
 });
