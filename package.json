@@ -22,7 +22,6 @@
     "to-style": "^1.3.3"
   },
   "devDependencies": {
-    "@babel/core": "7.11.6",
     "@babel/plugin-proposal-class-properties": "7.10.4",
     "@babel/preset-env": "7.11.5",
     "@babel/preset-flow": "7.10.4",
@@ -39,13 +38,11 @@
     "autoprefixer": "^6.7.6",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^26.3.0",
-    "babel-loader": "^8.0.6",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^1.0.0-beta.1",
     "cheerio": "^0.22.0",
     "cpx": "^1.5.0",
-    "css-loader": "^0.26.2",
     "css-modules-require-hook": "^4.0.2",
     "dirty-chai": "^1.2.2",
     "draft-js-buttons": "latest",
@@ -62,7 +59,6 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "estraverse-fb": "^1.3.1",
     "express": "^4.15.0",
-    "extract-text-webpack-plugin": "^2.0.0",
     "flow-bin": "^0.69.0",
     "husky": "^3.0.4",
     "jest": "^26.4.2",
@@ -72,9 +68,7 @@
     "matched": "^4.0.0",
     "mocha": "^5.0.0",
     "multer": "^1.3.0",
-    "postcss-loader": "^1.3.3",
     "prettier": "^1.18.2",
-    "prismjs": "^1.21.0",
     "react-addons-pure-render-mixin": "^15.5.2",
     "react-addons-test-utils": "^15.5.1",
     "react-router": "^3.0.2",
@@ -88,12 +82,8 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
-    "style-loader": "^0.13.2",
     "superagent": "^3.5.0",
-    "typescript": "4.0.2",
-    "webpack": "^2.2.1",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.17.1"
+    "typescript": "4.0.2"
   },
   "husky": {
     "hooks": {
@@ -162,6 +152,7 @@
     "draft-js-static-toolbar-plugin",
     "draft-js-sticker-plugin",
     "draft-js-undo-plugin",
-    "draft-js-video-plugin"
+    "draft-js-video-plugin",
+    "docs"
   ]
 }

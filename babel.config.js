@@ -11,11 +11,11 @@ const removeLinariaImport = () => ({
 
 module.exports = {
   presets: [
-    '@babel/env',
-    '@babel/react',
-    '@babel/flow',
-    '@babel/typescript',
+    '@babel/preset-env',
+    '@babel/preset-react',
+    '@babel/preset-flow',
+    '@babel/preset-typescript',
     'linaria/babel',
   ],
-  plugins: ['@babel/proposal-class-properties', removeLinariaImport],
+  plugins: ['@babel/plugin-proposal-class-properties', removeLinariaImport],
 };

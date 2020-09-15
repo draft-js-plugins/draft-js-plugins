@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpackBaseConfig = require('./webpack.config.base');
+const merge = require('webpack-merge');
 
 // Set up dev host host and HMR host. For the dev host this is pretty self
 // explanatory: We use a different live-reload server to server our static JS
@@ -14,24 +14,22 @@ const DEV_HOST = `//localhost:${DEV_PORT}/`;
 const HMR_HOST = `${DEV_HOST}__webpack_hmr`;
 
 module.exports = Object.assign(webpackBaseConfig, {
+  mode: 'development',
   devtool: 'inline-source-map',
 
-  entry: {
-    app: [
+  entry: [
       `webpack-hot-middleware/client?path=${HMR_HOST}`,
-      'babel-polyfill',
+      '@babel/polyfill',
       './client/index.js',
-    ],
-  },
+  ],
 
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     publicPath: DEV_HOST,
   },
 
   plugins: [
-    new ExtractTextPlugin({ filename: 'css/bundle.css', disable: true }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
