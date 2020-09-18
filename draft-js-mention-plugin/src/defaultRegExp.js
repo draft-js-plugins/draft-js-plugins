@@ -22,4 +22,6 @@ export default '[' +
   '\u4e00-\u9eff' +
   // Arabic https://en.wikipedia.org/wiki/Arabic_(Unicode_block)
   '\u0600-\u06ff' +
+  // Vietnamese http://vietunicode.sourceforge.net/charset/
+  '\u00C0-\u1EF9' +
   ']*';
