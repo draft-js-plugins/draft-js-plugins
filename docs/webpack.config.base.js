@@ -133,7 +133,10 @@ module.exports = {
       ),
       react: path.join(__dirname, 'node_modules', 'react'),
     },
-    extensions: ['.js'],
+    modules: [
+      'node_modules',
+      path.resolve('../node_modules')
+    ]
   },
   module: {
     rules: [
@@ -230,7 +233,7 @@ module.exports = {
           path.join(__dirname, '..', 'draft-js-video-plugin', 'src'),
           path.join(__dirname, '..', 'draft-js-divider-plugin', 'src'),
           path.join(__dirname, 'client/components'),
-          path.join(__dirname, 'node_modules/prismjs/themes/'),
+          path.join(__dirname, '../node_modules/prismjs/themes/'),
         ],
       },
       {
