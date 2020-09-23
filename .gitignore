@@ -21,3 +21,5 @@ npm-debug.log
 npm-debug.log*
 
 docs/build
+
+yarn-error.log
