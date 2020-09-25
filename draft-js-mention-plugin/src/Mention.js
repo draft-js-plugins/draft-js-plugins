@@ -2,13 +2,18 @@ import React from 'react';
 import clsx from 'clsx';
 
 const MentionLink = ({ mention, children, className }) => (
-  <a href={mention.link} className={className} spellCheck={false}>
+  <a
+    href={mention.link}
+    className={className}
+    spellCheck={false}
+    data-testid="mentionLink"
+  >
     {children}
   </a>
 );
 
 const MentionText = ({ children, className }) => (
-  <span className={className} spellCheck={false}>
+  <span className={className} spellCheck={false} data-testid="mentionText">
     {children}
   </span>
 );
