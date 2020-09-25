@@ -1,8 +1,7 @@
 import React from 'react';
-import { render } from 'enzyme';
+import { screen, render } from '@testing-library/react';
 import { Map } from 'immutable';
 import { ContentState } from 'draft-js';
-import { expect } from 'chai';
 import Mention from '../../Mention';
 
 describe('Mention', () => {
@@ -17,14 +16,15 @@ describe('Mention', () => {
       { mention }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-    const result = render(
+
+    render(
       <Mention
         entityKey={entityKey}
         contentState={contentState}
         theme={Map()}
       />
     );
-    expect(result).to.have.tagName('a');
+    expect(screen.getByTestId('mentionLink')).toBeTruthy();
   });
 
   it('renders a Span tag in case no link is provided', () => {
@@ -36,14 +36,15 @@ describe('Mention', () => {
       { mention }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-    const result = render(
+
+    render(
       <Mention
         entityKey={entityKey}
         contentState={contentState}
         theme={Map()}
       />
     );
-    expect(result).to.have.tagName('span');
+    expect(screen.getByTestId('mentionText')).toBeTruthy();
   });
 
   it('can render when mention is an Object', () => {
@@ -55,13 +56,14 @@ describe('Mention', () => {
       { mention }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-    const result = render(
+
+    render(
       <Mention
         entityKey={entityKey}
         contentState={contentState}
         theme={Map()}
       />
     );
-    expect(result).to.have.tagName('span');
+    expect(screen.getByTestId('mentionText')).toBeTruthy();
   });
 });
