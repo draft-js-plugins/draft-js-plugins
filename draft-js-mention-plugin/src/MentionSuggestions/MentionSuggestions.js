@@ -122,7 +122,7 @@ export class MentionSuggestions extends Component {
               'g'
             ).test(plainText) &&
             anchorOffset <= end) || // @ is the first character
-          (anchorOffset > start + this.props.mentionTrigger.length &&
+          (anchorOffset >= start + this.props.mentionTrigger.length &&
             anchorOffset <= end) // @ is in the text or at the end
       );
 
