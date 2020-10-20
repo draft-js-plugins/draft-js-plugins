@@ -1,25 +1,76 @@
-import React from 'react';
+import {
+  EditorPlugin,
+  PluginFunctions,
+} from 'draft-js-plugins-editor/src/index';
 import { Map } from 'immutable';
 import Mention from './Mention';
 import MentionSuggestions from './MentionSuggestions/MentionSuggestions'; // eslint-disable-line import/no-named-as-default
 import MentionSuggestionsPortal from './MentionSuggestionsPortal';
+import React, {
+  CSSProperties,
+  FunctionComponent,
+  KeyboardEvent,
+  ReactElement,
+} from 'react';
+import addMention from './modifiers/addMention';
+import defaultPositionSuggestions from './utils/positionSuggestions';
 import defaultRegExp from './defaultRegExp';
+import { defaultTheme } from './theme';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
-import defaultPositionSuggestions from './utils/positionSuggestions';
-import { defaultTheme } from './theme.js';
-import addMention from './modifiers/addMention';
+import { DraftHandleValue, EditorState, DraftEditorCommand } from 'draft-js';
 
-export {
-  default as MentionSuggestions,
-} from './MentionSuggestions/MentionSuggestions';
+export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
 
 export { defaultTheme };
 export { addMention };
 
-export default (config = {}) => {
-  const callbacks = {
+export interface MentionPluginStore {
+  setEditorState?(editorState: EditorState): void;
+  getEditorState?(): EditorState;
+  getPortalClientRect(offsetKey: string): void;
+  getAllSearches(): unknown;
+  isEscaped(offsetKey: string): boolean;
+  escapeSearch(offsetKey: string): void;
+  resetEscapedSearch(): void;
+  register(offsetKey: string): void;
+  updatePortalClientRect(offsetKey: string, funct: ClientRectFunction): void;
+  unregister(offsetKey: string): void;
+  getIsOpened(): boolean;
+  setIsOpened(nextIsOpened: boolean): void;
+}
+
+export interface MentionPluginConfig {
+  mentionPrefix?: string;
+  theme?: typeof defaultTheme;
+  positionSuggestions?(): CSSProperties;
+  mentionComponent?: ReactElement;
+  mentionSuggestionsComponent?: ReactElement;
+  entityMutability?: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
+  mentionTrigger?: string;
+  mentionRegExp?: string;
+  supportWhitespace?: boolean;
+  entryComponent?: ReactElement;
+}
+
+interface Callbacks {
+  keyBindingFn?(e: KeyboardEvent): DraftEditorCommand | string | null;
+  handleKeyCommand: undefined;
+  handleReturn?(e: KeyboardEvent): DraftHandleValue;
+  onChange?(editorState: EditorState): EditorState;
+}
+
+interface ClientRectFunction {
+  (): ClientRect;
+}
+
+export default (
+  config: MentionPluginConfig = {}
+): EditorPlugin & {
+  MentionSuggestions: FunctionComponent;
+} => {
+  const callbacks: Callbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
     handleReturn: undefined,
@@ -34,11 +85,11 @@ export default (config = {}) => {
   };
 
   let searches = Map();
-  let escapedSearch;
-  let clientRectFunctions = Map();
-  let isOpened;
+  let escapedSearch: string | undefined;
+  let clientRectFunctions: Map<string, ClientRectFunction> = Map();
+  let isOpened = false;
 
-  const store = {
+  const store: MentionPluginStore = {
     getEditorState: undefined,
     setEditorState: undefined,
     getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
@@ -140,11 +191,13 @@ export default (config = {}) => {
     },
 
     keyBindingFn: keyboardEvent =>
-      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
+      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)) || null,
     handleReturn: keyboardEvent =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: editorState => {
-      if (callbacks.onChange) return callbacks.onChange(editorState);
+      if (callbacks.onChange) {
+        return callbacks.onChange(editorState);
+      }
       return editorState;
     },
   };

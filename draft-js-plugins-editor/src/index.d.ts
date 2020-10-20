@@ -10,9 +10,9 @@ import {
   EditorProps,
   EditorState,
   SelectionState,
-  DraftBlockRenderMap
-} from "draft-js";
-import { Component, Ref, SyntheticEvent, KeyboardEvent } from "react";
+  DraftBlockRenderMap,
+} from 'draft-js';
+import { Component, Ref, SyntheticEvent, KeyboardEvent } from 'react';
 
 type EditorCommand = DraftEditorCommand | string;
 
@@ -26,12 +26,16 @@ export interface PluginFunctions {
   getEditorRef(): Ref<any>; // a function to get the editor reference
 }
 
+export interface AriaProps {
+  ariaHasPopup: string;
+  ariaExpanded: boolean | string;
+  ariaOwneeID?: undefined;
+  ariaActiveDescendantID?: undefined;
+}
+
 export interface EditorPlugin {
   decorators?: DraftDecorator[];
-  getAccessibilityProps?: () => {
-    ariaHasPopup: string;
-    ariaExpanded: string;
-  };
+  getAccessibilityProps?(): AriaProps;
   initialize?: (pluginFunctions: PluginFunctions) => void;
   onChange?: (
     editorState: EditorState,
@@ -56,7 +60,7 @@ export interface EditorPlugin {
     e: KeyboardEvent,
     editorState: EditorState,
     pluginFunctions: PluginFunctions
-  ): DraftHandleValue;
+  ): DraftHandleValue | undefined;
   handleKeyCommand?(
     command: EditorCommand,
     editorState: EditorState,

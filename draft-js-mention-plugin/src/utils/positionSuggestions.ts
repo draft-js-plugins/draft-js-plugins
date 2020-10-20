@@ -1,4 +1,6 @@
-const getRelativeParent = element => {
+import { CSSProperties } from 'react';
+
+const getRelativeParent = (element: HTMLElement | null): HTMLElement | null => {
   if (!element) {
     return null;
   }
@@ -13,25 +15,41 @@ const getRelativeParent = element => {
   return getRelativeParent(element.parentElement);
 };
 
-const positionSuggestions = ({ decoratorRect, popover, props }) => {
+export default function positionSuggestions({
+  decoratorRect,
+  popover,
+  props,
+}: {
+  decoratorRect: ClientRect;
+  popover: HTMLElement;
+  props: {
+    open: boolean;
+    suggestions: Array<unknown>;
+  };
+}): CSSProperties {
   const relativeParent = getRelativeParent(popover.parentElement);
-  const relativeRect = {};
+  let relativeRect: {
+    scrollLeft: number;
+    scrollTop: number;
+    left: number;
+    top: number;
+  };
 
   if (relativeParent) {
-    relativeRect.scrollLeft = relativeParent.scrollLeft;
-    relativeRect.scrollTop = relativeParent.scrollTop;
-
     const relativeParentRect = relativeParent.getBoundingClientRect();
-    relativeRect.left = decoratorRect.left - relativeParentRect.left;
-    relativeRect.top = decoratorRect.bottom - relativeParentRect.top;
+    relativeRect = {
+      scrollLeft: relativeParent.scrollLeft,
+      scrollTop: relativeParent.scrollTop,
+      left: decoratorRect.left - relativeParentRect.left,
+      top: decoratorRect.bottom - relativeParentRect.top,
+    };
   } else {
-    relativeRect.scrollTop =
-      window.pageYOffset || document.documentElement.scrollTop;
-    relativeRect.scrollLeft =
-      window.pageXOffset || document.documentElement.scrollLeft;
-
-    relativeRect.top = decoratorRect.bottom;
-    relativeRect.left = decoratorRect.left;
+    relativeRect = {
+      scrollTop: window.pageYOffset || document.documentElement.scrollTop,
+      scrollLeft: window.pageXOffset || document.documentElement.scrollLeft,
+      top: decoratorRect.bottom,
+      left: decoratorRect.left,
+    };
   }
 
   const left = relativeRect.left + relativeRect.scrollLeft;
@@ -56,6 +74,4 @@ const positionSuggestions = ({ decoratorRect, popover, props }) => {
     transformOrigin: '1em 0%',
     transition,
   };
-};
-
-export default positionSuggestions;
+}
