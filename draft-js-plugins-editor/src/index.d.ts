@@ -29,8 +29,8 @@ export interface PluginFunctions {
 export interface AriaProps {
   ariaHasPopup: string;
   ariaExpanded: boolean | string;
-  ariaOwneeID?: undefined;
-  ariaActiveDescendantID?: undefined;
+  ariaOwneeID?: string;
+  ariaActiveDescendantID?: string;
 }
 
 export interface EditorPlugin {

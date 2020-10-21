@@ -1,36 +1,42 @@
-import {
-  EditorPlugin,
-  PluginFunctions,
-} from 'draft-js-plugins-editor/src/index';
+import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor/src';
 import { Map } from 'immutable';
-import Mention from './Mention';
-import MentionSuggestions from './MentionSuggestions/MentionSuggestions'; // eslint-disable-line import/no-named-as-default
-import MentionSuggestionsPortal from './MentionSuggestionsPortal';
-import React, {
-  CSSProperties,
-  FunctionComponent,
-  KeyboardEvent,
-  ReactElement,
-} from 'react';
+import Mention, { MentionProps, SubMentionComponentProps } from './Mention';
+import MentionSuggestions, {
+  MentionSuggestionCallbacks,
+  MentionSuggestionsPubProps,
+} from './MentionSuggestions/MentionSuggestions'; // eslint-disable-line import/no-named-as-default
+import MentionSuggestionsPortal, {
+  MentionSuggestionsPortalProps,
+} from './MentionSuggestionsPortal';
+import React, { CSSProperties, FC, ReactElement } from 'react';
 import addMention from './modifiers/addMention';
-import defaultPositionSuggestions from './utils/positionSuggestions';
+import defaultPositionSuggestions, {
+  PositionSuggestionsFn,
+} from './utils/positionSuggestions';
 import defaultRegExp from './defaultRegExp';
-import { defaultTheme } from './theme';
+import { defaultTheme, Theme } from './theme';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
-import { DraftHandleValue, EditorState, DraftEditorCommand } from 'draft-js';
+import { EditorState } from 'draft-js';
 
 export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
 
 export { defaultTheme };
 export { addMention };
 
+export interface MentionData {
+  link?: string;
+  avatar?: string;
+  name: string;
+  id: null | string | number;
+}
+
 export interface MentionPluginStore {
   setEditorState?(editorState: EditorState): void;
   getEditorState?(): EditorState;
-  getPortalClientRect(offsetKey: string): void;
-  getAllSearches(): unknown;
+  getPortalClientRect(offsetKey: string): ClientRect;
+  getAllSearches(): Map<string, string>;
   isEscaped(offsetKey: string): boolean;
   escapeSearch(offsetKey: string): void;
   resetEscapedSearch(): void;
@@ -43,22 +49,15 @@ export interface MentionPluginStore {
 
 export interface MentionPluginConfig {
   mentionPrefix?: string;
-  theme?: typeof defaultTheme;
-  positionSuggestions?(): CSSProperties;
-  mentionComponent?: ReactElement;
-  mentionSuggestionsComponent?: ReactElement;
+  theme?: Theme;
+  positionSuggestions?: PositionSuggestionsFn;
+  mentionComponent?: FC<SubMentionComponentProps>;
+  mentionSuggestionsComponent?: FC;
   entityMutability?: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
   mentionTrigger?: string;
   mentionRegExp?: string;
   supportWhitespace?: boolean;
-  entryComponent?: ReactElement;
-}
-
-interface Callbacks {
-  keyBindingFn?(e: KeyboardEvent): DraftEditorCommand | string | null;
-  handleKeyCommand: undefined;
-  handleReturn?(e: KeyboardEvent): DraftHandleValue;
-  onChange?(editorState: EditorState): EditorState;
+  entryComponent?: FC;
 }
 
 interface ClientRectFunction {
@@ -68,23 +67,23 @@ interface ClientRectFunction {
 export default (
   config: MentionPluginConfig = {}
 ): EditorPlugin & {
-  MentionSuggestions: FunctionComponent;
+  MentionSuggestions: FC<MentionSuggestionsPubProps>;
 } => {
-  const callbacks: Callbacks = {
+  const callbacks: MentionSuggestionCallbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
     handleReturn: undefined,
     onChange: undefined,
   };
 
-  const ariaProps = {
+  const ariaProps: AriaProps = {
     ariaHasPopup: 'false',
     ariaExpanded: false,
     ariaOwneeID: undefined,
     ariaActiveDescendantID: undefined,
   };
 
-  let searches = Map();
+  let searches: Map<string, string> = Map();
   let escapedSearch: string | undefined;
   let clientRectFunctions: Map<string, ClientRectFunction> = Map();
   let isOpened = false;
@@ -151,15 +150,15 @@ export default (
     mentionPrefix,
     entryComponent,
   };
-  const DecoratedMentionSuggestionsComponent = props => (
-    <MentionSuggestionsComponent {...props} {...mentionSearchProps} />
-  );
-  const DecoratedMention = props => (
+  const DecoratedMentionSuggestionsComponent = (
+    props: MentionSuggestionsPubProps
+  ) => <MentionSuggestionsComponent {...props} {...mentionSearchProps} />;
+  const DecoratedMention = (props: MentionProps) => (
     <Mention {...props} theme={theme} mentionComponent={mentionComponent} />
   );
-  const DecoratedMentionSuggestionsPortal = props => (
-    <MentionSuggestionsPortal {...props} store={store} />
-  );
+  const DecoratedMentionSuggestionsPortal = (
+    props: Omit<MentionSuggestionsPortalProps, 'store'>
+  ) => <MentionSuggestionsPortal {...props} store={store} />;
   return {
     MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [

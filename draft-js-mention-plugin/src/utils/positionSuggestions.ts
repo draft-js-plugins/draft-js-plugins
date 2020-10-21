@@ -75,3 +75,4 @@ export default function positionSuggestions({
     transition,
   };
 }
+export type PositionSuggestionsFn = typeof positionSuggestions;

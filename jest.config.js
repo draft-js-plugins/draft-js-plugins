@@ -2,9 +2,10 @@
 // https://jestjs.io/docs/en/configuration.html
 
 module.exports = {
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jestHelper.js'],
-  moduleFileExtensions: ['jsx', 'js'],
+  moduleFileExtensions: ['jsx', 'js', 'ts', 'tsx'],
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
