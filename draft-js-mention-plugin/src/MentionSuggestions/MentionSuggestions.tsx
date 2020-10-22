@@ -143,7 +143,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       decodeOffsetKey(offsetKey!)
     );
 
-    // a leave can be empty when it is removed due event.g. using backspace
+    // a leave can be empty when it is removed due e.g. using backspace
     // do not check leaves, use full decorated portal text
     const leaves = offsetDetails
       .filter(offsetDetail => offsetDetail!.blockKey === anchorKey)
