@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from 'react';
+import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { MentionData } from '.';
 import { Theme } from './theme';
@@ -19,7 +19,7 @@ export interface MentionProps {
   className: string;
   entityKey: string;
   theme?: Theme;
-  mentionComponent?: FC<SubMentionComponentProps>;
+  mentionComponent?: ComponentType<SubMentionComponentProps>;
   decoratedText: string;
   contentState: ContentState;
 }

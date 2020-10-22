@@ -1,13 +1,19 @@
-import React, { FC, useEffect, useRef, MouseEvent, ReactElement } from 'react';
+import React, {
+  ComponentType,
+  useEffect,
+  useRef,
+  MouseEvent,
+  ReactElement,
+} from 'react';
 import PropTypes from 'prop-types';
 import { MentionData } from 'draft-js-mention-plugin/src';
 import { Theme } from '../../theme';
 
 export interface EntryComponentProps {
   className?: string;
-  onMouseDown(e: MouseEvent): void;
-  onMouseUp(e: MouseEvent): void;
-  onMouseEnter(e: MouseEvent): void;
+  onMouseDown(event: MouseEvent): void;
+  onMouseUp(event: MouseEvent): void;
+  onMouseEnter(event: MouseEvent): void;
   role: string;
   id: string;
   'aria-selected'?: string | null;
@@ -19,8 +25,8 @@ export interface EntryComponentProps {
 
 interface EntryProps {
   mention: MentionData;
-  entryComponent: FC<EntryComponentProps>;
-  onMentionSelect(v: MentionData): void;
+  entryComponent: ComponentType<EntryComponentProps>;
+  onMentionSelect(mention: MentionData): void;
   theme: Theme;
   id: string;
   index: number;

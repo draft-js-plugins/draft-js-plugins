@@ -53,11 +53,11 @@ export interface EditorPlugin {
     pluginFunctions: PluginFunctions
   ) => DraftStyleMap;
   keyBindingFn?(
-    e: KeyboardEvent,
+    event: KeyboardEvent,
     pluginFunctions: PluginFunctions
   ): EditorCommand | null;
   handleReturn?(
-    e: KeyboardEvent,
+    event: KeyboardEvent,
     editorState: EditorState,
     pluginFunctions: PluginFunctions
   ): DraftHandleValue | undefined;
@@ -94,14 +94,14 @@ export interface EditorPlugin {
     isInternal: DraftDragType,
     pluginFunctions: PluginFunctions
   ): DraftHandleValue;
-  onEscape?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onTab?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onUpArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onDownArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onRightArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onLeftArrow?(e: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onBlur?(e: SyntheticEvent, pluginFunctions: PluginFunctions): void;
-  onFocus?(e: SyntheticEvent, pluginFunctions: PluginFunctions): void;
+  onEscape?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onTab?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onUpArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onDownArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onRightArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onLeftArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
+  onBlur?(event: SyntheticEvent, pluginFunctions: PluginFunctions): void;
+  onFocus?(event: SyntheticEvent, pluginFunctions: PluginFunctions): void;
 }
 
 export const composeDecorators: (
@@ -114,7 +114,9 @@ export interface PluginEditorProps extends EditorProps {
   defaultKeyCommands?: boolean;
   defaultBlockRenderMap?: boolean;
 
-  keyBindingFn?(e: SyntheticKeyboardEvent): EditorCommand | null | undefined;
+  keyBindingFn?(
+    event: SyntheticKeyboardEvent
+  ): EditorCommand | null | undefined;
 
   // eslint-disable-next-line react/no-unused-prop-types
   decorators?: DraftDecorator[];

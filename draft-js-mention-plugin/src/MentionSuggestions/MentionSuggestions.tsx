@@ -1,7 +1,7 @@
 import React, {
   Component,
   CSSProperties,
-  FC,
+  ComponentType,
   KeyboardEvent,
   ReactElement,
 } from 'react';
@@ -25,9 +25,9 @@ import { AriaProps } from 'draft-js-plugins-editor/lib';
 import { Theme } from '../theme';
 
 export interface MentionSuggestionCallbacks {
-  keyBindingFn?(e: KeyboardEvent): DraftEditorCommand | string | null;
+  keyBindingFn?(event: KeyboardEvent): DraftEditorCommand | string | null;
   handleKeyCommand: undefined;
-  handleReturn?(e: KeyboardEvent): DraftHandleValue;
+  handleReturn?(event: KeyboardEvent): DraftHandleValue;
   onChange?(editorState: EditorState): EditorState;
 }
 
@@ -35,7 +35,7 @@ export interface MentionSuggestionsPubProps {
   suggestions: MentionData[];
   open: boolean;
   onOpenChange(open: boolean): void;
-  onSearchChange(e: { value: string }): void;
+  onSearchChange(event: { value: string }): void;
   onAddMention(Mention: MentionData): void;
 }
 
@@ -47,7 +47,7 @@ export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   ariaProps: AriaProps;
   theme: Theme;
   mentionPrefix: string;
-  entryComponent?: FC;
+  entryComponent?: ComponentType;
   popoverComponent?: ReactElement;
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
 }
@@ -143,7 +143,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       decodeOffsetKey(offsetKey!)
     );
 
-    // a leave can be empty when it is removed due e.g. using backspace
+    // a leave can be empty when it is removed due event.g. using backspace
     // do not check leaves, use full decorated portal text
     const leaves = offsetDetails
       .filter(offsetDetail => offsetDetail!.blockKey === anchorKey)

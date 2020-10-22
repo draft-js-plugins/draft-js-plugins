@@ -7,7 +7,7 @@ import MentionSuggestions, {
 import MentionSuggestionsPortal, {
   MentionSuggestionsPortalProps,
 } from './MentionSuggestionsPortal';
-import React, { FC } from 'react';
+import React, { ComponentType } from 'react';
 import addMention from './modifiers/addMention';
 import defaultPositionSuggestions, {
   PositionSuggestionsFn,
@@ -51,13 +51,13 @@ export interface MentionPluginConfig {
   mentionPrefix?: string;
   theme?: Theme;
   positionSuggestions?: PositionSuggestionsFn;
-  mentionComponent?: FC<SubMentionComponentProps>;
-  mentionSuggestionsComponent?: FC;
+  mentionComponent?: ComponentType<SubMentionComponentProps>;
+  mentionSuggestionsComponent?: ComponentType;
   entityMutability?: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
   mentionTrigger?: string;
   mentionRegExp?: string;
   supportWhitespace?: boolean;
-  entryComponent?: FC;
+  entryComponent?: ComponentType;
 }
 
 interface ClientRectFunction {
@@ -67,7 +67,7 @@ interface ClientRectFunction {
 export default (
   config: MentionPluginConfig = {}
 ): EditorPlugin & {
-  MentionSuggestions: FC<MentionSuggestionsPubProps>;
+  MentionSuggestions: ComponentType<MentionSuggestionsPubProps>;
 } => {
   const callbacks: MentionSuggestionCallbacks = {
     keyBindingFn: undefined,
