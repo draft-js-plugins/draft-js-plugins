@@ -1,6 +1,8 @@
 .DS_Store
 .idea
 *.iml
+.yarn
+.yarnrc
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
