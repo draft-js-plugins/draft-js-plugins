@@ -1,4 +1,3 @@
-import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor/src';
 import { Map } from 'immutable';
 import Mention, { MentionProps, SubMentionComponentProps } from './Mention';
 import MentionSuggestions, {
@@ -8,7 +7,7 @@ import MentionSuggestions, {
 import MentionSuggestionsPortal, {
   MentionSuggestionsPortalProps,
 } from './MentionSuggestionsPortal';
-import React, { CSSProperties, FC, ReactElement } from 'react';
+import React, { FC } from 'react';
 import addMention from './modifiers/addMention';
 import defaultPositionSuggestions, {
   PositionSuggestionsFn,
@@ -19,6 +18,7 @@ import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import { EditorState } from 'draft-js';
+import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor/lib';
 
 export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
 

@@ -21,7 +21,7 @@ import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/DefaultEntryComponent';
 import { MentionData, MentionPluginStore } from '..';
 import { PositionSuggestionsFn } from '../utils/positionSuggestions';
-import { AriaProps } from 'draft-js-plugins-editor/src';
+import { AriaProps } from 'draft-js-plugins-editor/lib';
 import { Theme } from '../theme';
 
 export interface MentionSuggestionCallbacks {
