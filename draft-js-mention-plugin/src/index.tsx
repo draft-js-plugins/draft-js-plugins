@@ -18,7 +18,8 @@ import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 import { EditorState } from 'draft-js';
-import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor/lib';
+import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
+import { EntryComponentProps } from './MentionSuggestions/Entry/Entry';
 
 export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
 
@@ -57,7 +58,7 @@ export interface MentionPluginConfig {
   mentionTrigger?: string;
   mentionRegExp?: string;
   supportWhitespace?: boolean;
-  entryComponent?: ComponentType;
+  entryComponent?: ComponentType<EntryComponentProps>;
 }
 
 interface ClientRectFunction {

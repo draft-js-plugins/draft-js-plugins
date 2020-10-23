@@ -14,14 +14,14 @@ import {
   SelectionState,
 } from 'draft-js';
 import escapeRegExp from 'lodash/escapeRegExp';
-import Entry from './Entry/Entry';
+import Entry, { EntryComponentProps } from './Entry/Entry';
 import addMention from '../modifiers/addMention';
-import decodeOffsetKey, { DecodedOffset } from '../utils/decodeOffsetKey';
+import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/DefaultEntryComponent';
 import { MentionData, MentionPluginStore } from '..';
 import { PositionSuggestionsFn } from '../utils/positionSuggestions';
-import { AriaProps } from 'draft-js-plugins-editor/lib';
+import { AriaProps } from 'draft-js-plugins-editor';
 import { Theme } from '../theme';
 
 export interface MentionSuggestionCallbacks {
@@ -47,7 +47,7 @@ export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   ariaProps: AriaProps;
   theme: Theme;
   mentionPrefix: string;
-  entryComponent?: ComponentType;
+  entryComponent?: ComponentType<EntryComponentProps>;
   popoverComponent?: ReactElement;
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
 }
@@ -143,7 +143,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       decodeOffsetKey(offsetKey!)
     );
 
-    // a leave can be empty when it is removed due e.g. using backspace
+    // a leave can be empty when it is removed due event.g. using backspace
     // do not check leaves, use full decorated portal text
     const leaves = offsetDetails
       .filter(offsetDetail => offsetDetail!.blockKey === anchorKey)

@@ -1,8 +1,8 @@
 import React, { ComponentType, ReactElement, ReactNode } from 'react';
+import { ContentState } from 'draft-js';
 import clsx from 'clsx';
 import { MentionData } from '.';
 import { Theme } from './theme';
-import { ContentState } from 'draft-js';
 
 export interface SubMentionComponentProps {
   mention: MentionData;
