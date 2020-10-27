@@ -1,10 +1,11 @@
+import { ContentBlock, ContentState } from 'draft-js';
 import getTypeByTrigger from './utils/getTypeByTrigger';
 
-const findMentionEntities = trigger => (
-  contentBlock,
-  callback,
-  contentState
-) => {
+const findMentionEntities = (trigger: string) => (
+  contentBlock: ContentBlock,
+  callback: (start: number, end: number) => void,
+  contentState: ContentState
+): void => {
   contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
     return (

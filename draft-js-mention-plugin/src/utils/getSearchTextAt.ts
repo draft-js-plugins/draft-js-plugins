@@ -1,9 +1,16 @@
-/* @flow */
-
+export interface SearchTextAtResult {
+  begin: number;
+  end: number;
+  matchingString: string;
+}
 /**
  * Return tail end of the string matching trigger upto the position.
  */
-export default (blockText: string, position: number, trigger: string) => {
+export default function getSearchTextAt(
+  blockText: string,
+  position: number,
+  trigger: string
+): SearchTextAtResult {
   const str = blockText.substr(0, position);
   const begin = trigger.length === 0 ? 0 : str.lastIndexOf(trigger);
   const matchingString =
@@ -15,4 +22,4 @@ export default (blockText: string, position: number, trigger: string) => {
     end,
     matchingString,
   };
-};
+}

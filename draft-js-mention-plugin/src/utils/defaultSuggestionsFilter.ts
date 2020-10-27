@@ -1,6 +1,11 @@
 // Get the first 5 suggestions that match
 
-const defaultSuggestionsFilter = (searchValue, suggestions) => {
+import { MentionData } from '..';
+
+const defaultSuggestionsFilter = (
+  searchValue: string,
+  suggestions: MentionData[]
+): MentionData[] => {
   const value = searchValue.toLowerCase();
   const filteredSuggestions = suggestions.filter(
     suggestion => !value || suggestion.name.toLowerCase().indexOf(value) > -1

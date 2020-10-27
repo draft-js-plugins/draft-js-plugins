@@ -1,7 +1,41 @@
-import React, { useEffect, useRef } from 'react';
+import React, {
+  ComponentType,
+  useEffect,
+  useRef,
+  MouseEvent,
+  ReactElement,
+} from 'react';
 import PropTypes from 'prop-types';
+import { MentionData } from 'draft-js-mention-plugin/src';
+import { Theme } from '../../theme';
 
-const Entry = props => {
+export interface EntryComponentProps {
+  className?: string;
+  onMouseDown(event: MouseEvent): void;
+  onMouseUp(event: MouseEvent): void;
+  onMouseEnter(event: MouseEvent): void;
+  role: string;
+  id: string;
+  'aria-selected'?: string | null;
+  theme?: Theme;
+  mention: MentionData;
+  isFocused: boolean;
+  searchValue?: string;
+}
+
+interface EntryProps {
+  mention: MentionData;
+  entryComponent: ComponentType<EntryComponentProps>;
+  onMentionSelect(mention: MentionData): void;
+  theme: Theme;
+  id: string;
+  index: number;
+  onMentionFocus(index: number): void;
+  isFocused: boolean;
+  searchValue?: string;
+}
+
+const Entry = (props: EntryProps): ReactElement => {
   const mouseDown = useRef(false);
 
   useEffect(() => {
@@ -15,7 +49,7 @@ const Entry = props => {
     }
   };
 
-  const onMouseDown = event => {
+  const onMouseDown = (event: MouseEvent) => {
     // Note: important to avoid a content edit change
     event.preventDefault();
 
