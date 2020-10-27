@@ -3,6 +3,7 @@
 *.iml
 .yarn
 .yarnrc
+distTs
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
