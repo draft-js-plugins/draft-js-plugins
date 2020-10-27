@@ -25,16 +25,16 @@
 .*/draft-js-sticker-plugin/node_modules/.*
 .*/draft-js-undo-plugin/node_modules/.*
 .*/draft-js-video-plugin/node_modules/.*
+.*/draft-js-plugins-utils/.*
+.*/draft-js-emoji-plugin/.*
 .*/node_modules/chalk/.*
 .*/node_modules/relay-compiler/.*
 .*/node_modules/relay-runtime/.*
 .*/node_modules/documentation/.*
-.*/node_modules/draft-js/lib/BlockNode.js.flow
-.*/node_modules/draft-js/lib/DraftEditorDragHandler.js.flow
-.*/node_modules/draft-js/lib/DraftEditorLeaf.react.js.flow
-.*/node_modules/draft-js/lib/DraftEditor.react.js.flow
-.*/node_modules/draft-js/lib/convertFromHTMLToContentBlocks.js.flow
+.*/node_modules/draft-js/.*
 .*/node_modules/polished/.*
+.*/node_modules/find-with-regex/.*
+
 
 [include]
 flow-typed
