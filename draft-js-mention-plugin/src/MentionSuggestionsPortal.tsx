@@ -1,17 +1,31 @@
-import React, { useEffect, useRef } from 'react';
+import { EditorState } from 'draft-js';
+import React, { ReactElement, ReactNode, useEffect, useRef } from 'react';
+import { MentionPluginStore } from '.';
 
-const MentionSuggestionsPortal = props => {
-  const searchPortal = useRef();
+export interface MentionSuggestionsPortalProps {
+  offsetKey: string;
+  store: MentionPluginStore;
+  getEditorState(): EditorState;
+  setEditorState(state: EditorState): void;
+  children: ReactNode;
+}
+
+export default function MentionSuggestionsPortal(
+  props: MentionSuggestionsPortalProps
+): ReactElement {
+  const searchPortal = useRef<HTMLSpanElement>();
 
   // Note: this is a workaround for an obscure issue: https://github.com/draft-js-plugins/draft-js-plugins/pull/667/files
   // Ideally we can remove this in the future.
-  const searchPortalRef = element => {
+  const searchPortalRef = (element: HTMLSpanElement) => {
     searchPortal.current = element;
   };
 
-  const updatePortalClientRect = currentProps => {
+  const updatePortalClientRect = (
+    currentProps: MentionSuggestionsPortalProps
+  ) => {
     currentProps.store.updatePortalClientRect(currentProps.offsetKey, () =>
-      searchPortal.current.getBoundingClientRect()
+      searchPortal.current!.getBoundingClientRect()
     );
   };
 
@@ -41,6 +55,4 @@ const MentionSuggestionsPortal = props => {
   });
 
   return <span ref={searchPortalRef}>{props.children}</span>;
-};
-
-export default MentionSuggestionsPortal;
+}

@@ -1,4 +1,10 @@
-const decodeOffsetKey = offsetKey => {
+export interface DecodedOffset {
+  blockKey: string;
+  decoratorKey: number;
+  leafKey: number;
+}
+
+const decodeOffsetKey = (offsetKey: string): DecodedOffset => {
   const [blockKey, decoratorKey, leafKey] = offsetKey.split('-');
   return {
     blockKey,

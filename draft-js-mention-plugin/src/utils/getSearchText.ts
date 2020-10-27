@@ -1,6 +1,11 @@
-import getSearchTextAt from './getSearchTextAt';
+import { EditorState, SelectionState } from 'draft-js';
+import getSearchTextAt, { SearchTextAtResult } from './getSearchTextAt';
 
-export default (editorState, selection, trigger) => {
+export default (
+  editorState: EditorState,
+  selection: SelectionState,
+  trigger: string
+): SearchTextAtResult => {
   const anchorKey = selection.getAnchorKey();
   const anchorOffset = selection.getAnchorOffset();
   const currentContent = editorState.getCurrentContent();

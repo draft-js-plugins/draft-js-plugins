@@ -1,44 +1,95 @@
-import React from 'react';
 import { Map } from 'immutable';
-import Mention from './Mention';
-import MentionSuggestions from './MentionSuggestions/MentionSuggestions'; // eslint-disable-line import/no-named-as-default
-import MentionSuggestionsPortal from './MentionSuggestionsPortal';
+import Mention, { MentionProps, SubMentionComponentProps } from './Mention';
+import MentionSuggestions, {
+  MentionSuggestionCallbacks,
+  MentionSuggestionsPubProps,
+} from './MentionSuggestions/MentionSuggestions'; // eslint-disable-line import/no-named-as-default
+import MentionSuggestionsPortal, {
+  MentionSuggestionsPortalProps,
+} from './MentionSuggestionsPortal';
+import React, { ComponentType } from 'react';
+import addMention from './modifiers/addMention';
+import defaultPositionSuggestions, {
+  PositionSuggestionsFn,
+} from './utils/positionSuggestions';
 import defaultRegExp from './defaultRegExp';
+import { defaultTheme, Theme } from './theme';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
-import defaultPositionSuggestions from './utils/positionSuggestions';
-import { defaultTheme } from './theme.js';
-import addMention from './modifiers/addMention';
+import { EditorState } from 'draft-js';
+import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
+import { EntryComponentProps } from './MentionSuggestions/Entry/Entry';
 
-export {
-  default as MentionSuggestions,
-} from './MentionSuggestions/MentionSuggestions';
+export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
 
 export { defaultTheme };
 export { addMention };
 
-export default (config = {}) => {
-  const callbacks = {
+export interface MentionData {
+  link?: string;
+  avatar?: string;
+  name: string;
+  id: null | string | number;
+}
+
+export interface MentionPluginStore {
+  setEditorState?(editorState: EditorState): void;
+  getEditorState?(): EditorState;
+  getPortalClientRect(offsetKey: string): ClientRect;
+  getAllSearches(): Map<string, string>;
+  isEscaped(offsetKey: string): boolean;
+  escapeSearch(offsetKey: string): void;
+  resetEscapedSearch(): void;
+  register(offsetKey: string): void;
+  updatePortalClientRect(offsetKey: string, funct: ClientRectFunction): void;
+  unregister(offsetKey: string): void;
+  getIsOpened(): boolean;
+  setIsOpened(nextIsOpened: boolean): void;
+}
+
+export interface MentionPluginConfig {
+  mentionPrefix?: string;
+  theme?: Theme;
+  positionSuggestions?: PositionSuggestionsFn;
+  mentionComponent?: ComponentType<SubMentionComponentProps>;
+  mentionSuggestionsComponent?: ComponentType;
+  entityMutability?: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
+  mentionTrigger?: string;
+  mentionRegExp?: string;
+  supportWhitespace?: boolean;
+  entryComponent?: ComponentType<EntryComponentProps>;
+}
+
+interface ClientRectFunction {
+  (): ClientRect;
+}
+
+export default (
+  config: MentionPluginConfig = {}
+): EditorPlugin & {
+  MentionSuggestions: ComponentType<MentionSuggestionsPubProps>;
+} => {
+  const callbacks: MentionSuggestionCallbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
     handleReturn: undefined,
     onChange: undefined,
   };
 
-  const ariaProps = {
+  const ariaProps: AriaProps = {
     ariaHasPopup: 'false',
     ariaExpanded: false,
     ariaOwneeID: undefined,
     ariaActiveDescendantID: undefined,
   };
 
-  let searches = Map();
-  let escapedSearch;
-  let clientRectFunctions = Map();
-  let isOpened;
+  let searches: Map<string, string> = Map();
+  let escapedSearch: string | undefined;
+  let clientRectFunctions: Map<string, ClientRectFunction> = Map();
+  let isOpened = false;
 
-  const store = {
+  const store: MentionPluginStore = {
     getEditorState: undefined,
     setEditorState: undefined,
     getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
@@ -100,15 +151,15 @@ export default (config = {}) => {
     mentionPrefix,
     entryComponent,
   };
-  const DecoratedMentionSuggestionsComponent = props => (
-    <MentionSuggestionsComponent {...props} {...mentionSearchProps} />
-  );
-  const DecoratedMention = props => (
+  const DecoratedMentionSuggestionsComponent = (
+    props: MentionSuggestionsPubProps
+  ) => <MentionSuggestionsComponent {...props} {...mentionSearchProps} />;
+  const DecoratedMention = (props: MentionProps) => (
     <Mention {...props} theme={theme} mentionComponent={mentionComponent} />
   );
-  const DecoratedMentionSuggestionsPortal = props => (
-    <MentionSuggestionsPortal {...props} store={store} />
-  );
+  const DecoratedMentionSuggestionsPortal = (
+    props: Omit<MentionSuggestionsPortalProps, 'store'>
+  ) => <MentionSuggestionsPortal {...props} store={store} />;
   return {
     MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [
@@ -140,11 +191,13 @@ export default (config = {}) => {
     },
 
     keyBindingFn: keyboardEvent =>
-      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
+      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)) || null,
     handleReturn: keyboardEvent =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: editorState => {
-      if (callbacks.onChange) return callbacks.onChange(editorState);
+      if (callbacks.onChange) {
+        return callbacks.onChange(editorState);
+      }
       return editorState;
     },
   };

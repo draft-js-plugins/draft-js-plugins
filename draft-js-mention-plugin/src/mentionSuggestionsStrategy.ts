@@ -1,8 +1,15 @@
-/* @flow */
-
+import { ContentBlock } from 'draft-js';
 import escapeRegExp from 'lodash/escapeRegExp';
 
-const findWithRegex = (regex, contentBlock, callback) => {
+interface FindWithRegexCb {
+  (start: number, end: number): void;
+}
+
+const findWithRegex = (
+  regex: RegExp,
+  contentBlock: ContentBlock,
+  callback: FindWithRegexCb
+) => {
   const contentBlockText = contentBlock.getText();
 
   // exclude entities, when matching
@@ -33,13 +40,13 @@ export default (
   trigger: string,
   supportWhiteSpace: boolean,
   regExp: string
-) => {
+): ((contentBlock: ContentBlock, callback: FindWithRegexCb) => void) => {
   //eslint-disable-line
   const MENTION_REGEX = supportWhiteSpace
     ? new RegExp(`${escapeRegExp(trigger)}(${regExp}|\\s){0,}`, 'g')
     : new RegExp(`(\\s|^)${escapeRegExp(trigger)}${regExp}`, 'g');
 
-  return (contentBlock: Object, callback: Function) => {
+  return (contentBlock: ContentBlock, callback: FindWithRegexCb) => {
     findWithRegex(MENTION_REGEX, contentBlock, callback);
   };
 };

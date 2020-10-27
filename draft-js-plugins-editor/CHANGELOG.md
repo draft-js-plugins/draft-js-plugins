@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Hide internals in single bundle
 - Add esm support
 - Apply decorators and set selection after initial rendering to prevent `onChange` to trigger during the render cycle
+- adjust typescript definitions
 
 ## 3.0.0
 
