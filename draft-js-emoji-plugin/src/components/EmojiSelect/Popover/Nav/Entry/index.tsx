@@ -1,7 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
+import { EmojiPluginTheme } from '../../../../../index';
 
-export default class Entry extends Component {
+interface EntryParams {
+  theme: EmojiPluginTheme;
+  icon: ReactNode;
+  groupIndex: number;
+  isActive: boolean;
+  onGroupSelect(index: number): void;
+}
+
+export default class Entry extends Component<EntryParams> {
   static propTypes = {
     theme: PropTypes.object.isRequired,
     icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
@@ -13,21 +22,20 @@ export default class Entry extends Component {
   static defaultProps = {
     isActive: false,
   };
+  mouseDown = false;
 
-  onMouseDown = () => {
+  onMouseDown = (): void => {
     this.mouseDown = true;
   };
 
-  onMouseUp = () => {
+  onMouseUp = (): void => {
     if (this.mouseDown) {
       this.mouseDown = false;
       this.props.onGroupSelect(this.props.groupIndex);
     }
   };
 
-  mouseDown = false;
-
-  render() {
+  render(): ReactElement {
     const { theme = {}, icon, isActive } = this.props;
 
     return (

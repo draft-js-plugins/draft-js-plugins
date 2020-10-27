@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import Entry from './Entry';
+import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
 
-const Nav = ({ theme = {}, groups, activeGroup, onGroupSelect }) => (
+interface NavParams {
+  theme: EmojiPluginTheme;
+  groups: EmojiSelectGroup[];
+  activeGroup: number;
+  onGroupSelect(index: number): void;
+}
+
+const Nav = ({
+  theme = {},
+  groups,
+  activeGroup,
+  onGroupSelect,
+}: NavParams): ReactElement => (
   <ul className={theme.emojiSelectPopoverNav}>
     {groups.map((group, index) => (
       <li

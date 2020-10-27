@@ -2036,6 +2036,11 @@
     "@types/react" "*"
     immutable "~3.7.4"
 
+"@types/emojione@^2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@types/emojione/-/emojione-2.2.6.tgz#467767e7c844738c60c0c1c2ce30af1d3236bc69"
+  integrity sha512-2OJGfbqLOFFawMp61cxpJ+QsLA/2LDUdqWb2YMVNP8q/FXSxdkv0hdqm3EcjNfyfcpZ0HjOjMATwXdx/xpTlOA==
+
 "@types/estree@*":
   version "0.0.45"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.45.tgz#e9387572998e5ecdac221950dab3e8c3b16af884"
@@ -2221,6 +2226,28 @@
   dependencies:
     "@types/react" "*"
     "@types/reactcss" "*"
+
+"@types/react-custom-scrollbars@^4.0.7":
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@types/react-custom-scrollbars/-/react-custom-scrollbars-4.0.7.tgz#b1312ec749fcf4a01fee7466508501e072ede7ea"
+  integrity sha512-4QPZdwd+wmzWq9TyNSA/4MZFYvlQn1GlEFFkpFx8VSs13gR/L+hQne0vFnbzwlQmGG7OksthkoVpYxWJjzz95w==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-icon-base@*":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@types/react-icon-base/-/react-icon-base-2.1.3.tgz#0faf840b854a9dbc3fa6fe1935c7c40eb4153114"
+  integrity sha512-OtZn25vQn7A9sJIDE33iUMDTnK83mnzs9bxDUhZ7timyBPXbxMBOHx/L9rf2rOU3B1xavOjag4RWqX4wzZNriQ==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-icons@2.2.6":
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/@types/react-icons/-/react-icons-2.2.6.tgz#02efde5582f4bbfe94e9dc277d48778289d66390"
+  integrity sha512-78XIxWrft+4PGLnG2s4haAiKFTUc3ETq+dh5AElZNj1eAl0lXm+0Calk+qEyiwxXtgv9Fm1J2PNVWDTmEQFNDA==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-icon-base" "*"
 
 "@types/react-syntax-highlighter@11.0.4":
   version "11.0.4"
@@ -14330,7 +14357,7 @@ ts-essentials@^2.0.3:
   resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-2.0.12.tgz#c9303f3d74f75fa7528c3d49b80e089ab09d8745"
   integrity sha512-3IVX4nI6B5cc31/GFFE+i8ey/N2eA0CZDbo6n0yrz0zDX8ZJ8djmU1p+XRz7G3is0F3bB3pu2pAroFdAWQKU3w==
 
-ts-jest@^26.4.1:
+ts-jest@26.4.1:
   version "26.4.1"
   resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-26.4.1.tgz#08ec0d3fc2c3a39e4a46eae5610b69fafa6babd0"
   integrity sha512-F4aFq01aS6mnAAa0DljNmKr/Kk9y4HVZ1m6/rtJ0ED56cuxINGq3Q9eVAh+z5vcYKe5qnTMvv90vE8vUMFxomg==
@@ -14347,7 +14374,7 @@ ts-jest@^26.4.1:
     semver "7.x"
     yargs-parser "20.x"
 
-ts-node@^9.0.0:
+ts-node@9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.0.0.tgz#e7699d2a110cc8c0d3b831715e417688683460b3"
   integrity sha512-/TqB4SnererCDR/vb4S/QvSZvzQMJN8daAslg7MeaiHvD8rDZsSfXmNeNumyZZzMned72Xoq/isQljYSt8Ynfg==
@@ -14479,7 +14506,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.0.3:
+typescript@4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
   integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==

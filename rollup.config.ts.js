@@ -1,8 +1,11 @@
 import path from 'path';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
+import { existsSync } from 'fs';
 
-const input = './src/index.tsx';
+const input = existsSync('./src/index.ts')
+  ? './src/index.ts'
+  : './src/index.tsx';
 const external = id => !id.startsWith('.') && !path.isAbsolute(id);
 const extensions = ['.ts', '.js', '.tsx', '.jsx'];
 

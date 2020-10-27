@@ -1,9 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component, WheelEvent } from 'react';
 import PropTypes from 'prop-types';
-import { Scrollbars } from 'react-custom-scrollbars';
+import { Scrollbars, positionValues } from 'react-custom-scrollbars';
 import Group from './Group';
+import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
+import { EmojiStrategy } from 'draft-js-emoji-plugin/src/utils/createEmojisFromStrategy';
+import Entry from '../Entry';
 
-export default class Groups extends Component {
+interface GroupsProps {
+  activeGroup?: number;
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  theme: EmojiPluginTheme;
+  groups: EmojiSelectGroup[];
+  emojis: EmojiStrategy;
+  checkMouseDown(): boolean;
+  onEmojiSelect(emoji: string): void;
+  onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
+  onGroupScroll(activeGroup: number): void;
+  useNativeArt?: boolean;
+  isOpen: boolean;
+}
+
+export default class Groups extends Component<GroupsProps> {
   static propTypes = {
     cacheBustParam: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
@@ -23,19 +42,22 @@ export default class Groups extends Component {
     activeGroup: 0,
   };
 
-  componentDidMount() {
+  scrollbars?: Scrollbars | null;
+  container?: HTMLDivElement | null;
+
+  componentDidMount(): void {
     this.calculateBounds();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     this.calculateBounds();
   }
 
-  onScroll = values => {
+  onScroll = (values: positionValues): void => {
     const { groups, onGroupScroll } = this.props;
     let activeGroup = 0;
     groups.forEach((group, index) => {
-      if (values.scrollTop >= group.top) {
+      if (values.scrollTop >= group.top!) {
         activeGroup = index;
         this.setState({ activeGroup });
       }
@@ -43,52 +65,52 @@ export default class Groups extends Component {
     onGroupScroll(activeGroup);
   };
 
-  onWheel = e => {
+  onWheel = (event: WheelEvent<HTMLDivElement>): void => {
     // Disable page scroll, but enable groups scroll
     const {
       clientHeight,
       scrollHeight,
       scrollTop,
-    } = this.scrollbars.getValues();
-    if (e.deltaY > 0) {
-      if (scrollTop < scrollHeight - clientHeight - e.deltaY) {
-        e.stopPropagation();
+    } = this.scrollbars!.getValues();
+    if (event.deltaY > 0) {
+      if (scrollTop < scrollHeight - clientHeight - event.deltaY) {
+        event.stopPropagation();
       } else {
-        this.scrollbars.scrollToBottom();
+        this.scrollbars!.scrollToBottom();
       }
     } else {
-      if (scrollTop > -e.deltaY) {
+      if (scrollTop > -event.deltaY) {
         // eslint-disable-line no-lonely-if
-        e.stopPropagation();
+        event.stopPropagation();
       } else {
-        this.scrollbars.scrollTop();
+        this.scrollbars!.scrollTop(0);
       }
     }
   };
 
-  scrollToGroup = groupIndex => {
+  scrollToGroup = (groupIndex: number): void => {
     const { groups } = this.props;
 
-    this.scrollbars.scrollTop(groups[groupIndex].topList);
+    this.scrollbars!.scrollTop(groups[groupIndex].topList!);
   };
 
   calculateBounds = () => {
-    const { scrollHeight, scrollTop } = this.scrollbars.getValues();
+    const { scrollHeight, scrollTop } = this.scrollbars!.getValues();
     if (scrollHeight) {
       const { groups } = this.props;
       const containerTop =
-        this.container.getBoundingClientRect().top - scrollTop;
+        this.container!.getBoundingClientRect().top - scrollTop;
 
       groups.forEach(group => {
-        const groupTop = group.instance.container.getBoundingClientRect().top;
-        const listTop = group.instance.list.getBoundingClientRect().top;
+        const groupTop = group.instance!.container!.getBoundingClientRect().top;
+        const listTop = group.instance!.list!.getBoundingClientRect().top;
         group.top = groupTop - containerTop; // eslint-disable-line no-param-reassign
         group.topList = listTop - containerTop; // eslint-disable-line no-param-reassign
       });
     }
   };
 
-  isRenderedGroupActive = index => {
+  isRenderedGroupActive = (index: number): boolean => {
     const { activeGroup } = this.state;
     const { isOpen } = this.props;
     return activeGroup === index || (isOpen && activeGroup + 1 === index); // we also preload next group when popup is open

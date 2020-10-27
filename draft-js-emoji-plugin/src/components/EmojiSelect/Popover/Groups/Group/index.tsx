@@ -1,8 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import Entry from '../../Entry';
+import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../../index';
+import { EmojiStrategy } from 'draft-js-emoji-plugin/src/utils/createEmojisFromStrategy';
 
-export default class Group extends Component {
+interface GroupProps {
+  hasRenderedEmoji?: boolean;
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  theme: EmojiPluginTheme;
+  group: EmojiSelectGroup;
+  emojis: EmojiStrategy;
+  checkMouseDown(): boolean;
+  onEmojiSelect(emoji: string): void;
+  onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
+  useNativeArt?: boolean;
+  isActive?: boolean;
+}
+
+export default class Group extends Component<GroupProps> {
   static propTypes = {
     cacheBustParam: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
@@ -21,21 +38,24 @@ export default class Group extends Component {
     hasRenderedEmoji: false,
   };
 
-  shouldComponentUpdate = nextProps => {
+  container?: HTMLElement | null;
+  list?: HTMLUListElement | null;
+
+  shouldComponentUpdate = (nextProps: GroupProps): boolean => {
     if (this.state.hasRenderedEmoji) {
       return false;
     }
 
-    return nextProps.isActive;
+    return nextProps.isActive!;
   };
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     if (this.props.isActive) {
       this.setState({ hasRenderedEmoji: true }); // eslint-disable-line
     }
   }
 
-  renderCategory = category => {
+  renderCategory = (category: string): ReactElement[] => {
     const {
       cacheBustParam,
       imagePath,
@@ -76,7 +96,7 @@ export default class Group extends Component {
     ));
   };
 
-  render() {
+  render(): ReactElement {
     const { theme = {}, group } = this.props;
 
     return (

@@ -1,9 +1,21 @@
-// @flow
+import { RichUtils, EditorState, EntityInstance } from 'draft-js';
 
-import { RichUtils, EditorState } from 'draft-js';
-import type DraftEntityInstance from 'draft-js/lib/DraftEntityInstance';
+export interface DecodedOffset {
+  blockKey: string;
+  decoratorKey: number;
+  leafKey: number;
+}
 
 export default {
+  decodeOffsetKey(offsetKey: string): DecodedOffset {
+    const [blockKey, decoratorKey, leafKey] = offsetKey.split('-');
+    return {
+      blockKey,
+      decoratorKey: parseInt(decoratorKey, 10),
+      leafKey: parseInt(leafKey, 10),
+    };
+  },
+
   createLinkAtSelection(editorState: EditorState, url: string): EditorState {
     const contentState = editorState
       .getCurrentContent()
@@ -36,17 +48,17 @@ export default {
     );
   },
 
-  getCurrentEntityKey(editorState: EditorState): ?string {
+  getCurrentEntityKey(editorState: EditorState): string {
     const selection = editorState.getSelection();
     const anchorKey = selection.getAnchorKey();
     const contentState = editorState.getCurrentContent();
     const anchorBlock = contentState.getBlockForKey(anchorKey);
-    const offset = selection.anchorOffset;
-    const index = selection.isBackward ? offset - 1 : offset;
+    const offset = selection.getAnchorOffset();
+    const index = selection.getIsBackward() ? offset - 1 : offset;
     return anchorBlock.getEntityAt(index);
   },
 
-  getCurrentEntity(editorState: EditorState): ?DraftEntityInstance {
+  getCurrentEntity(editorState: EditorState): EntityInstance | null {
     const contentState = editorState.getCurrentContent();
     const entityKey = this.getCurrentEntityKey(editorState);
     return entityKey ? contentState.getEntity(entityKey) : null;
@@ -54,6 +66,6 @@ export default {
 
   hasEntity(editorState: EditorState, entityType: string): boolean {
     const entity = this.getCurrentEntity(editorState);
-    return entity && entity.getType() === entityType;
+    return Boolean(entity && entity.getType() === entityType);
   },
 };

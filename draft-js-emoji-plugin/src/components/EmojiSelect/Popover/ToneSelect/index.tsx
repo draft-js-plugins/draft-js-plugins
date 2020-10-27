@@ -1,9 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, CSSProperties } from 'react';
 import PropTypes from 'prop-types';
 import toStyle from 'to-style';
 import Entry from '../Entry';
+import { EmojiPluginTheme } from '../../../../index';
 
-export default class ToneSelect extends Component {
+interface Bounderies {
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
+  width: number;
+  height: number;
+}
+
+interface ToneSelectParams {
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  theme: EmojiPluginTheme;
+  bounds: { areaBounds: Bounderies; entryBounds: Bounderies };
+  onEmojiSelect(emoji: string): void;
+  toneSet: string[] | null;
+}
+
+export default class ToneSelect extends Component<ToneSelectParams> {
   static propTypes = {
     cacheBustParam: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
@@ -29,44 +49,51 @@ export default class ToneSelect extends Component {
     }).isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
   };
+  tones?: HTMLUListElement | null;
 
-  componentDidMount() {
+  componentDidMount(): void {
     const { areaBounds, entryBounds } = this.props.bounds;
 
     this.setCorrectPosition(areaBounds, entryBounds);
   }
 
-  setCorrectPosition = (areaBounds, entryBounds) => {
-    const width = this.tones.offsetWidth;
-    const height = this.tones.offsetHeight;
+  setCorrectPosition = (areaBounds: ClientRect, entryBounds: ClientRect) => {
+    const width = this.tones!.offsetWidth;
+    const height = this.tones!.offsetHeight;
 
-    let style = {
+    let style: {
+      marginLeft?: number;
+      left?: number;
+      right?: number;
+      bottom?: number;
+      top?: number;
+    } = {
       marginLeft: 0,
       left: entryBounds.left + entryBounds.width / 2 - width / 2, // eslint-disable-line no-mixed-operators
       bottom: entryBounds.bottom + entryBounds.height,
     };
 
-    if (style.left < areaBounds.left) {
+    if (style.left! < areaBounds.left) {
       delete style.marginLeft;
       style.left = areaBounds.left;
-    } else if (style.left > areaBounds.left + areaBounds.width - width) {
+    } else if (style.left! > areaBounds.left + areaBounds.width - width) {
       // eslint-disable-line no-mixed-operators
       delete style.marginLeft;
       delete style.left;
       style.right = areaBounds.right;
     }
 
-    if (style.bottom > areaBounds.bottom + areaBounds.height - height) {
-      // eslint-disable-line no-mixed-operators
+    if (style.bottom! > areaBounds.bottom + areaBounds.height - height) {
       delete style.bottom;
       style.top = entryBounds.top + entryBounds.height;
     }
-
+    console.log(style);
     style = toStyle.object(style);
+    console.log(style);
 
-    Object.keys(style).forEach(property => {
-      this.tones.style[property] = style[property];
-    });
+    for (const [key, value] of Object.entries(style)) {
+      (this.tones!.style as { [x: string]: any })[key] = value;
+    }
   };
 
   render() {
@@ -87,7 +114,7 @@ export default class ToneSelect extends Component {
             this.tones = element;
           }}
         >
-          {toneSet.map(emoji => (
+          {(toneSet || []).map(emoji => (
             <li
               key={`tone-select(${emoji})`}
               className={theme.emojiSelectPopoverToneSelectItem}
