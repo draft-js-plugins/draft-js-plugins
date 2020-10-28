@@ -47,7 +47,9 @@ export interface EmojiSelectGroup {
 }
 
 export interface EmojiPLuginCallbacks {
-  keyBindingFn?(event: KeyboardEvent): DraftEditorCommand | string | null;
+  keyBindingFn?(
+    event: KeyboardEvent
+  ): DraftEditorCommand | string | null | undefined;
   handleKeyCommand: undefined;
   handleReturn?(event: KeyboardEvent): DraftHandleValue;
   onChange?(editorState: EditorState): EditorState;
@@ -230,9 +232,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
       store.setEditorState = setEditorState;
     },
 
-    keyBindingFn: (
-      keyboardEvent: KeyboardEvent
-    ): DraftEditorCommand | string | null =>
+    keyBindingFn: (keyboardEvent: KeyboardEvent) =>
       callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
     handleReturn: (keyboardEvent: KeyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
