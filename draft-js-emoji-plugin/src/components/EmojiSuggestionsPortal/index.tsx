@@ -1,5 +1,5 @@
 import { EditorState } from 'draft-js';
-import { EmojiPluginStore } from 'draft-js-emoji-plugin/src';
+import { EmojiPluginStore } from '../../index';
 import React, { Component, ReactElement } from 'react';
 
 export interface EmojiSuggestionsPortalParams {

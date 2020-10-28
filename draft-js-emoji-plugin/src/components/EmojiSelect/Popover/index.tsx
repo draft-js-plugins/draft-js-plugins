@@ -9,7 +9,7 @@ import {
   EmojiPluginTheme,
   EmojiSelectGroup,
 } from '../../../index';
-import { EmojiStrategy } from 'draft-js-emoji-plugin/src/utils/createEmojisFromStrategy';
+import { EmojiStrategy } from '../../../utils/createEmojisFromStrategy';
 import Entry from './Entry';
 
 interface PopoverProps {
@@ -40,7 +40,7 @@ export default class Popover extends Component<PopoverProps> {
   };
 
   activeEmoji: Entry | null = null;
-  toneSelectTimer: NodeJS.Timeout | null = null;
+  toneSelectTimer: ReturnType<typeof setTimeout> | null = null;
   mouseDown: boolean = false;
   toneSet: string[] | null = null;
   container?: HTMLDivElement | null;

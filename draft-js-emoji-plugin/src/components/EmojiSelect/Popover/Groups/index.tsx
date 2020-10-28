@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Scrollbars, positionValues } from 'react-custom-scrollbars';
 import Group from './Group';
 import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
-import { EmojiStrategy } from 'draft-js-emoji-plugin/src/utils/createEmojisFromStrategy';
+import { EmojiStrategy } from '../../../../utils/createEmojisFromStrategy';
 import Entry from '../Entry';
 
 interface GroupsProps {

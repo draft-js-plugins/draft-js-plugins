@@ -2,7 +2,7 @@ import React, { Component, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import Entry from '../../Entry';
 import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../../index';
-import { EmojiStrategy } from 'draft-js-emoji-plugin/src/utils/createEmojisFromStrategy';
+import { EmojiStrategy } from '../../../../../utils/createEmojisFromStrategy';
 
 interface GroupProps {
   hasRenderedEmoji?: boolean;

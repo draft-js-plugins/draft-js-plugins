@@ -4,7 +4,7 @@ import toStyle from 'to-style';
 import Entry from '../Entry';
 import { EmojiPluginTheme } from '../../../../index';
 
-interface Bounderies {
+interface Boundaries {
   left: number;
   right: number;
   top: number;
@@ -18,7 +18,7 @@ interface ToneSelectParams {
   imagePath: string;
   imageType: string;
   theme: EmojiPluginTheme;
-  bounds: { areaBounds: Bounderies; entryBounds: Bounderies };
+  bounds: { areaBounds: Boundaries; entryBounds: Boundaries };
   onEmojiSelect(emoji: string): void;
   toneSet: string[] | null;
 }
@@ -87,9 +87,7 @@ export default class ToneSelect extends Component<ToneSelectParams> {
       delete style.bottom;
       style.top = entryBounds.top + entryBounds.height;
     }
-    console.log(style);
     style = toStyle.object(style);
-    console.log(style);
 
     for (const [key, value] of Object.entries(style)) {
       (this.tones!.style as { [x: string]: any })[key] = value;

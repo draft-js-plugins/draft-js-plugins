@@ -9,14 +9,11 @@ import Entry from './Entry';
 import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
 import utils from 'draft-js-plugins-utils';
-import {
-  EmojiPLuginCallbacks,
-  EmojiPluginStore,
-} from 'draft-js-emoji-plugin/src';
+import { EmojiPLuginCallbacks, EmojiPluginStore } from '../../';
 import { AriaProps } from 'draft-js-plugins-editor/lib';
 import { List } from 'immutable';
-import { PositionSuggestionsParams } from 'draft-js-emoji-plugin/src/utils/positionSuggestions';
-import { EmojiPluginTheme } from 'draft-js-emoji-plugin/src/theme';
+import { PositionSuggestionsParams } from '../../utils/positionSuggestions';
+import { EmojiPluginTheme } from '../../theme';
 
 export interface EmojiSuggestionsPubParams {
   isActive: boolean;
