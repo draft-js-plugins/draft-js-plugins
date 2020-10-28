@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Hide internals in single bundle
 - Add esm support
 - Use lodash-es in esm bundle
+- convert to typescript
 
 ## 2.1.3
 

@@ -1,7 +1,18 @@
 import emojione from 'emojione';
 
-const newEmojiListWithOutPriorityList = priorityList => {
-  const list = {};
+interface EmojiListObject {
+  [s: string]: string[];
+}
+
+interface EmojiList {
+  setPriorityList(newPriorityList: EmojiListObject): void;
+  list: EmojiListObject;
+}
+
+function newEmojiListWithOutPriorityList(
+  priorityList: EmojiListObject
+): EmojiListObject {
+  const list: EmojiListObject = {};
   for (const key in emojione.emojioneList) {
     // eslint-disable-line no-restricted-syntax
     if (priorityList.hasOwnProperty(key)) {
@@ -12,17 +23,17 @@ const newEmojiListWithOutPriorityList = priorityList => {
   }
 
   return { ...priorityList, ...list };
-};
+}
 
-const emojiList = {};
-
-emojiList.setPriorityList = newPriorityList => {
-  // re-generate emojiList when set PriorityList
-  emojiList.list = newEmojiListWithOutPriorityList(newPriorityList);
+const emojiList: EmojiList = {
+  setPriorityList(newPriorityList) {
+    this.list = newEmojiListWithOutPriorityList(newPriorityList);
+  },
+  list: {},
 };
 
 // init emojiList
-const priorityList = {
+const priorityList: EmojiListObject = {
   ':thumbsup:': ['1f44d'],
   ':smile:': ['1f604'],
   ':heart:': ['2764-fe0f', '2764'],

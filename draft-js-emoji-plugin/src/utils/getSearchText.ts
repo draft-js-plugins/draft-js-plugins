@@ -1,6 +1,10 @@
-import getWordAt from './getWordAt';
+import { EditorState, SelectionState } from 'draft-js';
+import getWordAt, { WordAtResult } from './getWordAt';
 
-const getSearchText = (editorState, selection) => {
+export default function getSearchText(
+  editorState: EditorState,
+  selection: SelectionState
+): WordAtResult {
   const anchorKey = selection.getAnchorKey();
   const anchorOffset = selection.getAnchorOffset() - 1;
   const currentContent = editorState.getCurrentContent();
@@ -8,6 +12,4 @@ const getSearchText = (editorState, selection) => {
   const blockText = currentBlock.getText();
 
   return getWordAt(blockText, anchorOffset);
-};
-
-export default getSearchText;
+}

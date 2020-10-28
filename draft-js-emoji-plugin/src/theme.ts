@@ -1,5 +1,47 @@
 import { css } from 'linaria';
 
+export interface EmojiPluginTheme {
+  emoji?: string;
+
+  emojiSuggestions?: string;
+
+  emojiSuggestionsEntry?: string;
+  emojiSuggestionsEntryFocused?: string;
+  emojiSuggestionsEntryText?: string;
+  emojiSuggestionsEntryIcon?: string;
+
+  emojiSelect?: string;
+
+  emojiSelectButton?: string;
+  emojiSelectButtonPressed?: string;
+
+  emojiSelectPopover?: string;
+  emojiSelectPopoverClosed?: string;
+  emojiSelectPopoverTitle?: string;
+  emojiSelectPopoverGroups?: string;
+
+  emojiSelectPopoverGroup?: string;
+  emojiSelectPopoverGroupTitle?: string;
+  emojiSelectPopoverGroupList?: string;
+  emojiSelectPopoverGroupItem?: string;
+
+  emojiSelectPopoverToneSelect?: string;
+  emojiSelectPopoverToneSelectList?: string;
+  emojiSelectPopoverToneSelectItem?: string;
+
+  emojiSelectPopoverEntry?: string;
+  emojiSelectPopoverEntryFocused?: string;
+  emojiSelectPopoverEntryIcon?: string;
+
+  emojiSelectPopoverNav?: string;
+  emojiSelectPopoverNavItem?: string;
+  emojiSelectPopoverNavEntry?: string;
+  emojiSelectPopoverNavEntryActive?: string;
+
+  emojiSelectPopoverScrollbar?: string;
+  emojiSelectPopoverScrollbarThumb?: string;
+}
+
 const suggestionsEntryShared = `
   padding: 5px 10px 1px 10px;
   transition: background-color 0.4s cubic-bezier(.27,1.27,.48,.56);
@@ -74,7 +116,7 @@ const selectPopoverNavEntryShared = `
   outline: none;
 `;
 
-export const defaultTheme = {
+export const defaultTheme: EmojiPluginTheme = {
   emoji: css`
     background-position: center;
     /* make sure the background the image is only shown once */

@@ -1,13 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, MouseEvent, ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import strategy from 'emojione/emoji.json';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Popover from './Popover';
+import {
+  EmojiPluginStore,
+  EmojiPluginTheme,
+  EmojiSelectGroup,
+} from '../../index';
 
 const emojis = createEmojisFromStrategy(strategy);
 
-export default class EmojiSelect extends Component {
+export interface EmojiSelectPubParams {}
+
+interface EmojiSelectParams extends EmojiSelectPubParams {
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  theme: EmojiPluginTheme;
+  store: EmojiPluginStore;
+  selectGroups: EmojiSelectGroup[];
+  selectButtonContent?: ReactNode;
+  toneSelectOpenDelay: number;
+  useNativeArt?: boolean;
+}
+
+export default class EmojiSelect extends Component<EmojiSelectParams> {
   static propTypes = {
     cacheBustParam: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
@@ -44,24 +63,24 @@ export default class EmojiSelect extends Component {
 
   // When the selector is open and users click anywhere on the page,
   // the selector should close
-  componentDidMount() {
+  componentDidMount(): void {
     document.addEventListener('click', this.closePopover);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     document.removeEventListener('click', this.closePopover);
   }
 
-  onClick = e => {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
+  onClick = (event: MouseEvent): void => {
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
   };
 
-  onButtonMouseUp = () =>
+  onButtonMouseUp = (): void =>
     this.state.isOpen ? this.closePopover() : this.openPopover();
 
   // Open the popover
-  openPopover = () => {
+  openPopover = (): void => {
     if (!this.state.isOpen) {
       this.setState({
         isOpen: true,
@@ -70,7 +89,7 @@ export default class EmojiSelect extends Component {
   };
 
   // Close the popover
-  closePopover = () => {
+  closePopover = (): void => {
     if (this.state.isOpen) {
       this.setState({
         isOpen: false,
@@ -78,7 +97,7 @@ export default class EmojiSelect extends Component {
     }
   };
 
-  render() {
+  render(): ReactElement {
     const {
       cacheBustParam,
       imagePath,

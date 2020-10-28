@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import emojione from 'emojione';
+import { EmojiPluginTheme } from '../../index';
 
-const Emoji = ({
+export interface EmojiProps {
+  children: ReactNode;
+  theme: EmojiPluginTheme;
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  className: string;
+  decoratedText: string;
+  useNativeArt: boolean;
+}
+
+export default function Emoji({
   theme = {},
   cacheBustParam,
   imagePath,
@@ -10,14 +22,14 @@ const Emoji = ({
   className,
   decoratedText,
   useNativeArt,
-  ...props
-}) => {
+  children,
+}: EmojiProps): ReactElement {
   const shortName = emojione.toShort(decoratedText);
 
   let emojiDisplay = null;
   if (useNativeArt === true) {
     emojiDisplay = (
-      <span title={emojione.toShort(decoratedText)}>{props.children}</span>
+      <span title={emojione.toShort(decoratedText)}>{children}</span>
     );
   } else {
     // short name to image url code steal from emojione source code
@@ -34,12 +46,10 @@ const Emoji = ({
         title={emojione.toShort(decoratedText)}
         style={{ backgroundImage }}
       >
-        {props.children}
+        {children}
       </span>
     );
   }
 
   return emojiDisplay;
-};
-
-export default Emoji;
+}

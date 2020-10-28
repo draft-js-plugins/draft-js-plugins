@@ -1,40 +1,54 @@
 import React, {
   // PropTypes,
   Component,
+  MouseEvent,
+  ReactElement,
 } from 'react';
 import emojione from 'emojione';
 import emojiList from '../../../utils/emojiList';
 import convertShortNameToUnicode from '../../../utils/convertShortNameToUnicode';
+import { EmojiPluginTheme } from '../../../theme';
 
-export default class Entry extends Component {
-  constructor(props) {
-    super(props);
+interface EntryProps {
+  emoji: string;
+  onEmojiSelect(emoji: string): void;
+  index: number;
+  onEmojiFocus(index: number): void;
+  theme: EmojiPluginTheme;
+  imagePath: string;
+  imageType: string;
+  cacheBustParam: string;
+  useNativeArt?: boolean;
+  isFocused: boolean;
+  id: string;
+}
+
+export default class Entry extends Component<EntryProps> {
+  mouseDown: boolean = false;
+
+  componentDidUpdate(): void {
     this.mouseDown = false;
   }
 
-  componentDidUpdate() {
-    this.mouseDown = false;
-  }
-
-  onMouseUp = () => {
+  onMouseUp = (): void => {
     if (this.mouseDown) {
       this.mouseDown = false;
       this.props.onEmojiSelect(this.props.emoji);
     }
   };
 
-  onMouseDown = event => {
+  onMouseDown = (event: MouseEvent): void => {
     // Note: important to avoid a content edit change
     event.preventDefault();
 
     this.mouseDown = true;
   };
 
-  onMouseEnter = () => {
+  onMouseEnter = (): void => {
     this.props.onEmojiFocus(this.props.index);
   };
 
-  render() {
+  render(): ReactElement {
     const {
       theme = {},
       imagePath,
@@ -76,7 +90,7 @@ export default class Entry extends Component {
         onMouseEnter={this.onMouseEnter}
         role="option"
         id={id}
-        aria-selected={isFocused ? 'true' : null}
+        aria-selected={isFocused ? 'true' : undefined}
       >
         {emojiDisplay}
         <span className={theme.emojiSuggestionsEntryText}>

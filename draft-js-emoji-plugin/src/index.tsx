@@ -1,46 +1,116 @@
-import React from 'react';
+import React, {
+  ComponentType,
+  CSSProperties,
+  KeyboardEvent,
+  ReactNode,
+} from 'react';
+import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
 import { Map, List } from 'immutable';
 import keys from 'lodash/keys';
-import { EditorState } from 'draft-js';
-import Emoji from './components/Emoji';
-import EmojiSuggestions from './components/EmojiSuggestions';
-import EmojiSuggestionsPortal from './components/EmojiSuggestionsPortal';
-import EmojiSelect from './components/EmojiSelect';
+import { DraftEditorCommand, DraftHandleValue, EditorState } from 'draft-js';
+import Emoji, { EmojiProps } from './components/Emoji';
+import EmojiSuggestions, {
+  EmojiSuggestionsPubParams,
+} from './components/EmojiSuggestions';
+import EmojiSuggestionsPortal, {
+  EmojiSuggestionsPortalParams,
+} from './components/EmojiSuggestionsPortal';
+import EmojiSelect, { EmojiSelectPubParams } from './components/EmojiSelect';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
-import defaultPositionSuggestions from './utils/positionSuggestions';
+import defaultPositionSuggestions, {
+  PositionSuggestionsParams,
+} from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
-import { defaultTheme } from './theme.js';
+import { defaultTheme, EmojiPluginTheme } from './theme';
+import Group from './components/EmojiSelect/Popover/Groups/Group';
 
-export { defaultTheme };
+export { defaultTheme, EmojiPluginTheme };
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const defaultImageType = 'svg';
 const defaultCacheBustParam = '?v=2.2.7';
 
+export interface EmojiSuggestionsState {
+  isActive?: boolean;
+  focusedOptionIndex: number;
+}
+
+export interface EmojiSelectGroup {
+  title: string;
+  icon: ReactNode;
+  categories: string[];
+  instance?: Group | null;
+  top?: number;
+  topList?: number;
+}
+
+export interface EmojiPLuginCallbacks {
+  keyBindingFn?(
+    event: KeyboardEvent
+  ): DraftEditorCommand | string | null | undefined;
+  handleKeyCommand: undefined;
+  handleReturn?(event: KeyboardEvent): DraftHandleValue;
+  onChange?(editorState: EditorState): EditorState;
+}
+
+export interface EmojiPluginConfig {
+  theme?: EmojiPluginTheme;
+  imagePath?: string;
+  imageType?: string;
+  allowImageCache?: boolean;
+  positionSuggestions?: (arg: PositionSuggestionsParams) => CSSProperties;
+  priorityList?: { [k: string]: string[] };
+  selectGroups?: EmojiSelectGroup[];
+  selectButtonContent?: ReactNode;
+  toneSelectOpenDelay?: number;
+  useNativeArt?: boolean;
+}
+
+interface GetClientRectFn {
+  (): ClientRect;
+}
+
+export interface EmojiPluginStore {
+  getEditorState?(): EditorState;
+  setEditorState?(state: EditorState): void;
+  getPortalClientRect(offsetKey: string): ClientRect;
+  getAllSearches(): Map<string, string>;
+  isEscaped(offsetKey: string): boolean;
+  escapeSearch(offsetKey: string): void;
+  resetEscapedSearch(): void;
+  register(offsetKey: string): void;
+  updatePortalClientRect(offsetKey: string, func: GetClientRectFn): void;
+  unregister(offsetKey: string): void;
+}
+
+export type EmojiPlugin = EditorPlugin & {
+  EmojiSuggestions: ComponentType<EmojiSuggestionsPubParams>;
+  EmojiSelect: ComponentType<EmojiSelectPubParams>;
+};
 // TODO activate/deactivate different the conversion or search part
 
-export default (config = {}) => {
-  const callbacks = {
+export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
+  const callbacks: EmojiPLuginCallbacks = {
     keyBindingFn: undefined,
     handleKeyCommand: undefined,
     handleReturn: undefined,
     onChange: undefined,
   };
 
-  const ariaProps = {
+  const ariaProps: AriaProps = {
     ariaHasPopup: 'false',
     ariaExpanded: false,
     ariaOwneeID: undefined,
     ariaActiveDescendantID: undefined,
   };
 
-  let searches = Map();
-  let escapedSearch;
-  let clientRectFunctions = Map();
+  let searches: Map<string, string> = Map();
+  let escapedSearch: string | undefined;
+  let clientRectFunctions: Map<string, GetClientRectFn> = Map();
 
-  const store = {
+  const store: EmojiPluginStore = {
     getEditorState: undefined,
     setEditorState: undefined,
     getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
@@ -90,7 +160,9 @@ export default (config = {}) => {
   const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
 
   // if priorityList is configured in config then set priorityList
-  if (priorityList) emojiList.setPriorityList(priorityList);
+  if (priorityList) {
+    emojiList.setPriorityList(priorityList);
+  }
   const suggestionsProps = {
     ariaProps,
     cacheBustParam,
@@ -114,25 +186,25 @@ export default (config = {}) => {
     toneSelectOpenDelay,
     useNativeArt,
   };
-  const DecoratedEmojiSuggestions = props => (
+  const DecoratedEmojiSuggestions = (props: EmojiSuggestionsPubParams) => (
     <EmojiSuggestions {...props} {...suggestionsProps} />
   );
-  const DecoratedEmojiSelect = props => (
+  const DecoratedEmojiSelect = (props: EmojiSelectPubParams) => (
     <EmojiSelect {...props} {...selectProps} />
   );
-  const DecoratedEmoji = props => (
+  const DecoratedEmoji = (props: EmojiProps) => (
     <Emoji
       {...props}
       theme={theme}
       imagePath={imagePath}
       imageType={imageType}
       cacheBustParam={cacheBustParam}
-      useNativeArt={useNativeArt}
+      useNativeArt={Boolean(useNativeArt)}
     />
   );
-  const DecoratedEmojiSuggestionsPortal = props => (
-    <EmojiSuggestionsPortal {...props} store={store} />
-  );
+  const DecoratedEmojiSuggestionsPortal = (
+    props: EmojiSuggestionsPortalParams
+  ) => <EmojiSuggestionsPortal {...props} store={store} />;
   return {
     EmojiSuggestions: DecoratedEmojiSuggestions,
     EmojiSelect: DecoratedEmojiSelect,
@@ -160,9 +232,9 @@ export default (config = {}) => {
       store.setEditorState = setEditorState;
     },
 
-    keyBindingFn: keyboardEvent =>
+    keyBindingFn: (keyboardEvent: KeyboardEvent) =>
       callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
-    handleReturn: keyboardEvent =>
+    handleReturn: (keyboardEvent: KeyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: editorState => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
@@ -180,7 +252,9 @@ export default (config = {}) => {
         newEditorState = EditorState.forceSelection(newEditorState, selection);
       }
 
-      if (callbacks.onChange) return callbacks.onChange(newEditorState);
+      if (callbacks.onChange) {
+        return callbacks.onChange(newEditorState);
+      }
       return newEditorState;
     },
   };
