@@ -55,7 +55,7 @@ export interface EditorPlugin {
   keyBindingFn?(
     event: KeyboardEvent,
     pluginFunctions: PluginFunctions
-  ): EditorCommand | null;
+  ): EditorCommand | null | undefined;
   handleReturn?(
     event: KeyboardEvent,
     editorState: EditorState,

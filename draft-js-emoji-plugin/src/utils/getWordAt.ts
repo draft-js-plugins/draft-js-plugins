@@ -1,4 +1,13 @@
-const getWordAt = (string, position) => {
+export interface WordAtResult {
+  word: string;
+  begin: number;
+  end: number;
+}
+
+export default function getWordAt(
+  string: string,
+  position: number
+): WordAtResult {
   // Perform type conversions.
   const str = String(string);
   // eslint-disable-next-line no-bitwise
@@ -23,6 +32,4 @@ const getWordAt = (string, position) => {
     begin: left,
     end: right + pos,
   };
-};
-
-export default getWordAt;
+}

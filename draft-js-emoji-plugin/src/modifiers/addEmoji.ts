@@ -10,7 +10,11 @@ const Mode = {
   REPLACE: 'REPLACE', // replace emoji shortname
 };
 
-const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
+export default function addEmoji(
+  editorState: EditorState,
+  emojiShortName: string,
+  mode = Mode.INSERT
+): EditorState {
   const unicode = emojiList.list[emojiShortName][0];
   const emoji = convertShortNameToUnicode(unicode);
 
@@ -43,7 +47,7 @@ const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
         afterRemovalContentState,
         targetSelection,
         emoji,
-        null,
+        undefined,
         entityKey
       );
 
@@ -67,7 +71,7 @@ const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
         contentState,
         emojiTextSelection,
         emoji,
-        null,
+        undefined,
         entityKey
       );
 
@@ -95,13 +99,12 @@ const addEmoji = (editorState, emojiShortName, mode = Mode.INSERT) => {
   const newEditorState = EditorState.push(
     editorState,
     emojiAddedContent,
-    'insert-emoji'
+    'insert-fragment'
   );
   return EditorState.forceSelection(
     newEditorState,
     emojiAddedContent.getSelectionAfter()
   );
-};
+}
 
-export default addEmoji;
 export { Mode };

@@ -1,11 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement, WheelEvent } from 'react';
 import PropTypes from 'prop-types';
 import addEmoji from '../../../modifiers/addEmoji';
 import Groups from './Groups';
 import Nav from './Nav';
 import ToneSelect from './ToneSelect';
+import {
+  EmojiPluginStore,
+  EmojiPluginTheme,
+  EmojiSelectGroup,
+} from '../../../index';
+import { EmojiStrategy } from '../../../utils/createEmojisFromStrategy';
+import Entry from './Entry';
 
-export default class Popover extends Component {
+interface PopoverProps {
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  theme: EmojiPluginTheme;
+  store: EmojiPluginStore;
+  groups: EmojiSelectGroup[];
+  emojis: EmojiStrategy;
+  toneSelectOpenDelay: number;
+  isOpen?: boolean;
+  useNativeArt?: boolean;
+}
+
+export default class Popover extends Component<PopoverProps> {
   static propTypes = {
     cacheBustParam: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
@@ -19,6 +39,13 @@ export default class Popover extends Component {
     useNativeArt: PropTypes.bool,
   };
 
+  activeEmoji: Entry | null = null;
+  toneSelectTimer: ReturnType<typeof setTimeout> | null = null;
+  mouseDown: boolean = false;
+  toneSet: string[] | null = null;
+  container?: HTMLDivElement | null;
+  groupsElement?: Groups | null;
+
   static defaultProps = {
     isOpen: false,
   };
@@ -28,19 +55,19 @@ export default class Popover extends Component {
     showToneSelect: false,
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     window.addEventListener('mouseup', this.onMouseUp);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     window.removeEventListener('mouseup', this.onMouseUp);
   }
 
-  onMouseDown = () => {
+  onMouseDown = (): void => {
     this.mouseDown = true;
   };
 
-  onMouseUp = () => {
+  onMouseUp = (): void => {
     this.mouseDown = false;
 
     if (this.activeEmoji) {
@@ -56,14 +83,14 @@ export default class Popover extends Component {
     }
   };
 
-  onWheel = e => e.preventDefault();
+  onWheel = (event: WheelEvent): void => event.preventDefault();
 
-  onEmojiSelect = emoji => {
-    const newEditorState = addEmoji(this.props.store.getEditorState(), emoji);
-    this.props.store.setEditorState(newEditorState);
+  onEmojiSelect = (emoji: string): void => {
+    const newEditorState = addEmoji(this.props.store.getEditorState!(), emoji);
+    this.props.store.setEditorState!(newEditorState);
   };
 
-  onEmojiMouseDown = (emojiEntry, toneSet) => {
+  onEmojiMouseDown = (emojiEntry: Entry, toneSet: string[] | null): void => {
     this.activeEmoji = emojiEntry;
 
     if (toneSet) {
@@ -71,11 +98,11 @@ export default class Popover extends Component {
     }
   };
 
-  onGroupSelect = groupIndex => {
-    this.groups.scrollToGroup(groupIndex);
+  onGroupSelect = (groupIndex: number): void => {
+    this.groupsElement!.scrollToGroup(groupIndex);
   };
 
-  onGroupScroll = groupIndex => {
+  onGroupScroll = (groupIndex: number): void => {
     if (groupIndex !== this.state.activeGroup) {
       this.setState({
         activeGroup: groupIndex,
@@ -83,14 +110,14 @@ export default class Popover extends Component {
     }
   };
 
-  openToneSelectWithTimer = toneSet => {
+  openToneSelectWithTimer = (toneSet: string[] | null): void => {
     this.toneSelectTimer = setTimeout(() => {
       this.toneSelectTimer = null;
       this.openToneSelect(toneSet);
     }, this.props.toneSelectOpenDelay);
   };
 
-  openToneSelect = toneSet => {
+  openToneSelect = (toneSet: string[] | null): void => {
     this.toneSet = toneSet;
 
     this.setState({
@@ -98,7 +125,7 @@ export default class Popover extends Component {
     });
   };
 
-  closeToneSelect = () => {
+  closeToneSelect = (): void => {
     this.toneSet = [];
 
     this.setState({
@@ -106,20 +133,15 @@ export default class Popover extends Component {
     });
   };
 
-  checkMouseDown = () => this.mouseDown;
+  checkMouseDown = (): boolean => this.mouseDown;
 
-  mouseDown = false;
-  activeEmoji = null;
-  toneSet = [];
-  toneSelectTimer = null;
-
-  renderToneSelect = () => {
+  renderToneSelect = (): ReactElement | null => {
     if (this.state.showToneSelect) {
       const { cacheBustParam, imagePath, imageType, theme = {} } = this.props;
 
-      const containerBounds = this.container.getBoundingClientRect();
-      const areaBounds = this.groups.container.getBoundingClientRect();
-      const entryBounds = this.activeEmoji.button.getBoundingClientRect();
+      const containerBounds = this.container!.getBoundingClientRect();
+      const areaBounds = this.groupsElement!.container!.getBoundingClientRect();
+      const entryBounds = this.activeEmoji!.button!.getBoundingClientRect();
       // Translate TextRectangle coords to CSS relative coords
       const bounds = {
         areaBounds: {
@@ -156,7 +178,7 @@ export default class Popover extends Component {
     return null;
   };
 
-  render() {
+  render(): ReactElement {
     const {
       cacheBustParam,
       imagePath,
@@ -196,7 +218,7 @@ export default class Popover extends Component {
           onEmojiMouseDown={this.onEmojiMouseDown}
           onGroupScroll={this.onGroupScroll}
           ref={element => {
-            this.groups = element;
+            this.groupsElement = element;
           }}
           useNativeArt={useNativeArt}
           isOpen={isOpen}
