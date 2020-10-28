@@ -2,7 +2,7 @@ module.exports = {
   parser: 'babel-eslint',
   plugins: ['mocha', '@typescript-eslint', 'react-hooks', 'no-only-tests'],
   parserOptions: {
-    ecmaVersion: 10,
+    ecmaVersion: 2020,
     sourceType: 'module',
     ecmaFeatures: {
       modules: true,

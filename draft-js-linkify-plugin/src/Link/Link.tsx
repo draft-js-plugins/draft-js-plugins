@@ -1,16 +1,51 @@
-import React from 'react';
+import React, {
+  AnchorHTMLAttributes,
+  ComponentType,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import clsx from 'clsx';
 import linkifyIt from 'linkify-it';
 import tlds from 'tlds';
+import { LinkifyPluginTheme } from '../theme';
 
 const linkify = linkifyIt();
 linkify.tlds(tlds);
 
+export interface ComponentProps {
+  children: ReactNode;
+  href: string;
+  target: string;
+  rel: string;
+  className: string;
+}
+
+export interface LinkProps {
+  decoratedText?: string;
+  theme?: LinkifyPluginTheme;
+  component?: ComponentType<ComponentProps>;
+  children: ReactNode;
+  target: string;
+  rel: string;
+  className: string;
+
+  // following props are not used
+  entityKey: unknown;
+  getEditorState: unknown;
+  offsetKey: unknown;
+  setEditorState: unknown;
+  contentState: unknown;
+  blockKey: unknown;
+  dir: unknown;
+  start: unknown;
+  end: unknown;
+}
+
 // The component we render when we encounter a hyperlink in the text
-const Link = props => {
+export default function Link(props: LinkProps): ReactElement {
   const {
     decoratedText = '',
-    theme = {},
+    theme = {} as LinkifyPluginTheme,
     target = '_self',
     rel = 'noreferrer noopener',
     className,
@@ -21,10 +56,13 @@ const Link = props => {
     offsetKey, // eslint-disable-line no-unused-vars
     setEditorState, // eslint-disable-line no-unused-vars
     contentState, // eslint-disable-line no-unused-vars
+    blockKey, // eslint-disable-line no-unused-vars
+    start, // eslint-disable-line no-unused-vars
+    end, // eslint-disable-line no-unused-vars
     ...otherProps
   } = props;
 
-  const combinedClassName = clsx(theme.link, className);
+  const combinedClassName = clsx(theme?.link, className);
   const links = linkify.match(decoratedText);
   const href = links && links[0] ? links[0].url : '';
 
@@ -35,13 +73,11 @@ const Link = props => {
     rel,
     className: combinedClassName,
   };
-
+  console.log(linkProps);
   return component ? (
     React.createElement(component, linkProps)
   ) : (
     // eslint-disable-next-line jsx-a11y/anchor-has-content
     <a {...linkProps} />
   );
-};
-
-export default Link;
+}

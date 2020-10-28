@@ -1,9 +1,17 @@
-import * as React from 'react';
-import Link from './Link/Link';
+import React, { ComponentType } from 'react';
+import { EditorPlugin } from 'draft-js-plugins-editor';
+import Link, { LinkProps, ComponentProps } from './Link/Link';
 import linkStrategy from './linkStrategy';
-import { defaultTheme } from './theme.js';
+import { defaultTheme, LinkifyPluginTheme } from './theme';
 
-export default (config = {}) => {
+export interface LinkifyPluginConfig {
+  component?: ComponentType<ComponentProps>;
+  theme?: LinkifyPluginTheme;
+  target?: string;
+  rel?: string;
+}
+
+export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
 
   // Why? Because when merging a developer needs to know all of the underlying
@@ -18,7 +26,7 @@ export default (config = {}) => {
     rel = 'noreferrer noopener',
   } = config;
 
-  const DecoratedLink = props => (
+  const DecoratedLink = (props: LinkProps) => (
     <Link
       {...props}
       theme={theme}
