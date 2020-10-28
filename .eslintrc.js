@@ -33,6 +33,7 @@ module.exports = {
     'no-restricted-syntax': 0,
     'no-lonely-if': 0,
     'no-prototype-builtins': 0,
+    'no-console': 'error',
     'spaced-comment': 0,
     'space-before-function-paren': 0,
     'no-confusing-arrow': 0,
