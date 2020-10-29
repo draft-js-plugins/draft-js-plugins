@@ -6,8 +6,44 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       modules: true,
+      jsx: true,
     },
   },
+  overrides: [
+    {
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'prettier/@typescript-eslint',
+      ],
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      rules: {
+        'react/jsx-indent': 0, //disabeld as it throws the error: "TypeError: Cannot read property 'type' of null"
+        '@typescript-eslint/ban-ts-ignore': 0,
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
+          {
+            allowExpressions: true,
+            allowHigherOrderFunctions: true,
+            allowTypedFunctionExpressions: true,
+          },
+        ],
+        '@typescript-eslint/explicit-member-accessibility': 0,
+        '@typescript-eslint/no-non-null-assertion': 0,
+        '@typescript-eslint/no-unused-vars': 'error',
+        '@typescript-eslint/no-use-before-define': [
+          'error',
+          { functions: false },
+        ],
+        '@typescript-eslint/no-var-requires': 1,
+        '@typescript-eslint/no-empty-function': 1,
+
+        //disable rules as we use @typescript-eslint/no-use-before-define
+        'no-use-before-define': 0,
+      },
+    },
+  ],
   env: {
     browser: true,
     mocha: true,
@@ -19,9 +55,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:import/errors',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
   ],
   rules: {
     'no-multi-spaces': 0,
@@ -57,9 +90,8 @@ module.exports = {
     'import/extensions': 0,
     'jsx-a11y/img-has-alt': 0,
     'react/require-default-props': 0,
-    '@typescript-eslint/no-var-requires': 1,
     'react/display-name': 1,
-    '@typescript-eslint/no-empty-function': 1,
+
     'react/no-direct-mutation-state': 1,
   },
   settings: {
