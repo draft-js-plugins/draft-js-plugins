@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, ReactElement } from 'react';
 import { EditorPlugin } from 'draft-js-plugins-editor';
 import Link, { LinkProps, ComponentProps } from './Link/Link';
 import linkStrategy from './linkStrategy';
@@ -26,7 +26,7 @@ export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
     rel = 'noreferrer noopener',
   } = config;
 
-  const DecoratedLink = (props: LinkProps) => (
+  const DecoratedLink = (props: LinkProps): ReactElement => (
     <Link
       {...props}
       theme={theme}

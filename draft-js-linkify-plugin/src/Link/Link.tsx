@@ -1,9 +1,4 @@
-import React, {
-  AnchorHTMLAttributes,
-  ComponentType,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import linkifyIt from 'linkify-it';
 import tlds from 'tlds';
@@ -50,15 +45,15 @@ export default function Link(props: LinkProps): ReactElement {
     rel = 'noreferrer noopener',
     className,
     component,
-    dir, // eslint-disable-line no-unused-vars
-    entityKey, // eslint-disable-line no-unused-vars
-    getEditorState, // eslint-disable-line no-unused-vars
-    offsetKey, // eslint-disable-line no-unused-vars
-    setEditorState, // eslint-disable-line no-unused-vars
-    contentState, // eslint-disable-line no-unused-vars
-    blockKey, // eslint-disable-line no-unused-vars
-    start, // eslint-disable-line no-unused-vars
-    end, // eslint-disable-line no-unused-vars
+    dir, // eslint-disable-line @typescript-eslint/no-unused-vars
+    entityKey, // eslint-disable-line @typescript-eslint/no-unused-vars
+    getEditorState, // eslint-disable-line @typescript-eslint/no-unused-vars
+    offsetKey, // eslint-disable-line @typescript-eslint/no-unused-vars
+    setEditorState, // eslint-disable-line @typescript-eslint/no-unused-vars
+    contentState, // eslint-disable-line @typescript-eslint/no-unused-vars
+    blockKey, // eslint-disable-line @typescript-eslint/no-unused-vars
+    start, // eslint-disable-line @typescript-eslint/no-unused-vars
+    end, // eslint-disable-line @typescript-eslint/no-unused-vars
     ...otherProps
   } = props;
 
@@ -73,7 +68,6 @@ export default function Link(props: LinkProps): ReactElement {
     rel,
     className: combinedClassName,
   };
-  console.log(linkProps);
   return component ? (
     React.createElement(component, linkProps)
   ) : (
