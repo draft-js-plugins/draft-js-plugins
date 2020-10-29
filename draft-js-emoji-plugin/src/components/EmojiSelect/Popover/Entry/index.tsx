@@ -1,10 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import emojione from 'emojione';
 import emojiList from '../../../../utils/emojiList';
 import convertShortNameToUnicode from '../../../../utils/convertShortNameToUnicode';
+import { EmojiPluginTheme } from '../../../../index';
 
-export default class Entry extends Component {
+interface EntryProps {
+  isFocused?: boolean;
+  mouseDown?: boolean;
+  theme: EmojiPluginTheme;
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  emoji: string;
+  checkMouseDown(): boolean;
+  onEmojiSelect(emoji: string): void;
+  // eslint-disable-next-line no-use-before-define
+  onEmojiMouseDown?(entryComponent: Entry, toneSet: string[] | null): void;
+  useNativeArt?: boolean;
+  toneSet?: string[] | null;
+}
+
+export default class Entry extends Component<EntryProps> {
   static propTypes = {
     cacheBustParam: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
@@ -26,37 +43,41 @@ export default class Entry extends Component {
     isFocused: false,
   };
 
-  onMouseUp = () => {
+  button?: HTMLButtonElement | null;
+
+  onMouseUp = (): void => {
     if (this.mouseDown) {
       this.mouseDown = false;
       this.props.onEmojiSelect(this.props.emoji);
     }
   };
 
-  onMouseDown = () => {
+  onMouseDown = (): void => {
     this.mouseDown = true;
-    this.props.onEmojiMouseDown(this, this.props.toneSet);
+    if (this.props.onEmojiMouseDown) {
+      this.props.onEmojiMouseDown(this, this.props.toneSet || null);
+    }
   };
 
-  onMouseEnter = () => {
+  onMouseEnter = (): void => {
     if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: true });
     }
   };
 
-  onMouseLeave = () => {
+  onMouseLeave = (): void => {
     if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: false });
     }
   };
 
-  deselect = () => {
+  deselect = (): void => {
     this.setState({ isFocused: false });
   };
 
   mouseDown = this.props.mouseDown;
 
-  render() {
+  render(): ReactElement {
     const {
       cacheBustParam,
       imagePath,

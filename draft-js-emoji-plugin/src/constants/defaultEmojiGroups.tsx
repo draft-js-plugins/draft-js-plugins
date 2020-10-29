@@ -7,8 +7,9 @@ import FaPlane from 'react-icons/lib/fa/plane';
 import FaBell from 'react-icons/lib/fa/bell';
 import FaHeart from 'react-icons/lib/fa/heart';
 import FaFlag from 'react-icons/lib/fa/flag';
+import { EmojiSelectGroup } from '../index';
 
-const defaultEmojiGroups = [
+const defaultEmojiGroups: EmojiSelectGroup[] = [
   {
     title: 'People',
     icon: <FaSmileO style={{ verticalAlign: '' }} />,

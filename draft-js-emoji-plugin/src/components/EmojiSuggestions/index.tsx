@@ -1,23 +1,64 @@
-import React, { Component } from 'react';
-import { genKey } from 'draft-js';
+import React, { Component, CSSProperties, KeyboardEvent } from 'react';
+import {
+  DraftHandleValue,
+  EditorState,
+  genKey,
+  SelectionState,
+} from 'draft-js';
 import Entry from './Entry';
 import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
-import decodeOffsetKey from '../../utils/decodeOffsetKey';
+import utils from 'draft-js-plugins-utils';
+import { EmojiPLuginCallbacks, EmojiPluginStore } from '../../';
+import { AriaProps } from 'draft-js-plugins-editor/lib';
+import { List } from 'immutable';
+import { PositionSuggestionsParams } from '../../utils/positionSuggestions';
+import { EmojiPluginTheme } from '../../theme';
 
-export default class EmojiSuggestions extends Component {
+export interface EmojiSuggestionsPubParams {
+  isActive: boolean;
+  focusedOptionIndex: number;
+  suggestions: unknown[];
+  onClose(): void;
+  onOpen(): void;
+  onSearchChange(change: { value: string }): void;
+}
+
+interface EmojiSuggestionsParams extends EmojiSuggestionsPubParams {
+  callbacks: EmojiPLuginCallbacks;
+  ariaProps: AriaProps;
+  store: EmojiPluginStore;
+  shortNames: List<string>;
+  positionSuggestions(arg: PositionSuggestionsParams): CSSProperties;
+  theme: EmojiPluginTheme;
+  cacheBustParam: string;
+  imagePath: string;
+  imageType: string;
+  useNativeArt?: boolean;
+}
+
+export default class EmojiSuggestions extends Component<
+  EmojiSuggestionsParams
+> {
   state = {
     isActive: false,
     focusedOptionIndex: 0,
   };
+
+  popover?: HTMLDivElement | null;
+  key!: string;
+  filteredEmojis?: List<string>;
+  activeOffsetKey?: string;
+  lastSelectionIsInsideWord?: Immutable.Iterable<string, boolean>;
+  lastSearchValue?: string;
 
   UNSAFE_componentWillMount() {
     this.key = genKey();
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.popover) {
+  componentDidUpdate(): void {
+    if (this.popover && this.filteredEmojis) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
       // not fullfilled anymore.
@@ -33,28 +74,26 @@ export default class EmojiSuggestions extends Component {
       }
 
       const decoratorRect = this.props.store.getPortalClientRect(
-        this.activeOffsetKey
+        this.activeOffsetKey!
       );
-      const newStyles = this.props.positionSuggestions({
+      const newStyles: CSSProperties = this.props.positionSuggestions({
         decoratorRect,
-        prevProps,
-        prevState,
         props: this.props,
         state: this.state,
         filteredEmojis: this.filteredEmojis,
         popover: this.popover,
       });
-      Object.keys(newStyles).forEach(key => {
-        this.popover.style[key] = newStyles[key];
-      });
+      for (const [key, value] of Object.entries(newStyles)) {
+        (this.popover!.style as { [x: string]: any })[key] = value;
+      }
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.props.callbacks.onChange = undefined;
   }
 
-  onEditorStateChange = editorState => {
+  onEditorStateChange = (editorState: EditorState): EditorState => {
     const searches = this.props.store.getAllSearches();
 
     // if no search portal is active there is no need to show the popover
@@ -78,15 +117,17 @@ export default class EmojiSuggestions extends Component {
       return removeList();
 
     // identify the start & end positon of each search-text
-    const offsetDetails = searches.map(offsetKey => decodeOffsetKey(offsetKey));
+    const offsetDetails = searches.map(offsetKey =>
+      utils.decodeOffsetKey(offsetKey!)
+    );
 
     // a leave can be empty when it is removed due e.g. using backspace
     const leaves = offsetDetails
-      .filter(({ blockKey }) => blockKey === anchorKey)
-      .map(({ blockKey, decoratorKey, leafKey }) =>
+      .filter(offsetDetail => offsetDetail!.blockKey === anchorKey)
+      .map(offsetDetail =>
         editorState
-          .getBlockTree(blockKey)
-          .getIn([decoratorKey, 'leaves', leafKey])
+          .getBlockTree(offsetDetail!.blockKey)
+          .getIn([offsetDetail!.decoratorKey, 'leaves', offsetDetail!.leafKey])
       );
 
     // if all leaves are undefined the popover should be removed
@@ -102,13 +143,13 @@ export default class EmojiSuggestions extends Component {
       .filter(leave => leave !== undefined)
       .map(
         ({ start, end }) =>
-          ((start === 0 &&
+          (start === 0 &&
             anchorOffset === 1 &&
             plainText.charAt(anchorOffset) !== ':' &&
             /(\s|^):[\w]*/.test(plainText) &&
             anchorOffset <= end) || // : is the first character
           (anchorOffset > start + 1 &&
-            anchorOffset <= end) /*: is in the text or at the end*/)
+            anchorOffset <= end) /*: is in the text or at the end*/
       );
     if (selectionIsInsideWord.every(isInside => isInside === false))
       return removeList();
@@ -152,7 +193,10 @@ export default class EmojiSuggestions extends Component {
     return editorState;
   };
 
-  onSearchChange = (editorState, selection) => {
+  onSearchChange = (
+    editorState: EditorState,
+    selection: SelectionState
+  ): void => {
     const { word } = getSearchText(editorState, selection);
     const searchValue = word.substring(1, word.length);
     if (
@@ -164,75 +208,76 @@ export default class EmojiSuggestions extends Component {
     }
   };
 
-  onDownArrow = keyboardEvent => {
+  onDownArrow = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
-    this.onEmojiFocus(newIndex >= this.filteredEmojis.size ? 0 : newIndex);
+    this.onEmojiFocus(newIndex >= this.filteredEmojis!.size ? 0 : newIndex);
   };
 
-  onTab = keyboardEvent => {
+  onTab = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
     this.commitSelection();
   };
 
-  onUpArrow = keyboardEvent => {
+  onUpArrow = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
-    if (this.filteredEmojis.size > 0) {
+    if (this.filteredEmojis && this.filteredEmojis.size > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
       this.onEmojiFocus(Math.max(newIndex, 0));
     }
   };
 
-  onEscape = keyboardEvent => {
+  onEscape = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
 
-    const activeOffsetKey = this.lastSelectionIsInsideWord
-      .filter(value => value === true)
+    const activeOffsetKey = this.lastSelectionIsInsideWord!.filter(
+      value => value === true
+    )
       .keySeq()
       .first();
     this.props.store.escapeSearch(activeOffsetKey);
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
-    this.props.store.setEditorState(this.props.store.getEditorState());
+    this.props.store.setEditorState!(this.props.store.getEditorState!());
   };
 
-  onEmojiSelect = emoji => {
+  onEmojiSelect = (emoji: string): void => {
     this.closeDropdown();
     const newEditorState = addEmoji(
-      this.props.store.getEditorState(),
+      this.props.store.getEditorState!(),
       emoji,
       AddEmojiMode.REPLACE
     );
-    this.props.store.setEditorState(newEditorState);
+    this.props.store.setEditorState!(newEditorState);
   };
 
-  onEmojiFocus = index => {
+  onEmojiFocus = (index: number): void => {
     const descendant = `emoji-option-${this.key}-${index}`;
     this.props.ariaProps.ariaActiveDescendantID = descendant;
     this.setState({ focusedOptionIndex: index });
 
     // to force a re-render of the outer component to change the aria props
-    this.props.store.setEditorState(this.props.store.getEditorState());
+    this.props.store.setEditorState!(this.props.store.getEditorState!());
   };
 
   // Get the first 6 emojis that match
-  getEmojisForFilter = () => {
-    const selection = this.props.store.getEditorState().getSelection();
+  getEmojisForFilter = (): List<string> => {
+    const selection = this.props.store.getEditorState!().getSelection();
     const { word } = getSearchText(
-      this.props.store.getEditorState(),
+      this.props.store.getEditorState!(),
       selection
     );
     const emojiValue = word.substring(1, word.length).toLowerCase();
     const filteredValues = this.props.shortNames.filter(
-      emojiShortName => !emojiValue || emojiShortName.indexOf(emojiValue) > -1
-    );
+      emojiShortName => !emojiValue || emojiShortName!.indexOf(emojiValue) > -1
+    ) as List<string>;
     const size = filteredValues.size < 9 ? filteredValues.size : 9;
     return filteredValues.setSize(size);
   };
 
-  commitSelection = () => {
-    this.onEmojiSelect(this.filteredEmojis.get(this.state.focusedOptionIndex));
+  commitSelection = (): DraftHandleValue => {
+    this.onEmojiSelect(this.filteredEmojis!.get(this.state.focusedOptionIndex));
     return 'handled';
   };
 
@@ -242,7 +287,7 @@ export default class EmojiSuggestions extends Component {
     // by this we can replace inner parameters spread over different modules.
     // This better be some registering & unregistering logic. PRs are welcome :)
     this.props.callbacks.handleReturn = this.commitSelection;
-    this.props.callbacks.keyBindingFn = keyboardEvent => {
+    this.props.callbacks.keyBindingFn = (keyboardEvent: KeyboardEvent) => {
       // arrow down
       if (keyboardEvent.keyCode === 40) {
         this.onDownArrow(keyboardEvent);
@@ -259,6 +304,7 @@ export default class EmojiSuggestions extends Component {
       if (keyboardEvent.keyCode === 9) {
         this.onTab(keyboardEvent);
       }
+      return null;
     };
 
     const descendant = `emoji-option-${this.key}-${this.state.focusedOptionIndex}`;
@@ -331,8 +377,8 @@ export default class EmojiSuggestions extends Component {
               onEmojiSelect={this.onEmojiSelect}
               onEmojiFocus={this.onEmojiFocus}
               isFocused={this.state.focusedOptionIndex === index}
-              emoji={emoji}
-              index={index}
+              emoji={emoji!}
+              index={index!}
               id={`emoji-option-${this.key}-${index}`}
               theme={theme}
               imagePath={imagePath}
