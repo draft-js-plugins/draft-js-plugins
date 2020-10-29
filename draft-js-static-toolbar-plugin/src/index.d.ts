@@ -1,12 +1,12 @@
-import { EditorPlugin } from "draft-js-plugins-editor";
-import { ComponentType, ReactNode } from "react";
+import { EditorPlugin } from 'draft-js-plugins-editor';
+import { ComponentType, ReactNode } from 'react';
 import { DraftJsStyleButtonProps, DraftJsButtonTheme } from 'draft-js-buttons';
 
 export interface StaticToolbarPluginTheme {
-    buttonStyles: DraftJsButtonTheme;
-    toolbarStyles: {
-        toolbar: string;
-    };
+  buttonStyles: DraftJsButtonTheme;
+  toolbarStyles: {
+    toolbar: string;
+  };
 }
 
 export interface StaticToolbarPluginConfig {

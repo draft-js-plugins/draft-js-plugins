@@ -27,7 +27,7 @@ interface RelativeRect {
 export interface PositionSuggestionsParams {
   decoratorRect: ClientRect;
   popover: Element;
-  props: {};
+  props: Record<string, unknown>;
   state: EmojiSuggestionsState;
   filteredEmojis: List<string>;
 }

@@ -24,7 +24,7 @@ interface EntryProps {
 }
 
 export default class Entry extends Component<EntryProps> {
-  mouseDown: boolean = false;
+  mouseDown = false;
 
   componentDidUpdate(): void {
     this.mouseDown = false;

@@ -12,7 +12,7 @@ import {
 
 const emojis = createEmojisFromStrategy(strategy);
 
-export interface EmojiSelectPubParams {}
+export type EmojiSelectPubParams = Record<string, unknown>;
 
 interface EmojiSelectParams extends EmojiSelectPubParams {
   cacheBustParam: string;

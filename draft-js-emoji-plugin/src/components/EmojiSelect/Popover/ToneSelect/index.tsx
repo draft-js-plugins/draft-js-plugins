@@ -1,4 +1,4 @@
-import React, { Component, CSSProperties } from 'react';
+import React, { Component, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import toStyle from 'to-style';
 import Entry from '../Entry';
@@ -57,7 +57,10 @@ export default class ToneSelect extends Component<ToneSelectParams> {
     this.setCorrectPosition(areaBounds, entryBounds);
   }
 
-  setCorrectPosition = (areaBounds: ClientRect, entryBounds: ClientRect) => {
+  setCorrectPosition = (
+    areaBounds: ClientRect,
+    entryBounds: ClientRect
+  ): void => {
     const width = this.tones!.offsetWidth;
     const height = this.tones!.offsetHeight;
 
@@ -90,11 +93,12 @@ export default class ToneSelect extends Component<ToneSelectParams> {
     style = toStyle.object(style);
 
     for (const [key, value] of Object.entries(style)) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (this.tones!.style as { [x: string]: any })[key] = value;
     }
   };
 
-  render() {
+  render(): ReactElement {
     const {
       cacheBustParam,
       imagePath,
