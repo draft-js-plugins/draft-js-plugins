@@ -1,5 +1,5 @@
-import { DraftDecorator } from "draft-js";
-import { EditorPlugin } from "draft-js-plugins-editor";
+import { DraftDecorator } from 'draft-js';
+import { EditorPlugin } from 'draft-js-plugins-editor';
 
 type DragNDropEditorPlugin = EditorPlugin & {
   decorator: DraftDecorator;

@@ -13,6 +13,7 @@ import {
   genKey,
   SelectionState,
 } from 'draft-js';
+import { AriaProps } from 'draft-js-plugins-editor';
 import escapeRegExp from 'lodash/escapeRegExp';
 import Entry, { EntryComponentProps } from './Entry/Entry';
 import addMention from '../modifiers/addMention';
@@ -21,7 +22,6 @@ import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/DefaultEntryComponent';
 import { MentionData, MentionPluginStore } from '..';
 import { PositionSuggestionsFn } from '../utils/positionSuggestions';
-import { AriaProps } from 'draft-js-plugins-editor';
 import { Theme } from '../theme';
 
 export interface MentionSuggestionCallbacks {
@@ -77,7 +77,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
-  componentDidUpdate(prevProps: Readonly<MentionSuggestionsProps>): void {
+  componentDidUpdate(): void {
     if (this.popover) {
       // In case the list shrinks there should be still an option focused.
       // Note: this might run multiple times and deduct 1 until the condition is
@@ -106,16 +106,17 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
         popover: this.popover,
       });
       for (const [key, value] of Object.entries(newStyles)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (this.popover!.style as { [x: string]: any })[key] = value;
       }
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.props.callbacks.onChange = undefined;
   }
 
-  onEditorStateChange = (editorState: EditorState) => {
+  onEditorStateChange = (editorState: EditorState): EditorState => {
     const searches = this.props.store.getAllSearches();
 
     // if no search portal is active there is no need to show the popover
@@ -123,7 +124,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       return editorState;
     }
 
-    const removeList = () => {
+    const removeList = (): EditorState => {
       this.props.store.resetEscapedSearch();
       this.closeDropdown();
       return editorState;
@@ -170,6 +171,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
             anchorOffset === this.props.mentionTrigger.length &&
             plainText.charAt(anchorOffset) !== this.props.mentionTrigger &&
             new RegExp(
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore raw is readonly
               String.raw({ raw: `${escapeRegExp(this.props.mentionTrigger)}` }),
               'g'
@@ -232,8 +234,8 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     editorState: EditorState,
     selection: SelectionState,
     activeOffsetKey: string | undefined,
-    lastActiveOffsetKey: String | undefined
-  ) => {
+    lastActiveOffsetKey: string | undefined
+  ): void => {
     const { matchingString: searchValue } = getSearchText(
       editorState,
       selection,
@@ -249,7 +251,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     }
   };
 
-  onDownArrow = (keyboardEvent: KeyboardEvent) => {
+  onDownArrow = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
     const newIndex = this.state.focusedOptionIndex + 1;
     this.onMentionFocus(
@@ -257,12 +259,12 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     );
   };
 
-  onTab = (keyboardEvent: KeyboardEvent) => {
+  onTab = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
     this.commitSelection();
   };
 
-  onUpArrow = (keyboardEvent: KeyboardEvent) => {
+  onUpArrow = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
     if (this.props.suggestions.length > 0) {
       const newIndex = this.state.focusedOptionIndex - 1;
@@ -272,7 +274,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     }
   };
 
-  onEscape = (keyboardEvent: KeyboardEvent) => {
+  onEscape = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
 
     const activeOffsetKey = this.lastSelectionIsInsideWord!.filter(
@@ -287,7 +289,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     this.props.store.setEditorState!(this.props.store.getEditorState!());
   };
 
-  onMentionSelect = (mention: MentionData | null) => {
+  onMentionSelect = (mention: MentionData | null): void => {
     // Note: This can happen in case a user typed @xxx (invalid mention) and
     // then hit Enter. Then the mention will be undefined.
     if (!mention) {
@@ -306,10 +308,10 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       this.props.mentionTrigger,
       this.props.entityMutability
     );
-    this.props.store.setEditorState?.(newEditorState);
+    this.props.store.setEditorState!(newEditorState);
   };
 
-  onMentionFocus = (index: number) => {
+  onMentionFocus = (index: number): void => {
     const descendant = `mention-option-${this.key}-${index}`;
     this.props.ariaProps.ariaActiveDescendantID = descendant;
     this.setState({
@@ -320,7 +322,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     this.props.store.setEditorState!(this.props.store.getEditorState!());
   };
 
-  commitSelection = () => {
+  commitSelection = (): DraftHandleValue => {
     if (!this.props.store.getIsOpened()) {
       return 'not-handled';
     }
@@ -329,7 +331,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     return 'handled';
   };
 
-  openDropdown = () => {
+  openDropdown = (): void => {
     // This is a really nasty way of attaching & releasing the key related functions.
     // It assumes that the keyFunctions object will not loose its reference and
     // by this we can replace inner parameters spread over different modules.
@@ -363,7 +365,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     this.props.onOpenChange(true);
   };
 
-  closeDropdown = () => {
+  closeDropdown = (): void => {
     // make sure none of these callbacks are triggered
     this.props.callbacks.handleReturn = undefined;
     this.props.callbacks.keyBindingFn = undefined;
@@ -374,7 +376,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     this.props.onOpenChange(false);
   };
 
-  render() {
+  render(): ReactElement | null {
     if (!this.props.open) {
       return null;
     }
@@ -382,18 +384,18 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     const {
       entryComponent,
       popoverComponent = <div />,
-      onOpenChange, // eslint-disable-line no-unused-vars
-      onAddMention, // eslint-disable-line no-unused-vars, no-shadow
-      onSearchChange, // eslint-disable-line no-unused-vars, no-shadow
-      suggestions, // eslint-disable-line no-unused-vars
-      ariaProps, // eslint-disable-line no-unused-vars
-      callbacks, // eslint-disable-line no-unused-vars
+      onOpenChange, // eslint-disable-line @typescript-eslint/no-unused-vars
+      onAddMention, // eslint-disable-line @typescript-eslint/no-unused-vars, no-shadow
+      onSearchChange, // eslint-disable-line @typescript-eslint/no-unused-vars, no-shadow
+      suggestions, // eslint-disable-line @typescript-eslint/no-unused-vars
+      ariaProps, // eslint-disable-line @typescript-eslint/no-unused-vars
+      callbacks, // eslint-disable-line @typescript-eslint/no-unused-vars
       theme = {},
-      store, // eslint-disable-line no-unused-vars
-      entityMutability, // eslint-disable-line no-unused-vars
-      positionSuggestions, // eslint-disable-line no-unused-vars
-      mentionTrigger, // eslint-disable-line no-unused-vars
-      mentionPrefix, // eslint-disable-line no-unused-vars
+      store, // eslint-disable-line @typescript-eslint/no-unused-vars
+      entityMutability, // eslint-disable-line @typescript-eslint/no-unused-vars
+      positionSuggestions, // eslint-disable-line @typescript-eslint/no-unused-vars
+      mentionTrigger, // eslint-disable-line @typescript-eslint/no-unused-vars
+      mentionPrefix, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...elementProps
     } = this.props;
 

@@ -3,7 +3,7 @@
 declare module 'to-style' {
   interface ToStyle {
     string(style: CSSProperties): string;
-    object(style: string | object): CSSProperties;
+    object(style: string | Record<string, unknown>): CSSProperties;
   }
   const toStyle: ToStyle;
   export default toStyle;

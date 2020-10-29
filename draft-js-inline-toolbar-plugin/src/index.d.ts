@@ -1,6 +1,6 @@
-import { EditorPlugin } from "draft-js-plugins-editor";
-import { ComponentType, ReactNode } from "react";
-import { EditorState } from "draft-js";
+import { EditorPlugin } from 'draft-js-plugins-editor';
+import { ComponentType, ReactNode } from 'react';
+import { EditorState } from 'draft-js';
 import { DraftJsButtonTheme } from 'draft-js-buttons';
 
 export interface InlineToolbarPluginTheme {
@@ -15,7 +15,7 @@ export interface InlineToolbarPluginConfig {
 }
 
 export interface ToolbarChildrenProps {
-  theme: InlineToolbarPluginTheme["buttonStyles"];
+  theme: InlineToolbarPluginTheme['buttonStyles'];
   getEditorState: () => EditorState;
   setEditorState: (editorState: EditorState) => void;
   onOverrideContent: (content: ComponentType<ToolbarChildrenProps>) => void;
