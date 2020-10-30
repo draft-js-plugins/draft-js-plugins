@@ -1,21 +1,42 @@
-import React from 'react';
+import React, { ComponentType, MouseEvent, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import EditorUtils from 'draft-js-plugins-utils';
-import AddLinkForm from './AddLinkForm';
+import AddLinkForm, { AddLinkFormPubParams } from './AddLinkForm';
+import { AnchorPluginTheme } from '../theme';
+import { AnchorPluginStore } from '..';
 
-const LinkButton = props => {
-  const onMouseDown = event => {
+export interface LinkButtonTheme {
+  button: string;
+  active: string;
+  buttonWrapper: string;
+}
+
+export interface LinkButtonPubParams {
+  theme: LinkButtonTheme;
+  onOverrideContent(component: ComponentType<AddLinkFormPubParams>): void;
+}
+
+interface LinkButtonParams extends LinkButtonPubParams {
+  ownTheme: AnchorPluginTheme;
+  store: AnchorPluginStore;
+  placeholder?: string;
+  onRemoveLinkAtSelection(): void;
+  validateUrl?(url: string): boolean;
+}
+
+const LinkButton = (props: LinkButtonParams): ReactElement => {
+  const onMouseDown = (event: MouseEvent): void => {
     event.preventDefault();
   };
 
-  const onAddLinkClick = e => {
-    e.preventDefault();
-    e.stopPropagation();
+  const onAddLinkClick = (event: MouseEvent): void => {
+    event.preventDefault();
+    event.stopPropagation();
 
     const { ownTheme, placeholder, onOverrideContent, validateUrl } = props;
 
-    const content = contentProps => (
+    const content = (contentProps: AddLinkFormPubParams): ReactElement => (
       <AddLinkForm
         {...contentProps}
         placeholder={placeholder}
@@ -29,7 +50,7 @@ const LinkButton = props => {
 
   const { theme, onRemoveLinkAtSelection } = props;
   const hasLinkSelected = EditorUtils.hasEntity(
-    props.store.getEditorState(),
+    props.store.getEditorState!(),
     'LINK'
   );
   const className = hasLinkSelected

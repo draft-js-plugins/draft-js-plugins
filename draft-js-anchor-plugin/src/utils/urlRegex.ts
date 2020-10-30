@@ -1,5 +1,3 @@
-/* eslint-disable  arrow-body-style */
-/* eslint-disable  no-confusing-arrow */
 import tlds from 'tlds';
 
 const v4 =
@@ -21,17 +19,21 @@ const v6 = `
   .replace(/\n/g, '')
   .trim();
 
-const ipRegex = opts =>
+interface Options {
+  exact: boolean;
+}
+
+const ipRegex = (opts?: Options): RegExp =>
   opts && opts.exact
     ? new RegExp(`(?:^${v4}$)|(?:^${v6}$)`)
     : new RegExp(`(?:${v4})|(?:${v6})`, 'g');
 
-ipRegex.v4 = opts =>
+ipRegex.v4 = (opts?: Options): RegExp =>
   opts && opts.exact ? new RegExp(`^${v4}$`) : new RegExp(v4, 'g');
-ipRegex.v6 = opts =>
+ipRegex.v6 = (opts?: Options): RegExp =>
   opts && opts.exact ? new RegExp(`^${v6}$`) : new RegExp(v6, 'g');
 
-export default _opts => {
+export default function urlRegex(_opts?: Options): RegExp {
   const opts = Object.assign({ strict: true }, _opts);
   const protocol = `(?:(?:[a-z]+:)?//)${opts.strict ? '' : '?'}`;
   const auth = '(?:\\S+(?::\\S*)?@)?';
@@ -51,4 +53,4 @@ export default _opts => {
   return opts.exact
     ? new RegExp(`(?:^${regex}$)`, 'i')
     : new RegExp(regex, 'ig');
-};
+}
