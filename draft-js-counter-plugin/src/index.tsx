@@ -5,7 +5,7 @@ import CharCounter, { CharCounterPubProps } from './CharCounter';
 import WordCounter, { WordCounterPubParams } from './WordCounter';
 import LineCounter, { LineCounterPubParams } from './LineCounter';
 import CustomCounter, { CustomCounterPubProps } from './CustomCounter';
-import { CounterPluginTheme, defaultTheme } from './theme.js';
+import { CounterPluginTheme, defaultTheme } from './theme';
 
 export interface CounterPluginStore {
   getEditorState?(): EditorState;
