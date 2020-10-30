@@ -1,6 +1,10 @@
 import { css } from 'linaria';
 
-export const defaultTheme = {
+export interface LinkifyPluginTheme {
+  link: string;
+}
+
+export const defaultTheme: LinkifyPluginTheme = {
   link: css`
     &,
     &:visited {
