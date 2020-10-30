@@ -1,14 +1,21 @@
-import React from 'react';
-import { EditorState } from 'draft-js';
+import React, { ComponentType, ReactElement } from 'react';
+import { ContentBlock, EditorState } from 'draft-js';
+import { EditorPlugin } from 'draft-js-plugins-editor';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
 import createStore from './utils/createStore';
-import { defaultTheme } from './theme.js';
+import { defaultTheme, AlignmentPluginTheme } from './theme';
 
 const createSetAlignment = (
-  contentBlock,
-  { getEditorState, setEditorState }
-) => data => {
+  contentBlock: ContentBlock,
+  {
+    getEditorState,
+    setEditorState,
+  }: {
+    setEditorState(editorState: EditorState): void; // a function to update the EditorState
+    getEditorState(): EditorState; // a function to get the current EditorState
+  }
+) => (data: Record<string, unknown>) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
@@ -20,15 +27,24 @@ const createSetAlignment = (
   }
 };
 
-export default (config = {}) => {
+interface AlignmentPluginConfig {
+  theme?: AlignmentPluginTheme;
+}
+
+export default function(
+  config: AlignmentPluginConfig = {}
+): EditorPlugin & {
+  decorator: ReturnType<typeof createDecorator>;
+  AlignmentTool: ComponentType;
+} {
   const store = createStore({
     isVisible: false,
   });
 
   const { theme = defaultTheme } = config;
 
-  const DecoratedAlignmentTool = props => (
-    <AlignmentTool {...props} store={store} theme={theme} />
+  const DecoratedAlignmentTool = (): ReactElement => (
+    <AlignmentTool store={store} theme={theme} />
   );
 
   return {
@@ -37,12 +53,12 @@ export default (config = {}) => {
       store.updateItem('getEditorState', getEditorState);
       store.updateItem('setEditorState', setEditorState);
     },
-    decorator: createDecorator({ config, store }),
+    decorator: createDecorator({ store }),
     blockRendererFn: (contentBlock, { getEditorState, setEditorState }) => {
       const entityKey = contentBlock.getEntityAt(0);
       const contentState = getEditorState().getCurrentContent();
       const alignmentData = entityKey
-        ? contentState.getEntity(entityKey).data
+        ? contentState.getEntity(entityKey).getData()
         : {};
       return {
         props: {
@@ -56,4 +72,4 @@ export default (config = {}) => {
     },
     AlignmentTool: DecoratedAlignmentTool,
   };
-};
+}

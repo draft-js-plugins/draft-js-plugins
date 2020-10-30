@@ -5,6 +5,7 @@ type ResizeableEditorPlugin = EditorPlugin & { decorator: DraftDecorator };
 
 type ScaleType = 'auto' | 'relative' | 'absolute';
 interface InitializeArguments {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   blockProps?: any;
   horizontal?: ScaleType;
   vertical?: ScaleType;

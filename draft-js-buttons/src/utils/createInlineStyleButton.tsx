@@ -1,23 +1,32 @@
 /* eslint-disable react/no-children-prop */
-import React from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import { RichUtils } from 'draft-js';
 import clsx from 'clsx';
+import { DraftJsStyleButtonType } from '..';
 
-const createInlineStyleButton = ({ style, children }) => {
-  const InlineStyleButton = props => {
-    const toggleStyle = event => {
+interface CreateInlineStyleButtonProp {
+  style: string;
+  children: ReactNode;
+}
+
+export default function createInlineStyleButton({
+  style,
+  children,
+}: CreateInlineStyleButtonProp): DraftJsStyleButtonType {
+  return function InlineStyleButton(props) {
+    const toggleStyle = (event: MouseEvent): void => {
       event.preventDefault();
       props.setEditorState(
         RichUtils.toggleInlineStyle(props.getEditorState(), style)
       );
     };
 
-    const preventBubblingUp = event => {
+    const preventBubblingUp = (event: MouseEvent): void => {
       event.preventDefault();
     };
 
     // we check if this.props.getEditorstate is undefined first in case the button is rendered before the editor
-    const styleIsActive = () =>
+    const styleIsActive = (): boolean =>
       props.getEditorState &&
       props
         .getEditorState()
@@ -40,8 +49,4 @@ const createInlineStyleButton = ({ style, children }) => {
       </div>
     );
   };
-
-  return InlineStyleButton;
-};
-
-export default createInlineStyleButton;
+}

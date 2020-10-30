@@ -1,3 +1,5 @@
+import { ComponentType } from 'react';
+import { EditorState } from 'draft-js';
 import createBlockStyleButton from './utils/createBlockStyleButton';
 import createInlineStyleButton from './utils/createInlineStyleButton';
 import ItalicButton from './components/ItalicButton';
@@ -17,6 +19,32 @@ import AlignBlockLeftButton from './components/AlignBlockLeftButton';
 import AlignBlockRightButton from './components/AlignBlockRightButton';
 import SubButton from './components/SubButton';
 import SupButton from './components/SupButton';
+
+export interface DraftJsButtonTheme {
+  // CSS classes to apply
+  active?: string;
+  button?: string;
+  buttonWrapper?: string;
+}
+
+export interface DraftJsButtonProps {
+  theme: DraftJsButtonTheme;
+}
+
+export interface DraftJsBlockAlignmentButtonProps extends DraftJsButtonProps {
+  alignment: string | null;
+  setAlignment(val: { alignment: string }): void;
+}
+export interface DraftJsStyleButtonProps extends DraftJsButtonProps {
+  setEditorState(editorState: EditorState): void;
+
+  getEditorState(): EditorState;
+}
+
+export type DraftJsBlockAlignmentButtonType = ComponentType<
+  DraftJsBlockAlignmentButtonProps
+>;
+export type DraftJsStyleButtonType = ComponentType<DraftJsStyleButtonProps>;
 
 export {
   createBlockStyleButton,
