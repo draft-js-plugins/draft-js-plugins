@@ -21,7 +21,7 @@ export default function attachImmutableEntitiesToEmojis(
     if (block) {
       const plainText = block.getText();
 
-      const addEntityToEmoji = (start: number, end: number) => {
+      const addEntityToEmoji = (start: number, end: number): void => {
         const existingEntityKey = block.getEntityAt(start);
         if (existingEntityKey) {
           // avoid manipulation in case the emoji already has an entity

@@ -2,6 +2,7 @@ import React, {
   ComponentType,
   CSSProperties,
   KeyboardEvent,
+  ReactElement,
   ReactNode,
 } from 'react';
 import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
@@ -186,13 +187,13 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     toneSelectOpenDelay,
     useNativeArt,
   };
-  const DecoratedEmojiSuggestions = (props: EmojiSuggestionsPubParams) => (
-    <EmojiSuggestions {...props} {...suggestionsProps} />
-  );
-  const DecoratedEmojiSelect = (props: EmojiSelectPubParams) => (
+  const DecoratedEmojiSuggestions = (
+    props: EmojiSuggestionsPubParams
+  ): ReactElement => <EmojiSuggestions {...props} {...suggestionsProps} />;
+  const DecoratedEmojiSelect = (props: EmojiSelectPubParams): ReactElement => (
     <EmojiSelect {...props} {...selectProps} />
   );
-  const DecoratedEmoji = (props: EmojiProps) => (
+  const DecoratedEmoji = (props: EmojiProps): ReactElement => (
     <Emoji
       {...props}
       theme={theme}
@@ -204,7 +205,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   );
   const DecoratedEmojiSuggestionsPortal = (
     props: EmojiSuggestionsPortalParams
-  ) => <EmojiSuggestionsPortal {...props} store={store} />;
+  ): ReactElement => <EmojiSuggestionsPortal {...props} store={store} />;
   return {
     EmojiSuggestions: DecoratedEmojiSuggestions,
     EmojiSelect: DecoratedEmojiSelect,

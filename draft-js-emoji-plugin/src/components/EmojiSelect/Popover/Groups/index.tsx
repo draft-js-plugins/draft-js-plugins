@@ -1,4 +1,4 @@
-import React, { Component, WheelEvent } from 'react';
+import React, { Component, ReactElement, WheelEvent } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars, positionValues } from 'react-custom-scrollbars';
 import Group from './Group';
@@ -94,7 +94,7 @@ export default class Groups extends Component<GroupsProps> {
     this.scrollbars!.scrollTop(groups[groupIndex].topList!);
   };
 
-  calculateBounds = () => {
+  calculateBounds = (): void => {
     const { scrollHeight, scrollTop } = this.scrollbars!.getValues();
     if (scrollHeight) {
       const { groups } = this.props;
@@ -116,7 +116,7 @@ export default class Groups extends Component<GroupsProps> {
     return activeGroup === index || (isOpen && activeGroup + 1 === index); // we also preload next group when popup is open
   };
 
-  render() {
+  render(): ReactElement {
     const {
       cacheBustParam,
       imagePath,

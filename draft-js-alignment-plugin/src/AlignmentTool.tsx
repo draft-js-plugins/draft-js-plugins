@@ -1,13 +1,16 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ReactElement } from 'react';
 import {
   AlignBlockDefaultButton,
   AlignBlockLeftButton,
   AlignBlockCenterButton,
   AlignBlockRightButton,
+  DraftJsBlockAlignmentButtonType,
 } from 'draft-js-buttons';
+import { AlignmentPluginTheme } from './theme';
+import { AlignmentPluginStore } from './utils/createStore';
 
-const getRelativeParent = element => {
+function getRelativeParent(element: HTMLElement | null): HTMLElement | null {
   if (!element) {
     return null;
   }
@@ -20,20 +23,27 @@ const getRelativeParent = element => {
   }
 
   return getRelativeParent(element.parentElement);
-};
+}
 
-const AlignmentTool = props => {
+interface AlignmentToolProps {
+  theme: AlignmentPluginTheme;
+  store: AlignmentPluginStore;
+}
+
+export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
   const [position, setPosition] = useState({});
-  const [alignment, setAlignment] = useState(null);
-  const toolbar = useRef();
+  const [alignment, setAlignment] = useState<string | null>(null);
+  const toolbar = useRef<HTMLDivElement>(null);
 
-  const onVisibilityChanged = visibleBlock => {
+  const onVisibilityChanged = (visibleBlock?: null | string): void => {
     setTimeout(() => {
       let newPosition;
       const boundingRect = props.store.getItem('boundingRect');
-      if (visibleBlock) {
-        const relativeParent = getRelativeParent(toolbar.current.parentElement);
-        const toolbarHeight = toolbar.current.clientHeight;
+      if (visibleBlock && boundingRect) {
+        const relativeParent = getRelativeParent(
+          toolbar.current!.parentElement
+        );
+        const toolbarHeight = toolbar.current!.clientHeight;
         const relativeRect = relativeParent
           ? relativeParent.getBoundingClientRect()
           : document.body.getBoundingClientRect();
@@ -53,8 +63,10 @@ const AlignmentTool = props => {
     }, 0);
   };
 
-  const onAlignmentChange = value => {
-    setAlignment(value);
+  const onAlignmentChange = (value: string | undefined): void => {
+    if (value) {
+      setAlignment(value);
+    }
   };
 
   useEffect(() => {
@@ -67,7 +79,7 @@ const AlignmentTool = props => {
     };
   });
 
-  const defaultButtons = [
+  const defaultButtons: DraftJsBlockAlignmentButtonType[] = [
     AlignBlockDefaultButton,
     AlignBlockLeftButton,
     AlignBlockCenterButton,
@@ -80,21 +92,17 @@ const AlignmentTool = props => {
     <div
       className={theme.alignmentToolStyles.alignmentTool}
       style={position}
-      ref={element => {
-        toolbar.current = element;
-      }}
+      ref={toolbar}
     >
       {defaultButtons.map((Button, index) => (
         <Button
           /* the index can be used here as the buttons list won't change */
           key={index}
           alignment={alignment}
-          setAlignment={props.store.getItem('setAlignment')}
+          setAlignment={props.store.getItem('setAlignment')!}
           theme={theme.buttonStyles}
         />
       ))}
     </div>
   );
-};
-
-export default AlignmentTool;
+}

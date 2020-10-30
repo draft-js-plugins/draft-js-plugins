@@ -1,25 +1,51 @@
-import React, { Component } from 'react';
+import { ContentBlock } from 'draft-js';
+import React, {
+  Component,
+  ComponentType,
+  CSSProperties,
+  ReactElement,
+} from 'react';
 import ReactDOM from 'react-dom';
+import { AlignmentPluginStore } from './utils/createStore';
 
-const getDisplayName = WrappedComponent => {
+interface BlockAlignmentDecoratorParams {
+  blockProps: {
+    isFocused: boolean;
+    isCollapsedSelection: boolean;
+    alignment: string;
+    setAlignment(val: { alignment: string }): void;
+  };
+  style?: CSSProperties;
+  block: ContentBlock;
+}
+
+type WrappedComponentType = ComponentType<BlockAlignmentDecoratorParams> & {
+  WrappedComponent?: ComponentType<BlockAlignmentDecoratorParams>;
+};
+
+const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ store }) => WrappedComponent =>
-  class BlockAlignmentDecorator extends Component {
+export default ({ store }: { store: AlignmentPluginStore }) => (
+  WrappedComponent: WrappedComponentType
+): ComponentType<BlockAlignmentDecoratorParams> =>
+  class BlockAlignmentDecorator extends Component<
+    BlockAlignmentDecoratorParams
+  > {
     static displayName = `Alignment(${getDisplayName(WrappedComponent)})`;
-    static WrappedComponent =
+    static WrappedComponent: ComponentType<BlockAlignmentDecoratorParams> =
       WrappedComponent.WrappedComponent || WrappedComponent;
 
-    componentDidUpdate = () => {
+    componentDidUpdate = (): void => {
       if (
         this.props.blockProps.isFocused &&
         this.props.blockProps.isCollapsedSelection
       ) {
         // TODO figure out if and how to achieve this without fetching the DOM node
         // eslint-disable-next-line react/no-find-dom-node
-        const blockNode = ReactDOM.findDOMNode(this);
+        const blockNode = ReactDOM.findDOMNode(this) as HTMLElement;
         const boundingRect = blockNode.getBoundingClientRect();
         store.updateItem('setAlignment', this.props.blockProps.setAlignment);
         store.updateItem('alignment', this.props.blockProps.alignment);
@@ -33,12 +59,12 @@ export default ({ store }) => WrappedComponent =>
       }
     };
 
-    componentWillUnmount() {
+    componentWillUnmount(): void {
       // Set visibleBlock to null if the block is deleted
       store.updateItem('visibleBlock', null);
     }
 
-    render() {
+    render(): ReactElement {
       const {
         blockProps,
         style,

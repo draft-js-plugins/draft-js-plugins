@@ -1,6 +1,6 @@
 import { EditorState } from 'draft-js';
-import { EmojiPluginStore } from '../../index';
 import React, { Component, ReactElement } from 'react';
+import { EmojiPluginStore } from '../../index';
 
 export interface EmojiSuggestionsPortalParams {
   store: EmojiPluginStore;
@@ -39,7 +39,11 @@ export default class EmojiSuggestionsPortal extends Component<
 
   render(): ReactElement {
     return (
-      <span ref={element => (this.searchPortal = element)}>
+      <span
+        ref={element => {
+          this.searchPortal = element;
+        }}
+      >
         {this.props.children}
       </span>
     );

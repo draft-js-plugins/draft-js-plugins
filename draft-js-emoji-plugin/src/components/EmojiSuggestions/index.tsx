@@ -1,17 +1,22 @@
-import React, { Component, CSSProperties, KeyboardEvent } from 'react';
+import React, {
+  Component,
+  CSSProperties,
+  KeyboardEvent,
+  ReactElement,
+} from 'react';
 import {
   DraftHandleValue,
   EditorState,
   genKey,
   SelectionState,
 } from 'draft-js';
-import Entry from './Entry';
-import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
-import getSearchText from '../../utils/getSearchText';
 import utils from 'draft-js-plugins-utils';
-import { EmojiPLuginCallbacks, EmojiPluginStore } from '../../';
 import { AriaProps } from 'draft-js-plugins-editor/lib';
 import { List } from 'immutable';
+import Entry from './Entry';
+import { EmojiPLuginCallbacks, EmojiPluginStore } from '../../';
+import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
+import getSearchText from '../../utils/getSearchText';
 import { PositionSuggestionsParams } from '../../utils/positionSuggestions';
 import { EmojiPluginTheme } from '../../theme';
 
@@ -52,7 +57,7 @@ export default class EmojiSuggestions extends Component<
   lastSelectionIsInsideWord?: Immutable.Iterable<string, boolean>;
   lastSearchValue?: string;
 
-  UNSAFE_componentWillMount() {
+  UNSAFE_componentWillMount(): void {
     this.key = genKey();
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
@@ -84,6 +89,7 @@ export default class EmojiSuggestions extends Component<
         popover: this.popover,
       });
       for (const [key, value] of Object.entries(newStyles)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (this.popover!.style as { [x: string]: any })[key] = value;
       }
     }
@@ -101,7 +107,7 @@ export default class EmojiSuggestions extends Component<
       return editorState;
     }
 
-    const removeList = () => {
+    const removeList = (): EditorState => {
       this.props.store.resetEscapedSearch();
       this.closeDropdown();
       return editorState;
@@ -281,7 +287,7 @@ export default class EmojiSuggestions extends Component<
     return 'handled';
   };
 
-  openDropdown = () => {
+  openDropdown = (): void => {
     // This is a really nasty way of attaching & releasing the key related functions.
     // It assumes that the keyFunctions object will not loose its reference and
     // by this we can replace inner parameters spread over different modules.
@@ -321,7 +327,7 @@ export default class EmojiSuggestions extends Component<
     }
   };
 
-  closeDropdown = () => {
+  closeDropdown = (): void => {
     // make sure none of these callbacks are triggered
     this.props.callbacks.keyBindingFn = undefined;
     this.props.callbacks.handleReturn = undefined;
@@ -338,7 +344,7 @@ export default class EmojiSuggestions extends Component<
     }
   };
 
-  render() {
+  render(): ReactElement | null {
     if (!this.state.isActive) {
       return null;
     }
@@ -349,14 +355,14 @@ export default class EmojiSuggestions extends Component<
       cacheBustParam,
       imagePath,
       imageType,
-      ariaProps, // eslint-disable-line no-unused-vars
-      callbacks, // eslint-disable-line no-unused-vars
-      onClose, // eslint-disable-line no-unused-vars
-      onOpen, // eslint-disable-line no-unused-vars
-      onSearchChange, // eslint-disable-line no-unused-vars
-      positionSuggestions, // eslint-disable-line no-unused-vars
-      shortNames, // eslint-disable-line no-unused-vars
-      store, // eslint-disable-line no-unused-vars
+      ariaProps, // eslint-disable-line @typescript-eslint/no-unused-vars
+      callbacks, // eslint-disable-line @typescript-eslint/no-unused-vars
+      onClose, // eslint-disable-line @typescript-eslint/no-unused-vars
+      onOpen, // eslint-disable-line @typescript-eslint/no-unused-vars
+      onSearchChange, // eslint-disable-line @typescript-eslint/no-unused-vars
+      positionSuggestions, // eslint-disable-line @typescript-eslint/no-unused-vars
+      shortNames, // eslint-disable-line @typescript-eslint/no-unused-vars
+      store, // eslint-disable-line @typescript-eslint/no-unused-vars
       useNativeArt,
       ...restProps
     } = this.props;
