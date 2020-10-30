@@ -1,5 +1,5 @@
-import { EditorPlugin } from "draft-js-plugins-editor";
-import { AnchorHTMLAttributes, ComponentType } from "react";
+import { EditorPlugin } from 'draft-js-plugins-editor';
+import { AnchorHTMLAttributes, ComponentType } from 'react';
 
 export interface AnchorPluginTheme {
   link?: string;

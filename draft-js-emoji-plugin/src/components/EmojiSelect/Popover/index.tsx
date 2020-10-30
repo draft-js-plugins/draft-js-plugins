@@ -41,7 +41,7 @@ export default class Popover extends Component<PopoverProps> {
 
   activeEmoji: Entry | null = null;
   toneSelectTimer: ReturnType<typeof setTimeout> | null = null;
-  mouseDown: boolean = false;
+  mouseDown = false;
   toneSet: string[] | null = null;
   container?: HTMLDivElement | null;
   groupsElement?: Groups | null;

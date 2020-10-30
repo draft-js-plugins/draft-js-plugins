@@ -35,6 +35,7 @@
     "@testing-library/react-hooks": "^3.4.1",
     "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.6.0",
     "alex": "^4.0.1",
     "animateplus": "^1.4.0",
     "autoprefixer": "^6.7.6",
@@ -115,7 +116,7 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "*.js": [
+    "*.(js|ts|tsx)": [
       "prettier --write",
       "git add",
       "eslint"
@@ -135,7 +136,7 @@
     "alex": "alex README.md",
     "build-storybook": "build-storybook",
     "lint": "yarn lint:eslint && yarn lint:flow && yarn tsc",
-    "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' ./",
+    "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' --ext .js ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests: 2' ./",
     "lint:flow": "flow status",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
