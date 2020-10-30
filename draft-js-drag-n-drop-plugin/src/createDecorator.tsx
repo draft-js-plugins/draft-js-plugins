@@ -1,21 +1,33 @@
-import React from 'react';
+import { ContentBlock } from 'draft-js';
+import React, { ComponentType, DragEvent, ReactElement } from 'react';
+import { DndPluginStore } from '.';
 import { DRAFTJS_BLOCK_KEY } from './constants';
 
+interface DecoratorParams extends React.HTMLAttributes<HTMLElement> {
+  block: ContentBlock;
+}
+
+type WrappedComponentType = ComponentType<DecoratorParams> & {
+  WrappedComponent?: ComponentType<DecoratorParams>;
+};
+
 // Get a component's display name
-const getDisplayName = WrappedComponent => {
+const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ store }) => WrappedComponent => {
-  const BlockDraggableDecorator = props => {
+export default ({ store }: { store: DndPluginStore }) => (
+  WrappedComponent: WrappedComponentType
+): ComponentType<DecoratorParams> => {
+  const BlockDraggableDecorator = (props: DecoratorParams): ReactElement => {
     // Handle start-drag and set dataTransfer data with blockKey
-    const startDrag = event => {
+    const startDrag = (event: DragEvent<HTMLElement>): void => {
       event.dataTransfer.dropEffect = 'move'; // eslint-disable-line no-param-reassign
       // declare data and give info that its an existing key and a block needs to be moved
       event.dataTransfer.setData(
         'text',
-        `${DRAFTJS_BLOCK_KEY}:${props.block.key}`
+        `${DRAFTJS_BLOCK_KEY}:${props.block.getKey()}`
       );
     };
 
