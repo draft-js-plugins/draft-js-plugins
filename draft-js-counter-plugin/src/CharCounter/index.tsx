@@ -33,7 +33,7 @@ const CharCounter = ({
   const getClassNames = (count: number): string => {
     const defaultStyle = clsx(theme.counter, className);
     const overLimitStyle = clsx(theme.counterOverLimit, className);
-    return count > limit ? overLimitStyle : defaultStyle;
+    return count > limit! ? overLimitStyle : defaultStyle;
   };
 
   const count = getCharCount(store.getEditorState!());

@@ -120,6 +120,9 @@
       "prettier --write",
       "git add",
       "eslint"
+    ],
+    "*.(ts|tsx)": [
+      "bash -c tsc --noEmit"
     ]
   },
   "main": "lib/index.js",
