@@ -1,6 +1,14 @@
+import { DraftJsButtonTheme } from 'draft-js-buttons';
 import { css } from 'linaria';
 
-const buttonStyles = {
+export interface AlignmentPluginTheme {
+  buttonStyles: DraftJsButtonTheme;
+  alignmentToolStyles: {
+    alignmentTool: string;
+  };
+}
+
+const buttonStyles: DraftJsButtonTheme = {
   buttonWrapper: css`
     display: inline-block;
   `,
@@ -33,7 +41,7 @@ const buttonStyles = {
   `,
 };
 
-const alignmentToolStyles = {
+const alignmentToolStyles: AlignmentPluginTheme['alignmentToolStyles'] = {
   alignmentTool: css`
     left: 50%;
     transform: translate(-50%) scale(0);
@@ -70,7 +78,7 @@ const alignmentToolStyles = {
   `,
 };
 
-export const defaultTheme = {
+export const defaultTheme: AlignmentPluginTheme = {
   buttonStyles,
   alignmentToolStyles,
 };

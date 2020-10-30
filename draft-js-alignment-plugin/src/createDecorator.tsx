@@ -1,15 +1,38 @@
-import React, { Component } from 'react';
+import { ContentBlock } from 'draft-js';
+import React, { Component, ComponentType, CSSProperties } from 'react';
 import ReactDOM from 'react-dom';
+import { AlignmentPluginStore } from './utils/createStore';
 
-const getDisplayName = WrappedComponent => {
+interface BlockAlignmentDecoratorParams {
+  blockProps: {
+    isFocused: boolean;
+    isCollapsedSelection: boolean;
+    alignment: string;
+    setAlignment(val: { alignment: string }): void;
+  };
+  style?: CSSProperties;
+  block: ContentBlock;
+}
+
+interface WrappedComponentProps extends BlockAlignmentDecoratorParams {}
+
+type WrappedComponentType = ComponentType<WrappedComponentProps> & {
+  WrappedComponent?: ComponentType<WrappedComponentProps>;
+};
+
+const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ store }) => WrappedComponent =>
-  class BlockAlignmentDecorator extends Component {
+export default ({ store }: { store: AlignmentPluginStore }) => (
+  WrappedComponent: WrappedComponentType
+): ComponentType<BlockAlignmentDecoratorParams> =>
+  class BlockAlignmentDecorator extends Component<
+    BlockAlignmentDecoratorParams
+  > {
     static displayName = `Alignment(${getDisplayName(WrappedComponent)})`;
-    static WrappedComponent =
+    static WrappedComponent: ComponentType<WrappedComponentProps> =
       WrappedComponent.WrappedComponent || WrappedComponent;
 
     componentDidUpdate = () => {
@@ -19,7 +42,7 @@ export default ({ store }) => WrappedComponent =>
       ) {
         // TODO figure out if and how to achieve this without fetching the DOM node
         // eslint-disable-next-line react/no-find-dom-node
-        const blockNode = ReactDOM.findDOMNode(this);
+        const blockNode = ReactDOM.findDOMNode(this) as HTMLElement;
         const boundingRect = blockNode.getBoundingClientRect();
         store.updateItem('setAlignment', this.props.blockProps.setAlignment);
         store.updateItem('alignment', this.props.blockProps.alignment);
