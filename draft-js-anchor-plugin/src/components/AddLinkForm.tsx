@@ -1,32 +1,50 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  ReactElement,
+  ChangeEvent,
+  KeyboardEvent,
+} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import EditorUtils from 'draft-js-plugins-utils';
-
+import { EditorState } from 'draft-js';
 import URLUtils from '../utils/URLUtils';
+import { AnchorPluginTheme } from '../theme';
 
-const AddLinkForm = props => {
+export interface AddLinkFormPubParams {
+  getEditorState(): EditorState;
+  setEditorState(state: EditorState): void;
+  onOverrideContent(content: undefined): void;
+}
+
+interface AddLinkFormParams extends AddLinkFormPubParams {
+  validateUrl?(url: string): boolean;
+  theme: AnchorPluginTheme;
+  placeholder?: string;
+}
+
+const AddLinkForm = (props: AddLinkFormParams): ReactElement => {
   const [value, setValue] = useState('');
   const [isInvalid, setIsvalid] = useState(false);
 
-  const input = useRef();
+  const input = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    input.current.focus();
+    input.current!.focus();
   }, []);
 
-  const onRef = node => {
-    input.current = node;
-  };
-
-  const isUrl = urlValue => {
-    if (props.validateUrl) { return props.validateUrl(urlValue); }
+  const isUrl = (urlValue: string): boolean => {
+    if (props.validateUrl) {
+      return props.validateUrl(urlValue);
+    }
 
     return URLUtils.isUrl(urlValue);
   };
 
-  const onChange = e => {
-    const newValue = e.target.value;
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const newValue = event.target.value;
 
     if (isInvalid && isUrl(URLUtils.normalizeUrl(newValue))) {
       setIsvalid(false);
@@ -37,9 +55,9 @@ const AddLinkForm = props => {
     setValue(newValue);
   };
 
-  const onClose = () => props.onOverrideContent(undefined);
+  const onClose = (): void => props.onOverrideContent(undefined);
 
-  const submit = () => {
+  const submit = (): void => {
     const { getEditorState, setEditorState } = props;
 
     let url = value;
@@ -54,16 +72,16 @@ const AddLinkForm = props => {
       url = URLUtils.normaliseMail(url);
     }
     setEditorState(EditorUtils.createLinkAtSelection(getEditorState(), url));
-    input.current.blur();
+    input.current!.blur();
     onClose();
   };
 
-  const onKeyDown = e => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
+  const onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
       submit();
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
       onClose();
     }
   };
@@ -80,7 +98,7 @@ const AddLinkForm = props => {
       onChange={onChange}
       onKeyDown={onKeyDown}
       placeholder={placeholder}
-      ref={onRef}
+      ref={input}
       type="text"
       value={value}
     />

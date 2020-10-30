@@ -33,6 +33,7 @@ export default function createStore(
 ): AlignmentPluginStore {
   let state: ItemMap = initialState || {};
   const listeners: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [x in keyof ItemMap]: Array<(v: any) => void>;
   } = {};
 
@@ -44,7 +45,9 @@ export default function createStore(
     unsubscribeFromItem(key, callback) {
       const listener = listeners[key];
       if (listener) {
-        listeners[key] = listener.filter(listener => listener !== callback);
+        listeners[key] = listener.filter(
+          currentListener => currentListener !== callback
+        );
       }
     },
     updateItem(key, item) {
@@ -54,7 +57,7 @@ export default function createStore(
       };
       const listener = listeners[key];
       if (listener) {
-        listener.forEach(listener => listener(state[key]));
+        listener.forEach(currentListener => currentListener(state[key]));
       }
     },
     getItem(key) {

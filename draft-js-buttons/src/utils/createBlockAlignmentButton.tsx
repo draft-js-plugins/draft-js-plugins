@@ -13,16 +13,16 @@ export default function createBlockAlignmentButton({
   children,
 }: CreateBlockAlignmentButtonProps): DraftJsBlockAlignmentButtonType {
   return function BlockAlignmentButton(props) {
-    const activate = (event: MouseEvent) => {
+    const activate = (event: MouseEvent): void => {
       event.preventDefault();
       props.setAlignment({ alignment });
     };
 
-    const preventBubblingUp = (event: MouseEvent) => {
+    const preventBubblingUp = (event: MouseEvent): void => {
       event.preventDefault();
     };
 
-    const isActive = () => props.alignment === alignment;
+    const isActive = (): boolean => props.alignment === alignment;
 
     const { theme } = props;
     const className = isActive()

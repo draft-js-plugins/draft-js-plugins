@@ -1,5 +1,10 @@
 import { ContentBlock } from 'draft-js';
-import React, { Component, ComponentType, CSSProperties } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  CSSProperties,
+  ReactElement,
+} from 'react';
 import ReactDOM from 'react-dom';
 import { AlignmentPluginStore } from './utils/createStore';
 
@@ -14,10 +19,8 @@ interface BlockAlignmentDecoratorParams {
   block: ContentBlock;
 }
 
-interface WrappedComponentProps extends BlockAlignmentDecoratorParams {}
-
-type WrappedComponentType = ComponentType<WrappedComponentProps> & {
-  WrappedComponent?: ComponentType<WrappedComponentProps>;
+type WrappedComponentType = ComponentType<BlockAlignmentDecoratorParams> & {
+  WrappedComponent?: ComponentType<BlockAlignmentDecoratorParams>;
 };
 
 const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
@@ -32,10 +35,10 @@ export default ({ store }: { store: AlignmentPluginStore }) => (
     BlockAlignmentDecoratorParams
   > {
     static displayName = `Alignment(${getDisplayName(WrappedComponent)})`;
-    static WrappedComponent: ComponentType<WrappedComponentProps> =
+    static WrappedComponent: ComponentType<BlockAlignmentDecoratorParams> =
       WrappedComponent.WrappedComponent || WrappedComponent;
 
-    componentDidUpdate = () => {
+    componentDidUpdate = (): void => {
       if (
         this.props.blockProps.isFocused &&
         this.props.blockProps.isCollapsedSelection
@@ -56,12 +59,12 @@ export default ({ store }: { store: AlignmentPluginStore }) => (
       }
     };
 
-    componentWillUnmount() {
+    componentWillUnmount(): void {
       // Set visibleBlock to null if the block is deleted
       store.updateItem('visibleBlock', null);
     }
 
-    render() {
+    render(): ReactElement {
       const {
         blockProps,
         style,

@@ -1,6 +1,12 @@
 import { css } from 'linaria';
 
-export const defaultTheme = {
+export interface AnchorPluginTheme {
+  input: string;
+  inputInvalid: string;
+  link: string;
+}
+
+export const defaultTheme: AnchorPluginTheme = {
   input: css`
     height: 34px;
     width: 220px;
