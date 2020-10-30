@@ -20,9 +20,9 @@ interface EmojiSelectParams extends EmojiSelectPubParams {
   imageType: string;
   theme: EmojiPluginTheme;
   store: EmojiPluginStore;
-  selectGroups: EmojiSelectGroup[];
+  selectGroups?: EmojiSelectGroup[];
   selectButtonContent?: ReactNode;
-  toneSelectOpenDelay: number;
+  toneSelectOpenDelay?: number;
   useNativeArt?: boolean;
 }
 
@@ -128,9 +128,9 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
           imageType={imageType}
           theme={theme}
           store={store}
-          groups={selectGroups}
+          groups={selectGroups!}
           emojis={emojis}
-          toneSelectOpenDelay={toneSelectOpenDelay}
+          toneSelectOpenDelay={toneSelectOpenDelay!}
           isOpen={this.state.isOpen}
           useNativeArt={useNativeArt}
         />

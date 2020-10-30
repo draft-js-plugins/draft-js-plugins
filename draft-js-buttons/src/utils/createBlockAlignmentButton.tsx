@@ -1,15 +1,24 @@
 /* eslint-disable react/no-children-prop */
-import React from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import clsx from 'clsx';
+import { DraftJsBlockAlignmentButtonType } from '..';
 
-const createBlockAlignmentButton = ({ alignment, children }) => {
-  const BlockAlignmentButton = props => {
-    const activate = event => {
+interface CreateBlockAlignmentButtonProps {
+  alignment: string;
+  children: ReactNode;
+}
+
+export default function createBlockAlignmentButton({
+  alignment,
+  children,
+}: CreateBlockAlignmentButtonProps): DraftJsBlockAlignmentButtonType {
+  return function BlockAlignmentButton(props) {
+    const activate = (event: MouseEvent) => {
       event.preventDefault();
       props.setAlignment({ alignment });
     };
 
-    const preventBubblingUp = event => {
+    const preventBubblingUp = (event: MouseEvent) => {
       event.preventDefault();
     };
 
@@ -31,8 +40,4 @@ const createBlockAlignmentButton = ({ alignment, children }) => {
       </div>
     );
   };
-
-  return BlockAlignmentButton;
-};
-
-export default createBlockAlignmentButton;
+}
