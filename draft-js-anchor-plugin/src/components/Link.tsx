@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
+import { EditorState } from 'draft-js';
 
 const propTypes = {
   className: PropTypes.string,
@@ -8,11 +9,28 @@ const propTypes = {
   getEditorState: PropTypes.func.isRequired,
 };
 
-const Link = ({ children, className, entityKey, getEditorState, target }) => {
+export interface LinkPubProps {
+  children: ReactNode;
+  entityKey: string;
+  getEditorState(): EditorState;
+}
+
+interface LinkProps extends LinkPubProps {
+  className?: string;
+  target?: string;
+}
+
+const Link = ({
+  children,
+  className,
+  entityKey,
+  getEditorState,
+  target,
+}: LinkProps): ReactElement => {
   const entity = getEditorState()
     .getCurrentContent()
     .getEntity(entityKey);
-  const entityData = entity ? entity.get('data') : undefined;
+  const entityData = entity ? entity.getData() : undefined;
   const href = (entityData && entityData.url) || undefined;
 
   return (

@@ -14,18 +14,18 @@ export default function createBlockStyleButton({
   children,
 }: CreateBlockStyleButtonProps): DraftJsStyleButtonType {
   return function BlockStyleButton(props) {
-    const toggleStyle = (event: MouseEvent) => {
+    const toggleStyle = (event: MouseEvent): void => {
       event.preventDefault();
       props.setEditorState(
         RichUtils.toggleBlockType(props.getEditorState(), blockType)
       );
     };
 
-    const preventBubblingUp = (event: MouseEvent) => {
+    const preventBubblingUp = (event: MouseEvent): void => {
       event.preventDefault();
     };
 
-    const blockTypeIsActive = () => {
+    const blockTypeIsActive = (): boolean => {
       // if the button is rendered before the editor
       if (!props.getEditorState) {
         return false;

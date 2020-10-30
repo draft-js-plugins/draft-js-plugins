@@ -63,7 +63,7 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
     }, 0);
   };
 
-  const onAlignmentChange = (value: string | undefined) => {
+  const onAlignmentChange = (value: string | undefined): void => {
     if (value) {
       setAlignment(value);
     }
