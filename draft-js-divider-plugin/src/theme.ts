@@ -1,5 +1,9 @@
 import { css } from 'linaria';
 
+export interface DividerPluginTheme {
+  divider?: string;
+}
+
 export const defaultTheme = {
   divider: css`
     display: flex;
