@@ -42,21 +42,21 @@ const Entry = (props: EntryProps): ReactElement => {
     mouseDown.current = false;
   });
 
-  const onMouseUp = () => {
+  const onMouseUp = (): void => {
     if (mouseDown.current) {
       props.onMentionSelect(props.mention);
       mouseDown.current = false;
     }
   };
 
-  const onMouseDown = (event: MouseEvent) => {
+  const onMouseDown = (event: MouseEvent): void => {
     // Note: important to avoid a content edit change
     event.preventDefault();
 
     mouseDown.current = true;
   };
 
-  const onMouseEnter = () => {
+  const onMouseEnter = (): void => {
     props.onMentionFocus(props.index);
   };
 

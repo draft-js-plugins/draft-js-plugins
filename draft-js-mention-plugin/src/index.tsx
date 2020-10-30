@@ -1,4 +1,7 @@
+import { EditorState } from 'draft-js';
+import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
 import { Map } from 'immutable';
+import React, { ComponentType, ReactElement } from 'react';
 import Mention, { MentionProps, SubMentionComponentProps } from './Mention';
 import MentionSuggestions, {
   MentionSuggestionCallbacks,
@@ -7,7 +10,6 @@ import MentionSuggestions, {
 import MentionSuggestionsPortal, {
   MentionSuggestionsPortalProps,
 } from './MentionSuggestionsPortal';
-import React, { ComponentType } from 'react';
 import addMention from './modifiers/addMention';
 import defaultPositionSuggestions, {
   PositionSuggestionsFn,
@@ -17,8 +19,6 @@ import { defaultTheme, Theme } from './theme';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
-import { EditorState } from 'draft-js';
-import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
 import { EntryComponentProps } from './MentionSuggestions/Entry/Entry';
 
 export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
@@ -153,13 +153,15 @@ export default (
   };
   const DecoratedMentionSuggestionsComponent = (
     props: MentionSuggestionsPubProps
-  ) => <MentionSuggestionsComponent {...props} {...mentionSearchProps} />;
-  const DecoratedMention = (props: MentionProps) => (
+  ): ReactElement => (
+    <MentionSuggestionsComponent {...props} {...mentionSearchProps} />
+  );
+  const DecoratedMention = (props: MentionProps): ReactElement => (
     <Mention {...props} theme={theme} mentionComponent={mentionComponent} />
   );
   const DecoratedMentionSuggestionsPortal = (
     props: Omit<MentionSuggestionsPortalProps, 'store'>
-  ) => <MentionSuggestionsPortal {...props} store={store} />;
+  ): ReactElement => <MentionSuggestionsPortal {...props} store={store} />;
   return {
     MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [
