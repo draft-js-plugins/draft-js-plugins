@@ -1,8 +1,17 @@
+import { EditorPlugin } from 'draft-js-plugins-editor';
 import handleDrop from './handleDrop';
 import createDecorator from './createDecorator';
 
-const createBlockDndPlugin = () => {
-  const store = {
+type DndEditorPlugin = EditorPlugin & {
+  decorator: ReturnType<typeof createDecorator>;
+};
+
+export interface DndPluginStore {
+  getReadOnly?(): boolean;
+}
+
+export default function createBlockDndPlugin(): DndEditorPlugin {
+  const store: DndPluginStore = {
     getReadOnly: undefined,
   };
   return {
@@ -13,6 +22,4 @@ const createBlockDndPlugin = () => {
     // Handle blocks dragged and dropped across the editor
     handleDrop,
   };
-};
-
-export default createBlockDndPlugin;
+}

@@ -1,22 +1,29 @@
-import { EditorState, SelectionState } from 'draft-js';
+import {
+  DraftDragType,
+  DraftHandleValue,
+  EditorState,
+  SelectionState,
+} from 'draft-js';
 import addBlock from './modifiers/addBlock';
 import removeBlock from './modifiers/removeBlock';
 import { DRAFTJS_BLOCK_KEY } from './constants';
 
 export default (
-  selection,
-  dataTransfer,
-  isInternal,
-  { getEditorState, setEditorState }
-) => {
+  selection: SelectionState,
+  dataTransfer: { data: { getData(type: string): string } },
+  isInternal: DraftDragType,
+  {
+    getEditorState,
+    setEditorState,
+  }: { getEditorState(): EditorState; setEditorState(state: EditorState): void }
+): DraftHandleValue => {
   const editorState = getEditorState();
-
   // Get data 'text' (anything else won't move the cursor) and expecting kind of data (text/key)
   const raw = dataTransfer.data.getData('text');
   const data = raw ? raw.split(':') : [];
 
   if (data.length !== 2) {
-    return undefined;
+    return 'not-handled';
   }
 
   // Existing block dropped
@@ -31,8 +38,8 @@ export default (
       editorState,
       selection,
       block.getType(),
-      entity.data,
-      entity.type
+      entity.getData(),
+      entity.getType()
     );
     const contentStateAfterRemove = removeBlock(
       contentStateAfterInsert,
@@ -49,7 +56,7 @@ export default (
     const newState = EditorState.push(
       editorState,
       contentStateAfterRemove,
-      'move-block'
+      'insert-fragment'
     );
     setEditorState(EditorState.forceSelection(newState, newSelection));
   }

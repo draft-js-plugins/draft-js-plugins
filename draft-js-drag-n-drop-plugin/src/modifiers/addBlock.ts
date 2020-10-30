@@ -5,16 +5,19 @@ import {
   BlockMapBuilder,
   ContentBlock,
   genKey,
+  EditorState,
+  SelectionState,
+  ContentState,
 } from 'draft-js';
 
 export default function(
-  editorState,
-  selection,
-  type,
-  data,
-  entityType,
+  editorState: EditorState,
+  selection: SelectionState,
+  type: string,
+  data: Record<string, unknown>,
+  entityType: string,
   text = ' '
-) {
+): ContentState {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = selection;
 
