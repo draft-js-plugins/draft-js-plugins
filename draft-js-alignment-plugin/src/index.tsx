@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react';
+import React, { ComponentType, ReactElement } from 'react';
 import { ContentBlock, EditorState } from 'draft-js';
 import { EditorPlugin } from 'draft-js-plugins-editor';
 import createDecorator from './createDecorator';
@@ -15,7 +15,7 @@ const createSetAlignment = (
     setEditorState(editorState: EditorState): void; // a function to update the EditorState
     getEditorState(): EditorState; // a function to get the current EditorState
   }
-) => (data: Object) => {
+) => (data: Record<string, unknown>) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
@@ -43,7 +43,7 @@ export default function(
 
   const { theme = defaultTheme } = config;
 
-  const DecoratedAlignmentTool = () => (
+  const DecoratedAlignmentTool = (): ReactElement => (
     <AlignmentTool store={store} theme={theme} />
   );
 

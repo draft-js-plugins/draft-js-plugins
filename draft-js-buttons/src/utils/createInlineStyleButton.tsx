@@ -14,19 +14,19 @@ export default function createInlineStyleButton({
   children,
 }: CreateInlineStyleButtonProp): DraftJsStyleButtonType {
   return function InlineStyleButton(props) {
-    const toggleStyle = (event: MouseEvent) => {
+    const toggleStyle = (event: MouseEvent): void => {
       event.preventDefault();
       props.setEditorState(
         RichUtils.toggleInlineStyle(props.getEditorState(), style)
       );
     };
 
-    const preventBubblingUp = (event: MouseEvent) => {
+    const preventBubblingUp = (event: MouseEvent): void => {
       event.preventDefault();
     };
 
     // we check if this.props.getEditorstate is undefined first in case the button is rendered before the editor
-    const styleIsActive = () =>
+    const styleIsActive = (): boolean =>
       props.getEditorState &&
       props
         .getEditorState()
