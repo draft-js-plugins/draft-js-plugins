@@ -1,6 +1,8 @@
 // import replaceBlock from './modifiers/replaceBlock';
 // import modifyBlockData from './modifiers/modifyBlockData';
-import { EditorState } from 'draft-js';
+import { DraftHandleValue, EditorState, SelectionState } from 'draft-js';
+import { PluginFunctions } from 'draft-js-plugins-editor';
+import { DndUploadPluginConfig } from '.';
 import { readFiles } from './utils/file';
 // import { getBlocksWhereEntityData } from './utils/block';
 
@@ -8,12 +10,12 @@ import { readFiles } from './utils/file';
   return addBlock(state, selection, defaultBlockType, data);
 } */
 
-export default function onDropFile(config) {
+export default function onDropFile(config: DndUploadPluginConfig) {
   return function onDropFileInner(
-    selection,
-    files,
-    { getEditorState, setEditorState }
-  ) {
+    selection: SelectionState,
+    files: Blob[],
+    { getEditorState, setEditorState }: PluginFunctions
+  ): DraftHandleValue {
     // TODO need to make sure the correct image block is added
     // TODO -> addImage must be passed in. content type matching should happen
 
@@ -26,12 +28,15 @@ export default function onDropFile(config) {
       const formData = new FormData();
 
       // Set data {files: [Array of files], formData: FormData}
-      const data = { files: [], formData };
-      for (const key in files) {
+      const data: { files: File[]; formData: FormData } = {
+        files: [],
+        formData,
+      };
+      for (const file of files) {
         // eslint-disable-line no-restricted-syntax
-        if (files[key] && files[key] instanceof File) {
-          data.formData.append('files', files[key]);
-          data.files.push(files[key]);
+        if (file && file instanceof File) {
+          data.formData.append('files', file);
+          data.files.push(file);
         }
       }
 
@@ -42,7 +47,9 @@ export default function onDropFile(config) {
         // Add blocks for each image before uploading
         let editorState = getEditorState();
         placeholders.forEach(placeholder => {
-          editorState = config.addImage(editorState, placeholder.src);
+          if (config.addImage) {
+            editorState = config.addImage(editorState, placeholder.src);
+          }
         });
         setEditorState(editorState);
 
@@ -107,6 +114,6 @@ export default function onDropFile(config) {
       return 'handled';
     }
 
-    return undefined;
+    return 'not-handled';
   };
 }
