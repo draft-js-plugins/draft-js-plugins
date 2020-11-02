@@ -28,7 +28,7 @@
     "@babel/preset-flow": "7.12.1",
     "@babel/preset-react": "7.10.4",
     "@babel/preset-typescript": "7.10.4",
-    "@babel/register": "7.11.5",
+    "@babel/register": "7.12.1",
     "@storybook/react": "^6.0.21",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.4.9",
