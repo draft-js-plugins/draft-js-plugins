@@ -1,6 +1,10 @@
 import { EditorState } from 'draft-js';
 
-export default function(editorState, key, data) {
+export default function(
+  editorState: EditorState,
+  key: string,
+  data: Record<string, unknown>
+): EditorState {
   const currentContentState = editorState.getCurrentContent();
 
   const block = currentContentState.getBlockForKey(key);

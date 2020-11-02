@@ -1,19 +1,15 @@
-// Check if drag event contains files (not text)
-export function containsFiles(event) {
-  if (event.dataTransfer.types) {
-    for (let i = 0; i < event.dataTransfer.types.length; i += 1) {
-      if (event.dataTransfer.types[i] === 'Files') {
-        return true;
-      }
-    }
-  }
-
-  return false;
+export interface FileResult {
+  lastModifiedDate: string | undefined;
+  lastModified: number;
+  name: string;
+  size: number;
+  type: string;
+  src: string | ArrayBuffer | null;
 }
 
 // Read file contents intelligently as plain text/json, image as dataUrl or
 // anything else as binary
-export function readFile(file) {
+export function readFile(file: File): Promise<FileResult> {
   return new Promise(resolve => {
     const reader = new FileReader();
 
@@ -22,6 +18,8 @@ export function readFile(file) {
       // Return an array with one image
       resolve({
         // These are attributes like size, name, type, ...
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         lastModifiedDate: file.lastModifiedDate,
         lastModified: file.lastModified,
         name: file.name,
@@ -29,7 +27,7 @@ export function readFile(file) {
         type: file.type,
 
         // This is the files content as base64
-        src: event.target.result,
+        src: event.target!.result,
       });
     };
 
@@ -44,6 +42,6 @@ export function readFile(file) {
 }
 
 // Read multiple files using above function
-export function readFiles(files) {
+export function readFiles(files: File[]): Promise<FileResult[]> {
   return Promise.all(files.map(readFile));
 }
