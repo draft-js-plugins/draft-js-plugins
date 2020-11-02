@@ -4,13 +4,19 @@ import {
   EditorState,
   BlockMapBuilder,
   genKey as generateRandomKey,
+  ContentState,
+  SelectionState,
 } from 'draft-js';
 
-const insertBlockAfterSelection = (contentState, selectionState, newBlock) => {
+const insertBlockAfterSelection = (
+  contentState: ContentState,
+  selectionState: SelectionState,
+  newBlock: ContentBlock
+): ContentState => {
   const targetKey = selectionState.getStartKey();
-  const array = [];
+  const array: ContentBlock[] = [];
   contentState.getBlockMap().forEach((block, blockKey) => {
-    array.push(block);
+    array.push(block!);
     if (blockKey !== targetKey) return;
     array.push(newBlock);
   });
@@ -24,10 +30,10 @@ const insertBlockAfterSelection = (contentState, selectionState, newBlock) => {
       focusOffset: newBlock.getLength(),
       isBackward: false,
     }),
-  });
+  }) as ContentState;
 };
 
-export default function insertNewLine(editorState) {
+export default function insertNewLine(editorState: EditorState): EditorState {
   const contentState = editorState.getCurrentContent();
   const selectionState = editorState.getSelection();
   const newLineBlock = new ContentBlock({
@@ -43,6 +49,6 @@ export default function insertNewLine(editorState) {
   );
   const newContent = withNewLine.merge({
     selectionAfter: withNewLine.getSelectionAfter().set('hasFocus', true),
-  });
+  }) as ContentState;
   return EditorState.push(editorState, newContent, 'insert-fragment');
 }

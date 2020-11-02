@@ -1,6 +1,11 @@
 import { css } from 'linaria';
 
-export const defaultTheme = {
+export interface FocusPluginTheme {
+  unfocused: string;
+  focused: string;
+}
+
+export const defaultTheme: FocusPluginTheme = {
   unfocused: css`
     &:hover {
       cursor: default;

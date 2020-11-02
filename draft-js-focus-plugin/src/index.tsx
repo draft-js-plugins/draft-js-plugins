@@ -1,15 +1,21 @@
-import { EditorState } from 'draft-js';
+import { EditorState, SelectionState, ContentState } from 'draft-js';
+import { EditorPlugin } from 'draft-js-plugins-editor';
 import insertNewLine from './modifiers/insertNewLine';
 import setSelection from './modifiers/setSelection';
 import setSelectionToBlock from './modifiers/setSelectionToBlock';
 import createDecorator from './createDecorator';
-import createBlockKeyStore from './utils/createBlockKeyStore';
+import createBlockKeyStore, {
+  BlockKeyStore,
+} from './utils/createBlockKeyStore';
 import blockInSelection from './utils/blockInSelection';
 import getBlockMapKeys from './utils/getBlockMapKeys';
 import removeBlock from './modifiers/removeBlock';
-import { defaultTheme } from './theme.js';
+import { defaultTheme, FocusPluginTheme } from './theme.js';
 
-const focusableBlockIsSelected = (editorState, blockKeyStore) => {
+const focusableBlockIsSelected = (
+  editorState: EditorState,
+  blockKeyStore: BlockKeyStore
+): boolean => {
   const selection = editorState.getSelection();
   if (selection.getAnchorKey() !== selection.getFocusKey()) {
     return false;
@@ -28,11 +34,19 @@ const deleteCommands = [
   'delete-to-end-of-block',
 ];
 
-export default (config = {}) => {
-  const blockKeyStore = createBlockKeyStore({});
+export interface FocusEditorPluginConfig {
+  theme?: FocusPluginTheme;
+}
+
+type FocusEditorPlugin = EditorPlugin & {
+  decorator: ReturnType<typeof createDecorator>;
+};
+
+export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
+  const blockKeyStore = createBlockKeyStore();
   const theme = config.theme ? config.theme : defaultTheme;
-  let lastSelection;
-  let lastContentState;
+  let lastSelection: SelectionState | undefined;
+  let lastContentState: ContentState | undefined;
 
   return {
     handleReturn: (event, editorState, { setEditorState }) => {
@@ -69,7 +83,7 @@ export default (config = {}) => {
       // since if a block was added it will be rendered anyway and if it was text
       // then the change was not a pure selection change
       const contentState = editorState.getCurrentContent();
-      if (!contentState.equals(lastContentState)) {
+      if (!contentState.equals(lastContentState!)) {
         lastContentState = contentState;
         return editorState;
       }
@@ -90,7 +104,7 @@ export default (config = {}) => {
           lastSelection.getStartKey(),
           lastSelection.getEndKey()
         );
-        if (lastBlockMapKeys.some(key => focusableBlockKeys.includes(key))) {
+        if (lastBlockMapKeys.some(key => focusableBlockKeys.includes(key!))) {
           lastSelection = selection;
           // By forcing the selection the editor will trigger the blockRendererFn which is
           // necessary for the blockProps containing isFocus to be passed down again.
@@ -106,7 +120,7 @@ export default (config = {}) => {
         selection.getStartKey(),
         selection.getEndKey()
       );
-      if (currentBlockMapKeys.some(key => focusableBlockKeys.includes(key))) {
+      if (currentBlockMapKeys.some(key => focusableBlockKeys.includes(key!))) {
         lastSelection = selection;
         // By forcing the selection the editor will trigger the blockRendererFn which is
         // necessary for the blockProps containing isFocus to be passed down again.
@@ -134,19 +148,19 @@ export default (config = {}) => {
         }
         // arrow up
         if (evt.keyCode === 38) {
-          setSelection(getEditorState, setEditorState, 'up', event);
+          setSelection(getEditorState, setEditorState, 'up', evt);
         }
         // arrow down
         if (evt.keyCode === 40) {
-          setSelection(getEditorState, setEditorState, 'down', event);
-          return;
+          setSelection(getEditorState, setEditorState, 'down', evt);
+          return undefined;
         }
       }
 
       // Don't manually overwrite in case the shift key is used to avoid breaking
       // native behaviour that works anyway.
       if (evt.shiftKey) {
-        return;
+        return undefined;
       }
 
       // arrow left
@@ -198,7 +212,7 @@ export default (config = {}) => {
           .getCurrentContent()
           .getBlockBefore(selectionKey);
         if (beforeBlock && blockKeyStore.includes(beforeBlock.getKey())) {
-          setSelection(getEditorState, setEditorState, 'up', event);
+          setSelection(getEditorState, setEditorState, 'up', evt);
         }
       }
 
@@ -210,9 +224,10 @@ export default (config = {}) => {
           .getCurrentContent()
           .getBlockAfter(selectionKey);
         if (afterBlock && blockKeyStore.includes(afterBlock.getKey())) {
-          setSelection(getEditorState, setEditorState, 'down', event);
+          setSelection(getEditorState, setEditorState, 'down', evt);
         }
       }
+      return undefined;
     },
 
     // Wrap all block-types in block-focus decorator
