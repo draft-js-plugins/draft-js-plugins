@@ -1,8 +1,14 @@
-import { SelectionState, EditorState } from 'draft-js';
+import { SelectionState, EditorState, ContentBlock } from 'draft-js';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey';
 
 // Set selection of editor to next/previous block
-export default (getEditorState, setEditorState, newActiveBlock) => {
+export default (
+  getEditorState: () => EditorState,
+  setEditorState: (state: EditorState) => void,
+  newActiveBlock: ContentBlock
+): void => {
   const editorState = getEditorState();
 
   // TODO verify that always a key-0-0 exists
@@ -10,7 +16,7 @@ export default (getEditorState, setEditorState, newActiveBlock) => {
   const node = document.querySelectorAll(`[data-offset-key="${offsetKey}"]`)[0];
   // set the native selection to the node so the caret is not in the text and
   // the selectionState matches the native selection
-  const selection = window.getSelection();
+  const selection = window.getSelection()!;
   const range = document.createRange();
   range.setStart(node, 0);
   range.setEnd(node, 0);
