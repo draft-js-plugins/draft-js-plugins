@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Hide internals in single bundle
 - Add esm support
 - Fixed ts definition in order to be able to include the component without childs
+- convert to typescript
 
 ## 3.0.1
 
