@@ -1,6 +1,9 @@
-import { Modifier, SelectionState } from 'draft-js';
+import { ContentState, Modifier, SelectionState } from 'draft-js';
 
-export default function(contentState, blockKey) {
+export default function(
+  contentState: ContentState,
+  blockKey: string
+): ContentState {
   const afterKey = contentState.getKeyAfter(blockKey);
   const afterBlock = contentState.getBlockForKey(afterKey);
   let targetRange;

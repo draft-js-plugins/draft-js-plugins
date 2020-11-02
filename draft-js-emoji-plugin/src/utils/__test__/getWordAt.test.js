@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import getWordAt from '../getWordAt';
 
 describe('getWordAt', () => {
@@ -8,7 +7,7 @@ describe('getWordAt', () => {
       begin: 5,
       end: 7,
     };
-    expect(getWordAt('this is a test', 5)).to.deep.equal(expected);
+    expect(getWordAt('this is a test', 5)).toEqual(expected);
   });
 
   it('finds the first word', () => {
@@ -17,7 +16,7 @@ describe('getWordAt', () => {
       begin: 0,
       end: 4,
     };
-    expect(getWordAt('this is a test', 0)).to.deep.equal(expected);
+    expect(getWordAt('this is a test', 0)).toEqual(expected);
   });
 
   it('finds the last word', () => {
@@ -26,6 +25,6 @@ describe('getWordAt', () => {
       begin: 10,
       end: 14,
     };
-    expect(getWordAt('this is a test', 15)).to.deep.equal(expected);
+    expect(getWordAt('this is a test', 15)).toEqual(expected);
   });
 });
