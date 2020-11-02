@@ -1,8 +1,12 @@
 /* @flow */
 
+import { ContentBlock } from 'draft-js';
 import { extractHashtagsWithIndices } from './utils';
 
-export default (contentBlock: Object, callback: Function) => {
+export default (
+  contentBlock: ContentBlock,
+  callback: (begin: number, end: number) => void
+): void => {
   const text = contentBlock.getText();
   const results = extractHashtagsWithIndices(text);
 
