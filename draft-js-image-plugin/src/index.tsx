@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { ComponentType, ReactElement } from 'react';
+import { EditorPlugin } from 'draft-js-plugins-editor';
 import addImage from './modifiers/addImage';
-import ImageComponent from './Image';
+import ImageComponent, { ImageProps } from './Image';
 
-const defaultTheme = {
-  image: null,
+export interface ImagePluginTheme {
+  image?: string;
+}
+
+const defaultTheme: ImagePluginTheme = {};
+
+export interface ImagePluginConfig {
+  decorator?(component: ComponentType<ImageProps>): ComponentType<ImageProps>;
+  theme?: ImagePluginTheme;
+  imageComponent?: ComponentType<ImageProps>;
+}
+
+export type ImageEditorPlugin = EditorPlugin & {
+  addImage: typeof addImage;
 };
 
-export default (config = {}) => {
+export default (config: ImagePluginConfig = {}): ImageEditorPlugin => {
   const theme = config.theme ? config.theme : defaultTheme;
   let Image = config.imageComponent || ImageComponent;
   if (config.decorator) {
     Image = config.decorator(Image);
   }
-  const ThemedImage = props => <Image {...props} theme={theme} />;
+  const ThemedImage = (props: ImageProps): ReactElement => (
+    <Image {...props} theme={theme} />
+  );
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === 'atomic') {
