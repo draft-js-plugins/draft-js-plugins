@@ -16,4 +16,9 @@ module.exports = {
   coverageThreshold: {
     global: {},
   },
+  globals: {
+    'ts-jest': {
+      babelConfig: true,
+    },
+  },
 };

@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { CounterPluginTheme } from '../theme';
+import { CounterPluginStore } from '..';
+
+export interface CustomCounterPubProps {
+  limit?: number;
+  countFunction(text: string): number;
+  className?: string;
+}
+
+interface CustomCounterProps extends CustomCounterPubProps {
+  store: CounterPluginStore;
+  theme?: CounterPluginTheme;
+}
 
 const CustomCounter = ({
   store,
-  limit,
+  limit = 0,
   countFunction,
   theme = {},
   className,
-}) => {
-  const getClassNames = count => {
+}: CustomCounterProps): ReactElement => {
+  const getClassNames = (count: number): string => {
     const defaultStyle = clsx(theme.counter, className);
     const overLimitStyle = clsx(theme.counterOverLimit, className);
     return count > limit ? overLimitStyle : defaultStyle;
   };
 
-  const plainText = store
-    .getEditorState()
+  const plainText = store.getEditorState!()
     .getCurrentContent()
     .getPlainText('');
   const count = countFunction(plainText);
-  const classNames = getClassNames(count, limit);
+  const classNames = getClassNames(count);
 
   return <span className={classNames}>{count}</span>;
 };
