@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { ComponentType, FC, ReactElement } from 'react';
+import { EditorPlugin } from 'draft-js-plugins-editor';
 import createStore from './utils/createStore';
-import Toolbar from './components/Toolbar';
+import Toolbar, { ToolbarChildrenProps } from './components/Toolbar';
 import Separator from './components/Separator';
-import { defaultTheme } from './theme.js';
+import { defaultTheme, InlineToolbarPluginTheme } from './theme.js';
 
-export default (config = {}) => {
+export interface InlineToolbarPluginConfig {
+  theme?: InlineToolbarPluginTheme;
+}
+
+export interface ToolbarProps {
+  children?: FC<ToolbarChildrenProps>;
+  overrideContent?: ComponentType<ToolbarChildrenProps>;
+}
+
+export type InlineToolBarPlugin = EditorPlugin & {
+  InlineToolbar: ComponentType<ToolbarProps>;
+};
+
+export default (
+  config: InlineToolbarPluginConfig = {}
+): InlineToolBarPlugin => {
   const store = createStore({
     isVisible: false,
   });
 
   const { theme = defaultTheme } = config;
 
-  const InlineToolbar = props => (
+  const InlineToolbar = (props: ToolbarProps): ReactElement => (
     <Toolbar {...props} store={store} theme={theme} />
   );
 

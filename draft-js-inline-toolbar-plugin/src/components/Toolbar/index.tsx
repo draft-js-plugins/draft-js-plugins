@@ -1,16 +1,35 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
-import { getVisibleSelectionRect } from 'draft-js';
+import React, { ComponentType, CSSProperties, FC, ReactElement } from 'react';
+import { EditorState, getVisibleSelectionRect } from 'draft-js';
 import {
   ItalicButton,
   BoldButton,
   UnderlineButton,
   CodeButton,
+  DraftJsButtonTheme,
 } from 'draft-js-buttons';
+import { InlineToolbarPluginStore } from 'draft-js-inline-toolbar-plugin/src/utils/createStore';
+import { InlineToolbarPluginTheme } from 'draft-js-inline-toolbar-plugin/src/theme';
 
-export default class Toolbar extends React.Component {
+export interface ToolbarChildrenProps {
+  theme: DraftJsButtonTheme;
+  getEditorState: () => EditorState;
+  setEditorState: (editorState: EditorState) => void;
+  onOverrideContent: (content: ComponentType<ToolbarChildrenProps>) => void;
+}
+
+interface ToolbarProps {
+  store: InlineToolbarPluginStore;
+  children?: FC<ToolbarChildrenProps>;
+  isVisible?: boolean;
+  position?: { top: number; left: number };
+  overrideContent?: ComponentType<ToolbarChildrenProps>;
+  theme: InlineToolbarPluginTheme;
+}
+
+export default class Toolbar extends React.Component<ToolbarProps> {
   static defaultProps = {
-    children: externalProps => (
+    children: (externalProps: ToolbarChildrenProps): ReactElement => (
       // may be use React.Fragment instead of div to improve perfomance after React 16
       <div>
         <ItalicButton {...externalProps} />
@@ -21,7 +40,7 @@ export default class Toolbar extends React.Component {
     ),
   };
 
-  state = {
+  state: ToolbarProps = {
     isVisible: false,
     position: undefined,
 
@@ -31,13 +50,14 @@ export default class Toolbar extends React.Component {
      * @type {Component}
      */
     overrideContent: undefined,
-  };
+  } as ToolbarProps;
+  toolbar: HTMLDivElement | null = null;
 
-  UNSAFE_componentWillMount() {
+  UNSAFE_componentWillMount(): void {
     this.props.store.subscribeToItem('selection', this.onSelectionChanged);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     this.props.store.unsubscribeFromItem('selection', this.onSelectionChanged);
   }
 
@@ -47,11 +67,13 @@ export default class Toolbar extends React.Component {
    * this function again with `undefined` in order to reset `overrideContent`.
    * @param {Component} overrideContent
    */
-  onOverrideContent = overrideContent => {
+  onOverrideContent = (
+    overrideContent: ComponentType<ToolbarChildrenProps>
+  ): void => {
     this.setState({ overrideContent });
   };
 
-  onSelectionChanged = () => {
+  onSelectionChanged = (): void => {
     // need to wait a tick for window.getSelection() to be accurate
     // when focusing editor with already present selection
     setTimeout(() => {
@@ -60,7 +82,7 @@ export default class Toolbar extends React.Component {
       // The editor root should be two levels above the node from
       // `getEditorRef`. In case this changes in the future, we
       // attempt to find the node dynamically by traversing upwards.
-      const editorRef = this.props.store.getItem('getEditorRef')();
+      const editorRef = this.props.store.getItem('getEditorRef')!();
       if (!editorRef) return;
 
       // This keeps backwards compatibility with React 15
@@ -69,11 +91,12 @@ export default class Toolbar extends React.Component {
           ? editorRef.refs.editor
           : editorRef.editor;
       while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
-        editorRoot = editorRoot.parentNode;
+        editorRoot = editorRoot.parentNode as HTMLElement;
       }
       const editorRootRect = editorRoot.getBoundingClientRect();
 
-      const parentWindow = editorRoot.ownerDocument && editorRoot.ownerDocument.defaultView;
+      const parentWindow =
+        editorRoot.ownerDocument && editorRoot.ownerDocument.defaultView;
       const selectionRect = getVisibleSelectionRect(parentWindow || window);
       if (!selectionRect) return;
 
@@ -96,17 +119,15 @@ export default class Toolbar extends React.Component {
     });
   };
 
-  getStyle() {
+  getStyle(): CSSProperties {
     const { store } = this.props;
     const { overrideContent, position } = this.state;
-    const selection = store
-      .getItem('getEditorState')()
-      .getSelection();
+    const selection = store.getItem('getEditorState')!().getSelection();
     // overrideContent could for example contain a text input, hence we always show overrideContent
     // TODO: Test readonly mode and possibly set isVisible to false if the editor is readonly
     const isVisible =
       (!selection.isCollapsed() && selection.getHasFocus()) || overrideContent;
-    const style = { ...position };
+    const style: CSSProperties = { ...position! };
 
     if (isVisible) {
       style.visibility = 'visible';
@@ -120,17 +141,13 @@ export default class Toolbar extends React.Component {
     return style;
   }
 
-  handleToolbarRef = node => {
-    this.toolbar = node;
-  };
-
-  render() {
+  render(): ReactElement {
     const { theme, store } = this.props;
     const { overrideContent: OverrideContent } = this.state;
-    const childrenProps = {
+    const childrenProps: ToolbarChildrenProps = {
       theme: theme.buttonStyles,
-      getEditorState: store.getItem('getEditorState'),
-      setEditorState: store.getItem('setEditorState'),
+      getEditorState: store.getItem('getEditorState')!,
+      setEditorState: store.getItem('setEditorState')!,
       onOverrideContent: this.onOverrideContent,
     };
 
@@ -138,12 +155,14 @@ export default class Toolbar extends React.Component {
       <div
         className={theme.toolbarStyles.toolbar}
         style={this.getStyle()}
-        ref={this.handleToolbarRef}
+        ref={element => {
+          this.toolbar = element;
+        }}
       >
         {OverrideContent ? (
           <OverrideContent {...childrenProps} />
         ) : (
-          this.props.children(childrenProps)
+          this.props.children!(childrenProps)
         )}
       </div>
     );
