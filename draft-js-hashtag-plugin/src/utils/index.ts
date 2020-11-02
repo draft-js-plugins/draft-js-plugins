@@ -1,24 +1,26 @@
 import regexes from './hashtagRegex';
 
-/* eslint-disable */
-export function extractHashtagsWithIndices(text) {
+interface HashtagIndice {
+  hashtag: string;
+  indices: [number, number];
+}
+
+export function extractHashtagsWithIndices(text: string): HashtagIndice[] {
   if (!text || !text.match(regexes.hashSigns)) {
     return [];
   }
-
-  var tags = [];
-
-  text.replace(regexes.validHashtag, function(
-    match,
-    before,
-    hash,
-    hashText,
-    offset,
-    chunk
-  ) {
+  const tags: HashtagIndice[] = [];
+  function replacer(
+    match: string,
+    before: string,
+    hash: string,
+    hashText: string,
+    offset: number,
+    chunk: string
+  ): string {
     const after = chunk.slice(offset + match.length);
     if (after.match(regexes.endHashtagMatch)) {
-      return;
+      return '';
     }
     const startPosition = offset + before.length;
     const endPosition = startPosition + hashText.length + 1;
@@ -26,7 +28,8 @@ export function extractHashtagsWithIndices(text) {
       hashtag: hashText,
       indices: [startPosition, endPosition],
     });
-  });
-
+    return '';
+  }
+  text.replace(regexes.validHashtag, replacer);
   return tags;
 }
