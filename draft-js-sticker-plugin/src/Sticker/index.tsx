@@ -1,7 +1,22 @@
-import React, { Component } from 'react';
+import { ContentBlock, ContentState } from 'draft-js';
+import React, { Component, MouseEvent, ReactElement } from 'react';
+import { ImmutableDataStickerPluginItem } from '..';
+import { StickerPluginTheme } from '../theme';
 
-export default class Sticker extends Component {
-  remove = event => {
+export interface StickerPubProps {
+  block: ContentBlock;
+  contentState: ContentState;
+  blockProps: { onRemove(blockKey: string): void };
+}
+
+interface StickerProps extends StickerPubProps {
+  stickers: ImmutableDataStickerPluginItem;
+  attachRemoveButton?: boolean;
+  theme?: StickerPluginTheme;
+}
+
+export default class Sticker extends Component<StickerProps> {
+  remove = (event: MouseEvent): void => {
     // Note: important to avoid a content edit change
     event.preventDefault();
     event.stopPropagation();
@@ -9,7 +24,7 @@ export default class Sticker extends Component {
     this.props.blockProps.onRemove(this.props.block.getKey());
   };
 
-  render() {
+  render(): ReactElement {
     const { block, stickers, theme = {}, contentState } = this.props;
     const removeButton = (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions

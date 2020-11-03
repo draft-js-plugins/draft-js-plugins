@@ -1,7 +1,7 @@
 import React from 'react';
 import createStore from './utils/createStore';
 import Toolbar from './components/Toolbar';
-import { defaultTheme } from './theme.js';
+import { defaultTheme } from './theme';
 
 export default (config = {}) => {
   const defaultPostion = 'left';
@@ -12,7 +12,7 @@ export default (config = {}) => {
 
   const { position = defaultPostion, theme = defaultTheme } = config;
 
-  const SideToolbar = props => (
+  const SideToolbar = (props) => (
     <Toolbar {...props} store={store} theme={theme} position={position} />
   );
 
@@ -23,7 +23,7 @@ export default (config = {}) => {
       store.updateItem('getEditorRef', getEditorRef);
     },
     // Re-Render the toolbar on every change
-    onChange: editorState => {
+    onChange: (editorState) => {
       store.updateItem('editorState', editorState);
       return editorState;
     },

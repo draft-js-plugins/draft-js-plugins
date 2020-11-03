@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import { Map } from 'immutable';
+import { EditorPlugin } from 'draft-js-plugins-editor';
 import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
 import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
 import blockRendererFn from './blockRendererFn';
-import Sticker from './Sticker';
-import StickerSelect from './StickerSelect';
-import { defaultTheme } from './theme.js';
+import Sticker, { StickerPubProps } from './Sticker';
+import StickerSelect, { StickerSelectPubParams } from './StickerSelect';
+import { defaultTheme, StickerPluginTheme } from './theme';
 
-export default (config = {}) => {
+export type ImmutableStickerPluginItem = Immutable.Map<
+  string,
+  Immutable.Map<string, string>
+>;
+export type ImmutableDataStickerPluginItem = Immutable.Map<
+  string,
+  ImmutableStickerPluginItem
+>;
+
+export interface StickerPluginConfig {
+  attachRemoveButton?: boolean;
+  theme?: StickerPluginTheme;
+  stickers: ImmutableDataStickerPluginItem;
+  selectButtonContent?: ReactNode;
+}
+
+export default (
+  config: StickerPluginConfig
+): EditorPlugin & {
+  add: typeof addSticker;
+  remove: typeof removeSticker;
+  StickerSelect: ComponentType<StickerSelectPubParams>;
+} => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
   //
   // Why? Because when merging a developer needs to know all of the underlying
@@ -23,7 +46,7 @@ export default (config = {}) => {
 
   // default to true if not explicitly set to false
   const attachRemoveButton = config.attachRemoveButton !== false;
-  const DecoratedSticker = props => (
+  const DecoratedSticker = (props: StickerPubProps): ReactElement => (
     <Sticker
       {...props}
       attachRemoveButton={attachRemoveButton}
@@ -31,7 +54,9 @@ export default (config = {}) => {
       theme={theme}
     />
   );
-  const DecoratedStickerSelect = props => (
+  const DecoratedStickerSelect = (
+    props: StickerSelectPubParams
+  ): ReactElement => (
     <StickerSelect
       {...props}
       selectButtonContent={selectButtonContent}
@@ -39,12 +64,8 @@ export default (config = {}) => {
       theme={theme}
     />
   );
-  const blockRendererConfig = {
-    ...config,
-    Sticker: DecoratedSticker,
-  };
   return {
-    blockRendererFn: blockRendererFn(blockRendererConfig),
+    blockRendererFn: blockRendererFn(DecoratedSticker),
     onChange: cleanupEmptyStickers,
     add: addSticker,
     remove: removeSticker,

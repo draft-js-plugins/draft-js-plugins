@@ -3,7 +3,7 @@ import { EditorPlugin } from 'draft-js-plugins-editor';
 import createStore from './utils/createStore';
 import Toolbar, { ToolbarChildrenProps } from './components/Toolbar';
 import Separator from './components/Separator';
-import { defaultTheme, InlineToolbarPluginTheme } from './theme.js';
+import { defaultTheme, InlineToolbarPluginTheme } from './theme';
 
 export interface InlineToolbarPluginConfig {
   theme?: InlineToolbarPluginTheme;
@@ -38,7 +38,7 @@ export default (
       store.updateItem('getEditorRef', getEditorRef);
     },
     // Re-Render the text-toolbar on selection change
-    onChange: editorState => {
+    onChange: (editorState) => {
       store.updateItem('selection', editorState.getSelection());
       return editorState;
     },
