@@ -1,5 +1,10 @@
 import { css } from 'linaria';
 
+export interface UndoPluginTheme {
+  undo?: string;
+  redo?: string;
+}
+
 const button = css`
   box-sizing: border-box;
   border: 1px solid #ddd;
@@ -33,7 +38,7 @@ const button = css`
   }
 `;
 
-export const defaultTheme = {
+export const defaultTheme: UndoPluginTheme = {
   redo: button,
   undo: button,
 };

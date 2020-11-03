@@ -39,19 +39,13 @@ describe('UndoButton', () => {
     const result = shallow(
       <Undo store={store} theme={theme} className="undo" children="undo" />
     );
-    expect(result)
-      .to.have.prop('className')
-      .to.contain('undo');
-    expect(result)
-      .to.have.prop('className')
-      .to.contain('custom-class-name');
+    expect(result).to.have.prop('className').to.contain('undo');
+    expect(result).to.have.prop('className').to.contain('custom-class-name');
   });
 
   it('adds disabled attribute to button if the getUndoStack is empty', () => {
     const result = shallow(<Undo store={store} children="redo" />);
-    expect(result.find('button'))
-      .prop('disabled')
-      .to.equal(true);
+    expect(result.find('button')).prop('disabled').to.equal(true);
   });
 
   it('removes disabled attribute from button if the getUndoStack is not empty', () => {
@@ -72,9 +66,7 @@ describe('UndoButton', () => {
       setEditorState: onChange,
     };
     const result = shallow(<Undo store={store} children="redo" />);
-    expect(result.find('button'))
-      .prop('disabled')
-      .to.equal(false);
+    expect(result.find('button')).prop('disabled').to.equal(false);
   });
 
   it('triggers an update with undo when the button is clicked', () => {

@@ -1,22 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, MouseEvent, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import clsx from 'clsx';
+import { UndoPluginTheme } from '../theme';
+import { UndoPuginStore, UndoRedoButtonProps } from '..';
 
-class UndoButton extends Component {
+interface UndoButtonProps extends UndoRedoButtonProps {
+  theme: UndoPluginTheme;
+  store: UndoPuginStore;
+}
+
+export default class UndoButton extends Component<UndoButtonProps> {
   static propTypes = {
     children: PropTypes.node.isRequired,
     theme: PropTypes.any,
   };
 
-  onClick = event => {
+  onClick = (event: MouseEvent): void => {
     event.stopPropagation();
-    this.props.store.setEditorState(
-      EditorState.undo(this.props.store.getEditorState())
+    this.props.store.setEditorState!(
+      EditorState.undo(this.props.store.getEditorState!())
     );
   };
 
-  render() {
+  render(): ReactElement {
     const { theme = {}, children, className } = this.props;
     const combinedClassName = clsx(theme.undo, className);
     return (
@@ -24,10 +31,7 @@ class UndoButton extends Component {
         disabled={
           !this.props.store ||
           !this.props.store.getEditorState ||
-          this.props.store
-            .getEditorState()
-            .getUndoStack()
-            .isEmpty()
+          this.props.store.getEditorState().getUndoStack().isEmpty()
         }
         type="button"
         onClick={this.onClick}
@@ -38,5 +42,3 @@ class UndoButton extends Component {
     );
   }
 }
-
-export default UndoButton;
