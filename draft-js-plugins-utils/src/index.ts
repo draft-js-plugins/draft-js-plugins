@@ -1,5 +1,8 @@
 import { RichUtils, EditorState, EntityInstance } from 'draft-js';
 
+export type { Store } from './createStore';
+export { createStore } from './createStore';
+
 export interface DecodedOffset {
   blockKey: string;
   decoratorKey: number;

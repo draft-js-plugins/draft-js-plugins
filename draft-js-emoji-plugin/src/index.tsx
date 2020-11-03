@@ -27,7 +27,8 @@ import emojiList from './utils/emojiList';
 import { defaultTheme, EmojiPluginTheme } from './theme';
 import Group from './components/EmojiSelect/Popover/Groups/Group';
 
-export { defaultTheme, EmojiPluginTheme };
+export { defaultTheme };
+export type { EmojiPluginTheme };
 
 const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
 const defaultImageType = 'svg';
@@ -114,10 +115,10 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   const store: EmojiPluginStore = {
     getEditorState: undefined,
     setEditorState: undefined,
-    getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
+    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
     getAllSearches: () => searches,
-    isEscaped: offsetKey => escapedSearch === offsetKey,
-    escapeSearch: offsetKey => {
+    isEscaped: (offsetKey) => escapedSearch === offsetKey,
+    escapeSearch: (offsetKey) => {
       escapedSearch = offsetKey;
     },
 
@@ -125,7 +126,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
       escapedSearch = undefined;
     },
 
-    register: offsetKey => {
+    register: (offsetKey) => {
       searches = searches.set(offsetKey, offsetKey);
     },
 
@@ -133,7 +134,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
       clientRectFunctions = clientRectFunctions.set(offsetKey, func);
     },
 
-    unregister: offsetKey => {
+    unregister: (offsetKey) => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
@@ -237,7 +238,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
       callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
     handleReturn: (keyboardEvent: KeyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
-    onChange: editorState => {
+    onChange: (editorState) => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
       const selection = editorState.getSelection();
 

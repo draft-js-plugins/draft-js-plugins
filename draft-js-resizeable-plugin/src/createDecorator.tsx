@@ -1,15 +1,60 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  CSSProperties,
+  LegacyRef,
+  ReactElement,
+} from 'react';
 import ReactDOM from 'react-dom';
+import {
+  ResizeablePluginConfig,
+  ResizeablePluginStore,
+  ScaleType,
+  BlockProps,
+} from '.';
 
-const getDisplayName = WrappedComponent => {
+interface DecoratorProps {
+  config: ResizeablePluginConfig;
+  store: ResizeablePluginStore;
+}
+
+export interface WrappedComponentProps {
+  blockProps: BlockProps;
+  hoverPosition: Record<string, boolean>;
+  clicked: boolean;
+  width: number;
+  height: number;
+  style?: CSSProperties;
+  ref?: LegacyRef<HTMLElement>;
+}
+
+interface BlockResizeableDecoratorProps extends WrappedComponentProps {
+  vertical: ScaleType | boolean;
+  horizontal: ScaleType;
+  isResizable: boolean;
+  resizeSteps: number;
+  initialWidth: number;
+  initialHeight: number;
+}
+
+type WrappedComponentType = ComponentType<WrappedComponentProps> & {
+  WrappedComponent?: ComponentType<WrappedComponentProps>;
+};
+
+const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
   const component = WrappedComponent.WrappedComponent || WrappedComponent;
   return component.displayName || component.name || 'Component';
 };
 
-const round = (x, steps) => Math.ceil(x / steps) * steps;
+const round = (x: number, steps: number): number =>
+  Math.ceil(x / steps) * steps;
 
-export default ({ config, store }) => WrappedComponent =>
-  class BlockResizeableDecorator extends Component {
+export default ({ config, store }: DecoratorProps) => (
+  WrappedComponent: WrappedComponentType
+): ComponentType<BlockResizeableDecoratorProps> =>
+  class BlockResizeableDecorator extends Component<
+    BlockResizeableDecoratorProps
+  > {
     static displayName = `Resizable(${getDisplayName(WrappedComponent)})`;
     static WrappedComponent =
       WrappedComponent.WrappedComponent || WrappedComponent;
@@ -19,19 +64,21 @@ export default ({ config, store }) => WrappedComponent =>
       resizeSteps: 1,
       isResizable: true,
       ...config,
-    };
+    } as Partial<BlockResizeableDecoratorProps>;
     state = {
       hoverPosition: {},
       clicked: false,
-    };
+    } as BlockResizeableDecoratorProps;
 
-    setEntityData = data => {
+    wrapper?: HTMLElement | null;
+
+    setEntityData = (data: { width: number; height: number }): void => {
       this.props.blockProps.setResizeData(data);
     };
 
     // used to save the hoverPosition so it can be leveraged to determine if a
     // drag should happen on mousedown
-    mouseLeave = () => {
+    mouseLeave = (): void => {
       if (!this.state.clicked) {
         this.setState({ hoverPosition: {} });
       }
@@ -39,14 +86,14 @@ export default ({ config, store }) => WrappedComponent =>
 
     // used to save the hoverPosition so it can be leveraged to determine if a
     // drag should happen on mousedown
-    mouseMove = evt => {
+    mouseMove = (evt: MouseEvent): void => {
       const { vertical, horizontal, isResizable } = this.props;
 
       const hoverPosition = this.state.hoverPosition;
       const tolerance = 6;
       // TODO figure out if and how to achieve this without fetching the DOM node
       // eslint-disable-next-line react/no-find-dom-node
-      const pane = ReactDOM.findDOMNode(this);
+      const pane = ReactDOM.findDOMNode(this) as HTMLElement;
       const b = pane.getBoundingClientRect();
       const x = evt.clientX - b.left;
       const y = evt.clientY - b.top;
@@ -61,7 +108,7 @@ export default ({ config, store }) => WrappedComponent =>
 
       const canResize = (isTop || isLeft || isRight || isBottom) && isResizable;
 
-      const newHoverPosition = {
+      const newHoverPosition: Record<string, boolean> = {
         isTop,
         isLeft,
         isRight,
@@ -69,7 +116,7 @@ export default ({ config, store }) => WrappedComponent =>
         canResize,
       };
       const hasNewHoverPositions = Object.keys(newHoverPosition).filter(
-        key => hoverPosition[key] !== newHoverPosition[key]
+        (key) => hoverPosition[key] !== newHoverPosition[key]
       );
 
       if (hasNewHoverPositions.length) {
@@ -78,7 +125,7 @@ export default ({ config, store }) => WrappedComponent =>
     };
 
     // Handle mousedown for resizing
-    mouseDown = event => {
+    mouseDown = (event: MouseEvent): void => {
       // No mouse-hover-position data? Nothing to resize!
       if (!this.state.hoverPosition.canResize) {
         return;
@@ -91,30 +138,31 @@ export default ({ config, store }) => WrappedComponent =>
 
       // TODO figure out how to achieve this without fetching the DOM node
       // eslint-disable-next-line react/no-find-dom-node
-      const pane = ReactDOM.findDOMNode(this);
+      const pane = ReactDOM.findDOMNode(this) as HTMLElement;
       const startX = event.clientX;
       const startY = event.clientY;
       const startWidth = parseInt(
-        document.defaultView.getComputedStyle(pane).width,
+        document.defaultView!.getComputedStyle(pane).width,
         10
       );
       const startHeight = parseInt(
-        document.defaultView.getComputedStyle(pane).height,
+        document.defaultView!.getComputedStyle(pane).height,
         10
       );
 
       // Do the actual drag operation
-      const doDrag = dragEvent => {
+      const doDrag = (dragEvent: MouseEvent): void => {
         let width =
           startWidth +
           (isLeft ? startX - dragEvent.clientX : dragEvent.clientX - startX);
         let height = startHeight + dragEvent.clientY - startY;
 
-        const editorComp = store.getEditorRef();
+        const editorComp = store.getEditorRef!();
         // this keeps backwards-compatibility with react 15
-        const editorNode = editorComp.refs.editor
-          ? editorComp.refs.editor
-          : editorComp.editor;
+        const editorNode =
+          editorComp.refs && editorComp.refs.editor
+            ? editorComp.refs.editor
+            : editorComp.editor;
 
         width = Math.min(editorNode.clientWidth, width);
         height = Math.min(editorNode.clientHeight, height);
@@ -122,7 +170,7 @@ export default ({ config, store }) => WrappedComponent =>
         const widthPerc = (100 / editorNode.clientWidth) * width;
         const heightPerc = (100 / editorNode.clientHeight) * height;
 
-        const newState = {};
+        const newState: Partial<BlockResizeableDecoratorProps> = {};
         if ((isLeft || isRight) && horizontal === 'relative') {
           newState.width = resizeSteps
             ? round(widthPerc, resizeSteps)
@@ -145,7 +193,7 @@ export default ({ config, store }) => WrappedComponent =>
       };
 
       // Finished dragging
-      const stopDrag = () => {
+      const stopDrag = (): void => {
         // TODO clean up event listeners
         document.removeEventListener('mousemove', doDrag, false);
         document.removeEventListener('mouseup', stopDrag, false);
@@ -162,7 +210,7 @@ export default ({ config, store }) => WrappedComponent =>
       this.setState({ clicked: true });
     };
 
-    render() {
+    render(): ReactElement {
       const {
         blockProps,
         vertical,
@@ -172,13 +220,13 @@ export default ({ config, store }) => WrappedComponent =>
         style,
         isResizable,
         // using destructuring to make sure unused props are not passed down to the block
-        resizeSteps, // eslint-disable-line no-unused-vars
+        resizeSteps, // eslint-disable-line @typescript-eslint/no-unused-vars
         ...elementProps
       } = this.props;
       const { width, height, hoverPosition } = this.state;
       const { isTop, isLeft, isRight, isBottom } = hoverPosition;
 
-      const styles = { position: 'relative', ...style };
+      const styles: CSSProperties = { position: 'relative', ...style };
 
       if (horizontal === 'auto') {
         styles.width = 'auto';
@@ -245,7 +293,7 @@ export default ({ config, store }) => WrappedComponent =>
           {...elementProps}
           {...interactionProps}
           blockProps={blockProps}
-          ref={element => {
+          ref={(element) => {
             this.wrapper = element;
           }}
           style={styles}

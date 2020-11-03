@@ -6,7 +6,7 @@ import React, {
   ReactElement,
 } from 'react';
 import ReactDOM from 'react-dom';
-import { AlignmentPluginStore } from './utils/createStore';
+import { AlignmentPluginStore } from '.';
 
 interface BlockAlignmentDecoratorParams {
   blockProps: {
