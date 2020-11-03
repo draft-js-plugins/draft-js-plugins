@@ -1,6 +1,19 @@
 import { css } from 'linaria';
+import { DraftJsButtonTheme } from 'draft-js-buttons';
 
-const buttonStyles = {
+export interface SideToolbarPluginTheme {
+  buttonStyles?: DraftJsButtonTheme;
+  blockTypeSelectStyles?: {
+    blockType?: string;
+    spacer?: string;
+    popup?: string;
+  };
+  toolbarStyles?: {
+    wrapper?: string;
+  };
+}
+
+const buttonStyles: SideToolbarPluginTheme['buttonStyles'] = {
   buttonWrapper: css`
     display: inline-block;
   `,
@@ -31,16 +44,9 @@ const buttonStyles = {
       fill: #444;
     }
   `,
-
-  separator: css`
-    display: inline-block;
-    border-right: 1px solid #ddd;
-    height: 24px;
-    margin: 0 0.5em;
-  `,
 };
 
-const blockTypeSelectStyles = {
+const blockTypeSelectStyles: SideToolbarPluginTheme['blockTypeSelectStyles'] = {
   blockType: css`
     box-sizing: border-box;
     border: 1px solid #ddd;
@@ -105,13 +111,13 @@ const blockTypeSelectStyles = {
   `,
 };
 
-const toolbarStyles = {
+const toolbarStyles: SideToolbarPluginTheme['toolbarStyles'] = {
   wrapper: css`
     position: absolute;
   `,
 };
 
-export const defaultTheme = {
+export const defaultTheme: SideToolbarPluginTheme = {
   buttonStyles,
   blockTypeSelectStyles,
   toolbarStyles,

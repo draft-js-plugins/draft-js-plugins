@@ -1,10 +1,43 @@
-import { EditorState } from 'draft-js';
+import { EditorState, ContentBlock } from 'draft-js';
+import { EditorPlugin, EditorRef } from 'draft-js-plugins-editor';
 import createDecorator from './createDecorator';
 
+type ResizeableEditorPlugin = EditorPlugin & {
+  decorator: ReturnType<typeof createDecorator>;
+};
+
+export type ScaleType = 'auto' | 'relative' | 'absolute';
+
+export interface BlockProps {
+  setResizeData(value: { width: number; height: number }): void;
+  resizeData: { width: number; height: number };
+}
+
+export interface ResizeablePluginConfig {
+  blockProps?: BlockProps;
+  horizontal?: ScaleType;
+  vertical?: ScaleType;
+  initialWidth?: string;
+  initialHeight?: string;
+}
+
+export interface ResizeablePluginStore {
+  getEditorRef?(): EditorRef;
+  getReadOnly?(): boolean;
+  getEditorState?(): EditorState;
+  setEditorState?(state: EditorState): void;
+}
+
 const createSetResizeData = (
-  contentBlock,
-  { getEditorState, setEditorState }
-) => data => {
+  contentBlock: ContentBlock,
+  {
+    getEditorState,
+    setEditorState,
+  }: {
+    getEditorState(): EditorState;
+    setEditorState(state: EditorState): void;
+  }
+) => (data: Record<string, unknown>) => {
   const entityKey = contentBlock.getEntityAt(0);
   if (entityKey) {
     const editorState = getEditorState();
@@ -16,8 +49,8 @@ const createSetResizeData = (
   }
 };
 
-export default config => {
-  const store = {
+export default (config: ResizeablePluginConfig): ResizeableEditorPlugin => {
+  const store: ResizeablePluginStore = {
     getEditorRef: undefined,
     getReadOnly: undefined,
     getEditorState: undefined,
@@ -40,7 +73,7 @@ export default config => {
       const entityKey = contentBlock.getEntityAt(0);
       const contentState = getEditorState().getCurrentContent();
       const resizeData = entityKey
-        ? contentState.getEntity(entityKey).data
+        ? contentState.getEntity(entityKey).getData()
         : {};
       return {
         props: {

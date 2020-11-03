@@ -1,7 +1,7 @@
 import React from 'react';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
-import { defaultTheme } from './theme.js';
+import { defaultTheme } from './theme';
 
 export default (config = {}) => {
   const undoContent = config.undoContent ? config.undoContent : '↺';
@@ -18,12 +18,12 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
-  const DecoratedUndoButton = props => (
+  const DecoratedUndoButton = (props) => (
     <UndoButton {...props} theme={theme} store={store}>
       {undoContent}
     </UndoButton>
   );
-  const DecoratedRedoButton = props => (
+  const DecoratedRedoButton = (props) => (
     <RedoButton {...props} theme={theme} store={store}>
       {redoContent}
     </RedoButton>

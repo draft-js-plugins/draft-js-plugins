@@ -28,14 +28,16 @@
   ],
   "scripts": {
     "clean": "../node_modules/.bin/rimraf lib",
-    "build": "yarn clean && yarn build:js && yarn build:css",
-    "build:js": "../node_modules/.bin/rollup --config ../rollup.config.js",
+    "build": "yarn clean && yarn build:js && yarn build:dts && yarn build:css",
+    "build:js": "../node_modules/.bin/rollup --config ../rollup.config.ts.js",
+    "build:dts": "tsc -d",
     "build:css": "node ../scripts/build-css.js $(pwd)",
     "prepublish": "yarn build"
   },
   "license": "MIT",
   "dependencies": {
     "draft-js-buttons": "^2.0.1",
+    "draft-js-plugins-utils": "^2.0.3",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
