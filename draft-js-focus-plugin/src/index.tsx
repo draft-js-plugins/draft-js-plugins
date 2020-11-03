@@ -10,7 +10,7 @@ import createBlockKeyStore, {
 import blockInSelection from './utils/blockInSelection';
 import getBlockMapKeys from './utils/getBlockMapKeys';
 import removeBlock from './modifiers/removeBlock';
-import { defaultTheme, FocusPluginTheme } from './theme.js';
+import { defaultTheme, FocusPluginTheme } from './theme';
 
 const focusableBlockIsSelected = (
   editorState: EditorState,
@@ -78,7 +78,7 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
       return 'not-handled';
     },
 
-    onChange: editorState => {
+    onChange: (editorState) => {
       // in case the content changed there is no need to re-render blockRendererFn
       // since if a block was added it will be rendered anyway and if it was text
       // then the change was not a pure selection change
@@ -104,7 +104,7 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
           lastSelection.getStartKey(),
           lastSelection.getEndKey()
         );
-        if (lastBlockMapKeys.some(key => focusableBlockKeys.includes(key!))) {
+        if (lastBlockMapKeys.some((key) => focusableBlockKeys.includes(key!))) {
           lastSelection = selection;
           // By forcing the selection the editor will trigger the blockRendererFn which is
           // necessary for the blockProps containing isFocus to be passed down again.
@@ -120,7 +120,9 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
         selection.getStartKey(),
         selection.getEndKey()
       );
-      if (currentBlockMapKeys.some(key => focusableBlockKeys.includes(key!))) {
+      if (
+        currentBlockMapKeys.some((key) => focusableBlockKeys.includes(key!))
+      ) {
         lastSelection = selection;
         // By forcing the selection the editor will trigger the blockRendererFn which is
         // necessary for the blockProps containing isFocus to be passed down again.

@@ -6,7 +6,7 @@ import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';
 import blockRendererFn from './blockRendererFn';
 import Sticker from './Sticker';
 import StickerSelect from './StickerSelect';
-import { defaultTheme } from './theme.js';
+import { defaultTheme } from './theme';
 
 export default (config = {}) => {
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
@@ -23,7 +23,7 @@ export default (config = {}) => {
 
   // default to true if not explicitly set to false
   const attachRemoveButton = config.attachRemoveButton !== false;
-  const DecoratedSticker = props => (
+  const DecoratedSticker = (props) => (
     <Sticker
       {...props}
       attachRemoveButton={attachRemoveButton}
@@ -31,7 +31,7 @@ export default (config = {}) => {
       theme={theme}
     />
   );
-  const DecoratedStickerSelect = props => (
+  const DecoratedStickerSelect = (props) => (
     <StickerSelect
       {...props}
       selectButtonContent={selectButtonContent}

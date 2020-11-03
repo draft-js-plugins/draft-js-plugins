@@ -1,15 +1,42 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, {
+  CSSProperties,
+  FC,
+  MouseEvent,
+  ReactElement,
+  Component,
+} from 'react';
 import PropTypes from 'prop-types';
+import { SideToolbarPluginTheme } from 'draft-js-side-toolbar-plugin/src/theme';
+import { EditorState } from 'draft-js';
+import { DraftJsButtonTheme } from 'draft-js-buttons/lib';
 
-class BlockTypeSelect extends React.Component {
+export interface BlockTypeSelectChildProps {
+  theme: DraftJsButtonTheme;
+  getEditorState(): EditorState;
+  setEditorState(state: EditorState): void;
+}
+
+interface BlockTypeSelectProps {
+  style?: CSSProperties;
+  theme: SideToolbarPluginTheme;
+  getEditorState(): EditorState;
+  setEditorState(state: EditorState): void;
+  childNodes: FC<BlockTypeSelectChildProps>;
+}
+
+export default class BlockTypeSelect extends Component<BlockTypeSelectProps> {
+  static propTypes = {
+    childNodes: PropTypes.func,
+  };
+
   state = {
     style: {
       transform: 'translate(-50%) scale(0)',
     },
   };
 
-  onMouseEnter = () => {
+  onMouseEnter = (): void => {
     this.setState({
       style: {
         transform: 'translate(-50%) scale(1)',
@@ -18,7 +45,7 @@ class BlockTypeSelect extends React.Component {
     });
   };
 
-  onMouseLeave = () => {
+  onMouseLeave = (): void => {
     this.setState({
       style: {
         transform: 'translate(-50%) scale(0)',
@@ -26,12 +53,12 @@ class BlockTypeSelect extends React.Component {
     });
   };
 
-  onMouseDown = clickEvent => {
+  onMouseDown = (clickEvent: MouseEvent): void => {
     clickEvent.preventDefault();
     clickEvent.stopPropagation();
   };
 
-  render() {
+  render(): ReactElement {
     const { theme, getEditorState, setEditorState } = this.props;
     return (
       <div
@@ -39,7 +66,7 @@ class BlockTypeSelect extends React.Component {
         onMouseLeave={this.onMouseLeave}
         onMouseDown={this.onMouseDown}
       >
-        <div className={theme.blockTypeSelectStyles.blockType}>
+        <div className={theme.blockTypeSelectStyles?.blockType}>
           <svg
             height="24"
             viewBox="0 0 24 24"
@@ -54,24 +81,18 @@ class BlockTypeSelect extends React.Component {
           The spacer is needed so the popup doesn't go away when moving from the
           blockType div to the popup.
         */}
-        <div className={theme.blockTypeSelectStyles.spacer} />
+        <div className={theme.blockTypeSelectStyles?.spacer} />
         <div
-          className={theme.blockTypeSelectStyles.popup}
+          className={theme.blockTypeSelectStyles?.popup}
           style={this.state.style}
         >
-          {this.props.children({
+          {this.props.childNodes({
             getEditorState,
             setEditorState,
-            theme: theme.buttonStyles,
+            theme: theme.buttonStyles!,
           })}
         </div>
       </div>
     );
   }
 }
-
-BlockTypeSelect.propTypes = {
-  children: PropTypes.func,
-};
-
-export default BlockTypeSelect;
