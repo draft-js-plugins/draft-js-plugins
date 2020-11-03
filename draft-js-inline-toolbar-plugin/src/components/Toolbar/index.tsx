@@ -8,8 +8,8 @@ import {
   CodeButton,
   DraftJsButtonTheme,
 } from 'draft-js-buttons';
-import { InlineToolbarPluginStore } from 'draft-js-inline-toolbar-plugin/src/utils/createStore';
-import { InlineToolbarPluginTheme } from 'draft-js-inline-toolbar-plugin/src/theme';
+import { InlineToolbarPluginStore } from '../../';
+import { InlineToolbarPluginTheme } from '../../theme';
 
 export interface ToolbarChildrenProps {
   theme: DraftJsButtonTheme;
@@ -155,7 +155,7 @@ export default class Toolbar extends React.Component<ToolbarProps> {
       <div
         className={theme.toolbarStyles.toolbar}
         style={this.getStyle()}
-        ref={element => {
+        ref={(element) => {
           this.toolbar = element;
         }}
       >

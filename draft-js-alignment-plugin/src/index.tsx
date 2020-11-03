@@ -1,9 +1,9 @@
 import React, { ComponentType, ReactElement } from 'react';
 import { ContentBlock, EditorState } from 'draft-js';
 import { EditorPlugin } from 'draft-js-plugins-editor';
+import { createStore, Store } from 'draft-js-plugins-utils';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
-import createStore from './utils/createStore';
 import { defaultTheme, AlignmentPluginTheme } from './theme';
 
 const createSetAlignment = (
@@ -31,13 +31,26 @@ interface AlignmentPluginConfig {
   theme?: AlignmentPluginTheme;
 }
 
-export default function(
+interface StoreItemMap {
+  isVisible?: boolean;
+  getReadOnly?(): boolean;
+  getEditorState?(): EditorState;
+  setEditorState?(editorState: EditorState): void;
+  visibleBlock?: null | string;
+  setAlignment?(val: { alignment: string }): void;
+  alignment?: string;
+  boundingRect?: DOMRect;
+}
+
+export type AlignmentPluginStore = Store<StoreItemMap>;
+
+export default function (
   config: AlignmentPluginConfig = {}
 ): EditorPlugin & {
   decorator: ReturnType<typeof createDecorator>;
   AlignmentTool: ComponentType;
 } {
-  const store = createStore({
+  const store = createStore<StoreItemMap>({
     isVisible: false,
   });
 

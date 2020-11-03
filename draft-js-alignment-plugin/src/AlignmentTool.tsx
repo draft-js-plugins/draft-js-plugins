@@ -8,7 +8,7 @@ import {
   DraftJsBlockAlignmentButtonType,
 } from 'draft-js-buttons';
 import { AlignmentPluginTheme } from './theme';
-import { AlignmentPluginStore } from './utils/createStore';
+import { AlignmentPluginStore } from '.';
 
 function getRelativeParent(element: HTMLElement | null): HTMLElement | null {
   if (!element) {

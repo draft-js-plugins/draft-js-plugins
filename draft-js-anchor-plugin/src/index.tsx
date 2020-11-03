@@ -11,7 +11,7 @@ import LinkButton, { LinkButtonPubParams } from './components/LinkButton';
 import linkStrategy from './linkStrategy';
 import { defaultTheme, AnchorPluginTheme } from './theme';
 
-export { AnchorPluginTheme } from './theme';
+export type { AnchorPluginTheme } from './theme';
 
 export interface AnchorPluginConfig {
   theme?: AnchorPluginTheme;
