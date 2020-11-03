@@ -4862,7 +4862,7 @@ core-js@^2.4.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
-core-js@^3.0.1, core-js@^3.0.4, core-js@^3.6.3, core-js@^3.6.4, core-js@^3.6.5:
+core-js@^3.0.1, core-js@^3.0.4, core-js@^3.6.4, core-js@^3.6.5:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
   integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
@@ -9467,10 +9467,10 @@ limit-spawn@0.0.3:
   resolved "https://registry.yarnpkg.com/limit-spawn/-/limit-spawn-0.0.3.tgz#cc09c24467a0f0a1ed10a5196dba597cad3f65dc"
   integrity sha1-zAnCRGeg8KHtEKUZbbpZfK0/Zdw=
 
-linaria@^1.4.0-alpha.1:
-  version "1.4.0-rc.3"
-  resolved "https://registry.yarnpkg.com/linaria/-/linaria-1.4.0-rc.3.tgz#7d9f2b275c4e37a789969cdbe28e2f24985c59c8"
-  integrity sha512-hznP1zwvoha5AtnPBEC9LqHECytMs6NiVoVbmhzYbvIUsPhJZldexSTcUgbISwk4iRwSJP/KyXI9bNl6QQzbUg==
+linaria@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.0.0.tgz#4f425ef10da3fdbbf3e4968639b8ab361c61f71c"
+  integrity sha512-9o5RLcYRaq2jrhTtPQv/UzNKZNU6h9HZ+0kSo92ym23yIdSAaZRHh4b2ukbej5kW9J/qB7MSepA36VZ/6fYCGg==
   dependencies:
     "@babel/generator" ">=7"
     "@babel/plugin-proposal-export-namespace-from" ">=7"
@@ -9481,7 +9481,6 @@ linaria@^1.4.0-alpha.1:
     "@babel/template" ">=7"
     "@emotion/is-prop-valid" "^0.8.8"
     babel-plugin-transform-react-remove-prop-types "^0.4.24"
-    core-js "^3.6.3"
     cosmiconfig "^5.1.0"
     debug "^4.1.1"
     enhanced-resolve "^4.1.0"
