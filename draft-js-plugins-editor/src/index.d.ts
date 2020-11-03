@@ -12,7 +12,7 @@ import {
   SelectionState,
   DraftBlockRenderMap,
 } from 'draft-js';
-import { Component, Ref, SyntheticEvent, KeyboardEvent } from 'react';
+import { Component, SyntheticEvent, KeyboardEvent } from 'react';
 
 type EditorCommand = DraftEditorCommand | string;
 
@@ -23,7 +23,10 @@ export interface PluginFunctions {
   getEditorState(): EditorState; // a function to get the current EditorState
   getReadOnly(): boolean; // a function returning of the Editor is set to readOnly
   setReadOnly(readOnly: boolean): void; // a function which allows to set the Editor to readOnly
-  getEditorRef(): Ref<any>; // a function to get the editor reference
+  getEditorRef(): {
+    refs?: { editor: HTMLElement };
+    editor: HTMLElement;
+  }; // a function to get the editor reference
 }
 
 export interface AriaProps {
@@ -90,7 +93,7 @@ export interface EditorPlugin {
   ): DraftHandleValue;
   handleDrop?(
     selection: SelectionState,
-    dataTransfer: Object,
+    dataTransfer: Record<string, unknown>,
     isInternal: DraftDragType,
     pluginFunctions: PluginFunctions
   ): DraftHandleValue;
