@@ -1,6 +1,14 @@
 import { css } from 'linaria';
+import { DraftJsButtonTheme } from 'draft-js-buttons';
 
-const buttonStyles = {
+export interface StaticToolbarPluginTheme {
+  buttonStyles: DraftJsButtonTheme;
+  toolbarStyles: {
+    toolbar: string;
+  };
+}
+
+const buttonStyles: DraftJsButtonTheme = {
   buttonWrapper: css`
     display: inline-block;
   `,
@@ -56,7 +64,7 @@ const toolbarStyles = {
   `,
 };
 
-export const defaultTheme = {
+export const defaultTheme: StaticToolbarPluginTheme = {
   buttonStyles,
   toolbarStyles,
 };
