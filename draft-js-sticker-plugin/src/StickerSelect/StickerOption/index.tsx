@@ -1,16 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
+import { StickerPluginTheme } from '../../theme';
+
+interface StickerOptionProps {
+  id: string;
+  url: string;
+  theme?: StickerPluginTheme;
+  onClick(id: string): void;
+}
 
 /**
  * Showcases a sticker one can then pick to add to the editor
  */
-export default class StickerOption extends Component {
-  onClick = () => {
+export default class StickerOption extends Component<StickerOptionProps> {
+  onClick = (): void => {
     this.props.onClick(this.props.id);
   };
 
-  render() {
-    const { id, url } = this.props;
-    const { theme = {} } = this.props;
+  render(): ReactElement {
+    const { id, url, theme = {} } = this.props;
     return (
       <button
         onClick={this.onClick}
