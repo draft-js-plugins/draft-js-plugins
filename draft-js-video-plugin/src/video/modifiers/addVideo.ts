@@ -1,8 +1,11 @@
-import { AtomicBlockUtils, RichUtils } from 'draft-js';
+import { AtomicBlockUtils, EditorState, RichUtils } from 'draft-js';
 
 import * as types from '../constants';
 
-export default function addVideo(editorState, { src }) {
+export default function addVideo(
+  editorState: EditorState,
+  { src }: { src: string }
+): EditorState {
   if (RichUtils.getCurrentBlockType(editorState) === types.ATOMIC) {
     return editorState;
   }

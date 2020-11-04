@@ -1,6 +1,13 @@
 import { css } from 'linaria';
 
-export const defaultTheme = {
+export interface VideoPluginTheme {
+  iframeContainer: string;
+  iframe: string;
+  invalidVideoSrc: string;
+  video: string;
+}
+
+export const defaultTheme: VideoPluginTheme = {
   iframeContainer: css`
     width: 100%;
     height: 0;
