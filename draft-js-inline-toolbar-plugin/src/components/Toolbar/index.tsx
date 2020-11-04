@@ -25,6 +25,7 @@ interface ToolbarProps {
   position?: { top: number; left: number };
   overrideContent?: ComponentType<ToolbarChildrenProps>;
   theme: InlineToolbarPluginTheme;
+  height: number;
 }
 
 export default class Toolbar extends React.Component<ToolbarProps> {
@@ -106,9 +107,8 @@ export default class Toolbar extends React.Component<ToolbarProps> {
 
       const position = {
         top:
-          editorRoot.offsetTop -
-          this.toolbar.offsetHeight +
-          (selectionRect.top - editorRootRect.top) +
+          selectionRect.top -
+          (this.props.height || this.toolbar.offsetHeight) +
           extraTopOffset,
         left:
           editorRoot.offsetLeft +
