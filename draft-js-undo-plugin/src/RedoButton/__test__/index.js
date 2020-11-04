@@ -39,19 +39,13 @@ describe('RedoButton', () => {
     const result = shallow(
       <Redo store={store} theme={theme} className="redo" children="redo" />
     );
-    expect(result)
-      .to.have.prop('className')
-      .to.contain('redo');
-    expect(result)
-      .to.have.prop('className')
-      .to.contain('custom-class-name');
+    expect(result).to.have.prop('className').to.contain('redo');
+    expect(result).to.have.prop('className').to.contain('custom-class-name');
   });
 
   it('adds disabled attribute to button if the getRedoStack is empty', () => {
     const result = shallow(<Redo store={store} children="redo" />);
-    expect(result.find('button'))
-      .prop('disabled')
-      .to.equal(true);
+    expect(result.find('button')).prop('disabled').to.equal(true);
   });
 
   it('removes disabled attribute from button if the getRedoStack is not empty', () => {
@@ -73,9 +67,7 @@ describe('RedoButton', () => {
       setEditorState: onChange,
     };
     const result = shallow(<Redo store={store} children="redo" />);
-    expect(result.find('button'))
-      .prop('disabled')
-      .to.equal(false);
+    expect(result.find('button')).prop('disabled').to.equal(false);
   });
 
   it('triggers an update with redo when the button is clicked', () => {
