@@ -2,9 +2,12 @@
  * Adds backspace support to stickers
  */
 
-import { EditorState, Modifier, SelectionState } from 'draft-js';
+import { ContentBlock, EditorState, Modifier, SelectionState } from 'draft-js';
 
-const cleanupSticker = (editorState: Object, blockKey: String) => {
+const cleanupSticker = (
+  editorState: EditorState,
+  blockKey: string
+): EditorState => {
   const content = editorState.getCurrentContent();
 
   // get range of the broken sticker block
@@ -24,7 +27,7 @@ const cleanupSticker = (editorState: Object, blockKey: String) => {
   const newState = EditorState.push(
     editorState,
     withoutSticker,
-    'remove-sticker'
+    'remove-range'
   );
   return EditorState.forceSelection(
     newState,
@@ -32,7 +35,7 @@ const cleanupSticker = (editorState: Object, blockKey: String) => {
   );
 };
 
-export default (editorState: Object): Object => {
+export default (editorState: EditorState): EditorState => {
   let newEditorState = editorState;
 
   // If there is an empty sticker block we remove it.
@@ -41,7 +44,7 @@ export default (editorState: Object): Object => {
   editorState
     .getCurrentContent()
     .get('blockMap')
-    .forEach(block => {
+    .forEach((block: ContentBlock) => {
       if (block.get('type') === 'sticker' && block.getEntityAt(0) === null) {
         newEditorState = cleanupSticker(editorState, block.get('key'));
       }

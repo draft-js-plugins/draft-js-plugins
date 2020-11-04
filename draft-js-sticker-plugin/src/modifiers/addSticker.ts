@@ -12,7 +12,7 @@ import {
 } from 'draft-js';
 import { List, Repeat } from 'immutable';
 
-export default (editorState: Object, stickerId: any) => {
+export default (editorState: EditorState, stickerId: string): EditorState => {
   const currentContentState = editorState.getCurrentContent();
   const currentSelectionState = editorState.getSelection();
 
@@ -96,7 +96,7 @@ export default (editorState: Object, stickerId: any) => {
   const newState = EditorState.push(
     editorState,
     contentStateWithSticker,
-    'insert-sticker'
+    'insert-fragment'
   );
   return EditorState.forceSelection(
     newState,

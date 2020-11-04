@@ -116,7 +116,7 @@ export default ({ config, store }: DecoratorProps) => (
         canResize,
       };
       const hasNewHoverPositions = Object.keys(newHoverPosition).filter(
-        key => hoverPosition[key] !== newHoverPosition[key]
+        (key) => hoverPosition[key] !== newHoverPosition[key]
       );
 
       if (hasNewHoverPositions.length) {
@@ -293,7 +293,7 @@ export default ({ config, store }: DecoratorProps) => (
           {...elementProps}
           {...interactionProps}
           blockProps={blockProps}
-          ref={element => {
+          ref={(element) => {
             this.wrapper = element;
           }}
           style={styles}

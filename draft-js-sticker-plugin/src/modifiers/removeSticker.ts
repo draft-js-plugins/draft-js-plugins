@@ -4,7 +4,7 @@
 
 import { EditorState, Modifier, SelectionState } from 'draft-js';
 
-export default (editorState: Object, blockKey: String) => {
+export default (editorState: EditorState, blockKey: string): EditorState => {
   let content = editorState.getCurrentContent();
   const newSelection = new SelectionState({
     anchorKey: blockKey,
@@ -46,6 +46,6 @@ export default (editorState: Object, blockKey: String) => {
   content = Modifier.removeRange(content, targetRange, 'backward');
 
   // force to new selection
-  const newState = EditorState.push(editorState, content, 'remove-sticker');
+  const newState = EditorState.push(editorState, content, 'remove-range');
   return EditorState.forceSelection(newState, newSelection);
 };

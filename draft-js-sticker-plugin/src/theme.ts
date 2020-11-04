@@ -1,5 +1,20 @@
 import { css } from 'linaria';
 
+export interface StickerPluginTheme {
+  sticker?: string;
+  stickerImage?: string;
+  stickerRemoveButton?: string;
+  select?: string;
+  selectPopover?: string;
+  selectClosedPopover?: string;
+  selectBottomGradient?: string;
+  selectButton?: string;
+  selectPressedButton?: string;
+  selectStickerList?: string;
+  selectSticker?: string;
+  selectStickerImage?: string;
+}
+
 const sharedSelectButton = `
   box-sizing: border-box;
   background: #fff;
@@ -25,7 +40,7 @@ const sharedSelectButton = `
   }
 `;
 
-export const defaultTheme = {
+export const defaultTheme: StickerPluginTheme = {
   // sticker styles
   sticker: css`
     margin: 0;
