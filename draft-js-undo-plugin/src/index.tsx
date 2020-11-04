@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { ComponentType, ReactElement, ReactNode } from 'react';
+import { EditorState } from 'draft-js';
+import { EditorPlugin } from 'draft-js-plugins-editor';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
-import { defaultTheme } from './theme';
+import { defaultTheme, UndoPluginTheme } from './theme';
 
-export default (config = {}) => {
+export interface UndoPuginConfig {
+  undoContent?: ReactNode;
+  redoContent?: ReactNode;
+  theme?: UndoPluginTheme;
+}
+export interface UndoPuginStore {
+  getEditorState?(): EditorState;
+  setEditorState?(state: EditorState): void;
+}
+
+export interface UndoRedoButtonProps {
+  className?: string;
+}
+
+export default (
+  config: UndoPuginConfig = {}
+): EditorPlugin & {
+  UndoButton: ComponentType<UndoRedoButtonProps>;
+  RedoButton: ComponentType<UndoRedoButtonProps>;
+} => {
   const undoContent = config.undoContent ? config.undoContent : '↺';
   const redoContent = config.redoContent ? config.redoContent : '↻';
-  const store = {
+  const store: UndoPuginStore = {
     getEditorState: undefined,
     setEditorState: undefined,
   };
@@ -18,12 +39,12 @@ export default (config = {}) => {
   // errors when upgrading as basically every styling change would become a major
   // breaking change. 1px of an increased padding can break a whole layout.
   const theme = config.theme ? config.theme : defaultTheme;
-  const DecoratedUndoButton = (props) => (
+  const DecoratedUndoButton = (props: UndoRedoButtonProps): ReactElement => (
     <UndoButton {...props} theme={theme} store={store}>
       {undoContent}
     </UndoButton>
   );
-  const DecoratedRedoButton = (props) => (
+  const DecoratedRedoButton = (props: UndoRedoButtonProps): ReactElement => (
     <RedoButton {...props} theme={theme} store={store}>
       {redoContent}
     </RedoButton>

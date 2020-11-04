@@ -1,9 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
 import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 
 import { MentionSuggestions } from '../MentionSuggestions';
+
+chai.use(sinonChai);
 
 const mentions = [
   {
@@ -69,7 +72,6 @@ describe('MentionSuggestions Component', () => {
   it('Controls open state', () => {
     const props = defaultProps();
     const suggestions = mount(<MentionSuggestions {...props} />);
-
     suggestions.instance().openDropdown();
     expect(props.onOpenChange).has.been.calledWith(true);
     suggestions.instance().closeDropdown();
