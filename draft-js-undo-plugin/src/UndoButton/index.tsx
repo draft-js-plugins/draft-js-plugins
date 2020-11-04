@@ -1,4 +1,4 @@
-import React, { Component, MouseEvent, ReactElement } from 'react';
+import React, { Component, MouseEvent, ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import clsx from 'clsx';
@@ -8,6 +8,7 @@ import { UndoPuginStore, UndoRedoButtonProps } from '..';
 interface UndoButtonProps extends UndoRedoButtonProps {
   theme: UndoPluginTheme;
   store: UndoPuginStore;
+  children: ReactNode;
 }
 
 export default class UndoButton extends Component<UndoButtonProps> {

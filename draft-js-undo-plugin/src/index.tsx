@@ -16,7 +16,6 @@ export interface UndoPuginStore {
 }
 
 export interface UndoRedoButtonProps {
-  children: ReactNode;
   className?: string;
 }
 
