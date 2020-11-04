@@ -1,46 +1,63 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement, ReactNode } from 'react';
+import { EditorState } from 'draft-js';
 import StickerOption from './StickerOption';
 import addSticker from '../modifiers/addSticker';
+import { StickerPluginTheme } from '../theme';
+import { ImmutableDataStickerPluginItem, ImmutableStickerPluginItem } from '..';
 
 /**
  * Sets the CSS overflow value to newValue
  * Use like this: setOverflow('auto', document.body);
  */
-function setOverflow(newValue, element) {
+function setOverflow(newValue: string, element: HTMLElement): void {
   element.style.overflow = newValue; // eslint-disable-line no-param-reassign
+}
+
+export interface StickerSelectPubParams {
+  editor: {
+    onChange(state: EditorState): void;
+    state: { editorState: EditorState };
+  };
+}
+
+interface StickerSelectParams extends StickerSelectPubParams {
+  theme?: StickerPluginTheme;
+  stickers: ImmutableDataStickerPluginItem;
+  selectButtonContent: ReactNode;
 }
 
 /**
  * Sticker Selector Component
  */
-export default class StickerSelect extends Component {
+export default class StickerSelect extends Component<StickerSelectParams> {
   // Start the selector closed
   state = {
     open: false,
   };
+  preventNextClose?: boolean;
 
   // When the selector is open and users click anywhere on the page,
   // the selector should close
-  componentDidMount() {
+  componentDidMount(): void {
     document.addEventListener('click', this.closePopover);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     document.removeEventListener('click', this.closePopover);
   }
 
   // When users are scrolling the popover, the page shouldn't scroll when
   // they reach the end of it
-  onMouseEnter = () => {
+  onMouseEnter = (): void => {
     setOverflow('hidden', document.body);
   };
 
-  onMouseLeave = () => {
+  onMouseLeave = (): void => {
     setOverflow('auto', document.body);
   };
 
   // Open the popover
-  openPopover = () => {
+  openPopover = (): void => {
     if (!this.state.open) {
       this.preventNextClose = true;
       this.setState({
@@ -50,7 +67,7 @@ export default class StickerSelect extends Component {
   };
 
   // Close the popover
-  closePopover = () => {
+  closePopover = (): void => {
     if (!this.preventNextClose && this.state.open) {
       this.setState({
         open: false,
@@ -61,17 +78,18 @@ export default class StickerSelect extends Component {
   };
 
   // Add a sticker to the editor
-  add = id => {
+  add = (id: string): void => {
     // TODO - review this approach
     const { editor } = this.props;
     editor.onChange(addSticker(editor.state.editorState, id));
   };
 
-  render() {
+  render(): ReactElement {
     // Create the sticker selection elements
-    const stickerElements = this.props.stickers.get('data').map(sticker => {
-      const id = sticker.get('id');
-      const url = sticker.get('url');
+    const data = this.props.stickers.get('data') as ImmutableStickerPluginItem;
+    const stickerElements = data.map((sticker) => {
+      const id = sticker!.get('id');
+      const url = sticker!.get('url');
       return (
         <StickerOption
           theme={this.props.theme}
