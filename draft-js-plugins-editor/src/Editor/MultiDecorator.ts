@@ -1,30 +1,33 @@
+import { CompositeDecorator, ContentBlock, ContentState } from 'draft-js';
 import Immutable from 'immutable';
 
 const KEY_SEPARATOR = '-';
 
-class MultiDecorator {
-  constructor(decorators) {
+export default class MultiDecorator {
+  decorators: Immutable.List<CompositeDecorator>;
+
+  constructor(decorators: Immutable.List<CompositeDecorator>) {
     this.decorators = Immutable.List(decorators);
   }
 
   /**
    * Return list of decoration IDs per character
-   *
-   * @param {ContentBlock} block
-   * @return {List<String>}
    */
-  getDecorations(block, contentState) {
-    const decorations = new Array(block.getText().length).fill(null);
+  getDecorations(
+    block: ContentBlock,
+    contentState: ContentState
+  ): Immutable.List<string> {
+    const decorations: string[] = new Array(block.getText().length).fill(null);
 
     this.decorators.forEach((decorator, i) => {
-      const subDecorations = decorator.getDecorations(block, contentState);
+      const subDecorations = decorator!.getDecorations(block, contentState);
 
       subDecorations.forEach((key, offset) => {
         if (!key) {
           return;
         }
 
-        decorations[offset] = i + KEY_SEPARATOR + key;
+        decorations[offset!] = i + KEY_SEPARATOR + key;
       });
     });
 
@@ -33,33 +36,26 @@ class MultiDecorator {
 
   /**
    * Return component to render a decoration
-   *
-   * @param {String} key
-   * @return {Function}
    */
-  getComponentForKey(key) {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  getComponentForKey(key: string): Function {
     const decorator = this.getDecoratorForKey(key);
     return decorator.getComponentForKey(MultiDecorator.getInnerKey(key));
   }
 
   /**
    * Return props to render a decoration
-   *
-   * @param {String} key
-   * @return {Object}
    */
-  getPropsForKey(key) {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  getPropsForKey(key: string): object {
     const decorator = this.getDecoratorForKey(key);
     return decorator.getPropsForKey(MultiDecorator.getInnerKey(key));
   }
 
   /**
    * Return a decorator for a specific key
-   *
-   * @param {String} key
-   * @return {Decorator}
    */
-  getDecoratorForKey(key) {
+  getDecoratorForKey(key: string): CompositeDecorator {
     const parts = key.split(KEY_SEPARATOR);
     const index = Number(parts[0]);
 
@@ -68,14 +64,9 @@ class MultiDecorator {
 
   /**
    * Return inner key for a decorator
-   *
-   * @param {String} key
-   * @return {String}
    */
-  static getInnerKey(key) {
+  static getInnerKey(key: string): string {
     const parts = key.split(KEY_SEPARATOR);
     return parts.slice(1).join(KEY_SEPARATOR);
   }
 }
-
-export default MultiDecorator;

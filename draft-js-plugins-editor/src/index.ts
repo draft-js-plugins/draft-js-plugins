@@ -1,66 +1,83 @@
 import {
+  CompositeDecorator,
   ContentBlock,
+  DraftBlockRenderMap,
   DraftDecorator,
   DraftDragType,
   DraftEditorCommand,
   DraftHandleValue,
   DraftInlineStyle,
   DraftStyleMap,
-  Editor,
-  EditorProps,
   EditorState,
   SelectionState,
-  DraftBlockRenderMap,
 } from 'draft-js';
-import { Component, SyntheticEvent, KeyboardEvent } from 'react';
+import { CSSProperties, KeyboardEvent, SyntheticEvent } from 'react';
+import createEditorStateWithTextFn from './utils/createEditorStateWithText';
+import composeDecoratorsFn from './utils/composeDecorators';
+
+// eslint-disable-next-line import/no-named-as-default
+export { default } from './Editor';
+export const createEditorStateWithText = createEditorStateWithTextFn;
+export const composeDecorators = composeDecoratorsFn;
+
+export type { PluginEditorProps } from './Editor';
 
 type EditorCommand = DraftEditorCommand | string;
 
+export interface GetSetEditorState {
+  setEditorState(editorState: EditorState): void; // a function to update the EditorState
+  getEditorState(): EditorState; // a function to get the current EditorState
+}
+
+//the editors editor html element is not supported in the draft js typescript interface
 export interface EditorRef {
   refs?: { editor: HTMLElement };
   editor: HTMLElement;
 }
 
-export interface PluginFunctions {
+export interface PluginFunctions extends GetSetEditorState {
   getPlugins(): EditorPlugin[]; // a function returning a list of all the plugins
-  getProps(): any; // a function returning a list of all the props pass into the Editor
-  setEditorState(editorState: EditorState): void; // a function to update the EditorState
-  getEditorState(): EditorState; // a function to get the current EditorState
+  getProps(): unknown; // a function returning a list of all the props pass into the Editor
   getReadOnly(): boolean; // a function returning of the Editor is set to readOnly
   setReadOnly(readOnly: boolean): void; // a function which allows to set the Editor to readOnly
   getEditorRef(): EditorRef; // a function to get the editor reference
 }
 
 export interface AriaProps {
-  ariaHasPopup: string;
-  ariaExpanded: boolean | string;
+  ariaHasPopup?: string;
+  ariaExpanded?: boolean;
   ariaOwneeID?: string;
   ariaActiveDescendantID?: string;
 }
 
 export interface EditorPlugin {
-  decorators?: DraftDecorator[];
+  decorators?: Array<DraftDecorator | CompositeDecorator>;
   getAccessibilityProps?(): AriaProps;
   initialize?: (pluginFunctions: PluginFunctions) => void;
   onChange?: (
     editorState: EditorState,
     pluginFunctions: PluginFunctions
   ) => EditorState;
-  willUnmount?: (pluginFunctions: PluginFunctions) => void;
+  willUnmount?: (pluginFunctions: GetSetEditorState) => void;
 
   // Events passed from the draft-js editor back to all plugins
-  blockRendererFn?(block: ContentBlock, pluginFunctions: PluginFunctions): any;
   blockRenderMap?: DraftBlockRenderMap;
-  blockStyleFn?(block: ContentBlock, pluginFunctions: PluginFunctions): string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  blockRendererFn?(block: ContentBlock, pluginFunctions: PluginFunctions): any;
+  blockStyleFn?(
+    block: ContentBlock,
+    pluginFunctions: PluginFunctions
+  ): string | undefined | null;
   customStyleFn?: (
     style: DraftInlineStyle,
     block: ContentBlock,
     pluginFunctions: PluginFunctions
-  ) => DraftStyleMap;
+  ) => CSSProperties;
+  customStyleMap?: DraftStyleMap;
   keyBindingFn?(
     event: KeyboardEvent,
     pluginFunctions: PluginFunctions
-  ): EditorCommand | null | undefined;
+  ): EditorCommand | null;
   handleReturn?(
     event: KeyboardEvent,
     editorState: EditorState,
@@ -99,40 +116,30 @@ export interface EditorPlugin {
     isInternal: DraftDragType,
     pluginFunctions: PluginFunctions
   ): DraftHandleValue;
-  onEscape?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onTab?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onUpArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onDownArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onRightArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onLeftArrow?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void;
-  onBlur?(event: SyntheticEvent, pluginFunctions: PluginFunctions): void;
-  onFocus?(event: SyntheticEvent, pluginFunctions: PluginFunctions): void;
+  onEscape?(
+    event: KeyboardEvent,
+    pluginFunctions: PluginFunctions
+  ): void | true;
+  onTab?(event: KeyboardEvent, pluginFunctions: PluginFunctions): void | true;
+  onUpArrow?(
+    event: KeyboardEvent,
+    pluginFunctions: PluginFunctions
+  ): void | true;
+  onDownArrow?(
+    event: KeyboardEvent,
+    pluginFunctions: PluginFunctions
+  ): void | true;
+  onRightArrow?(
+    event: KeyboardEvent,
+    pluginFunctions: PluginFunctions
+  ): void | true;
+  onLeftArrow?(
+    event: KeyboardEvent,
+    pluginFunctions: PluginFunctions
+  ): void | true;
+  onBlur?(event: SyntheticEvent, pluginFunctions: PluginFunctions): void | true;
+  onFocus?(
+    event: SyntheticEvent,
+    pluginFunctions: PluginFunctions
+  ): void | true;
 }
-
-export const composeDecorators: (
-  ...decorators: DraftDecorator[]
-) => DraftDecorator;
-
-export interface PluginEditorProps extends EditorProps {
-  plugins?: EditorPlugin[];
-  defaultKeyBindings?: boolean;
-  defaultKeyCommands?: boolean;
-  defaultBlockRenderMap?: boolean;
-
-  keyBindingFn?(
-    event: SyntheticKeyboardEvent
-  ): EditorCommand | null | undefined;
-
-  // eslint-disable-next-line react/no-unused-prop-types
-  decorators?: DraftDecorator[];
-}
-
-declare class PluginEditor extends Component<PluginEditorProps> {
-  focus(): void;
-  blur(): void;
-  getPlugins(): EditorPlugin[];
-  getPluginMethods(): PluginFunctions;
-  getEditorRef(): Editor | undefined;
-}
-
-export default PluginEditor;

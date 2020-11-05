@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add esm support
 - Apply decorators and set selection after initial rendering to prevent `onChange` to trigger during the render cycle
 - adjust typescript definitions
+- convert to typescript
 
 ## 3.0.0
 

@@ -1,4 +1,7 @@
 import { Map } from 'immutable';
+import React, { ComponentType, ReactElement } from 'react';
+import { EditorState } from 'draft-js';
+import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
 import Mention, { MentionProps, SubMentionComponentProps } from './Mention';
 import MentionSuggestions, {
   MentionSuggestionCallbacks,
@@ -7,7 +10,6 @@ import MentionSuggestions, {
 import MentionSuggestionsPortal, {
   MentionSuggestionsPortalProps,
 } from './MentionSuggestionsPortal';
-import React, { ComponentType } from 'react';
 import addMention from './modifiers/addMention';
 import defaultPositionSuggestions, {
   PositionSuggestionsFn,
@@ -17,8 +19,6 @@ import { defaultTheme, Theme } from './theme';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
-import { EditorState } from 'draft-js';
-import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
 import { EntryComponentProps } from './MentionSuggestions/Entry/Entry';
 
 export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
@@ -92,10 +92,10 @@ export default (
   const store: MentionPluginStore = {
     getEditorState: undefined,
     setEditorState: undefined,
-    getPortalClientRect: offsetKey => clientRectFunctions.get(offsetKey)(),
+    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
     getAllSearches: () => searches,
-    isEscaped: offsetKey => escapedSearch === offsetKey,
-    escapeSearch: offsetKey => {
+    isEscaped: (offsetKey) => escapedSearch === offsetKey,
+    escapeSearch: (offsetKey) => {
       escapedSearch = offsetKey;
     },
 
@@ -103,7 +103,7 @@ export default (
       escapedSearch = undefined;
     },
 
-    register: offsetKey => {
+    register: (offsetKey) => {
       searches = searches.set(offsetKey, offsetKey);
     },
 
@@ -111,13 +111,13 @@ export default (
       clientRectFunctions = clientRectFunctions.set(offsetKey, func);
     },
 
-    unregister: offsetKey => {
+    unregister: (offsetKey) => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
 
     getIsOpened: () => isOpened,
-    setIsOpened: nextIsOpened => {
+    setIsOpened: (nextIsOpened) => {
       isOpened = nextIsOpened;
     },
   };
@@ -153,13 +153,15 @@ export default (
   };
   const DecoratedMentionSuggestionsComponent = (
     props: MentionSuggestionsPubProps
-  ) => <MentionSuggestionsComponent {...props} {...mentionSearchProps} />;
-  const DecoratedMention = (props: MentionProps) => (
+  ): ReactElement => (
+    <MentionSuggestionsComponent {...props} {...mentionSearchProps} />
+  );
+  const DecoratedMention = (props: MentionProps): ReactElement => (
     <Mention {...props} theme={theme} mentionComponent={mentionComponent} />
   );
   const DecoratedMentionSuggestionsPortal = (
     props: Omit<MentionSuggestionsPortalProps, 'store'>
-  ) => <MentionSuggestionsPortal {...props} store={store} />;
+  ): ReactElement => <MentionSuggestionsPortal {...props} store={store} />;
   return {
     MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [
@@ -190,11 +192,11 @@ export default (
       store.setEditorState = setEditorState;
     },
 
-    keyBindingFn: keyboardEvent =>
-      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
-    handleReturn: keyboardEvent =>
+    keyBindingFn: (keyboardEvent) =>
+      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)) || null,
+    handleReturn: (keyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
-    onChange: editorState => {
+    onChange: (editorState) => {
       if (callbacks.onChange) {
         return callbacks.onChange(editorState);
       }
