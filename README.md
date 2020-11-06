@@ -137,10 +137,6 @@ In this talk Nik Graf explained the ContentState structure of a Draft.js Editor 
 
 [<img width="450" src="http://img.youtube.com/vi/gxNuHZXZMgs/maxresdefault.jpg" >](https://www.youtube.com/watch?v=gxNuHZXZMgs)
 
-## History
-
-This project was initiated by [Nik Graf](https://twitter.com/nikgraf) but is currently going un-maintained. If you'd like to become a maintainer, please get involved by contributing, if you have any questions please feel free to [reach out in this https://github.com/draft-js-plugins/draft-js-plugins/issues/1407#issuecomment-629710454).
-
 ## License
 
 MIT
