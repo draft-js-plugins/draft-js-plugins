@@ -34,9 +34,12 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
   const [position, setPosition] = useState({});
   const [alignment, setAlignment] = useState<string | null>(null);
   const toolbar = useRef<HTMLDivElement>(null);
+  const [timeoutHandle, setClearTimeout] = useState<
+    ReturnType<typeof setTimeout>
+  >();
 
   const onVisibilityChanged = (visibleBlock?: null | string): void => {
-    setTimeout(() => {
+    const clear = setTimeout(() => {
       let newPosition;
       const boundingRect = props.store.getItem('boundingRect');
       if (visibleBlock && boundingRect) {
@@ -60,7 +63,9 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
 
       setAlignment(newAlignment);
       setPosition(newPosition);
+      setClearTimeout(undefined);
     }, 0);
+    setClearTimeout(clear);
   };
 
   const onAlignmentChange = (value: string | undefined): void => {
@@ -68,6 +73,16 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
       setAlignment(value);
     }
   };
+
+  useEffect(
+    () => () => {
+      //clear timeout on unmount
+      if (timeoutHandle) {
+        clearTimeout(timeoutHandle);
+      }
+    },
+    [timeoutHandle]
+  );
 
   useEffect(() => {
     props.store.subscribeToItem('visibleBlock', onVisibilityChanged);
@@ -77,7 +92,7 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
       props.store.unsubscribeFromItem('visibleBlock', onVisibilityChanged);
       props.store.unsubscribeFromItem('alignment', onAlignmentChange);
     };
-  });
+  }, []);
 
   const defaultButtons: DraftJsBlockAlignmentButtonType[] = [
     AlignBlockDefaultButton,
