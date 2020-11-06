@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
@@ -15,17 +15,17 @@ const plugins = [inlineToolbarPlugin];
 const text =
   'In this editor a toolbar with a lot more options shows up once you select part of the text …';
 
-const ThemedInlineToolbarEditor = () => {
+const ThemedInlineToolbarEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     createEditorStateWithText(text)
   );
-  const editor = useRef();
+  const editor = useRef<Editor>();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): Editor => {
     editor.current.focus();
   };
 
@@ -35,7 +35,7 @@ const ThemedInlineToolbarEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState, convertFromRaw } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createVideoPlugin from 'draft-js-video-plugin';
@@ -56,17 +56,17 @@ const initialState = {
   ],
 };
 /* eslint-enable */
-const SimpleVideoEditor = () => {
+const SimpleVideoEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(initialState))
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
@@ -76,7 +76,7 @@ const SimpleVideoEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />

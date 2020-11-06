@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import {
   HeadlineOneButton,
@@ -23,17 +23,17 @@ const plugins = [sideToolbarPlugin];
 const text =
   'Once you click into the text field the sidebar plugin will show up …';
 
-const CustomSideToolbarEditor = () => {
+const CustomSideToolbarEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     createEditorStateWithText(text)
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
@@ -43,20 +43,22 @@ const CustomSideToolbarEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />
       <SideToolbar>
-        {// may be use React.Fragment instead of div to improve perfomance after React 16
-        externalProps => (
-          <div>
-            <HeadlineOneButton {...externalProps} />
-            <HeadlineTwoButton {...externalProps} />
-            <BlockquoteButton {...externalProps} />
-            <CodeBlockButton {...externalProps} />
-          </div>
-        )}
+        {
+          // may be use React.Fragment instead of div to improve perfomance after React 16
+          (externalProps) => (
+            <div>
+              <HeadlineOneButton {...externalProps} />
+              <HeadlineTwoButton {...externalProps} />
+              <BlockquoteButton {...externalProps} />
+              <CodeBlockButton {...externalProps} />
+            </div>
+          )
+        }
       </SideToolbar>
     </div>
   );

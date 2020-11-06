@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp */
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, ReactElement } from 'react';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 
@@ -21,8 +21,8 @@ import {
 } from 'draft-js-buttons';
 import editorStyles from './editorStyles.css';
 
-const HeadlinesPicker = props => {
-  const onWindowClick = () =>
+const HeadlinesPicker = (props): ReactElement => {
+  const onWindowClick = (): void =>
     // Call `onOverrideContent` again with `undefined`
     // so the toolbar can show its regular content again.
     props.onOverrideContent(undefined);
@@ -55,8 +55,8 @@ const HeadlinesPicker = props => {
   );
 };
 
-const HeadlinesButton = ({ onOverrideContent }) => {
-  const onClick = () =>
+const HeadlinesButton = ({ onOverrideContent }): ReactElement => {
+  const onClick = (): void =>
     // A button can call `onOverrideContent` to replace the content
     // of the toolbar. This can be useful for displaying sub
     // menus or requesting additional information from the user.
@@ -92,17 +92,17 @@ const plugins = [toolbarPlugin];
 const text =
   'Remember to place the <Toolbar> component bellow the Editor component …';
 
-const CustomToolbarEditor = () => {
+const CustomToolbarEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     createEditorStateWithText(text)
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
@@ -117,7 +117,7 @@ const CustomToolbarEditor = () => {
             SUBSCRIPT: { fontSize: '0.6em', verticalAlign: 'sub' },
             SUPERSCRIPT: { fontSize: '0.6em', verticalAlign: 'super' },
           }}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

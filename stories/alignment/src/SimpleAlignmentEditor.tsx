@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ReactElement } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
@@ -67,18 +67,18 @@ const initialState = {
 };
 /* eslint-enable */
 
-const SimpleAlignmentEditor = () => {
+const SimpleAlignmentEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(initialState))
   );
 
-  const editor = useRef();
+  const editor = useRef<Editor>();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
@@ -89,7 +89,7 @@ const SimpleAlignmentEditor = () => {
           editorState={editorState}
           onChange={onChange}
           plugins={plugins}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

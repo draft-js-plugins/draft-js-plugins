@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { CSSProperties, ReactElement, useRef, useState } from 'react';
 import { ContentState, EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, {
@@ -8,7 +8,7 @@ import editorStyles from './editorStyles.css';
 import mentionsStyles from './mentionsStyles.css';
 import mentions from './mentions';
 
-const positionSuggestions = ({ props }) => {
+const positionSuggestions = ({ props }): CSSProperties => {
   let transform;
   let transition;
 
@@ -39,12 +39,12 @@ const mentionPlugin = createMentionPlugin({
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-const Entry = props => {
+const Entry = (props): ReactElement => {
   const {
     mention,
     theme,
-    isFocused,
-    searchValue, // eslint-disable-line no-unused-vars
+    isFocused, // eslint-disable-line @typescript-eslint/no-unused-vars
+    searchValue, // eslint-disable-line @typescript-eslint/no-unused-vars
     ...parentProps
   } = props;
 
@@ -73,7 +73,7 @@ const Entry = props => {
   );
 };
 
-const CustomMentionEditor = () => {
+const CustomMentionEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
       ContentState.createFromText(
@@ -86,19 +86,19 @@ const CustomMentionEditor = () => {
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions);
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
-  const onOpenChange = newOpen => {
+  const onOpenChange = (newOpen): void => {
     setOpen(newOpen);
   };
 
-  const onSearchChange = ({ value }) => {
+  const onSearchChange = ({ value }): void => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
   };
 
@@ -108,7 +108,7 @@ const CustomMentionEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />
