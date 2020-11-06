@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
 import editorStyles from './editorStyles.css';
@@ -9,17 +9,17 @@ const plugins = [inlineToolbarPlugin];
 const text =
   'The toolbar above the editor can be used for formatting text, as in conventional static editors  …';
 
-const SimpleInlineToolbarEditor = () => {
+const SimpleInlineToolbarEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     createEditorStateWithText(text)
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
@@ -30,7 +30,7 @@ const SimpleInlineToolbarEditor = () => {
           editorState={editorState}
           onChange={onChange}
           plugins={plugins}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

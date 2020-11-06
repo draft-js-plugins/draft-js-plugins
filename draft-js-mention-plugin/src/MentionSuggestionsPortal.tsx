@@ -17,13 +17,13 @@ export default function MentionSuggestionsPortal(
 
   // Note: this is a workaround for an obscure issue: https://github.com/draft-js-plugins/draft-js-plugins/pull/667/files
   // Ideally we can remove this in the future.
-  const searchPortalRef = (element: HTMLSpanElement) => {
+  const searchPortalRef = (element: HTMLSpanElement): void => {
     searchPortal.current = element;
   };
 
   const updatePortalClientRect = (
     currentProps: MentionSuggestionsPortalProps
-  ) => {
+  ): void => {
     currentProps.store.updatePortalClientRect(currentProps.offsetKey, () =>
       searchPortal.current!.getBoundingClientRect()
     );

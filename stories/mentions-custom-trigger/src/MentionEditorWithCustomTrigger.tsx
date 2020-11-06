@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState, ContentState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, {
@@ -11,7 +11,7 @@ const mentionPlugin = createMentionPlugin({ mentionTrigger: '(' });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-const SimpleMentionEditor = () => {
+const SimpleMentionEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
       ContentState.createFromText('Type ( to make the mention dropdown appear')
@@ -22,23 +22,23 @@ const SimpleMentionEditor = () => {
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions);
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
-  const onOpenChange = newOpen => {
+  const onOpenChange = (newOpen): void => {
     setOpen(newOpen);
   };
 
-  const onSearchChange = ({ value }) => {
+  const onSearchChange = ({ value }): void => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
   };
 
-  const onAddMention = () => {
+  const onAddMention = (): void => {
     // get the mention object selected
   };
 
@@ -48,7 +48,7 @@ const SimpleMentionEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />

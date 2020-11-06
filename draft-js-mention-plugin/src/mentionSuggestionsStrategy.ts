@@ -9,12 +9,12 @@ const findWithRegex = (
   regex: RegExp,
   contentBlock: ContentBlock,
   callback: FindWithRegexCb
-) => {
+): void => {
   const contentBlockText = contentBlock.getText();
 
   // exclude entities, when matching
   contentBlock.findEntityRanges(
-    character => !character.getEntity(),
+    (character) => !character.getEntity(),
     (nonEntityStart, nonEntityEnd) => {
       const text = contentBlockText.slice(nonEntityStart, nonEntityEnd);
       let matchArr;
