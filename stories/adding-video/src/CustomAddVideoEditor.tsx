@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createVideoPlugin from 'draft-js-video-plugin';
@@ -9,15 +9,15 @@ const videoPlugin = createVideoPlugin();
 
 const plugins = [videoPlugin];
 
-const CustomVideoEditor = () => {
+const CustomVideoEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const editor = useRef();
+  const editor = useRef<Editor>();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
@@ -28,7 +28,7 @@ const CustomVideoEditor = () => {
           editorState={editorState}
           onChange={onChange}
           plugins={plugins}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

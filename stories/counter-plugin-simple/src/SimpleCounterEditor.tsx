@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ReactElement } from 'react';
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
 import createCounterPlugin from 'draft-js-counter-plugin';
 import editorStyles from './editorStyles.css';
@@ -15,21 +15,21 @@ Note that the color changes when you pass one of the following limits:
 - 10 lines
 `;
 
-const SimpleCounterEditor = () => {
+const SimpleCounterEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     createEditorStateWithText(text)
   );
-  const editor = useRef();
+  const editor = useRef<Editor>();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
-  const customCountFunction = str => {
+  const customCountFunction = (str: string): number => {
     const wordArray = str.match(/\S+/g); // matches words according to whitespace
     return wordArray ? wordArray.length : 0;
   };
@@ -41,7 +41,7 @@ const SimpleCounterEditor = () => {
           editorState={editorState}
           onChange={onChange}
           plugins={plugins}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

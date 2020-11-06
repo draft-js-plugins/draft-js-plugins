@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
@@ -81,17 +81,17 @@ const initialState = {
 };
 /* eslint-enable */
 
-const CustomImageEditor = () => {
+const CustomImageEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(initialState))
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
@@ -102,7 +102,7 @@ const CustomImageEditor = () => {
           editorState={editorState}
           onChange={onChange}
           plugins={plugins}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

@@ -139,7 +139,7 @@
     "alex": "alex README.md",
     "build-storybook": "build-storybook",
     "lint": "yarn lint:eslint && yarn lint:flow && yarn tsc",
-    "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' --ext .js ./",
+    "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' --ext .js,.ts,.tsx ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests: 2' ./",
     "lint:flow": "flow status",
     "storybook": "start-storybook -p 6006 -s ./stories/public",

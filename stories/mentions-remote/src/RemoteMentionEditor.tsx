@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 
 import Editor from 'draft-js-plugins-editor';
@@ -10,26 +10,26 @@ const mentionPlugin = createMentionPlugin();
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-const SimpleMentionEditor = () => {
+const SimpleMentionEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const editor = useRef();
+  const editor = useRef<Editor>();
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
 
-  const onOpenChange = newOpen => {
+  const onOpenChange = (newOpen): void => {
     setOpen(newOpen);
   };
 
-  const onSearchChange = ({ value }) => {
+  const onSearchChange = ({ value }): void => {
     // An import statment would break server-side rendering.
     require('whatwg-fetch'); // eslint-disable-line global-require
 
@@ -43,8 +43,8 @@ const SimpleMentionEditor = () => {
     }
 
     fetch(url)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setSuggestions(data);
       });
   };
@@ -55,7 +55,7 @@ const SimpleMentionEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />

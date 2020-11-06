@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import Editor from 'draft-js-plugins-editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
@@ -39,28 +39,28 @@ const contentState = ContentState.createFromText(
   'You can add Emojis by typing colon : or mentions with an @. Add Stickers and undo your actions with the undo button below …'
 );
 
-const UnicornEditor = () => {
+const UnicornEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(contentState)
   );
-  const editor = useRef();
+  const editor = useRef<Editor>();
 
   const [suggestions, setSuggestions] = useState(mentions);
   const [open, setOpen] = useState(false);
 
-  const onChange = value => {
+  const onChange = (value): void => {
     setEditorState(value);
   };
 
-  const onOpenChange = newOpen => {
+  const onOpenChange = (newOpen): void => {
     setOpen(newOpen);
   };
 
-  const focus = () => {
+  const focus = (): void => {
     editor.current.focus();
   };
 
-  const onMentionSearchChange = ({ value }) => {
+  const onMentionSearchChange = ({ value }): void => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
   };
 
@@ -80,7 +80,7 @@ const UnicornEditor = () => {
           onChange={onChange}
           plugins={plugins}
           spellCheck
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />
