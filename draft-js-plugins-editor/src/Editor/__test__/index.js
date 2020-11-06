@@ -12,7 +12,9 @@ class TestEditor extends Component {
   state = {};
 
   UNSAFE_componentWillMount() {
-    this.state.editorState = createEditorStateWithText(this.props.text);
+    this.setState({
+      editorState: createEditorStateWithText(this.props.text),
+    });
   }
 
   UNSAFE_componentWillReceiveProps(props) {
@@ -21,7 +23,7 @@ class TestEditor extends Component {
     });
   }
 
-  onChange = editorState => {
+  onChange = (editorState) => {
     this.setState({
       editorState,
     });
@@ -668,18 +670,24 @@ describe('Editor', () => {
 
       decorator = {
         strategy: (block, cb) => cb(1, 3),
-        component: () => <span className="decorator" />,
+        component() {
+          return <span className="decorator" />;
+        },
       };
 
       plugin = {
         decorators: [
           {
             strategy: (block, cb) => cb(4, 7),
-            component: () => <span className="plugin" />,
+            component() {
+              return <span className="plugin" />;
+            },
           },
           {
             getDecorations: () => [],
-            getComponentForKey: () => <span className="custom" />,
+            getComponentForKey() {
+              return <span className="custom" />;
+            },
             getPropsForKey: () => {},
           },
         ],
@@ -731,7 +739,7 @@ describe('Editor', () => {
       expect(decoratorStrategy).has.been.called();
     });
 
-    it('reassigns decorators to editorState when props are updated with naked editorState', done => {
+    it('reassigns decorators to editorState when props are updated with naked editorState', (done) => {
       const props = { plugins, text };
       const comp = mount(<TestEditor {...props} />);
 
@@ -745,10 +753,7 @@ describe('Editor', () => {
           decoratorNumber
         );
         expect(
-          comp
-            .state('editorState')
-            .getCurrentContent()
-            .getPlainText()
+          comp.state('editorState').getCurrentContent().getPlainText()
         ).to.eq(newText);
         done();
       }, 100);
