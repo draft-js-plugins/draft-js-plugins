@@ -11,6 +11,8 @@ const ColorBlock = ({
   selection, // eslint-disable-line no-unused-vars
   tree, // eslint-disable-line no-unused-vars
   contentState, // eslint-disable-line no-unused-vars
+  blockStyleFn, // eslint-disable-line no-unused-vars
+  preventScroll, // eslint-disable-line no-unused-vars
   style,
   ...elementProps
 }) => (
@@ -18,10 +20,12 @@ const ColorBlock = ({
     {...elementProps}
     style={{ width: 200, height: 80, backgroundColor: '#9bc0c7', ...style }}
   />
-  );
+);
 
 const createColorBlockPlugin = (config = {}) => {
-  const component = config.decorator ? config.decorator(ColorBlock) : ColorBlock;
+  const component = config.decorator
+    ? config.decorator(ColorBlock)
+    : ColorBlock;
   return {
     blockRendererFn: (block, { getEditorState }) => {
       if (block.getType() === 'atomic') {
