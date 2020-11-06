@@ -1,5 +1,5 @@
 import React, { ReactElement, useRef, useState } from 'react';
-import { convertFromRaw, EditorState } from 'draft-js';
+import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js';
 
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createImagePlugin from 'draft-js-image-plugin';
@@ -32,7 +32,7 @@ const plugins = [
 ];
 
 /* eslint-disable */
-const initialState = {
+const initialState: RawDraftContentState = {
   entityMap: {
     '0': {
       type: 'IMAGE',
@@ -85,22 +85,21 @@ const CustomImageEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(initialState))
   );
-  const editor = useRef();
-
-  const onChange = (value): void => {
-    setEditorState(value);
-  };
-
-  const focus = (): void => {
-    editor.current.focus();
-  };
+  const editor = useRef<Editor>();
 
   return (
     <div>
-      <div className={editorStyles.editor} onClick={focus}>
+      <div
+        className={editorStyles.editor}
+        onClick={(): void => {
+          editor.current.focus();
+        }}
+      >
         <Editor
           editorState={editorState}
-          onChange={onChange}
+          onChange={(value): void => {
+            setEditorState(value);
+          }}
           plugins={plugins}
           ref={(element) => {
             editor.current = element;
