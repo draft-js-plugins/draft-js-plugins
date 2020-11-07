@@ -1,12 +1,9 @@
-import React from 'react';
-import { mount } from 'enzyme';
-import chai, { expect } from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
-
-import { MentionSuggestions } from '../MentionSuggestions';
-
-chai.use(sinonChai);
+import { render } from '@testing-library/react';
+import React, { ReactElement, ReactNode } from 'react';
+import {
+  MentionSuggestions,
+  MentionSuggestionsProps,
+} from '../MentionSuggestions';
 
 const mentions = [
   {
@@ -44,42 +41,49 @@ const mentions = [
   },
 ];
 
-function defaultProps() {
-  return {
+function defaultProps(): MentionSuggestionsProps {
+  return ({
     open: false,
-    onOpenChange: sinon.spy(),
+    onOpenChange: jest.fn(),
     suggestions: mentions,
     callbacks: {
-      keyBindingFn: sinon.spy(),
-      handleReturn: sinon.spy(),
+      keyBindingFn: jest.fn(),
+      handleReturn: jest.fn(),
     },
     store: {
-      getAllSearches: sinon.spy(() => ({ has: () => false })),
-      getPortalClientRect: sinon.spy(),
-      isEscaped: sinon.spy(),
-      resetEscapedSearch: sinon.spy(),
-      escapeSearch: sinon.spy(),
+      getAllSearches: jest.fn(() => ({ has: () => false })),
+      getPortalClientRect: jest.fn(),
+      isEscaped: jest.fn(),
+      resetEscapedSearch: jest.fn(),
+      escapeSearch: jest.fn(),
     },
     ariaProps: {},
-    onSearchChange: sinon.spy(),
-    onAddMention: sinon.spy(),
-    positionSuggestions: sinon.stub().returns({}),
+    onSearchChange: jest.fn(),
+    onAddMention: jest.fn(),
+    positionSuggestions: jest.fn(() => ({})),
     theme: {},
-  };
+  } as unknown) as MentionSuggestionsProps;
 }
 
 describe('MentionSuggestions Component', () => {
   it('Controls open state', () => {
     const props = defaultProps();
-    const suggestions = mount(<MentionSuggestions {...props} />);
-    suggestions.instance().openDropdown();
-    expect(props.onOpenChange).has.been.calledWith(true);
-    suggestions.instance().closeDropdown();
-    expect(props.onOpenChange).has.been.calledWith(false);
+    const instanceRef = React.createRef<MentionSuggestions>();
+    render(<MentionSuggestions {...props} ref={instanceRef} />);
+
+    instanceRef.current!.openDropdown();
+    expect(props.onOpenChange).lastCalledWith(true);
+    instanceRef.current!.closeDropdown();
+    expect(props.onOpenChange).lastCalledWith(false);
   });
 
   it('The popoverComponent prop changes the popover component', () => {
-    const PopoverComponent = ({ children, ...props }) => (
+    const PopoverComponent = ({
+      children,
+      ...props
+    }: {
+      children?: ReactNode;
+    }): ReactElement => (
       <div data-test-test {...props}>
         {children}
       </div>
@@ -88,30 +92,34 @@ describe('MentionSuggestions Component', () => {
     const props = defaultProps();
     props.open = true;
     props.popoverComponent = <PopoverComponent />;
-    const suggestions = mount(<MentionSuggestions {...props} />);
-
-    expect(suggestions.find('[data-test-test]')).to.have.length(1);
+    const { container } = render(<MentionSuggestions {...props} />);
+    expect(container.querySelectorAll('[data-test-test]')).toHaveLength(1);
   });
 
   it('The popoverComponent recieves the children', () => {
     let called = false;
-    const PopoverComponent = ({ children, ...props }) => {
+    const PopoverComponent = ({
+      children,
+      ...props
+    }: {
+      children?: ReactNode;
+    }): ReactElement => {
       called = true;
-      expect(React.Children.count(children)).to.equal(mentions.length);
+      expect(React.Children.count(children)).toBe(mentions.length);
       return <div {...props}>{children}</div>;
     };
 
     const props = defaultProps();
     props.open = true;
     props.popoverComponent = <PopoverComponent />;
-    mount(<MentionSuggestions {...props} />);
-    expect(called).to.equal(true);
+    render(<MentionSuggestions {...props} />);
+    expect(called).toBeTruthy();
   });
 
   it('The popoverComponent prop uses div by default', () => {
     const props = defaultProps();
     props.open = true;
-    const suggestions = mount(<MentionSuggestions {...props} data-findme />);
-    expect(suggestions.find('div[data-findme]')).to.have.length(1);
+    const { container } = render(<MentionSuggestions {...props} data-findme />);
+    expect(container.firstChild).toHaveAttribute('data-findme');
   });
 });
