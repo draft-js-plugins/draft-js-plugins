@@ -78,15 +78,20 @@ describe('MentionSuggestions Component', () => {
   });
 
   it('The popoverComponent prop changes the popover component', () => {
-    const PopoverComponent = ({
-      children,
-      ...props
-    }: {
-      children?: ReactNode;
-    }): ReactElement => (
-      <div data-test-test {...props}>
-        {children}
-      </div>
+    const PopoverComponent = React.forwardRef<HTMLDivElement>(
+      (
+        {
+          children,
+          ...props
+        }: {
+          children?: ReactNode;
+        },
+        ref
+      ): ReactElement => (
+        <div data-test-test {...props} ref={ref}>
+          {children}
+        </div>
+      )
     );
 
     const props = defaultProps();
@@ -98,16 +103,25 @@ describe('MentionSuggestions Component', () => {
 
   it('The popoverComponent recieves the children', () => {
     let called = false;
-    const PopoverComponent = ({
-      children,
-      ...props
-    }: {
-      children?: ReactNode;
-    }): ReactElement => {
-      called = true;
-      expect(React.Children.count(children)).toBe(mentions.length);
-      return <div {...props}>{children}</div>;
-    };
+    const PopoverComponent = React.forwardRef<HTMLDivElement>(
+      (
+        {
+          children,
+          ...props
+        }: {
+          children?: ReactNode;
+        },
+        ref
+      ): ReactElement => {
+        called = true;
+        expect(React.Children.count(children)).toBe(mentions.length);
+        return (
+          <div {...props} ref={ref}>
+            {children}
+          </div>
+        );
+      }
+    );
 
     const props = defaultProps();
     props.open = true;

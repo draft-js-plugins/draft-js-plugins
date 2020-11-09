@@ -287,7 +287,6 @@ export default ({ config, store }: DecoratorProps) => (
               onMouseMove: this.mouseMove,
               onMouseLeave: this.mouseLeave,
             };
-
       return (
         <WrappedComponent
           {...elementProps}

@@ -2,6 +2,7 @@ import React, {
   ComponentType,
   MouseEvent,
   ReactElement,
+  Ref,
   useEffect,
 } from 'react';
 import clsx from 'clsx';
@@ -22,6 +23,7 @@ interface BlockFocusDecoratorProps {
   className: string;
   block: ContentBlock;
   onClick(event: MouseEvent): void;
+  ref: Ref<unknown>;
 }
 
 type WrappedComponentType = ComponentType<BlockFocusDecoratorProps> & {
@@ -37,41 +39,44 @@ const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
 export default ({ theme, blockKeyStore }: DecoratorProps) => (
   WrappedComponent: WrappedComponentType
 ): ComponentType<BlockFocusDecoratorProps> => {
-  const BlockFocusDecorator = (
-    props: BlockFocusDecoratorProps
-  ): ReactElement => {
-    useEffect(() => {
-      blockKeyStore.add(props.block.getKey());
-      return () => {
-        blockKeyStore.remove(props.block.getKey());
+  const BlockFocusDecorator = React.forwardRef(
+    (props: BlockFocusDecoratorProps, ref): ReactElement => {
+      useEffect(() => {
+        blockKeyStore.add(props.block.getKey());
+        return () => {
+          blockKeyStore.remove(props.block.getKey());
+        };
+      }, []);
+
+      const onClick = (evt: MouseEvent): void => {
+        evt.preventDefault();
+        if (!props.blockProps.isFocused) {
+          props.blockProps.setFocusToBlock();
+        }
       };
-    }, []);
 
-    const onClick = (evt: MouseEvent): void => {
-      evt.preventDefault();
-      if (!props.blockProps.isFocused) {
-        props.blockProps.setFocusToBlock();
-      }
-    };
-
-    const { blockProps, className } = props;
-    const { isFocused } = blockProps;
-    const combinedClassName = isFocused
-      ? clsx(className, theme.focused)
-      : clsx(className, theme.unfocused);
-    return (
-      <WrappedComponent
-        {...props}
-        onClick={onClick}
-        className={combinedClassName}
-      />
-    );
-  };
+      const { blockProps, className } = props;
+      const { isFocused } = blockProps;
+      const combinedClassName = isFocused
+        ? clsx(className, theme.focused)
+        : clsx(className, theme.unfocused);
+      return (
+        <WrappedComponent
+          {...props}
+          ref={ref}
+          onClick={onClick}
+          className={combinedClassName}
+        />
+      );
+    }
+  );
 
   BlockFocusDecorator.displayName = `BlockFocus(${getDisplayName(
     WrappedComponent
   )})`;
-  BlockFocusDecorator.WrappedComponent =
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (BlockFocusDecorator as any).WrappedComponent =
     WrappedComponent.WrappedComponent || WrappedComponent;
 
   return BlockFocusDecorator;

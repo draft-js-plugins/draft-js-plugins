@@ -19,6 +19,7 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   offsetKey: unknown;
   selection: unknown;
   tree: unknown;
+  preventScroll: unknown;
 }
 
 export default function Image(props: ImageProps): ReactElement {
@@ -34,6 +35,7 @@ export default function Image(props: ImageProps): ReactElement {
     selection, // eslint-disable-line @typescript-eslint/no-unused-vars
     tree, // eslint-disable-line @typescript-eslint/no-unused-vars
     blockStyleFn, // eslint-disable-line @typescript-eslint/no-unused-vars
+    preventScroll, // eslint-disable-line @typescript-eslint/no-unused-vars
     contentState,
     ...elementProps
   } = otherProps;

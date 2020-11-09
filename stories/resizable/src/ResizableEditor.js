@@ -23,7 +23,7 @@ const plugins = [focusPlugin, resizeablePlugin, colorBlockPlugin];
 /* eslint-disable */
 const initialState = {
   entityMap: {
-    '0': {
+    0: {
       type: 'colorBlock',
       mutability: 'IMMUTABLE',
       data: {},
@@ -74,7 +74,7 @@ const SimpleResizeableEditor = () => {
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value) => {
     setEditorState(value);
   };
 
@@ -89,7 +89,7 @@ const SimpleResizeableEditor = () => {
           editorState={editorState}
           onChange={onChange}
           plugins={plugins}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

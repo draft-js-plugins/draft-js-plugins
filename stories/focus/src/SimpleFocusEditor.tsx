@@ -1,5 +1,5 @@
 import React, { useState, useRef, ReactElement } from 'react';
-import { convertFromRaw, EditorState } from 'draft-js';
+import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createColorBlockPlugin from './colorBlockPlugin';
@@ -13,7 +13,7 @@ const colorBlockPlugin = createColorBlockPlugin({ decorator });
 const plugins = [focusPlugin, colorBlockPlugin];
 
 /* eslint-disable */
-const initialState = {
+const initialState: RawDraftContentState = {
   entityMap: {
     '0': {
       type: 'colorBlock',
@@ -64,21 +64,20 @@ const CustomImageEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(initialState))
   );
-  const editor = useRef();
-
-  const onChange = (value): void => {
-    setEditorState(value);
-  };
-
-  const focus = (): void => {
-    editor.current.focus();
-  };
+  const editor = useRef<Editor>();
 
   return (
-    <div className={editorStyles.editor} onClick={focus}>
+    <div
+      className={editorStyles.editor}
+      onClick={(): void => {
+        editor.current.focus();
+      }}
+    >
       <Editor
         editorState={editorState}
-        onChange={onChange}
+        onChange={(value): void => {
+          setEditorState(value);
+        }}
         plugins={plugins}
         ref={(element) => {
           editor.current = element;

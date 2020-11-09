@@ -18,27 +18,27 @@ export interface DefaultDividerProps
   tree: unknown;
   contentState: unknown;
   blockStyleFn: unknown;
+  preventScroll: unknown;
 }
 
 export default function Divider({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  block,
+  block, // eslint-disable-line @typescript-eslint/no-unused-vars
   className,
   theme = {},
   ...otherProps
 }: DefaultDividerProps): ReactElement {
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    blockProps, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    customStyleMap, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    customStyleFn, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    decorator, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    forceSelection, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    offsetKey, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    selection, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    tree, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    contentState, // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    blockStyleFn,
+    blockProps, // eslint-disable-line @typescript-eslint/no-unused-vars
+    customStyleMap, // eslint-disable-line @typescript-eslint/no-unused-vars
+    customStyleFn, // eslint-disable-line @typescript-eslint/no-unused-vars
+    decorator, // eslint-disable-line @typescript-eslint/no-unused-vars
+    forceSelection, // eslint-disable-line @typescript-eslint/no-unused-vars
+    offsetKey, // eslint-disable-line @typescript-eslint/no-unused-vars
+    selection, // eslint-disable-line @typescript-eslint/no-unused-vars
+    tree, // eslint-disable-line @typescript-eslint/no-unused-vars
+    contentState, // eslint-disable-line @typescript-eslint/no-unused-vars
+    blockStyleFn, // eslint-disable-line @typescript-eslint/no-unused-vars
+    preventScroll, // eslint-disable-line @typescript-eslint/no-unused-vars
     ...elementProps
   } = otherProps;
   const combinedClassName = clsx(theme.divider, className);

@@ -1,5 +1,5 @@
 import React, { useState, useRef, ReactElement } from 'react';
-import { convertFromRaw, EditorState } from 'draft-js';
+import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -19,7 +19,7 @@ const colorBlockPlugin = createColorBlockPlugin({ decorator });
 const plugins = [focusPlugin, alignmentPlugin, colorBlockPlugin];
 
 /* eslint-disable */
-const initialState = {
+const initialState: RawDraftContentState = {
   entityMap: {
     '0': {
       type: 'colorBlock',
@@ -74,20 +74,19 @@ const SimpleAlignmentEditor = (): ReactElement => {
 
   const editor = useRef<Editor>();
 
-  const onChange = (value): void => {
-    setEditorState(value);
-  };
-
-  const focus = (): void => {
-    editor.current.focus();
-  };
-
   return (
     <div>
-      <div className={editorStyles.editor} onClick={focus}>
+      <div
+        className={editorStyles.editor}
+        onClick={(): void => {
+          editor.current.focus();
+        }}
+      >
         <Editor
           editorState={editorState}
-          onChange={onChange}
+          onChange={(value): void => {
+            setEditorState(value);
+          }}
           plugins={plugins}
           ref={(element) => {
             editor.current = element;
