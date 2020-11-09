@@ -1,20 +1,21 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { HashtagPluginTheme } from './theme';
 
 export interface HashtagProps {
   theme?: HashtagPluginTheme;
   className?: string;
+  children?: ReactNode;
 
   //removed props
-  decoratedText: unknown;
-  dir: unknown;
-  entityKey: unknown;
-  getEditorState: unknown;
-  offsetKey: unknown;
-  setEditorState: unknown;
-  contentState: unknown;
-  blockKey: unknown;
+  decoratedText?: unknown;
+  dir?: unknown;
+  entityKey?: unknown;
+  getEditorState?: unknown;
+  offsetKey?: unknown;
+  setEditorState?: unknown;
+  contentState?: unknown;
+  blockKey?: unknown;
 }
 
 export default function Hashtag(props: HashtagProps): ReactElement {
