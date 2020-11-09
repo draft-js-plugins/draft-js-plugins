@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import getSearchTextAt from '../getSearchTextAt';
 
 const trigger = '@';
@@ -10,7 +9,7 @@ describe('getSearchTextAt', () => {
       begin: 3,
       end: 20,
     };
-    expect(getSearchTextAt('hi @The Walking Dead', 20, trigger)).to.deep.equal(
+    expect(getSearchTextAt('hi @The Walking Dead', 20, trigger)).toEqual(
       expected
     );
   });
@@ -21,7 +20,7 @@ describe('getSearchTextAt', () => {
       begin: 3,
       end: 15,
     };
-    expect(getSearchTextAt('hi @The Walking Dead', 15, trigger)).to.deep.equal(
+    expect(getSearchTextAt('hi @The Walking Dead', 15, trigger)).toEqual(
       expected
     );
   });
@@ -32,6 +31,6 @@ describe('getSearchTextAt', () => {
       begin: 0,
       end: 3,
     };
-    expect(getSearchTextAt('Max', 3, '')).to.deep.equal(expected);
+    expect(getSearchTextAt('Max', 3, '')).toEqual(expected);
   });
 });
