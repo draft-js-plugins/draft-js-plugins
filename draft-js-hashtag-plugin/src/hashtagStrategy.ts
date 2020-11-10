@@ -1,5 +1,3 @@
-/* @flow */
-
 import { ContentBlock } from 'draft-js';
 import { extractHashtagsWithIndices } from './utils';
 
@@ -10,7 +8,7 @@ export default (
   const text = contentBlock.getText();
   const results = extractHashtagsWithIndices(text);
 
-  results.forEach(hashtag => {
+  results.forEach((hashtag) => {
     callback(hashtag.indices[0], hashtag.indices[1]);
   });
 };

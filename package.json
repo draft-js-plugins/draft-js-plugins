@@ -139,10 +139,9 @@
   "scripts": {
     "alex": "alex README.md",
     "build-storybook": "build-storybook",
-    "lint": "yarn lint:eslint && yarn lint:flow && yarn tsc",
+    "lint": "yarn lint:eslint && yarn tsc",
     "lint:eslint": "eslint --rule 'mocha/no-exclusive-tests: 2' --ext .js,.ts,.tsx ./",
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests: 2' ./",
-    "lint:flow": "flow status",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "test": "yarn workspace draft-js-plugins-editor run build && yarn workspace draft-js-plugins-utils run build && yarn workspace draft-js-buttons run build && yarn test:mocha",
     "test:mocha": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\", \"target\":\"ES2019\" }' mocha -r ts-node/register --compilers @babel/register --exclude \"./*/src/**/__test__/*test.js\" --require testHelper.js \"./*/src/**/__test__/*.js\"",

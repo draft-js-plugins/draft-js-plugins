@@ -1,5 +1,3 @@
-/* @flow */
-
 import { ContentBlock } from 'draft-js';
 import findWithRegex from 'find-with-regex';
 
