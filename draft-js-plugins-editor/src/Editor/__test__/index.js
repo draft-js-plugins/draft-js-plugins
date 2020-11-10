@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { mount, shallow } from 'enzyme';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
+import sinonChai from 'sinon-chai';
 import { EditorState, DefaultDraftBlockRenderMap, Editor } from 'draft-js';
 import { Map } from 'immutable';
 import sinon from 'sinon';
 import PluginEditor, { createEditorStateWithText } from '../../index';
+
+chai.use(sinonChai);
 
 /* For use in integration tests, as in where you need to test the
  * Editor component as well */

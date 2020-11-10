@@ -8,6 +8,7 @@
     "url": "http://www.nikgraf.com"
   },
   "dependencies": {
+    "@testing-library/user-event": "^12.2.0",
     "draft-js": "^0.11.0",
     "emojione": "^2.2.7",
     "eslint-plugin-import": "^2.2.0",
