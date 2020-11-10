@@ -9,7 +9,8 @@ import { EditorState } from 'draft-js';
 import DefaultLink, { LinkPubProps } from './components/Link';
 import LinkButton, { LinkButtonPubParams } from './components/LinkButton';
 import linkStrategy from './linkStrategy';
-import { defaultTheme, AnchorPluginTheme } from './theme';
+import { defaultTheme } from './theme';
+import type { AnchorPluginTheme } from './theme';
 
 export type { AnchorPluginTheme } from './theme';
 
