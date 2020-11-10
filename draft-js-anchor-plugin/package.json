@@ -39,7 +39,7 @@
   "license": "MIT",
   "dependencies": {
     "clsx": "^1.0.4",
-    "draft-js-plugins-utils": "2.0.2",
+    "draft-js-plugins-utils": "^2.0.3",
     "prepend-http": "3",
     "prop-types": "^15.5.8",
     "tlds": "^1.197.0"
