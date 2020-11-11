@@ -32,7 +32,7 @@
     "@babel/register": "7.12.1",
     "@storybook/react": "^6.0.21",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^10.4.9",
+    "@testing-library/react": "^11.1.1",
     "@testing-library/react-hooks": "^3.4.1",
     "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "4.6.1",
