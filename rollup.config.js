@@ -1,6 +1,6 @@
 import path from 'path';
-import nodeResolve from 'rollup-plugin-node-resolve';
-import babel from 'rollup-plugin-babel';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import babel from '@rollup/plugin-babel';
 import { existsSync } from 'fs';
 
 const input = existsSync('./src/index.ts')
