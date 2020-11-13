@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Add esm support
 - Use lodash-es in esm bundle
 - convert to typescript
+- use the setEditorState and getEditorState functions from props.store in EmojiSuggestionsPortal
 
 ## 2.1.3
 
