@@ -18,7 +18,7 @@ export default class EmojiSuggestionsPortal extends Component<
     this.updatePortalClientRect(this.props);
 
     // trigger a re-render so the EmojiSuggestions becomes active
-    this.props.setEditorState(this.props.getEditorState());
+    this.props.store.setEditorState(this.props.store.getEditorState());
   }
 
   UNSAFE_componentWillReceiveProps(
