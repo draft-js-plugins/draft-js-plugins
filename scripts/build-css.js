@@ -8,12 +8,12 @@ const root = process.argv[2];
 const libCss = path.join(root, 'lib-css');
 
 child_process.execSync(
-  `yarn linaria "${path.join(root, 'src/**/*.js')}" -o ${libCss}`,
+  `yarn linaria "${path.join(root, 'src/**/*.{ts,tsx}')}" -o ${libCss}`,
   { cwd: path.resolve('..'), stdio: 'inherit' }
 );
 
 let content = '';
-matched('lib-css/**/*.css', { cwd: root }).forEach(file => {
+matched('lib-css/**/*.css', { cwd: root }).forEach((file) => {
   content += fs.readFileSync(file, 'utf-8');
 });
 fs.writeFileSync(path.join(root, 'lib', 'plugin.css'), content);
