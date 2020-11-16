@@ -5,9 +5,10 @@
   "scripts": {
     "clean": "rimraf build",
     "start:dev": "babel-node ./server.js",
-    "start": "npm run start:dev",
+    "start": "yarn run start:dev",
     "build:static": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build": "npm run clean && cp -r buildTemplate build && $(pwd)/../scripts/renameBabelConfigs.sh && npm run build:static && $(pwd)/../scripts/restoreBabelConfigs.sh"
+    "build": ".",
+    "buildDep": "yarn run clean && cp -r buildTemplate build && yarn run build:static"
   },
   "license": "MIT",
   "devDependencies": {
@@ -34,7 +35,7 @@
     "react": "^15.1.0",
     "react-addons-pure-render-mixin": "^15.5.2",
     "react-dom": "^15.1.0",
-    "react-router": "^3.0.0",
+    "react-router": "3.0.0",
     "react-static-webpack-plugin": "^2.1.0",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
@@ -46,5 +47,6 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
     "whatwg-fetch": "^2.0.3"
-  }
+  },
+  "dependencies": {}
 }
