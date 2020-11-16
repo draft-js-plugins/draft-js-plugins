@@ -45,5 +45,8 @@
   },
   "devDependencies": {
     "@types/draft-js": "^0.10.34"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

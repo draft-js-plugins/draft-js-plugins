@@ -46,5 +46,8 @@
   },
   "devDependencies": {
     "@types/react-dom": "16.9.9"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

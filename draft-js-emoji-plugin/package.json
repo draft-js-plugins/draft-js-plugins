@@ -57,5 +57,8 @@
     "@types/emojione": "^2.2.6",
     "@types/react-custom-scrollbars": "^4.0.7",
     "@types/react-icons": "2.2.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
