@@ -24,7 +24,8 @@ import defaultPositionSuggestions, {
   PositionSuggestionsParams,
 } from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
-import { defaultTheme, EmojiPluginTheme } from './theme';
+import { defaultTheme } from './theme';
+import type { EmojiPluginTheme } from './theme';
 import Group from './components/EmojiSelect/Popover/Groups/Group';
 
 export { defaultTheme };
