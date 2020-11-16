@@ -1,6 +1,6 @@
 {
-  "name": "draft-js-focus-plugin",
-  "version": "3.0.1",
+  "name": "@draft-js-plugins/focus",
+  "version": "4.0.0-beta1",
   "description": "Focus Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",

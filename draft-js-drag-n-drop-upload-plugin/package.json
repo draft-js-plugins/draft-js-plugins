@@ -1,6 +1,6 @@
 {
-  "name": "draft-js-drag-n-drop-upload-plugin",
-  "version": "2.0.4",
+  "name": "@draft-js-plugins/drag-n-drop-upload",
+  "version": "4.0.0-beta1",
   "description": "Dropping & uploading files with DraftJS",
   "author": {
     "name": "Benjamin Kniffler",

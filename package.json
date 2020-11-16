@@ -150,28 +150,6 @@
     "release": "changeset publish"
   },
   "workspaces": [
-    "docs",
-    "draft-js-alignment-plugin",
-    "draft-js-anchor-plugin",
-    "draft-js-buttons",
-    "draft-js-counter-plugin",
-    "draft-js-divider-plugin",
-    "draft-js-drag-n-drop-plugin",
-    "draft-js-drag-n-drop-upload-plugin",
-    "draft-js-emoji-plugin",
-    "draft-js-focus-plugin",
-    "draft-js-hashtag-plugin",
-    "draft-js-image-plugin",
-    "draft-js-inline-toolbar-plugin",
-    "draft-js-linkify-plugin",
-    "draft-js-mention-plugin",
-    "draft-js-plugins-editor",
-    "draft-js-plugins-utils",
-    "draft-js-resizeable-plugin",
-    "draft-js-side-toolbar-plugin",
-    "draft-js-static-toolbar-plugin",
-    "draft-js-sticker-plugin",
-    "draft-js-undo-plugin",
-    "draft-js-video-plugin"
+    "packages"
   ]
 }
