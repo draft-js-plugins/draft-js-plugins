@@ -10852,10 +10852,10 @@ limit-spawn@0.0.3:
   resolved "https://registry.yarnpkg.com/limit-spawn/-/limit-spawn-0.0.3.tgz#cc09c24467a0f0a1ed10a5196dba597cad3f65dc"
   integrity sha1-zAnCRGeg8KHtEKUZbbpZfK0/Zdw=
 
-linaria@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.0.1.tgz#b3aa0e97621bf718cfe7e9ce41ed1afbfd773061"
-  integrity sha512-tezQsNuV1MHO2GQjnSLQlNPJ4RPYvbkp0gdZB8e0xS5nkUnet0unUQS1OoyXTBrmsLpi7WaLTBUad8zuIQY5BA==
+linaria@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.0.2.tgz#b8ebc73b699440d225d9397f14fcb526547d1053"
+  integrity sha512-5c+JXuLu45/IOCWrwxKShje5ld8Cj0I3CM2w4mkOutWhBUf6UYhFeaUiGqNwwdP0nA5/9pqmIacWSsPCM0kinw==
   dependencies:
     "@babel/generator" ">=7"
     "@babel/plugin-proposal-export-namespace-from" ">=7"
