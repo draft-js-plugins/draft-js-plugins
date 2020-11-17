@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
-import createVideoPlugin from 'draft-js-video-plugin';
+import createVideoPlugin from '@draft-js-plugins/video';
 import VideoAdd from './VideoAdd';
 import editorStyles from './editorStyles.css';
 

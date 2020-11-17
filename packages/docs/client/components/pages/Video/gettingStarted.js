@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
 import Editor from '@draft-js-plugins/editor';
-import createVideoPlugin from 'draft-js-video-plugin';
+import createVideoPlugin from '@draft-js-plugins/video';
 import React from 'react';
 
 // Creates an Instance. At this step, a configuration object can be passed in

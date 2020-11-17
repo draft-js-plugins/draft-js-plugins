@@ -7,7 +7,7 @@ import createAlignmentPlugin from '@draft-js-plugins/alignment';
 import createFocusPlugin from '@draft-js-plugins/focus';
 
 import createResizeablePlugin from '@draft-js-plugins/resizeable';
-import createVideoPlugin from 'draft-js-video-plugin';
+import createVideoPlugin from '@draft-js-plugins/video';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
