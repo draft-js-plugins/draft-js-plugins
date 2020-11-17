@@ -11,11 +11,15 @@ const removeLinariaImport = () => ({
 
 module.exports = {
   presets: [
-    '@babel/env',
+    //using loose true because of this issue: https://github.com/storybookjs/storybook/issues/12093
+    ['@babel/preset-env', { loose: true }],
     '@babel/react',
     '@babel/flow',
     '@babel/typescript',
     'linaria/babel',
   ],
-  plugins: ['@babel/proposal-class-properties', removeLinariaImport],
+  plugins: [
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    removeLinariaImport,
+  ],
 };
