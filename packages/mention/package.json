@@ -38,7 +38,7 @@
   "license": "MIT",
   "dependencies": {
     "clsx": "^1.0.4",
-    "immutable": "~3.7.4",
+    "immutable": "~3.8.2",
     "lodash": "^4.17.19",
     "lodash-es": "^4.17.15",
     "prop-types": "^15.5.8"
