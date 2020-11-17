@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "clean": "yarn rimraf lib",
-    "build": "yarn clean && yarn build:js && yarn build:dts && yarn build:css",
+    "build": "yarn build:js && yarn build:dts && yarn build:css",
     "build:js": "yarn rollup --config ../../rollup.config.js",
     "build:dts": "tsc -d",
     "build:css": "node ../../scripts/build-css.js $(pwd)",

@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "clean": "yarn rimraf lib",
-    "build": "yarn clean && yarn build:js && yarn build:dts",
+    "build": "yarn build:js && yarn build:dts",
     "build:js": "yarn rollup --config ../../rollup.config.js",
     "build:dts": "tsc -d",
     "prepublish": "yarn build"
