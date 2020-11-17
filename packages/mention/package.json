@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/mention",
-  "version": "4.0.0-beta1",
+  "version": "4.0.0-beta2",
   "description": "Mention Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
@@ -32,8 +32,7 @@
     "build": "yarn build:js && yarn build:dts && yarn build:css",
     "build:js": "yarn rollup --config ../../rollup.config.js",
     "build:dts": "tsc -d",
-    "build:css": "node ../../scripts/build-css.js $(pwd)",
-    "prepublish": "yarn build"
+    "build:css": "node ../../scripts/build-css.js $(pwd)"
   },
   "license": "MIT",
   "dependencies": {

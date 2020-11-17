@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/resizeable",
-  "version": "4.0.0-beta1",
+  "version": "4.0.0-beta2",
   "description": "Resizeable Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
@@ -30,8 +30,7 @@
     "clean": "yarn rimraf lib",
     "build": "yarn build:js && yarn build:dts",
     "build:js": "yarn rollup --config ../../rollup.config.js",
-    "build:dts": "tsc -d",
-    "prepublish": "yarn build"
+    "build:dts": "tsc -d"
   },
   "license": "MIT",
   "peerDependencies": {
