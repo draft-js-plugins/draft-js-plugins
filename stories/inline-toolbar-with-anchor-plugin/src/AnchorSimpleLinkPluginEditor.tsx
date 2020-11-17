@@ -1,7 +1,7 @@
 import React, { useState, useRef, ReactElement } from 'react';
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
-import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
-import createLinkPlugin from 'draft-js-anchor-plugin';
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
+import createLinkPlugin from '@draft-js-plugins/anchor';
 import {
   ItalicButton,
   BoldButton,

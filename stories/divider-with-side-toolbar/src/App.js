@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
 
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
-import createFocusPlugin from 'draft-js-focus-plugin';
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
-import createDividerPlugin from 'draft-js-divider-plugin';
+import createFocusPlugin from '@draft-js-plugins/focus';
+import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
+import createDividerPlugin from '@draft-js-plugins/divider';
 
 import editorStyles from './editorStyles.css';
 

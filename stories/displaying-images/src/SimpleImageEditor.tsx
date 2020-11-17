@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
-import createImagePlugin from 'draft-js-image-plugin';
+import createImagePlugin from '@draft-js-plugins/image';
 import editorStyles from './editorStyles.css';
 
 const imagePlugin = createImagePlugin();

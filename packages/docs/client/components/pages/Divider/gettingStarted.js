@@ -2,7 +2,7 @@
 
 import Editor from '@draft-js-plugins/editor';
 
-import createDividerPlugin from 'draft-js-divider-plugin';
+import createDividerPlugin from '@draft-js-plugins/divider';
 import React from 'react';
 
 const dividerPlugin = createDividerPlugin();

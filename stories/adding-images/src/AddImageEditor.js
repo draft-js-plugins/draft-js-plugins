@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
-import createImagePlugin from 'draft-js-image-plugin';
+import createImagePlugin from '@draft-js-plugins/image';
 import ImageAdd from './ImageAdd';
 
 import editorStyles from './editorStyles.css';

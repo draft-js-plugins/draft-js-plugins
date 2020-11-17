@@ -1,6 +1,6 @@
 import React, { useState, useRef, ReactElement } from 'react';
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
-import createEmojiPlugin from 'draft-js-emoji-plugin';
+import createEmojiPlugin from '@draft-js-plugins/emoji';
 import editorStyles from './editorStyles.css';
 
 const emojiPlugin = createEmojiPlugin({

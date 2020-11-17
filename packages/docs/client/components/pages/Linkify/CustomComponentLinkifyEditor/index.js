@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import createLinkifyPlugin from '@draft-js-plugins/linkify';
 import editorStyles from './editorStyles.css';
 
 const linkifyPlugin = createLinkifyPlugin({

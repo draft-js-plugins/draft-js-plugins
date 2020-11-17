@@ -5,7 +5,7 @@ import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
 import createInlineToolbarPlugin, {
   Separator,
-} from 'draft-js-inline-toolbar-plugin';
+} from '@draft-js-plugins/inline-toolbar';
 import {
   ItalicButton,
   BoldButton,

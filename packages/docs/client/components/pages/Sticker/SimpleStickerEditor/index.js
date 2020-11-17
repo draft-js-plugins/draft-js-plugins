@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
-import createStickerPlugin from 'draft-js-sticker-plugin';
+import createStickerPlugin from '@draft-js-plugins/sticker';
 import editorStyles from './editorStyles.css';
 import stickers from './stickers';
 

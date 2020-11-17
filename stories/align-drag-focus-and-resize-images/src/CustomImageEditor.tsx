@@ -2,11 +2,11 @@ import React, { ReactElement, useRef, useState } from 'react';
 import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js';
 
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
-import createImagePlugin from 'draft-js-image-plugin';
-import createAlignmentPlugin from 'draft-js-alignment-plugin';
-import createFocusPlugin from 'draft-js-focus-plugin';
-import createResizeablePlugin from 'draft-js-resizeable-plugin';
-import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+import createImagePlugin from '@draft-js-plugins/image';
+import createAlignmentPlugin from '@draft-js-plugins/alignment';
+import createFocusPlugin from '@draft-js-plugins/focus';
+import createResizeablePlugin from '@draft-js-plugins/resizeable';
+import createBlockDndPlugin from '@draft-js-plugins/drag-n-drop';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();

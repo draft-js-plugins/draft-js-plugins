@@ -8,7 +8,7 @@ import {
   CodeBlockButton,
 } from '@draft-js-plugins/buttons';
 
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';

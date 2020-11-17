@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
-import createUndoPlugin from 'draft-js-undo-plugin';
+import createUndoPlugin from '@draft-js-plugins/undo';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 

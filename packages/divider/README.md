@@ -5,7 +5,7 @@ _This is a plugin for the `draft-js-plugins-editor`._
 ## Usage
 
 ```js
-import createDividerPlugin from 'draft-js-divider-plugin';
+import createDividerPlugin from '@draft-js-plugins/divider';
 
 const dividerPlugin = createDividerPlugin();
 ```
@@ -23,11 +23,11 @@ import 'draft-js/dist/Draft.css';
 
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
 import BlockTypeSelect from 'draft-js-side-toolbar-plugin/lib/components/BlockTypeSelect';
 import 'draft-js-side-toolbar-plugin/lib/plugin.css';
 
-import createDividerPlugin from 'draft-js-divider-plugin';
+import createDividerPlugin from '@draft-js-plugins/divider';
 import 'draft-js-divider-plugin/lib/plugin.css';
 
 const dividerPlugin = createDividerPlugin();

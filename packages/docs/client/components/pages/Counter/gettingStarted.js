@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
 import Editor from '@draft-js-plugins/editor';
-import createCounterPlugin from 'draft-js-counter-plugin';
+import createCounterPlugin from '@draft-js-plugins/counter';
 import React from 'react';
 
 // Creates an Instance. At this step, a configuration object can be passed in

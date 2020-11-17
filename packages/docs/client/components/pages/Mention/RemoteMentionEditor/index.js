@@ -3,7 +3,7 @@ import { EditorState } from 'draft-js';
 
 import Editor from '@draft-js-plugins/editor';
 
-import createMentionPlugin from 'draft-js-mention-plugin';
+import createMentionPlugin from '@draft-js-plugins/mention';
 import editorStyles from './editorStyles.css';
 
 export default class SimpleMentionEditor extends Component {

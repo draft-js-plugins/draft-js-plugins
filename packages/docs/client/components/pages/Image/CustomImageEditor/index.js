@@ -3,15 +3,15 @@ import { convertFromRaw, EditorState } from 'draft-js';
 
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 
-import createImagePlugin from 'draft-js-image-plugin';
+import createImagePlugin from '@draft-js-plugins/image';
 
-import createAlignmentPlugin from 'draft-js-alignment-plugin';
+import createAlignmentPlugin from '@draft-js-plugins/alignment';
 
-import createFocusPlugin from 'draft-js-focus-plugin';
+import createFocusPlugin from '@draft-js-plugins/focus';
 
-import createResizeablePlugin from 'draft-js-resizeable-plugin';
+import createResizeablePlugin from '@draft-js-plugins/resizeable';
 
-import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+import createBlockDndPlugin from '@draft-js-plugins/drag-n-drop';
 
 import createDragNDropUploadPlugin from 'draft-js-drag-n-drop-upload-plugin';
 import editorStyles from './editorStyles.css';

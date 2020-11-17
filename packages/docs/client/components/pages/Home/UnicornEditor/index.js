@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import createStickerPlugin from 'draft-js-sticker-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import createHashtagPlugin from '@draft-js-plugins/hashtag';
+import createStickerPlugin from '@draft-js-plugins/sticker';
+import createLinkifyPlugin from '@draft-js-plugins/linkify';
 import createMentionPlugin, {
   defaultSuggestionsFilter,
-} from 'draft-js-mention-plugin';
-import createEmojiPlugin from 'draft-js-emoji-plugin';
-import createUndoPlugin from 'draft-js-undo-plugin';
-import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
-import createImagePlugin from 'draft-js-image-plugin';
-import createFocusPlugin from 'draft-js-focus-plugin';
-import createAlignmentPlugin from 'draft-js-alignment-plugin';
-import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+} from '@draft-js-plugins/mention';
+import createEmojiPlugin from '@draft-js-plugins/emoji';
+import createUndoPlugin from '@draft-js-plugins/undo';
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
+import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
+import createImagePlugin from '@draft-js-plugins/image';
+import createFocusPlugin from '@draft-js-plugins/focus';
+import createAlignmentPlugin from '@draft-js-plugins/alignment';
+import createBlockDndPlugin from '@draft-js-plugins/drag-n-drop';
 import { convertFromRaw, EditorState } from 'draft-js';
 import styles from './styles.css';
 import stickers from './stickers';

@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
-import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
+import createToolbarPlugin, {
+  Separator,
+} from '@draft-js-plugins/static-toolbar';
 import {
   ItalicButton,
   BoldButton,

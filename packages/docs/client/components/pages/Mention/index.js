@@ -292,7 +292,7 @@ export default class App extends Component {
             `defaultSuggestionsFilter`. As first argument it takes the search
             term as a String. The second argument is an array of mentions. The
             function returns the filter list based on substring matches.
-            <Code code="import { defaultSuggestionsFilter } from 'draft-js-mention-plugin';" />
+            <Code code="import { defaultSuggestionsFilter } from '@draft-js-plugins/mention';" />
           </div>
         </Container>
         <Container>

@@ -1,11 +1,11 @@
 # DraftJS Image Plugin
 
-*This is a plugin for the `draft-js-plugins-editor`.*
+_This is a plugin for the `draft-js-plugins-editor`._
 
 Usage:
 
 ```js
-import createImagePlugin from 'draft-js-image-plugin';
+import createImagePlugin from '@draft-js-plugins/image';
 
 const imagePlugin = createImagePlugin();
 ```

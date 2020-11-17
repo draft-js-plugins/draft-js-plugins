@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
+import createHashtagPlugin from '@draft-js-plugins/hashtag';
 import editorStyles from './editorStyles.css';
 
 const hashtagPlugin = createHashtagPlugin();

@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
-import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
 import editorStyles from './editorStyles.css';
 
 const inlineToolbarPlugin = createInlineToolbarPlugin();

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
-import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
+import createToolbarPlugin from '@draft-js-plugins/static-toolbar';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { EditorState, convertFromRaw } from 'draft-js';
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 
-import createAlignmentPlugin from 'draft-js-alignment-plugin';
+import createAlignmentPlugin from '@draft-js-plugins/alignment';
 
-import createFocusPlugin from 'draft-js-focus-plugin';
+import createFocusPlugin from '@draft-js-plugins/focus';
 
-import createResizeablePlugin from 'draft-js-resizeable-plugin';
+import createResizeablePlugin from '@draft-js-plugins/resizeable';
 import createVideoPlugin from 'draft-js-video-plugin';
 import editorStyles from './editorStyles.css';
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
-import createAlignmentPlugin from 'draft-js-alignment-plugin';
-import createFocusPlugin from 'draft-js-focus-plugin';
+import createAlignmentPlugin from '@draft-js-plugins/alignment';
+import createFocusPlugin from '@draft-js-plugins/focus';
 import createColorBlockPlugin from './colorBlockPlugin';
 import editorStyles from './editorStyles.css';
 import alignmentToolStyles from './alignmentToolStyles.css';
