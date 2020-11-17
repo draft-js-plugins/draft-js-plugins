@@ -1,7 +1,7 @@
 import React, { useState, useRef, ReactElement } from 'react';
 import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js';
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-import createFocusPlugin from 'draft-js-focus-plugin';
+import Editor, { composeDecorators } from '@draft-js-plugins/editor';
+import createFocusPlugin from '@draft-js-plugins/focus';
 import createColorBlockPlugin from './colorBlockPlugin';
 import editorStyles from './editorStyles.css';
 

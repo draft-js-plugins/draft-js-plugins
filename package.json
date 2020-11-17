@@ -131,7 +131,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/nikgraf/draft-js-plugins.git"
+    "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
   },
   "scripts": {
     "alex": "alex README.md",
@@ -141,37 +141,15 @@
     "lint:eslint:fix": "eslint --fix --rule 'mocha/no-exclusive-tests: 2' ./",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "test": "yarn build:dts && yarn test:mocha",
-    "test:mocha": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\", \"target\":\"ES2019\" }' mocha -r ts-node/register --compilers @babel/register --exclude \"./*/src/**/__test__/*test.js\" --require testHelper.js \"./*/src/**/__test__/*.js\"",
+    "test:mocha": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\", \"target\":\"ES2019\" }' mocha -r ts-node/register --compilers @babel/register --exclude \"./packages/*/src/**/__test__/*test.js\" --require testHelper.js \"./packages/*/src/**/__test__/*.js\"",
     "test:jest": "jest",
     "test:watch": "yarn test -- --watch",
     "build": "yarn build:dts && yarn workspaces run build",
-    "build:dts": "yarn workspace draft-js-plugins-editor run build && yarn workspace draft-js-plugins-utils run build && yarn workspace draft-js-buttons run build",
+    "build:dts": "yarn workspace @draft-js-plugins/editor run build && yarn workspace @draft-js-plugins/utils run build && yarn workspace @draft-js-plugins/buttons run build",
     "prerelease": "yarn build",
     "release": "changeset publish"
   },
   "workspaces": [
-    "docs",
-    "draft-js-alignment-plugin",
-    "draft-js-anchor-plugin",
-    "draft-js-buttons",
-    "draft-js-counter-plugin",
-    "draft-js-divider-plugin",
-    "draft-js-drag-n-drop-plugin",
-    "draft-js-drag-n-drop-upload-plugin",
-    "draft-js-emoji-plugin",
-    "draft-js-focus-plugin",
-    "draft-js-hashtag-plugin",
-    "draft-js-image-plugin",
-    "draft-js-inline-toolbar-plugin",
-    "draft-js-linkify-plugin",
-    "draft-js-mention-plugin",
-    "draft-js-plugins-editor",
-    "draft-js-plugins-utils",
-    "draft-js-resizeable-plugin",
-    "draft-js-side-toolbar-plugin",
-    "draft-js-static-toolbar-plugin",
-    "draft-js-sticker-plugin",
-    "draft-js-undo-plugin",
-    "draft-js-video-plugin"
+    "packages/*"
   ]
 }

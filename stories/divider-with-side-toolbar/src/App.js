@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
 
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-import createFocusPlugin from 'draft-js-focus-plugin';
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
-import createDividerPlugin from 'draft-js-divider-plugin';
+import Editor, { composeDecorators } from '@draft-js-plugins/editor';
+import createFocusPlugin from '@draft-js-plugins/focus';
+import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
+import createDividerPlugin from '@draft-js-plugins/divider';
 
 import editorStyles from './editorStyles.css';
 
@@ -23,7 +23,7 @@ const plugins = [focusPlugin, dividerPlugin, sideToolbarPlugin];
 /* eslint-disable */
 const initialState = {
   entityMap: {
-    '0': {
+    0: {
       type: 'divider',
       mutability: 'IMMUTABLE',
       data: {},
@@ -65,7 +65,7 @@ const CustomImageEditor = () => {
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value) => {
     setEditorState(value);
   };
 
@@ -79,18 +79,20 @@ const CustomImageEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />
 
       <SideToolbar>
-        {// may be use React.Fragment instead of div to improve perfomance after React 16
-        externalProps => (
-          <div>
-            <DividerButton {...externalProps} />
-          </div>
-        )}
+        {
+          // may be use React.Fragment instead of div to improve perfomance after React 16
+          (externalProps) => (
+            <div>
+              <DividerButton {...externalProps} />
+            </div>
+          )
+        }
       </SideToolbar>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef, useState } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
+import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
 import editorStyles from './editorStyles.css';
 
 const sideToolbarPlugin = createSideToolbarPlugin();

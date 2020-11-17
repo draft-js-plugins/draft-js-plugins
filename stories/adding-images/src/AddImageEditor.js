@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
-import createImagePlugin from 'draft-js-image-plugin';
+import createImagePlugin from '@draft-js-plugins/image';
 import ImageAdd from './ImageAdd';
 
 import editorStyles from './editorStyles.css';
@@ -19,7 +19,7 @@ const CustomImageEditor = () => {
   );
   const editor = useRef();
 
-  const onChange = value => {
+  const onChange = (value) => {
     setEditorState(value);
   };
 
@@ -34,7 +34,7 @@ const CustomImageEditor = () => {
           editorState={editorState}
           onChange={onChange}
           plugins={plugins}
-          ref={element => {
+          ref={(element) => {
             editor.current = element;
           }}
         />

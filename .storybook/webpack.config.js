@@ -1,33 +1,39 @@
 const path = require('path');
 
 const packages = [
-  'draft-js-plugins-editor',
-  'draft-js-hashtag-plugin',
-  'draft-js-linkify-plugin',
-  'draft-js-anchor-plugin',
-  'draft-js-mention-plugin',
-  'draft-js-sticker-plugin',
-  'draft-js-undo-plugin',
-  'draft-js-emoji-plugin',
-  'draft-js-plugins-utils',
-  'draft-js-counter-plugin',
-  'draft-js-drag-n-drop-plugin',
-  'draft-js-drag-n-drop-upload-plugin',
-  'draft-js-inline-toolbar-plugin',
-  'draft-js-static-toolbar-plugin',
-  'draft-js-side-toolbar-plugin',
-  'draft-js-focus-plugin',
-  'draft-js-alignment-plugin',
-  'draft-js-image-plugin',
-  'draft-js-resizeable-plugin',
-  'draft-js-buttons',
-  'draft-js-video-plugin',
-  'draft-js-divider-plugin',
+  '@draft-js-plugins/editor',
+  '@draft-js-plugins/hashtag',
+  '@draft-js-plugins/linkify',
+  '@draft-js-plugins/anchor',
+  '@draft-js-plugins/mention',
+  '@draft-js-plugins/sticker',
+  '@draft-js-plugins/undo',
+  '@draft-js-plugins/emoji',
+  '@draft-js-plugins/utils',
+  '@draft-js-plugins/counter',
+  '@draft-js-plugins/drag-n-drop',
+  '@draft-js-plugins/drag-n-drop-upload',
+  '@draft-js-plugins/inline-toolbar',
+  '@draft-js-plugins/static-toolbar',
+  '@draft-js-plugins/side-toolbar',
+  '@draft-js-plugins/focus',
+  '@draft-js-plugins/alignment',
+  '@draft-js-plugins/image',
+  '@draft-js-plugins/resizeable',
+  '@draft-js-plugins/buttons',
+  '@draft-js-plugins/video',
+  '@draft-js-plugins/divider',
 ];
 
 const packagesAliases = {};
-packages.forEach(name => {
-  packagesAliases[name] = path.join(__dirname, '..', name, 'src');
+packages.forEach((name) => {
+  const [, folderName] = name.split('/');
+  packagesAliases[name] = path.join(
+    __dirname,
+    '../packages',
+    folderName,
+    'src'
+  );
 });
 
 module.exports = async ({ config }) => {
