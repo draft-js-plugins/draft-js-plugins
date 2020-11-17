@@ -1,6 +1,6 @@
 # DraftJS Divider Plugin
 
-*This is a plugin for the `draft-js-plugins-editor`.*
+_This is a plugin for the `draft-js-plugins-editor`._
 
 ## Usage
 
@@ -21,7 +21,7 @@ import React, { Component } from 'react';
 
 import 'draft-js/dist/Draft.css';
 
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 import BlockTypeSelect from 'draft-js-side-toolbar-plugin/lib/components/BlockTypeSelect';
@@ -55,7 +55,7 @@ class CustomEditor extends Component {
     editorState: createEditorStateWithText(''),
   };
 
-  onChange = editorState => {
+  onChange = (editorState) => {
     this.setState({
       editorState,
     });
@@ -71,7 +71,7 @@ class CustomEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             plugins={plugins}
-            ref={element => {
+            ref={(element) => {
               this.editor = element;
             }}
           />

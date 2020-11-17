@@ -1,7 +1,7 @@
 // import replaceBlock from './modifiers/replaceBlock';
 // import modifyBlockData from './modifiers/modifyBlockData';
 import { DraftHandleValue, EditorState, SelectionState } from 'draft-js';
-import { PluginFunctions } from 'draft-js-plugins-editor';
+import { PluginFunctions } from '@draft-js-plugins/editor';
 import { DndUploadPluginConfig } from '.';
 import { readFiles } from './utils/file';
 // import { getBlocksWhereEntityData } from './utils/block';

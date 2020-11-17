@@ -1,7 +1,7 @@
 import React, { ComponentType, MouseEvent, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import EditorUtils from 'draft-js-plugins-utils';
+import EditorUtils from '@draft-js-plugins/utils';
 import AddLinkForm, { AddLinkFormPubParams } from './AddLinkForm';
 import { AnchorPluginTheme } from '../theme';
 import { AnchorPluginStore } from '..';

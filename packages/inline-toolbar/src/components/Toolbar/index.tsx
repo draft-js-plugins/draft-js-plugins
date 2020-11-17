@@ -7,7 +7,7 @@ import {
   UnderlineButton,
   CodeButton,
   DraftJsButtonTheme,
-} from 'draft-js-buttons';
+} from '@draft-js-plugins/buttons';
 import { InlineToolbarPluginStore } from '../../';
 import { InlineToolbarPluginTheme } from '../../theme';
 

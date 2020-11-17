@@ -1,5 +1,5 @@
 import React, { ComponentType, ReactElement } from 'react';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import Link, { LinkProps, ComponentProps } from './Link/Link';
 import linkStrategy from './linkStrategy';
 import { defaultTheme, LinkifyPluginTheme } from './theme';

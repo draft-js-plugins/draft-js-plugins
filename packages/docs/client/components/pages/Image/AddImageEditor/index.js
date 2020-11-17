@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
 import createImagePlugin from 'draft-js-image-plugin';
 import ImageAdd from './ImageAdd';

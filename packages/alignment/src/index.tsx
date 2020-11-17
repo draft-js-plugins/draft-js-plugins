@@ -1,7 +1,7 @@
 import React, { ComponentType, ReactElement } from 'react';
 import { ContentBlock, EditorState } from 'draft-js';
-import { EditorPlugin } from 'draft-js-plugins-editor';
-import { createStore, Store } from 'draft-js-plugins-utils';
+import { EditorPlugin } from '@draft-js-plugins/editor';
+import { createStore, Store } from '@draft-js-plugins/utils';
 import createDecorator from './createDecorator';
 import AlignmentTool from './AlignmentTool';
 import { defaultTheme, AlignmentPluginTheme } from './theme';

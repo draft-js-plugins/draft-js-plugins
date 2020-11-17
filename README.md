@@ -61,7 +61,7 @@ $ npm install draft-js-plugins-editor --save
 Then import the editor somewhere in your code and you're ready to go!
 
 ```js
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 ```
 
 ## Documentation
@@ -86,7 +86,7 @@ Usage:
 
 ```js
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import { EditorState } from 'draft-js';

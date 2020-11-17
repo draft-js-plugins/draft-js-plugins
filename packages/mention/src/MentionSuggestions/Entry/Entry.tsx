@@ -6,7 +6,7 @@ import React, {
   ReactElement,
 } from 'react';
 import PropTypes from 'prop-types';
-import { MentionData } from 'draft-js-mention-plugin/src';
+import { MentionData } from '../../';
 import { Theme } from '../../theme';
 
 export interface EntryComponentProps {

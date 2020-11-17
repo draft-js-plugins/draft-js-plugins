@@ -1,6 +1,6 @@
 // It is important to import the Editor which accepts plugins.
 
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 
 import createImagePlugin from 'draft-js-image-plugin';
 import React from 'react';

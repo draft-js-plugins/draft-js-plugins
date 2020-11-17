@@ -1,5 +1,5 @@
 import React, { ReactElement, useRef, useState } from 'react';
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createHashtagPlugin from 'draft-js-hashtag-plugin';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';

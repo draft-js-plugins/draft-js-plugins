@@ -12,7 +12,7 @@ import {
   AlignBlockCenterButton,
   AlignBlockRightButton,
   DraftJsBlockAlignmentButtonType,
-} from 'draft-js-buttons';
+} from '@draft-js-plugins/buttons';
 import { AlignmentPluginTheme } from './theme';
 import { AlignmentPluginStore } from '.';
 

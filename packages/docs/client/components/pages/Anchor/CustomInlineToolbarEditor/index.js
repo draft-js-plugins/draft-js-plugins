@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
 import createLinkPlugin from 'draft-js-anchor-plugin';
-import { ItalicButton, BoldButton, UnderlineButton } from 'draft-js-buttons';
+import {
+  ItalicButton,
+  BoldButton,
+  UnderlineButton,
+} from '@draft-js-plugins/buttons';
 import editorStyles from './editorStyles.css';
 import buttonStyles from './buttonStyles.css';
 import toolbarStyles from './toolbarStyles.css';

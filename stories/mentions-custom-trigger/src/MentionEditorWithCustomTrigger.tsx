@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState, ContentState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createMentionPlugin, {
   defaultSuggestionsFilter,
 } from 'draft-js-mention-plugin';

@@ -12,7 +12,7 @@ import {
   CodeBlockButton,
   UnorderedListButton,
   OrderedListButton,
-} from 'draft-js-buttons';
+} from '@draft-js-plugins/buttons';
 import BlockTypeSelect, { BlockTypeSelectChildProps } from '../BlockTypeSelect';
 import { SideToolbarPluginTheme } from '../../theme';
 import { SideToolbarPluginStore, SideToolbarPosition } from '../..';

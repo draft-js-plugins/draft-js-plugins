@@ -13,7 +13,7 @@ import {
   genKey,
   SelectionState,
 } from 'draft-js';
-import { AriaProps } from 'draft-js-plugins-editor';
+import { AriaProps } from '@draft-js-plugins/editor';
 import escapeRegExp from 'lodash/escapeRegExp';
 import Entry, { EntryComponentProps } from './Entry/Entry';
 import addMention from '../modifiers/addMention';

@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js';
 
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
+import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';

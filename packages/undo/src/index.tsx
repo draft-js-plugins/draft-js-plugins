@@ -1,6 +1,6 @@
 import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import { EditorState } from 'draft-js';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import UndoButton from './UndoButton';
 import RedoButton from './RedoButton';
 import { defaultTheme, UndoPluginTheme } from './theme';

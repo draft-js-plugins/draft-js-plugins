@@ -1,5 +1,5 @@
 // It is important to import the Editor which accepts plugins.
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createStickerPlugin from 'draft-js-sticker-plugin';
 import React from 'react';
 import { fromJS } from 'immutable';

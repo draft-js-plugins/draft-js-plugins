@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { EditorState, convertFromRaw } from 'draft-js';
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
+import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 

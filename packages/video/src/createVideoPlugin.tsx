@@ -1,5 +1,5 @@
 import React, { ComponentType, ReactElement } from 'react';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import addVideo from './video/modifiers/addVideo';
 import DefaultVideoComponent, {
   DefaultVideoComponentProps,

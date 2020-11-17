@@ -1,5 +1,5 @@
 // It is important to import the Editor which accepts plugins.
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import React from 'react';
 

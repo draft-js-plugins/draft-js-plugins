@@ -10,8 +10,8 @@ import {
   genKey,
   SelectionState,
 } from 'draft-js';
-import utils from 'draft-js-plugins-utils';
-import { AriaProps } from 'draft-js-plugins-editor/lib';
+import utils from '@draft-js-plugins/utils';
+import { AriaProps } from '@draft-js-plugins/editor';
 import { List } from 'immutable';
 import Entry from './Entry';
 import { EmojiPLuginCallbacks, EmojiPluginStore } from '../..';

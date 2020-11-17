@@ -7,9 +7,9 @@ import React, {
   Component,
 } from 'react';
 import PropTypes from 'prop-types';
-import { SideToolbarPluginTheme } from 'draft-js-side-toolbar-plugin/src/theme';
 import { EditorState } from 'draft-js';
-import { DraftJsButtonTheme } from 'draft-js-buttons/lib';
+import { DraftJsButtonTheme } from '@draft-js-plugins/buttons';
+import { SideToolbarPluginTheme } from '../../theme';
 
 export interface BlockTypeSelectChildProps {
   theme: DraftJsButtonTheme;

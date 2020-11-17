@@ -1,6 +1,6 @@
 import React, { ComponentType, ReactElement } from 'react';
 import { EditorState } from 'draft-js';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import CharCounter, { CharCounterPubProps } from './CharCounter';
 import WordCounter, { WordCounterPubParams } from './WordCounter';
 import LineCounter, { LineCounterPubParams } from './LineCounter';

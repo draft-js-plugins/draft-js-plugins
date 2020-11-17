@@ -1,5 +1,5 @@
 // It is important to import the Editor which accepts plugins.
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createVideoPlugin from 'draft-js-video-plugin';
 import React from 'react';
 

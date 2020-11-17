@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState, ContentState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createLinkifyPlugin from 'draft-js-linkify-plugin';
 import editorStyles from './editorStyles.css';
 

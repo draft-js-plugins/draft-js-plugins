@@ -1,7 +1,7 @@
 import { Map } from 'immutable';
 import React, { ComponentType, ReactElement } from 'react';
 import { EditorState } from 'draft-js';
-import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
+import { EditorPlugin, AriaProps } from '@draft-js-plugins/editor';
 import Mention, { MentionProps, SubMentionComponentProps } from './Mention';
 import MentionSuggestions, {
   MentionSuggestionCallbacks,

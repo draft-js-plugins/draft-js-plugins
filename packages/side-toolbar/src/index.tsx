@@ -1,7 +1,7 @@
 import React, { ComponentType, ReactElement, FC } from 'react';
 import { EditorState } from 'draft-js';
-import { createStore, Store } from 'draft-js-plugins-utils';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { createStore, Store } from '@draft-js-plugins/utils';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import Toolbar, { SideToolbarChildrenProps } from './components/Toolbar';
 import { defaultTheme, SideToolbarPluginTheme } from './theme';
 

@@ -1,6 +1,6 @@
-import { MentionData } from 'draft-js-mention-plugin/src';
-import { Theme } from 'draft-js-mention-plugin/src/theme';
 import React, { ReactElement } from 'react';
+import { MentionData } from '../../';
+import { Theme } from '../../theme';
 import Avatar from './Avatar/Avatar';
 
 interface DefaultEntryComponentProps {

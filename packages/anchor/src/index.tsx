@@ -3,8 +3,8 @@ import React, {
   ComponentType,
   ReactElement,
 } from 'react';
-import { EditorPlugin } from 'draft-js-plugins-editor';
-import EditorUtils from 'draft-js-plugins-utils';
+import { EditorPlugin } from '@draft-js-plugins/editor';
+import EditorUtils from '@draft-js-plugins/utils';
 import { EditorState } from 'draft-js';
 import DefaultLink, { LinkPubProps } from './components/Link';
 import LinkButton, { LinkButtonPubParams } from './components/LinkButton';

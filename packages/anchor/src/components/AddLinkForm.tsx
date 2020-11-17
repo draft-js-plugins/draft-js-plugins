@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import EditorUtils from 'draft-js-plugins-utils';
+import EditorUtils from '@draft-js-plugins/utils';
 import { EditorState } from 'draft-js';
 import URLUtils from '../utils/URLUtils';
 import { AnchorPluginTheme } from '../theme';

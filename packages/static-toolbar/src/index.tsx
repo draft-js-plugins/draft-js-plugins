@@ -1,7 +1,7 @@
 import React, { ComponentType, ReactElement } from 'react';
-import { createStore, Store } from 'draft-js-plugins-utils';
+import { createStore, Store } from '@draft-js-plugins/utils';
 import { EditorState, SelectionState } from 'draft-js';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import Toolbar, { ToolbarPubProps } from './components/Toolbar';
 import Separator from './components/Separator';
 import { defaultTheme, StaticToolbarPluginTheme } from './theme';

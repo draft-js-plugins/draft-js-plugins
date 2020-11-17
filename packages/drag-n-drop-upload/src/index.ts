@@ -1,5 +1,5 @@
 import { EditorState } from 'draft-js';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import handleDroppedFiles from './handleDroppedFiles';
 
 export interface DndUploadPluginConfig {

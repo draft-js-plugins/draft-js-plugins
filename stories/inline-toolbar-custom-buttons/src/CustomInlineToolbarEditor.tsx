@@ -1,7 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 import React, { useRef, useState, useEffect, ReactElement } from 'react';
 
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 
 import createInlineToolbarPlugin, {
   Separator,
@@ -21,7 +21,7 @@ import {
   CodeBlockButton,
   SubButton,
   SupButton,
-} from 'draft-js-buttons';
+} from '@draft-js-plugins/buttons';
 import editorStyles from './editorStyles.css';
 
 const HeadlinesPicker = (props): ReactElement => {

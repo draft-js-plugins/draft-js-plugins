@@ -6,7 +6,7 @@ import {
   UnderlineButton,
   CodeButton,
   DraftJsStyleButtonProps,
-} from 'draft-js-buttons';
+} from '@draft-js-plugins/buttons';
 import PropTypes from 'prop-types';
 import { StaticToolBarPluginStore, StaticToolbarPluginTheme } from '../../';
 

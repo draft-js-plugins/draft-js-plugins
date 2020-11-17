@@ -1,5 +1,5 @@
 import { css } from 'linaria';
-import { DraftJsButtonTheme } from 'draft-js-buttons';
+import { DraftJsButtonTheme } from '@draft-js-plugins/buttons';
 
 export interface InlineToolbarPluginTheme {
   buttonStyles: DraftJsButtonTheme;

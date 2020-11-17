@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 import {
   HeadlineOneButton,
   HeadlineTwoButton,
   BlockquoteButton,
   CodeBlockButton,
-} from 'draft-js-buttons';
+} from '@draft-js-plugins/buttons';
 
 import createSideToolbarPlugin from 'draft-js-side-toolbar-plugin';
 import editorStyles from './editorStyles.css';

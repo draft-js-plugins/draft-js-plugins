@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
 
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 
 import createMentionPlugin from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.css';

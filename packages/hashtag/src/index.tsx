@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import Hashtag, { HashtagProps } from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
 import { defaultTheme, HashtagPluginTheme } from './theme';

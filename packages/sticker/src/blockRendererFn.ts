@@ -1,5 +1,5 @@
 import { ContentBlock } from 'draft-js';
-import { PluginFunctions } from 'draft-js-plugins-editor';
+import { PluginFunctions } from '@draft-js-plugins/editor';
 import { ComponentType } from 'react';
 import removeSticker from './modifiers/removeSticker';
 import { StickerPubProps } from './Sticker';

@@ -1,6 +1,6 @@
 import React, { useState, useRef, ReactElement } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
+import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 import createImagePlugin from 'draft-js-image-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';

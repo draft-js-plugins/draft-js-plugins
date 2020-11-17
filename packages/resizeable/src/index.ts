@@ -1,5 +1,5 @@
 import { EditorState, ContentBlock } from 'draft-js';
-import { EditorPlugin, EditorRef } from 'draft-js-plugins-editor';
+import { EditorPlugin, EditorRef } from '@draft-js-plugins/editor';
 import createDecorator from './createDecorator';
 
 type ResizeableEditorPlugin = EditorPlugin & {

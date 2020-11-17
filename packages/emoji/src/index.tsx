@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   ReactNode,
 } from 'react';
-import { EditorPlugin, AriaProps } from 'draft-js-plugins-editor';
+import { EditorPlugin, AriaProps } from '@draft-js-plugins/editor';
 import { Map, List } from 'immutable';
 import keys from 'lodash/keys';
 import { DraftEditorCommand, DraftHandleValue, EditorState } from 'draft-js';

@@ -28,9 +28,9 @@
     "react-component"
   ],
   "scripts": {
-    "clean": "../node_modules/.bin/rimraf lib",
+    "clean": "yarn rimraf lib",
     "build": "yarn clean && yarn build:js && yarn build:dts && yarn build:css",
-    "build:js": "../node_modules/.bin/rollup --config ../rollup.config.js",
+    "build:js": "yarn rollup --config ../../rollup.config.js",
     "build:dts": "tsc -d --emitDeclarationOnly --declarationDir lib",
     "build:css": "node ../scripts/build-css.js $(pwd)",
     "prepublish": "yarn build"

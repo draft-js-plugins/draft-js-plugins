@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditorState } from 'draft-js';
 import { render, screen } from '@testing-library/react';
-import { PluginFunctions } from 'draft-js-plugins-editor';
+import { PluginFunctions } from '@draft-js-plugins/editor';
 import createUndoPlugin from '../index';
 
 describe('UndoPlugin Config', () => {

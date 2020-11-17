@@ -1,6 +1,6 @@
 import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import { Map } from 'immutable';
-import { EditorPlugin } from 'draft-js-plugins-editor';
+import { EditorPlugin } from '@draft-js-plugins/editor';
 import addSticker from './modifiers/addSticker';
 import removeSticker from './modifiers/removeSticker';
 import cleanupEmptyStickers from './modifiers/cleanupEmptyStickers';

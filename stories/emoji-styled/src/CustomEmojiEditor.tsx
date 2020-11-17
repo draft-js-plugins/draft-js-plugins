@@ -1,5 +1,5 @@
 import React, { useState, useRef, ReactElement } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 import createEmojiPlugin from 'draft-js-emoji-plugin';
 import editorStyles from './editorStyles.css';
 

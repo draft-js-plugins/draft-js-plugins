@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createMentionPlugin, {
   defaultSuggestionsFilter,
 } from 'draft-js-mention-plugin';
@@ -38,7 +38,7 @@ const mentionPlugin = createMentionPlugin({
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
-const Entry = props => {
+const Entry = (props) => {
   const {
     mention,
     theme,
@@ -79,7 +79,7 @@ const CustomMentionEditor = () => {
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions);
 
-  const onChange = value => {
+  const onChange = (value) => {
     setEditorState(value);
   };
 
@@ -87,7 +87,7 @@ const CustomMentionEditor = () => {
     editor.current.focus();
   };
 
-  const onOpenChange = newOpen => {
+  const onOpenChange = (newOpen) => {
     setOpen(newOpen);
   };
 
@@ -101,7 +101,7 @@ const CustomMentionEditor = () => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />
