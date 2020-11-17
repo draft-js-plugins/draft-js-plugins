@@ -46,7 +46,7 @@
     "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^3.5.0"
   },
   "dependencies": {}
 }
