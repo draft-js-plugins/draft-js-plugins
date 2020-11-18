@@ -1,13 +1,13 @@
 import React, { ReactElement, useRef, useState } from 'react';
-import Editor from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import createStickerPlugin from 'draft-js-sticker-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import Editor from '@draft-js-plugins/editor';
+import createHashtagPlugin from '@draft-js-plugins/hashtag';
+import createStickerPlugin from '@draft-js-plugins/sticker';
+import createLinkifyPlugin from '@draft-js-plugins/linkify';
 import createMentionPlugin, {
   defaultSuggestionsFilter,
-} from 'draft-js-mention-plugin';
-import createEmojiPlugin from 'draft-js-emoji-plugin';
-import createUndoPlugin from 'draft-js-undo-plugin';
+} from '@draft-js-plugins/mention';
+import createEmojiPlugin from '@draft-js-plugins/emoji';
+import createUndoPlugin from '@draft-js-plugins/undo';
 import { ContentState, EditorState } from 'draft-js';
 import styles from './styles.css';
 import stickers from './stickers';

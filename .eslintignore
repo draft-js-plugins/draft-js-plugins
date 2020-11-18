@@ -1,8 +1,7 @@
 **/node_modules/**
 node_modules
 lib/**
-draft-js-*/lib/**
 scripts/**
-docs/build/**
+packages/docs/**
 distTs/**
 **/lib/**

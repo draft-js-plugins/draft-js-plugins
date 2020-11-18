@@ -1,9 +1,9 @@
 import React, { useState, useRef, ReactElement } from 'react';
 import { convertFromRaw, EditorState } from 'draft-js';
-import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-import createImagePlugin from 'draft-js-image-plugin';
-import createFocusPlugin from 'draft-js-focus-plugin';
-import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+import Editor, { composeDecorators } from '@draft-js-plugins/editor';
+import createImagePlugin from '@draft-js-plugins/image';
+import createFocusPlugin from '@draft-js-plugins/focus';
+import createBlockDndPlugin from '@draft-js-plugins/drag-n-drop';
 import editorStyles from './editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
