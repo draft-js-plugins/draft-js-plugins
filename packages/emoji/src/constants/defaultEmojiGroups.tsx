@@ -1,18 +1,21 @@
 import React from 'react';
-import FaSmileO from 'react-icons/lib/fa/smile-o';
-import FaPaw from 'react-icons/lib/fa/paw';
-import FaCutlery from 'react-icons/lib/fa/cutlery';
-import FaFutbolO from 'react-icons/lib/fa/futbol-o';
-import FaPlane from 'react-icons/lib/fa/plane';
-import FaBell from 'react-icons/lib/fa/bell';
-import FaHeart from 'react-icons/lib/fa/heart';
-import FaFlag from 'react-icons/lib/fa/flag';
+import {
+  FaSmile,
+  FaPaw,
+  FaUtensils,
+  FaFutbol,
+  FaPlane,
+  FaBell,
+  FaHeart,
+  FaFlag,
+} from 'react-icons/fa';
+
 import { EmojiSelectGroup } from '../index';
 
 const defaultEmojiGroups: EmojiSelectGroup[] = [
   {
     title: 'People',
-    icon: <FaSmileO style={{ verticalAlign: '' }} />,
+    icon: <FaSmile style={{ verticalAlign: '' }} />,
     categories: ['people'],
   },
   {
@@ -22,12 +25,12 @@ const defaultEmojiGroups: EmojiSelectGroup[] = [
   },
   {
     title: 'Food & Drink',
-    icon: <FaCutlery style={{ verticalAlign: '' }} />,
+    icon: <FaUtensils style={{ verticalAlign: '' }} />,
     categories: ['food'],
   },
   {
     title: 'Activity',
-    icon: <FaFutbolO style={{ verticalAlign: '' }} />,
+    icon: <FaFutbol style={{ verticalAlign: '' }} />,
     categories: ['activity'],
   },
   {
