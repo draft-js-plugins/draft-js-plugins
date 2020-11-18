@@ -52,13 +52,14 @@ We are also happy about updates to the documentation in combination with changes
 
 Because of the structure of this repository you can not just use your own fork of draft-js-plugins in your own development projects. There are a few problems; first NPM doesn't allow referencing sub directories. So `"draft-js-plugins-editor": "<your github username>/draft-js-plugins-editor"` does not work. And secondly by specifying `"draft-js-plugins": "<your github username>/draft-js-plugins"` NPM does not get the sources for the different sub projects (I "Mark" don't know why). Thankfully [Yarn](https://yarnpkg.com/) does do this as expected. So to get your own fork working you need to follow the folling steps:
 
-1) Add `"draft-js-plugins": "<your github username>/draft-js-plugins"` to your package files.
+1. Add `"draft-js-plugins": "<your github username>/draft-js-plugins"` to your package files.
 
-2) Install Yarn `npm install --global yarn` and install node modules `yarn install`
+2. Install Yarn `npm install --global yarn` and install node modules `yarn install`
 
-3) Reference the needed sub packages in your code f.ex. the plugin editor `import PluginEditor from 'draft-js-plugins-editor';`
+3. Reference the needed sub packages in your code f.ex. the plugin editor `import PluginEditor from '@draft-js-plugins/editor';`
 
-4) When using Webpack you need to tell it how to compile the draft-js-plugins code, you do that by adding an additional loader like this:
+4. When using Webpack you need to tell it how to compile the draft-js-plugins code, you do that by adding an additional loader like this:
+
 ```
 module: {
   loaders: [{
@@ -84,7 +85,8 @@ module: {
 }
 ```
 
-5) And you need to tell the compiler where to find the different draft-js-plugins modules
+5. And you need to tell the compiler where to find the different draft-js-plugins modules
+
 ```
 resolve: {
   alias: {

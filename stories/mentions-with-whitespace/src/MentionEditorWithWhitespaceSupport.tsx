@@ -1,9 +1,9 @@
 import React, { CSSProperties, ReactElement, useRef, useState } from 'react';
 import { ContentState, EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 import createMentionPlugin, {
   defaultSuggestionsFilter,
-} from 'draft-js-mention-plugin';
+} from '@draft-js-plugins/mention';
 import editorStyles from './editorStyles.css';
 import mentionsStyles from './mentionsStyles.css';
 import mentions from './mentions';

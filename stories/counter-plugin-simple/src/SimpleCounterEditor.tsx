@@ -1,6 +1,6 @@
 import React, { useState, useRef, ReactElement } from 'react';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
-import createCounterPlugin from 'draft-js-counter-plugin';
+import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
+import createCounterPlugin from '@draft-js-plugins/counter';
 import editorStyles from './editorStyles.css';
 
 const counterPlugin = createCounterPlugin();
