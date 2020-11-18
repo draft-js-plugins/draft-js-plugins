@@ -45,7 +45,7 @@
     "autoprefixer": "^6.7.6",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^26.3.0",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.2.1",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^1.0.0-beta.1",
