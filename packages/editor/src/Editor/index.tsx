@@ -108,9 +108,9 @@ class PluginEditor extends Component<PluginEditorProps> {
     this.onChange(moveSelectionToEnd(editorState));
   }
 
-  UNSAFE_componentWillReceiveProps(next: PluginEditorProps): void {
-    const curr = this.props;
-    const currDec = curr.editorState.getDecorator();
+  componentDidUpdate(prevProps: PluginEditorProps): void {
+    const next = this.props;
+    const currDec = prevProps.editorState.getDecorator();
     const nextDec = next.editorState.getDecorator();
 
     // If there is not current decorator, there's nothing to carry over to the next editor state
