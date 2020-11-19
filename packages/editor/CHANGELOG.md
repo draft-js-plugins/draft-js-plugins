@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+- Change UNSAFE_componentWillReceiveProps to componentDidUpdate; fix https://reactjs.org/blog/2020/02/26/react-v16.13.0.html#warnings-for-some-updates-during-render
 - Replace legacy lifecycle hooks with UNSAFE aliases; the required react version is 16.3
 - Hide internals in single bundle
 - Add esm support
