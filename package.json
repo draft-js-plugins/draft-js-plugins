@@ -51,7 +51,7 @@
     "cheerio": "^0.22.0",
     "css-loader": "^0.26.2",
     "css-modules-require-hook": "^4.0.2",
-    "dirty-chai": "^1.2.2",
+    "dirty-chai": "^2.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.2.2",
