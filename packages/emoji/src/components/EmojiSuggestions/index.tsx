@@ -21,12 +21,11 @@ import { PositionSuggestionsParams } from '../../utils/positionSuggestions';
 import { EmojiPluginTheme } from '../../theme';
 
 export interface EmojiSuggestionsPubParams {
-  isActive: boolean;
-  focusedOptionIndex: number;
-  suggestions: unknown[];
-  onClose(): void;
-  onOpen(): void;
-  onSearchChange(change: { value: string }): void;
+  isActive?: boolean;
+  focusedOptionIndex?: number;
+  onClose?(): void;
+  onOpen?(): void;
+  onSearchChange?(change: { value: string }): void;
 }
 
 interface EmojiSuggestionsParams extends EmojiSuggestionsPubParams {
