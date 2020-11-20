@@ -37,6 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "@draft-js-plugins/buttons": "^4.0.0-beta2",
+    "@draft-js-plugins/utils": "^4.0.0-beta2",
     "clsx": "^1.0.4",
     "emojione": "^2.2.7",
     "find-with-regex": "^1.1.3",
