@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import styles from './Pen.module.css';
 
 export default function Pen(): ReactElement {

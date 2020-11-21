@@ -1,7 +1,13 @@
 import React, { ReactElement } from 'react';
-import TwitterButton from '../TwitterButton/TwitterButton';
 import GithubButton from '../GithubButton/GithubButton';
 import styles from './SocialBar.module.css';
+
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+} from 'react-share';
 
 export default function SocialBar(): ReactElement {
   return (
@@ -13,8 +19,19 @@ export default function SocialBar(): ReactElement {
           size="large"
         />
       </div>
+
       <div className={styles.twitterButtonWrapper}>
-        <TwitterButton url="https://www.draft-js-plugins.com/" size="large" />
+        <TwitterShareButton
+          url="https://www.draft-js-plugins.com/"
+          title="DraftJS Plugins - High quality plugins with great UX"
+        >
+          <TwitterIcon size="32" />
+        </TwitterShareButton>
+      </div>
+      <div className={styles.facebookButtonWrapper}>
+        <FacebookShareButton url="https://www.draft-js-plugins.com/">
+          <FacebookIcon size="32" />
+        </FacebookShareButton>
       </div>
     </div>
   );

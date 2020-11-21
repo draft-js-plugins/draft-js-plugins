@@ -11,6 +11,7 @@
     "animateplus": "1.4.0",
     "clsx": "^1.1.1",
     "immutable": "^4.0.0-rc.12",
-    "next": "10.0.2"
+    "next": "10.0.2",
+    "react-share": "^4.3.1"
   }
 }

@@ -16,7 +16,7 @@
 }
 
 .facebookButtonWrapper {
-  position: relative;
-  top: -5px;
+  display: inline-block;
+  margin-right: 20px;
   margin-top: 30px;
 }

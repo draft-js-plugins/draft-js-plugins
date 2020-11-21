@@ -15,7 +15,7 @@ import '@draft-js-plugins/focus/lib/plugin.css';
 import '@draft-js-plugins/alignment/lib/plugin.css';
 
 import { AppProps } from 'next/dist/next-server/lib/router/router';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 export default function MyApp({
   Component,

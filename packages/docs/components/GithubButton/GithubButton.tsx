@@ -1,43 +1,49 @@
-import React, { ReactElement, useEffect, useRef } from 'react';
-import styles from './GithubButton.module.css';
+import React, { Component, ReactElement } from 'react';
 
-interface GithubButtonProps {
-  size: string;
+interface GithubButtonProps{
+  text?: string;
   user: string;
   repo: string;
+  size: string;
 }
 
-export default function GithubButton({
-  size,
-  user,
-  repo,
-}: GithubButtonProps): ReactElement {
-  const githubWrapperRef = useRef(null);
+export default class GithubButton extends Component<GithubButtonProps> {
+  githubButton?: HTMLAnchorElement | null;
 
-  useEffect(() => {
-    const animate = require('animateplus'); // eslint-disable-line global-require
+  componentDidMount() {
+    const githubScript = document.createElement('script');
+    githubScript.src = '//buttons.github.io/buttons.js';
+    githubScript.id = 'github-bjs';
+    this.githubButton!.parentNode!.appendChild(githubScript);
+  }
 
-    animate({
-      el: githubWrapperRef.current,
-      opacity: [0, 1],
-      duration: 1600,
-      easing: 'easeOutQuad',
-      delay: 2500,
-    });
-  }, []);
+  shouldComponentUpdate = () => false;
 
-  return (
-    <div className={styles.githubWrapper} ref={githubWrapperRef}>
+  componentWillUnmount() {
+    const elem = document.getElementById('github-bjs');
+    if (elem) {
+      elem.parentNode!.removeChild(elem);
+    }
+  }
+
+  render():ReactElement {
+    const text = this.props.text ? this.props.text : 'Github';
+    const { user, repo, size } = this.props;
+
+    // Note: all of the attributes including the className 'github-button' are required
+    return (
       <a
+        ref={element => {
+          this.githubButton = element;
+        }}
         className="github-button"
         href={`https://github.com/${user}/${repo}`}
         data-size={size}
         data-show-count="true"
         aria-label="Star draft-js-plugins/draft-js-plugins on GitHub"
       >
-        Github
+        {text}
       </a>
-      <script src="//buttons.github.io/buttons.js" />
-    </div>
-  );
+    );
+  }
 }

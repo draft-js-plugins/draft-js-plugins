@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Menu from '../components/Menu/Menu';
-import { ReactElement } from 'react';
 import Footer from '../components/Footer/Footer';
 import ContainerBox from '../components/ContainerBox/ContainerBox';
 import GithubButton from '../components/GithubButton/GithubButton';

@@ -1,8 +1,15 @@
+import { ComponentType } from 'react';
 // This code originally has been copied from Recompose
 // https://github.com/acdlite/recompose/blob/master/src/packages/recompose/compose.js
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type WrappedComponentType = ComponentType<any> & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  WrappedComponent?: ComponentType<any>;
+};
+
 interface ParamFunction {
-  (params: ParamFunction): ParamFunction;
+  (param: WrappedComponentType): WrappedComponentType;
 }
 
 export default function composeDecorators(
