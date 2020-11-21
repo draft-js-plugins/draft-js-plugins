@@ -3958,6 +3958,11 @@ animateplus@^1.4.0:
   resolved "https://registry.yarnpkg.com/animateplus/-/animateplus-1.4.0.tgz#e6a11c89dccfc6f923bb19e2cf7b6c9a103d1905"
   integrity sha1-5qEcidzPxvkjuxniz3tsmhA9GQU=
 
+animateplus@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/animateplus/-/animateplus-2.1.1.tgz#9669dcd44e85e98d2d202d962a77c4afc516777a"
+  integrity sha1-lmnc1E6F6Y0tIC2WKnfEr8UWd3o=
+
 anser@1.4.9:
   version "1.4.9"
   resolved "https://registry.yarnpkg.com/anser/-/anser-1.4.9.tgz#1f85423a5dcf8da4631a341665ff675b96845760"
@@ -6370,7 +6375,7 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
-clsx@^1.0.4:
+clsx@^1.0.4, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==

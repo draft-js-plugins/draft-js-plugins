@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "animateplus": "^2.1.1",
+    "clsx": "^1.1.1",
     "next": "10.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1"
