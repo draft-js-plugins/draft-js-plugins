@@ -9,9 +9,7 @@ export default function Pen(): ReactElement {
   const dotRef = useRef(null);
 
   useEffect(() => {
-    // Only required in componentDidMount as it breaks server-side-rendering
     const animate = require('animateplus'); // eslint-disable-line global-require
-
     animate({
       el: drawnPathRef.current,
       'stroke-dashoffset': [570, 1140],

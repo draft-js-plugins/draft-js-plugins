@@ -30,7 +30,7 @@ export interface MentionData {
   link?: string;
   avatar?: string;
   name: string;
-  id: null | string | number;
+  id?: null | string | number;
 }
 
 export interface MentionPluginStore {
@@ -193,7 +193,7 @@ export default (
     },
 
     keyBindingFn: (keyboardEvent) =>
-      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
+      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)) || null,
     handleReturn: (keyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {

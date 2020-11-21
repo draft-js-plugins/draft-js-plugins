@@ -15,7 +15,6 @@ export default function GithubButton({
   const githubWrapperRef = useRef(null);
 
   useEffect(() => {
-    // Only required in componentDidMount as it breaks server-side-rendering
     const animate = require('animateplus'); // eslint-disable-line global-require
 
     animate({

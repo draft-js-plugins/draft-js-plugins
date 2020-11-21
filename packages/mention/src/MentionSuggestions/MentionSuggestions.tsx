@@ -36,7 +36,7 @@ export interface MentionSuggestionsPubProps {
   open: boolean;
   onOpenChange(open: boolean): void;
   onSearchChange(event: { value: string }): void;
-  onAddMention(Mention: MentionData): void;
+  onAddMention?(Mention: MentionData): void;
 }
 
 export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
