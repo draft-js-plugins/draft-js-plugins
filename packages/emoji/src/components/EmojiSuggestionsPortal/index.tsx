@@ -1,4 +1,3 @@
-import { EditorState } from 'draft-js';
 import React, {
   ReactElement,
   ReactNode,
@@ -11,16 +10,12 @@ import { EmojiPluginStore } from '../../index';
 export interface EmojiSuggestionsPortalParams {
   store: EmojiPluginStore;
   offsetKey: string;
-  getEditorState(): EditorState;
-  setEditorState(state: EditorState): void;
   children: ReactNode;
 }
 
 export default function EmojiSuggestionsPortal({
   children,
   store,
-  getEditorState,
-  setEditorState,
   offsetKey,
 }: EmojiSuggestionsPortalParams): ReactElement {
   const ref = useRef<HTMLSpanElement>(null);
@@ -36,12 +31,12 @@ export default function EmojiSuggestionsPortal({
     updatePortalClientRect();
 
     // trigger a re-render so the EmojiSuggestions becomes active
-    setEditorState(getEditorState());
+    store.setEditorState!(store.getEditorState!());
 
     return () => {
       store.register(offsetKey);
     };
-  }, [updatePortalClientRect, store, getEditorState, setEditorState]);
+  }, [updatePortalClientRect, store]);
 
   return <span ref={ref}>{children}</span>;
 }
