@@ -72,13 +72,13 @@ export interface EmojiPluginConfig {
 }
 
 interface GetClientRectFn {
-  (): ClientRect;
+  (): ClientRect | undefined;
 }
 
 export interface EmojiPluginStore {
   getEditorState?(): EditorState;
   setEditorState?(state: EditorState): void;
-  getPortalClientRect(offsetKey: string): ClientRect;
+  getPortalClientRect(offsetKey: string): ClientRect | undefined;
   getAllSearches(): Map<string, string>;
   isEscaped(offsetKey: string): boolean;
   escapeSearch(offsetKey: string): void;
