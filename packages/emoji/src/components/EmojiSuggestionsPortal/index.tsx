@@ -1,5 +1,11 @@
 import { EditorState } from 'draft-js';
-import React, { Component, ReactElement } from 'react';
+import React, {
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 import { EmojiPluginStore } from '../../index';
 
 export interface EmojiSuggestionsPortalParams {
@@ -7,45 +13,35 @@ export interface EmojiSuggestionsPortalParams {
   offsetKey: string;
   getEditorState(): EditorState;
   setEditorState(state: EditorState): void;
+  children: ReactNode;
 }
 
-export default class EmojiSuggestionsPortal extends Component<
-  EmojiSuggestionsPortalParams
-> {
-  searchPortal?: HTMLElement | null;
-  UNSAFE_componentWillMount(): void {
-    this.props.store.register(this.props.offsetKey);
-    this.updatePortalClientRect(this.props);
+export default function EmojiSuggestionsPortal({
+  children,
+  store,
+  getEditorState,
+  setEditorState,
+  offsetKey,
+}: EmojiSuggestionsPortalParams): ReactElement {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  const updatePortalClientRect = useCallback(() => {
+    store.updatePortalClientRect(offsetKey, () =>
+      ref.current!.getBoundingClientRect()
+    );
+  }, [store, offsetKey]);
+
+  useEffect(() => {
+    store.register(offsetKey);
+    updatePortalClientRect();
 
     // trigger a re-render so the EmojiSuggestions becomes active
-    this.props.setEditorState(this.props.getEditorState());
-  }
+    setEditorState(getEditorState());
 
-  UNSAFE_componentWillReceiveProps(
-    nextProps: EmojiSuggestionsPortalParams
-  ): void {
-    this.updatePortalClientRect(nextProps);
-  }
+    return () => {
+      store.register(offsetKey);
+    };
+  }, [updatePortalClientRect, store, getEditorState, setEditorState]);
 
-  componentWillUnmount(): void {
-    this.props.store.unregister(this.props.offsetKey);
-  }
-
-  updatePortalClientRect(props: EmojiSuggestionsPortalParams): void {
-    this.props.store.updatePortalClientRect(props.offsetKey, () =>
-      this.searchPortal!.getBoundingClientRect()
-    );
-  }
-
-  render(): ReactElement {
-    return (
-      <span
-        ref={(element) => {
-          this.searchPortal = element;
-        }}
-      >
-        {this.props.children}
-      </span>
-    );
-  }
+  return <span ref={ref}>{children}</span>;
 }
