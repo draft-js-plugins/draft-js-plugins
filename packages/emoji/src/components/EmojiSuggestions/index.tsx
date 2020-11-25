@@ -80,16 +80,18 @@ export default class EmojiSuggestions extends Component<
       const decoratorRect = this.props.store.getPortalClientRect(
         this.activeOffsetKey!
       );
-      const newStyles: CSSProperties = this.props.positionSuggestions({
-        decoratorRect,
-        props: this.props,
-        state: this.state,
-        filteredEmojis: this.filteredEmojis,
-        popover: this.popover,
-      });
-      for (const [key, value] of Object.entries(newStyles)) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (this.popover!.style as { [x: string]: any })[key] = value;
+      if (decoratorRect) {
+        const newStyles: CSSProperties = this.props.positionSuggestions({
+          decoratorRect,
+          props: this.props,
+          state: this.state,
+          filteredEmojis: this.filteredEmojis,
+          popover: this.popover,
+        });
+        for (const [key, value] of Object.entries(newStyles)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (this.popover!.style as { [x: string]: any })[key] = value;
+        }
       }
     }
   }

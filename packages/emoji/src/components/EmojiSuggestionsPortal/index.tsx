@@ -22,7 +22,7 @@ export default function EmojiSuggestionsPortal({
 
   const updatePortalClientRect = useCallback(() => {
     store.updatePortalClientRect(offsetKey, () =>
-      ref.current!.getBoundingClientRect()
+      ref.current?.getBoundingClientRect()
     );
   }, [store, offsetKey]);
 
@@ -34,7 +34,7 @@ export default function EmojiSuggestionsPortal({
     store.setEditorState!(store.getEditorState!());
 
     return () => {
-      store.register(offsetKey);
+      store.unregister(offsetKey);
     };
   }, [updatePortalClientRect, store]);
 
