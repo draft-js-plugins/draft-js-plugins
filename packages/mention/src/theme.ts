@@ -8,16 +8,17 @@ const entryShared = `
   }
 `;
 
-export interface Theme {
+export interface MentionPluginTheme {
   mention?: string;
   mentionSuggestions?: string;
   mentionSuggestionsEntry?: string;
   mentionSuggestionsEntryFocused?: string;
   mentionSuggestionsEntryText?: string;
   mentionSuggestionsEntryAvatar?: string;
+  [x: string]: string | undefined;
 }
 
-export const defaultTheme: Theme = {
+export const defaultTheme: MentionPluginTheme = {
   mention: css`
     &,
     &:visited {

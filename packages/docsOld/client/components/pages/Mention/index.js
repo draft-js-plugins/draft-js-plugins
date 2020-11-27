@@ -5,23 +5,23 @@ import simpleExampleCode from '!!../../../loaders/prism-loader?language=javascri
 // eslint-disable-next-line import/no-unresolved
 import simpleExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./SimpleMentionEditor/mentions.js';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
+//import simpleExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./SimpleMentionEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor';
 // eslint-disable-next-line import/no-unresolved
 import customExampleMentionsCode from '!!../../../loaders/prism-loader?language=javascript!./CustomMentionEditor/mentions.js';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
+//import customExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
+//import customExampleMentionsStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomMentionEditor/mentionsStyles.css';
 // eslint-disable-next-line import/no-unresolved
 import remoteExampleCode from '!!../../../loaders/prism-loader?language=javascript!./RemoteMentionEditor';
 // eslint-disable-next-line import/no-unresolved
-import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
+//import remoteExampleEditorStylesCode from '!!../../../loaders/prism-loader?language=css!./RemoteMentionEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
 import customComponentExampleCode from '!!../../../loaders/prism-loader?language=javascript!./CustomComponentMentionEditor';
 // eslint-disable-next-line import/no-unresolved
-import customComponentExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomComponentMentionEditor/editorStyles.css';
+//import customComponentExampleStylesCode from '!!../../../loaders/prism-loader?language=css!./CustomComponentMentionEditor/editorStyles.css';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!../../../loaders/prism-loader?language=javascript!./webpackConfig';
 // eslint-disable-next-line import/no-unresolved

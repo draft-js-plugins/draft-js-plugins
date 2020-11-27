@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { MentionData } from '../../';
-import { Theme } from '../../theme';
+import { MentionPluginTheme } from '../../theme';
 
 export interface EntryComponentProps {
   className?: string;
@@ -16,8 +16,8 @@ export interface EntryComponentProps {
   onMouseEnter(event: MouseEvent): void;
   role: string;
   id: string;
-  'aria-selected'?: string | null;
-  theme?: Theme;
+  'aria-selected'?: boolean | 'false' | 'true';
+  theme?: MentionPluginTheme;
   mention: MentionData;
   isFocused: boolean;
   searchValue?: string;
@@ -27,7 +27,7 @@ interface EntryProps {
   mention: MentionData;
   entryComponent: ComponentType<EntryComponentProps>;
   onMentionSelect(mention: MentionData): void;
-  theme: Theme;
+  theme: MentionPluginTheme;
   id: string;
   index: number;
   onMentionFocus(index: number): void;
@@ -75,7 +75,7 @@ const Entry = (props: EntryProps): ReactElement => {
       onMouseEnter={onMouseEnter}
       role="option"
       id={id}
-      aria-selected={isFocused ? 'true' : null}
+      aria-selected={isFocused ? 'true' : undefined}
       theme={theme}
       mention={mention}
       isFocused={isFocused}

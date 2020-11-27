@@ -15,7 +15,7 @@ import defaultPositionSuggestions, {
   PositionSuggestionsFn,
 } from './utils/positionSuggestions';
 import defaultRegExp from './defaultRegExp';
-import { defaultTheme, Theme } from './theme';
+import { defaultTheme, MentionPluginTheme } from './theme';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
@@ -25,12 +25,15 @@ export { default as MentionSuggestions } from './MentionSuggestions/MentionSugge
 
 export { defaultTheme };
 export { addMention };
+export type { MentionPluginTheme };
 
 export interface MentionData {
   link?: string;
   avatar?: string;
   name: string;
   id?: null | string | number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [x: string]: any;
 }
 
 export interface MentionPluginStore {
@@ -50,7 +53,7 @@ export interface MentionPluginStore {
 
 export interface MentionPluginConfig {
   mentionPrefix?: string;
-  theme?: Theme;
+  theme?: MentionPluginTheme;
   positionSuggestions?: PositionSuggestionsFn;
   mentionComponent?: ComponentType<SubMentionComponentProps>;
   mentionSuggestionsComponent?: ComponentType;

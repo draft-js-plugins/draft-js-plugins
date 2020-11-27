@@ -14,6 +14,8 @@ import '@draft-js-plugins/image/lib/plugin.css';
 import '@draft-js-plugins/focus/lib/plugin.css';
 import '@draft-js-plugins/alignment/lib/plugin.css';
 
+import 'prismjs/themes/prism.css';
+
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import React, { ReactElement } from 'react';
 

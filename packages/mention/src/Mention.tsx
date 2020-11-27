@@ -2,14 +2,14 @@ import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import { ContentState } from 'draft-js';
 import clsx from 'clsx';
 import { MentionData } from '.';
-import { Theme } from './theme';
+import { MentionPluginTheme } from './theme';
 
 export interface SubMentionComponentProps {
   mention: MentionData;
   children: ReactNode;
   className: string;
   entityKey: string;
-  theme: Theme;
+  theme: MentionPluginTheme;
   decoratedText: string;
 }
 
@@ -18,7 +18,7 @@ export interface MentionProps {
   children: ReactNode;
   className: string;
   entityKey: string;
-  theme?: Theme;
+  theme?: MentionPluginTheme;
   mentionComponent?: ComponentType<SubMentionComponentProps>;
   decoratedText: string;
   contentState: ContentState;

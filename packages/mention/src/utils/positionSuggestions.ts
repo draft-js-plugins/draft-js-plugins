@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react';
+import { MentionData } from '..';
 
 const getRelativeParent = (element: HTMLElement | null): HTMLElement | null => {
   if (!element) {
@@ -15,18 +16,20 @@ const getRelativeParent = (element: HTMLElement | null): HTMLElement | null => {
   return getRelativeParent(element.parentElement);
 };
 
-export default function positionSuggestions({
-  decoratorRect,
-  popover,
-  props,
-}: {
+export interface PositionSuggestionsParams {
   decoratorRect: ClientRect;
   popover: HTMLElement;
   props: {
     open: boolean;
-    suggestions: Array<unknown>;
+    suggestions: MentionData[];
   };
-}): CSSProperties {
+}
+
+export default function positionSuggestions({
+  decoratorRect,
+  popover,
+  props,
+}: PositionSuggestionsParams): CSSProperties {
   const relativeParent = getRelativeParent(popover.parentElement);
   let relativeRect: {
     scrollLeft: number;
