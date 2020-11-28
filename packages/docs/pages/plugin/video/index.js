@@ -16,7 +16,8 @@ import CustomVideoEditor from './CustomVideoEditor';
 import CustomAddVideoVideoEditor from './CustomAddVideoVideoEditor';
 import SocialBar from '../../../components/SocialBar/SocialBar';
 import Menu from '../../../components/Menu/Menu';
-import Separator from '../../../components/SocialBar/SocialBar';
+import Separator from '../../../components/Separator/Separator';
+import Footer from '../../../components/Footer/Footer';
 
 export default class App extends Component {
   componentDidMount() {
@@ -91,6 +92,7 @@ export default class App extends Component {
           />
         </Container>
         <SocialBar />
+        <Footer />
       </div>
     );
   }
