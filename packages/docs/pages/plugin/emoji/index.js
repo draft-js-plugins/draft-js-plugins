@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Prism from 'prismjs';
 
 import gettingStarted from '!!raw-loader!./gettingStarted';
 import simpleExampleCode from '!!raw-loader!./SimpleEmojiEditor';
@@ -11,15 +10,13 @@ import customExampleCode from '!!raw-loader!./CustomEmojiEditor';
 import styles from './styles.module.css';
 import Container from '../../../components/Container/Container';
 import Heading from '../../../components/Heading/Heading';
-import SocialBar from '../../../components/SocialBar/SocialBar';
-import Menu from '../../../components/Menu/Menu';
-import Separator from '../../../components/Separator/Separator';
 import Code from '../../../components/Code/Code';
 import SimpleEmojiEditor from './SimpleEmojiEditor';
 import CustomEmojiEditor from './CustomEmojiEditor';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 const toneSelectStyles = `.emojiSelectPopoverToneSelect {
   position: absolute;
@@ -45,17 +42,9 @@ const selectGroupsCode = `selectGroups: [{
 }]`;
 
 export default class App extends Component {
-  componentDidMount() {
-    if (typeof window !== 'undefined') {
-      Prism.highlightAll();
-    }
-  }
-
   render() {
     return (
-      <div>
-        <Menu />
-        <Separator />
+      <PluginPageFrame>
         <Container>
           <Heading level={2}>Emoji</Heading>
           <p>
@@ -448,8 +437,7 @@ export default class App extends Component {
           <CustomEmojiEditor />
           <Code code={customExampleCode} name="SimpleEmojiEditor.js" />
         </Container>
-        <SocialBar />
-      </div>
+      </PluginPageFrame>
     );
   }
 }

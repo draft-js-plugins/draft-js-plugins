@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Prism from 'prismjs';
 
 import simpleExampleCode from '!!raw-loader!./SimpleVideoEditor';
 import customExampleCode from '!!raw-loader!./CustomVideoEditor';
@@ -14,23 +13,12 @@ import Code from '../../../components/Code/Code';
 import SimpleVideoEditor from './SimpleVideoEditor';
 import CustomVideoEditor from './CustomVideoEditor';
 import CustomAddVideoVideoEditor from './CustomAddVideoVideoEditor';
-import SocialBar from '../../../components/SocialBar/SocialBar';
-import Menu from '../../../components/Menu/Menu';
-import Separator from '../../../components/Separator/Separator';
-import Footer from '../../../components/Footer/Footer';
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default class App extends Component {
-  componentDidMount() {
-    if (typeof window !== 'undefined') {
-      Prism.highlightAll();
-    }
-  }
-
   render() {
     return (
-      <div>
-        <Menu />
-        <Separator />
+      <PluginPageFrame>
         <Container>
           <Heading level={2}>Video</Heading>
           <Heading level={3}>Supported Environment</Heading>
@@ -91,9 +79,7 @@ export default class App extends Component {
             name="CustomAddVideoVideoEditor.js"
           />
         </Container>
-        <SocialBar />
-        <Footer />
-      </div>
+      </PluginPageFrame>
     );
   }
 }

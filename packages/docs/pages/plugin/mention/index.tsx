@@ -1,14 +1,11 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import styles from './Mention.module.css';
 import Heading from '../../../components/Heading/Heading';
 import Container from '../../../components/Container/Container';
-import Separator from '../../../components/Separator/Separator';
-import Menu from '../../../components/Menu/Menu';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Code from '../../../components/Code/Code';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import ExternalLink from '../../../components/Link/Link';
-import Prism from 'prismjs';
 
 import simpleExampleCode from '!!raw-loader!./SimpleMentionEditor/SimpleMentionEditor';
 import simpleExampleMentionsCode from '!!raw-loader!./SimpleMentionEditor/Mentions';
@@ -24,24 +21,15 @@ import customComponentExampleStylesCode from '!!raw-loader!./CustomComponentMent
 import webpackConfig from '!!raw-loader!./webpackConfig';
 import webpackImport from '!!raw-loader!./webpackImport';
 
-import SocialBar from '../../../components/SocialBar/SocialBar';
-import Footer from '../../../components/Footer/Footer';
 import SimpleMentionEditor from './SimpleMentionEditor/SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor/CustomMentionEditor';
 import RemoteMentionEditor from './RemoteMentionEditor/RemoteMentionEditor';
 import CustomComponentMentionEditor from './CustomComponentMentionEditor/CustomComponentMentionEditor';
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default function Mention(): ReactElement {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      Prism.highlightAll();
-    }
-  }, []);
-
   return (
-    <div>
-      <Menu />
-      <Separator />
+    <PluginPageFrame>
       <Container>
         <Heading level={2}>Mention</Heading>
         <p>
@@ -321,8 +309,6 @@ export default function Mention(): ReactElement {
         />
         <Code code={customComponentExampleStylesCode} name="editorStyles.css" />
       </Container>
-      <SocialBar />
-      <Footer />
-    </div>
+    </PluginPageFrame>
   );
 }

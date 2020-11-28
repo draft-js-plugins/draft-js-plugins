@@ -22,13 +22,12 @@ import InlineCode from '../../../components/InlineCode/InlineCode';
 import SocialBar from '../../../components/SocialBar/SocialBar';
 import Menu from '../../../components/Menu/Menu';
 import Separator from '../../../components/Separator/Separator';
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default class App extends Component {
   render() {
     return (
-      <div>
-        <Menu />
-        <Separator />
+      <PluginPageFrame>
         <Container>
           <Heading level={2}>Alignment</Heading>
           <Heading level={3}>Prerequisite</Heading>
@@ -115,8 +114,7 @@ export default class App extends Component {
           />
           <Code code={themedExampleButtonStylesCode} name="buttonStyles.css" />
         </Container>
-        <SocialBar />
-      </div>
+      </PluginPageFrame>
     );
   }
 }

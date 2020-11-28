@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Prism from 'prismjs';
 
 import simpleExampleCode from '!!raw-loader!./SimpleImageEditor';
 import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleImageEditor/editorStyles.module.css';
@@ -21,22 +20,11 @@ import CustomImageEditor from './CustomImageEditor';
 import AddImageEditor from './AddImageEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
-import SocialBar from '../../../components/SocialBar/SocialBar';
-import Menu from '../../../components/Menu/Menu';
-import Separator from '../../../components/Separator/Separator';
-
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 export default class App extends Component {
-  componentDidMount() {
-    if (typeof window !== 'undefined') {
-      Prism.highlightAll();
-    }
-  }
-
   render() {
     return (
-      <div>
-        <Menu />
-        <Separator />
+      <PluginPageFrame>
         <Container>
           <Heading level={2}>Image</Heading>
           <Heading level={3}>Supported Environment</Heading>
@@ -175,8 +163,7 @@ export default class App extends Component {
             name="editorStyles.css"
           />
         </Container>
-        <SocialBar />
-      </div>
+      </PluginPageFrame>
     );
   }
 }
