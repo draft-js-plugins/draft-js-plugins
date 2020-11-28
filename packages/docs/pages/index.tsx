@@ -7,7 +7,7 @@ import ContainerBox from '../components/ContainerBox/ContainerBox';
 import GithubButton from '../components/GithubButton/GithubButton';
 import Pen from '../components/Pen/Pen';
 import ExternalLink from '../components/Link/Link';
-import Separator from '../components/Separator/Seperator';
+import Separator from '../components/Separator/Separator';
 import AlternateContainer from '../components/AlternateContainer/AlternateContainer';
 import Heading from '../components/Heading/Heading';
 import Container from '../components/Container/Container';

@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import styles from './Mention.module.css';
 import Heading from '../../../components/Heading/Heading';
 import Container from '../../../components/Container/Container';
-import Separator from '../../../components/Separator/Seperator';
+import Separator from '../../../components/Separator/Separator';
 import Menu from '../../../components/Menu/Menu';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Code from '../../../components/Code/Code';
@@ -77,7 +77,7 @@ export default function Mention(): ReactElement {
           The plugin ships with a default styling available at this location in
           the installed package: &nbsp;
           <InlineCode
-            code={'node_modules/draft-js-mention-plugin/lib/plugin.css'}
+            code={'node_modules/@draft-js-plugins/mention/lib/plugin.css'}
           />
         </p>
         <Heading level={4}>Webpack Usage</Heading>

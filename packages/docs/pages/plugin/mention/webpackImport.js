@@ -1,1 +1,1 @@
-import 'draft-js-mention-plugin/lib/plugin.css';
+import '@draft-js-plugins/mention/lib/plugin.css';
