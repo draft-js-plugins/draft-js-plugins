@@ -21,8 +21,7 @@ const mentions: MentionData[] = [
     name: 'Max Stoiber',
     title:
       'Travels around the world, brews coffee, skis mountains and makes stuff on the web.',
-    avatar:
-      'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg',
+    avatar: 'https://avatars0.githubusercontent.com/u/7525670?s=200&v=4',
   },
   {
     name: 'Nik Graf',

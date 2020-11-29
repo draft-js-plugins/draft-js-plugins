@@ -17,10 +17,6 @@ import UnicornEditor from '../components/UnicornEditor/UnicornEditor';
 export default function Home(): ReactElement {
   return (
     <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <div className={styles.header}>
         <ContainerBox>
           <Pen />

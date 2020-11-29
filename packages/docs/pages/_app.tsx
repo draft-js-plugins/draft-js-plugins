@@ -18,10 +18,18 @@ import 'prismjs/themes/prism.css';
 
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import React, { ReactElement } from 'react';
+import Head from 'next/head';
 
 export default function MyApp({
   Component,
   pageProps,
 }: AppProps): ReactElement {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Head>
+        <title>DraftJS Plugins - High quality plugins with great UX</title>
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }

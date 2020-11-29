@@ -2,7 +2,8 @@ const mentions = [
   {
     name: 'Matthew Russell',
     title: 'Senior Software Engineer',
-    avatar: 'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
+    avatar:
+      'https://pbs.twimg.com/profile_images/517863945/mattsailing_400x400.jpg',
   },
   {
     name: 'Julian Krispel-Samsel',
@@ -16,8 +17,9 @@ const mentions = [
   },
   {
     name: 'Max Stoiber',
-    title: 'Travels around the world, brews coffee, skis mountains and makes stuff on the web.',
-    avatar: 'https://pbs.twimg.com/profile_images/763033229993574400/6frGyDyA_400x400.jpg',
+    title:
+      'Travels around the world, brews coffee, skis mountains and makes stuff on the web.',
+    avatar: 'https://avatars0.githubusercontent.com/u/7525670?s=200&v=4',
   },
   {
     name: 'Nik Graf',
@@ -27,7 +29,8 @@ const mentions = [
   {
     name: 'Pascal Brandt',
     title: 'HeathIT hacker and researcher',
-    avatar: 'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
+    avatar:
+      'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
   },
 ];
 
