@@ -55,7 +55,7 @@ Checkout [the website](https://www.draft-js-plugins.com/)!
 First, install the editor with `npm`:
 
 ```
-$ npm install draft-js-plugins-editor --save
+$ npm install @draft-js-plugins/editor --save
 ```
 
 Then import the editor somewhere in your code and you're ready to go!
