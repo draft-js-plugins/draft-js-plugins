@@ -29,7 +29,7 @@ export default class App extends Component {
             e.g. image or video. Keep in mind the plugin must accept a decorator
             for the block. The `Simple Resizeable Example` further down contains
             an example plugin rendering a colored div. In addition this plugin
-            only works in combination with the draft-js-focus-plugin.
+            only works in combination with the @draft-js-plugins/focus.
           </p>
           <Heading level={3}>Usage</Heading>
           <p>

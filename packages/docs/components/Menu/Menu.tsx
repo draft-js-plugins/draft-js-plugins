@@ -55,7 +55,7 @@ export default function Menu(): ReactElement {
           color: '#aaa',
         }}
       >
-        The documentation currently represents the 4.0.x release.
+        The documentation currently represents the 4.0.0 release.
         <br />
         For troubleshooting please checkout the
         <a
