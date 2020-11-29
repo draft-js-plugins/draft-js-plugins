@@ -5,6 +5,7 @@ import '../styles/draft.css';
 import '@draft-js-plugins/sticker/lib/plugin.css';
 import '@draft-js-plugins/side-toolbar/lib/plugin.css';
 import '@draft-js-plugins/inline-toolbar/lib/plugin.css';
+import '@draft-js-plugins/static-toolbar/lib/plugin.css';
 import '@draft-js-plugins/hashtag/lib/plugin.css';
 import '@draft-js-plugins/linkify/lib/plugin.css';
 import '@draft-js-plugins/mention/lib/plugin.css';
