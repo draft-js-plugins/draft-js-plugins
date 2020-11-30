@@ -1,13 +1,12 @@
 import React, { ReactElement } from 'react';
-import GithubButton from '../GithubButton/GithubButton';
-import styles from './SocialBar.module.css';
-
 import {
   FacebookShareButton,
   FacebookIcon,
   TwitterShareButton,
   TwitterIcon,
 } from 'react-share';
+import GithubButton from '../GithubButton/GithubButton';
+import styles from './SocialBar.module.css';
 
 export default function SocialBar(): ReactElement {
   return (

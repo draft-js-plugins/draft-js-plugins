@@ -23,13 +23,15 @@ export default function SimpleMentionEditor(): ReactElement {
 
   const { MentionSuggestions, plugins } = useMemo(() => {
     const mentionPlugin = createMentionPlugin();
+    // eslint-disable-next-line no-shadow
     const { MentionSuggestions } = mentionPlugin;
+    // eslint-disable-next-line no-shadow
     const plugins = [mentionPlugin];
     return { plugins, MentionSuggestions };
   }, []);
 
-  const onOpenChange = useCallback((open: boolean) => {
-    setOpen(open);
+  const onOpenChange = useCallback((_open: boolean) => {
+    setOpen(_open);
   }, []);
   const onSearchChange = useCallback(({ value }: { value: string }) => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
@@ -39,7 +41,7 @@ export default function SimpleMentionEditor(): ReactElement {
     <div
       className={editorStyles.editor}
       onClick={() => {
-        ref.current?.focus();
+        ref.current!.focus();
       }}
     >
       <Editor

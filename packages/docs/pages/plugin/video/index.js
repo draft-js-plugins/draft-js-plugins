@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleVideoEditor';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!raw-loader!./CustomVideoEditor';
+// eslint-disable-next-line import/no-unresolved
 import addVideoEditorExampleCode from '!!raw-loader!./CustomAddVideoVideoEditor';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!./gettingStarted';
 
 import Container from '../../../components/Container/Container';

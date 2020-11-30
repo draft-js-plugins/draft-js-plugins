@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React, { ReactElement, useEffect, useRef } from 'react';
 import styles from './Pen.module.css';
 
@@ -9,7 +10,8 @@ export default function Pen(): ReactElement {
   const dotRef = useRef(null);
 
   useEffect(() => {
-    const animate = require('animateplus'); // eslint-disable-line global-require
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const animate = require('animateplus');
     animate({
       el: drawnPathRef.current,
       'stroke-dashoffset': [570, 1140],

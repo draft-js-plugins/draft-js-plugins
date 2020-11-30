@@ -1,4 +1,4 @@
-import React, { Component, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import 'prismjs/themes/prism.css';
 import styles from './InlineCode.module.css';

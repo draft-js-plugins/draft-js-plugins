@@ -1,13 +1,21 @@
 /* eslint-disable react/no-unknown-property */
 import React, { Component } from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleUndoEditor';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleUndoEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!raw-loader!./CustomUndoEditor';
+// eslint-disable-next-line import/no-unresolved
 import customExampleButtonCSSCode from '!!raw-loader!./CustomUndoEditor/buttonStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!raw-loader!./CustomUndoEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!./gettingStarted';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
 import webpackImport from '!!raw-loader!./webpackImport';
 
 import Container from '../../../components/Container/Container';

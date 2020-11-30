@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleAlignmentEditor';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleAlignmentEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleColorBlockCode from '!!raw-loader!./SimpleAlignmentEditor/colorBlockPlugin';
+// eslint-disable-next-line import/no-unresolved
 import themedExampleCode from '!!raw-loader!./ThemedAlignmentEditor';
+// eslint-disable-next-line import/no-unresolved
 import themedExampleEditorStylesCode from '!!raw-loader!./ThemedAlignmentEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import themedExampleAlignmentToolStylesCode from '!!raw-loader!./ThemedAlignmentEditor/alignmentToolStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import themedExampleButtonStylesCode from '!!raw-loader!./ThemedAlignmentEditor/buttonStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
 import webpackImport from '!!raw-loader!./webpackImport';
 
 import Container from '../../../components/Container/Container';
@@ -19,9 +28,6 @@ import SimpleAlignmentEditor from './SimpleAlignmentEditor';
 import ThemedAlignmentEditor from './ThemedAlignmentEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
-import SocialBar from '../../../components/SocialBar/SocialBar';
-import Menu from '../../../components/Menu/Menu';
-import Separator from '../../../components/Separator/Separator';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default class App extends Component {

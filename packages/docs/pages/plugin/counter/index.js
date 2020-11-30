@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!./gettingStarted';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleCounterEditor';
+// eslint-disable-next-line import/no-unresolved
 import simpleEditorStylesCode from '!!raw-loader!./SimpleCounterEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!raw-loader!./CustomCounterEditor';
+// eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!raw-loader!./CustomCounterEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCounterStylesCode from '!!raw-loader!./CustomCounterEditor/counterStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
 import webpackImport from '!!raw-loader!./webpackImport';
 
 import styles from './styles.module.css';

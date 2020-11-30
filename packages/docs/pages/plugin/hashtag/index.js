@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleHashtagEditor';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleHashtagEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!raw-loader!./CustomHashtagEditor';
+// eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!raw-loader!./CustomHashtagEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleHashtagStylesCode from '!!raw-loader!./CustomHashtagEditor/hashtagStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!./gettingStarted';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
 import webpackImport from '!!raw-loader!./webpackImport';
 
 import Container from '../../../components/Container/Container';

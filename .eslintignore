@@ -2,6 +2,5 @@
 node_modules
 lib/**
 scripts/**
-packages/docs/**
 distTs/**
 **/lib/**

@@ -1,10 +1,17 @@
+/* eslint-disable no-template-curly-in-string */
 import React, { Component } from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!./gettingStarted';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleEmojiEditor';
+// eslint-disable-next-line import/no-unresolved
 import simpleEditorStylesCode from '!!raw-loader!./SimpleEmojiEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
 import webpackImport from '!!raw-loader!./webpackImport';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!raw-loader!./CustomEmojiEditor';
 
 import styles from './styles.module.css';

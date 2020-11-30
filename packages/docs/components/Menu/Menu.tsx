@@ -26,7 +26,7 @@ const links: [string, string][][] = [
     ['/plugin/focus', 'Focus'],
     ['/plugin/alignment', 'Alignment'],
     ['/plugin/resizeable', 'Resizeable'],
-    ['/plugin/drag-n-drop', `Drag'n'Drop`],
+    ['/plugin/drag-n-drop', "Drag'n'Drop"],
     ['/plugin/divider', 'Divider'],
   ],
 ];
@@ -36,6 +36,7 @@ export default function Menu(): ReactElement {
     <div className={styles.pluginsWrapper}>
       <div className={styles.wideContainer}>
         {links.map((link, index) => (
+          // eslint-disable-next-line react/no-array-index-key
           <ul className={styles.plugins} key={index}>
             {link.map(([path, name]) => (
               <li className={styles.plugin} key={path}>
@@ -58,6 +59,7 @@ export default function Menu(): ReactElement {
         The documentation currently represents the 4.0.0 release.
         <br />
         For troubleshooting please checkout the
+        {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
         <a
           href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md"
           className={styles.link}

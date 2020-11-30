@@ -1,4 +1,32 @@
 import React, { ReactElement } from 'react';
+
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleCode from '!!raw-loader!./SimpleMentionEditor/SimpleMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleMentionsCode from '!!raw-loader!./SimpleMentionEditor/Mentions';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleMentionEditor/SimpleMentionEditor.module.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleCode from '!!raw-loader!./CustomMentionEditor/CustomMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import customExampleMentionsCode from '!!raw-loader!./CustomMentionEditor/Mentions';
+// eslint-disable-next-line import/no-unresolved
+import customExampleEditorStylesCode from '!!raw-loader!./CustomMentionEditor/CustomMentionEditor.module.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleMentionsStylesCode from '!!raw-loader!./CustomMentionEditor/MentionsStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import remoteExampleCode from '!!raw-loader!./RemoteMentionEditor/RemoteMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import remoteExampleEditorStylesCode from '!!raw-loader!./RemoteMentionEditor/RemoteMentionEditor.module.css';
+// eslint-disable-next-line import/no-unresolved
+import customComponentExampleCode from '!!raw-loader!./CustomComponentMentionEditor/CustomComponentMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import customComponentExampleStylesCode from '!!raw-loader!./CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
+import webpackImport from '!!raw-loader!./webpackImport';
+
 import styles from './Mention.module.css';
 import Heading from '../../../components/Heading/Heading';
 import Container from '../../../components/Container/Container';
@@ -6,20 +34,6 @@ import AlternateContainer from '../../../components/AlternateContainer/Alternate
 import Code from '../../../components/Code/Code';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import ExternalLink from '../../../components/Link/Link';
-
-import simpleExampleCode from '!!raw-loader!./SimpleMentionEditor/SimpleMentionEditor';
-import simpleExampleMentionsCode from '!!raw-loader!./SimpleMentionEditor/Mentions';
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleMentionEditor/SimpleMentionEditor.module.css';
-import customExampleCode from '!!raw-loader!./CustomMentionEditor/CustomMentionEditor';
-import customExampleMentionsCode from '!!raw-loader!./CustomMentionEditor/Mentions';
-import customExampleEditorStylesCode from '!!raw-loader!./CustomMentionEditor/CustomMentionEditor.module.css';
-import customExampleMentionsStylesCode from '!!raw-loader!./CustomMentionEditor/MentionsStyles.module.css';
-import remoteExampleCode from '!!raw-loader!./RemoteMentionEditor/RemoteMentionEditor';
-import remoteExampleEditorStylesCode from '!!raw-loader!./RemoteMentionEditor/RemoteMentionEditor.module.css';
-import customComponentExampleCode from '!!raw-loader!./CustomComponentMentionEditor/CustomComponentMentionEditor';
-import customComponentExampleStylesCode from '!!raw-loader!./CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
-import webpackConfig from '!!raw-loader!./webpackConfig';
-import webpackImport from '!!raw-loader!./webpackImport';
 
 import SimpleMentionEditor from './SimpleMentionEditor/SimpleMentionEditor';
 import CustomMentionEditor from './CustomMentionEditor/CustomMentionEditor';

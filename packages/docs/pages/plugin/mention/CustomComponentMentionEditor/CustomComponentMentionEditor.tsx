@@ -1,5 +1,4 @@
 import React, {
-  Component,
   ReactElement,
   useCallback,
   useMemo,
@@ -24,23 +23,27 @@ export default function CustomComponentMentionEditor(): ReactElement {
 
   const { MentionSuggestions, plugins } = useMemo(() => {
     const mentionPlugin = createMentionPlugin({
-      mentionComponent: mentionProps => (
-        <span
-          className={mentionProps.className}
-          // eslint-disable-next-line no-alert
-          onClick={() => alert('Clicked on the Mention!')}
-        >
-          {mentionProps.children}
-        </span>
-      ),
+      mentionComponent(mentionProps) {
+        return (
+          <span
+            className={mentionProps.className}
+            // eslint-disable-next-line no-alert
+            onClick={() => alert('Clicked on the Mention!')}
+          >
+            {mentionProps.children}
+          </span>
+        );
+      },
     });
+    // eslint-disable-next-line no-shadow
     const { MentionSuggestions } = mentionPlugin;
+    // eslint-disable-next-line no-shadow
     const plugins = [mentionPlugin];
     return { plugins, MentionSuggestions };
   }, []);
 
-  const onOpenChange = useCallback((open: boolean) => {
-    setOpen(open);
+  const onOpenChange = useCallback((_open: boolean) => {
+    setOpen(_open);
   }, []);
   const onSearchChange = useCallback(({ value }: { value: string }) => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
@@ -50,7 +53,7 @@ export default function CustomComponentMentionEditor(): ReactElement {
     <div
       className={editorStyles.editor}
       onClick={() => {
-        ref.current?.focus();
+        ref.current!.focus();
       }}
     >
       <Editor

@@ -1,6 +1,6 @@
 import React, { Component, ReactElement } from 'react';
 
-interface GithubButtonProps{
+interface GithubButtonProps {
   text?: string;
   user: string;
   repo: string;
@@ -10,23 +10,23 @@ interface GithubButtonProps{
 export default class GithubButton extends Component<GithubButtonProps> {
   githubButton?: HTMLAnchorElement | null;
 
-  componentDidMount() {
+  componentDidMount(): void {
     const githubScript = document.createElement('script');
     githubScript.src = '//buttons.github.io/buttons.js';
     githubScript.id = 'github-bjs';
     this.githubButton!.parentNode!.appendChild(githubScript);
   }
 
-  shouldComponentUpdate = () => false;
+  shouldComponentUpdate = (): boolean => false;
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     const elem = document.getElementById('github-bjs');
     if (elem) {
       elem.parentNode!.removeChild(elem);
     }
   }
 
-  render():ReactElement {
+  render(): ReactElement {
     const text = this.props.text ? this.props.text : 'Github';
     const { user, repo, size } = this.props;
 

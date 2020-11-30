@@ -1,7 +1,7 @@
-import React, { Component, ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
+import NextLink from 'next/link';
 import clsx from 'clsx';
 import styles from './Link.module.css';
-import NextLink from 'next/link';
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;

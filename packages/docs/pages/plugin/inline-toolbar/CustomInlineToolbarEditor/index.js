@@ -41,10 +41,8 @@ class HeadlinesPicker extends Component {
     const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
     return (
       <div>
-        {buttons.map((
-          Button,
-          i // eslint-disable-next-line
-        ) => (
+        {buttons.map((Button, i) => (
+          // eslint-disable-next-line react/no-array-index-key
           <Button key={i} {...this.props} />
         ))}
       </div>

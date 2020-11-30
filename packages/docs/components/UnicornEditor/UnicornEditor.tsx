@@ -1,5 +1,4 @@
 import React, {
-  Component,
   ReactElement,
   useCallback,
   useMemo,
@@ -76,8 +75,8 @@ export default function UnicornEditor(): ReactElement {
   );
   const [suggestions, setSuggestions] = useState(mentions);
 
-  const onChange = useCallback((editorState: EditorState): void => {
-    setEditorState(editorState);
+  const onChange = useCallback((_editorState: EditorState): void => {
+    setEditorState(_editorState);
   }, []);
 
   const onMentionSearchChange = useCallback(({ value }) => {
@@ -99,7 +98,7 @@ export default function UnicornEditor(): ReactElement {
       <div
         className={styles.editor}
         onClick={() => {
-          ref.current?.focus();
+          ref.current!.focus();
         }}
       >
         <Editor
@@ -118,7 +117,7 @@ export default function UnicornEditor(): ReactElement {
         <MentionSuggestions
           onSearchChange={onMentionSearchChange}
           suggestions={suggestions}
-          onOpenChange={(val) => {
+          onOpenChange={val => {
             setMentionOpen(val);
           }}
           open={mentionOpen}

@@ -4,11 +4,14 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
+  DocumentInitialProps,
 } from 'next/document';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx);
 
     return initialProps;
@@ -18,7 +21,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta property="og:locale" content="en_US" />
           <meta property="og:type" content="website" />
           <meta

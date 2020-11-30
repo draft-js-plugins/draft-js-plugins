@@ -1,5 +1,4 @@
 import React, {
-  Component,
   MouseEvent,
   ReactElement,
   useCallback,
@@ -9,6 +8,7 @@ import React, {
 } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
+import { PositionSuggestionsParams } from '@draft-js-plugins/mention/lib/utils/positionSuggestions';
 import createMentionPlugin, {
   defaultSuggestionsFilter,
   MentionData,
@@ -17,9 +17,10 @@ import createMentionPlugin, {
 import editorStyles from './CustomMentionEditor.module.css';
 import mentionsStyles from './MentionsStyles.module.css';
 import mentions from './Mentions';
-import { PositionSuggestionsParams } from '@draft-js-plugins/mention/lib/utils/positionSuggestions';
 
-const positionSuggestions = ({ props }: PositionSuggestionsParams) => {
+const positionSuggestions = ({
+  props,
+}: PositionSuggestionsParams): React.CSSProperties => {
   let transform;
   let transition;
 
@@ -55,8 +56,8 @@ function Entry(props: EntryComponentProps): ReactElement {
   const {
     mention,
     theme,
-    searchValue, // eslint-disable-line no-unused-vars
-    isFocused, // eslint-disable-line no-unused-vars
+    searchValue, // eslint-disable-line @typescript-eslint/no-unused-vars
+    isFocused, // eslint-disable-line @typescript-eslint/no-unused-vars
     ...parentProps
   } = props;
 
@@ -101,16 +102,18 @@ export default function CustomMentionEditor(): ReactElement {
       mentionPrefix: '@',
       supportWhitespace: true,
     });
+    // eslint-disable-next-line no-shadow
     const { MentionSuggestions } = mentionPlugin;
+    // eslint-disable-next-line no-shadow
     const plugins = [mentionPlugin];
     return { plugins, MentionSuggestions };
   }, []);
 
-  const onChange = useCallback((editorState: EditorState) => {
-    setEditorState(editorState);
+  const onChange = useCallback((_editorState: EditorState) => {
+    setEditorState(_editorState);
   }, []);
-  const onOpenChange = useCallback((open: boolean) => {
-    setOpen(open);
+  const onOpenChange = useCallback((_open: boolean) => {
+    setOpen(_open);
   }, []);
   const onSearchChange = useCallback(({ value }: { value: string }) => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
@@ -120,7 +123,7 @@ export default function CustomMentionEditor(): ReactElement {
     <div
       className={editorStyles.editor}
       onClick={() => {
-        ref.current?.focus();
+        ref.current!.focus();
       }}
     >
       <Editor

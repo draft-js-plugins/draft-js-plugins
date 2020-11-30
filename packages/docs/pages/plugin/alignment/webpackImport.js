@@ -1,1 +1,1 @@
-import '@draft-js-plugin/alignment/lib/plugin.css';
+import '@draft-js-plugins/alignment/lib/plugin.css';

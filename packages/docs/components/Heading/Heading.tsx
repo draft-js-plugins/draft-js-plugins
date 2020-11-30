@@ -1,4 +1,4 @@
-import React, { Component, ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styles from './Heading.module.css';
 
 interface HeadingProps {

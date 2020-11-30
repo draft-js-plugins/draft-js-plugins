@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleLinkifyEditor';
+// eslint-disable-next-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleLinkifyEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customExampleCode from '!!raw-loader!./CustomLinkifyEditor';
+// eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!raw-loader!./CustomLinkifyEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import customComponentExampleCode from '!!raw-loader!./CustomComponentLinkifyEditor';
+// eslint-disable-next-line import/no-unresolved
 import customComponentExampleEditorStylesCode from '!!raw-loader!./CustomComponentLinkifyEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!./gettingStarted';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
 import webpackImport from '!!raw-loader!./webpackImport';
 
 import Container from '../../../components/Container/Container';

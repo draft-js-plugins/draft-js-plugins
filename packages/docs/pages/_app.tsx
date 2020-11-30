@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 import '../styles/globals.css';
 import '../styles/normalize.css';
 import '../styles/draft.css';

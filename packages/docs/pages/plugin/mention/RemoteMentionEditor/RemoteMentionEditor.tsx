@@ -1,5 +1,4 @@
 import React, {
-  Component,
   ReactElement,
   useCallback,
   useMemo,
@@ -23,13 +22,15 @@ export default function RemoteMentionEditor(): ReactElement {
 
   const { MentionSuggestions, plugins } = useMemo(() => {
     const mentionPlugin = createMentionPlugin();
+    // eslint-disable-next-line no-shadow
     const { MentionSuggestions } = mentionPlugin;
+    // eslint-disable-next-line no-shadow
     const plugins = [mentionPlugin];
     return { plugins, MentionSuggestions };
   }, []);
 
-  const onOpenChange = useCallback((open: boolean) => {
-    setOpen(open);
+  const onOpenChange = useCallback((_open: boolean) => {
+    setOpen(_open);
   }, []);
   const onSearchChange = useCallback(({ value }: { value: string }) => {
     // An import statment would break server-side rendering.
@@ -55,7 +56,7 @@ export default function RemoteMentionEditor(): ReactElement {
     <div
       className={editorStyles.editor}
       onClick={() => {
-        ref.current?.focus();
+        ref.current!.focus();
       }}
     >
       <Editor

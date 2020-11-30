@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 
-import simpleExampleCode from 'raw-loader!./SimpleResizeableEditor';
-import simpleExampleEditorStylesCode from 'raw-loader!./SimpleResizeableEditor/editorStyles.module.css';
-import simpleExampleColorBlockCode from 'raw-loader!./SimpleResizeableEditor/colorBlockPlugin';
-import webpackConfig from 'raw-loader!./webpackConfig';
-import webpackImport from 'raw-loader!./webpackImport';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleCode from '!!raw-loader!./SimpleResizeableEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleResizeableEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleColorBlockCode from '!!raw-loader!./SimpleResizeableEditor/colorBlockPlugin';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!raw-loader!./webpackConfig';
+// eslint-disable-next-line import/no-unresolved
+import webpackImport from '!!raw-loader!./webpackImport';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
