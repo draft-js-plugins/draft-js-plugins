@@ -3,32 +3,30 @@ import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import simpleExampleCode from '!!raw-loader!./SimpleAlignmentEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleAlignmentEditor/editorStyles.module.css';
-// eslint-disable-next-line import/no-unresolved
 import simpleExampleColorBlockCode from '!!raw-loader!./SimpleAlignmentEditor/colorBlockPlugin';
 // eslint-disable-next-line import/no-unresolved
-import themedExampleCode from '!!raw-loader!./ThemedAlignmentEditor';
-// eslint-disable-next-line import/no-unresolved
-import themedExampleEditorStylesCode from '!!raw-loader!./ThemedAlignmentEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleAlignmentEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 import themedExampleAlignmentToolStylesCode from '!!raw-loader!./ThemedAlignmentEditor/alignmentToolStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 import themedExampleButtonStylesCode from '!!raw-loader!./ThemedAlignmentEditor/buttonStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import themedExampleCode from '!!raw-loader!./ThemedAlignmentEditor';
 // eslint-disable-next-line import/no-unresolved
-import webpackImport from '!!raw-loader!./webpackImport';
+import themedExampleEditorStylesCode from '!!raw-loader!./ThemedAlignmentEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!raw-loader!./webpackConfig';
 
-import Container from '../../../components/Container/Container';
-import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
+import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Code from '../../../components/Code/Code';
-import SimpleAlignmentEditor from './SimpleAlignmentEditor';
-import ThemedAlignmentEditor from './ThemedAlignmentEditor';
+import Container from '../../../components/Container/Container';
 import ExternalLink from '../../../components/Link/Link';
+import Heading from '../../../components/Heading/Heading';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import SimpleAlignmentEditor from './SimpleAlignmentEditor';
+import ThemedAlignmentEditor from './ThemedAlignmentEditor';
 
 export default class App extends Component {
   render() {
@@ -86,7 +84,10 @@ export default class App extends Component {
             <li className={styles.listEntry}>
               3. Add the below import line to your component to tell Webpack to
               inject the style to your component.
-              <Code code={webpackImport} className={styles.guideCodeBlock} />
+              <Code
+                code={"import '@draft-js-plugins/alignment/lib/plugin.css';"}
+                className={styles.guideCodeBlock}
+              />
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>

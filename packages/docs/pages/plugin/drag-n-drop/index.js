@@ -8,8 +8,6 @@ import customExampleEditorStylesCode from '!!raw-loader!./CustomImageEditor/edit
 import gettingStarted from '!!raw-loader!./gettingStarted';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
-// eslint-disable-next-line import/no-unresolved
-import webpackImport from '!!raw-loader!./webpackImport';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
@@ -63,7 +61,10 @@ export default class App extends Component {
             <li className={styles.listEntry}>
               3. Add the below import line to your component to tell Webpack to
               inject the style to your component.
-              <Code code={webpackImport} className={styles.guideCodeBlock} />
+              <Code
+                code={"import '@draft-js-plugins/image/lib/plugin.css';"}
+                className={styles.guideCodeBlock}
+              />
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>

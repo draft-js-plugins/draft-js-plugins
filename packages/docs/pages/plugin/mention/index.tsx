@@ -24,8 +24,6 @@ import customComponentExampleCode from '!!raw-loader!./CustomComponentMentionEdi
 import customComponentExampleStylesCode from '!!raw-loader!./CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!./webpackConfig';
-// eslint-disable-next-line import/no-unresolved
-import webpackImport from '!!raw-loader!./webpackImport';
 
 import styles from './Mention.module.css';
 import Heading from '../../../components/Heading/Heading';
@@ -97,7 +95,10 @@ export default function Mention(): ReactElement {
           <li className={styles.listEntry}>
             3. Add the below import line to your component to tell Webpack to
             inject the style to your component.
-            <Code code={webpackImport} className={styles.guideCodeBlock} />
+            <Code
+              code={"import '@draft-js-plugins/mention/lib/plugin.css';"}
+              className={styles.guideCodeBlock}
+            />
           </li>
           <li className={styles.listEntry}>4. Restart Webpack.</li>
         </ul>
