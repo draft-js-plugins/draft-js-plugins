@@ -6,7 +6,7 @@ import {
   EditorProps,
 } from 'draft-js';
 import { CSSProperties, KeyboardEvent } from 'react';
-import { EditorPlugin, PluginFunctions } from '..';
+import { EditorCommand, EditorPlugin, PluginFunctions } from '..';
 
 type EditorKeys = keyof EditorPlugin;
 type EditorHandleKeys = keyof Pick<
@@ -120,16 +120,13 @@ function keyBindingFnHook(
   pluginMethods: PluginFunctions
 ) {
   return (event: KeyboardEvent): DraftEditorCommand | null => {
-    let result: DraftEditorCommand | null = null;
+    let result: EditorCommand | null | undefined = null;
     const wasHandled = plugins.some((plugin) => {
       if (typeof plugin.keyBindingFn !== 'function') {
         return false;
       }
-      result = plugin.keyBindingFn(
-        event,
-        pluginMethods
-      ) as DraftEditorCommand | null;
-      return Boolean(result);
+      result = plugin.keyBindingFn(event, pluginMethods);
+      return result !== undefined;
     });
     return wasHandled ? result : null;
   };

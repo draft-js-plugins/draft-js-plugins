@@ -22,7 +22,7 @@ export const composeDecorators = composeDecoratorsFn;
 
 export type { PluginEditorProps } from './Editor';
 
-type EditorCommand = DraftEditorCommand | string;
+export type EditorCommand = DraftEditorCommand | string;
 
 export interface GetSetEditorState {
   setEditorState(editorState: EditorState): void; // a function to update the EditorState
@@ -77,7 +77,7 @@ export interface EditorPlugin {
   keyBindingFn?(
     event: KeyboardEvent,
     pluginFunctions: PluginFunctions
-  ): EditorCommand | null;
+  ): EditorCommand | null | undefined;
   handleReturn?(
     event: KeyboardEvent,
     editorState: EditorState,
