@@ -1,32 +1,36 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleStickerEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleStickersCode from '!!raw-loader!./SimpleStickerEditor/stickers.js';
+import simpleExampleStickersCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor/stickers';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleStickerEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomStickerEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/sticker/CustomStickerEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleStickersCode from '!!raw-loader!./CustomStickerEditor/stickers.js';
+import customExampleStickersCode from '!!raw-loader!../../../components/Examples/sticker/CustomStickerEditor/stickers';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomStickerEditor/editorStyles.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/sticker/CustomStickerEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/sticker/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/sticker/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import SimpleStickerEditor from './SimpleStickerEditor';
-import CustomStickerEditor from './CustomStickerEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+// eslint-disable-next-line import/no-duplicates
+import CustomStickerEditor from '../../../components/Examples/sticker/CustomStickerEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleStickerEditor from '../../../components/Examples/sticker/SimpleStickerEditor';
 
 export default class App extends Component {
   render() {

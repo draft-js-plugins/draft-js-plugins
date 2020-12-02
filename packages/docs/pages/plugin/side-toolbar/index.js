@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleSideToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/side-toolbar/SimpleSideToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleSideToolbarEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/side-toolbar/SimpleSideToolbarEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomSideToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/side-toolbar/CustomSideToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomSideToolbarEditor/editorStyles.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/side-toolbar/CustomSideToolbarEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorButtonStylesCode from '!!raw-loader!./CustomSideToolbarEditor/buttonStyles.module.css';
+import customExampleEditorButtonStylesCode from '!!raw-loader!../../../components/Examples/side-toolbar/CustomSideToolbarEditor/buttonStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorToolbarStylesCode from '!!raw-loader!./CustomSideToolbarEditor/toolbarStyles.module.css';
+import customExampleEditorToolbarStylesCode from '!!raw-loader!../../../components/Examples/side-toolbar/CustomSideToolbarEditor/toolbarStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorBlockTypeSelectStylesCode from '!!raw-loader!./CustomSideToolbarEditor/blockTypeSelectStyles.module.css';
+import customExampleEditorBlockTypeSelectStylesCode from '!!raw-loader!../../../components/Examples/side-toolbar/CustomSideToolbarEditor/blockTypeSelectStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/side-toolbar/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/side-toolbar/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
@@ -25,8 +27,10 @@ import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
 import InlineCode from '../../../components/InlineCode/InlineCode';
-import SimpleSideToolbarEditor from './SimpleSideToolbarEditor';
-import CustomSideToolbarEditor from './CustomSideToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleSideToolbarEditor from '../../../components/Examples/side-toolbar/SimpleSideToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomSideToolbarEditor from '../../../components/Examples/side-toolbar/CustomSideToolbarEditor';
 import ExternalLink from '../../../components/Link/Link';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 

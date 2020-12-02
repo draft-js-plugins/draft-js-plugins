@@ -2,22 +2,26 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/emoji/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleEmojiEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/emoji/SimpleEmojiEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleEditorStylesCode from '!!raw-loader!./SimpleEmojiEditor/editorStyles.module.css';
+import simpleEditorStylesCode from '!!raw-loader!../../../components/Examples/emoji/SimpleEmojiEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/emoji/webpackConfig';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomEmojiEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/emoji/CustomEmojiEditor';
 
 import styles from './styles.module.css';
 import Container from '../../../components/Container/Container';
 import Heading from '../../../components/Heading/Heading';
 import Code from '../../../components/Code/Code';
-import SimpleEmojiEditor from './SimpleEmojiEditor';
-import CustomEmojiEditor from './CustomEmojiEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleEmojiEditor from '../../../components/Examples/emoji/SimpleEmojiEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomEmojiEditor from '../../../components/Examples/emoji/CustomEmojiEditor';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';

@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleHashtagEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/hashtag/SimpleHashtagEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleHashtagEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/hashtag/SimpleHashtagEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomHashtagEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/hashtag/CustomHashtagEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomHashtagEditor/editorStyles.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/hashtag/CustomHashtagEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleHashtagStylesCode from '!!raw-loader!./CustomHashtagEditor/hashtagStyles.module.css';
+import customExampleHashtagStylesCode from '!!raw-loader!../../../components/Examples/hashtag/CustomHashtagEditor/hashtagStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/hashtag/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/hashtag/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
@@ -21,8 +23,10 @@ import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
 import InlineCode from '../../../components/InlineCode/InlineCode';
-import SimpleHashtagEditor from './SimpleHashtagEditor';
-import CustomHashtagEditor from './CustomHashtagEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleHashtagEditor from '../../../components/Examples/hashtag/SimpleHashtagEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomHashtagEditor from '../../../components/Examples/hashtag/CustomHashtagEditor';
 import ExternalLink from '../../../components/Link/Link';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 

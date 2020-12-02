@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/counter/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleCounterEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/counter/SimpleCounterEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleEditorStylesCode from '!!raw-loader!./SimpleCounterEditor/editorStyles.module.css';
+import simpleEditorStylesCode from '!!raw-loader!../../../components/Examples/counter/SimpleCounterEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomCounterEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/counter/CustomCounterEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomCounterEditor/editorStyles.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/counter/CustomCounterEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCounterStylesCode from '!!raw-loader!./CustomCounterEditor/counterStyles.module.css';
+import customExampleCounterStylesCode from '!!raw-loader!../../../components/Examples/counter/CustomCounterEditor/counterStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/counter/webpackConfig';
 
 import styles from './styles.module.css';
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
-import SimpleCounterEditor from './SimpleCounterEditor';
-import CustomCounterEditor from './CustomCounterEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleCounterEditor from '../../../components/Examples/counter/SimpleCounterEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomCounterEditor from '../../../components/Examples/counter/CustomCounterEditor';
 import Code from '../../../components/Code/Code';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';

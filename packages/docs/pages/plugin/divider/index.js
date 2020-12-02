@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./DividerWithSideToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/divider/DividerWithSideToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./DividerWithSideToolbarEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/divider/DividerWithSideToolbarEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/divider/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/divider/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import DividerWithSideToolbarEditor from './DividerWithSideToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import DividerWithSideToolbarEditor from '../../../components/Examples/divider/DividerWithSideToolbarEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';

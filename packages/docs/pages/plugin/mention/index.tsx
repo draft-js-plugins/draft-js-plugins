@@ -1,29 +1,33 @@
 import React, { ReactElement } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleMentionEditor/SimpleMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleMentionsCode from '!!raw-loader!./SimpleMentionEditor/Mentions';
+import simpleExampleMentionsCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/Mentions';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleMentionEditor/SimpleMentionEditor.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomMentionEditor/CustomMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleMentionsCode from '!!raw-loader!./CustomMentionEditor/Mentions';
+import customExampleMentionsCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/Mentions';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomMentionEditor/CustomMentionEditor.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleMentionsStylesCode from '!!raw-loader!./CustomMentionEditor/MentionsStyles.module.css';
+import customExampleMentionsStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/MentionsStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import remoteExampleCode from '!!raw-loader!./RemoteMentionEditor/RemoteMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import remoteExampleCode from '!!raw-loader!../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
 // eslint-disable-next-line import/no-unresolved
-import remoteExampleEditorStylesCode from '!!raw-loader!./RemoteMentionEditor/RemoteMentionEditor.module.css';
+import remoteExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customComponentExampleCode from '!!raw-loader!./CustomComponentMentionEditor/CustomComponentMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import customComponentExampleCode from '!!raw-loader!../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor';
 // eslint-disable-next-line import/no-unresolved
-import customComponentExampleStylesCode from '!!raw-loader!./CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
+import customComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/mention/webpackConfig';
 
 import styles from './Mention.module.css';
 import Heading from '../../../components/Heading/Heading';
@@ -33,10 +37,14 @@ import Code from '../../../components/Code/Code';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import ExternalLink from '../../../components/Link/Link';
 
-import SimpleMentionEditor from './SimpleMentionEditor/SimpleMentionEditor';
-import CustomMentionEditor from './CustomMentionEditor/CustomMentionEditor';
-import RemoteMentionEditor from './RemoteMentionEditor/RemoteMentionEditor';
-import CustomComponentMentionEditor from './CustomComponentMentionEditor/CustomComponentMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleMentionEditor from '../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomMentionEditor from '../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import RemoteMentionEditor from '../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomComponentMentionEditor from '../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default function Mention(): ReactElement {
@@ -294,32 +302,47 @@ export default function Mention(): ReactElement {
       <Container>
         <Heading level={2}>Simple Example</Heading>
         <SimpleMentionEditor />
-        <Code code={simpleExampleCode} name="SimpleMentionEditor.tsx" />
-        <Code code={simpleExampleMentionsCode} name="Mentions.ts" />
+        <Code
+          code={(simpleExampleCode as unknown) as string}
+          name="SimpleMentionEditor.tsx"
+        />
+        <Code
+          code={(simpleExampleMentionsCode as unknown) as string}
+          name="Mentions.ts"
+        />
         <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
       </Container>
       <Container>
         <Heading level={2}>Custom Themed Mention Example</Heading>
         <CustomMentionEditor />
-        <Code code={customExampleCode} name="CustomMentionEditor.ts" />
+        <Code
+          code={(customExampleCode as unknown) as string}
+          name="CustomMentionEditor.ts"
+        />
         <Code
           code={customExampleMentionsStylesCode}
           name="mentionsStyles.css"
         />
-        <Code code={customExampleMentionsCode} name="Mentions.ts" />
+        <Code
+          code={(customExampleMentionsCode as unknown) as string}
+          name="Mentions.ts"
+        />
         <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
       </Container>
       <Container>
         <Heading level={2}>Remote Data Mention Example</Heading>
         <RemoteMentionEditor />
-        <Code code={remoteExampleCode} name="RemoteMentionEditor.tsx" />
+        <Code
+          code={(remoteExampleCode as unknown) as string}
+          name="RemoteMentionEditor.tsx"
+        />
         <Code code={remoteExampleEditorStylesCode} name="editorStyles.css" />
       </Container>
       <Container>
         <Heading level={2}>Custom Mention Component Example</Heading>
         <CustomComponentMentionEditor />
         <Code
-          code={customComponentExampleCode}
+          code={(customComponentExampleCode as unknown) as string}
           name="CustomComponentMentionEditor.tsx"
         />
         <Code code={customComponentExampleStylesCode} name="editorStyles.css" />

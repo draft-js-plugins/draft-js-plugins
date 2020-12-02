@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleFocusEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/focus/SimpleFocusEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleFocusEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/focus/SimpleFocusEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleColorBlockCode from '!!raw-loader!./SimpleFocusEditor/colorBlockPlugin';
+import simpleExampleColorBlockCode from '!!raw-loader!../../../components/Examples/focus/SimpleFocusEditor/colorBlockPlugin';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/focus/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import SimpleFocusEditor from './SimpleFocusEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleFocusEditor from '../../../components/Examples/focus/SimpleFocusEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';

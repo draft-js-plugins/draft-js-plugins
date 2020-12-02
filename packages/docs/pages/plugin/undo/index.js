@@ -2,27 +2,31 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleUndoEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/undo/SimpleUndoEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleUndoEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/undo/SimpleUndoEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomUndoEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/undo/CustomUndoEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleButtonCSSCode from '!!raw-loader!./CustomUndoEditor/buttonStyles.module.css';
+import customExampleButtonCSSCode from '!!raw-loader!../../../components/Examples/undo/CustomUndoEditor/buttonStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomUndoEditor/editorStyles.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/undo/CustomUndoEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/undo/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/undo/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import SimpleUndoEditor from './SimpleUndoEditor';
-import CustomUndoEditor from './CustomUndoEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleUndoEditor from '../../../components/Examples/undo/SimpleUndoEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomUndoEditor from '../../../components/Examples/undo/CustomUndoEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';

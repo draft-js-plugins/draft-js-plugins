@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleLinkPluginEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/anchor/SimpleLinkPluginEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomInlineToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/anchor/CustomInlineToolbarEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleLinkStylesCode from '!!raw-loader!./CustomInlineToolbarEditor/linkStyles.module.css';
+import customExampleLinkStylesCode from '!!raw-loader!../../../components/Examples/anchor/CustomInlineToolbarEditor/linkStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/anchor/gettingStarted';
+
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
 import InlineCode from '../../../components/InlineCode/InlineCode';
-import SimpleLinkPluginEditor from './SimpleLinkPluginEditor';
-import CustomInlineToolbarEditor from './CustomInlineToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleLinkPluginEditor from '../../../components/Examples/anchor/SimpleLinkPluginEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomInlineToolbarEditor from '../../../components/Examples/anchor/CustomInlineToolbarEditor';
 import ExternalLink from '../../../components/Link/Link';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 

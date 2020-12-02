@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleLinkifyEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/linkify/SimpleLinkifyEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleLinkifyEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/linkify/SimpleLinkifyEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomLinkifyEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/linkify/CustomLinkifyEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomLinkifyEditor/editorStyles.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/linkify/CustomLinkifyEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customComponentExampleCode from '!!raw-loader!./CustomComponentLinkifyEditor';
+// eslint-disable-next-line import/no-duplicates
+import customComponentExampleCode from '!!raw-loader!../../../components/Examples/linkify/CustomComponentLinkifyEditor';
 // eslint-disable-next-line import/no-unresolved
-import customComponentExampleEditorStylesCode from '!!raw-loader!./CustomComponentLinkifyEditor/editorStyles.module.css';
+import customComponentExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/linkify/CustomComponentLinkifyEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/linkify/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/linkify/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import SimpleLinkifyEditor from './SimpleLinkifyEditor';
-import CustomLinkifyEditor from './CustomLinkifyEditor';
-import CustomComponentLinkifyEditor from './CustomComponentLinkifyEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleLinkifyEditor from '../../../components/Examples/linkify/SimpleLinkifyEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomLinkifyEditor from '../../../components/Examples/linkify/CustomLinkifyEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomComponentLinkifyEditor from '../../../components/Examples/linkify/CustomComponentLinkifyEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';

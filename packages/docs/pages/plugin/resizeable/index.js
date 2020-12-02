@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleResizeableEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/resizeable/SimpleResizeableEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleResizeableEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/resizeable/SimpleResizeableEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleColorBlockCode from '!!raw-loader!./SimpleResizeableEditor/colorBlockPlugin';
+import simpleExampleColorBlockCode from '!!raw-loader!../../../components/Examples/resizeable/SimpleResizeableEditor/colorBlockPlugin';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import SimpleResizeableEditor from './SimpleResizeableEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleResizeableEditor from '../../../components/Examples/resizeable/SimpleResizeableEditor';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default class App extends Component {

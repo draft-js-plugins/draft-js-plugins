@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleCode from '!!raw-loader!./SimpleImageEditor';
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/image/SimpleImageEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!./SimpleImageEditor/editorStyles.module.css';
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/SimpleImageEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import customExampleCode from '!!raw-loader!./CustomImageEditor';
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!./CustomImageEditor/editorStyles.module.css';
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import addImageExampleCode from '!!raw-loader!./AddImageEditor';
+// eslint-disable-next-line import/no-duplicates
+import addImageExampleCode from '!!raw-loader!../../../components/Examples/image/AddImageEditor';
 // eslint-disable-next-line import/no-unresolved
-import addImageExampleEditorStylesCode from '!!raw-loader!./AddImageEditor/editorStyles.module.css';
+import addImageExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/AddImageEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!./gettingStarted';
+import gettingStarted from '!!raw-loader!../../../components/Examples/image/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!./webpackConfig';
+import webpackConfig from '!!raw-loader!../../../components/Examples/image/webpackConfig';
 
 import Container from '../../../components/Container/Container';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Heading from '../../../components/Heading/Heading';
 import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import SimpleImageEditor from './SimpleImageEditor';
-import CustomImageEditor from './CustomImageEditor';
-import AddImageEditor from './AddImageEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleImageEditor from '../../../components/Examples/image/SimpleImageEditor';
+// eslint-disable-next-line import/no-duplicates
+import CustomImageEditor from '../../../components/Examples/image/CustomImageEditor';
+// eslint-disable-next-line import/no-duplicates
+import AddImageEditor from '../../../components/Examples/image/AddImageEditor';
 import ExternalLink from '../../../components/Link/Link';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
