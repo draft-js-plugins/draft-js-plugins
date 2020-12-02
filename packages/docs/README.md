@@ -1,13 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DraftJS Plugins Docs
 
-## Getting Started
+![Draft JS Plugins Logo](http://static.nikgraf.com/draft-js-plugins/draft-js-plugins.svg)
 
-First, run the development server:
+High quality plugins with great UX on top of [DraftJS](https://github.com/facebook/draft-js).
 
-```bash
-npm run dev
-# or
+## Development
+
+You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or later installed to develop DraftJS plugins. We use these docs to hack & prototype new features. Get it up & running with:
+
+```sh
+npm install --global yarn
+yarn install
+yarn build
+cd docs
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the documentation.
+
+## Publishing Github Pages (for the core team)
+
+```sh
+npm install --global yarn
+yarn install
+yarn build
+cd docs
+yarn deploy:gh-pages
+```
