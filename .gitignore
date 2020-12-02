@@ -26,4 +26,6 @@ npm-debug.log*
 # yarn errors
 yarn-error.log
 
-docs/build
+# next.js
+packages/docs/.next/
+packages/docs/out/
