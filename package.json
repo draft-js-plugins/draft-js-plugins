@@ -86,7 +86,7 @@
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.2",
-    "superagent": "^3.5.0",
+    "superagent": "^6.1.0",
     "ts-jest": "26.4.4",
     "ts-node": "9.0.0",
     "typescript": "4.0.5"
