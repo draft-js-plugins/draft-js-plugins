@@ -155,14 +155,14 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
         // arrow down
         if (evt.keyCode === 40) {
           setSelection(getEditorState, setEditorState, 'down', evt);
-          return null;
+          return undefined;
         }
       }
 
       // Don't manually overwrite in case the shift key is used to avoid breaking
       // native behaviour that works anyway.
       if (evt.shiftKey) {
-        return null;
+        return undefined;
       }
 
       // arrow left
@@ -229,7 +229,7 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
           setSelection(getEditorState, setEditorState, 'down', evt);
         }
       }
-      return null;
+      return undefined;
     },
 
     // Wrap all block-types in block-focus decorator

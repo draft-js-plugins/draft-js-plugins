@@ -236,7 +236,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     },
 
     keyBindingFn: (keyboardEvent: KeyboardEvent) =>
-      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)) || null,
+      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)),
     handleReturn: (keyboardEvent: KeyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {
