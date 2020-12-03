@@ -33,7 +33,7 @@
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@storybook/react": "^6.0.21",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^10.4.9",
+    "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.4.1",
     "@testing-library/user-event": "^12.2.2",
     "@types/jest": "^26.0.15",
