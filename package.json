@@ -62,7 +62,7 @@
     "eslint-plugin-mocha": "^4.8.0",
     "eslint-plugin-no-only-tests": "^2.4.0",
     "eslint-plugin-react": "^6.10.0",
-    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "estraverse-fb": "^1.3.1",
     "express": "^4.15.0",
     "flow-bin": "^0.69.0",
