@@ -53,7 +53,7 @@
     "css-modules-require-hook": "^4.0.2",
     "dirty-chai": "^1.2.2",
     "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^6.2.2",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
