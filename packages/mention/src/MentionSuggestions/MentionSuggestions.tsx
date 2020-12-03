@@ -22,7 +22,10 @@ import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/DefaultEntryComponent';
 import { MentionData, MentionPluginStore } from '..';
 import { PositionSuggestionsFn } from '../utils/positionSuggestions';
-import { Theme } from '../theme';
+import { MentionPluginTheme } from '../theme';
+
+
+export type { MentionPluginTheme };
 
 export interface MentionSuggestionCallbacks {
   keyBindingFn?(event: KeyboardEvent): DraftEditorCommand | string | null;
@@ -36,7 +39,8 @@ export interface MentionSuggestionsPubProps {
   open: boolean;
   onOpenChange(open: boolean): void;
   onSearchChange(event: { value: string }): void;
-  onAddMention(Mention: MentionData): void;
+  onAddMention?(Mention: MentionData): void;
+  entryComponent?: ComponentType<EntryComponentProps>;
 }
 
 export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
@@ -45,9 +49,9 @@ export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   positionSuggestions: PositionSuggestionsFn;
   mentionTrigger: string;
   ariaProps: AriaProps;
-  theme: Theme;
+  theme: MentionPluginTheme;
   mentionPrefix: string;
-  entryComponent?: ComponentType<EntryComponentProps>;
+
   popoverComponent?: ReactElement;
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
 }
@@ -140,22 +144,22 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       return removeList();
 
     // identify the start & end positon of each search-text
-    const offsetDetails = searches.map((offsetKey) =>
+    const offsetDetails = searches.map(offsetKey =>
       decodeOffsetKey(offsetKey!)
     );
 
     // a leave can be empty when it is removed due event.g. using backspace
     // do not check leaves, use full decorated portal text
     const leaves = offsetDetails
-      .filter((offsetDetail) => offsetDetail!.blockKey === anchorKey)
-      .map((offsetDetail) =>
+      .filter(offsetDetail => offsetDetail!.blockKey === anchorKey)
+      .map(offsetDetail =>
         editorState
           .getBlockTree(offsetDetail!.blockKey)
           .getIn([offsetDetail!.decoratorKey])
       );
 
     // if all leaves are undefined the popover should be removed
-    if (leaves.every((leave) => leave === undefined)) {
+    if (leaves.every(leave => leave === undefined)) {
       return removeList();
     }
 
@@ -164,7 +168,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     // the @ causes troubles due selection confusion.
     const plainText = editorState.getCurrentContent().getPlainText();
     const selectionIsInsideWord = leaves
-      .filter((leave) => leave !== undefined)
+      .filter(leave => leave !== undefined)
       .map(
         ({ start, end }) =>
           (start === 0 &&
@@ -181,12 +185,12 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
             anchorOffset <= end) // @ is in the text or at the end
       );
 
-    if (selectionIsInsideWord.every((isInside) => isInside === false))
+    if (selectionIsInsideWord.every(isInside => isInside === false))
       return removeList();
 
     const lastActiveOffsetKey = this.activeOffsetKey;
     this.activeOffsetKey = selectionIsInsideWord
-      .filter((value) => value === true)
+      .filter(value => value === true)
       .keySeq()
       .first();
 
@@ -278,7 +282,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     keyboardEvent.preventDefault();
 
     const activeOffsetKey = this.lastSelectionIsInsideWord!.filter(
-      (value) => value === true
+      value => value === true
     )
       .keySeq()
       .first();
@@ -337,7 +341,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     // by this we can replace inner parameters spread over different modules.
     // This better be some registering & unregistering logic. PRs are welcome :)
     this.props.callbacks.handleReturn = this.commitSelection;
-    this.props.callbacks.keyBindingFn = (keyboardEvent) => {
+    this.props.callbacks.keyBindingFn = keyboardEvent => {
       // arrow down
       if (keyboardEvent.keyCode === 40) {
         this.onDownArrow(keyboardEvent);

@@ -123,7 +123,6 @@ module.exports = {
       '@draft-js-plugins/editor',
       '@draft-js-plugins/editor/lib/plugin.css',
       '@draft-js-plugins/resizeable',
-      '@draft-js-plugins/resizeable/lib/plugin.css',
       '@draft-js-plugins/side-toolbar',
       '@draft-js-plugins/side-toolbar/lib/plugin.css',
       '@draft-js-plugins/static-toolbar',

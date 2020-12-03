@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { MentionData } from '../../';
-import { Theme } from '../../theme';
+import { MentionPluginTheme } from '../../theme';
 import Avatar from './Avatar/Avatar';
 
 interface DefaultEntryComponentProps {
   mention: MentionData;
-  theme?: Theme;
+  theme?: MentionPluginTheme;
   isFocused: boolean;
   searchValue?: string;
 }

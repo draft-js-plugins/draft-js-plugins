@@ -1,6 +1,6 @@
 # DraftJS Plugins Docs
 
-![Draft JS Plugins Logo](https://dl.dropboxusercontent.com/u/40735/draft-js-plugins.svg)
+![Draft JS Plugins Logo](http://static.nikgraf.com/draft-js-plugins/draft-js-plugins.svg)
 
 High quality plugins with great UX on top of [DraftJS](https://github.com/facebook/draft-js).
 
@@ -11,11 +11,19 @@ You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or l
 ```sh
 npm install --global yarn
 yarn install
+yarn build
 cd docs
-yarn install
-npm start
+yarn dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the documentation.
 
 ## Publishing Github Pages (for the core team)
 
-Run `./scripts/publishGithubPages.sh`
+```sh
+npm install --global yarn
+yarn install
+yarn build
+cd docs
+yarn deploy:gh-pages
+```

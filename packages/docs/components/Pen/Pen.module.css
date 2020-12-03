@@ -1,0 +1,12 @@
+.logo {
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  width: 263px;
+  height: 209px;
+  opacity: 1;
+}
+
+.hiddenLogo {
+  composes: logo;
+  opacity: 0;
+}

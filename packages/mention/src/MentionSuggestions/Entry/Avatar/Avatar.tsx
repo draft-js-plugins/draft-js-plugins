@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { MentionData } from '../../../';
-import { Theme } from '../../../theme';
+import { MentionPluginTheme } from '../../../theme';
 
 interface AvatarProps {
-  theme?: Theme;
+  theme?: MentionPluginTheme;
   mention: MentionData;
 }
 

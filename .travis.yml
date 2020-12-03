@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "12.13.0"
+  - '12.13.0'
 cache:
   yarn: true
   directories: node_modules
@@ -9,6 +9,6 @@ install:
   - yarn install
 
 script:
+  - yarn build
   - yarn test
-  - yarn test:jest
   - yarn lint
