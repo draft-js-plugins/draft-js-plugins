@@ -1,10 +1,11 @@
-import React, { Component, MouseEvent, ReactElement, ReactNode } from 'react';
+import React, { Component, ComponentType, MouseEvent, ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import strategy from 'emoji-toolkit/emoji.json';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Popover from './Popover';
 import {
+  EmojiImageProps,
   EmojiPluginStore,
   EmojiPluginTheme,
   EmojiSelectGroup,
@@ -15,22 +16,16 @@ const emojis = createEmojisFromStrategy(strategy);
 export type EmojiSelectPubParams = Record<string, unknown>;
 
 interface EmojiSelectParams extends EmojiSelectPubParams {
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   theme: EmojiPluginTheme;
   store: EmojiPluginStore;
   selectGroups?: EmojiSelectGroup[];
   selectButtonContent?: ReactNode;
   toneSelectOpenDelay?: number;
-  useNativeArt?: boolean;
+  emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class EmojiSelect extends Component<EmojiSelectParams> {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
     selectGroups: PropTypes.arrayOf(
@@ -47,7 +42,6 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       PropTypes.string,
     ]),
     toneSelectOpenDelay: PropTypes.number,
-    useNativeArt: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -99,15 +93,12 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
 
   render(): ReactElement {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       store,
       selectGroups,
       selectButtonContent,
       toneSelectOpenDelay,
-      useNativeArt,
+      emojiImage,
     } = this.props;
     const buttonClassName = this.state.isOpen
       ? theme.emojiSelectButtonPressed
@@ -123,16 +114,13 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
           {selectButtonContent}
         </button>
         <Popover
-          cacheBustParam={cacheBustParam}
-          imagePath={imagePath}
-          imageType={imageType}
           theme={theme}
           store={store}
           groups={selectGroups!}
           emojis={emojis}
           toneSelectOpenDelay={toneSelectOpenDelay!}
           isOpen={this.state.isOpen}
-          useNativeArt={useNativeArt}
+          emojiImage={emojiImage}
         />
       </div>
     );

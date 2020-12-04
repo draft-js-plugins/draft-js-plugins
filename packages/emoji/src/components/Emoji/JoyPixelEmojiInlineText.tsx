@@ -1,21 +1,14 @@
 import clsx from 'clsx';
 import { toShort, shortnameToImage } from 'emoji-toolkit';
-import React, { ReactElement, ReactNode } from 'react';
-import { EmojiPluginTheme } from '../../theme';
-
-export interface JoyPixelEmojiInlineTextProps {
-  theme: EmojiPluginTheme;
-  decoratedText: string;
-  children: ReactNode;
-  className?: string;
-}
+import React, { ReactElement } from 'react';
+import { EmojiInlineTextProps } from '../..';
 
 export default function JoyPixelEmojiInlineText({
   decoratedText,
   theme,
   children,
   className,
-}: JoyPixelEmojiInlineTextProps): ReactElement {
+}: EmojiInlineTextProps): ReactElement {
   const shortName = toShort(decoratedText);
   const imgTag = shortnameToImage(shortName);
   const path = /src="(.*)"/.exec(imgTag)?.[1];

@@ -1,16 +1,11 @@
 import { toImage } from 'emoji-toolkit';
 import React, { ReactElement } from 'react';
-import { EmojiPluginTheme } from '../../theme';
-
-export interface JoyPixelEmojiImageProps {
-  emoji: string;
-  theme: EmojiPluginTheme;
-}
+import { EmojiImageProps } from '../..';
 
 export default function JoyPixelEmojiImage({
   emoji,
   theme,
-}: JoyPixelEmojiImageProps): ReactElement {
+}: EmojiImageProps): ReactElement {
   const imgTag = toImage(emoji);
   const path = /src="(.*)"/.exec(imgTag)?.[1];
   return (

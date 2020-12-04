@@ -1,8 +1,8 @@
-import React, { Component, ReactElement, WheelEvent } from 'react';
+import React, { Component, ComponentType, ReactElement, WheelEvent } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars, positionValues } from 'react-custom-scrollbars';
 import Group from './Group';
-import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
+import { EmojiImageProps, EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
 import { EmojiStrategy } from '../../../../utils/createEmojisFromStrategy';
 import Entry from '../Entry';
 
@@ -15,7 +15,7 @@ interface GroupsProps {
   onEmojiSelect(emoji: string): void;
   onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
   onGroupScroll(activeGroup: number): void;
-  useNativeArt?: boolean;
+  emojiImage: ComponentType<EmojiImageProps>;
   isOpen: boolean;
 }
 
@@ -28,7 +28,6 @@ export default class Groups extends Component<GroupsProps> {
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func.isRequired,
     onGroupScroll: PropTypes.func.isRequired,
-    useNativeArt: PropTypes.bool,
     isOpen: PropTypes.bool,
   };
 
@@ -118,7 +117,7 @@ export default class Groups extends Component<GroupsProps> {
       checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,
-      useNativeArt,
+      emojiImage,
     } = this.props;
 
     return (
@@ -158,7 +157,7 @@ export default class Groups extends Component<GroupsProps> {
               ref={element => {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
-              useNativeArt={useNativeArt}
+              emojiImage={emojiImage}
               isActive={this.isRenderedGroupActive(index)}
             />
           ))}

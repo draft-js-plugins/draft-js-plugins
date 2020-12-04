@@ -1,41 +1,28 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { EmojiPluginTheme } from '../../index';
-import NativeEmojiInlineText from './NativEmojiInlineText';
-import JoyPixelEmojiInlineText from './JoyPixelEmojiInlineText';
+import React, { ComponentType, ReactElement, ReactNode } from 'react';
+import { EmojiInlineTextProps, EmojiPluginTheme } from '../../index';
 
 export interface EmojiProps {
   children: ReactNode;
   theme: EmojiPluginTheme;
   className: string;
   decoratedText: string;
-  useNativeArt: boolean;
+  emojiInlineText: ComponentType<EmojiInlineTextProps>;
 }
 
 export default function Emoji({
   theme = {},
   className,
   decoratedText,
-  useNativeArt,
+  emojiInlineText: EmojiInlineText,
   children,
 }: EmojiProps): ReactElement {
-  if (useNativeArt === true) {
-    return (
-      <NativeEmojiInlineText
-        className={className}
-        decoratedText={decoratedText}
-        theme={theme}
-      >
-        {children}
-      </NativeEmojiInlineText>
-    );
-  }
   return (
-    <JoyPixelEmojiInlineText
+    <EmojiInlineText
       className={className}
       decoratedText={decoratedText}
       theme={theme}
     >
       {children}
-    </JoyPixelEmojiInlineText>
+    </EmojiInlineText>
   );
 }

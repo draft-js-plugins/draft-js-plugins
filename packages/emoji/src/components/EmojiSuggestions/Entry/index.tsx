@@ -1,12 +1,12 @@
+import { EmojiImageProps } from 'packages/emoji/src';
 import React, {
   // PropTypes,
   Component,
+  ComponentType,
   MouseEvent,
   ReactElement,
 } from 'react';
 import { EmojiPluginTheme } from '../../../theme';
-import JoyPixelEmojiImage from '../../Emoji/JoyPixelEmojiImage';
-import NativeEmojiImage from '../../Emoji/NativeEmojiImage';
 
 interface EntryProps {
   emoji: string;
@@ -14,9 +14,9 @@ interface EntryProps {
   index: number;
   onEmojiFocus(index: number): void;
   theme: EmojiPluginTheme;
-  useNativeArt?: boolean;
   isFocused: boolean;
   id: string;
+  emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class Entry extends Component<EntryProps> {
@@ -45,17 +45,10 @@ export default class Entry extends Component<EntryProps> {
   };
 
   render(): ReactElement {
-    const { emoji, theme = {}, useNativeArt, isFocused, id } = this.props;
+    const { emoji, theme = {},  isFocused, id, emojiImage: EmojiImage } = this.props;
     const className = isFocused
       ? theme.emojiSuggestionsEntryFocused
       : theme.emojiSuggestionsEntry;
-
-    let emojiDisplay = null;
-    if (useNativeArt === true) {
-      emojiDisplay = <NativeEmojiImage emoji={emoji} theme={theme} />;
-    } else {
-      emojiDisplay = <JoyPixelEmojiImage emoji={emoji} theme={theme} />;
-    }
 
     return (
       <div
@@ -67,7 +60,7 @@ export default class Entry extends Component<EntryProps> {
         id={id}
         aria-selected={isFocused ? 'true' : undefined}
       >
-        {emojiDisplay}
+        <EmojiImage emoji={emoji} theme={theme} />
         <span className={theme.emojiSuggestionsEntryText}>
           {this.props.emoji}
         </span>

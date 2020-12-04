@@ -1,8 +1,6 @@
-import React, { Component, ReactElement } from 'react';
+import React, { Component, ComponentType, ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import { EmojiPluginTheme } from '../../../../index';
-import NativeEmojiImage from '../../../Emoji/NativeEmojiImage';
-import JoyPixelEmojiImage from '../../../Emoji/JoyPixelEmojiImage';
+import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
 
 interface EntryProps {
   isFocused?: boolean;
@@ -13,8 +11,8 @@ interface EntryProps {
   onEmojiSelect(emoji: string): void;
   // eslint-disable-next-line no-use-before-define
   onEmojiMouseDown?(entryComponent: Entry, toneSet: string[] | null): void;
-  useNativeArt?: boolean;
   toneSet?: string[] | null;
+  emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class Entry extends Component<EntryProps> {
@@ -25,7 +23,7 @@ export default class Entry extends Component<EntryProps> {
     checkMouseDown: PropTypes.func.isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func,
-    useNativeArt: PropTypes.bool,
+    emojiImage: PropTypes.node,
   };
 
   static defaultProps = {
@@ -71,7 +69,7 @@ export default class Entry extends Component<EntryProps> {
   mouseDown = this.props.mouseDown;
 
   render(): ReactElement {
-    const { theme = {}, emoji, useNativeArt } = this.props;
+    const { theme = {}, emoji, emojiImage: EmojiImage } = this.props;
     const { isFocused } = this.state;
 
     return (
@@ -90,8 +88,7 @@ export default class Entry extends Component<EntryProps> {
           this.button = element;
         }}
       >
-        {useNativeArt && <NativeEmojiImage emoji={emoji} theme={theme} />}
-        {!useNativeArt && <JoyPixelEmojiImage emoji={emoji} theme={theme} />}
+        <EmojiImage emoji={emoji} theme={theme} />
       </button>
     );
   }

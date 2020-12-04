@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Use lodash-es in esm bundle
 - convert to typescript
 - use the setEditorState and getEditorState functions from props.store in EmojiSuggestionsPortal
+- update emojione to emoji-toolkit
+- remove defaultImagePath, defaultImageType and cacheBust to customize components
 
 ## 2.1.3
 

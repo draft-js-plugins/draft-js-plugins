@@ -1,7 +1,7 @@
-import React, { Component, ReactElement } from 'react';
+import React, { Component, ComponentType, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import Entry from '../../Entry';
-import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../../index';
+import { EmojiImageProps, EmojiPluginTheme, EmojiSelectGroup } from '../../../../../index';
 import { EmojiStrategy } from '../../../../../utils/createEmojisFromStrategy';
 
 interface GroupProps {
@@ -12,7 +12,7 @@ interface GroupProps {
   checkMouseDown(): boolean;
   onEmojiSelect(emoji: string): void;
   onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
-  useNativeArt?: boolean;
+  emojiImage: ComponentType<EmojiImageProps>;
   isActive?: boolean;
 }
 
@@ -24,7 +24,6 @@ export default class Group extends Component<GroupProps> {
     checkMouseDown: PropTypes.func.isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func.isRequired,
-    useNativeArt: PropTypes.bool,
     isActive: PropTypes.bool,
   };
 
@@ -56,7 +55,7 @@ export default class Group extends Component<GroupProps> {
       checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,
-      useNativeArt,
+      emojiImage,
       isActive,
     } = this.props;
 
@@ -77,7 +76,7 @@ export default class Group extends Component<GroupProps> {
             checkMouseDown={checkMouseDown}
             onEmojiSelect={onEmojiSelect}
             onEmojiMouseDown={onEmojiMouseDown}
-            useNativeArt={useNativeArt}
+            emojiImage={emojiImage}
           />
         )}
       </li>

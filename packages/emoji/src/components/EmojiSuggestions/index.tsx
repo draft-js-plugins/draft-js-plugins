@@ -1,5 +1,6 @@
 import React, {
   Component,
+  ComponentType,
   CSSProperties,
   KeyboardEvent,
   ReactElement,
@@ -14,7 +15,7 @@ import utils from '@draft-js-plugins/utils';
 import { AriaProps } from '@draft-js-plugins/editor';
 import { List } from 'immutable';
 import Entry from './Entry';
-import { EmojiPLuginCallbacks, EmojiPluginStore } from '../..';
+import { EmojiImageProps, EmojiPLuginCallbacks, EmojiPluginStore } from '../..';
 import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
 import { PositionSuggestionsParams } from '../../utils/positionSuggestions';
@@ -35,10 +36,7 @@ interface EmojiSuggestionsParams extends EmojiSuggestionsPubParams {
   shortNames: List<string>;
   positionSuggestions(arg: PositionSuggestionsParams): CSSProperties;
   theme: EmojiPluginTheme;
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
-  useNativeArt?: boolean;
+  emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class EmojiSuggestions extends Component<
@@ -124,21 +122,21 @@ export default class EmojiSuggestions extends Component<
       return removeList();
 
     // identify the start & end positon of each search-text
-    const offsetDetails = searches.map((offsetKey) =>
+    const offsetDetails = searches.map(offsetKey =>
       utils.decodeOffsetKey(offsetKey!)
     );
 
     // a leave can be empty when it is removed due e.g. using backspace
     const leaves = offsetDetails
-      .filter((offsetDetail) => offsetDetail!.blockKey === anchorKey)
-      .map((offsetDetail) =>
+      .filter(offsetDetail => offsetDetail!.blockKey === anchorKey)
+      .map(offsetDetail =>
         editorState
           .getBlockTree(offsetDetail!.blockKey)
           .getIn([offsetDetail!.decoratorKey, 'leaves', offsetDetail!.leafKey])
       );
 
     // if all leaves are undefined the popover should be removed
-    if (leaves.every((leave) => leave === undefined)) {
+    if (leaves.every(leave => leave === undefined)) {
       return removeList();
     }
 
@@ -147,7 +145,7 @@ export default class EmojiSuggestions extends Component<
     // the @ causes troubles due selection confusion.
     const plainText = editorState.getCurrentContent().getPlainText();
     const selectionIsInsideWord = leaves
-      .filter((leave) => leave !== undefined)
+      .filter(leave => leave !== undefined)
       .map(
         ({ start, end }) =>
           (start === 0 &&
@@ -158,11 +156,11 @@ export default class EmojiSuggestions extends Component<
           (anchorOffset > start + 1 &&
             anchorOffset <= end) /*: is in the text or at the end*/
       );
-    if (selectionIsInsideWord.every((isInside) => isInside === false))
+    if (selectionIsInsideWord.every(isInside => isInside === false))
       return removeList();
 
     this.activeOffsetKey = selectionIsInsideWord
-      .filter((value) => value === true)
+      .filter(value => value === true)
       .keySeq()
       .first();
 
@@ -238,7 +236,7 @@ export default class EmojiSuggestions extends Component<
     keyboardEvent.preventDefault();
 
     const activeOffsetKey = this.lastSelectionIsInsideWord!.filter(
-      (value) => value === true
+      value => value === true
     )
       .keySeq()
       .first();
@@ -277,8 +275,7 @@ export default class EmojiSuggestions extends Component<
     );
     const emojiValue = word.substring(1, word.length).toLowerCase();
     const filteredValues = this.props.shortNames.filter(
-      (emojiShortName) =>
-        !emojiValue || emojiShortName!.indexOf(emojiValue) > -1
+      emojiShortName => !emojiValue || emojiShortName!.indexOf(emojiValue) > -1
     ) as List<string>;
     const size = filteredValues.size < 9 ? filteredValues.size : 9;
     return filteredValues.setSize(size);
@@ -354,9 +351,6 @@ export default class EmojiSuggestions extends Component<
     this.filteredEmojis = this.getEmojisForFilter();
     const {
       theme = {},
-      cacheBustParam,
-      imagePath,
-      imageType,
       ariaProps, // eslint-disable-line @typescript-eslint/no-unused-vars
       callbacks, // eslint-disable-line @typescript-eslint/no-unused-vars
       onClose, // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -365,7 +359,7 @@ export default class EmojiSuggestions extends Component<
       positionSuggestions, // eslint-disable-line @typescript-eslint/no-unused-vars
       shortNames, // eslint-disable-line @typescript-eslint/no-unused-vars
       store, // eslint-disable-line @typescript-eslint/no-unused-vars
-      useNativeArt,
+      emojiImage,
       ...restProps
     } = this.props;
     return (
@@ -374,7 +368,7 @@ export default class EmojiSuggestions extends Component<
         className={theme.emojiSuggestions}
         role="listbox"
         id={`emojis-list-${this.key}`}
-        ref={(element) => {
+        ref={element => {
           this.popover = element;
         }}
       >
@@ -389,10 +383,7 @@ export default class EmojiSuggestions extends Component<
               index={index!}
               id={`emoji-option-${this.key}-${index}`}
               theme={theme}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
-              useNativeArt={useNativeArt}
+              emojiImage={emojiImage}
             />
           ))
           .toJS()}

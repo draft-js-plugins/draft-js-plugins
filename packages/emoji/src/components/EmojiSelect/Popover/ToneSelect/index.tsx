@@ -1,8 +1,8 @@
-import React, { Component, ReactElement } from 'react';
+import React, { Component, ComponentType, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import toStyle from 'to-style';
 import Entry from '../Entry';
-import { EmojiPluginTheme } from '../../../../index';
+import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
 
 interface Boundaries {
   left: number;
@@ -18,6 +18,7 @@ interface ToneSelectParams {
   bounds: { areaBounds: Boundaries; entryBounds: Boundaries };
   onEmojiSelect(emoji: string): void;
   toneSet: string[] | null;
+  emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class ToneSelect extends Component<ToneSelectParams> {
@@ -93,7 +94,7 @@ export default class ToneSelect extends Component<ToneSelectParams> {
   };
 
   render(): ReactElement {
-    const { theme = {}, toneSet = [], onEmojiSelect } = this.props;
+    const { theme = {}, toneSet = [], onEmojiSelect, emojiImage } = this.props;
 
     return (
       <div className={theme.emojiSelectPopoverToneSelect}>
@@ -114,6 +115,7 @@ export default class ToneSelect extends Component<ToneSelectParams> {
                 checkMouseDown={() => false}
                 onEmojiSelect={onEmojiSelect}
                 mouseDown
+                emojiImage={emojiImage}
               />
             </li>
           ))}
