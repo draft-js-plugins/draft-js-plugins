@@ -40,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "4.6.1",
     "@typescript-eslint/parser": "^4.6.0",
     "alex": "^4.0.1",
-    "animateplus": "^1.4.0",
+    "animateplus": "^2.1.1",
     "autoprefixer": "^6.7.6",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
