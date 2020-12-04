@@ -1,8 +1,8 @@
 import { EditorState, Modifier, SelectionState } from 'draft-js';
 import findWithRegex from 'find-with-regex';
-import emojione from 'emojione';
+import emojiToolkit from 'emoji-toolkit';
 
-const unicodeRegex = new RegExp(emojione.unicodeRegexp, 'g');
+const unicodeRegex = new RegExp(emojiToolkit.regUnicode, 'g');
 
 /*
  * Attaches Immutable DraftJS Entities to the Emoji text.
@@ -17,7 +17,7 @@ export default function attachImmutableEntitiesToEmojis(
   const blocks = contentState.getBlockMap();
   let newContentState = contentState;
 
-  blocks.forEach((block) => {
+  blocks.forEach(block => {
     if (block) {
       const plainText = block.getText();
 

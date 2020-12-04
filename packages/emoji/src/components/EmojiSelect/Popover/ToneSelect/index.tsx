@@ -14,9 +14,6 @@ interface Boundaries {
 }
 
 interface ToneSelectParams {
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   theme: EmojiPluginTheme;
   bounds: { areaBounds: Boundaries; entryBounds: Boundaries };
   onEmojiSelect(emoji: string): void;
@@ -25,9 +22,6 @@ interface ToneSelectParams {
 
 export default class ToneSelect extends Component<ToneSelectParams> {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     bounds: PropTypes.shape({
       areaBounds: PropTypes.shape({
@@ -99,24 +93,17 @@ export default class ToneSelect extends Component<ToneSelectParams> {
   };
 
   render(): ReactElement {
-    const {
-      cacheBustParam,
-      imagePath,
-      imageType,
-      theme = {},
-      toneSet = [],
-      onEmojiSelect,
-    } = this.props;
+    const { theme = {}, toneSet = [], onEmojiSelect } = this.props;
 
     return (
       <div className={theme.emojiSelectPopoverToneSelect}>
         <ul
           className={theme.emojiSelectPopoverToneSelectList}
-          ref={(element) => {
+          ref={element => {
             this.tones = element;
           }}
         >
-          {(toneSet || []).map((emoji) => (
+          {(toneSet || []).map(emoji => (
             <li
               key={`tone-select(${emoji})`}
               className={theme.emojiSelectPopoverToneSelectItem}
@@ -124,9 +111,6 @@ export default class ToneSelect extends Component<ToneSelectParams> {
               <Entry
                 emoji={emoji}
                 theme={theme}
-                imagePath={imagePath}
-                imageType={imageType}
-                cacheBustParam={cacheBustParam}
                 checkMouseDown={() => false}
                 onEmojiSelect={onEmojiSelect}
                 mouseDown

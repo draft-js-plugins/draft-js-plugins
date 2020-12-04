@@ -13,9 +13,6 @@ import { EmojiStrategy } from '../../../utils/createEmojisFromStrategy';
 import Entry from './Entry';
 
 interface PopoverProps {
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   theme: EmojiPluginTheme;
   store: EmojiPluginStore;
   groups: EmojiSelectGroup[];
@@ -137,7 +134,7 @@ export default class Popover extends Component<PopoverProps> {
 
   renderToneSelect = (): ReactElement | null => {
     if (this.state.showToneSelect) {
-      const { cacheBustParam, imagePath, imageType, theme = {} } = this.props;
+      const { theme = {} } = this.props;
 
       const containerBounds = this.container!.getBoundingClientRect();
       const areaBounds = this.groupsElement!.container!.getBoundingClientRect();
@@ -167,9 +164,6 @@ export default class Popover extends Component<PopoverProps> {
           theme={theme}
           bounds={bounds}
           toneSet={this.toneSet}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
           onEmojiSelect={this.onEmojiSelect}
         />
       );
@@ -180,9 +174,6 @@ export default class Popover extends Component<PopoverProps> {
 
   render(): ReactElement {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       groups = [],
       emojis,
@@ -199,7 +190,7 @@ export default class Popover extends Component<PopoverProps> {
         className={className}
         onMouseDown={this.onMouseDown}
         onWheel={this.onWheel}
-        ref={(element) => {
+        ref={element => {
           this.container = element;
         }}
       >
@@ -210,14 +201,11 @@ export default class Popover extends Component<PopoverProps> {
           theme={theme}
           groups={groups}
           emojis={emojis}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
           checkMouseDown={this.checkMouseDown}
           onEmojiSelect={this.onEmojiSelect}
           onEmojiMouseDown={this.onEmojiMouseDown}
           onGroupScroll={this.onGroupScroll}
-          ref={(element) => {
+          ref={element => {
             this.groupsElement = element;
           }}
           useNativeArt={useNativeArt}

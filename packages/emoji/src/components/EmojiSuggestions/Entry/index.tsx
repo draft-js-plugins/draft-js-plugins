@@ -4,10 +4,9 @@ import React, {
   MouseEvent,
   ReactElement,
 } from 'react';
-import emojione from 'emojione';
-import emojiList from '../../../utils/emojiList';
-import convertShortNameToUnicode from '../../../utils/convertShortNameToUnicode';
 import { EmojiPluginTheme } from '../../../theme';
+import JoyPixelEmojiImage from '../../Emoji/JoyPixelEmojiImage';
+import NativeEmojiImage from '../../Emoji/NativeEmojiImage';
 
 interface EntryProps {
   emoji: string;
@@ -15,9 +14,6 @@ interface EntryProps {
   index: number;
   onEmojiFocus(index: number): void;
   theme: EmojiPluginTheme;
-  imagePath: string;
-  imageType: string;
-  cacheBustParam: string;
   useNativeArt?: boolean;
   isFocused: boolean;
   id: string;
@@ -49,37 +45,16 @@ export default class Entry extends Component<EntryProps> {
   };
 
   render(): ReactElement {
-    const {
-      theme = {},
-      imagePath,
-      imageType,
-      cacheBustParam,
-      useNativeArt,
-      isFocused,
-      id,
-    } = this.props;
+    const { emoji, theme = {}, useNativeArt, isFocused, id } = this.props;
     const className = isFocused
       ? theme.emojiSuggestionsEntryFocused
       : theme.emojiSuggestionsEntry;
 
     let emojiDisplay = null;
     if (useNativeArt === true) {
-      const unicode = emojiList.list[this.props.emoji][0];
-      emojiDisplay = convertShortNameToUnicode(unicode);
+      emojiDisplay = <NativeEmojiImage emoji={emoji} theme={theme} />;
     } else {
-      // short name to image url code steal from emojione source code
-      const shortNameForImage =
-        emojione.emojioneList[this.props.emoji].unicode[
-          emojione.emojioneList[this.props.emoji].unicode.length - 1
-        ];
-      const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
-      emojiDisplay = (
-        <img
-          src={fullImagePath}
-          className={theme.emojiSuggestionsEntryIcon}
-          role="presentation"
-        />
-      );
+      emojiDisplay = <JoyPixelEmojiImage emoji={emoji} theme={theme} />;
     }
 
     return (

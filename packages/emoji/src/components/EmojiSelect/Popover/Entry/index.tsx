@@ -1,17 +1,13 @@
 import React, { Component, ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import emojione from 'emojione';
-import emojiList from '../../../../utils/emojiList';
-import convertShortNameToUnicode from '../../../../utils/convertShortNameToUnicode';
 import { EmojiPluginTheme } from '../../../../index';
+import NativeEmojiImage from '../../../Emoji/NativeEmojiImage';
+import JoyPixelEmojiImage from '../../../Emoji/JoyPixelEmojiImage';
 
 interface EntryProps {
   isFocused?: boolean;
   mouseDown?: boolean;
   theme: EmojiPluginTheme;
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   emoji: string;
   checkMouseDown(): boolean;
   onEmojiSelect(emoji: string): void;
@@ -23,9 +19,6 @@ interface EntryProps {
 
 export default class Entry extends Component<EntryProps> {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     emoji: PropTypes.string.isRequired,
     mouseDown: PropTypes.bool,
@@ -78,36 +71,8 @@ export default class Entry extends Component<EntryProps> {
   mouseDown = this.props.mouseDown;
 
   render(): ReactElement {
-    const {
-      cacheBustParam,
-      imagePath,
-      imageType,
-      theme = {},
-      emoji,
-      useNativeArt,
-    } = this.props;
+    const { theme = {}, emoji, useNativeArt } = this.props;
     const { isFocused } = this.state;
-
-    let emojiDisplay = null;
-    if (useNativeArt === true) {
-      const unicode = emojiList.list[emoji][0];
-      emojiDisplay = convertShortNameToUnicode(unicode);
-    } else {
-      // short name to image url code steal from emojione source code
-      const shortNameForImage =
-        emojione.emojioneList[emoji].unicode[
-          emojione.emojioneList[emoji].unicode.length - 1
-        ];
-      const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
-      emojiDisplay = (
-        <img
-          src={fullImagePath}
-          className={theme.emojiSelectPopoverEntryIcon}
-          draggable={false}
-          role="presentation"
-        />
-      );
-    }
 
     return (
       <button
@@ -121,11 +86,12 @@ export default class Entry extends Component<EntryProps> {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onMouseUp={this.onMouseUp}
-        ref={(element) => {
+        ref={element => {
           this.button = element;
         }}
       >
-        {emojiDisplay}
+        {useNativeArt && <NativeEmojiImage emoji={emoji} theme={theme} />}
+        {!useNativeArt && <JoyPixelEmojiImage emoji={emoji} theme={theme} />}
       </button>
     );
   }

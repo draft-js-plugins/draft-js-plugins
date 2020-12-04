@@ -8,9 +8,6 @@ import Entry from '../Entry';
 
 interface GroupsProps {
   activeGroup?: number;
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   theme: EmojiPluginTheme;
   groups: EmojiSelectGroup[];
   emojis: EmojiStrategy;
@@ -24,9 +21,6 @@ interface GroupsProps {
 
 export default class Groups extends Component<GroupsProps> {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     emojis: PropTypes.object.isRequired,
@@ -101,7 +95,7 @@ export default class Groups extends Component<GroupsProps> {
       const containerTop =
         this.container!.getBoundingClientRect().top - scrollTop;
 
-      groups.forEach((group) => {
+      groups.forEach(group => {
         const groupTop = group.instance!.container!.getBoundingClientRect().top;
         const listTop = group.instance!.list!.getBoundingClientRect().top;
         group.top = groupTop - containerTop; // eslint-disable-line no-param-reassign
@@ -118,9 +112,6 @@ export default class Groups extends Component<GroupsProps> {
 
   render(): ReactElement {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       groups = [],
       emojis,
@@ -134,7 +125,7 @@ export default class Groups extends Component<GroupsProps> {
       <div
         className={theme.emojiSelectPopoverGroups}
         onWheel={this.onWheel}
-        ref={(element) => {
+        ref={element => {
           this.container = element;
         }}
       >
@@ -143,13 +134,13 @@ export default class Groups extends Component<GroupsProps> {
           renderTrackVertical={() => (
             <div className={theme.emojiSelectPopoverScrollbar} />
           )}
-          renderThumbVertical={(props) => (
+          renderThumbVertical={props => (
             <div
               {...props}
               className={theme.emojiSelectPopoverScrollbarThumb}
             />
           )}
-          ref={(element) => {
+          ref={element => {
             this.scrollbars = element;
           }}
         >
@@ -161,13 +152,10 @@ export default class Groups extends Component<GroupsProps> {
               theme={theme}
               group={group}
               emojis={emojis}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
               checkMouseDown={checkMouseDown}
               onEmojiSelect={onEmojiSelect}
               onEmojiMouseDown={onEmojiMouseDown}
-              ref={(element) => {
+              ref={element => {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
               useNativeArt={useNativeArt}

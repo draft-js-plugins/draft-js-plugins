@@ -1,6 +1,6 @@
 import React, { Component, MouseEvent, ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import strategy from 'emojione/emoji.json';
+import strategy from 'emoji-toolkit/emoji.json';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Popover from './Popover';

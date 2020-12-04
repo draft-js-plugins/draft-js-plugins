@@ -1,4 +1,4 @@
-import emojione from 'emojione';
+import emojiToolkit from 'emoji-toolkit';
 
 interface EmojiListObject {
   [s: string]: string[];
@@ -13,13 +13,14 @@ function newEmojiListWithOutPriorityList(
   priorityList: EmojiListObject
 ): EmojiListObject {
   const list: EmojiListObject = {};
-  for (const key in emojione.emojioneList) {
+  for (const key in emojiToolkit.emojiList) {
     // eslint-disable-line no-restricted-syntax
     if (priorityList.hasOwnProperty(key)) {
       // eslint-disable-line no-prototype-builtins
       continue; // eslint-disable-line no-continue
     }
-    list[key] = emojione.emojioneList[key].unicode;
+
+    list[key] = [emojiToolkit.emojiList[key].uc_base];
   }
 
   return { ...priorityList, ...list };

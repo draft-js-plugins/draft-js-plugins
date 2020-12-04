@@ -1,23 +1,22 @@
 /* Idea from https://github.com/tommoor/emojione-picker */
 
+import { EmojiJsonList } from 'emoji-toolkit';
+
 export interface EmojiStrategy {
   [x: string]: {
     [x: string]: string[];
   };
 }
 
-export default function createEmojisFromStrategy(strategy: {
-  [x: string]: {
-    category: string;
-    shortname: string;
-  };
-}): EmojiStrategy {
+export default function createEmojisFromStrategy(
+  strategy: EmojiJsonList
+): EmojiStrategy {
   const emojis: EmojiStrategy = {};
 
   // categorise and nest emoji
   // sort ensures that modifiers appear unmodified keys
   const keys = Object.keys(strategy);
-  keys.forEach((key) => {
+  keys.forEach(key => {
     const value = strategy[key];
 
     // skip unknown categories

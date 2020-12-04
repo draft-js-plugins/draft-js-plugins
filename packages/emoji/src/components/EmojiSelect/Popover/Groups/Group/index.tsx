@@ -6,9 +6,6 @@ import { EmojiStrategy } from '../../../../../utils/createEmojisFromStrategy';
 
 interface GroupProps {
   hasRenderedEmoji?: boolean;
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   theme: EmojiPluginTheme;
   group: EmojiSelectGroup;
   emojis: EmojiStrategy;
@@ -21,9 +18,6 @@ interface GroupProps {
 
 export default class Group extends Component<GroupProps> {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     group: PropTypes.object.isRequired,
     emojis: PropTypes.object.isRequired,
@@ -57,9 +51,6 @@ export default class Group extends Component<GroupProps> {
 
   renderCategory = (category: string): ReactElement[] => {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       emojis,
       checkMouseDown,
@@ -71,7 +62,7 @@ export default class Group extends Component<GroupProps> {
 
     const categoryEmojis = emojis[category];
 
-    return Object.keys(categoryEmojis).map((key) => (
+    return Object.keys(categoryEmojis).map(key => (
       <li
         key={categoryEmojis[key][0]}
         className={theme.emojiSelectPopoverGroupItem}
@@ -80,9 +71,6 @@ export default class Group extends Component<GroupProps> {
           <Entry
             emoji={categoryEmojis[key][0]}
             theme={theme}
-            imagePath={imagePath}
-            imageType={imageType}
-            cacheBustParam={cacheBustParam}
             toneSet={
               categoryEmojis[key].length > 1 ? categoryEmojis[key] : null
             }
@@ -102,18 +90,18 @@ export default class Group extends Component<GroupProps> {
     return (
       <section
         className={theme.emojiSelectPopoverGroup}
-        ref={(element) => {
+        ref={element => {
           this.container = element;
         }}
       >
         <h3 className={theme.emojiSelectPopoverGroupTitle}>{group.title}</h3>
         <ul
           className={theme.emojiSelectPopoverGroupList}
-          ref={(element) => {
+          ref={element => {
             this.list = element;
           }}
         >
-          {group.categories.map((category) => this.renderCategory(category))}
+          {group.categories.map(category => this.renderCategory(category))}
         </ul>
       </section>
     );

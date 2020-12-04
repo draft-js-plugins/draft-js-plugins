@@ -1,8 +1,8 @@
 import findWithRegex from 'find-with-regex';
-import emojione from 'emojione';
+import emojiToolkit from 'emoji-toolkit';
 import { ContentBlock } from 'draft-js';
 
-const unicodeRegex = new RegExp(emojione.unicodeRegexp, 'g');
+const unicodeRegex = new RegExp(emojiToolkit.regUnicode, 'g');
 
 export default (
   contentBlock: ContentBlock,
