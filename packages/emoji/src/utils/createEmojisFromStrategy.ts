@@ -1,6 +1,6 @@
 /* Idea from https://github.com/tommoor/emojione-picker */
 
-import { EmojiList, toShort } from 'emoji-toolkit';
+import { EmojiList } from 'emoji-toolkit';
 
 export interface EmojiStrategy {
   [x: string]: {

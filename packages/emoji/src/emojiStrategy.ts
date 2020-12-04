@@ -2,11 +2,15 @@ import findWithRegex from 'find-with-regex';
 import emojiToolkit from 'emoji-toolkit';
 import { ContentBlock } from 'draft-js';
 
-const unicodeRegex = new RegExp(emojiToolkit.regUnicode, 'g');
+const escapedFind = emojiToolkit.escapeRegExp(emojiToolkit.unicodeCharRegex());
+const search = new RegExp(
+  `<object[^>]*>.*?</object>|<span[^>]*>.*?</span>|<(?:object|embed|svg|img|div|span|p|a)[^>]*>|(${escapedFind})`,
+  'gi'
+);
 
 export default (
   contentBlock: ContentBlock,
   callback: StrategyCallback
 ): void => {
-  findWithRegex(unicodeRegex, contentBlock, callback);
+  findWithRegex(search, contentBlock, callback);
 };

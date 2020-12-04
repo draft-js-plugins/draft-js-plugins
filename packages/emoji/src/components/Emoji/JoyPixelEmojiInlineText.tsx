@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import { toShort, shortnameToImage } from 'emoji-toolkit';
 import React, { ReactElement } from 'react';
+import { shortnameToImage, toShort } from 'emoji-toolkit';
+import clsx from 'clsx';
 import { EmojiInlineTextProps } from '../..';
 import NativeEmojiInlineText from './NativEmojiInlineText';
 
