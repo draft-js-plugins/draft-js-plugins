@@ -1,4 +1,9 @@
-import React, { Component, ComponentType, ReactElement, WheelEvent } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  ReactElement,
+  WheelEvent,
+} from 'react';
 import PropTypes from 'prop-types';
 import addEmoji from '../../../modifiers/addEmoji';
 import Groups from './Groups';
@@ -188,7 +193,7 @@ export default class Popover extends Component<PopoverProps> {
         className={className}
         onMouseDown={this.onMouseDown}
         onWheel={this.onWheel}
-        ref={element => {
+        ref={(element) => {
           this.container = element;
         }}
       >
@@ -203,7 +208,7 @@ export default class Popover extends Component<PopoverProps> {
           onEmojiSelect={this.onEmojiSelect}
           onEmojiMouseDown={this.onEmojiMouseDown}
           onGroupScroll={this.onGroupScroll}
-          ref={element => {
+          ref={(element) => {
             this.groupsElement = element;
           }}
           emojiImage={emojiImage}

@@ -166,8 +166,10 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     selectButtonContent,
     toneSelectOpenDelay,
     useNativeArt,
-    emojiImage = useNativeArt ? NativeEmojiImage: JoyPixelEmojiImage,
-    emojiInlineText = useNativeArt ? NativeEmojiInlineText : JoyPixelEmojiInlineText,
+    emojiImage = useNativeArt ? NativeEmojiImage : JoyPixelEmojiImage,
+    emojiInlineText = useNativeArt
+      ? NativeEmojiInlineText
+      : JoyPixelEmojiInlineText,
   } = config;
 
   // if priorityList is configured in config then set priorityList
@@ -198,11 +200,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     <EmojiSelect {...props} {...selectProps} />
   );
   const DecoratedEmoji = (props: EmojiProps): ReactElement => (
-    <Emoji
-      {...props}
-      theme={theme}
-      emojiInlineText={emojiInlineText}
-    />
+    <Emoji {...props} theme={theme} emojiInlineText={emojiInlineText} />
   );
   const DecoratedEmojiSuggestionsPortal = (
     props: EmojiSuggestionsPortalParams
@@ -235,7 +233,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     },
 
     keyBindingFn: (keyboardEvent: KeyboardEvent) =>
-      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)),
+      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
     handleReturn: (keyboardEvent: KeyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {

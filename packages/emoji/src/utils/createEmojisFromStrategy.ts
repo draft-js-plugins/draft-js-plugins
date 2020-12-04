@@ -1,6 +1,6 @@
 /* Idea from https://github.com/tommoor/emojione-picker */
 
-import { EmojiJsonList } from 'emoji-toolkit';
+import { EmojiList, toShort } from 'emoji-toolkit';
 
 export interface EmojiStrategy {
   [x: string]: {
@@ -9,14 +9,14 @@ export interface EmojiStrategy {
 }
 
 export default function createEmojisFromStrategy(
-  strategy: EmojiJsonList
+  strategy: EmojiList
 ): EmojiStrategy {
   const emojis: EmojiStrategy = {};
 
   // categorise and nest emoji
   // sort ensures that modifiers appear unmodified keys
   const keys = Object.keys(strategy);
-  keys.forEach(key => {
+  keys.forEach((key) => {
     const value = strategy[key];
 
     // skip unknown categories
@@ -32,10 +32,10 @@ export default function createEmojisFromStrategy(
         const unmodifiedEmojiExists = !!emojis[value.category][match[1]];
         if (unmodifiedEmojiExists) {
           const index = parseInt(match[2], 10);
-          emojis[value.category][match[1]][index] = value.shortname;
+          emojis[value.category][match[1]][index] = key;
         }
       } else {
-        emojis[value.category][key] = [value.shortname];
+        emojis[value.category][key] = [key];
       }
     }
   });

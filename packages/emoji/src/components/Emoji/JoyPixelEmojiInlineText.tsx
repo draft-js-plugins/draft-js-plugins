@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { toShort, shortnameToImage } from 'emoji-toolkit';
 import React, { ReactElement } from 'react';
 import { EmojiInlineTextProps } from '../..';
+import NativeEmojiInlineText from './NativEmojiInlineText';
 
 export default function JoyPixelEmojiInlineText({
   decoratedText,
@@ -12,6 +13,14 @@ export default function JoyPixelEmojiInlineText({
   const shortName = toShort(decoratedText);
   const imgTag = shortnameToImage(shortName);
   const path = /src="(.*)"/.exec(imgTag)?.[1];
+  if (!path) {
+    return (
+      <NativeEmojiInlineText decoratedText={decoratedText} theme={theme}>
+        {children}
+      </NativeEmojiInlineText>
+    );
+  }
+
   const backgroundImage = `url(${path})`;
   const combinedClassName = clsx(theme.emoji, className);
 

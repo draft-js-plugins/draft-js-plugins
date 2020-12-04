@@ -23,7 +23,6 @@ export default class Entry extends Component<EntryProps> {
     checkMouseDown: PropTypes.func.isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func,
-    emojiImage: PropTypes.node,
   };
 
   static defaultProps = {

@@ -1,6 +1,12 @@
-import React, { Component, ComponentType, MouseEvent, ReactElement, ReactNode } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import PropTypes from 'prop-types';
-import strategy from 'emoji-toolkit/emoji.json';
+import { emojiList } from 'emoji-toolkit';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Popover from './Popover';
@@ -11,8 +17,7 @@ import {
   EmojiSelectGroup,
 } from '../../index';
 
-const emojis = createEmojisFromStrategy(strategy);
-
+const emojis = createEmojisFromStrategy(emojiList);
 export type EmojiSelectPubParams = Record<string, unknown>;
 
 interface EmojiSelectParams extends EmojiSelectPubParams {
@@ -103,7 +108,6 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     const buttonClassName = this.state.isOpen
       ? theme.emojiSelectButtonPressed
       : theme.emojiSelectButton;
-
     return (
       <div className={theme.emojiSelect} onClick={this.onClick}>
         <button

@@ -1,33 +1,4 @@
 declare module 'emoji-toolkit' {
-  interface EmojiJsonItem {
-    ascii: string[];
-    category: string;
-    code_points: {
-      base: string;
-      fully_qualified: string;
-      decimal: string;
-      diversity_parent: null | string;
-      gender_parent: null | string;
-    };
-    display: number;
-    diversity: null | string[];
-    diversity_base: number;
-    diversity_children: string[];
-    gender: string[];
-    gender_children: string[];
-    humanform: number;
-    keywords: string[];
-    name: string;
-    order: number;
-    shortname: string;
-    shortname_alternates: string[];
-    unicode_version: number;
-  }
-
-  interface EmojiJsonList {
-    [x: string]: EmojiJsonItem;
-  }
-
   interface EmojiItem {
     category: string;
     shortnames: string[];
