@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Remove prevState and state from positionSuggestions
 - add entryComponent to mention plugin
 - convert to typescript
+- use the setEditorState and getEditorState functions from props.store in EmojiSuggestionsPortal
 
 ## 3.1.5
 
