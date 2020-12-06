@@ -42,7 +42,7 @@ export default function MentionSuggestionsPortal(
     updatePortalClientRect(props);
 
     // trigger a re-render so the MentionSuggestions becomes active
-    props.setEditorState(props.getEditorState());
+    props.store.setEditorState!(props.store.getEditorState!());
 
     return () => {
       props.store.unregister(props.offsetKey);
