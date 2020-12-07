@@ -7148,10 +7148,10 @@ emojibase@^5.0.0:
   resolved "https://registry.yarnpkg.com/emojibase/-/emojibase-5.0.0.tgz#f2c796b93d500858a65a61bbd4498249d6a6cd07"
   integrity sha512-Mom7qWvYi38arAg/UEVPJ9q/A9PsnwdXKCrNPggUJ/mzelTqx8MzoaqebhWyS/k4oecyPlS+OMsQP2oXLRO4Aw==
 
-emojione@^2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/emojione/-/emojione-2.2.7.tgz#46457cf6b9b2f8da13ae8a2e4e547de06ee15e96"
-  integrity sha1-RkV89rmy+NoTroouTlR94G7hXpY=
+emojione@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/emojione/-/emojione-4.5.0.tgz#cf1f5d417394988296aef72bd3ac3d480890838a"
+  integrity sha512-Tq55Y3UgPOnayFDN+Qd6QMP0rpoH10a1nhSFN27s8gXW3qymgFIHiXys2ECYYAI134BafmI3qP9ni2rZOe9BjA==
 
 emojis-list@^2.0.0:
   version "2.1.0"
