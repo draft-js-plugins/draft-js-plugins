@@ -7138,6 +7138,16 @@ emoji-toolkit@^6.0.1:
   resolved "https://registry.yarnpkg.com/emoji-toolkit/-/emoji-toolkit-6.0.1.tgz#7dec51f79dd44863d86c647a805ebc41cea82a5a"
   integrity sha512-QZZq0beHg753JxcBt89UBFqzwYNuMtXhNO+jY3viSAndewmn9biTE5glaro1RA0uWJ4hKqw4k1Mboe1M6sGkMA==
 
+emojibase-data@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-6.0.0.tgz#fce3b1bb4d2334b870504dd798acfe43512834bc"
+  integrity sha512-w8Krc5SI/BRY50YHhULAjakaQvrP1d1Srv758JZJWD6dXRpUTfl18RjcDex4Kp/OcduxcBHZNobQ+fmxbze2NA==
+
+emojibase@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/emojibase/-/emojibase-5.0.0.tgz#f2c796b93d500858a65a61bbd4498249d6a6cd07"
+  integrity sha512-Mom7qWvYi38arAg/UEVPJ9q/A9PsnwdXKCrNPggUJ/mzelTqx8MzoaqebhWyS/k4oecyPlS+OMsQP2oXLRO4Aw==
+
 emojione@^2.2.7:
   version "2.2.7"
   resolved "https://registry.yarnpkg.com/emojione/-/emojione-2.2.7.tgz#46457cf6b9b2f8da13ae8a2e4e547de06ee15e96"

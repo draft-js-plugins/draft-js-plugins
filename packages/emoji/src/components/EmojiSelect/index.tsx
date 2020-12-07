@@ -6,7 +6,6 @@ import React, {
   ReactNode,
 } from 'react';
 import PropTypes from 'prop-types';
-import { emojiList } from 'emoji-toolkit';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import Popover from './Popover';
@@ -17,7 +16,7 @@ import {
   EmojiSelectGroup,
 } from '../../index';
 
-const emojis = createEmojisFromStrategy(emojiList);
+const emojis = createEmojisFromStrategy();
 export type EmojiSelectPubParams = Record<string, unknown>;
 
 interface EmojiSelectParams extends EmojiSelectPubParams {

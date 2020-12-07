@@ -1,6 +1,5 @@
-/* Idea from https://github.com/tommoor/emojione-picker */
-
-import { EmojiList } from 'emoji-toolkit';
+import { emojiList, toShort } from 'emoji-toolkit';
+import data from 'emojibase-data/en/compact.json';
 
 export interface EmojiStrategy {
   [x: string]: {
@@ -8,49 +7,27 @@ export interface EmojiStrategy {
   };
 }
 
-export default function createEmojisFromStrategy(
-  strategy: EmojiList
-): EmojiStrategy {
+export default function createEmojisFromStrategy(): EmojiStrategy {
   const emojis: EmojiStrategy = {};
 
-  // categorise and nest emoji
-  // sort ensures that modifiers appear unmodified keys
-  Object.keys(strategy).forEach((key) => {
-    const { category } = strategy[key];
-
-    // skip unknown categories
-    if (category !== 'modifier') {
-      if (!emojis[category]) {
-        emojis[category] = {};
+  for (const item of data) {
+    const shortName = toShort(item.unicode);
+    const emoji = emojiList[shortName];
+    if (emoji) {
+      if (!emojis[emoji.category]) {
+        emojis[emoji.category] = {};
       }
-      const match = key.match(/(.*?)_tone(.*?):$/);
+      emojis[emoji.category][shortName] = [shortName];
 
-      let index = 0;
-      let _key: string = key;
-      let _value: string = key;
-
-      if (match) {
-        // this check is to stop the plugin from failing in the case that the
-        // emoji strategy miscategorizes tones - which was the case here:
-        // https://github.com/Ranks/emojione/pull/330
-        _key = `${match[1]}:`;
-        index = parseInt(match[2], 10);
-        _value = key;
+      if (item.skins) {
+        for (const skin of item.skins) {
+          const skinShortName = toShort(skin.unicode);
+          if (emojiList[skinShortName]) {
+            emojis[emoji.category][shortName].push(skinShortName);
+          }
+        }
       }
-      if (!emojis[category][_key]) {
-        emojis[category][_key] = [];
-      }
-      emojis[category][_key][index] = _value;
     }
-  });
-  // remove empty shortnames
-  Object.keys(emojis).forEach((category) => {
-    Object.keys(emojis[category]).forEach((shortName) => {
-      if (!emojis[category][shortName][0]) {
-        delete emojis[category][shortName];
-      }
-    });
-  });
-
+  }
   return emojis;
 }
