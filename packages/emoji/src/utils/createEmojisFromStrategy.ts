@@ -15,29 +15,42 @@ export default function createEmojisFromStrategy(
 
   // categorise and nest emoji
   // sort ensures that modifiers appear unmodified keys
-  const keys = Object.keys(strategy);
-  keys.forEach((key) => {
-    const value = strategy[key];
+  Object.keys(strategy).forEach((key) => {
+    const { category } = strategy[key];
 
     // skip unknown categories
-    if (value.category !== 'modifier') {
-      if (!emojis[value.category]) {
-        emojis[value.category] = {};
+    if (category !== 'modifier') {
+      if (!emojis[category]) {
+        emojis[category] = {};
       }
-      const match = key.match(/(.*?)_tone(.*?)$/);
+      const match = key.match(/(.*?)_tone(.*?):$/);
+
+      let index = 0;
+      let _key: string = key;
+      let _value: string = key;
+
       if (match) {
         // this check is to stop the plugin from failing in the case that the
         // emoji strategy miscategorizes tones - which was the case here:
         // https://github.com/Ranks/emojione/pull/330
-        const unmodifiedEmojiExists = !!emojis[value.category][match[1]];
-        if (unmodifiedEmojiExists) {
-          const index = parseInt(match[2], 10);
-          emojis[value.category][match[1]][index] = key;
-        }
-      } else {
-        emojis[value.category][key] = [key];
+        _key = `${match[1]}:`;
+        index = parseInt(match[2], 10);
+        _value = key;
       }
+      if (!emojis[category][_key]) {
+        emojis[category][_key] = [];
+      }
+      emojis[category][_key][index] = _value;
     }
   });
+  // remove empty shortnames
+  Object.keys(emojis).forEach((category) => {
+    Object.keys(emojis[category]).forEach((shortName) => {
+      if (!emojis[category][shortName][0]) {
+        delete emojis[category][shortName];
+      }
+    });
+  });
+
   return emojis;
 }

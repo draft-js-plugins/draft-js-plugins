@@ -5,5 +5,5 @@ import { EmojiImageProps } from '../..';
 export default function NativeEmojiImage({
   emoji,
 }: EmojiImageProps): ReactElement {
-  return <>{shortnameToUnicode(emoji)}</>;
+  return <span title={emoji}>{shortnameToUnicode(emoji)}</span>;
 }
