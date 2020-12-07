@@ -55,7 +55,7 @@ Checkout [the website](https://www.draft-js-plugins.com/)!
 First, install the editor with `npm`:
 
 ```
-$ npm install draft-js-plugins-editor --save
+$ npm install @draft-js-plugins/editor --save
 ```
 
 Then import the editor somewhere in your code and you're ready to go!
@@ -66,11 +66,11 @@ import Editor from '@draft-js-plugins/editor';
 
 ## Documentation
 
-### draft-js-plugins-editor
+### @draft-js-plugins/editor
 
 #### Editor
 
-An editor component accepting plugins. [see source](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/draft-js-plugins-editor/src/Editor/index.js#L16)
+An editor component accepting plugins. [see source](https://github.com/draft-js-plugins/draft-js-plugins/blob/73d5f504ac62ef6c9e206f053e2800b2bf99c058/packages/editor/src/Editor/index.tsx#L24)
 
 | Props                                                           |                                         Description                                          | Required |
 | --------------------------------------------------------------- | :------------------------------------------------------------------------------------------: | -------: |
@@ -101,7 +101,7 @@ export default class UnicornEditor extends Component {
     editorState: EditorState.createEmpty(),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
