@@ -3104,11 +3104,6 @@
     "@types/react" "*"
     immutable "~3.7.4"
 
-"@types/emojione@^2.2.6":
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/@types/emojione/-/emojione-2.2.6.tgz#467767e7c844738c60c0c1c2ce30af1d3236bc69"
-  integrity sha512-2OJGfbqLOFFawMp61cxpJ+QsLA/2LDUdqWb2YMVNP8q/FXSxdkv0hdqm3EcjNfyfcpZ0HjOjMATwXdx/xpTlOA==
-
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
@@ -7137,6 +7132,21 @@ emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
+
+emoji-toolkit@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/emoji-toolkit/-/emoji-toolkit-6.0.1.tgz#7dec51f79dd44863d86c647a805ebc41cea82a5a"
+  integrity sha512-QZZq0beHg753JxcBt89UBFqzwYNuMtXhNO+jY3viSAndewmn9biTE5glaro1RA0uWJ4hKqw4k1Mboe1M6sGkMA==
+
+emojibase-data@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-6.0.0.tgz#fce3b1bb4d2334b870504dd798acfe43512834bc"
+  integrity sha512-w8Krc5SI/BRY50YHhULAjakaQvrP1d1Srv758JZJWD6dXRpUTfl18RjcDex4Kp/OcduxcBHZNobQ+fmxbze2NA==
+
+emojibase@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/emojibase/-/emojibase-5.0.0.tgz#f2c796b93d500858a65a61bbd4498249d6a6cd07"
+  integrity sha512-Mom7qWvYi38arAg/UEVPJ9q/A9PsnwdXKCrNPggUJ/mzelTqx8MzoaqebhWyS/k4oecyPlS+OMsQP2oXLRO4Aw==
 
 emojione@^2.2.7:
   version "2.2.7"
@@ -13208,16 +13218,6 @@ pretty-format@^26.0.0, pretty-format@^26.6.0:
     ansi-regex "^5.0.0"
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
-
-pretty-format@^26.6.2:
-  version "26.6.2"
-  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-26.6.2.tgz#e35c2705f14cb7fe2fe94fa078345b444120fc93"
-  integrity sha512-7AeGuCYNGmycyQbCqd/3PWH4eOoX/OiCa0uphp57NVTeAGdJGaAliecxwBDHYQCIvrW7aDBZCYeNTP/WX69mkg==
-  dependencies:
-    "@jest/types" "^26.6.2"
-    ansi-regex "^5.0.0"
-    ansi-styles "^4.0.0"
-    react-is "^17.0.1"
 
 pretty-format@^26.6.2:
   version "26.6.2"

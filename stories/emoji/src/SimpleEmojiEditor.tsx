@@ -1,5 +1,7 @@
-import React, { useState, useRef, ReactElement } from 'react';
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
+import React, { ReactElement, useRef, useState } from 'react';
+
+import { EditorState } from 'draft-js';
 import createEmojiPlugin from '@draft-js-plugins/emoji';
 import editorStyles from './editorStyles.css';
 
@@ -10,12 +12,12 @@ const text = `Cool, we can have all sorts of Emojis here. 🙌
 🌿☃️🎉🙈 aaaand maybe a few more here 🐲☀️🗻 Quite fun!`;
 
 const SimpleEmojiEditor = (): ReactElement => {
-  const [editorState, setEditorState] = useState(
+  const [editorState, setEditorState] = useState<EditorState>(
     createEditorStateWithText(text)
   );
   const editor = useRef<Editor>();
 
-  const onChange = (value): void => {
+  const onChange = (value: EditorState): void => {
     setEditorState(value);
   };
 

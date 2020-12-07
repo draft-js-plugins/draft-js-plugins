@@ -1,16 +1,13 @@
-import React, { Component, ReactElement, WheelEvent } from 'react';
+import React, { Component, ComponentType, ReactElement, WheelEvent } from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars, positionValues } from 'react-custom-scrollbars';
 import Group from './Group';
-import { EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
+import { EmojiImageProps, EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
 import { EmojiStrategy } from '../../../../utils/createEmojisFromStrategy';
 import Entry from '../Entry';
 
 interface GroupsProps {
   activeGroup?: number;
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   theme: EmojiPluginTheme;
   groups: EmojiSelectGroup[];
   emojis: EmojiStrategy;
@@ -18,15 +15,12 @@ interface GroupsProps {
   onEmojiSelect(emoji: string): void;
   onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
   onGroupScroll(activeGroup: number): void;
-  useNativeArt?: boolean;
+  emojiImage: ComponentType<EmojiImageProps>;
   isOpen: boolean;
 }
 
 export default class Groups extends Component<GroupsProps> {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     emojis: PropTypes.object.isRequired,
@@ -34,7 +28,6 @@ export default class Groups extends Component<GroupsProps> {
     onEmojiSelect: PropTypes.func.isRequired,
     onEmojiMouseDown: PropTypes.func.isRequired,
     onGroupScroll: PropTypes.func.isRequired,
-    useNativeArt: PropTypes.bool,
     isOpen: PropTypes.bool,
   };
 
@@ -101,7 +94,7 @@ export default class Groups extends Component<GroupsProps> {
       const containerTop =
         this.container!.getBoundingClientRect().top - scrollTop;
 
-      groups.forEach((group) => {
+      groups.forEach(group => {
         const groupTop = group.instance!.container!.getBoundingClientRect().top;
         const listTop = group.instance!.list!.getBoundingClientRect().top;
         group.top = groupTop - containerTop; // eslint-disable-line no-param-reassign
@@ -118,23 +111,20 @@ export default class Groups extends Component<GroupsProps> {
 
   render(): ReactElement {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       groups = [],
       emojis,
       checkMouseDown,
       onEmojiSelect,
       onEmojiMouseDown,
-      useNativeArt,
+      emojiImage,
     } = this.props;
 
     return (
       <div
         className={theme.emojiSelectPopoverGroups}
         onWheel={this.onWheel}
-        ref={(element) => {
+        ref={element => {
           this.container = element;
         }}
       >
@@ -143,13 +133,13 @@ export default class Groups extends Component<GroupsProps> {
           renderTrackVertical={() => (
             <div className={theme.emojiSelectPopoverScrollbar} />
           )}
-          renderThumbVertical={(props) => (
+          renderThumbVertical={props => (
             <div
               {...props}
               className={theme.emojiSelectPopoverScrollbarThumb}
             />
           )}
-          ref={(element) => {
+          ref={element => {
             this.scrollbars = element;
           }}
         >
@@ -161,16 +151,13 @@ export default class Groups extends Component<GroupsProps> {
               theme={theme}
               group={group}
               emojis={emojis}
-              imagePath={imagePath}
-              imageType={imageType}
-              cacheBustParam={cacheBustParam}
               checkMouseDown={checkMouseDown}
               onEmojiSelect={onEmojiSelect}
               onEmojiMouseDown={onEmojiMouseDown}
-              ref={(element) => {
+              ref={element => {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
-              useNativeArt={useNativeArt}
+              emojiImage={emojiImage}
               isActive={this.isRenderedGroupActive(index)}
             />
           ))}

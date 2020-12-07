@@ -27,13 +27,25 @@ import emojiList from './utils/emojiList';
 import { defaultTheme } from './theme';
 import type { EmojiPluginTheme } from './theme';
 import Group from './components/EmojiSelect/Popover/Groups/Group';
+import JoyPixelEmojiImage from './components/Emoji/JoyPixelEmojiImage';
+import NativeEmojiImage from './components/Emoji/NativeEmojiImage';
+import NativeEmojiInlineText from './components/Emoji/NativEmojiInlineText';
+import JoyPixelEmojiInlineText from './components/Emoji/JoyPixelEmojiInlineText';
 
 export { defaultTheme };
 export type { EmojiPluginTheme };
 
-const defaultImagePath = '//cdn.jsdelivr.net/emojione/assets/svg/';
-const defaultImageType = 'svg';
-const defaultCacheBustParam = '?v=2.2.7';
+export interface EmojiImageProps {
+  emoji: string;
+  theme: EmojiPluginTheme;
+}
+
+export interface EmojiInlineTextProps {
+  theme: EmojiPluginTheme;
+  decoratedText: string;
+  children: ReactNode;
+  className?: string;
+}
 
 export interface EmojiSuggestionsState {
   isActive?: boolean;
@@ -60,15 +72,14 @@ export interface EmojiPLuginCallbacks {
 
 export interface EmojiPluginConfig {
   theme?: EmojiPluginTheme;
-  imagePath?: string;
-  imageType?: string;
-  allowImageCache?: boolean;
   positionSuggestions?: (arg: PositionSuggestionsParams) => CSSProperties;
   priorityList?: { [k: string]: string[] };
   selectGroups?: EmojiSelectGroup[];
   selectButtonContent?: ReactNode;
   toneSelectOpenDelay?: number;
   useNativeArt?: boolean;
+  emojiImage?: ComponentType<EmojiImageProps>;
+  emojiInlineText?: ComponentType<EmojiInlineTextProps>;
 }
 
 interface GetClientRectFn {
@@ -149,18 +160,17 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const {
     theme = defaultTheme,
-    imagePath = defaultImagePath,
-    imageType = defaultImageType,
-    allowImageCache,
     positionSuggestions = defaultPositionSuggestions,
     priorityList,
     selectGroups,
     selectButtonContent,
     toneSelectOpenDelay,
     useNativeArt,
+    emojiImage = useNativeArt ? NativeEmojiImage : JoyPixelEmojiImage,
+    emojiInlineText = useNativeArt
+      ? NativeEmojiInlineText
+      : JoyPixelEmojiInlineText,
   } = config;
-
-  const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
 
   // if priorityList is configured in config then set priorityList
   if (priorityList) {
@@ -168,26 +178,20 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   }
   const suggestionsProps = {
     ariaProps,
-    cacheBustParam,
     callbacks,
-    imagePath,
-    imageType,
     theme,
     store,
     positionSuggestions,
     shortNames: List(keys(emojiList.list)),
-    useNativeArt,
+    emojiImage,
   };
   const selectProps = {
-    cacheBustParam,
-    imagePath,
-    imageType,
     theme,
     store,
     selectGroups,
     selectButtonContent,
     toneSelectOpenDelay,
-    useNativeArt,
+    emojiImage,
   };
   const DecoratedEmojiSuggestions = (
     props: EmojiSuggestionsPubParams
@@ -196,14 +200,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     <EmojiSelect {...props} {...selectProps} />
   );
   const DecoratedEmoji = (props: EmojiProps): ReactElement => (
-    <Emoji
-      {...props}
-      theme={theme}
-      imagePath={imagePath}
-      imageType={imageType}
-      cacheBustParam={cacheBustParam}
-      useNativeArt={Boolean(useNativeArt)}
-    />
+    <Emoji {...props} theme={theme} emojiInlineText={emojiInlineText} />
   );
   const DecoratedEmojiSuggestionsPortal = (
     props: EmojiSuggestionsPortalParams
@@ -236,7 +233,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     },
 
     keyBindingFn: (keyboardEvent: KeyboardEvent) =>
-      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)),
+      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
     handleReturn: (keyboardEvent: KeyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {

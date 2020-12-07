@@ -1,12 +1,11 @@
+import { EmojiImageProps } from 'packages/emoji/src';
 import React, {
   // PropTypes,
   Component,
+  ComponentType,
   MouseEvent,
   ReactElement,
 } from 'react';
-import emojione from 'emojione';
-import emojiList from '../../../utils/emojiList';
-import convertShortNameToUnicode from '../../../utils/convertShortNameToUnicode';
 import { EmojiPluginTheme } from '../../../theme';
 
 interface EntryProps {
@@ -15,12 +14,9 @@ interface EntryProps {
   index: number;
   onEmojiFocus(index: number): void;
   theme: EmojiPluginTheme;
-  imagePath: string;
-  imageType: string;
-  cacheBustParam: string;
-  useNativeArt?: boolean;
   isFocused: boolean;
   id: string;
+  emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class Entry extends Component<EntryProps> {
@@ -49,38 +45,10 @@ export default class Entry extends Component<EntryProps> {
   };
 
   render(): ReactElement {
-    const {
-      theme = {},
-      imagePath,
-      imageType,
-      cacheBustParam,
-      useNativeArt,
-      isFocused,
-      id,
-    } = this.props;
+    const { emoji, theme = {},  isFocused, id, emojiImage: EmojiImage } = this.props;
     const className = isFocused
       ? theme.emojiSuggestionsEntryFocused
       : theme.emojiSuggestionsEntry;
-
-    let emojiDisplay = null;
-    if (useNativeArt === true) {
-      const unicode = emojiList.list[this.props.emoji][0];
-      emojiDisplay = convertShortNameToUnicode(unicode);
-    } else {
-      // short name to image url code steal from emojione source code
-      const shortNameForImage =
-        emojione.emojioneList[this.props.emoji].unicode[
-          emojione.emojioneList[this.props.emoji].unicode.length - 1
-        ];
-      const fullImagePath = `${imagePath}${shortNameForImage}.${imageType}${cacheBustParam}`;
-      emojiDisplay = (
-        <img
-          src={fullImagePath}
-          className={theme.emojiSuggestionsEntryIcon}
-          role="presentation"
-        />
-      );
-    }
 
     return (
       <div
@@ -92,7 +60,7 @@ export default class Entry extends Component<EntryProps> {
         id={id}
         aria-selected={isFocused ? 'true' : undefined}
       >
-        {emojiDisplay}
+        <EmojiImage emoji={emoji} theme={theme} />
         <span className={theme.emojiSuggestionsEntryText}>
           {this.props.emoji}
         </span>

@@ -331,33 +331,6 @@ export default class App extends Component {
             </div>
           </div>
           <div className={styles.paramBig}>
-            <span className={styles.paramName}>imagePath</span>
-            <span>
-              The Emojis are displayed using SVGs. The full path is constructed
-              of multiple parts like this:{' '}
-              {'`${imagePath}${unicode}.${imageType}${cacheBustParam}`'}. The
-              default imagePath is:
-              &apos;//cdn.jsdelivr.net/emojione/assets/svg/&apos;, but can be
-              overwritten with this config.
-            </span>
-          </div>
-          <div className={styles.paramBig}>
-            <span className={styles.paramName}>imageType</span>
-            <span>
-              The default imageType is: &apos;svg&apos;, but can be overwritten
-              with this config.
-            </span>
-          </div>
-          <div className={styles.paramBig}>
-            <span className={styles.paramName}>allowImageCache</span>
-            <span>
-              By default {'${cacheBustParam}'} is being changed with the new
-              version. If you want to skip the cache busting, you can use this
-              property. The default value of allowImageCache is:&nbsp;
-              <InlineCode code={'false'} />
-            </span>
-          </div>
-          <div className={styles.paramBig}>
             <span className={styles.paramName}>positionSuggestions</span>
             <span>
               The function can be used to manipulate the position of the popover
@@ -407,6 +380,26 @@ export default class App extends Component {
               If set to <InlineCode code={'true'} />, uses host system art for
               emojis instead of EmojiOne art. Default value is{' '}
               <InlineCode code={'false'} />.
+            </span>
+          </div>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>emojiImage</span>
+            <span>
+              If provided the passed component is used to render the preview
+              image for the suggestions. If this parameter is set the{' '}
+              <InlineCode code={'useNativeArt'} /> is ignored. You can use this
+              component to implement your own emoji library. It receives the
+              following props: emoji and theme
+            </span>
+          </div>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>emojiInlineText</span>
+            <span>
+              If provided the passed component is used to render the emojis in
+              the text. If this parameter is set the{' '}
+              <InlineCode code={'useNativeArt'} /> is ignored. You can use this
+              component to implement your own emoji library. It receives the
+              following props: decoratedText, className, children and theme
             </span>
           </div>
           <Heading level={3}>EmojiSuggestions</Heading>

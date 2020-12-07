@@ -1,10 +1,16 @@
-import React, { Component, ReactElement, WheelEvent } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  ReactElement,
+  WheelEvent,
+} from 'react';
 import PropTypes from 'prop-types';
 import addEmoji from '../../../modifiers/addEmoji';
 import Groups from './Groups';
 import Nav from './Nav';
 import ToneSelect from './ToneSelect';
 import {
+  EmojiImageProps,
   EmojiPluginStore,
   EmojiPluginTheme,
   EmojiSelectGroup,
@@ -13,30 +19,23 @@ import { EmojiStrategy } from '../../../utils/createEmojisFromStrategy';
 import Entry from './Entry';
 
 interface PopoverProps {
-  cacheBustParam: string;
-  imagePath: string;
-  imageType: string;
   theme: EmojiPluginTheme;
   store: EmojiPluginStore;
   groups: EmojiSelectGroup[];
   emojis: EmojiStrategy;
   toneSelectOpenDelay: number;
   isOpen?: boolean;
-  useNativeArt?: boolean;
+  emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class Popover extends Component<PopoverProps> {
   static propTypes = {
-    cacheBustParam: PropTypes.string.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    imageType: PropTypes.string.isRequired,
     theme: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired,
     groups: PropTypes.arrayOf(PropTypes.object).isRequired,
     emojis: PropTypes.object.isRequired,
     toneSelectOpenDelay: PropTypes.number.isRequired,
     isOpen: PropTypes.bool,
-    useNativeArt: PropTypes.bool,
   };
 
   activeEmoji: Entry | null = null;
@@ -137,7 +136,7 @@ export default class Popover extends Component<PopoverProps> {
 
   renderToneSelect = (): ReactElement | null => {
     if (this.state.showToneSelect) {
-      const { cacheBustParam, imagePath, imageType, theme = {} } = this.props;
+      const { theme = {}, emojiImage } = this.props;
 
       const containerBounds = this.container!.getBoundingClientRect();
       const areaBounds = this.groupsElement!.container!.getBoundingClientRect();
@@ -167,10 +166,8 @@ export default class Popover extends Component<PopoverProps> {
           theme={theme}
           bounds={bounds}
           toneSet={this.toneSet}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
           onEmojiSelect={this.onEmojiSelect}
+          emojiImage={emojiImage}
         />
       );
     }
@@ -180,14 +177,11 @@ export default class Popover extends Component<PopoverProps> {
 
   render(): ReactElement {
     const {
-      cacheBustParam,
-      imagePath,
-      imageType,
       theme = {},
       groups = [],
       emojis,
       isOpen = false,
-      useNativeArt,
+      emojiImage,
     } = this.props;
     const className = isOpen
       ? theme.emojiSelectPopover
@@ -210,9 +204,6 @@ export default class Popover extends Component<PopoverProps> {
           theme={theme}
           groups={groups}
           emojis={emojis}
-          imagePath={imagePath}
-          imageType={imageType}
-          cacheBustParam={cacheBustParam}
           checkMouseDown={this.checkMouseDown}
           onEmojiSelect={this.onEmojiSelect}
           onEmojiMouseDown={this.onEmojiMouseDown}
@@ -220,7 +211,7 @@ export default class Popover extends Component<PopoverProps> {
           ref={(element) => {
             this.groupsElement = element;
           }}
-          useNativeArt={useNativeArt}
+          emojiImage={emojiImage}
           isOpen={isOpen}
         />
         <Nav
