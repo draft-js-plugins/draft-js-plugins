@@ -13,7 +13,7 @@
     "eslint-plugin-import": "^2.2.0",
     "linkify-it": "^2.0.3",
     "loader-utils": "^1.0.2",
-    "prepend-http": "1.0.4",
+    "prepend-http": "3.0.1",
     "react": "^16.14.0",
     "react-custom-scrollbars": "^4.1.1",
     "react-dom": "^16.9.0",
