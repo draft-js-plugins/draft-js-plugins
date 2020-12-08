@@ -37,11 +37,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "clsx": "^1.0.4",
     "@draft-js-plugins/utils": "^4.0.0-beta2",
+    "clsx": "^1.0.4",
     "prepend-http": "3",
     "prop-types": "^15.5.8",
-    "tlds": "^1.212.0"
+    "tlds": "^1.214.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
