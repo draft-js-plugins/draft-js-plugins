@@ -27,7 +27,7 @@ interface AddLinkFormParams extends AddLinkFormPubParams {
 
 const AddLinkForm = (props: AddLinkFormParams): ReactElement => {
   const [value, setValue] = useState('');
-  const [isInvalid, setIsvalid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const input = useRef<HTMLInputElement>(null);
 
@@ -45,13 +45,7 @@ const AddLinkForm = (props: AddLinkFormParams): ReactElement => {
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const newValue = event.target.value;
-
-    if (isInvalid && isUrl(URLUtils.normalizeUrl(newValue))) {
-      setIsvalid(false);
-    } else {
-      setIsvalid(true);
-    }
-
+     setIsValid(isUrl(URLUtils.normalizeUrl(newValue)));
     setValue(newValue);
   };
 
@@ -65,7 +59,7 @@ const AddLinkForm = (props: AddLinkFormParams): ReactElement => {
     if (!URLUtils.isMail(URLUtils.normaliseMail(url))) {
       url = URLUtils.normalizeUrl(url);
       if (!isUrl(url)) {
-        setIsvalid(true);
+        setIsValid(false);
         return;
       }
     } else {
@@ -87,9 +81,9 @@ const AddLinkForm = (props: AddLinkFormParams): ReactElement => {
   };
 
   const { theme, placeholder } = props;
-  const className = isInvalid
-    ? clsx(theme.input, theme.inputInvalid)
-    : theme.input;
+  const className = isValid
+    ? theme.input
+    : clsx(theme.input, theme.inputInvalid);
 
   return (
     <input
