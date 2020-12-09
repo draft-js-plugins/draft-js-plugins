@@ -81,9 +81,9 @@ const AddLinkForm = (props: AddLinkFormParams): ReactElement => {
   };
 
   const { theme, placeholder } = props;
-  const className = !isValid
-    ? clsx(theme.input, theme.inputInvalid)
-    : theme.input;
+  const className = isValid
+    ? theme.input
+    : clsx(theme.input, theme.inputInvalid);
 
   return (
     <input
