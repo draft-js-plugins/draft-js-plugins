@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/linkify",
-  "version": "4.0.0-beta2",
+  "version": "4.0.0-beta3",
   "description": "Linkify Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
@@ -37,7 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "clsx": "^1.0.4",
-    "linkify-it": "^2.0.3",
+    "linkify-it": "^3.0.2",
     "tlds": "^1.214.0"
   },
   "peerDependencies": {

@@ -125,6 +125,22 @@ export default class App extends Component {
               className
             </span>
           </div>
+          <Heading level={3}>Additional Exports</Heading>
+          <div>
+            In addition to the plugin the module exports{' '}
+            <InlineCode code={'extractLinks'} />
+            . As first argument it takes the text string. The function returns a
+            list of linkifyit.Matches or null.
+            <Code
+              code={
+                'function extractLinks(text: string): linkifyIt.Match[] | null;'
+              }
+            />
+            It can be imported by:
+            <Code
+              code={"import { extractLinks } from '@draft-js-plugins/linkify';"}
+            />
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Example</Heading>

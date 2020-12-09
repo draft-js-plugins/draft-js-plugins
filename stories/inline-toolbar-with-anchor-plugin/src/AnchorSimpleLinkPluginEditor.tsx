@@ -2,6 +2,7 @@ import React, { useState, useRef, ReactElement } from 'react';
 import Editor, { createEditorStateWithText } from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
 import createLinkPlugin from '@draft-js-plugins/anchor';
+import { EditorState } from 'draft-js';
 import {
   ItalicButton,
   BoldButton,
@@ -23,7 +24,9 @@ const SimpleLinkPluginEditor = (): ReactElement => {
 
   const editor = useRef<Editor>();
 
-  const onChange = (value): void => setEditorState(value);
+  const onChange = (value: EditorState): void => {
+    setEditorState(value);
+  };
 
   const focus = (): void => editor.current.focus();
 
@@ -33,22 +36,20 @@ const SimpleLinkPluginEditor = (): ReactElement => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={(element) => {
+        ref={element => {
           editor.current = element;
         }}
       />
       <InlineToolbar>
-        {
-          // may be use React.Fragment instead of div to improve perfomance after React 16
-          (externalProps) => (
-            <div>
-              <BoldButton {...externalProps} />
-              <ItalicButton {...externalProps} />
-              <UnderlineButton {...externalProps} />
-              <linkPlugin.LinkButton {...externalProps} />
-            </div>
-          )
-        }
+        {// may be use React.Fragment instead of div to improve perfomance after React 16
+        externalProps => (
+          <div>
+            <BoldButton {...externalProps} />
+            <ItalicButton {...externalProps} />
+            <UnderlineButton {...externalProps} />
+            <linkPlugin.LinkButton {...externalProps} />
+          </div>
+        )}
       </InlineToolbar>
     </div>
   );
