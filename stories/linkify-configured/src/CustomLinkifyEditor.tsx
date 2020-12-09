@@ -1,5 +1,5 @@
 import React, { ReactElement, useRef, useState } from 'react';
-import { convertToRaw, EditorState } from 'draft-js';
+import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import createLinkifyPlugin from '@draft-js-plugins/linkify';
 import editorStyles from './editorStyles.css';
@@ -19,7 +19,6 @@ const CustomMentionEditor = (): ReactElement => {
   const editor = useRef<Editor>();
 
   const onChange = (value: EditorState): void => {
-    const raw = convertToRaw(value.getCurrentContent());
     setEditorState(value);
   };
 
