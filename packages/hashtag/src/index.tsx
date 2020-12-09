@@ -4,6 +4,7 @@ import Hashtag, { HashtagProps } from './Hashtag';
 import hashtagStrategy from './hashtagStrategy';
 import { defaultTheme, HashtagPluginTheme } from './theme';
 
+export { extractHashtagsWithIndices } from './utils/extractHashtags';
 export interface HashtagPluginConfig {
   theme?: HashtagPluginTheme;
 }
