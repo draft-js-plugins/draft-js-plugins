@@ -28,7 +28,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.7.0",
     "@testing-library/user-event": "^12.5.0",
-    "@types/jest": "^26.0.16",
+    "@types/jest": "^26.0.19",
     "@typescript-eslint/eslint-plugin": "4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
     "autoprefixer": "^10.0.4",
