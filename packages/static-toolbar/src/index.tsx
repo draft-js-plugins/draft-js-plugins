@@ -18,7 +18,7 @@ export type StaticToolBarPlugin = EditorPlugin & {
   Toolbar: ComponentType<ToolbarPubProps>;
 };
 
-interface StoreItemMap {
+export interface StoreItemMap {
   getEditorState?(): EditorState;
   setEditorState?(state: EditorState): void;
   selection?: SelectionState;
