@@ -20,20 +20,20 @@ export interface LinkProps {
   theme?: LinkifyPluginTheme;
   component?: ComponentType<ComponentProps>;
   children: ReactNode;
-  target: string;
-  rel: string;
-  className: string;
+  target?: string;
+  rel?: string;
+  className?: string;
 
   // following props are not used
-  entityKey: unknown;
-  getEditorState: unknown;
-  offsetKey: unknown;
-  setEditorState: unknown;
-  contentState: unknown;
-  blockKey: unknown;
-  dir: unknown;
-  start: unknown;
-  end: unknown;
+  entityKey?: unknown;
+  getEditorState?: unknown;
+  offsetKey?: unknown;
+  setEditorState?: unknown;
+  contentState?: unknown;
+  blockKey?: unknown;
+  dir?: unknown;
+  start?: unknown;
+  end?: unknown;
 }
 
 // The component we render when we encounter a hyperlink in the text
