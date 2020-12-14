@@ -19,7 +19,7 @@ export type InlineToolBarPlugin = EditorPlugin & {
   InlineToolbar: ComponentType<ToolbarProps>;
 };
 
-interface StoreItemMap {
+export interface StoreItemMap {
   selection?: SelectionState;
   getEditorState?(): EditorState;
   setEditorState?(state: EditorState): void;
