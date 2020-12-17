@@ -1,19 +1,15 @@
 import { ContentBlock } from 'draft-js';
-import linkifyIt from 'linkify-it';
-import tlds from 'tlds';
-
-const linkify = linkifyIt();
-linkify.tlds(tlds);
+import { extractLinks } from './utils/extractLinks';
 
 // Gets all the links in the text, and returns them via the callback
 const linkStrategy = (
   contentBlock: ContentBlock,
   callback: (start: number, end: number) => void
 ): void => {
-  const links = linkify.match(contentBlock.get('text'));
-  if (typeof links !== 'undefined' && links !== null) {
-    for (let i = 0; i < links.length; i += 1) {
-      callback(links[i].index, links[i].lastIndex);
+  const links = extractLinks(contentBlock.getText());
+  if (links) {
+    for (const link of links) {
+      callback(link.index, link.lastIndex);
     }
   }
 };

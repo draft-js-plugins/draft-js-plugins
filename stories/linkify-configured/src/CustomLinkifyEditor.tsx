@@ -18,7 +18,7 @@ const CustomMentionEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const editor = useRef<Editor>();
 
-  const onChange = (value): void => {
+  const onChange = (value: EditorState): void => {
     setEditorState(value);
   };
 
@@ -32,7 +32,7 @@ const CustomMentionEditor = (): ReactElement => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={(element) => {
+        ref={element => {
           editor.current = element;
         }}
       />

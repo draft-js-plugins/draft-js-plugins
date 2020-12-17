@@ -108,6 +108,24 @@ export default class App extends Component {
               </div>
             </div>
           </div>
+          <Heading level={3}>Additional Exports</Heading>
+          <div>
+            In addition to the plugin the module exports{' '}
+            <InlineCode code={'extractHashtagsWithIndices'} />
+            . As first argument it takes the text string. The function returns a
+            list of hashtags with start and end positons.
+            <Code
+              code={
+                'function extractHashtagsWithIndices(text: string): Array<{hashtag: string; indices: [number, number];}>;'
+              }
+            />
+            It can be imported by:
+            <Code
+              code={
+                "import { extractHashtagsWithIndices } from '@draft-js-plugins/hashtag';"
+              }
+            />
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Example</Heading>

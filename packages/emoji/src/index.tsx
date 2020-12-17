@@ -238,13 +238,12 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {
       let newEditorState = attachImmutableEntitiesToEmojis(editorState);
-      const selection = editorState.getSelection();
-
       if (
         !newEditorState
           .getCurrentContent()
           .equals(editorState.getCurrentContent())
       ) {
+        const selection = editorState.getSelection();
         // Forcing the current selection ensures that it will be at it's right place.
         // This solves the issue where inserting an Emoji on OSX with Apple's Emoji
         // selector led to the right selection the data, but wrong position in

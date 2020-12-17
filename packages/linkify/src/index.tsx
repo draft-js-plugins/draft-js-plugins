@@ -4,6 +4,8 @@ import Link, { LinkProps, ComponentProps } from './Link/Link';
 import linkStrategy from './linkStrategy';
 import { defaultTheme, LinkifyPluginTheme } from './theme';
 
+export { extractLinks } from './utils/extractLinks';
+
 export interface LinkifyPluginConfig {
   component?: ComponentType<ComponentProps>;
   theme?: LinkifyPluginTheme;

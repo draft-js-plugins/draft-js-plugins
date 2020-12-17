@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Hide internals in single bundle
 - Add esm support
 - convert to typescript
+- expose extractLinks function
 
 ## 2.0.2
 
