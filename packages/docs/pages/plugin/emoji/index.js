@@ -318,6 +318,12 @@ export default class App extends Component {
               </div>
               <div className={styles.subParam}>
                 <span className={styles.subParamName}>
+                  emojiSelectPopoverScrollbarOuter:
+                </span>
+                CSS class for the outer scrollbar box in the emoji select popup.
+              </div>
+              <div className={styles.subParam}>
+                <span className={styles.subParamName}>
                   emojiSelectPopoverScrollbar:
                 </span>
                 CSS class for scrollbar in the emoji select popup.

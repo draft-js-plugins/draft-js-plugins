@@ -39,6 +39,7 @@ export interface EmojiPluginTheme {
   emojiSelectPopoverNavEntryActive?: string;
 
   emojiSelectPopoverScrollbar?: string;
+  emojiSelectPopoverScrollbarOuter?: string;
   emojiSelectPopoverScrollbarThumb?: string;
 }
 
@@ -209,6 +210,12 @@ export const defaultTheme: EmojiPluginTheme = {
   emojiSelectButtonPressed: css`
     ${selectButtonSharedStyle}
     background: #ededed;
+  `,
+
+  emojiSelectPopoverScrollbarOuter: css`
+    & > div {
+      overscroll-behavior: contain;
+    }
   `,
 
   emojiSelectPopover: css`

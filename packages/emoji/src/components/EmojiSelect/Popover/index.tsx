@@ -1,9 +1,4 @@
-import React, {
-  Component,
-  ComponentType,
-  ReactElement,
-  WheelEvent,
-} from 'react';
+import React, { Component, ComponentType, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import addEmoji from '../../../modifiers/addEmoji';
 import Groups from './Groups';
@@ -81,8 +76,6 @@ export default class Popover extends Component<PopoverProps> {
       }
     }
   };
-
-  onWheel = (event: WheelEvent): void => event.preventDefault();
 
   onEmojiSelect = (emoji: string): void => {
     const newEditorState = addEmoji(this.props.store.getEditorState!(), emoji);
@@ -192,7 +185,6 @@ export default class Popover extends Component<PopoverProps> {
       <div
         className={className}
         onMouseDown={this.onMouseDown}
-        onWheel={this.onWheel}
         ref={(element) => {
           this.container = element;
         }}
