@@ -37,7 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "clsx": "^1.0.4",
-    "linkify-it": "^2.0.3",
+    "linkify-it": "^3.0.2",
     "tlds": "^1.216.0"
   },
   "peerDependencies": {
