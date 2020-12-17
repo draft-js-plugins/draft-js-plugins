@@ -1,23 +1,33 @@
 /* eslint-disable react/no-array-index-key */
 import React, { ComponentType, FC, ReactElement } from 'react';
+import { EditorState } from 'draft-js';
 import {
   ItalicButton,
   BoldButton,
   UnderlineButton,
   CodeButton,
-  DraftJsStyleButtonProps,
+  DraftJsButtonTheme,
 } from '@draft-js-plugins/buttons';
 import PropTypes from 'prop-types';
 import { StaticToolBarPluginStore, StaticToolbarPluginTheme } from '../../';
 
+export interface ToolbarChildrenProps {
+  theme: DraftJsButtonTheme;
+  getEditorState: () => EditorState;
+  setEditorState: (editorState: EditorState) => void;
+  onOverrideContent: (
+    content: ComponentType<ToolbarChildrenProps> | undefined
+  ) => void;
+}
+
 export interface ToolbarPubProps {
-  children?: FC<DraftJsStyleButtonProps>;
+  children?: FC<ToolbarChildrenProps>;
 }
 
 interface ToolbarProps extends ToolbarPubProps {
   store: StaticToolBarPluginStore;
   theme: StaticToolbarPluginTheme;
-  overrideContent?: ComponentType<DraftJsStyleButtonProps>;
+  overrideContent?: ComponentType<ToolbarChildrenProps>;
 }
 
 export default class Toolbar extends React.Component<ToolbarProps> {
@@ -34,14 +44,6 @@ export default class Toolbar extends React.Component<ToolbarProps> {
     overrideContent: undefined,
   } as ToolbarProps;
 
-  // UNSAFE_componentWillMount() {
-  //   this.props.store.subscribeToItem('selection', () => this.forceUpdate());
-  // }
-
-  // componentWillUnmount() {
-  //   this.props.store.unsubscribeFromItem('selection', () => this.forceUpdate());
-  // }
-
   /**
    * This can be called by a child in order to render custom content instead
    * of the regular structure. It's the responsibility of the callee to call
@@ -49,11 +51,11 @@ export default class Toolbar extends React.Component<ToolbarProps> {
    * @param {Component} overrideContent
    */
   onOverrideContent = (
-    overrideContent: ComponentType<DraftJsStyleButtonProps>
+    overrideContent: ComponentType<ToolbarChildrenProps> | undefined
   ): void => this.setState({ overrideContent });
 
   renderDefaultButtons = (
-    externalProps: DraftJsStyleButtonProps
+    externalProps: ToolbarChildrenProps
   ): ReactElement => (
     <div>
       <ItalicButton {...externalProps} />
@@ -66,7 +68,7 @@ export default class Toolbar extends React.Component<ToolbarProps> {
   render(): ReactElement {
     const { theme, store } = this.props;
     const { overrideContent: OverrideContent } = this.state;
-    const childrenProps = {
+    const childrenProps: ToolbarChildrenProps = {
       theme: theme.buttonStyles,
       getEditorState: store.getItem('getEditorState')!,
       setEditorState: store.getItem('setEditorState')!,

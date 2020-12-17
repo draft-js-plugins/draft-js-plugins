@@ -15,7 +15,9 @@ export interface ToolbarChildrenProps {
   theme: DraftJsButtonTheme;
   getEditorState: () => EditorState;
   setEditorState: (editorState: EditorState) => void;
-  onOverrideContent: (content: ComponentType<ToolbarChildrenProps>) => void;
+  onOverrideContent: (
+    content: ComponentType<ToolbarChildrenProps> | undefined
+  ) => void;
 }
 
 interface ToolbarProps {
@@ -68,7 +70,7 @@ export default class Toolbar extends React.Component<ToolbarProps> {
    * @param {Component} overrideContent
    */
   onOverrideContent = (
-    overrideContent: ComponentType<ToolbarChildrenProps>
+    overrideContent: ComponentType<ToolbarChildrenProps> | undefined
   ): void => {
     this.setState({ overrideContent });
   };
