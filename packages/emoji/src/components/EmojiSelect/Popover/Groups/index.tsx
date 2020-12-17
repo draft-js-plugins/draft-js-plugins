@@ -1,8 +1,17 @@
-import React, { Component, ComponentType, ReactElement, WheelEvent } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  ReactElement,
+  WheelEvent,
+} from 'react';
 import PropTypes from 'prop-types';
 import { Scrollbars, positionValues } from 'react-custom-scrollbars';
 import Group from './Group';
-import { EmojiImageProps, EmojiPluginTheme, EmojiSelectGroup } from '../../../../index';
+import {
+  EmojiImageProps,
+  EmojiPluginTheme,
+  EmojiSelectGroup,
+} from '../../../../index';
 import { EmojiStrategy } from '../../../../utils/createEmojisFromStrategy';
 import Entry from '../Entry';
 
@@ -94,7 +103,7 @@ export default class Groups extends Component<GroupsProps> {
       const containerTop =
         this.container!.getBoundingClientRect().top - scrollTop;
 
-      groups.forEach(group => {
+      groups.forEach((group) => {
         const groupTop = group.instance!.container!.getBoundingClientRect().top;
         const listTop = group.instance!.list!.getBoundingClientRect().top;
         group.top = groupTop - containerTop; // eslint-disable-line no-param-reassign
@@ -124,22 +133,23 @@ export default class Groups extends Component<GroupsProps> {
       <div
         className={theme.emojiSelectPopoverGroups}
         onWheel={this.onWheel}
-        ref={element => {
+        ref={(element) => {
           this.container = element;
         }}
       >
         <Scrollbars
+          className={theme.emojiSelectPopoverScrollbarOuter}
           onScrollFrame={this.onScroll}
           renderTrackVertical={() => (
             <div className={theme.emojiSelectPopoverScrollbar} />
           )}
-          renderThumbVertical={props => (
+          renderThumbVertical={(props) => (
             <div
               {...props}
               className={theme.emojiSelectPopoverScrollbarThumb}
             />
           )}
-          ref={element => {
+          ref={(element) => {
             this.scrollbars = element;
           }}
         >
@@ -154,7 +164,7 @@ export default class Groups extends Component<GroupsProps> {
               checkMouseDown={checkMouseDown}
               onEmojiSelect={onEmojiSelect}
               onEmojiMouseDown={onEmojiMouseDown}
-              ref={element => {
+              ref={(element) => {
                 group.instance = element; // eslint-disable-line no-param-reassign
               }}
               emojiImage={emojiImage}

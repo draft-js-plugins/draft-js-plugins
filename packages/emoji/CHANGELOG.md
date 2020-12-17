@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - use the setEditorState and getEditorState functions from props.store in EmojiSuggestionsPortal
 - update emojione to emoji-toolkit
 - remove defaultImagePath, defaultImageType and cacheBust to customize components
+- fixing warning on scrolling in emoji select [#1635](https://github.com/draft-js-plugins/draft-js-plugins/issues/1635)
 
 ## 2.1.3
 
