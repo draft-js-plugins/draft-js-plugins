@@ -1,6 +1,8 @@
 //test are currently disabled as mocha is removed and the component will be rewritten with react hooks
 
-test.skip('', () => {}); /*
+test.skip('', () => {
+  //nothing to do here for the moment
+}); /*
 
 /*
 import React, { Component } from 'react';
