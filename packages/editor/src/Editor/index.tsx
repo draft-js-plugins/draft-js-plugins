@@ -81,8 +81,9 @@ class PluginEditor extends Component<PluginEditorProps> {
 
     const plugins = [this.props, ...this.resolvePlugins()] as EditorPlugin[];
     plugins.forEach((plugin) => {
-      if (typeof plugin.initialize !== 'function') return;
-      plugin.initialize(this.getPluginMethods());
+      if (plugin && typeof plugin.initialize === 'function') {
+        plugin.initialize(this.getPluginMethods());
+      }
     });
   }
 

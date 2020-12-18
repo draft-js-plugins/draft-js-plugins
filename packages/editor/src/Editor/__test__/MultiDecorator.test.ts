@@ -1,5 +1,4 @@
 import Draft from 'draft-js';
-import { expect } from 'chai';
 import MultiDecorator from '../MultiDecorator';
 
 describe('MultiDecorator', () => {
@@ -43,10 +42,11 @@ describe('MultiDecorator', () => {
     thirdDecorator,
   ]);
 
-  it('should correctly decorate text', () => {
-    const out = decorator.getDecorations(contentBlock);
+  test('should correctly decorate text', () => {
+    const contentState = Draft.ContentState.createFromText('');
+    const out = decorator.getDecorations(contentBlock, contentState);
 
-    expect(out.toJS()).to.deep.equal([
+    expect(out.toJS()).toEqual([
       '0-0.0',
       '0-0.0',
       '0-0.0',
@@ -65,11 +65,11 @@ describe('MultiDecorator', () => {
     ]);
   });
 
-  it('should correctly resolve component', () => {
+  test('should correctly resolve component', () => {
     let fn = decorator.getComponentForKey('0-0.0');
-    expect(fn()).to.equal('a');
+    expect(fn()).toEqual('a');
 
     fn = decorator.getComponentForKey('1-0.0');
-    expect(fn()).to.equal('b');
+    expect(fn()).toEqual('b');
   });
 });

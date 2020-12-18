@@ -6,7 +6,9 @@ const KEY_SEPARATOR = '-';
 export default class MultiDecorator {
   decorators: Immutable.List<CompositeDecorator>;
 
-  constructor(decorators: Immutable.List<CompositeDecorator>) {
+  constructor(
+    decorators: Immutable.List<CompositeDecorator> | CompositeDecorator[]
+  ) {
     this.decorators = Immutable.List(decorators);
   }
 
