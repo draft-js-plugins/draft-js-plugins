@@ -44,7 +44,7 @@
     "dirty-chai": "^2.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.5",
-    "eslint": "^6.2.2",
+    "eslint": "^7.15.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-typescript": "2.3.0",
