@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - update emojione to emoji-toolkit
 - remove defaultImagePath, defaultImageType and cacheBust to customize components
 - fixing warning on scrolling in emoji select [#1635](https://github.com/draft-js-plugins/draft-js-plugins/issues/1635)
+- fixing issue with detecting : at end of word for emoji select [#1645](https://github.com/draft-js-plugins/draft-js-plugins/issues/1645)
 
 ## 2.1.3
 

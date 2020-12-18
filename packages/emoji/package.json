@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/emoji",
-  "version": "4.0.0-beta5",
+  "version": "4.0.0-beta6",
   "description": "Emoji Plugin for DraftJS",
   "author": {
     "name": "Nik Graf",
