@@ -65,7 +65,7 @@
     "prettier": "^2.2.1",
     "prismjs": "^1.21.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.34.2",
+    "rollup": "^2.35.1",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.23.1",
