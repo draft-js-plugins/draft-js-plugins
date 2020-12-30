@@ -47,7 +47,7 @@
     "react": "^16.3.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.165"
+    "@types/lodash": "^4.14.166"
   },
   "publishConfig": {
     "access": "public"
