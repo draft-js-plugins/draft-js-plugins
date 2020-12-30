@@ -59,7 +59,7 @@
     "linaria": "2.0.2",
     "lint-staged": "^10.5.3",
     "matched": "^5.0.1",
-    "mocha": "5.0.0",
+    "mocha": "8.2.1",
     "multer": "^1.3.0",
     "postcss-loader": "^4.1.0",
     "prettier": "^2.2.1",
