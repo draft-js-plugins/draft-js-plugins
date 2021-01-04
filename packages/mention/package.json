@@ -39,7 +39,7 @@
     "clsx": "^1.0.4",
     "immutable": "~3.8.2",
     "lodash": "^4.17.19",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.20",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
@@ -47,7 +47,7 @@
     "react": "^16.3.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.165"
+    "@types/lodash": "^4.14.167"
   },
   "publishConfig": {
     "access": "public"

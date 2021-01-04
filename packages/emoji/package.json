@@ -45,7 +45,7 @@
     "find-with-regex": "^1.1.3",
     "immutable": "~3.8.2",
     "lodash": "^4.17.19",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.20",
     "prop-types": "^15.5.8",
     "react-custom-scrollbars": "^4.2.0",
     "react-icons": "^4.1.0",
