@@ -20,13 +20,15 @@ import { handleKeyCommand } from './defaultKeyCommands';
 import { AriaProps, EditorPlugin, PluginFunctions, EditorRef } from '..';
 import { createPluginHooks } from './PluginHooks';
 
-export interface PluginEditorProps extends EditorProps {
+export interface PluginEditorProps extends Omit<EditorProps, 'keyBindingFn'> {
   plugins?: EditorPlugin[];
   defaultKeyBindings?: boolean;
   defaultKeyCommands?: boolean;
   defaultBlockRenderMap?: boolean;
 
-  keyBindingFn?(event: KeyboardEvent): DraftEditorCommand | null;
+  keyBindingFn?(
+    event: KeyboardEvent
+  ): DraftEditorCommand | string | null | undefined;
   decorators?: Array<CompositeDecorator | DraftDecorator>;
 }
 
@@ -275,9 +277,14 @@ class PluginEditor extends Component<PluginEditorProps> {
     const customStyleMap = this.resolveCustomStyleMap();
     const accessibilityProps = this.resolveAccessibilityProps();
     const blockRenderMap = this.resolveblockRenderMap();
+    const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-shadow
+      keyBindingFn, //removed as it will be overwritten by pluginHooks
+      ...editorProps
+    } = this.props;
     return (
       <Editor
-        {...this.props}
+        {...editorProps}
         {...accessibilityProps}
         {...pluginHooks}
         readOnly={this.props.readOnly || this.state.readOnly}

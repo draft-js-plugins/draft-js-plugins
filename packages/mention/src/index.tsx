@@ -196,7 +196,7 @@ export default (
     },
 
     keyBindingFn: (keyboardEvent) =>
-      (callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent)) || null,
+      callbacks.keyBindingFn && callbacks.keyBindingFn(keyboardEvent),
     handleReturn: (keyboardEvent) =>
       callbacks.handleReturn && callbacks.handleReturn(keyboardEvent),
     onChange: (editorState) => {
