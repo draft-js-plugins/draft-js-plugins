@@ -26,7 +26,6 @@
     "react-component"
   ],
   "scripts": {
-    "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require testHelper.js **/__test__/*.js",
     "clean": "yarn rimraf lib",
     "build": "yarn build:js && yarn build:dts && yarn build:css",
     "build:js": "yarn rollup --config ../../rollup.config.js",

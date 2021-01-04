@@ -1,6 +1,6 @@
 module.exports = {
   parser: 'babel-eslint',
-  plugins: ['mocha', '@typescript-eslint', 'react-hooks', 'no-only-tests'],
+  plugins: ['@typescript-eslint', 'react-hooks', 'no-only-tests'],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: 'module',
@@ -42,7 +42,6 @@ module.exports = {
   ],
   env: {
     browser: true,
-    mocha: true,
     jest: true,
     node: true,
   },
