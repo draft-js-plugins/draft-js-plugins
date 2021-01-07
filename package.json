@@ -26,7 +26,7 @@
     "@storybook/react": "^6.1.11",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
-    "@testing-library/react-hooks": "^3.7.0",
+    "@testing-library/react-hooks": "^4.0.0",
     "@testing-library/user-event": "^12.6.0",
     "@types/jest": "^26.0.19",
     "@typescript-eslint/eslint-plugin": "4.12.0",
