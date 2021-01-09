@@ -4,15 +4,17 @@ git branch -D tmp-gh-pages
 git checkout -b tmp-gh-pages
 rm .gitignore
 
-cd docs
-npm prune
-npm install
-npm run build
+rm -rf node_modules/.cache
 
-git add build
+cd packages/docs
+rm -rf out
+yarn next build
+yarn next export
+
+git add out
 git commit -am 'add files'
-cd ..
-git subtree split --prefix docs/build -b gh-pages
+cd ../..
+git subtree split --prefix packages/docs/out -b gh-pages
 git push -f origin gh-pages:gh-pages
 git checkout master
 git branch -D tmp-gh-pages
