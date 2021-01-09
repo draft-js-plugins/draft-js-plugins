@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.0.0
+
 - Add Arabic Support
 - Remove legacy lifecycle hooks
 - Require react 16.3 and above version

@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.0.0
+
 - Allow custom Url validation function
 - Migrate styles to linaria
 - Hide internals in single bundle

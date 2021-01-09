@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/divider",
-  "version": "4.0.0-beta2",
+  "version": "4.0.0",
   "description": "Divider Plugin for DraftJS",
   "author": {
     "name": "Ilkwon Sim",

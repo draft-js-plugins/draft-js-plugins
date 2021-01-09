@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/editor",
-  "version": "4.0.0-beta5",
+  "version": "4.0.0",
   "description": "Editor for DraftJS Plugins",
   "author": {
     "name": "Nik Graf",

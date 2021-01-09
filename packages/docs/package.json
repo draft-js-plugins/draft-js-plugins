@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/docs",
-  "version": "4.0.0-beta2",
+  "version": "4.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
