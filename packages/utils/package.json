@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/utils",
-  "version": "4.0.0-beta2",
+  "version": "4.0.0",
   "description": "Plugin utilities for draft js",
   "author": {
     "name": "Julian Krispel-Smasel",

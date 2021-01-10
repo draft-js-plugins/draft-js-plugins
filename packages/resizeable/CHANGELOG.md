@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.0.0
+
 - Hide internals in single bundle
 - Add esm support
 - Add support of optional initialWidth and initialHeight parameters when creating decorator [#1166](https://github.com/draft-js-plugins/draft-js-plugins/issues/1166)

@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/anchor",
-  "version": "4.0.0-beta2",
+  "version": "4.0.0",
   "description": "Link Plugin for DraftJS",
   "author": {
     "name": "Jan Amann",
@@ -37,7 +37,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@draft-js-plugins/utils": "^4.0.0-beta2",
+    "@draft-js-plugins/utils": "^4.0.0",
     "clsx": "^1.0.4",
     "prepend-http": "3",
     "prop-types": "^15.5.8",

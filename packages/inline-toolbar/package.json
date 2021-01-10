@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/inline-toolbar",
-  "version": "4.0.0-beta2",
+  "version": "4.0.0",
   "description": "Toolbar Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
@@ -35,8 +35,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@draft-js-plugins/buttons": "^4.0.0-beta2",
-    "@draft-js-plugins/utils": "^4.0.0-beta2"
+    "@draft-js-plugins/buttons": "^4.0.0",
+    "@draft-js-plugins/utils": "^4.0.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
