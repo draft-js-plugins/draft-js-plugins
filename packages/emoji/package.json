@@ -40,7 +40,7 @@
     "@draft-js-plugins/utils": "^4.0.0",
     "clsx": "^1.0.4",
     "emoji-toolkit": "^6.0.1",
-    "emojibase": "^5.0.0",
+    "emojibase": "^5.1.0",
     "emojibase-data": "^6.0.0",
     "find-with-regex": "^1.1.3",
     "immutable": "~3.8.2",
