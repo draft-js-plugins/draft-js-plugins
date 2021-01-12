@@ -5727,10 +5727,10 @@ emoji-toolkit@^6.0.1:
   resolved "https://registry.yarnpkg.com/emoji-toolkit/-/emoji-toolkit-6.0.1.tgz#7dec51f79dd44863d86c647a805ebc41cea82a5a"
   integrity sha512-QZZq0beHg753JxcBt89UBFqzwYNuMtXhNO+jY3viSAndewmn9biTE5glaro1RA0uWJ4hKqw4k1Mboe1M6sGkMA==
 
-emojibase-data@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-6.0.0.tgz#fce3b1bb4d2334b870504dd798acfe43512834bc"
-  integrity sha512-w8Krc5SI/BRY50YHhULAjakaQvrP1d1Srv758JZJWD6dXRpUTfl18RjcDex4Kp/OcduxcBHZNobQ+fmxbze2NA==
+emojibase-data@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-6.1.0.tgz#a8d5fc8ffa4d4bdae625c637f2dab03d656115bd"
+  integrity sha512-/q1v9O+ji387xeYCRKf/C/FTSlQTHklfEH+GvXK6fb/n01dO9lm1k/theE1ZpfljxogDCLNXo8vnXIOmjY18XA==
 
 emojibase@^5.1.0:
   version "5.1.0"
