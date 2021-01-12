@@ -127,7 +127,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   const store: EmojiPluginStore = {
     getEditorState: undefined,
     setEditorState: undefined,
-    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)(),
+    getPortalClientRect: (offsetKey) => clientRectFunctions.get(offsetKey)?.(),
     getAllSearches: () => searches,
     isEscaped: (offsetKey) => escapedSearch === offsetKey,
     escapeSearch: (offsetKey) => {

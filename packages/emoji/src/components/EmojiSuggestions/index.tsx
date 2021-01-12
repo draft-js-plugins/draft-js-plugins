@@ -88,6 +88,9 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this.popover!.style as { [x: string]: any })[key] = value;
         }
+      } else {
+        //close dropdown if no position could calculated
+        this.closeDropdown();
       }
     }
   }
