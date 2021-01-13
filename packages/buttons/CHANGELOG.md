@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+- Expose createBlockAlignmentButton util
+
 ## 4.0.0
 
 - Hide internals in single bundle

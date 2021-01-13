@@ -2,6 +2,7 @@ import { ComponentType } from 'react';
 import { EditorState } from 'draft-js';
 import createBlockStyleButton from './utils/createBlockStyleButton';
 import createInlineStyleButton from './utils/createInlineStyleButton';
+import createBlockAlignmentButton from './utils/createBlockAlignmentButton';
 import ItalicButton from './components/ItalicButton';
 import BoldButton from './components/BoldButton';
 import CodeButton from './components/CodeButton';
@@ -47,6 +48,7 @@ export type DraftJsBlockAlignmentButtonType = ComponentType<
 export type DraftJsStyleButtonType = ComponentType<DraftJsStyleButtonProps>;
 
 export {
+  createBlockAlignmentButton,
   createBlockStyleButton,
   createInlineStyleButton,
   ItalicButton,
