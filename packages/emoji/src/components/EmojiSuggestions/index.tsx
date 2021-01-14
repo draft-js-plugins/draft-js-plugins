@@ -311,7 +311,7 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
       if (keyboardEvent.keyCode === 9) {
         this.onTab(keyboardEvent);
       }
-      return null;
+      return undefined;
     };
 
     const descendant = `emoji-option-${this.key}-${this.state.focusedOptionIndex}`;
