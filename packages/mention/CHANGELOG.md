@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 4.0.2 
 
 - Fix key bindings issue if dropdown is open but there's no suggestion [#1696](https://github.com/draft-js-plugins/draft-js-plugins/issues/1696)
+- Fix popoverComponent types
 
 ## 4.0.1
 

@@ -4,6 +4,7 @@ import React, {
   ComponentType,
   KeyboardEvent,
   ReactElement,
+  RefAttributes,
 } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -32,12 +33,21 @@ export interface MentionSuggestionCallbacks {
   onChange?(editorState: EditorState): EditorState;
 }
 
+export interface PopoverComponentProps {
+  className: string;
+  role: string;
+  id: string;
+}
+
 export interface MentionSuggestionsPubProps {
   suggestions: MentionData[];
   open: boolean;
   onOpenChange(open: boolean): void;
   onSearchChange(event: { value: string }): void;
   onAddMention?(Mention: MentionData): void;
+  popoverComponent?: ReactElement<
+    PopoverComponentProps & RefAttributes<HTMLElement>
+  >;
   entryComponent?: ComponentType<EntryComponentProps>;
 }
 
@@ -50,7 +60,6 @@ export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   theme: MentionPluginTheme;
   mentionPrefix: string;
 
-  popoverComponent?: ReactElement;
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
 }
 
