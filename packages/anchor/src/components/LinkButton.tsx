@@ -49,10 +49,8 @@ const LinkButton = (props: LinkButtonParams): ReactElement => {
   };
 
   const { theme, onRemoveLinkAtSelection } = props;
-  const hasLinkSelected = EditorUtils.hasEntity(
-    props.store.getEditorState!(),
-    'LINK'
-  );
+  const store = props.store.getEditorState?.();
+  const hasLinkSelected = store ? EditorUtils.hasEntity(store, 'LINK') : false;
   const className = hasLinkSelected
     ? clsx(theme.button, theme.active)
     : theme.button;
