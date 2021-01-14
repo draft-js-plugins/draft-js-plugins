@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.0.1
+
+- fixing issue Failed to execute 'removeChild' on 'Node' [#1697](https://github.com/draft-js-plugins/draft-js-plugins/issues/1697)
+
 ## 4.0.0
 
 - Add Arabic Support

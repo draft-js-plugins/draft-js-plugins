@@ -5,10 +5,14 @@ import React, {
   ReactElement,
   ReactNode,
 } from 'react';
-import { EditorPlugin, AriaProps } from '@draft-js-plugins/editor';
+import {
+  EditorPlugin,
+  AriaProps,
+  EditorCommand,
+} from '@draft-js-plugins/editor';
 import { Map, List } from 'immutable';
 import keys from 'lodash/keys';
-import { DraftEditorCommand, DraftHandleValue, EditorState } from 'draft-js';
+import { DraftHandleValue, EditorState } from 'draft-js';
 import Emoji, { EmojiProps } from './components/Emoji';
 import EmojiSuggestions, {
   EmojiSuggestionsPubParams,
@@ -62,9 +66,7 @@ export interface EmojiSelectGroup {
 }
 
 export interface EmojiPLuginCallbacks {
-  keyBindingFn?(
-    event: KeyboardEvent
-  ): DraftEditorCommand | string | null | undefined;
+  keyBindingFn?(event: KeyboardEvent): EditorCommand | null | undefined;
   handleKeyCommand: undefined;
   handleReturn?(event: KeyboardEvent): DraftHandleValue;
   onChange?(editorState: EditorState): EditorState;
