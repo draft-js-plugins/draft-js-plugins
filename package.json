@@ -22,7 +22,7 @@
     "@babel/preset-typescript": "7.12.7",
     "@changesets/cli": "^2.13.0",
     "@rollup/plugin-babel": "^5.2.2",
-    "@rollup/plugin-node-resolve": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^11.1.0",
     "@storybook/react": "^6.1.14",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
