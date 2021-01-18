@@ -34,7 +34,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "immutable": "~3.8.2"
+    "immutable": "~3.7.4"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
