@@ -24,4 +24,4 @@ export default '[' +
   '\u0600-\u06ff' +
   // Vietnamese http://vietunicode.sourceforge.net/charset/
   '\u00C0-\u1EF9' +
-  ']*';
+  ']';
