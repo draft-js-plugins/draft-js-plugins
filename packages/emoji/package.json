@@ -32,7 +32,8 @@
     "build": "yarn build:js && yarn build:dts && yarn build:css",
     "build:js": "yarn rollup --config ../../rollup.config.js",
     "build:dts": "tsc -d --emitDeclarationOnly --declarationDir lib",
-    "build:css": "node ../../scripts/build-css.js $(pwd)"
+    "build:css": "node ../../scripts/build-css.js $(pwd)",
+    "test": "jest"
   },
   "license": "MIT",
   "dependencies": {

@@ -18,7 +18,7 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      babelConfig: true,
+      babelConfig: `${__dirname}/babel.config.js`,
     },
   },
 };
