@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.0
+
+- add "sideEffects": false for tree shaking
 - Fix regex to ignore trigger in text with supportWhitespace [#1723](https://github.com/draft-js-plugins/draft-js-plugins/issues/1723)
 
 ## 4.0.2

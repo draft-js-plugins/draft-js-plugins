@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.0
+
+- add "sideEffects": false for tree shaking
+
 ## 4.0.0
 
 - Change UNSAFE_componentWillReceiveProps to componentDidUpdate; fix https://reactjs.org/blog/2020/02/26/react-v16.13.0.html#warnings-for-some-updates-during-render

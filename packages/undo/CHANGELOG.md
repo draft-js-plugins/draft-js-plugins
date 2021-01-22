@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.0
+
+- add "sideEffects": false for tree shaking
+
 ## 4.0.0
 
 - Migrate styles to linaria
