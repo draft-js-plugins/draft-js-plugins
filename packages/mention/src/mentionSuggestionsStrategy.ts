@@ -42,9 +42,10 @@ export default (
   regExp: string
 ): ((contentBlock: ContentBlock, callback: FindWithRegexCb) => void) => {
   //eslint-disable-line
+  const escapedTrigger = escapeRegExp(trigger);
   const MENTION_REGEX = supportWhiteSpace
-    ? new RegExp(`${escapeRegExp(trigger)}(${regExp}|\\s){0,}`, 'g')
-    : new RegExp(`(\\s|^)${escapeRegExp(trigger)}${regExp}`, 'g');
+    ? new RegExp(`(?<!${regExp})${escapedTrigger}(${regExp}|\\s)*`, 'g')
+    : new RegExp(`(\\s|^)${escapedTrigger}${regExp}*`, 'g');
 
   return (contentBlock: ContentBlock, callback: FindWithRegexCb) => {
     findWithRegex(MENTION_REGEX, contentBlock, callback);
