@@ -30,7 +30,8 @@
     "clean": "yarn rimraf lib",
     "build": "yarn build:js && yarn build:dts",
     "build:js": "yarn rollup --config ../../rollup.config.js",
-    "build:dts": "tsc -d"
+    "build:dts": "tsc -d",
+    "test": "jest"
   },
   "license": "MIT",
   "dependencies": {
