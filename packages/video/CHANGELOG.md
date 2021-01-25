@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.0
+
+- add "sideEffects": false for tree shaking
+
 ## 4.0.0
 
 - Bugfix: check if entity key is null before attemmpting to get entity which was breaking interaction in the editor in some situations. https://github.com/draft-js-plugins/draft-js-plugins/issues/1122

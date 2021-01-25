@@ -1,6 +1,7 @@
 {
   "name": "@draft-js-plugins/counter",
-  "version": "4.0.0",
+  "version": "4.1.0",
+  "sideEffects": false,
   "description": "Counter Plugin for DraftJS",
   "author": {
     "name": "Adrian Li",

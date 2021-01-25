@@ -1,6 +1,7 @@
 {
   "name": "@draft-js-plugins/anchor",
-  "version": "4.0.1",
+  "version": "4.1.0",
+  "sideEffects": false,
   "description": "Link Plugin for DraftJS",
   "author": {
     "name": "Jan Amann",
