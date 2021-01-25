@@ -7,6 +7,7 @@ module.exports = {
   setupFilesAfterEnv: [`${__dirname}/jestHelper.js`],
   moduleFileExtensions: ['jsx', 'js', 'ts', 'tsx'],
   transform: {
+    '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
   moduleDirectories: ['node_modules', 'src'],
