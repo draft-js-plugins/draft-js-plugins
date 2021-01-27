@@ -100,6 +100,13 @@ export default class App extends Component {
             <span className={styles.paramName}>Link</span>
             <span>Specify the link component that will be rendered.</span>
           </div>
+          <div>
+            <span className={styles.paramName}>LinkButton</span>
+            <span>
+              Specify the button component that will be rendered to add and
+              remove links.
+            </span>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Link Plugin Example</Heading>
