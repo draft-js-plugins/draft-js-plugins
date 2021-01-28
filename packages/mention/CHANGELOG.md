@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.0
+
+- remove `entryComponent` from plugin config [#1736](https://github.com/draft-js-plugins/draft-js-plugins/issues/1736)
+
 ## 4.1.0
 
 - add "sideEffects": false for tree shaking
