@@ -11,8 +11,12 @@ import LinkButton, { LinkButtonPubParams } from './components/LinkButton';
 import linkStrategy from './linkStrategy';
 import { defaultTheme } from './theme';
 import type { AnchorPluginTheme } from './theme';
+import DefaultLinkButton, {
+  DefaultLinkButtonProps,
+} from './components/DefaultLinkButton';
 
 export type { AnchorPluginTheme } from './theme';
+export type { DefaultLinkButtonProps } from './components/DefaultLinkButton';
 
 export interface AnchorPluginConfig {
   theme?: AnchorPluginTheme;
@@ -20,6 +24,7 @@ export interface AnchorPluginConfig {
   Link?: ComponentType<AnchorHTMLAttributes<HTMLAnchorElement>>;
   linkTarget?: string;
   validateUrl?: (url: string) => boolean;
+  LinkButton?: ComponentType<DefaultLinkButtonProps>;
 }
 
 export type AnchorPlugin = EditorPlugin & {
@@ -38,6 +43,7 @@ export default (config: AnchorPluginConfig = {}): AnchorPlugin => {
     Link,
     linkTarget,
     validateUrl,
+    LinkButton: linkButton,
   } = config;
 
   const store: AnchorPluginStore = {
@@ -61,6 +67,7 @@ export default (config: AnchorPluginConfig = {}): AnchorPlugin => {
         )
       }
       validateUrl={validateUrl}
+      linkButton={linkButton || DefaultLinkButton}
     />
   );
 
