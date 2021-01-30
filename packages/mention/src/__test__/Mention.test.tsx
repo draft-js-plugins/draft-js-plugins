@@ -1,8 +1,10 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
-import { Map } from 'immutable';
 import { ContentState } from 'draft-js';
-import Mention from '../../Mention';
+import Mention from '../Mention';
+import { MentionData } from '..';
+
+const mentiont: MentionData = { name: 'mention' };
 
 describe('Mention', () => {
   it('renders an Anchor tag in case a link is provided', () => {
@@ -21,8 +23,12 @@ describe('Mention', () => {
       <Mention
         entityKey={entityKey}
         contentState={contentState}
-        theme={Map()}
-      />
+        className={'className'}
+        decoratedText={'decoratedText'}
+        mention={mentiont}
+      >
+        children
+      </Mention>
     );
     expect(screen.getByTestId('mentionLink')).toBeTruthy();
   });
@@ -41,8 +47,12 @@ describe('Mention', () => {
       <Mention
         entityKey={entityKey}
         contentState={contentState}
-        theme={Map()}
-      />
+        className={'className'}
+        decoratedText={'decoratedText'}
+        mention={mentiont}
+      >
+        children
+      </Mention>
     );
     expect(screen.getByTestId('mentionText')).toBeTruthy();
   });
@@ -61,8 +71,12 @@ describe('Mention', () => {
       <Mention
         entityKey={entityKey}
         contentState={contentState}
-        theme={Map()}
-      />
+        className={'className'}
+        decoratedText={'decoratedText'}
+        mention={mentiont}
+      >
+        children
+      </Mention>
     );
     expect(screen.getByTestId('mentionText')).toBeTruthy();
   });
