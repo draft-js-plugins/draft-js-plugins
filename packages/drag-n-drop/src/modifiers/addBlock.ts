@@ -10,7 +10,7 @@ import {
   ContentState,
 } from 'draft-js';
 
-export default function (
+export default function addBlock(
   editorState: EditorState,
   selection: SelectionState,
   type: string,

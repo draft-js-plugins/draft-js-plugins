@@ -44,12 +44,12 @@ interface StoreItemMap {
 
 export type AlignmentPluginStore = Store<StoreItemMap>;
 
-export default function (
+export default (
   config: AlignmentPluginConfig = {}
 ): EditorPlugin & {
   decorator: ReturnType<typeof createDecorator>;
   AlignmentTool: ComponentType;
-} {
+} => {
   const store = createStore<StoreItemMap>({
     isVisible: false,
   });
@@ -85,4 +85,4 @@ export default function (
     },
     AlignmentTool: DecoratedAlignmentTool,
   };
-}
+};
