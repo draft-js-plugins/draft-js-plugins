@@ -1,6 +1,6 @@
 import { ContentState, Modifier, SelectionState } from 'draft-js';
 
-export default function (
+export default function removeBlock(
   contentState: ContentState,
   blockKey: string
 ): ContentState {

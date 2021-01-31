@@ -2,7 +2,7 @@ import { Modifier, EditorState, SelectionState } from 'draft-js';
 
 /* NOT USED at the moment, but might be valuable if we want to fix atomic block behaviour */
 
-export default function (
+export default function removeBlock(
   editorState: EditorState,
   blockKey: string
 ): EditorState {
