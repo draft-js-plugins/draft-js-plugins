@@ -42,7 +42,7 @@ export interface MentionSuggestionsPubProps {
   suggestions: MentionData[];
   open: boolean;
   onOpenChange(open: boolean): void;
-  onSearchChange(event: { value: string }): void;
+  onSearchChange(event: { trigger: string, value: string }): void;
   onAddMention?(Mention: MentionData): void;
   popoverComponent?: ReactElement<
     PopoverComponentProps & RefAttributes<HTMLElement>
@@ -80,6 +80,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
   popover?: HTMLElement;
   activeOffsetKey?: string;
   lastSearchValue?: string;
+  lastActiveTrigger? :string = '';
   lastSelectionIsInsideWord?: Immutable.Iterable<string, boolean>;
 
   constructor(props: MentionSuggestionsProps) {
@@ -215,14 +216,14 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
 
     // make sure the escaped search is reseted in the cursor since the user
     // already switched to another mention search
-    if (!this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (!this.props.store.isEscaped(this.activeOffsetKey || '')) {
       this.props.store.resetEscapedSearch();
     }
 
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will show again.
-    if (!this.props.open && !this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (!this.props.open && !this.props.store.isEscaped(this.activeOffsetKey || '')) {
       this.openDropdown();
     }
 
@@ -287,7 +288,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
   onEscape = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
 
-    this.props.store.escapeSearch(this.activeOffsetKey);
+    this.props.store.escapeSearch(this.activeOffsetKey || '');
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
@@ -310,7 +311,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       this.props.store.getEditorState!(),
       mention,
       this.props.mentionPrefix,
-      this.lastActiveTrigger,
+      this.lastActiveTrigger || '',
       this.props.entityMutability
     );
     this.props.store.setEditorState!(newEditorState);
