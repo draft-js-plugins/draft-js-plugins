@@ -1,5 +1,5 @@
 import { EditorState } from 'draft-js';
-import React, { ReactElement, ReactNode, useEffect, useRef } from 'react';
+import React, { ReactElement, ReactNode, useEffect, useLayoutEffect, useRef } from 'react';
 import { MentionPluginStore } from '.';
 
 export interface MentionSuggestionsPortalProps {
@@ -36,14 +36,12 @@ export default function MentionSuggestionsPortal(
   // then properly mount and register after. Prior to this change,
   // UNSAFE_componentWillMount would not fire after componentWillUnmount even though it
   // was still in the DOM, so it wasn't re-registering the offsetkey.
-  useEffect(() => {
+  useLayoutEffect(() => {
     props.store.register(props.offsetKey);
     props.store.setIsOpened(true);
     updatePortalClientRect(props);
-
     // trigger a re-render so the MentionSuggestions becomes active
     props.store.setEditorState!(props.store.getEditorState!());
-
     return () => {
       props.store.unregister(props.offsetKey);
       props.store.setIsOpened(false);
