@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+### Added
+
+- add onOpen and onClose callback props to EmojiSelect
+
 ## 4.1.0
 
 - add "sideEffects": false for tree shaking
