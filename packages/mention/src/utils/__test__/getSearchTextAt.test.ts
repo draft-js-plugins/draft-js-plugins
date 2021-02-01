@@ -1,6 +1,6 @@
 import getSearchTextAt from '../getSearchTextAt';
 
-const trigger = '@';
+const trigger = ['@'];
 
 describe('getSearchTextAt', () => {
   it('finds the matching string following trigger', () => {
@@ -31,6 +31,6 @@ describe('getSearchTextAt', () => {
       begin: 0,
       end: 3,
     };
-    expect(getSearchTextAt('Max', 3, '')).toEqual(expected);
+    expect(getSearchTextAt('Max', 3, [''])).toEqual(expected);
   });
 });

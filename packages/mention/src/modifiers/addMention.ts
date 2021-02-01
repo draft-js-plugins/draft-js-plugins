@@ -18,11 +18,9 @@ export default function addMention(
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
   const currentSelectionState = editorState.getSelection();
-  const { begin, end } = getSearchText(
-    editorState,
-    currentSelectionState,
-    mentionTrigger
-  );
+  const { begin, end } = getSearchText(editorState, currentSelectionState, [
+    mentionTrigger,
+  ]);
 
   // get selection of the @mention search text
   const mentionTextSelection = currentSelectionState.merge({

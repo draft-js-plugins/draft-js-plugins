@@ -9,12 +9,19 @@ export interface SearchTextAtResult {
 export default function getSearchTextAt(
   blockText: string,
   position: number,
-  trigger: string
+  triggers: string[]
 ): SearchTextAtResult {
   const str = blockText.substr(0, position);
-  const begin = trigger.length === 0 ? 0 : str.lastIndexOf(trigger);
+  const { begin, index } = triggers
+    .map((trigger, triggerIndex) => ({
+      begin: trigger.length === 0 ? 0 : str.lastIndexOf(trigger),
+      index: triggerIndex,
+    }))
+    .reduce((left, right) => (left.begin >= right.begin ? left : right));
   const matchingString =
-    trigger.length === 0 ? str : str.slice(begin + trigger.length);
+    triggers[index].length === 0
+      ? str
+      : str.slice(begin + triggers[index].length);
   const end = str.length;
 
   return {

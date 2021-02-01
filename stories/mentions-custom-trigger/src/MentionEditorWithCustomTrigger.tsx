@@ -7,20 +7,22 @@ import createMentionPlugin, {
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin({ mentionTrigger: '(' });
+const mentionPlugin = createMentionPlugin({ mentionTriggers: ['@', '#'] });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 const SimpleMentionEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
-      ContentState.createFromText('Type ( to make the mention dropdown appear')
+      ContentState.createFromText(
+        'Type @ or # to make the mention dropdown appear'
+      )
     )
   );
   const editor = useRef();
 
   const [open, setOpen] = useState(false);
-  const [suggestions, setSuggestions] = useState(mentions);
+  const [suggestions, setSuggestions] = useState(mentions['@']);
 
   const onChange = (value): void => {
     setEditorState(value);
@@ -34,8 +36,8 @@ const SimpleMentionEditor = (): ReactElement => {
     setOpen(newOpen);
   };
 
-  const onSearchChange = ({ value }): void => {
-    setSuggestions(defaultSuggestionsFilter(value, mentions));
+  const onSearchChange = ({ trigger, value }): void => {
+    setSuggestions(defaultSuggestionsFilter(value, trigger, mentions));
   };
 
   const onAddMention = (): void => {

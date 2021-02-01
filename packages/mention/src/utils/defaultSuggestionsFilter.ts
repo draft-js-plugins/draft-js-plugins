@@ -4,10 +4,12 @@ import { MentionData } from '..';
 
 const defaultSuggestionsFilter = (
   searchValue: string,
-  suggestions: MentionData[]
+  trigger: string,
+  suggestions: any
 ): MentionData[] => {
   const value = searchValue.toLowerCase();
-  const filteredSuggestions = suggestions.filter(
+  const triggerSuggestions: MentionData[] = suggestions[trigger];
+  const filteredSuggestions = triggerSuggestions.filter(
     (suggestion) => !value || suggestion.name.toLowerCase().indexOf(value) > -1
   );
   const length =

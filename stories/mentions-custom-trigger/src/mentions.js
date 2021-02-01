@@ -33,4 +33,16 @@ const mentions = [
   },
 ];
 
-export default mentions;
+const topics = [
+  {
+    name: 'general',
+  },
+  {
+    name: 'random',
+  },
+  {
+    name: 'signal',
+  },
+];
+
+export default { '@': mentions, '#': topics };
