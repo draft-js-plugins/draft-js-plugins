@@ -8,7 +8,7 @@ const defaultSuggestionsFilter = (
   trigger?: string,
 ): MentionData[] => {
   const value = searchValue.toLowerCase();
-  const triggerSuggestions: MentionData[] = suggestions[trigger];
+  const triggerSuggestions: MentionData[] = trigger ? suggestions[trigger] : suggestions;
   const filteredSuggestions = triggerSuggestions.filter(
     (suggestion) => !value || suggestion.name.toLowerCase().indexOf(value) > -1
   );
