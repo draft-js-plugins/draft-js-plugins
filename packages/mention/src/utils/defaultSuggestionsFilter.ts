@@ -4,8 +4,8 @@ import { MentionData } from '..';
 
 const defaultSuggestionsFilter = (
   searchValue: string,
-  trigger: string,
-  suggestions: any
+  suggestions: any,
+  trigger?: string,
 ): MentionData[] => {
   const value = searchValue.toLowerCase();
   const triggerSuggestions: MentionData[] = suggestions[trigger];

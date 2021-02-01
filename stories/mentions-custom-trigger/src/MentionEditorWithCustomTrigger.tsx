@@ -37,7 +37,7 @@ const SimpleMentionEditor = (): ReactElement => {
   };
 
   const onSearchChange = ({ trigger, value }): void => {
-    setSuggestions(defaultSuggestionsFilter(value, trigger, mentions));
+    setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
   };
 
   const onAddMention = (): void => {

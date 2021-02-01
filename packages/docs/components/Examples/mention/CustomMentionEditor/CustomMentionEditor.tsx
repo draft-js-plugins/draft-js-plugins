@@ -115,8 +115,8 @@ export default function CustomMentionEditor(): ReactElement {
   const onOpenChange = useCallback((_open: boolean) => {
     setOpen(_open);
   }, []);
-  const onSearchChange = useCallback(({ value }: { value: string }) => {
-    setSuggestions(defaultSuggestionsFilter(value, mentions));
+  const onSearchChange = useCallback(({ value }: { trigger: string, value: string }) => {
+    setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
   }, []);
 
   return (
