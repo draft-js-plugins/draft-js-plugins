@@ -17,7 +17,7 @@ import {
 } from '../../index';
 
 const emojis = createEmojisFromStrategy();
-// export type EmojiSelectPubParams = Record<string, unknown>;
+
 export interface EmojiSelectPubParams {
   onClose?(): void;
   onOpen?(): void;
@@ -113,8 +113,6 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       selectButtonContent,
       toneSelectOpenDelay,
       emojiImage,
-      onOpen,
-      onClose
     } = this.props;
     const buttonClassName = this.state.isOpen
       ? theme.emojiSelectButtonPressed
