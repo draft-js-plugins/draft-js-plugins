@@ -33,7 +33,7 @@ export default function RemoteMentionEditor(): ReactElement {
     setOpen(_open);
   }, []);
   const onSearchChange = useCallback(
-    ({ trigger, value }: { trigger: string; value: string }) => {
+    ({ value }: { value: string }) => {
       // An import statment would break server-side rendering.
       require('whatwg-fetch'); // eslint-disable-line global-require
 
