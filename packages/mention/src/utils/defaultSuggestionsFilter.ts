@@ -5,10 +5,13 @@ import { MentionData } from '..';
 const defaultSuggestionsFilter = (
   searchValue: string,
   suggestions: any,
-  trigger?: string,
+  trigger?: string
 ): MentionData[] => {
   const value = searchValue.toLowerCase();
-  const triggerSuggestions: MentionData[] = trigger ? suggestions[trigger] : suggestions;
+  const triggerSuggestions: MentionData[] =
+    trigger && typeof suggestions === 'object'
+      ? suggestions[trigger]
+      : suggestions;
   const filteredSuggestions = triggerSuggestions.filter(
     (suggestion) => !value || suggestion.name.toLowerCase().indexOf(value) > -1
   );
