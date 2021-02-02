@@ -17,7 +17,11 @@ import {
 } from '../../index';
 
 const emojis = createEmojisFromStrategy();
-export type EmojiSelectPubParams = Record<string, unknown>;
+
+export interface EmojiSelectPubParams {
+  onClose?(): void;
+  onOpen?(): void;
+}
 
 interface EmojiSelectParams extends EmojiSelectPubParams {
   theme: EmojiPluginTheme;
@@ -84,6 +88,9 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
         isOpen: true,
       });
     }
+    if (this.props.onOpen) {
+      this.props.onOpen();
+    }
   };
 
   // Close the popover
@@ -92,6 +99,9 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       this.setState({
         isOpen: false,
       });
+    }
+    if (this.props.onClose) {
+      this.props.onClose();
     }
   };
 

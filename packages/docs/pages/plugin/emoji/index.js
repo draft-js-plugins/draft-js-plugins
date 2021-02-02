@@ -436,6 +436,23 @@ export default class App extends Component {
               </span>
             </div>
           </div>
+          <Heading level={3}>EmojiSelect</Heading>
+          <div>
+            The EmojiSelect is another component of the plugin. It takes the
+            following props:
+            <div className={styles.paramBig}>
+              <span className={styles.paramName}>onOpen</span>
+              <span>
+                A callback which is triggered whenever the emoji popover opens.
+              </span>
+            </div>
+            <div className={styles.paramBig}>
+              <span className={styles.paramName}>onClose</span>
+              <span>
+                A callback which is triggered whenever the emoji popover closes.
+              </span>
+            </div>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Emoji Example</Heading>
