@@ -51,7 +51,7 @@
     "lint-staged": "^10.5.3",
     "matched": "^5.0.1",
     "multer": "^1.3.0",
-    "postcss-loader": "^4.2.0",
+    "postcss-loader": "^5.0.0",
     "prettier": "^2.2.1",
     "prismjs": "^1.23.0",
     "rimraf": "^3.0.2",
