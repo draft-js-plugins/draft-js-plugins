@@ -2,6 +2,9 @@ import { EditorState } from 'draft-js';
 import React, { ReactElement, ReactNode, useEffect, useLayoutEffect, useRef } from 'react';
 import { MentionPluginStore } from '.';
 
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 export interface MentionSuggestionsPortalProps {
   offsetKey: string;
   store: MentionPluginStore;
@@ -36,7 +39,7 @@ export default function MentionSuggestionsPortal(
   // then properly mount and register after. Prior to this change,
   // UNSAFE_componentWillMount would not fire after componentWillUnmount even though it
   // was still in the DOM, so it wasn't re-registering the offsetkey.
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     props.store.register(props.offsetKey);
     props.store.setIsOpened(true);
     updatePortalClientRect(props);
