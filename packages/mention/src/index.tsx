@@ -36,6 +36,10 @@ export interface MentionData {
   [x: string]: any;
 }
 
+export interface MultiMentionData {
+  [fieldName: string]: MentionData[];
+}
+
 export interface MentionPluginStore {
   setEditorState?(editorState: EditorState): void;
   getEditorState?(): EditorState;

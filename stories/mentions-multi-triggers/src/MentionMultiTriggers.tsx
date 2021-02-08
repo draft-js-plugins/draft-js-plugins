@@ -7,7 +7,7 @@ import createMentionPlugin, {
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin({ mentionTrigger: '(' });
+const mentionPlugin = createMentionPlugin({ mentionTriggers: ['@', '('] });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
@@ -15,7 +15,7 @@ const SimpleMentionEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
       ContentState.createFromText(
-        'Type @ or # to make the mention dropdown appear'
+        'Type @ or ( to make the mention dropdown appear'
       )
     )
   );

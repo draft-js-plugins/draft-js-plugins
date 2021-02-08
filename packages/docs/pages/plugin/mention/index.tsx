@@ -27,6 +27,11 @@ import customComponentExampleCode from '!!raw-loader!../../../components/Example
 // eslint-disable-next-line import/no-unresolved
 import customComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import multiComponentExampleCode from '!!raw-loader!../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers';
+// eslint-disable-next-line import/no-unresolved
+import multiComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers.module.css';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/mention/webpackConfig';
 
 import styles from './Mention.module.css';
@@ -45,6 +50,8 @@ import CustomMentionEditor from '../../../components/Examples/mention/CustomMent
 import RemoteMentionEditor from '../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
 // eslint-disable-next-line import/no-duplicates
 import CustomComponentMentionEditor from '../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import MultiMentionTriggers from '../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default function Mention(): ReactElement {
@@ -198,6 +205,14 @@ export default function Mention(): ReactElement {
           </span>
         </div>
         <div className={styles.param}>
+          <span className={styles.paramName}>mentionTriggers</span>
+          <span>
+            Allows you to provide a array custom character to change when the search
+            is triggered. It does support a multi-charater mentionTrigger.
+            You can use it like `mentionTriggers: ['@', '(']`.
+          </span>
+        </div>
+        <div className={styles.param}>
           <span className={styles.paramName}>mentionRegExp</span>
           <span>
             Allows you to overwrite the regular expression for initiating the
@@ -347,6 +362,15 @@ export default function Mention(): ReactElement {
           name="CustomComponentMentionEditor.tsx"
         />
         <Code code={customComponentExampleStylesCode} name="editorStyles.css" />
+      </Container>
+      <Container>
+        <Heading level={2}>Multi Mention Triggers</Heading>
+        <MultiMentionTriggers />
+        <Code
+          code={(multiComponentExampleCode as unknown) as string}
+          name="MultiMentionTriggers.tsx"
+        />
+        <Code code={multiComponentExampleStylesCode} name="editorStyles.css" />
       </Container>
     </PluginPageFrame>
   );
