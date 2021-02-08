@@ -33,6 +33,7 @@ const SimpleMentionEditor = (): ReactElement => {
   }, []);
   const onSearchChange = useCallback(
     ({ trigger, value }: { trigger: string; value: string }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
     },
     []
