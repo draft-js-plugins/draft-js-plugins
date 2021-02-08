@@ -18,6 +18,10 @@ const SimpleMentionEditor = (): ReactElement => {
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions['@']);
 
+  const onChange = (value: EditorState) => {
+    setEditorState(value);
+  }
+
   const onOpenChange = useCallback((_open: boolean) => {
     setOpen(_open);
   }, []);
@@ -41,7 +45,7 @@ const SimpleMentionEditor = (): ReactElement => {
     >
       <Editor
         editorState={editorState}
-        onChange={setEditorState}
+        onChange={onChange}
         plugins={plugins}
         ref={ref}
       />
