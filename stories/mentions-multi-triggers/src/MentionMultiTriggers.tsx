@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState, useCallback } from 'react';
 import { EditorState, ContentState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import createMentionPlugin, {
@@ -12,6 +12,7 @@ const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
 const SimpleMentionEditor = (): ReactElement => {
+  const ref = useRef<Editor>(null);
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
       ContentState.createFromText(
@@ -19,40 +20,36 @@ const SimpleMentionEditor = (): ReactElement => {
       )
     )
   );
-  const editor = useRef();
 
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions['@']);
 
-  const onChange = (value): void => {
-    setEditorState(value);
-  };
-
-  const focus = (): void => {
-    editor.current.focus();
-  };
-
-  const onOpenChange = (newOpen): void => {
-    setOpen(newOpen);
-  };
-
-  const onSearchChange = ({ trigger, value }): void => {
-    setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
-  };
+  const onOpenChange = useCallback((_open: boolean) => {
+    setOpen(_open);
+  }, []);
+  const onSearchChange = useCallback(
+    ({ trigger, value }: { trigger: string; value: string }) => {
+      setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
+    },
+    []
+  );
 
   const onAddMention = (): void => {
     // get the mention object selected
   };
 
   return (
-    <div className={editorStyles.editor} onClick={focus}>
+    <div
+      className={editorStyles.editor}
+      onClick={() => {
+        ref.current!.focus();
+      }}
+    >
       <Editor
         editorState={editorState}
-        onChange={onChange}
+        onChange={setEditorState}
         plugins={plugins}
-        ref={(element) => {
-          editor.current = element;
-        }}
+        ref={ref}
       />
       <MentionSuggestions
         open={open}
