@@ -18,9 +18,9 @@ const SimpleMentionEditor = (): ReactElement => {
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions['@']);
 
-  const onChange = (value: EditorState) => {
+  const onChange = (value: EditorState): void => {
     setEditorState(value);
-  }
+  };
 
   const onOpenChange = useCallback((_open: boolean) => {
     setOpen(_open);
