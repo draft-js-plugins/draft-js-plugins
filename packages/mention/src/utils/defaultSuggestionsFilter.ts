@@ -11,7 +11,7 @@ const defaultSuggestionsFilter = (
   const triggerSuggestions: MentionData[] =
     trigger && !Array.isArray(suggestions)
       ? suggestions[trigger]
-      : suggestions;
+      : suggestions as MentionData[];
   const filteredSuggestions = triggerSuggestions.filter(
     (suggestion) => !value || suggestion.name.toLowerCase().indexOf(value) > -1
   );
