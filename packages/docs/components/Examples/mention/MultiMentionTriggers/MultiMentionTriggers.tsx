@@ -18,10 +18,6 @@ const SimpleMentionEditor = (): ReactElement => {
   const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions['@']);
 
-  const onChange = (value: EditorState): void => {
-    setEditorState(value);
-  };
-
   const onOpenChange = useCallback((_open: boolean) => {
     setOpen(_open);
   }, []);
@@ -32,10 +28,6 @@ const SimpleMentionEditor = (): ReactElement => {
     []
   );
 
-  const onAddMention = (): void => {
-    // get the mention object selected
-  };
-
   return (
     <div
       className={editorStyles.editor}
@@ -45,7 +37,7 @@ const SimpleMentionEditor = (): ReactElement => {
     >
       <Editor
         editorState={editorState}
-        onChange={onChange}
+        onChange={setEditorState}
         plugins={plugins}
         ref={ref}
       />
@@ -54,7 +46,9 @@ const SimpleMentionEditor = (): ReactElement => {
         onOpenChange={onOpenChange}
         onSearchChange={onSearchChange}
         suggestions={suggestions}
-        onAddMention={onAddMention}
+        onAddMention={() => {
+          // get the mention object selected
+        }}
       />
     </div>
   );
