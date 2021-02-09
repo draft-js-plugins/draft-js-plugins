@@ -8,10 +8,10 @@ const defaultSuggestionsFilter = (
   trigger?: string
 ): MentionData[] => {
   const value = searchValue.toLowerCase();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const triggerSuggestions =
-    trigger && !Array.isArray(suggestions) ? suggestions[trigger] : suggestions;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const triggerSuggestions: MentionData[] =
+    trigger && !Array.isArray(suggestions)
+      ? suggestions[trigger]
+      : suggestions as MentionData[];
   const filteredSuggestions = triggerSuggestions.filter(
     (suggestion) => !value || suggestion.name.toLowerCase().indexOf(value) > -1
   );

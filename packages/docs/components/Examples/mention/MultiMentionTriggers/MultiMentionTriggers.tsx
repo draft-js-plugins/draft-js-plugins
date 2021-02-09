@@ -11,12 +11,21 @@ const mentionPlugin = createMentionPlugin({ mentionTriggers: ['@', '('] });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
+interface MentionData {
+  link?: string;
+  avatar?: string;
+  name: string;
+  id?: null | string | number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [x: string]: any;
+}
+
 const SimpleMentionEditor = (): ReactElement => {
   const ref = useRef<Editor>(null);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const [open, setOpen] = useState(false);
-  const [suggestions, setSuggestions] = useState(mentions['@']);
+  const [suggestions, setSuggestions] = useState<MentionData[]>(mentions['@']);
 
   const onChange = useCallback((_editorState: EditorState) => {
     setEditorState(_editorState);
@@ -26,7 +35,7 @@ const SimpleMentionEditor = (): ReactElement => {
   }, []);
   const onSearchChange = useCallback(
     ({ trigger, value }: { trigger: string; value: string }) => {
-      setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
+      setSuggestions(defaultSuggestionsFilter(value, mentions, trigger) as MentionData[]);
     },
     []
   );
