@@ -15,7 +15,7 @@ const SimpleMentionEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(
       ContentState.createFromText(
-        'Type @ or # to make the mention dropdown appear'
+        'Type ( to make the mention dropdown appear'
       )
     )
   );
