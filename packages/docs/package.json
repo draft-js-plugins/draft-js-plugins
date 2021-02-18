@@ -13,13 +13,13 @@
     "animateplus": "1.4.0",
     "clsx": "^1.1.1",
     "immutable": "^4.0.0-rc.12",
-    "next": "10.0.6",
+    "next": "10.0.7",
     "prismjs": "^1.23.0",
     "react-share": "^4.3.1",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@types/prismjs": "^1.16.2",
+    "@types/prismjs": "^1.16.3",
     "raw-loader": "^4.0.2"
   }
 }
