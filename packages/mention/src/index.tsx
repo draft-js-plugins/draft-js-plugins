@@ -19,7 +19,6 @@ import { defaultTheme, MentionPluginTheme } from './theme';
 import mentionStrategy from './mentionStrategy';
 import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
-import { EntryComponentProps } from './MentionSuggestions/Entry/Entry';
 
 export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
 
@@ -66,7 +65,6 @@ export interface MentionPluginConfig {
   mentionTriggers?: string[];
   mentionRegExp?: string;
   supportWhitespace?: boolean;
-  entryComponent?: ComponentType<EntryComponentProps>;
 }
 
 interface ClientRectFunction {
@@ -146,7 +144,6 @@ export default (
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
     supportWhitespace = false,
-    entryComponent,
   } = config;
   let { mentionTriggers } = config;
   if (!mentionTriggers) {
@@ -161,7 +158,6 @@ export default (
     positionSuggestions,
     mentionTriggers,
     mentionPrefix,
-    entryComponent,
   };
   const DecoratedMentionSuggestionsComponent = (
     props: MentionSuggestionsPubProps
