@@ -42,7 +42,7 @@ export interface MentionSuggestionsPubProps {
   suggestions: MentionData[];
   open: boolean;
   onOpenChange(open: boolean): void;
-  onSearchChange(event: { trigger: string, value: string }): void;
+  onSearchChange(event: { trigger: string; value: string }): void;
   onAddMention?(Mention: MentionData): void;
   popoverComponent?: ReactElement<
     PopoverComponentProps & RefAttributes<HTMLElement>
@@ -54,7 +54,6 @@ export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   callbacks: MentionSuggestionCallbacks;
   store: MentionPluginStore;
   positionSuggestions: PositionSuggestionsFn;
-  mentionTrigger: string;
   ariaProps: AriaProps;
   theme: MentionPluginTheme;
   mentionPrefix: string;
@@ -80,7 +79,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
   popover?: HTMLElement;
   activeOffsetKey?: string;
   lastSearchValue?: string;
-  lastActiveTrigger? :string = '';
+  lastActiveTrigger?: string = '';
   lastSelectionIsInsideWord?: Immutable.Iterable<string, boolean>;
 
   constructor(props: MentionSuggestionsProps) {
@@ -184,10 +183,16 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
             .map((trigger) =>
               // @ is the first character
               (start === 0 &&
-                blockText.substr(0, trigger.length) === trigger) ||
-              // @ is in the text or at the end
-              (blockText.substr(start + 1, trigger.length) === trigger &&
-                anchorOffset > start + trigger.length &&
+                blockText.substr(0, trigger.length) === trigger &&
+                anchorOffset <= end) ||
+              // @ is in the text or at the end, multi triggers
+              (this.props.mentionTriggers.length > 1 &&
+                anchorOffset >= start + trigger.length &&
+                blockText.substr(start + 1, trigger.length) === trigger &&
+                anchorOffset <= end) ||
+              // @ is in the text or at the end, single trigger
+              (this.props.mentionTriggers.length === 1 &&
+                anchorOffset >= start + trigger.length &&
                 anchorOffset <= end)
                 ? trigger
                 : undefined
@@ -223,7 +228,10 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will show again.
-    if (!this.props.open && !this.props.store.isEscaped(this.activeOffsetKey || '')) {
+    if (
+      !this.props.open &&
+      !this.props.store.isEscaped(this.activeOffsetKey || '')
+    ) {
       this.openDropdown();
     }
 

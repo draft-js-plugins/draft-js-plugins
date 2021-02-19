@@ -159,7 +159,6 @@ export default (
     store,
     entityMutability,
     positionSuggestions,
-    mentionTrigger: '',
     mentionTriggers,
     mentionPrefix,
     entryComponent,
