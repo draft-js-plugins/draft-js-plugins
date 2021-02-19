@@ -7,7 +7,7 @@ import createMentionPlugin, {
 import editorStyles from './editorStyles.css';
 import mentions from './mentions';
 
-const mentionPlugin = createMentionPlugin({ mentionTriggers: ['@', '('] });
+const mentionPlugin = createMentionPlugin({ mentionTrigger: ['@', '('] });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 

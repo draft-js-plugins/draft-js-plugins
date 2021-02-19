@@ -205,11 +205,11 @@ export default function Mention(): ReactElement {
           </span>
         </div>
         <div className={styles.param}>
-          <span className={styles.paramName}>mentionTriggers</span>
+          <span className={styles.paramName}>mentionTrigger</span>
           <span>
-            Allows you to provide a array custom character to change when the search
-            is triggered. It does support a multi-charater mentionTrigger.
-            You can use it like `mentionTriggers: ['@', '(']`.
+            Allows you to provide a array custom character to change when the
+            search is triggered. It does support a multi-charater
+            mentionTrigger. You can use it like `mentionTrigger: ['@', '(']`.
           </span>
         </div>
         <div className={styles.param}>

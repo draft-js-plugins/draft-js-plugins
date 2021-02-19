@@ -61,8 +61,7 @@ export interface MentionPluginConfig {
   mentionComponent?: ComponentType<SubMentionComponentProps>;
   mentionSuggestionsComponent?: ComponentType;
   entityMutability?: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
-  mentionTrigger?: string;
-  mentionTriggers?: string[];
+  mentionTrigger?: string | string[];
   mentionRegExp?: string;
   supportWhitespace?: boolean;
 }
@@ -145,10 +144,8 @@ export default (
     mentionRegExp = defaultRegExp,
     supportWhitespace = false,
   } = config;
-  let { mentionTriggers } = config;
-  if (!mentionTriggers) {
-    mentionTriggers = [mentionTrigger];
-  }
+  const mentionTriggers: string[] =
+    typeof mentionTrigger === 'string' ? [mentionTrigger] : mentionTrigger;
   const mentionSearchProps = {
     ariaProps,
     callbacks,

@@ -7,7 +7,7 @@ import createMentionPlugin, {
 import editorStyles from './MultiMentionTriggers.module.css';
 import mentions from './Mentions';
 
-const mentionPlugin = createMentionPlugin({ mentionTriggers: ['@', '('] });
+const mentionPlugin = createMentionPlugin({ mentionTrigger: ['@', '('] });
 const { MentionSuggestions } = mentionPlugin;
 const plugins = [mentionPlugin];
 
@@ -35,7 +35,9 @@ const SimpleMentionEditor = (): ReactElement => {
   }, []);
   const onSearchChange = useCallback(
     ({ trigger, value }: { trigger: string; value: string }) => {
-      setSuggestions(defaultSuggestionsFilter(value, mentions, trigger) as MentionData[]);
+      setSuggestions(
+        defaultSuggestionsFilter(value, mentions, trigger) as MentionData[]
+      );
     },
     []
   );
