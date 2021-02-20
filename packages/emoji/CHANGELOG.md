@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+## 4.2.0
+
 - add onOpen and onClose callback props to EmojiSelect
 
 ## 4.1.0
