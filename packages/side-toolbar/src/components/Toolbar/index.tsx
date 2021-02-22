@@ -98,8 +98,13 @@ export default class Toolbar extends React.Component<ToolbarProps> {
         editorRoot = editorRoot.parentNode as HTMLElement;
       }
 
+      const popupHeight =
+        node.offsetTop + editorRoot.offsetTop > 700
+          ? node.offsetTop + editorRoot.offsetTop - 150
+          : node.offsetTop + editorRoot.offsetTop;
+
       const position: CSSProperties = {
-        top: node.offsetTop + editorRoot.offsetTop,
+        top: popupHeight,
         transform: 'scale(1)',
         transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
       };
