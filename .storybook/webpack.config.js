@@ -84,7 +84,6 @@ module.exports = async ({ config }) => {
       ...packagesAliases,
       react: path.join(__dirname, '..', 'node_modules', 'react'),
       'prop-types': path.join(__dirname, '..', 'node_modules', 'prop-types'),
-      lodash: path.join(__dirname, '..', 'node_modules', 'lodash'),
     },
     extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
   };

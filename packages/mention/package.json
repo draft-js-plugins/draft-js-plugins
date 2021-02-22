@@ -40,7 +40,6 @@
   "dependencies": {
     "clsx": "^1.0.4",
     "immutable": "~3.7.4",
-    "lodash": "^4.17.21",
     "lodash-es": "^4.17.20",
     "prop-types": "^15.5.8"
   },
@@ -49,7 +48,7 @@
     "react": "^16.3.0 || ^17.0.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.168"
+    "@types/lodash-es": "^4.17.4"
   },
   "publishConfig": {
     "access": "public"

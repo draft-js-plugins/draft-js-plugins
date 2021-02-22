@@ -14,7 +14,7 @@ import {
   SelectionState,
 } from 'draft-js';
 import { AriaProps, EditorCommand } from '@draft-js-plugins/editor';
-import escapeRegExp from 'lodash/escapeRegExp';
+import escapeRegExp from 'lodash-es/escapeRegExp';
 import Entry, { EntryComponentProps } from './Entry/Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
