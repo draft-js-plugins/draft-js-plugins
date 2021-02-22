@@ -17,6 +17,7 @@ module.exports = {
   coverageThreshold: {
     global: {},
   },
+  transformIgnorePatterns: [`${__dirname}/node_modules/(?!lodash-es)`],
   globals: {
     'ts-jest': {
       babelConfig: `${__dirname}/babel.config.js`,
