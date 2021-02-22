@@ -40,7 +40,7 @@
   "dependencies": {
     "clsx": "^1.0.4",
     "linkify-it": "^3.0.2",
-    "tlds": "^1.217.0"
+    "tlds": "^1.218.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
