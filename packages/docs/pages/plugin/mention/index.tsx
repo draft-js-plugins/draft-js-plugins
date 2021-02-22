@@ -198,18 +198,11 @@ export default function Mention(): ReactElement {
         <div className={styles.param}>
           <span className={styles.paramName}>mentionTrigger</span>
           <span>
-            Allows you to provide a custom character to change when the search
-            is triggered. By default it is set to `@`. By default typing `@`
-            will trigger the search for mentions. Note: the implementation does
-            not support a multi-character mentionTrigger.
-          </span>
-        </div>
-        <div className={styles.param}>
-          <span className={styles.paramName}>mentionTrigger</span>
-          <span>
             Allows you to provide a array custom character to change when the
-            search is triggered. It does support a multi-charater
-            mentionTrigger. You can use it like `mentionTrigger: ['@', '(']`.
+            search is triggered. By default it is set to `@`. By default typing
+            `@` will trigger the search for mentions. It also does support a
+            multi-charater mentionTrigger. You can use it like `mentionTrigger:
+            ['@', '(']`.
           </span>
         </div>
         <div className={styles.param}>

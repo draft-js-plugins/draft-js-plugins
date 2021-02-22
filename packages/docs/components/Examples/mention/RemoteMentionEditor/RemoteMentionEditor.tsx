@@ -32,28 +32,25 @@ export default function RemoteMentionEditor(): ReactElement {
   const onOpenChange = useCallback((_open: boolean) => {
     setOpen(_open);
   }, []);
-  const onSearchChange = useCallback(
-    ({ value }: { value: string }) => {
-      // An import statment would break server-side rendering.
-      require('whatwg-fetch'); // eslint-disable-line global-require
+  const onSearchChange = useCallback(({ value }: { value: string }) => {
+    // An import statment would break server-side rendering.
+    require('whatwg-fetch'); // eslint-disable-line global-require
 
-      // while you normally would have a dynamic server that takes the value as
-      // a workaround we use this workaround to show different results
-      let url = '/data/mentionsA.json';
-      if (value.length === 1) {
-        url = '/data/mentionsB.json';
-      } else if (value.length > 1) {
-        url = '/data/mentionsC.json';
-      }
+    // while you normally would have a dynamic server that takes the value as
+    // a workaround we use this workaround to show different results
+    let url = '/data/mentionsA.json';
+    if (value.length === 1) {
+      url = '/data/mentionsB.json';
+    } else if (value.length > 1) {
+      url = '/data/mentionsC.json';
+    }
 
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          setSuggestions(data);
-        });
-    },
-    []
-  );
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setSuggestions(data);
+      });
+  }, []);
 
   return (
     <div

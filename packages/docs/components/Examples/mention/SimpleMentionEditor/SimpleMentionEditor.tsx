@@ -33,12 +33,9 @@ export default function SimpleMentionEditor(): ReactElement {
   const onOpenChange = useCallback((_open: boolean) => {
     setOpen(_open);
   }, []);
-  const onSearchChange = useCallback(
-    ({ trigger, value }: { trigger: string; value: string }) => {
-      setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
-    },
-    []
-  );
+  const onSearchChange = useCallback(({ value }: { value: string }) => {
+    setSuggestions(defaultSuggestionsFilter(value, mentions));
+  }, []);
 
   return (
     <div

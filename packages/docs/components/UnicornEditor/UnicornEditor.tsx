@@ -79,8 +79,8 @@ export default function UnicornEditor(): ReactElement {
     setEditorState(_editorState);
   }, []);
 
-  const onMentionSearchChange = useCallback(({ trigger, value }) => {
-    setSuggestions(defaultSuggestionsFilter(value, mentions, trigger));
+  const onMentionSearchChange = useCallback(({ value }) => {
+    setSuggestions(defaultSuggestionsFilter(value, mentions));
   }, []);
 
   const stickerEditor = useMemo(
@@ -117,7 +117,7 @@ export default function UnicornEditor(): ReactElement {
         <MentionSuggestions
           onSearchChange={onMentionSearchChange}
           suggestions={suggestions}
-          onOpenChange={val => {
+          onOpenChange={(val) => {
             setMentionOpen(val);
           }}
           open={mentionOpen}
