@@ -15,11 +15,11 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
-    "@babel/core": "7.12.16",
+    "@babel/core": "7.12.17",
     "@babel/plugin-proposal-class-properties": "7.12.13",
-    "@babel/preset-env": "7.12.16",
+    "@babel/preset-env": "7.12.17",
     "@babel/preset-react": "7.12.13",
-    "@babel/preset-typescript": "7.12.16",
+    "@babel/preset-typescript": "7.12.17",
     "@changesets/cli": "^2.14.1",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
@@ -27,14 +27,13 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^5.0.3",
-    "@testing-library/user-event": "^12.7.1",
+    "@testing-library/user-event": "^12.7.2",
     "@types/jest": "^26.0.20",
     "@typescript-eslint/eslint-plugin": "4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
-    "babel-plugin-transform-rename-import": "^2.3.0",
     "css-loader": "^0.28.11",
     "css-modules-require-hook": "^4.0.2",
     "eslint": "^7.20.0",
@@ -45,7 +44,7 @@
     "eslint-plugin-no-only-tests": "^2.4.0",
     "eslint-plugin-react": "^6.10.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^5.0.9",
+    "husky": "^5.1.0",
     "jest": "^26.6.3",
     "linaria": "2.0.2",
     "lint-staged": "^10.5.4",
@@ -60,11 +59,6 @@
     "ts-jest": "26.5.1",
     "ts-node": "9.1.1",
     "typescript": "4.1.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "keywords": [
     "components",
@@ -110,7 +104,8 @@
     "build": "yarn build:dts && yarn workspaces run build",
     "build:dts": "yarn workspace @draft-js-plugins/editor run build && yarn workspace @draft-js-plugins/utils run build && yarn workspace @draft-js-plugins/buttons run build",
     "prerelease": "yarn build",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "postinstall": "husky install"
   },
   "workspaces": [
     "packages/*"
