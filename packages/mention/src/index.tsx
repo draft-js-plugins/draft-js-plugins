@@ -35,6 +35,10 @@ export interface MentionData {
   [x: string]: any;
 }
 
+export interface MultiMentionData {
+  [fieldName: string]: MentionData[];
+}
+
 export interface MentionPluginStore {
   setEditorState?(editorState: EditorState): void;
   getEditorState?(): EditorState;
@@ -57,7 +61,7 @@ export interface MentionPluginConfig {
   mentionComponent?: ComponentType<SubMentionComponentProps>;
   mentionSuggestionsComponent?: ComponentType;
   entityMutability?: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
-  mentionTrigger?: string;
+  mentionTrigger?: string | string[];
   mentionRegExp?: string;
   supportWhitespace?: boolean;
 }
@@ -140,6 +144,8 @@ export default (
     mentionRegExp = defaultRegExp,
     supportWhitespace = false,
   } = config;
+  const mentionTriggers: string[] =
+    typeof mentionTrigger === 'string' ? [mentionTrigger] : mentionTrigger;
   const mentionSearchProps = {
     ariaProps,
     callbacks,
@@ -147,7 +153,7 @@ export default (
     store,
     entityMutability,
     positionSuggestions,
-    mentionTrigger,
+    mentionTriggers,
     mentionPrefix,
   };
   const DecoratedMentionSuggestionsComponent = (
@@ -165,12 +171,12 @@ export default (
     MentionSuggestions: DecoratedMentionSuggestionsComponent,
     decorators: [
       {
-        strategy: mentionStrategy(mentionTrigger),
+        strategy: mentionStrategy(mentionTriggers),
         component: DecoratedMention,
       },
       {
         strategy: mentionSuggestionsStrategy(
-          mentionTrigger,
+          mentionTriggers,
           supportWhitespace,
           mentionRegExp
         ),

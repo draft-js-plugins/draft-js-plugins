@@ -14,7 +14,6 @@ import {
   SelectionState,
 } from 'draft-js';
 import { AriaProps, EditorCommand } from '@draft-js-plugins/editor';
-import escapeRegExp from 'lodash-es/escapeRegExp';
 import Entry, { EntryComponentProps } from './Entry/Entry';
 import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
@@ -43,7 +42,7 @@ export interface MentionSuggestionsPubProps {
   suggestions: MentionData[];
   open: boolean;
   onOpenChange(open: boolean): void;
-  onSearchChange(event: { value: string }): void;
+  onSearchChange(event: { trigger: string; value: string }): void;
   onAddMention?(Mention: MentionData): void;
   popoverComponent?: ReactElement<
     PopoverComponentProps & RefAttributes<HTMLElement>
@@ -55,11 +54,10 @@ export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   callbacks: MentionSuggestionCallbacks;
   store: MentionPluginStore;
   positionSuggestions: PositionSuggestionsFn;
-  mentionTrigger: string;
   ariaProps: AriaProps;
   theme: MentionPluginTheme;
   mentionPrefix: string;
-
+  mentionTriggers: string[];
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
 }
 
@@ -81,6 +79,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
   popover?: HTMLElement;
   activeOffsetKey?: string;
   lastSearchValue?: string;
+  lastActiveTrigger?: string = '';
   lastSelectionIsInsideWord?: Immutable.Iterable<string, boolean>;
 
   constructor(props: MentionSuggestionsProps) {
@@ -129,7 +128,6 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
 
   onEditorStateChange = (editorState: EditorState): EditorState => {
     const searches = this.props.store.getAllSearches();
-
     // if no search portal is active there is no need to show the popover
     if (searches.size === 0) {
       return editorState;
@@ -173,66 +171,77 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     // Checks that the cursor is after the @ character but still somewhere in
     // the word (search term). Setting it to allow the cursor to be left of
     // the @ causes troubles due selection confusion.
-    const plainText = editorState.getCurrentContent().getPlainText();
-    const selectionIsInsideWord = leaves
+    const blockText = editorState
+      .getCurrentContent()
+      .getBlockForKey(anchorKey)
+      .getText();
+    const triggerForSelectionInsideWord = leaves
       .filter((leave) => leave !== undefined)
       .map(
         ({ start, end }) =>
-          (start === 0 &&
-            anchorOffset === this.props.mentionTrigger.length &&
-            plainText.charAt(anchorOffset) !== this.props.mentionTrigger &&
-            new RegExp(
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore raw is readonly
-              String.raw({ raw: `${escapeRegExp(this.props.mentionTrigger)}` }),
-              'g'
-            ).test(plainText) &&
-            anchorOffset <= end) || // @ is the first character
-          (anchorOffset >= start + this.props.mentionTrigger.length &&
-            anchorOffset <= end) // @ is in the text or at the end
-      );
+          this.props.mentionTriggers
+            .map((trigger) =>
+              // @ is the first character
+              (start === 0 &&
+                blockText.substr(0, trigger.length) === trigger &&
+                anchorOffset <= end) ||
+              // @ is in the text or at the end, multi triggers
+              (this.props.mentionTriggers.length > 1 &&
+                anchorOffset >= start + trigger.length &&
+                blockText.substr(start + 1, trigger.length) === trigger &&
+                anchorOffset <= end) ||
+              // @ is in the text or at the end, single trigger
+              (this.props.mentionTriggers.length === 1 &&
+                anchorOffset >= start + trigger.length &&
+                anchorOffset <= end)
+                ? trigger
+                : undefined
+            )
+            .filter((trigger) => trigger !== undefined)[0]
+      )
+      .filter((trigger) => trigger !== undefined);
 
-    if (selectionIsInsideWord.every((isInside) => isInside === false))
-      return removeList();
+    if (triggerForSelectionInsideWord.isEmpty()) return removeList();
+
+    const [
+      activeOffsetKey,
+      activeTrigger,
+    ] = triggerForSelectionInsideWord.entrySeq().first();
 
     const lastActiveOffsetKey = this.activeOffsetKey;
-    this.activeOffsetKey = selectionIsInsideWord
-      .filter((value) => value === true)
-      .keySeq()
-      .first();
+    this.activeOffsetKey = activeOffsetKey;
 
     this.onSearchChange(
       editorState,
       selection,
       this.activeOffsetKey,
-      lastActiveOffsetKey
+      lastActiveOffsetKey,
+      activeTrigger
     );
 
     // make sure the escaped search is reseted in the cursor since the user
     // already switched to another mention search
-    if (!this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (!this.props.store.isEscaped(this.activeOffsetKey || '')) {
       this.props.store.resetEscapedSearch();
     }
 
     // If none of the above triggered to close the window, it's safe to assume
     // the dropdown should be open. This is useful when a user focuses on another
     // input field and then comes back: the dropdown will show again.
-    if (!this.props.open && !this.props.store.isEscaped(this.activeOffsetKey)) {
+    if (
+      !this.props.open &&
+      !this.props.store.isEscaped(this.activeOffsetKey || '')
+    ) {
       this.openDropdown();
     }
 
     // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another mention search
-    if (
-      this.lastSelectionIsInsideWord === undefined ||
-      !selectionIsInsideWord.equals(this.lastSelectionIsInsideWord)
-    ) {
+    if (lastActiveOffsetKey !== this.activeOffsetKey) {
       this.setState({
         focusedOptionIndex: 0,
       });
     }
-
-    this.lastSelectionIsInsideWord = selectionIsInsideWord;
 
     return editorState;
   };
@@ -241,20 +250,23 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     editorState: EditorState,
     selection: SelectionState,
     activeOffsetKey: string | undefined,
-    lastActiveOffsetKey: string | undefined
+    lastActiveOffsetKey: string | undefined,
+    trigger: string
   ): void => {
     const { matchingString: searchValue } = getSearchText(
       editorState,
       selection,
-      this.props.mentionTrigger
+      [trigger]
     );
 
     if (
+      this.lastActiveTrigger !== trigger ||
       this.lastSearchValue !== searchValue ||
       activeOffsetKey !== lastActiveOffsetKey
     ) {
+      this.lastActiveTrigger = trigger;
       this.lastSearchValue = searchValue;
-      this.props.onSearchChange({ value: searchValue });
+      this.props.onSearchChange({ trigger, value: searchValue });
     }
   };
 
@@ -284,12 +296,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
   onEscape = (keyboardEvent: KeyboardEvent): void => {
     keyboardEvent.preventDefault();
 
-    const activeOffsetKey = this.lastSelectionIsInsideWord!.filter(
-      (value) => value === true
-    )
-      .keySeq()
-      .first();
-    this.props.store.escapeSearch(activeOffsetKey);
+    this.props.store.escapeSearch(this.activeOffsetKey || '');
     this.closeDropdown();
 
     // to force a re-render of the outer component to change the aria props
@@ -312,7 +319,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       this.props.store.getEditorState!(),
       mention,
       this.props.mentionPrefix,
-      this.props.mentionTrigger,
+      this.lastActiveTrigger || '',
       this.props.entityMutability
     );
     this.props.store.setEditorState!(newEditorState);
@@ -401,7 +408,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       store, // eslint-disable-line @typescript-eslint/no-unused-vars
       entityMutability, // eslint-disable-line @typescript-eslint/no-unused-vars
       positionSuggestions, // eslint-disable-line @typescript-eslint/no-unused-vars
-      mentionTrigger, // eslint-disable-line @typescript-eslint/no-unused-vars
+      mentionTriggers, // eslint-disable-line @typescript-eslint/no-unused-vars
       mentionPrefix, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...elementProps
     } = this.props;

@@ -27,6 +27,11 @@ import customComponentExampleCode from '!!raw-loader!../../../components/Example
 // eslint-disable-next-line import/no-unresolved
 import customComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import multiComponentExampleCode from '!!raw-loader!../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers';
+// eslint-disable-next-line import/no-unresolved
+import multiComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers.module.css';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/mention/webpackConfig';
 
 import styles from './Mention.module.css';
@@ -45,6 +50,8 @@ import CustomMentionEditor from '../../../components/Examples/mention/CustomMent
 import RemoteMentionEditor from '../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
 // eslint-disable-next-line import/no-duplicates
 import CustomComponentMentionEditor from '../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import MultiMentionTriggers from '../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 
 export default function Mention(): ReactElement {
@@ -191,10 +198,11 @@ export default function Mention(): ReactElement {
         <div className={styles.param}>
           <span className={styles.paramName}>mentionTrigger</span>
           <span>
-            Allows you to provide a custom character to change when the search
-            is triggered. By default it is set to `@`. By default typing `@`
-            will trigger the search for mentions. Note: the implementation does
-            not support a multi-character mentionTrigger.
+            Allows you to provide a array custom character to change when the
+            search is triggered. By default it is set to `@`. By default typing
+            `@` will trigger the search for mentions. It also does support a
+            multi-charater mentionTrigger. You can use it like `mentionTrigger:
+            ['@', '(']`.
           </span>
         </div>
         <div className={styles.param}>
@@ -295,6 +303,7 @@ export default function Mention(): ReactElement {
           In addition to the plugin the module exports{' '}
           <InlineCode code={'defaultSuggestionsFilter'} />. As first argument it
           takes the search term as a String. The second argument is an array of
+          mentions. The third argment is a trigger that is used to filter multi
           mentions. The function returns the filter list based on substring
           matches.
           <Code code="import { defaultSuggestionsFilter } from '@draft-js-plugins/mention';" />
@@ -347,6 +356,15 @@ export default function Mention(): ReactElement {
           name="CustomComponentMentionEditor.tsx"
         />
         <Code code={customComponentExampleStylesCode} name="editorStyles.css" />
+      </Container>
+      <Container>
+        <Heading level={2}>Multi Mention Triggers</Heading>
+        <MultiMentionTriggers />
+        <Code
+          code={(multiComponentExampleCode as unknown) as string}
+          name="MultiMentionTriggers.tsx"
+        />
+        <Code code={multiComponentExampleStylesCode} name="editorStyles.css" />
       </Container>
     </PluginPageFrame>
   );

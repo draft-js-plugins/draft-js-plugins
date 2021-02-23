@@ -86,7 +86,6 @@ module.exports = {
     'jsx-a11y/img-has-alt': 0,
     'react/require-default-props': 0,
     'react/display-name': 1,
-
     'react/no-direct-mutation-state': 1,
   },
   settings: {

@@ -4,12 +4,12 @@ import getSearchTextAt, { SearchTextAtResult } from './getSearchTextAt';
 export default (
   editorState: EditorState,
   selection: SelectionState,
-  trigger: string
+  triggers: string[]
 ): SearchTextAtResult => {
   const anchorKey = selection.getAnchorKey();
   const anchorOffset = selection.getAnchorOffset();
   const currentContent = editorState.getCurrentContent();
   const currentBlock = currentContent.getBlockForKey(anchorKey);
   const blockText = currentBlock.getText();
-  return getSearchTextAt(blockText, anchorOffset, trigger);
+  return getSearchTextAt(blockText, anchorOffset, triggers);
 };

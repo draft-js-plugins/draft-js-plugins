@@ -117,7 +117,7 @@ export default function UnicornEditor(): ReactElement {
         <MentionSuggestions
           onSearchChange={onMentionSearchChange}
           suggestions={suggestions}
-          onOpenChange={val => {
+          onOpenChange={(val) => {
             setMentionOpen(val);
           }}
           open={mentionOpen}
