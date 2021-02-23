@@ -303,6 +303,7 @@ export default function Mention(): ReactElement {
           In addition to the plugin the module exports{' '}
           <InlineCode code={'defaultSuggestionsFilter'} />. As first argument it
           takes the search term as a String. The second argument is an array of
+          mentions. The third argment is a trigger that is used to filter multi
           mentions. The function returns the filter list based on substring
           matches.
           <Code code="import { defaultSuggestionsFilter } from '@draft-js-plugins/mention';" />
