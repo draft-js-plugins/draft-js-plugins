@@ -41,7 +41,7 @@
     "@draft-js-plugins/buttons": "^4.0.0",
     "@draft-js-plugins/utils": "^4.0.0",
     "clsx": "^1.0.4",
-    "emoji-toolkit": "^6.0.1",
+    "emoji-toolkit": "^6.5.1",
     "emojibase": "^5.1.0",
     "emojibase-data": "^6.1.1",
     "find-with-regex": "^1.1.3",
