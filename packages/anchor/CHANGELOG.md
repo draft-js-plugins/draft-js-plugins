@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.2
+
+- adjust types to fix issue with inline toolbar [#1802](https://github.com/draft-js-plugins/draft-js-plugins/issues/1802)
+
 ## 4.1.1
 
 - add LinkButton config option to create own link buttons
