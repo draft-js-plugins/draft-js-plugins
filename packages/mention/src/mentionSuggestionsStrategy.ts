@@ -38,6 +38,7 @@ const findWithRegex = (
         if (regex.lastIndex === prevLastIndex) {
           break;
         }
+        //console.log(matchArr, text[matchArr.index - 1], text);
         prevLastIndex = regex.lastIndex;
         start = nonEntityStart + matchArr.index;
         const end = start + matchArr[0].length;

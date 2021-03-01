@@ -10,7 +10,7 @@
       "esnext",
       "dom",
       "dom.iterable",
-      "es2020.intl"
+      "es2020"
     ],
     "declaration": true,
     "emitDeclarationOnly": true,

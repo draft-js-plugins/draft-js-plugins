@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.1
+
+- adjust types to fix issue with anchor plugin [#1802](https://github.com/draft-js-plugins/draft-js-plugins/issues/1802)
+
 ## 4.1.0
 
 - add "sideEffects": false for tree shaking

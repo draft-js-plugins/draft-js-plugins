@@ -6,7 +6,7 @@ export interface DefaultLinkButtonProps {
   hasLinkSelected: boolean;
   onRemoveLinkAtSelection(): void;
   onAddLinkClick(event: MouseEvent): void;
-  theme: LinkButtonTheme;
+  theme?: LinkButtonTheme;
 }
 
 export default function DefaultLinkButton({
@@ -15,11 +15,11 @@ export default function DefaultLinkButton({
   onAddLinkClick,
   theme,
 }: DefaultLinkButtonProps): ReactElement {
-  const className = clsx(theme.button, hasLinkSelected && theme.active);
+  const className = clsx(theme?.button, hasLinkSelected && theme?.active);
 
   return (
     <div
-      className={theme.buttonWrapper}
+      className={theme?.buttonWrapper}
       onMouseDown={(event: MouseEvent): void => {
         event.preventDefault();
       }}
