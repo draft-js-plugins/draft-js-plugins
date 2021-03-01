@@ -36,7 +36,7 @@ describe('test strategy with whitespace support disabled', () => {
     ['match single word', '@the ', ['@'], [[0, 4]]],
     ['should match a word with special characters', '@ęĻŌ', ['@'], [[0, 4]]],
     ['should match not match spaces', '@the walking dead', ['@'], [[0, 4]]],
-    ['match within text', 'a lof @of text', ['@'], [[5, 9]]],
+    ['match within text', 'a lof @of text', ['@'], [[6, 9]]],
     [
       'should not match if no whitespace before trigger',
       'a lof@of text',
@@ -49,8 +49,8 @@ describe('test strategy with whitespace support disabled', () => {
       ['@'],
       [
         [0, 4],
-        [4, 13],
-        [13, 19],
+        [5, 13],
+        [14, 19],
       ],
     ],
   ])('%s', (_description, text, trigger, result) => {
@@ -155,7 +155,7 @@ describe('multi mentions test strategy with whitespace support disabled', () => 
       ['@', '('],
       [
         [0, 4],
-        [4, 6],
+        [5, 6],
       ],
     ],
     [
@@ -170,7 +170,7 @@ describe('multi mentions test strategy with whitespace support disabled', () => 
       ['@', '('],
       [
         [0, 4],
-        [12, 18],
+        [13, 18],
       ],
     ],
     [
@@ -178,8 +178,8 @@ describe('multi mentions test strategy with whitespace support disabled', () => 
       'a (lof @of text',
       ['@', '('],
       [
-        [1, 6],
-        [6, 10],
+        [2, 6],
+        [7, 10],
       ],
     ],
     [
@@ -194,8 +194,8 @@ describe('multi mentions test strategy with whitespace support disabled', () => 
       ['@', '('],
       [
         [0, 4],
-        [4, 13],
-        [13, 19],
+        [5, 13],
+        [14, 19],
       ],
     ],
   ])('%s', (_description, text, trigger, result) => {

@@ -38,16 +38,22 @@ const findWithRegex = (
         if (regex.lastIndex === prevLastIndex) {
           break;
         }
-        //console.log(matchArr, text[matchArr.index - 1], text);
         prevLastIndex = regex.lastIndex;
         start = nonEntityStart + matchArr.index;
+        const end = start + matchArr[0].length;
+
+        if (!supportWhiteSpace && whitespaceRegEx.test(text[start])) {
+          //trim the result so that we have no whitespaces
+          start += 1;
+        }
+
         //check if whitespace support is active that the char before the trigger is a white space #1844
         if (
           (supportWhiteSpace &&
             checkForWhiteSpaceBeforeTrigger(text, matchArr.index)) ||
           !supportWhiteSpace
         ) {
-          callback(start, start + matchArr[0].length);
+          callback(start, end);
         }
       }
     }
