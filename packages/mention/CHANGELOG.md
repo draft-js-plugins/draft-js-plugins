@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.3.0
+
+- fixing trigger range for suggestion strategy [#1772](https://github.com/draft-js-plugins/draft-js-plugins/issues/1772)
 - fixing lookahead RegExp which is not supported in Safari [#1844](https://github.com/draft-js-plugins/draft-js-plugins/issues/1844)
 - added support for multiple triggers
 
