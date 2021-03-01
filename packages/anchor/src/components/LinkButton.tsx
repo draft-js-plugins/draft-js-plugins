@@ -7,13 +7,13 @@ import { AnchorPluginStore } from '..';
 import { DefaultLinkButtonProps } from './DefaultLinkButton';
 
 export interface LinkButtonTheme {
-  button: string;
-  active: string;
-  buttonWrapper: string;
+  button?: string;
+  active?: string;
+  buttonWrapper?: string;
 }
 
 export interface LinkButtonPubParams {
-  theme: LinkButtonTheme;
+  theme?: LinkButtonTheme;
   onOverrideContent(component: ComponentType<AddLinkFormPubParams>): void;
 }
 
