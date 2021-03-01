@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+- fixing lookahead RegExp which is not supported in Safari [#1844](https://github.com/draft-js-plugins/draft-js-plugins/issues/1844)
+- added support for multiple triggers
+
 ## 4.2.0
 
 - remove `entryComponent` from plugin config [#1736](https://github.com/draft-js-plugins/draft-js-plugins/issues/1736)

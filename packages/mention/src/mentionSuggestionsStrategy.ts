@@ -5,9 +5,19 @@ interface FindWithRegexCb {
   (start: number, end: number): void;
 }
 
+const whitespaceRegEx = /\s/;
+
+function checkForWhiteSpaceBeforeTrigger(text: string, index: number): boolean {
+  if (index === 0) {
+    return true;
+  }
+  return whitespaceRegEx.test(text[index - 1]);
+}
+
 const findWithRegex = (
   regex: RegExp,
   contentBlock: ContentBlock,
+  supportWhiteSpace: boolean,
   callback: FindWithRegexCb
 ): void => {
   const contentBlockText = contentBlock.getText();
@@ -28,9 +38,17 @@ const findWithRegex = (
         if (regex.lastIndex === prevLastIndex) {
           break;
         }
+        //console.log(matchArr, text[matchArr.index - 1], text);
         prevLastIndex = regex.lastIndex;
         start = nonEntityStart + matchArr.index;
-        callback(start, start + matchArr[0].length);
+        //check if whitespace support is active that the char before the trigger is a white space #1844
+        if (
+          (supportWhiteSpace &&
+            checkForWhiteSpaceBeforeTrigger(text, matchArr.index)) ||
+          !supportWhiteSpace
+        ) {
+          callback(start, start + matchArr[0].length);
+        }
       }
     }
   );
@@ -46,9 +64,9 @@ export default (
     .map((trigger) => escapeRegExp(trigger))
     .join('')}]`;
   const MENTION_REGEX = supportWhiteSpace
-    ? new RegExp(`(?<!${regExp})${triggerPattern}(${regExp}|\\s)*`, 'g')
+    ? new RegExp(`${triggerPattern}(${regExp}|\\s)*`, 'g')
     : new RegExp(`(\\s|^)${triggerPattern}${regExp}*`, 'g');
   return (contentBlock: ContentBlock, callback: FindWithRegexCb) => {
-    findWithRegex(MENTION_REGEX, contentBlock, callback);
+    findWithRegex(MENTION_REGEX, contentBlock, supportWhiteSpace, callback);
   };
 };
