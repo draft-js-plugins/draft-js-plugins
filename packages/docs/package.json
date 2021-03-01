@@ -15,7 +15,7 @@
     "immutable": "^4.0.0-rc.12",
     "next": "10.0.7",
     "prismjs": "^1.23.0",
-    "react-share": "^4.3.1",
+    "react-share": "^4.4.0",
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
