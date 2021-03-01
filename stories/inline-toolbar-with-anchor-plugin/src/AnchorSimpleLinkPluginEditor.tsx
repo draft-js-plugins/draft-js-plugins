@@ -36,19 +36,18 @@ const SimpleLinkPluginEditor = (): ReactElement => {
         editorState={editorState}
         onChange={onChange}
         plugins={plugins}
-        ref={element => {
+        ref={(element) => {
           editor.current = element;
         }}
       />
       <InlineToolbar>
-        {// may be use React.Fragment instead of div to improve perfomance after React 16
-        externalProps => (
-          <div>
+        {(externalProps) => (
+          <>
             <BoldButton {...externalProps} />
             <ItalicButton {...externalProps} />
             <UnderlineButton {...externalProps} />
             <linkPlugin.LinkButton {...externalProps} />
-          </div>
+          </>
         )}
       </InlineToolbar>
     </div>
