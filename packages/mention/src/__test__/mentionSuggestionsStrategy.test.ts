@@ -149,10 +149,39 @@ describe('multi mentions test strategy with whitespace support disabled', () => 
   test.each([
     ['test empty string', '', ['@', '('], []],
     ['trigger only', '@', ['@', '('], [[0, 1]]],
-    ['match single word', '@the ( ', ['@', '('], [[0, 4], [4, 6]]],
-    ['should match a word with special characters', '@ęĻŌ ęĻŌ(', ['@', '('], [[0, 4]]],
-    ['should match not match spaces', '@the walking (dead', ['@', '('], [[0, 4], [12, 18]]],
-    ['match within text', 'a (lof @of text', ['@', '('], [[1, 6], [6, 10]]],
+    [
+      'match single word',
+      '@the ( ',
+      ['@', '('],
+      [
+        [0, 4],
+        [4, 6],
+      ],
+    ],
+    [
+      'should match a word with special characters',
+      '@ęĻŌ ęĻŌ(',
+      ['@', '('],
+      [[0, 4]],
+    ],
+    [
+      'should match not match spaces',
+      '@the walking (dead',
+      ['@', '('],
+      [
+        [0, 4],
+        [12, 18],
+      ],
+    ],
+    [
+      'match within text',
+      'a (lof @of text',
+      ['@', '('],
+      [
+        [1, 6],
+        [6, 10],
+      ],
+    ],
     [
       'should not match if no whitespace before trigger',
       'a lof@of text(',
@@ -187,10 +216,39 @@ describe('multi mentions test strategy with whitespace support enabled', () => {
   test.each([
     ['test empty string', '', ['@', '('], []],
     ['trigger only', '@', ['@', '('], [[0, 1]]],
-    ['match single word', '@the ( ', ['@', '('], [[0, 5], [5, 7]]],
-    ['should match a word with special characters', '@ęĻŌ ęĻŌ(', ['@', '('], [[0, 8]]],
-    ['should match not match spaces', '@the walking (dead', ['@', '('], [[0, 13], [13, 18]]],
-    ['match within text', 'a (lof @of text', ['@', '('], [[2, 7], [7, 15]]],
+    [
+      'match single word',
+      '@the ( ',
+      ['@', '('],
+      [
+        [0, 5],
+        [5, 7],
+      ],
+    ],
+    [
+      'should match a word with special characters',
+      '@ęĻŌ ęĻŌ(',
+      ['@', '('],
+      [[0, 8]],
+    ],
+    [
+      'should match not match spaces',
+      '@the walking (dead',
+      ['@', '('],
+      [
+        [0, 13],
+        [13, 18],
+      ],
+    ],
+    [
+      'match within text',
+      'a (lof @of text',
+      ['@', '('],
+      [
+        [2, 7],
+        [7, 15],
+      ],
+    ],
     [
       'should not match if no whitespace before trigger',
       'a lof@of text(',
