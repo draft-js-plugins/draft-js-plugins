@@ -1,7 +1,7 @@
 import React, { ComponentType, MouseEvent, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import EditorUtils from '@draft-js-plugins/utils';
-import AddLinkForm, { AddLinkFormPubParams } from './AddLinkForm';
+import AddLinkForm, { OverrideContentProps } from './AddLinkForm';
 import { AnchorPluginTheme } from '../theme';
 import { AnchorPluginStore } from '..';
 import { DefaultLinkButtonProps } from './DefaultLinkButton';
@@ -14,7 +14,9 @@ export interface LinkButtonTheme {
 
 export interface LinkButtonPubParams {
   theme?: LinkButtonTheme;
-  onOverrideContent(component: ComponentType<AddLinkFormPubParams>): void;
+  onOverrideContent(
+    component: ComponentType<OverrideContentProps> | undefined
+  ): void;
 }
 
 interface LinkButtonParams extends LinkButtonPubParams {
@@ -40,7 +42,7 @@ const LinkButton = ({
     event.preventDefault();
     event.stopPropagation();
 
-    const content = (contentProps: AddLinkFormPubParams): ReactElement => (
+    const content = (contentProps: OverrideContentProps): ReactElement => (
       <AddLinkForm
         {...contentProps}
         placeholder={placeholder}

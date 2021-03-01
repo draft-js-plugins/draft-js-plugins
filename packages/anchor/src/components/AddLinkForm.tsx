@@ -5,6 +5,7 @@ import React, {
   ReactElement,
   ChangeEvent,
   KeyboardEvent,
+  ComponentType,
 } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -13,13 +14,13 @@ import { EditorState } from 'draft-js';
 import URLUtils from '../utils/URLUtils';
 import { AnchorPluginTheme } from '../theme';
 
-export interface AddLinkFormPubParams {
-  getEditorState(): EditorState;
-  setEditorState(state: EditorState): void;
-  onOverrideContent(content: undefined): void;
+export interface OverrideContentProps {
+  getEditorState: () => EditorState;
+  setEditorState: (editorState: EditorState) => void;
+  onOverrideContent: (content: ComponentType<unknown> | undefined) => void;
 }
 
-interface AddLinkFormParams extends AddLinkFormPubParams {
+interface AddLinkFormParams extends OverrideContentProps {
   validateUrl?(url: string): boolean;
   theme: AnchorPluginTheme;
   placeholder?: string;
@@ -45,7 +46,7 @@ const AddLinkForm = (props: AddLinkFormParams): ReactElement => {
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const newValue = event.target.value;
-     setIsValid(isUrl(URLUtils.normalizeUrl(newValue)));
+    setIsValid(isUrl(URLUtils.normalizeUrl(newValue)));
     setValue(newValue);
   };
 

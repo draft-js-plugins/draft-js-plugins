@@ -15,6 +15,7 @@ import DefaultLinkButton, {
   DefaultLinkButtonProps,
 } from './components/DefaultLinkButton';
 
+export { defaultTheme };
 export type { AnchorPluginTheme } from './theme';
 export type { DefaultLinkButtonProps } from './components/DefaultLinkButton';
 
