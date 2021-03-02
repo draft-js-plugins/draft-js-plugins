@@ -6,10 +6,17 @@ rm .gitignore
 
 rm -rf node_modules/.cache
 
+yarn build
 cd packages/docs
 rm -rf out
 yarn next build
-yarn next export
+yarn next
+
+
+touch out/.nojekyll
+touch out/CNAME
+
+echo 'www.draft-js-plugins.com' > out/CNAME
 
 git add out
 git commit -am 'add files'
