@@ -10,7 +10,7 @@ yarn build
 cd packages/docs
 rm -rf out
 yarn next build
-yarn next
+yarn next export
 
 
 touch out/.nojekyll
