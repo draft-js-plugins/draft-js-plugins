@@ -8509,10 +8509,10 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-linaria@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.0.2.tgz#b8ebc73b699440d225d9397f14fcb526547d1053"
-  integrity sha512-5c+JXuLu45/IOCWrwxKShje5ld8Cj0I3CM2w4mkOutWhBUf6UYhFeaUiGqNwwdP0nA5/9pqmIacWSsPCM0kinw==
+linaria@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.1.0.tgz#2afd27d9dbcab08031c010bcc60eec2a174d50c7"
+  integrity sha512-dv6vuATZMYCDmnD5Ccgcqi2RUYfkfq/wE0hGUpyTW3khNAJqpiPWM7NVApCXxdD+mGg3WnD7fdkL+ndL9s8vtQ==
   dependencies:
     "@babel/generator" ">=7"
     "@babel/plugin-proposal-export-namespace-from" ">=7"
