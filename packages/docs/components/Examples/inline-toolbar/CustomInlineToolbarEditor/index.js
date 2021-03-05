@@ -87,6 +87,14 @@ export default class CustomInlineToolbarEditor extends Component {
     editorState: createEditorStateWithText(text),
   };
 
+  componentDidMount() {
+    // fixing issue with SSR https://github.com/facebook/draft-js/issues/2332#issuecomment-761573306
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({
+      editorState: createEditorStateWithText(text),
+    });
+  }
+
   onChange = (editorState) => {
     this.setState({
       editorState,
@@ -101,6 +109,7 @@ export default class CustomInlineToolbarEditor extends Component {
     return (
       <div className={editorStyles.editor} onClick={this.focus}>
         <Editor
+          editorKey="CustomInlineToolbarEditor"
           editorState={this.state.editorState}
           onChange={this.onChange}
           plugins={plugins}
