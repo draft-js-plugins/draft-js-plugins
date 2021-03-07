@@ -24,11 +24,17 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
-      - name: Build
+      - name: Build plugins
         run: yarn build
 
       - name: Tests
         run: yarn test
 
-      - name: Deploy Website
+      - name: Build Website
         run: ./scripts/publishGithubPages.sh
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: packages/docs/out
