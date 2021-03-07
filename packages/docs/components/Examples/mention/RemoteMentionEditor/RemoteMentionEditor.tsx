@@ -17,7 +17,7 @@ export default function RemoteMentionEditor(): ReactElement {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
 
   const { MentionSuggestions, plugins } = useMemo(() => {

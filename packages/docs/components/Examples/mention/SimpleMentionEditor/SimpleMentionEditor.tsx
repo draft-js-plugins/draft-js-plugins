@@ -18,7 +18,7 @@ export default function SimpleMentionEditor(): ReactElement {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(mentions);
 
   const { MentionSuggestions, plugins } = useMemo(() => {
