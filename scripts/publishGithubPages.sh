@@ -4,9 +4,6 @@ git branch -D tmp-gh-pages
 git checkout -b tmp-gh-pages
 rm .gitignore
 
-rm -rf node_modules/.cache
-
-yarn build
 cd packages/docs
 rm -rf out
 yarn next build
