@@ -5521,10 +5521,10 @@ emojibase-data@^6.1.2:
   resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-6.1.2.tgz#c30331602419239579c0d7a032fa1232d8dc298f"
   integrity sha512-1fYgpAYkAJq7bmGO3XboP0dQHrtRiyWrAluCmv5NHSK1nruz0x8kXhpLiz48rAJGDQOWYUpLGaPASTNXVZX87Q==
 
-emojibase@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/emojibase/-/emojibase-5.1.0.tgz#91ef5531ffa1aa2f330f1fad6306738a936d75c5"
-  integrity sha512-Jj6jYwic/msP0I3Nwp9Kj7EDH1/aQ35rGrBdYC/cFtas70CK2Br95AWIjZytXYpSCKLjW6YC4IduZg74sd/tlA==
+emojibase@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/emojibase/-/emojibase-5.1.1.tgz#fe812023959cb60d0b1b6da16042b180c96c2b7c"
+  integrity sha512-qc/qfuzZ93xmYMhnVA15yP2k3t4zJvBbqCc8dpDXFf75eJ+IogbzJuWQur8fkwsZ0u7YvJDBh939F9DapQqktQ==
 
 emojis-list@^2.0.0:
   version "2.1.0"
