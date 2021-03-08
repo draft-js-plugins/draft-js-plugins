@@ -5,7 +5,7 @@
   padding: 16px;
   border-radius: 2px;
   margin-bottom: 2em;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  box-shadow: inset 0px 1px 8px -3px #ababab;
   background: #fefefe;
 }
 
@@ -15,4 +15,9 @@
 
 .options {
   margin-bottom: 20px;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
 }

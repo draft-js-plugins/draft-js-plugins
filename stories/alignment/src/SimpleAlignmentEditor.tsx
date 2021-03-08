@@ -1,5 +1,11 @@
-import React, { useState, useRef, ReactElement } from 'react';
-import { convertFromRaw, EditorState, RawDraftContentState } from 'draft-js';
+import React, { useState, useRef, ReactElement, ReactNode } from 'react';
+import {
+  convertFromRaw,
+  DefaultDraftBlockRenderMap,
+  EditorState,
+  RawDraftContentState,
+} from 'draft-js';
+import Immutable from 'immutable';
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 import createAlignmentPlugin from '@draft-js-plugins/alignment';
 import createFocusPlugin from '@draft-js-plugins/focus';
@@ -67,6 +73,18 @@ const initialState: RawDraftContentState = {
 };
 /* eslint-enable */
 
+function BlockWrapper({ children }: { children?: ReactNode }): ReactElement {
+  return <div className={editorStyles.wrapper}>{children}</div>;
+}
+
+const blockRenderMap = Immutable.Map({
+  atomic: {
+    element: 'figure',
+    wrapper: <BlockWrapper />,
+  },
+});
+const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
+
 const SimpleAlignmentEditor = (): ReactElement => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(initialState))
@@ -91,6 +109,7 @@ const SimpleAlignmentEditor = (): ReactElement => {
           ref={(element) => {
             editor.current = element;
           }}
+          blockRenderMap={extendedBlockRenderMap}
         />
         <AlignmentTool />
       </div>

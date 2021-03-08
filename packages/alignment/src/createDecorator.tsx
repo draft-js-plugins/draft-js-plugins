@@ -31,9 +31,7 @@ const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
 export default ({ store }: { store: AlignmentPluginStore }) => (
   WrappedComponent: WrappedComponentType
 ): ComponentType<BlockAlignmentDecoratorParams> =>
-  class BlockAlignmentDecorator extends Component<
-    BlockAlignmentDecoratorParams
-  > {
+  class BlockAlignmentDecorator extends Component<BlockAlignmentDecoratorParams> {
     static displayName = `Alignment(${getDisplayName(WrappedComponent)})`;
     static WrappedComponent: ComponentType<BlockAlignmentDecoratorParams> =
       WrappedComponent.WrappedComponent || WrappedComponent;
@@ -85,7 +83,6 @@ export default ({ store }: { store: AlignmentPluginStore }) => (
           display: 'block',
         };
       }
-
       return (
         <WrappedComponent
           {...elementProps}
