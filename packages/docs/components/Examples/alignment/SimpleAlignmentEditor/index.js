@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { convertFromRaw, EditorState } from 'draft-js';
+import {
+  convertFromRaw,
+  DefaultDraftBlockRenderMap,
+  EditorState,
+} from 'draft-js';
+import Immutable from 'immutable';
 
 import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 
@@ -70,6 +75,18 @@ const initialState = {
 };
 /* eslint-enable */
 
+function BlockWrapper({ children }) {
+  return <div className={editorStyles.wrapper}>{children}</div>;
+}
+
+const blockRenderMap = Immutable.Map({
+  atomic: {
+    element: 'figure',
+    wrapper: <BlockWrapper />,
+  },
+});
+const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
+
 export default class SimpleAlignmentEditor extends Component {
   state = {
     editorState: EditorState.createWithContent(convertFromRaw(initialState)),
@@ -96,6 +113,7 @@ export default class SimpleAlignmentEditor extends Component {
             ref={(element) => {
               this.editor = element;
             }}
+            blockRenderMap={extendedBlockRenderMap}
           />
           <AlignmentTool />
         </div>
