@@ -188,7 +188,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
               // @ is in the text or at the end, multi triggers
               (this.props.mentionTriggers.length > 1 &&
                 anchorOffset >= start + trigger.length &&
-                blockText.substr(start + 1, trigger.length) === trigger &&
+                (blockText.substr(start + 1, trigger.length) === trigger || blockText.substr(start, trigger.length) === trigger) &&
                 anchorOffset <= end) ||
               // @ is in the text or at the end, single trigger
               (this.props.mentionTriggers.length === 1 &&
