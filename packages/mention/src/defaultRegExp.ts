@@ -19,7 +19,8 @@ export default '[' +
   '\u3130-\u318F' +
   '\uAC00-\uD7A3' +
   // common chinese symbols: \u4e00-\u9eff - http://stackoverflow.com/a/1366113/837709
-  '\u4e00-\u9eff' +
+  // extended to \u9fa5 https://github.com/draft-js-plugins/draft-js-plugins/issues/1888
+  '\u4e00-\u9fa5' +
   // Arabic https://en.wikipedia.org/wiki/Arabic_(Unicode_block)
   '\u0600-\u06ff' +
   // Vietnamese http://vietunicode.sourceforge.net/charset/

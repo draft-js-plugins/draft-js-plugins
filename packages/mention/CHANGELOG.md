@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
-Fix the @ mentions to actually work. right now they don't work in the middle of a line. if you start a line with "@" it works but if you start typing text then type "@" it doesn't work.
+
+## 4.3.1
+
+- Fix the @ mentions to actually work. Right now they don't work in the middle of a line. If you start a line with "@" it works but if you start typing text then type "@" it doesn't work.
+- Extend the support for chinese symbols [#1888](https://github.com/draft-js-plugins/draft-js-plugins/issues/1888)
 
 ## 4.3.0
 
