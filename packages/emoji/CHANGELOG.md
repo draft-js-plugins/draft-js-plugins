@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+## 4.3.0
+
+- provide unicode for emoji image component [#1877](https://github.com/draft-js-plugins/draft-js-plugins/issues/1877)
+
 ## 4.2.0
 
 - add onOpen and onClose callback props to EmojiSelect

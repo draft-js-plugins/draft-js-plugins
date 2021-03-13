@@ -1,3 +1,4 @@
+import { shortnameToUnicode } from 'emoji-toolkit';
 import { EmojiImageProps } from 'packages/emoji/src';
 import React, {
   // PropTypes,
@@ -45,7 +46,13 @@ export default class Entry extends Component<EntryProps> {
   };
 
   render(): ReactElement {
-    const { emoji, theme = {},  isFocused, id, emojiImage: EmojiImage } = this.props;
+    const {
+      emoji,
+      theme = {},
+      isFocused,
+      id,
+      emojiImage: EmojiImage,
+    } = this.props;
     const className = isFocused
       ? theme.emojiSuggestionsEntryFocused
       : theme.emojiSuggestionsEntry;
@@ -60,7 +67,11 @@ export default class Entry extends Component<EntryProps> {
         id={id}
         aria-selected={isFocused ? 'true' : undefined}
       >
-        <EmojiImage emoji={emoji} theme={theme} />
+        <EmojiImage
+          emoji={emoji}
+          theme={theme}
+          unicode={shortnameToUnicode(emoji)}
+        />
         <span className={theme.emojiSuggestionsEntryText}>
           {this.props.emoji}
         </span>
