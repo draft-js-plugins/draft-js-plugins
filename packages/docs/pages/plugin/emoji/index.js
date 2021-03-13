@@ -395,7 +395,7 @@ export default class App extends Component {
               image for the suggestions. If this parameter is set the{' '}
               <InlineCode code={'useNativeArt'} /> is ignored. You can use this
               component to implement your own emoji library. It receives the
-              following props: emoji and theme
+              following props: emoji, unicode and theme
             </span>
           </div>
           <div className={styles.paramBig}>

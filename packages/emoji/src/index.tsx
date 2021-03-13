@@ -42,6 +42,7 @@ export type { EmojiPluginTheme };
 export interface EmojiImageProps {
   emoji: string;
   theme: EmojiPluginTheme;
+  unicode: string;
 }
 
 export interface EmojiInlineTextProps {

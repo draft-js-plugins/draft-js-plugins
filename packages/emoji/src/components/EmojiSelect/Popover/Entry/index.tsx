@@ -1,5 +1,6 @@
 import React, { Component, ComponentType, ReactElement } from 'react';
 import PropTypes from 'prop-types';
+import { shortnameToUnicode } from 'emoji-toolkit';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
 
 interface EntryProps {
@@ -83,11 +84,15 @@ export default class Entry extends Component<EntryProps> {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onMouseUp={this.onMouseUp}
-        ref={element => {
+        ref={(element) => {
           this.button = element;
         }}
       >
-        <EmojiImage emoji={emoji} theme={theme} />
+        <EmojiImage
+          emoji={emoji}
+          theme={theme}
+          unicode={shortnameToUnicode(emoji)}
+        />
       </button>
     );
   }
