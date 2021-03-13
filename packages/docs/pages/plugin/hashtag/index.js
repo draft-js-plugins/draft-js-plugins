@@ -108,6 +108,13 @@ export default class App extends Component {
               </div>
             </div>
           </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>hashtagComponent</span>
+            <span>
+              If provided the passed component is used to render a Mention. It
+              receives the following props: children, theme & decoratedText
+            </span>
+          </div>
           <Heading level={3}>Additional Exports</Heading>
           <div>
             In addition to the plugin the module exports{' '}

@@ -1,3 +1,4 @@
+import { ContentState, EditorState } from 'draft-js';
 import React, { ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
 import { HashtagPluginTheme } from './theme';
@@ -7,15 +8,16 @@ export interface HashtagProps {
   className?: string;
   children?: ReactNode;
 
-  //removed props
-  decoratedText?: unknown;
-  dir?: unknown;
-  entityKey?: unknown;
-  getEditorState?: unknown;
-  offsetKey?: unknown;
-  setEditorState?: unknown;
-  contentState?: unknown;
-  blockKey?: unknown;
+  decoratedText?: string;
+  dir?: null;
+  entityKey?: string | null;
+  offsetKey?: string;
+  contentState?: ContentState;
+  blockKey?: string;
+  start?: number;
+  end?: number;
+  setEditorState?(editorState: EditorState): void;
+  getEditorState?(): EditorState;
 }
 
 export default function Hashtag(props: HashtagProps): ReactElement {
@@ -30,6 +32,8 @@ export default function Hashtag(props: HashtagProps): ReactElement {
     setEditorState, // eslint-disable-line @typescript-eslint/no-unused-vars
     contentState, // eslint-disable-line @typescript-eslint/no-unused-vars
     blockKey, // eslint-disable-line @typescript-eslint/no-unused-vars
+    start, // eslint-disable-line @typescript-eslint/no-unused-vars
+    end, // eslint-disable-line @typescript-eslint/no-unused-vars
     ...otherProps
   } = props;
 
