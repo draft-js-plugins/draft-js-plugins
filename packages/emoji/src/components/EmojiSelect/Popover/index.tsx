@@ -176,6 +176,7 @@ export default class Popover extends Component<PopoverProps> {
       isOpen = false,
       emojiImage,
     } = this.props;
+
     const className = isOpen
       ? theme.emojiSelectPopover
       : theme.emojiSelectPopoverClosed;
@@ -189,30 +190,34 @@ export default class Popover extends Component<PopoverProps> {
           this.container = element;
         }}
       >
-        <h3 className={theme.emojiSelectPopoverTitle}>
-          {groups[activeGroup].title}
-        </h3>
-        <Groups
-          theme={theme}
-          groups={groups}
-          emojis={emojis}
-          checkMouseDown={this.checkMouseDown}
-          onEmojiSelect={this.onEmojiSelect}
-          onEmojiMouseDown={this.onEmojiMouseDown}
-          onGroupScroll={this.onGroupScroll}
-          ref={(element) => {
-            this.groupsElement = element;
-          }}
-          emojiImage={emojiImage}
-          isOpen={isOpen}
-        />
-        <Nav
-          theme={theme}
-          groups={groups}
-          activeGroup={activeGroup}
-          onGroupSelect={this.onGroupSelect}
-        />
-        {this.renderToneSelect()}
+        {isOpen && (
+          <>
+            <h3 className={theme.emojiSelectPopoverTitle}>
+              {groups[activeGroup].title}
+            </h3>
+            <Groups
+              theme={theme}
+              groups={groups}
+              emojis={emojis}
+              checkMouseDown={this.checkMouseDown}
+              onEmojiSelect={this.onEmojiSelect}
+              onEmojiMouseDown={this.onEmojiMouseDown}
+              onGroupScroll={this.onGroupScroll}
+              ref={(element) => {
+                this.groupsElement = element;
+              }}
+              emojiImage={emojiImage}
+              isOpen={isOpen}
+            />
+            <Nav
+              theme={theme}
+              groups={groups}
+              activeGroup={activeGroup}
+              onGroupSelect={this.onGroupSelect}
+            />
+            {this.renderToneSelect()}
+          </>
+        )}
       </div>
     );
   }
