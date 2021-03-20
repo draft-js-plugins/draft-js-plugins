@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+## 4.3.1
+
+- render Emoji Select content only if popup is open [#855](https://github.com/draft-js-plugins/draft-js-plugins/issues/855)
+
 ## 4.3.0
 
 - provide unicode for emoji image component [#1877](https://github.com/draft-js-plugins/draft-js-plugins/issues/1877)
