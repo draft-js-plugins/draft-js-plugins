@@ -21,6 +21,7 @@ interface PopoverProps {
   toneSelectOpenDelay: number;
   isOpen?: boolean;
   emojiImage: ComponentType<EmojiImageProps>;
+  onEmojiSelect(): void;
 }
 
 export default class Popover extends Component<PopoverProps> {
@@ -80,6 +81,7 @@ export default class Popover extends Component<PopoverProps> {
   onEmojiSelect = (emoji: string): void => {
     const newEditorState = addEmoji(this.props.store.getEditorState!(), emoji);
     this.props.store.setEditorState!(newEditorState);
+    this.props.onEmojiSelect();
   };
 
   onEmojiMouseDown = (emojiEntry: Entry, toneSet: string[] | null): void => {

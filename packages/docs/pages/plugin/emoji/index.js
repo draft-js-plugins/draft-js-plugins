@@ -452,6 +452,13 @@ export default class App extends Component {
                 A callback which is triggered whenever the emoji popover closes.
               </span>
             </div>
+            <div className={styles.paramBig}>
+              <span className={styles.paramName}>closeOnEmojiSelect</span>
+              <span>
+                If set to true the popup is closed after an emoji is selected,
+                otherwise it will stay open.
+              </span>
+            </div>
           </div>
         </Container>
         <Container>

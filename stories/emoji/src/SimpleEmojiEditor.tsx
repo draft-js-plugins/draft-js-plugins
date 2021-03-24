@@ -39,7 +39,7 @@ const SimpleEmojiEditor = (): ReactElement => {
         <EmojiSuggestions />
       </div>
       <div className={editorStyles.options}>
-        <EmojiSelect />
+        <EmojiSelect closeOnEmojiSelect />
       </div>
     </div>
   );

@@ -21,6 +21,7 @@ const emojis = createEmojisFromStrategy();
 export interface EmojiSelectPubParams {
   onClose?(): void;
   onOpen?(): void;
+  closeOnEmojiSelect?: boolean;
 }
 
 interface EmojiSelectParams extends EmojiSelectPubParams {
@@ -113,6 +114,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       selectButtonContent,
       toneSelectOpenDelay,
       emojiImage,
+      closeOnEmojiSelect,
     } = this.props;
     const buttonClassName = this.state.isOpen
       ? theme.emojiSelectButtonPressed
@@ -134,6 +136,11 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
           toneSelectOpenDelay={toneSelectOpenDelay!}
           isOpen={this.state.isOpen}
           emojiImage={emojiImage}
+          onEmojiSelect={() => {
+            if (closeOnEmojiSelect) {
+              this.closePopover();
+            }
+          }}
         />
       </div>
     );
