@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+## 4.4.0
+
+- add closeOnEmojiSelect oprion to EmojiSelect to close popup after selection [#1924](https://github.com/draft-js-plugins/draft-js-plugins/issues/1924)
+
 ## 4.3.1
 
 - render Emoji Select content only if popup is open [#855](https://github.com/draft-js-plugins/draft-js-plugins/issues/855)

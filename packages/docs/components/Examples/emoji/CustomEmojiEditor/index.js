@@ -41,7 +41,7 @@ export default class CustomEmojiEditor extends Component {
           <EmojiSuggestions />
         </div>
         <div className={editorStyles.options}>
-          <EmojiSelect />
+          <EmojiSelect closeOnEmojiSelect />
         </div>
       </div>
     );
