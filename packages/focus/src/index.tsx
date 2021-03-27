@@ -42,6 +42,19 @@ type FocusEditorPlugin = EditorPlugin & {
   decorator: ReturnType<typeof createDecorator>;
 };
 
+function forceSelection(editorState: EditorState): EditorState {
+  // By forcing the selection the editor will trigger the blockRendererFn which is
+  // necessary for the blockProps containing isFocus to be passed down again.
+  // EditorState.forceSelection is not used as it will force the focus to true which is not
+  // correct if this call comes from onBlur
+  return EditorState.set(editorState, {
+    selection: editorState.getSelection(),
+    forceSelection: true,
+    nativelyRenderedContent: null,
+    inlineStyleOverride: null,
+  });
+}
+
 export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
   const blockKeyStore = createBlockKeyStore();
   const theme = config.theme ? config.theme : defaultTheme;
@@ -106,12 +119,7 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
         );
         if (lastBlockMapKeys.some((key) => focusableBlockKeys.includes(key!))) {
           lastSelection = selection;
-          // By forcing the selection the editor will trigger the blockRendererFn which is
-          // necessary for the blockProps containing isFocus to be passed down again.
-          return EditorState.forceSelection(
-            editorState,
-            editorState.getSelection()
-          );
+          return forceSelection(editorState);
         }
       }
 
@@ -124,12 +132,7 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
         currentBlockMapKeys.some((key) => focusableBlockKeys.includes(key!))
       ) {
         lastSelection = selection;
-        // By forcing the selection the editor will trigger the blockRendererFn which is
-        // necessary for the blockProps containing isFocus to be passed down again.
-        return EditorState.forceSelection(
-          editorState,
-          editorState.getSelection()
-        );
+        return forceSelection(editorState);
       }
 
       return editorState;
@@ -243,7 +246,9 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
       }
 
       const editorState = getEditorState();
-      const isFocused = blockInSelection(editorState, contentBlock.getKey());
+      const isFocused =
+        editorState.getSelection().getHasFocus() &&
+        blockInSelection(editorState, contentBlock.getKey());
 
       return {
         props: {

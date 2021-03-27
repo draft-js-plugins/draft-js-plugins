@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 4.1.1
+
+- checking if the selection has focus [#1818](https://github.com/draft-js-plugins/draft-js-plugins/issues/1818)
+
 ## 4.1.0
 
 - add "sideEffects": false for tree shaking
