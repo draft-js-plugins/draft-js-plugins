@@ -18,7 +18,7 @@
     "@babel/core": "7.13.10",
     "@babel/plugin-proposal-class-properties": "7.13.0",
     "@babel/preset-env": "7.13.12",
-    "@babel/preset-react": "7.12.13",
+    "@babel/preset-react": "7.13.13",
     "@babel/preset-typescript": "7.13.0",
     "@changesets/cli": "^2.14.1",
     "@rollup/plugin-babel": "^5.3.0",
