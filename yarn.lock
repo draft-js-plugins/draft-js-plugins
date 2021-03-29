@@ -2207,10 +2207,10 @@
   resolved "https://registry.yarnpkg.com/@types/braces/-/braces-3.0.0.tgz#7da1c0d44ff1c7eb660a36ec078ea61ba7eb42cb"
   integrity sha512-TbH79tcyi9FHwbyboOKeRachRq63mSuWYXOflsNO9ZyE5ClQ/JaozNKl+aWUq87qPNsXasXxi2AbgfwIJ+8GQw==
 
-"@types/draft-js@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.0.tgz#d45590a3228fb2152e882bc8efc012983ccf6ae2"
-  integrity sha512-TcDToMfH1fvBW09xNc1uOq1lU+nFaJGeKPRbUbtFXgcJpusUFMLv3wLfJ4M+9ytsd4YRPKriCfuXVmN704CZMA==
+"@types/draft-js@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.1.tgz#f67920c9583054143e263704e250dd3086de3ef3"
+  integrity sha512-jV4LAXYdVvS0ahIROZehkKqHgfLxaDBl3fzfEVqho8NxFAtEaObdIiu7FpPUu/Y97PlJVxGajar7aSikQqz9sQ==
   dependencies:
     "@types/react" "*"
     immutable "~3.7.4"
