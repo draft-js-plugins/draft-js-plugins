@@ -35,7 +35,7 @@ function MentionLink({
       className={className}
       spellCheck={false}
       data-testid="mentionLink"
-      contenteditable="false"
+      contentEditable="false"
     >
       {children}
     </a>
