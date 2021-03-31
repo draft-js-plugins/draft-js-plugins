@@ -23,7 +23,7 @@
     "@changesets/cli": "^2.14.1",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
-    "@storybook/react": "^6.1.21",
+    "@storybook/react": "^6.2.1",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.5",
     "@testing-library/react-hooks": "^5.1.1",
