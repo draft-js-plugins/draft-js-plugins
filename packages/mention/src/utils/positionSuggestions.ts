@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { MentionData } from '..';
+import { MentionData, MentionPluginStore } from '..';
 
 const getRelativeParent = (element: HTMLElement | null): HTMLElement | null => {
   if (!element) {
@@ -22,6 +22,7 @@ export interface PositionSuggestionsParams {
   props: {
     open: boolean;
     suggestions: MentionData[];
+    store: MentionPluginStore;
   };
 }
 
