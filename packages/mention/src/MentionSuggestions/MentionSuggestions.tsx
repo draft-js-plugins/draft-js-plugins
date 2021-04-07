@@ -16,12 +16,12 @@ import {
 import { AriaProps, EditorCommand } from '@draft-js-plugins/editor';
 import Entry, { EntryComponentProps } from './Entry/Entry';
 import addMention from '../modifiers/addMention';
-import decodeOffsetKey from '../utils/decodeOffsetKey';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/DefaultEntryComponent';
 import { MentionData, MentionPluginStore } from '..';
 import { PositionSuggestionsFn } from '../utils/positionSuggestions';
 import { MentionPluginTheme } from '../theme';
+import getTriggerForMention from '../utils/getTriggerForMention';
 
 export type { MentionPluginTheme };
 
@@ -139,86 +139,25 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       return editorState;
     };
 
-    // get the current selection
-    const selection = editorState.getSelection();
-    const anchorKey = selection.getAnchorKey();
-    const anchorOffset = selection.getAnchorOffset();
-
-    // the list should not be visible if a range is selected or the editor has no focus
-    if (!selection.isCollapsed() || !selection.getHasFocus())
-      return removeList();
-
-    // identify the start & end positon of each search-text
-    const offsetDetails = searches.map((offsetKey) =>
-      decodeOffsetKey(offsetKey!)
+    const triggerForMention = getTriggerForMention(
+      editorState,
+      searches,
+      this.props.mentionTriggers
     );
 
-    // a leave can be empty when it is removed due event.g. using backspace
-    // do not check leaves, use full decorated portal text
-    const leaves = offsetDetails
-      .filter((offsetDetail) => offsetDetail!.blockKey === anchorKey)
-      .map((offsetDetail) =>
-        editorState
-          .getBlockTree(offsetDetail!.blockKey)
-          .getIn([offsetDetail!.decoratorKey])
-      );
-
-    // if all leaves are undefined the popover should be removed
-    if (leaves.every((leave) => leave === undefined)) {
+    if (!triggerForMention) {
       return removeList();
     }
 
-    // Checks that the cursor is after the @ character but still somewhere in
-    // the word (search term). Setting it to allow the cursor to be left of
-    // the @ causes troubles due selection confusion.
-    const blockText = editorState
-      .getCurrentContent()
-      .getBlockForKey(anchorKey)
-      .getText();
-    const triggerForSelectionInsideWord = leaves
-      .filter((leave) => leave !== undefined)
-      .map(
-        ({ start, end }) =>
-          this.props.mentionTriggers
-            .map((trigger) =>
-              // @ is the first character
-              (start === 0 &&
-                anchorOffset >= start + trigger.length && //should not trigger if the cursor is before the trigger
-                blockText.substr(0, trigger.length) === trigger &&
-                anchorOffset <= end) ||
-              // @ is in the text or at the end, multi triggers
-              (this.props.mentionTriggers.length > 1 &&
-                anchorOffset >= start + trigger.length &&
-                (blockText.substr(start + 1, trigger.length) === trigger ||
-                  blockText.substr(start, trigger.length) === trigger) &&
-                anchorOffset <= end) ||
-              // @ is in the text or at the end, single trigger
-              (this.props.mentionTriggers.length === 1 &&
-                anchorOffset >= start + trigger.length &&
-                anchorOffset <= end)
-                ? trigger
-                : undefined
-            )
-            .filter((trigger) => trigger !== undefined)[0]
-      )
-      .filter((trigger) => trigger !== undefined);
-
-    if (triggerForSelectionInsideWord.isEmpty()) return removeList();
-
-    const [
-      activeOffsetKey,
-      activeTrigger,
-    ] = triggerForSelectionInsideWord.entrySeq().first();
-
     const lastActiveOffsetKey = this.activeOffsetKey;
-    this.activeOffsetKey = activeOffsetKey;
+    this.activeOffsetKey = triggerForMention.activeOffsetKey;
 
     this.onSearchChange(
       editorState,
-      selection,
+      editorState.getSelection(),
       this.activeOffsetKey,
       lastActiveOffsetKey,
-      activeTrigger
+      triggerForMention.activeTrigger
     );
 
     // make sure the escaped search is reseted in the cursor since the user
