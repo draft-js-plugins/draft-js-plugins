@@ -183,12 +183,14 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
             .map((trigger) =>
               // @ is the first character
               (start === 0 &&
+                anchorOffset >= start + trigger.length && //should not trigger if the cursor is before the trigger
                 blockText.substr(0, trigger.length) === trigger &&
                 anchorOffset <= end) ||
               // @ is in the text or at the end, multi triggers
               (this.props.mentionTriggers.length > 1 &&
                 anchorOffset >= start + trigger.length &&
-                (blockText.substr(start + 1, trigger.length) === trigger || blockText.substr(start, trigger.length) === trigger) &&
+                (blockText.substr(start + 1, trigger.length) === trigger ||
+                  blockText.substr(start, trigger.length) === trigger) &&
                 anchorOffset <= end) ||
               // @ is in the text or at the end, single trigger
               (this.props.mentionTriggers.length === 1 &&

@@ -3,9 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## To be released
+## 4.3.2
 
 - Add store to PositionSuggestionsParams types [#1945](https://github.com/draft-js-plugins/draft-js-plugins/issues/1945)
+- Fixing issue if trigger is first character and cursor if before trigger [#1957](https://github.com/draft-js-plugins/draft-js-plugins/issues/1957)
 
 ## 4.3.1
 
