@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+- Add store to PositionSuggestionsParams types [#1945](https://github.com/draft-js-plugins/draft-js-plugins/issues/1945)
+
 ## 4.3.1
 
 - Fix the @ mentions to actually work. Right now they don't work in the middle of a line. If you start a line with "@" it works but if you start typing text then type "@" it doesn't work.
