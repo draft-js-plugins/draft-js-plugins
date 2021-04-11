@@ -22,31 +22,35 @@ export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   preventScroll: unknown;
 }
 
-export default function Image(props: ImageProps): ReactElement {
-  const { block, className, theme = {}, ...otherProps } = props;
-  // leveraging destructuring to omit certain properties from props
-  const {
-    blockProps, // eslint-disable-line @typescript-eslint/no-unused-vars
-    customStyleMap, // eslint-disable-line @typescript-eslint/no-unused-vars
-    customStyleFn, // eslint-disable-line @typescript-eslint/no-unused-vars
-    decorator, // eslint-disable-line @typescript-eslint/no-unused-vars
-    forceSelection, // eslint-disable-line @typescript-eslint/no-unused-vars
-    offsetKey, // eslint-disable-line @typescript-eslint/no-unused-vars
-    selection, // eslint-disable-line @typescript-eslint/no-unused-vars
-    tree, // eslint-disable-line @typescript-eslint/no-unused-vars
-    blockStyleFn, // eslint-disable-line @typescript-eslint/no-unused-vars
-    preventScroll, // eslint-disable-line @typescript-eslint/no-unused-vars
-    contentState,
-    ...elementProps
-  } = otherProps;
-  const combinedClassName = clsx(theme.image, className);
-  const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
-  return (
-    <img
-      {...elementProps}
-      src={src}
-      role="presentation"
-      className={combinedClassName}
-    />
-  );
-}
+export default React.forwardRef<HTMLImageElement, ImageProps>(
+  // eslint-disable-next-line prefer-arrow-callback
+  function Image(props, ref): ReactElement {
+    const { block, className, theme = {}, ...otherProps } = props;
+    // leveraging destructuring to omit certain properties from props
+    const {
+      blockProps, // eslint-disable-line @typescript-eslint/no-unused-vars
+      customStyleMap, // eslint-disable-line @typescript-eslint/no-unused-vars
+      customStyleFn, // eslint-disable-line @typescript-eslint/no-unused-vars
+      decorator, // eslint-disable-line @typescript-eslint/no-unused-vars
+      forceSelection, // eslint-disable-line @typescript-eslint/no-unused-vars
+      offsetKey, // eslint-disable-line @typescript-eslint/no-unused-vars
+      selection, // eslint-disable-line @typescript-eslint/no-unused-vars
+      tree, // eslint-disable-line @typescript-eslint/no-unused-vars
+      blockStyleFn, // eslint-disable-line @typescript-eslint/no-unused-vars
+      preventScroll, // eslint-disable-line @typescript-eslint/no-unused-vars
+      contentState,
+      ...elementProps
+    } = otherProps;
+    const combinedClassName = clsx(theme.image, className);
+    const { src } = contentState.getEntity(block.getEntityAt(0)).getData();
+    return (
+      <img
+        {...elementProps}
+        ref={ref}
+        src={src}
+        role="presentation"
+        className={combinedClassName}
+      />
+    );
+  }
+);
