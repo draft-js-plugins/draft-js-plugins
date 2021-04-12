@@ -36,7 +36,7 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^0.28.11",
     "css-modules-require-hook": "^4.0.2",
-    "eslint": "^7.23.0",
+    "eslint": "^7.24.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-import-resolver-typescript": "2.4.0",
