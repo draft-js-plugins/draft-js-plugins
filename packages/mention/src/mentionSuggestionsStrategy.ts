@@ -1,5 +1,5 @@
 import { ContentBlock } from 'draft-js';
-import escapeRegExp from 'lodash-es/escapeRegExp';
+import escapeRegExp from 'lodash/escapeRegExp';
 
 interface FindWithRegexCb {
   (start: number, end: number): void;

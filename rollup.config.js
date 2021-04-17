@@ -36,7 +36,19 @@ export default [
       nodeResolve({ extensions }),
       babel({
         ...babelOptions,
-        plugins: [],
+        plugins: [
+          [
+            'babel-plugin-transform-rename-import',
+            {
+              replacements: [
+                {
+                  original: 'lodash',
+                  replacement: 'lodash-es',
+                },
+              ],
+            },
+          ],
+        ],
       }),
     ],
   },

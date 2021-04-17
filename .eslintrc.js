@@ -87,6 +87,14 @@ module.exports = {
     'react/require-default-props': 0,
     'react/display-name': 1,
     'react/no-direct-mutation-state': 1,
+    'no-restricted-imports': [
+      'error',
+      {
+        name: 'lodash-es',
+        message:
+          'Please use lodash instead. Rollup will replace lodash with lodash-es for esm.',
+      },
+    ],
   },
   settings: {
     'import/core-modules': [
