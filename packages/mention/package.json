@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/mention",
-  "version": "4.3.2",
+  "version": "4.4.0",
   "sideEffects": false,
   "description": "Mention Plugin for DraftJS",
   "author": {
@@ -38,8 +38,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/lodash": "^4.14.168",
     "clsx": "^1.0.4",
     "immutable": "~3.7.4",
+    "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "prop-types": "^15.5.8"
   },
@@ -47,9 +49,7 @@
     "draft-js": "^0.10.1 || ^0.11.0",
     "react": "^16.3.0 || ^17.0.0"
   },
-  "devDependencies": {
-    "@types/lodash-es": "^4.17.4"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }

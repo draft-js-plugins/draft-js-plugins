@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 4.4.0
+
+- fixing issue with build for commen js bundels [#1976](https://github.com/draft-js-plugins/draft-js-plugins/issues/1976)
+
 ## 4.3.2
 
 - Add store to PositionSuggestionsParams types [#1945](https://github.com/draft-js-plugins/draft-js-plugins/issues/1945)

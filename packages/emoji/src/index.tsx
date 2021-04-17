@@ -11,7 +11,7 @@ import {
   EditorCommand,
 } from '@draft-js-plugins/editor';
 import { Map, List } from 'immutable';
-import keys from 'lodash-es/keys';
+import keys from 'lodash/keys';
 import { DraftHandleValue, EditorState } from 'draft-js';
 import Emoji, { EmojiProps } from './components/Emoji';
 import EmojiSuggestions, {

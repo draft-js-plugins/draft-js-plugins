@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+## 4.5.0
+
+- fixing issue with build for commen js bundels [#1976](https://github.com/draft-js-plugins/draft-js-plugins/issues/1976)
+
 ## 4.4.0
 
 - add closeOnEmojiSelect oprion to EmojiSelect to close popup after selection [#1924](https://github.com/draft-js-plugins/draft-js-plugins/issues/1924)
