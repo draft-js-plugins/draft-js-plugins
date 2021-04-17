@@ -92,6 +92,7 @@ describe('MentionSuggestions Component', () => {
         </div>
       )
     );
+    PopoverComponent.displayName = 'PopoverComponent';
 
     const props = defaultProps();
     props.open = true;
@@ -121,6 +122,7 @@ describe('MentionSuggestions Component', () => {
         );
       }
     );
+    PopoverComponent.displayName = 'PopoverComponent';
 
     const props = defaultProps();
     props.open = true;
