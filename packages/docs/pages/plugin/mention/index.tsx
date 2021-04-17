@@ -202,7 +202,7 @@ export default function Mention(): ReactElement {
             search is triggered. By default it is set to `@`. By default typing
             `@` will trigger the search for mentions. It also does support a
             multi-charater mentionTrigger. You can use it like `mentionTrigger:
-            ['@', '(']`.
+            [&apos;@&apos;, &apos;(&apos;]`.
           </span>
         </div>
         <div className={styles.param}>

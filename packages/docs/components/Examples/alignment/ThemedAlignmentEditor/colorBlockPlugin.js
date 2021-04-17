@@ -49,5 +49,5 @@ const createColorBlockPlugin = (config = {}) => {
     },
   };
 };
-
+ColorBlock.displayName = 'ColorBlock';
 export default createColorBlockPlugin;
