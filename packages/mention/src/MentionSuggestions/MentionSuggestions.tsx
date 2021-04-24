@@ -278,11 +278,12 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
   };
 
   commitSelection = (): DraftHandleValue => {
-    if (!this.props.store.getIsOpened()) {
+    const mention = this.props.suggestions[this.state.focusedOptionIndex];
+    if (!this.props.store.getIsOpened() || !mention) {
       return 'not-handled';
     }
 
-    this.onMentionSelect(this.props.suggestions[this.state.focusedOptionIndex]);
+    this.onMentionSelect(mention);
     return 'handled';
   };
 
