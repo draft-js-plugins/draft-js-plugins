@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import CustomMentionEditor from './CustomMentionEditor';
 
 export default {
-  title: 'Mention/Editor with custom themed Mention Plugin',
+  title: 'Mentions/Editor with custom themed Mention Plugin',
   component: CustomMentionEditor,
 } as Meta;
 
