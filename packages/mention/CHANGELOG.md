@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## To Be Released
+
+## 4.4.1
+
+- fixing issue that line does not work [#2004](https://github.com/draft-js-plugins/draft-js-plugins/issues/2004)
+
 ## 4.4.0
 
 - fixing issue with build for commen js bundels [#1976](https://github.com/draft-js-plugins/draft-js-plugins/issues/1976)
