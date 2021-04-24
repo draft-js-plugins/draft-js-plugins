@@ -22,8 +22,7 @@ import { MentionData, MentionPluginStore } from '..';
 import { PositionSuggestionsFn } from '../utils/positionSuggestions';
 import { MentionPluginTheme } from '../theme';
 import getTriggerForMention from '../utils/getTriggerForMention';
-
-export type { MentionPluginTheme };
+import Popover from './Popover';
 
 export interface MentionSuggestionCallbacks {
   keyBindingFn?(event: KeyboardEvent): EditorCommand | null | undefined;
@@ -354,6 +353,25 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       mentionPrefix, // eslint-disable-line @typescript-eslint/no-unused-vars
       ...elementProps
     } = this.props;
+
+    return (
+      <Popover store={this.props.store} className={theme.mentionSuggestions}>
+        {this.props.suggestions.map((mention, index) => (
+          <Entry
+            key={mention.id != null ? mention.id : mention.name}
+            onMentionSelect={this.onMentionSelect}
+            onMentionFocus={this.onMentionFocus}
+            isFocused={this.state.focusedOptionIndex === index}
+            mention={mention}
+            index={index}
+            id={`mention-option-${this.key}-${index}`}
+            theme={theme}
+            searchValue={this.lastSearchValue}
+            entryComponent={entryComponent || defaultEntryComponent}
+          />
+        ))}
+      </Popover>
+    );
 
     return React.cloneElement(
       popoverComponent,

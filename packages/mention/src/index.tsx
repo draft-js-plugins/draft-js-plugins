@@ -52,6 +52,9 @@ export interface MentionPluginStore {
   unregister(offsetKey: string): void;
   getIsOpened(): boolean;
   setIsOpened(nextIsOpened: boolean): void;
+
+  getReferenceElement(): HTMLElement | null;
+  setReferenceElement(element: HTMLElement | null): void;
 }
 
 export interface MentionPluginConfig {
@@ -93,6 +96,7 @@ export default (
   let escapedSearch: string | undefined;
   let clientRectFunctions: Map<string, ClientRectFunction> = Map();
   let isOpened = false;
+  let referenceElement: HTMLElement | null;
 
   const store: MentionPluginStore = {
     getEditorState: undefined,
@@ -124,6 +128,11 @@ export default (
     getIsOpened: () => isOpened,
     setIsOpened: (nextIsOpened) => {
       isOpened = nextIsOpened;
+    },
+
+    getReferenceElement: () => referenceElement,
+    setReferenceElement: (element: HTMLElement | null) => {
+      referenceElement = element;
     },
   };
 
