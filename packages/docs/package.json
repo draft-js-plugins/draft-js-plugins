@@ -13,7 +13,7 @@
     "animateplus": "2.1.1",
     "clsx": "^1.1.1",
     "immutable": "^4.0.0-rc.12",
-    "next": "10.1.3",
+    "next": "10.2.0",
     "next-transpile-modules": "^7.0.0",
     "prismjs": "^1.23.0",
     "react-share": "^4.4.0",
