@@ -9192,10 +9192,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-next-transpile-modules@^6.4.1:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-6.4.1.tgz#471ceff06439d1681447c43ef8856268f8596186"
-  integrity sha512-trUMkm+bkjMci7mXSOQkF3apEY18K6YuaeG4mkLwiQtDdsmdVXzopNyZGc2nJq8OwHYDgJr1QlsBQuQb/2vXlw==
+next-transpile-modules@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/next-transpile-modules/-/next-transpile-modules-7.0.0.tgz#5a48988cede89bc5920defb15378093d0d8562eb"
+  integrity sha512-HgVczU5ajXKvE7HO3ZLmBmxXj79aq8jSZNYpCttim+MZ+b0GIsdk7AV2w7Ax/tIM1/dJA+vV/6loXCRYlbsGGA==
   dependencies:
     enhanced-resolve "^5.7.0"
     escalade "^3.1.1"
