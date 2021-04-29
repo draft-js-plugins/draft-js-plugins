@@ -3062,10 +3062,10 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
-animateplus@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/animateplus/-/animateplus-1.4.0.tgz#e6a11c89dccfc6f923bb19e2cf7b6c9a103d1905"
-  integrity sha1-5qEcidzPxvkjuxniz3tsmhA9GQU=
+animateplus@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/animateplus/-/animateplus-2.1.1.tgz#9669dcd44e85e98d2d202d962a77c4afc516777a"
+  integrity sha1-lmnc1E6F6Y0tIC2WKnfEr8UWd3o=
 
 anser@1.4.9:
   version "1.4.9"
