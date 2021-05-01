@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be release
 
+## 4.2.0
+
+- add `findWithRegex` to replace the package `find-with-regex` [#2006](https://github.com/draft-js-plugins/draft-js-plugins/issues/2006)
+
 ## 4.1.0
 
 - add "sideEffects": false for tree shaking
