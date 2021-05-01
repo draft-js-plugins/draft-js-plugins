@@ -1,5 +1,5 @@
 import { ContentBlock } from 'draft-js';
-import findWithRegex from 'find-with-regex';
+import { findWithRegex, StrategyCallback } from '@draft-js-plugins/utils';
 
 const EMOJI_REGEX = /(\s|^):[\w]*:?/g;
 

@@ -1,4 +1,4 @@
-import findWithRegex from 'find-with-regex';
+import { findWithRegex, StrategyCallback } from '@draft-js-plugins/utils';
 import emojiToolkit from 'emoji-toolkit';
 import { ContentBlock } from 'draft-js';
 

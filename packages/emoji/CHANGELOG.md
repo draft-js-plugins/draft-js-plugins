@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+## 4.5.1
+
+- add `findWithRegex` from `@draft-js-plugins/utils` to replace the package `find-with-regex` [#2006](https://github.com/draft-js-plugins/draft-js-plugins/issues/2006)
+
 ## 4.5.0
 
 - fixing issue with build for commen js bundels [#1976](https://github.com/draft-js-plugins/draft-js-plugins/issues/1976)
