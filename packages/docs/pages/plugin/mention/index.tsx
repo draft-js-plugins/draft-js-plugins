@@ -170,12 +170,23 @@ export default function Mention(): ReactElement {
         <div className={styles.param}>
           <span className={styles.paramName}>positionSuggestions</span>
           <span>
-            The function can be used to manipulate the position of the popover
-            containing the suggestions. It receives one object as arguments
-            containing the visible rectangle surrounding the decorated search
-            string including the @. In addition the object contains prevProps
-            and props. An object should be returned which can contain all sorts
-            of styles. The defined properties will be applied as inline-styles.
+            <b>Deprecated, use popperOptions instead</b> The function can be
+            used to manipulate the position of the popover containing the
+            suggestions. It receives one object as arguments containing the
+            visible rectangle surrounding the decorated search string including
+            the @. In addition the object contains prevProps and props. An
+            object should be returned which can contain all sorts of styles. The
+            defined properties will be applied as inline-styles.
+          </span>
+        </div>
+        <div className={styles.param}>
+          <span className={styles.paramName}>popperOptions</span>
+          <span>
+            This options will be used to initialize popper.js. Read in detail
+            about it{' '}
+            <ExternalLink href=" https://popper.js.org/docs/v2/">
+              here.
+            </ExternalLink>
           </span>
         </div>
         <div className={styles.param}>
@@ -276,6 +287,7 @@ export default function Mention(): ReactElement {
           <div className={styles.param}>
             <span className={styles.paramName}>popoverComponent</span>
             <span>
+              <b>Deprecated, use popperOptions/entryComponent instead</b>{' '}
               Component to be used as the template for the popover (the parent
               of entryComponent). Defaults to a div.
             </span>

@@ -1,3 +1,5 @@
+import * as PopperJS from '@popperjs/core';
+import { Modifier } from 'react-popper';
 import { Map } from 'immutable';
 import React, { ComponentType, ReactElement } from 'react';
 import { EditorState } from 'draft-js';
@@ -11,9 +13,7 @@ import MentionSuggestionsPortal, {
   MentionSuggestionsPortalProps,
 } from './MentionSuggestionsPortal';
 import addMention from './modifiers/addMention';
-import defaultPositionSuggestions, {
-  PositionSuggestionsFn,
-} from './utils/positionSuggestions';
+import { PositionSuggestionsFn } from './utils/positionSuggestions';
 import defaultRegExp from './defaultRegExp';
 import { defaultTheme, MentionPluginTheme } from './theme';
 import mentionStrategy from './mentionStrategy';
@@ -25,6 +25,11 @@ export { default as MentionSuggestions } from './MentionSuggestions/MentionSugge
 export { defaultTheme };
 export { addMention };
 export type { MentionPluginTheme };
+
+export type PopperOptions = Omit<Partial<PopperJS.Options>, 'modifiers'> & {
+  createPopper?: typeof PopperJS.createPopper;
+  modifiers?: ReadonlyArray<Modifier<unknown>>;
+};
 
 export interface MentionData {
   link?: string;
@@ -67,6 +72,7 @@ export interface MentionPluginConfig {
   mentionTrigger?: string | string[];
   mentionRegExp?: string;
   supportWhitespace?: boolean;
+  popperOptions?: PopperOptions;
 }
 
 interface ClientRectFunction {
@@ -145,13 +151,14 @@ export default (
   const {
     mentionPrefix = '',
     theme = defaultTheme,
-    positionSuggestions = defaultPositionSuggestions,
+    positionSuggestions,
     mentionComponent,
     mentionSuggestionsComponent: MentionSuggestionsComponent = MentionSuggestions,
     entityMutability = 'SEGMENTED',
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,
     supportWhitespace = false,
+    popperOptions,
   } = config;
   const mentionTriggers: string[] =
     typeof mentionTrigger === 'string' ? [mentionTrigger] : mentionTrigger;
@@ -164,6 +171,7 @@ export default (
     positionSuggestions,
     mentionTriggers,
     mentionPrefix,
+    popperOptions,
   };
   const DecoratedMentionSuggestionsComponent = (
     props: MentionSuggestionsPubProps

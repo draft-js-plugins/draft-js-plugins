@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- change MentionSuggestions to popper.js with option `popperOptions` and deprecate `popoverComponent` and `positionSuggestions` [#1933](https://github.com/draft-js-plugins/draft-js-plugins/issues/1933)
+
 ## 4.4.1
 
 - fixing issue that line does not work [#2004](https://github.com/draft-js-plugins/draft-js-plugins/issues/2004)
