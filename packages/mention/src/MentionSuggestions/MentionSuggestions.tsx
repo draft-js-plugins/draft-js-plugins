@@ -344,7 +344,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
 
     const {
       entryComponent,
-      popoverComponent = <div />,
+      popoverComponent,
       popperOptions,
       onOpenChange, // eslint-disable-line @typescript-eslint/no-unused-vars
       onAddMention, // eslint-disable-line @typescript-eslint/no-unused-vars, no-shadow
@@ -366,7 +366,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
         'The properties `popoverComponent` and `positionSuggestions` are deprecated and will be removed in @draft-js-plugins/mentions 6.0 . Use `popperOptions` instead'
       );
       return React.cloneElement(
-        popoverComponent,
+        popoverComponent || <div />,
         {
           ...elementProps,
           className: theme.mentionSuggestions,
