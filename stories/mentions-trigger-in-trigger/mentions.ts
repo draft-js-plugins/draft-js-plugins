@@ -11,6 +11,11 @@ const mentions = [
     avatar: 'https://avatars2.githubusercontent.com/u/1188186?v=3&s=400',
   },
   {
+    name: 'rmo@mit.edu',
+    link: 'https://twitter.com/rmozone',
+    avatar: 'https://avatars.githubusercontent.com/u/208551?v=4',
+  },
+  {
     name: 'Jyoti Puri',
     link: 'https://twitter.com/jyopur',
     avatar: 'https://avatars0.githubusercontent.com/u/2182307?v=3&s=400',
@@ -30,11 +35,6 @@ const mentions = [
     link: 'https://twitter.com/psbrandt',
     avatar:
       'https://pbs.twimg.com/profile_images/688487813025640448/E6O6I011_400x400.png',
-  },
-  {
-    name: 'rmo@mit.edu',
-    link: 'https://twitter.com/rmozone',
-    avatar: 'https://avatars.githubusercontent.com/u/208551?v=4',
   },
 ];
 
