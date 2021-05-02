@@ -2611,13 +2611,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-custom-scrollbars@^4.0.7":
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/@types/react-custom-scrollbars/-/react-custom-scrollbars-4.0.7.tgz#b1312ec749fcf4a01fee7466508501e072ede7ea"
-  integrity sha512-4QPZdwd+wmzWq9TyNSA/4MZFYvlQn1GlEFFkpFx8VSs13gR/L+hQne0vFnbzwlQmGG7OksthkoVpYxWJjzz95w==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-dom@17.0.3", "@types/react-dom@>=16.9.0":
   version "17.0.3"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.3.tgz#7fdf37b8af9d6d40127137865bb3fff8871d7ee1"
@@ -10728,10 +10721,10 @@ react-colorful@^5.0.1:
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.1.0.tgz#45c8044d80bc0e7ee08dc78c760e6694f3745ca2"
   integrity sha512-ZXKcQbSuuHaN5tOHORI+G9/tXsGxk/6qlAbfETfZILwwWwngyJiyYRhUJjI+Esk71BhhQRdj0v7cFHDnD95jtQ==
 
-react-custom-scrollbars@^4.1.1, react-custom-scrollbars@^4.2.0:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/react-custom-scrollbars/-/react-custom-scrollbars-4.2.1.tgz#830fd9502927e97e8a78c2086813899b2a8b66db"
-  integrity sha1-gw/ZUCkn6X6KeMIIaBOJmyqLZts=
+react-custom-scrollbars-2@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-custom-scrollbars-2/-/react-custom-scrollbars-2-4.3.0.tgz#b0321000f628acc3edd87eccdf7ef64da4694a32"
+  integrity sha512-QEdKuKWrPd3d+mRIEb/hVfIA9LB/FxR0eCNKyKQqM6cmrQIqcrN94G5Q1qnfwRcbWDggLh4QzGu4jrTkozisgw==
   dependencies:
     dom-css "^2.0.0"
     prop-types "^15.5.10"
