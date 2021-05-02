@@ -53,6 +53,24 @@ describe('test strategy with whitespace support disabled', () => {
         [14, 19],
       ],
     ],
+    ['multi char trigger - empty string', '', [':in:'], []],
+    ['multi char trigger - match single word', ':in:the ', [':in:'], [[0, 7]]],
+    [
+      'multi char trigger - match within text',
+      'a lof :in:of text',
+      [':in:'],
+      [[6, 12]],
+    ],
+    [
+      'multi char trigger - should match multiple mentions',
+      ':in:the :in:walking :in:dead',
+      [':in:'],
+      [
+        [0, 7],
+        [8, 19],
+        [20, 28],
+      ],
+    ],
   ])('%s', (_description, text, trigger, result) => {
     const callback = jest.fn();
     mentionSuggestionsStrategy(
@@ -97,6 +115,18 @@ describe('test strategy with whitespace support enabled', () => {
       [
         [0, 15],
         [15, 27],
+      ],
+    ],
+
+    ['multi char trigger - empty string', '', [':in:'], []],
+    ['multi char trigger - match single word', ':in:the ', [':in:'], [[0, 8]]],
+    [
+      'multi char trigger - should match multiple mentions with spaces',
+      ':in:the walking dead tv :in:the white house',
+      [':in:'],
+      [
+        [0, 24],
+        [24, 43],
       ],
     ],
   ])('%s', (_description, text, trigger, result) => {
