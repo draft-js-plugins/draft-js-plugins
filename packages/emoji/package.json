@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/emoji",
-  "version": "4.5.0",
+  "version": "4.5.3",
   "sideEffects": false,
   "description": "Emoji Plugin for DraftJS",
   "author": {
@@ -39,18 +39,17 @@
   "license": "MIT",
   "dependencies": {
     "@draft-js-plugins/buttons": "^4.0.0",
-    "@draft-js-plugins/utils": "^4.0.0",
+    "@draft-js-plugins/utils": "^4.2.0",
     "@types/lodash": "^4.14.168",
     "clsx": "^1.0.4",
     "emoji-toolkit": "^6.5.1",
     "emojibase": "^5.1.1",
     "emojibase-data": "^6.1.2",
-    "find-with-regex": "^1.1.3",
     "immutable": "~3.7.4",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "prop-types": "^15.5.8",
-    "react-custom-scrollbars": "^4.2.0",
+    "react-custom-scrollbars-2": "^4.3.0",
     "react-icons": "^4.2.0",
     "to-style": "^1.3.3"
   },
@@ -59,7 +58,6 @@
     "react": "^16.8.0 || ^17.0.0"
   },
   "devDependencies": {
-    "@types/react-custom-scrollbars": "^4.0.7",
     "@types/react-icons": "3.0.0"
   },
   "publishConfig": {

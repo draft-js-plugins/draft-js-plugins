@@ -332,7 +332,10 @@ export default function Mention(): ReactElement {
           code={(simpleExampleMentionsCode as unknown) as string}
           name="Mentions.ts"
         />
-        <Code code={simpleExampleEditorStylesCode} name="editorStyles.css" />
+        <Code
+          code={simpleExampleEditorStylesCode}
+          name="SimpleMentionEditor.module.css"
+        />
       </Container>
       <Container>
         <Heading level={2}>Custom Themed Mention Example</Heading>
@@ -343,13 +346,16 @@ export default function Mention(): ReactElement {
         />
         <Code
           code={customExampleMentionsStylesCode}
-          name="mentionsStyles.css"
+          name="MentionsStyles.module.css"
         />
         <Code
           code={(customExampleMentionsCode as unknown) as string}
           name="Mentions.ts"
         />
-        <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
+        <Code
+          code={customExampleEditorStylesCode}
+          name="CustomMentionEditor.module.css"
+        />
       </Container>
       <Container>
         <Heading level={2}>Remote Data Mention Example</Heading>
@@ -358,7 +364,10 @@ export default function Mention(): ReactElement {
           code={(remoteExampleCode as unknown) as string}
           name="RemoteMentionEditor.tsx"
         />
-        <Code code={remoteExampleEditorStylesCode} name="editorStyles.css" />
+        <Code
+          code={remoteExampleEditorStylesCode}
+          name="RemoteMentionEditor.module.css"
+        />
       </Container>
       <Container>
         <Heading level={2}>Custom Mention Component Example</Heading>
@@ -367,7 +376,10 @@ export default function Mention(): ReactElement {
           code={(customComponentExampleCode as unknown) as string}
           name="CustomComponentMentionEditor.tsx"
         />
-        <Code code={customComponentExampleStylesCode} name="editorStyles.css" />
+        <Code
+          code={customComponentExampleStylesCode}
+          name="CustomComponentMentionEditor.module.css"
+        />
       </Container>
       <Container>
         <Heading level={2}>Multi Mention Triggers</Heading>
@@ -376,7 +388,10 @@ export default function Mention(): ReactElement {
           code={(multiComponentExampleCode as unknown) as string}
           name="MultiMentionTriggers.tsx"
         />
-        <Code code={multiComponentExampleStylesCode} name="editorStyles.css" />
+        <Code
+          code={multiComponentExampleStylesCode}
+          name="MultiMentionTriggers.module.css"
+        />
       </Container>
     </PluginPageFrame>
   );

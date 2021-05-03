@@ -5,7 +5,7 @@ import React, {
   WheelEvent,
 } from 'react';
 import PropTypes from 'prop-types';
-import { Scrollbars, positionValues } from 'react-custom-scrollbars';
+import { Scrollbars, positionValues } from 'react-custom-scrollbars-2';
 import Group from './Group';
 import {
   EmojiImageProps,
