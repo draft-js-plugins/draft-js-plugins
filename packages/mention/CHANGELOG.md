@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- change MentionSuggestions to popper.js with option `popperOptions`, `popoverContainer` and deprecate `popoverComponent` and `positionSuggestions` [#1933](https://github.com/draft-js-plugins/draft-js-plugins/issues/1933)
 - Fix @-mentions to work when the trigger character appears within the search string, for instance an email address.
 
 ## 4.4.1

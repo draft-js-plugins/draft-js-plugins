@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
-import { PositionSuggestionsParams } from '@draft-js-plugins/mention/lib/utils/positionSuggestions';
 import createMentionPlugin, {
   defaultSuggestionsFilter,
   MentionData,
@@ -17,26 +16,6 @@ import createMentionPlugin, {
 import editorStyles from './CustomMentionEditor.module.css';
 import mentionsStyles from './MentionsStyles.module.css';
 import mentions from './Mentions';
-
-const positionSuggestions = ({
-  props,
-}: PositionSuggestionsParams): React.CSSProperties => {
-  let transform;
-  let transition;
-
-  if (props.open && props.suggestions.length > 0) {
-    transform = 'scaleY(1)';
-    transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
-  } else if (props.open) {
-    transform = 'scaleY(0)';
-    transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
-  }
-
-  return {
-    transform,
-    transition,
-  };
-};
 
 export interface EntryComponentProps {
   className?: string;
@@ -98,7 +77,6 @@ export default function CustomMentionEditor(): ReactElement {
     const mentionPlugin = createMentionPlugin({
       entityMutability: 'IMMUTABLE',
       theme: mentionsStyles,
-      positionSuggestions,
       mentionPrefix: '@',
       supportWhitespace: true,
     });
@@ -142,6 +120,7 @@ export default function CustomMentionEditor(): ReactElement {
           // get the mention object selected
         }}
         entryComponent={Entry}
+        popoverContainer={({ children }) => <div>{children}</div>}
       />
     </div>
   );
