@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- Fix @-mentions to work when the trigger character appears within the search string, for instance an email address.
+
 ## 4.4.1
 
 - fixing issue that line does not work [#2004](https://github.com/draft-js-plugins/draft-js-plugins/issues/2004)
