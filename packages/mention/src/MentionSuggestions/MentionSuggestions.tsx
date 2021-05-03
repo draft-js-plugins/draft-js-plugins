@@ -50,6 +50,7 @@ export interface MentionSuggestionsPubProps {
     PopoverComponentProps & RefAttributes<HTMLElement>
   >;
   entryComponent?: ComponentType<EntryComponentProps>;
+  popoverContainer?: ComponentType<PopperOptions>;
 }
 
 export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
@@ -346,6 +347,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       entryComponent,
       popoverComponent,
       popperOptions,
+      popoverContainer: PopoverContainer = Popover,
       onOpenChange, // eslint-disable-line @typescript-eslint/no-unused-vars
       onAddMention, // eslint-disable-line @typescript-eslint/no-unused-vars, no-shadow
       onSearchChange, // eslint-disable-line @typescript-eslint/no-unused-vars, no-shadow
@@ -394,7 +396,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     }
 
     return (
-      <Popover
+      <PopoverContainer
         store={this.props.store}
         className={theme.mentionSuggestions}
         popperOptions={popperOptions}
@@ -413,7 +415,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
             entryComponent={entryComponent || defaultEntryComponent}
           />
         ))}
-      </Popover>
+      </PopoverContainer>
     );
   }
 }

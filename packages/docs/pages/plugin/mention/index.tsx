@@ -287,9 +287,16 @@ export default function Mention(): ReactElement {
           <div className={styles.param}>
             <span className={styles.paramName}>popoverComponent</span>
             <span>
-              <b>Deprecated, use popperOptions/entryComponent instead</b>{' '}
+              <b>Deprecated, use popperOptions/popoverContainer instead</b>{' '}
               Component to be used as the template for the popover (the parent
               of entryComponent). Defaults to a div.
+            </span>
+          </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>popoverContainer</span>
+            <span>
+              Defaults to a div which is bound to popper.js. If don&apos;t want
+              to have a popover you can overwrite the component with you own.
             </span>
           </div>
           <div className={styles.param}>
