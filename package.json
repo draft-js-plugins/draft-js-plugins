@@ -10,8 +10,8 @@
   "dependencies": {
     "draft-js": "^0.11.0",
     "eslint-plugin-import": "^2.2.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.9.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "7.14.0",
