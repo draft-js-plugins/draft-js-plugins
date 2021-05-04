@@ -18,12 +18,14 @@ import Entry, { EntryComponentProps } from './Entry/Entry';
 import addMention from '../modifiers/addMention';
 import getSearchText from '../utils/getSearchText';
 import defaultEntryComponent from './Entry/DefaultEntryComponent';
-import { MentionData, MentionPluginStore } from '..';
-import { PositionSuggestionsFn } from '../utils/positionSuggestions';
+import { MentionData, MentionPluginStore, PopperOptions } from '..';
+import defaultPositionSuggestions, {
+  PositionSuggestionsFn,
+} from '../utils/positionSuggestions';
 import { MentionPluginTheme } from '../theme';
 import getTriggerForMention from '../utils/getTriggerForMention';
-
-export type { MentionPluginTheme };
+import Popover from './Popover';
+import { warning } from '../utils/warning';
 
 export interface MentionSuggestionCallbacks {
   keyBindingFn?(event: KeyboardEvent): EditorCommand | null | undefined;
@@ -48,17 +50,19 @@ export interface MentionSuggestionsPubProps {
     PopoverComponentProps & RefAttributes<HTMLElement>
   >;
   entryComponent?: ComponentType<EntryComponentProps>;
+  popoverContainer?: ComponentType<PopperOptions>;
 }
 
 export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   callbacks: MentionSuggestionCallbacks;
   store: MentionPluginStore;
-  positionSuggestions: PositionSuggestionsFn;
+  positionSuggestions?: PositionSuggestionsFn;
   ariaProps: AriaProps;
   theme: MentionPluginTheme;
   mentionPrefix: string;
   mentionTriggers: string[];
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
+  popperOptions?: PopperOptions;
 }
 
 export class MentionSuggestions extends Component<MentionSuggestionsProps> {
@@ -110,7 +114,9 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       const decoratorRect = this.props.store.getPortalClientRect(
         this.activeOffsetKey!
       );
-      const newStyles: CSSProperties = this.props.positionSuggestions({
+      const positionSuggestions =
+        this.props.positionSuggestions || defaultPositionSuggestions;
+      const newStyles: CSSProperties = positionSuggestions({
         decoratorRect,
         props: this.props,
         popover: this.popover,
@@ -339,7 +345,9 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
 
     const {
       entryComponent,
-      popoverComponent = <div />,
+      popoverComponent,
+      popperOptions,
+      popoverContainer: PopoverContainer = Popover,
       onOpenChange, // eslint-disable-line @typescript-eslint/no-unused-vars
       onAddMention, // eslint-disable-line @typescript-eslint/no-unused-vars, no-shadow
       onSearchChange, // eslint-disable-line @typescript-eslint/no-unused-vars, no-shadow
@@ -355,31 +363,59 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       ...elementProps
     } = this.props;
 
-    return React.cloneElement(
-      popoverComponent,
-      {
-        ...elementProps,
-        className: theme.mentionSuggestions,
-        role: 'listbox',
-        id: `mentions-list-${this.key}`,
-        ref: (element: HTMLElement) => {
-          this.popover = element;
+    if (popoverComponent || positionSuggestions) {
+      warning(
+        'The properties `popoverComponent` and `positionSuggestions` are deprecated and will be removed in @draft-js-plugins/mentions 6.0 . Use `popperOptions` instead'
+      );
+      return React.cloneElement(
+        popoverComponent || <div />,
+        {
+          ...elementProps,
+          className: theme.mentionSuggestions,
+          role: 'listbox',
+          id: `mentions-list-${this.key}`,
+          ref: (element: HTMLElement) => {
+            this.popover = element;
+          },
         },
-      },
-      this.props.suggestions.map((mention, index) => (
-        <Entry
-          key={mention.id != null ? mention.id : mention.name}
-          onMentionSelect={this.onMentionSelect}
-          onMentionFocus={this.onMentionFocus}
-          isFocused={this.state.focusedOptionIndex === index}
-          mention={mention}
-          index={index}
-          id={`mention-option-${this.key}-${index}`}
-          theme={theme}
-          searchValue={this.lastSearchValue}
-          entryComponent={entryComponent || defaultEntryComponent}
-        />
-      ))
+        this.props.suggestions.map((mention, index) => (
+          <Entry
+            key={mention.id != null ? mention.id : mention.name}
+            onMentionSelect={this.onMentionSelect}
+            onMentionFocus={this.onMentionFocus}
+            isFocused={this.state.focusedOptionIndex === index}
+            mention={mention}
+            index={index}
+            id={`mention-option-${this.key}-${index}`}
+            theme={theme}
+            searchValue={this.lastSearchValue}
+            entryComponent={entryComponent || defaultEntryComponent}
+          />
+        ))
+      );
+    }
+
+    return (
+      <PopoverContainer
+        store={this.props.store}
+        className={theme.mentionSuggestions}
+        popperOptions={popperOptions}
+      >
+        {this.props.suggestions.map((mention, index) => (
+          <Entry
+            key={mention.id != null ? mention.id : mention.name}
+            onMentionSelect={this.onMentionSelect}
+            onMentionFocus={this.onMentionFocus}
+            isFocused={this.state.focusedOptionIndex === index}
+            mention={mention}
+            index={index}
+            id={`mention-option-${this.key}-${index}`}
+            theme={theme}
+            searchValue={this.lastSearchValue}
+            entryComponent={entryComponent || defaultEntryComponent}
+          />
+        ))}
+      </PopoverContainer>
     );
   }
 }

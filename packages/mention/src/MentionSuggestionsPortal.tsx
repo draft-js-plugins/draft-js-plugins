@@ -1,5 +1,11 @@
 import { EditorState } from 'draft-js';
-import React, { ReactElement, ReactNode, useEffect, useLayoutEffect, useRef } from 'react';
+import React, {
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from 'react';
 import { MentionPluginStore } from '.';
 
 const useIsomorphicLayoutEffect =
@@ -22,6 +28,7 @@ export default function MentionSuggestionsPortal(
   // Ideally we can remove this in the future.
   const searchPortalRef = (element: HTMLSpanElement): void => {
     searchPortal.current = element;
+    props.store.setReferenceElement(element);
   };
 
   const updatePortalClientRect = (
@@ -48,6 +55,7 @@ export default function MentionSuggestionsPortal(
     return () => {
       props.store.unregister(props.offsetKey);
       props.store.setIsOpened(false);
+      props.store.setReferenceElement(null);
     };
   }, []);
 

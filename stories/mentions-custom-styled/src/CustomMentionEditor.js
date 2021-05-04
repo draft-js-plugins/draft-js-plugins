@@ -8,31 +8,10 @@ import editorStyles from './editorStyles.css';
 import mentionsStyles from './mentionsStyles.css';
 import mentions from './mentions';
 
-const positionSuggestions = ({ props }) => {
-  let transform;
-  let transition;
-
-  if (props.open) {
-    if (props.suggestions.length > 0) {
-      transform = 'scaleY(1)';
-      transition = 'all 0.25s cubic-bezier(.3,1.2,.2,1)';
-    } else {
-      transform = 'scaleY(0)';
-      transition = 'all 0.25s cubic-bezier(.3,1,.2,1)';
-    }
-  }
-
-  return {
-    transform,
-    transition,
-  };
-};
-
 const mentionPlugin = createMentionPlugin({
   mentions,
   entityMutability: 'IMMUTABLE',
   theme: mentionsStyles,
-  positionSuggestions,
   mentionPrefix: '@',
 });
 const { MentionSuggestions } = mentionPlugin;
@@ -111,6 +90,7 @@ const CustomMentionEditor = () => {
         onSearchChange={onSearchChange}
         suggestions={suggestions}
         entryComponent={Entry}
+        popoverContainer={({ children }) => <div>{children}</div>}
       />
     </div>
   );

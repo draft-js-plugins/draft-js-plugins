@@ -46,7 +46,6 @@ export const defaultTheme: MentionPluginTheme = {
   // CSS class for suggestions component
   mentionSuggestions: css`
     border: 1px solid #eee;
-    margin-top: 0.4em;
     position: absolute;
     min-width: 220px;
     max-width: 440px;
