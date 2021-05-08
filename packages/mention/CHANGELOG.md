@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- remove the trigger from the search value [#2047](https://github.com/draft-js-plugins/draft-js-plugins/issues/2047)
+
 ## 4.5.0
 
 - fixing multi-character trigger [#2017](https://github.com/draft-js-plugins/draft-js-plugins/issues/2017)

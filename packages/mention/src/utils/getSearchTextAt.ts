@@ -15,9 +15,9 @@ export default function getSearchTextAt(
 ): SearchTextAtResult {
   const str = blockText.substr(0, position);
 
-  const triggerPattern = `[${triggers
+  const triggerPattern = triggers
     .map((trigger) => escapeRegExp(trigger))
-    .join('')}]`;
+    .join('|');
 
   const TRIGGER_REGEX = new RegExp(`(\\s|^)(${triggerPattern})`, 'g');
 
