@@ -395,6 +395,10 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       );
     }
 
+    if (this.props.suggestions.length === 0) {
+      return null;
+    }
+
     return (
       <PopoverContainer
         store={this.props.store}

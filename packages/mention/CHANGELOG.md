@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- do not render popover if there are no mentions [#2049](https://github.com/draft-js-plugins/draft-js-plugins/issues/2049)
+
 ## 4.5.0
 
 - fixing multi-character trigger [#2017](https://github.com/draft-js-plugins/draft-js-plugins/issues/2017)
