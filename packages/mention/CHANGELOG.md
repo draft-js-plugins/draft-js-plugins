@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## To Be Released
 
 - do not render popover if there are no mentions [#2049](https://github.com/draft-js-plugins/draft-js-plugins/issues/2049)
+- remove the trigger from the search value [#2047](https://github.com/draft-js-plugins/draft-js-plugins/issues/2047)
 
 ## 4.5.0
 
