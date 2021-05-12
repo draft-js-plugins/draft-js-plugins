@@ -51,6 +51,7 @@ export interface MentionSuggestionsPubProps {
   >;
   entryComponent?: ComponentType<EntryComponentProps>;
   popoverContainer?: ComponentType<PopperOptions>;
+  renderEmptyPopup?: boolean;
 }
 
 export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
@@ -395,7 +396,7 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       );
     }
 
-    if (this.props.suggestions.length === 0) {
+    if (!this.props.renderEmptyPopup && this.props.suggestions.length === 0) {
       return null;
     }
 
