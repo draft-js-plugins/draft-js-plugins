@@ -408,6 +408,12 @@ export default class App extends Component {
               following props: decoratedText, className, children and theme
             </span>
           </div>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>disableInlineEmojis</span>
+            <span>
+              Disables the suggestion popover for emojis in the editor.
+            </span>
+          </div>
           <Heading level={3}>EmojiSuggestions</Heading>
           <div>
             The EmojiSuggestions component is part of the plugin and should
