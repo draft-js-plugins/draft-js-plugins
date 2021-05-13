@@ -300,6 +300,14 @@ export default function Mention(): ReactElement {
             </span>
           </div>
           <div className={styles.param}>
+            <span className={styles.paramName}>renderEmptyPopup</span>
+            <span>
+              If set to true if will render the popup even if there are no
+              mentions to show. This can for example be used to show a message
+              that there are no matching mentions.
+            </span>
+          </div>
+          <div className={styles.param}>
             <span className={styles.paramName}>
               mentionSuggestionsComponent
             </span>
@@ -332,11 +340,11 @@ export default function Mention(): ReactElement {
         <Heading level={2}>Simple Example</Heading>
         <SimpleMentionEditor />
         <Code
-          code={(simpleExampleCode as unknown) as string}
+          code={simpleExampleCode as unknown as string}
           name="SimpleMentionEditor.tsx"
         />
         <Code
-          code={(simpleExampleMentionsCode as unknown) as string}
+          code={simpleExampleMentionsCode as unknown as string}
           name="Mentions.ts"
         />
         <Code
@@ -348,7 +356,7 @@ export default function Mention(): ReactElement {
         <Heading level={2}>Custom Themed Mention Example</Heading>
         <CustomMentionEditor />
         <Code
-          code={(customExampleCode as unknown) as string}
+          code={customExampleCode as unknown as string}
           name="CustomMentionEditor.ts"
         />
         <Code
@@ -356,7 +364,7 @@ export default function Mention(): ReactElement {
           name="MentionsStyles.module.css"
         />
         <Code
-          code={(customExampleMentionsCode as unknown) as string}
+          code={customExampleMentionsCode as unknown as string}
           name="Mentions.ts"
         />
         <Code
@@ -368,7 +376,7 @@ export default function Mention(): ReactElement {
         <Heading level={2}>Remote Data Mention Example</Heading>
         <RemoteMentionEditor />
         <Code
-          code={(remoteExampleCode as unknown) as string}
+          code={remoteExampleCode as unknown as string}
           name="RemoteMentionEditor.tsx"
         />
         <Code
@@ -380,7 +388,7 @@ export default function Mention(): ReactElement {
         <Heading level={2}>Custom Mention Component Example</Heading>
         <CustomComponentMentionEditor />
         <Code
-          code={(customComponentExampleCode as unknown) as string}
+          code={customComponentExampleCode as unknown as string}
           name="CustomComponentMentionEditor.tsx"
         />
         <Code
@@ -392,7 +400,7 @@ export default function Mention(): ReactElement {
         <Heading level={2}>Multi Mention Triggers</Heading>
         <MultiMentionTriggers />
         <Code
-          code={(multiComponentExampleCode as unknown) as string}
+          code={multiComponentExampleCode as unknown as string}
           name="MultiMentionTriggers.tsx"
         />
         <Code
