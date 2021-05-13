@@ -83,6 +83,7 @@ export interface EmojiPluginConfig {
   useNativeArt?: boolean;
   emojiImage?: ComponentType<EmojiImageProps>;
   emojiInlineText?: ComponentType<EmojiInlineTextProps>;
+  disableInlineEmojis?: boolean;
 }
 
 interface GetClientRectFn {
@@ -169,6 +170,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     selectButtonContent,
     toneSelectOpenDelay,
     useNativeArt,
+    disableInlineEmojis,
     emojiImage = useNativeArt ? NativeEmojiImage : JoyPixelEmojiImage,
     emojiInlineText = useNativeArt
       ? NativeEmojiInlineText
@@ -211,16 +213,18 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   return {
     EmojiSuggestions: DecoratedEmojiSuggestions,
     EmojiSelect: DecoratedEmojiSelect,
-    decorators: [
-      {
-        strategy: emojiStrategy,
-        component: DecoratedEmoji,
-      },
-      {
-        strategy: emojiSuggestionsStrategy,
-        component: DecoratedEmojiSuggestionsPortal,
-      },
-    ],
+    decorators: disableInlineEmojis
+      ? []
+      : [
+          {
+            strategy: emojiStrategy,
+            component: DecoratedEmoji,
+          },
+          {
+            strategy: emojiSuggestionsStrategy,
+            component: DecoratedEmojiSuggestionsPortal,
+          },
+        ],
     getAccessibilityProps: () => ({
       role: 'combobox',
       ariaAutoComplete: 'list',
