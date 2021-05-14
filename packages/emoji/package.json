@@ -43,7 +43,7 @@
     "@types/lodash": "^4.14.169",
     "clsx": "^1.0.4",
     "emoji-toolkit": "^6.5.1",
-    "emojibase": "^5.1.1",
+    "emojibase": "^5.2.0",
     "emojibase-data": "^6.2.0",
     "immutable": "~3.7.4",
     "lodash": "^4.17.21",
