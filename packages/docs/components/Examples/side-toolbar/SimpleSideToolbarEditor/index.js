@@ -14,6 +14,14 @@ export default class SimpleSideToolbarEditor extends Component {
     editorState: createEditorStateWithText(text),
   };
 
+  componentDidMount() {
+    // fixing issue with SSR https://github.com/facebook/draft-js/issues/2332#issuecomment-761573306
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({
+      editorState: createEditorStateWithText(text),
+    });
+  }
+
   onChange = (editorState) => {
     this.setState({
       editorState,

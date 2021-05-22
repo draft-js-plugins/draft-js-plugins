@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/side-toolbar",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "sideEffects": false,
   "description": "Toolbar Plugin for DraftJS",
   "author": {
@@ -39,12 +39,14 @@
   "dependencies": {
     "@draft-js-plugins/buttons": "^4.0.0",
     "@draft-js-plugins/utils": "^4.0.0",
-    "prop-types": "^15.5.8"
+    "@popperjs/core": "^2.9.2",
+    "prop-types": "^15.5.8",
+    "react-popper": "^2.2.5"
   },
   "peerDependencies": {
-    "draft-js": "^0.10.1 || ^0.11.0",
-    "react": "^15.5.0 || ^16.0.0 || ^17.0.0",
-    "react-dom": "^15.5.0 || ^16.0.0 || ^17.0.0"
+    "draft-js": "^0.11.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": " ^16.8.0 || ^17.0.0"
   },
   "publishConfig": {
     "access": "public"

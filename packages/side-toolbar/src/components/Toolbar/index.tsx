@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { CSSProperties, ReactElement, FC } from 'react';
+import React, { ReactElement, FC } from 'react';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -15,7 +15,12 @@ import {
 } from '@draft-js-plugins/buttons';
 import BlockTypeSelect, { BlockTypeSelectChildProps } from '../BlockTypeSelect';
 import { SideToolbarPluginTheme } from '../../theme';
-import { SideToolbarPluginStore, SideToolbarPosition } from '../..';
+import {
+  PopperOptions,
+  SideToolbarPluginStore,
+  SideToolbarPosition,
+} from '../..';
+import Popover from './Popover';
 
 export type SideToolbarChildrenProps = BlockTypeSelectChildProps;
 
@@ -24,6 +29,11 @@ interface ToolbarProps {
   store: SideToolbarPluginStore;
   position: SideToolbarPosition;
   theme: SideToolbarPluginTheme;
+  popperOptions?: PopperOptions;
+}
+
+interface ToolbarState {
+  referenceElement: HTMLElement | null;
 }
 
 export default class Toolbar extends React.Component<ToolbarProps> {
@@ -45,10 +55,8 @@ export default class Toolbar extends React.Component<ToolbarProps> {
     children: PropTypes.func,
   };
 
-  state = {
-    position: {
-      transform: 'scale(0)',
-    },
+  state: ToolbarState = {
+    referenceElement: null,
   };
 
   componentDidMount(): void {
@@ -66,9 +74,7 @@ export default class Toolbar extends React.Component<ToolbarProps> {
     const selection = editorState!.getSelection();
     if (!selection.getHasFocus()) {
       this.setState({
-        position: {
-          transform: 'scale(0)',
-        },
+        referenceElement: null,
       });
       return;
     }
@@ -83,52 +89,34 @@ export default class Toolbar extends React.Component<ToolbarProps> {
         `[data-offset-key="${offsetKey}"]`
       )[0];
 
-      // The editor root should be two levels above the node from
-      // `getEditorRef`. In case this changes in the future, we
-      // attempt to find the node dynamically by traversing upwards.
-      const editorRef = this.props.store.getItem('getEditorRef')!();
-      if (!editorRef) return;
-
-      // this keeps backwards-compatibility with react 15
-      let editorRoot =
-        editorRef.refs && editorRef.refs.editor
-          ? editorRef.refs.editor
-          : editorRef.editor;
-      while (editorRoot.className.indexOf('DraftEditor-root') === -1) {
-        editorRoot = editorRoot.parentNode as HTMLElement;
-      }
-
-      const position: CSSProperties = {
-        top: node.offsetTop + editorRoot.offsetTop,
-        transform: 'scale(1)',
-        transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-      };
-      // TODO: remove the hard code(width for the hover element)
-      if (this.props.position === 'right') {
-        // eslint-disable-next-line no-mixed-operators
-        position.left =
-          editorRoot.offsetLeft + editorRoot.offsetWidth + 80 - 36;
-      } else {
-        position.left = editorRoot.offsetLeft - 80;
-      }
-
       this.setState({
-        position,
+        referenceElement: node,
       });
     }, 0);
   };
 
-  render(): ReactElement {
-    const { theme, store } = this.props;
+  render(): ReactElement | null {
+    const { theme, store, popperOptions, position, children } = this.props;
+
+    if (this.state.referenceElement === null) {
+      //do not show popover if reference element is not there
+      return null;
+    }
+
     return (
-      <div className={theme.toolbarStyles?.wrapper} style={this.state.position}>
+      <Popover
+        className={theme.toolbarStyles?.wrapper}
+        referenceElement={this.state.referenceElement}
+        position={position}
+        popperOptions={popperOptions}
+      >
         <BlockTypeSelect
           getEditorState={store.getItem('getEditorState')!}
           setEditorState={store.getItem('setEditorState')!}
           theme={theme}
-          childNodes={this.props.children!}
+          childNodes={children!}
         />
-      </div>
+      </Popover>
     );
   }
 }
