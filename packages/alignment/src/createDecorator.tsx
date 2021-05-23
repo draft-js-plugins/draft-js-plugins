@@ -1,11 +1,13 @@
 import { ContentBlock } from 'draft-js';
 import React, {
-  Component,
   ComponentType,
   CSSProperties,
+  MutableRefObject,
   ReactElement,
+  Ref,
+  useEffect,
+  useRef,
 } from 'react';
-import ReactDOM from 'react-dom';
 import { AlignmentPluginStore } from '.';
 
 interface BlockAlignmentDecoratorParams {
@@ -17,6 +19,7 @@ interface BlockAlignmentDecoratorParams {
   };
   style?: CSSProperties;
   block: ContentBlock;
+  ref?: Ref<HTMLElement>;
 }
 
 type WrappedComponentType = ComponentType<BlockAlignmentDecoratorParams> & {
@@ -28,47 +31,30 @@ const getDisplayName = (WrappedComponent: WrappedComponentType): string => {
   return component.displayName || component.name || 'Component';
 };
 
-export default ({ store }: { store: AlignmentPluginStore }) => (
-  WrappedComponent: WrappedComponentType
-): ComponentType<BlockAlignmentDecoratorParams> =>
-  class BlockAlignmentDecorator extends Component<BlockAlignmentDecoratorParams> {
-    static displayName = `Alignment(${getDisplayName(WrappedComponent)})`;
-    static WrappedComponent: ComponentType<BlockAlignmentDecoratorParams> =
-      WrappedComponent.WrappedComponent || WrappedComponent;
+export default ({ store }: { store: AlignmentPluginStore }) =>
+  (
+    WrappedComponent: WrappedComponentType
+  ): ComponentType<BlockAlignmentDecoratorParams> => {
+    const BlockAlignmentDecorator = React.forwardRef<
+      HTMLElement,
+      BlockAlignmentDecoratorParams
+    >(({ blockProps, block, style, ...elementProps }, ref): ReactElement => {
+      const wrapper = useRef<HTMLElement | null>();
+      useEffect(() => {
+        if (blockProps.isFocused && blockProps.isCollapsedSelection) {
+          const boundingRect = wrapper.current!.getBoundingClientRect();
+          store.updateItem('setAlignment', blockProps.setAlignment);
+          store.updateItem('alignment', blockProps.alignment);
+          store.updateItem('boundingRect', boundingRect);
+          store.updateItem('visibleBlock', block.getKey());
+          // Only set visibleBlock to null in case it's the current one. This is important
+          // in case the focus directly switches from one block to the other. Then the
+          // Alignment tool should not be hidden, but just moved.
+        } else if (store.getItem('visibleBlock') === block.getKey()) {
+          store.updateItem('visibleBlock', null);
+        }
+      }, [blockProps.isFocused, blockProps.isCollapsedSelection, store]);
 
-    componentDidUpdate = (): void => {
-      if (
-        this.props.blockProps.isFocused &&
-        this.props.blockProps.isCollapsedSelection
-      ) {
-        // TODO figure out if and how to achieve this without fetching the DOM node
-        // eslint-disable-next-line react/no-find-dom-node
-        const blockNode = ReactDOM.findDOMNode(this) as HTMLElement;
-        const boundingRect = blockNode.getBoundingClientRect();
-        store.updateItem('setAlignment', this.props.blockProps.setAlignment);
-        store.updateItem('alignment', this.props.blockProps.alignment);
-        store.updateItem('boundingRect', boundingRect);
-        store.updateItem('visibleBlock', this.props.block.getKey());
-        // Only set visibleBlock to null in case it's the current one. This is important
-        // in case the focus directly switches from one block to the other. Then the
-        // Alignment tool should not be hidden, but just moved.
-      } else if (store.getItem('visibleBlock') === this.props.block.getKey()) {
-        store.updateItem('visibleBlock', null);
-      }
-    };
-
-    componentWillUnmount(): void {
-      // Set visibleBlock to null if the block is deleted
-      store.updateItem('visibleBlock', null);
-    }
-
-    render(): ReactElement {
-      const {
-        blockProps,
-        style,
-        // using destructuring to make sure unused props are not passed down to the block
-        ...elementProps
-      } = this.props;
       const alignment = blockProps.alignment;
       let newStyle = style;
       if (alignment === 'left') {
@@ -86,9 +72,29 @@ export default ({ store }: { store: AlignmentPluginStore }) => (
       return (
         <WrappedComponent
           {...elementProps}
+          block={block}
           blockProps={blockProps}
           style={newStyle}
+          ref={(node) => {
+            wrapper.current = node;
+            if (typeof ref === 'function') {
+              ref(node);
+            } else if (ref) {
+              // eslint-disable-next-line no-param-reassign
+              (ref as MutableRefObject<HTMLElement | null>).current = node;
+            }
+          }}
         />
       );
-    }
+    });
+
+    BlockAlignmentDecorator.displayName = `Alignment(${getDisplayName(
+      WrappedComponent
+    )})`;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (BlockAlignmentDecorator as any).WrappedComponent =
+      WrappedComponent.WrappedComponent || WrappedComponent;
+
+    return BlockAlignmentDecorator;
   };
