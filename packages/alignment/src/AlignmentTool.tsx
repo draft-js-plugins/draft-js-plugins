@@ -36,7 +36,10 @@ interface AlignmentToolProps {
   store: AlignmentPluginStore;
 }
 
-export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
+export default function AlignmentTool({
+  store,
+  theme,
+}: AlignmentToolProps): ReactElement {
   const [position, setPosition] = useState({});
   const [alignment, setAlignment] = useState<string | null>(null);
   const toolbar = useRef<HTMLDivElement>(null);
@@ -46,7 +49,7 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
     (visibleBlock?: null | string): void => {
       const clear = setTimeout(() => {
         let newPosition;
-        const boundingRect = props.store.getItem('boundingRect');
+        const boundingRect = store.getItem('boundingRect');
         if (visibleBlock && boundingRect) {
           const relativeParent = getRelativeParent(
             toolbar.current!.parentElement
@@ -65,7 +68,7 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
         } else {
           newPosition = { transform: 'translate(-50%) scale(0)' };
         }
-        const newAlignment = props.store.getItem('alignment') || 'default';
+        const newAlignment = store.getItem('alignment') || 'default';
         setAlignment(newAlignment);
         setPosition(newPosition);
         ref.current = undefined;
@@ -92,12 +95,12 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
   );
 
   useEffect(() => {
-    props.store.subscribeToItem('visibleBlock', onVisibilityChanged);
-    props.store.subscribeToItem('alignment', onAlignmentChange);
+    store.subscribeToItem('visibleBlock', onVisibilityChanged);
+    store.subscribeToItem('alignment', onAlignmentChange);
 
     return () => {
-      props.store.unsubscribeFromItem('visibleBlock', onVisibilityChanged);
-      props.store.unsubscribeFromItem('alignment', onAlignmentChange);
+      store.unsubscribeFromItem('visibleBlock', onVisibilityChanged);
+      store.unsubscribeFromItem('alignment', onAlignmentChange);
     };
   }, [onVisibilityChanged, onAlignmentChange]);
 
@@ -107,8 +110,6 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
     AlignBlockCenterButton,
     AlignBlockRightButton,
   ];
-
-  const { theme } = props;
 
   return (
     <div
@@ -121,7 +122,7 @@ export default function AlignmentTool(props: AlignmentToolProps): ReactElement {
           /* the index can be used here as the buttons list won't change */
           key={index}
           alignment={alignment}
-          setAlignment={props.store.getItem('setAlignment')!}
+          setAlignment={store.getItem('setAlignment')!}
           theme={theme.buttonStyles}
         />
       ))}

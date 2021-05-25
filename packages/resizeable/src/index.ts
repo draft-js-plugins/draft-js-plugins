@@ -28,28 +28,32 @@ export interface ResizeablePluginStore {
   setEditorState?(state: EditorState): void;
 }
 
-const createSetResizeData = (
-  contentBlock: ContentBlock,
-  {
-    getEditorState,
-    setEditorState,
-  }: {
-    getEditorState(): EditorState;
-    setEditorState(state: EditorState): void;
-  }
-) => (data: Record<string, unknown>) => {
-  const entityKey = contentBlock.getEntityAt(0);
-  if (entityKey) {
-    const editorState = getEditorState();
-    const contentState = editorState.getCurrentContent();
-    contentState.mergeEntityData(entityKey, { ...data });
-    setEditorState(
-      EditorState.forceSelection(editorState, editorState.getSelection())
-    );
-  }
-};
+const createSetResizeData =
+  (
+    contentBlock: ContentBlock,
+    {
+      getEditorState,
+      setEditorState,
+    }: {
+      getEditorState(): EditorState;
+      setEditorState(state: EditorState): void;
+    }
+  ) =>
+  (data: Record<string, unknown>) => {
+    const entityKey = contentBlock.getEntityAt(0);
+    if (entityKey) {
+      const editorState = getEditorState();
+      const contentState = editorState.getCurrentContent();
+      contentState.mergeEntityData(entityKey, { ...data });
+      setEditorState(
+        EditorState.forceSelection(editorState, editorState.getSelection())
+      );
+    }
+  };
 
-export default (config: ResizeablePluginConfig): ResizeableEditorPlugin => {
+export default (
+  config: ResizeablePluginConfig = {}
+): ResizeableEditorPlugin => {
   const store: ResizeablePluginStore = {
     getEditorRef: undefined,
     getReadOnly: undefined,
