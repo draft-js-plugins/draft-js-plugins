@@ -21,6 +21,9 @@ module.exports = {
   globals: {
     'ts-jest': {
       babelConfig: `${__dirname}/babel.config.js`,
+      // pervent memory leak since jest 27 update
+      // see https://github.com/kulshekhar/ts-jest/issues/1967
+      isolatedModules: true,
     },
   },
 };
