@@ -55,7 +55,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.50.2",
     "style-loader": "^0.23.1",
-    "ts-jest": "27.0.0",
+    "ts-jest": "27.0.1",
     "ts-node": "9.1.1",
     "typescript": "4.3.2"
   },
@@ -98,7 +98,7 @@
     "lint:eslint:fix": "eslint --fix ./",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "test": "yarn build:dts && yarn test:jest",
-    "test:jest": "jest",
+    "test:jest": "jest --logHeapUsage --runInBand",
     "test:watch": "yarn test -- --watch",
     "build": "yarn build:dts && yarn workspaces run build",
     "build:dts": "yarn workspace @draft-js-plugins/editor run build && yarn workspace @draft-js-plugins/utils run build && yarn workspace @draft-js-plugins/buttons run build",
