@@ -4,6 +4,8 @@ import { render, screen } from '@testing-library/react';
 import { PluginFunctions } from '@draft-js-plugins/editor';
 import createUndoPlugin from '../index';
 
+jest.mock('linaria');
+
 describe('UndoPlugin Config', () => {
   const onChange = (): void => undefined;
   let editorState: EditorState;
@@ -24,10 +26,10 @@ describe('UndoPlugin Config', () => {
   it('instantiates plugin with undoContent config', () => {
     const undoPlugin = createUndoPlugin(config);
     const UndoButton = undoPlugin.UndoButton;
-    undoPlugin.initialize!(({
+    undoPlugin.initialize!({
       getEditorState: () => editorState,
       setEditorState: onChange,
-    } as unknown) as PluginFunctions);
+    } as unknown as PluginFunctions);
 
     render(<UndoButton />);
     const button = screen.getByRole('button');
@@ -38,10 +40,10 @@ describe('UndoPlugin Config', () => {
   it('instantiates plugin with redoContent config', () => {
     const undoPlugin = createUndoPlugin(config);
     const RedoButton = undoPlugin.RedoButton;
-    undoPlugin.initialize!(({
+    undoPlugin.initialize!({
       getEditorState: () => editorState,
       setEditorState: onChange,
-    } as unknown) as PluginFunctions);
+    } as unknown as PluginFunctions);
 
     render(<RedoButton />);
     const button = screen.getByRole('button');
