@@ -3,6 +3,8 @@ import { screen, render } from '@testing-library/react';
 import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
+jest.mock('linaria');
+
 describe('CounterPlugin Line Counter', () => {
   const createEditorStateFromText = text => {
     const contentState = ContentState.createFromText(text);

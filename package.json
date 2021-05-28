@@ -98,7 +98,7 @@
     "lint:eslint:fix": "eslint --fix ./",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
     "test": "yarn build:dts && yarn test:jest",
-    "test:jest": "jest --logHeapUsage --runInBand",
+    "test:jest": "jest",
     "test:watch": "yarn test -- --watch",
     "build": "yarn build:dts && yarn workspaces run build",
     "build:dts": "yarn workspace @draft-js-plugins/editor run build && yarn workspace @draft-js-plugins/utils run build && yarn workspace @draft-js-plugins/buttons run build",

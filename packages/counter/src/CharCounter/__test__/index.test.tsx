@@ -4,6 +4,8 @@ import { PluginFunctions } from '@draft-js-plugins/editor';
 import { EditorState, ContentState } from 'draft-js';
 import createCounterPlugin from '../../index';
 
+jest.mock('linaria');
+
 describe('CounterPlugin Character Counter', () => {
   const createEditorStateFromText = (text: string): EditorState => {
     const contentState = ContentState.createFromText(text);
