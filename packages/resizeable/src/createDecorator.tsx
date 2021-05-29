@@ -139,6 +139,9 @@ export default ({ config, store }: DecoratorProps) =>
               10
             );
 
+            let newWidth = width;
+            let newHeight = height;
+
             // Do the actual drag operation
             const doDrag = (dragEvent: MouseEvent): void => {
               let _width =
@@ -162,19 +165,23 @@ export default ({ config, store }: DecoratorProps) =>
               const heightPerc = (100 / editorNode.clientHeight) * _height;
 
               if ((isLeft || isRight) && horizontal === 'relative') {
-                setWidth(
-                  resizeSteps ? round(widthPerc, resizeSteps) : widthPerc
-                );
+                newWidth = resizeSteps
+                  ? round(widthPerc, resizeSteps)
+                  : widthPerc;
+                setWidth(newWidth);
               } else if ((isLeft || isRight) && horizontal === 'absolute') {
-                setWidth(resizeSteps ? round(_width, resizeSteps) : _width);
+                newWidth = resizeSteps ? round(_width, resizeSteps) : _width;
+                setWidth(newWidth);
               }
 
               if ((isTop || isBottom) && vertical === 'relative') {
-                setHeight(
-                  resizeSteps ? round(heightPerc, resizeSteps) : heightPerc
-                );
+                newHeight = resizeSteps
+                  ? round(heightPerc, resizeSteps)
+                  : heightPerc;
+                setHeight(newHeight);
               } else if ((isTop || isBottom) && vertical === 'absolute') {
-                setHeight(resizeSteps ? round(_height, resizeSteps) : _height);
+                newHeight = resizeSteps ? round(_height, resizeSteps) : _height;
+                setHeight(newHeight);
               }
 
               dragEvent.preventDefault();
@@ -187,7 +194,7 @@ export default ({ config, store }: DecoratorProps) =>
               document.removeEventListener('mouseup', stopDrag, false);
 
               setClicked(false);
-              blockProps.setResizeData({ width, height });
+              blockProps.setResizeData({ width: newWidth, height: newHeight });
             };
 
             // TODO clean up event listeners
