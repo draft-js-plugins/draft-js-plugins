@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.1
+
+- add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
+
 ## 4.2.0
 
 - change overlay to `popper.js`, add option `popperOptions` [#2054](https://github.com/draft-js-plugins/draft-js-plugins/issues/2054)

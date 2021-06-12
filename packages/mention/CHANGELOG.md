@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 4.5.2
+
+- add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
+
 ## 4.5.1
 
 - do not render popover if there are no mentions, add `renderEmptyPopup` prop [#2049](https://github.com/draft-js-plugins/draft-js-plugins/issues/2049)

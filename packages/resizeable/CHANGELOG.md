@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 5.0.2
+
+- add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
+
 ## 5.0.1
 
 - Fixing issue with incorrect sizes [#2105](https://github.com/draft-js-plugins/draft-js-plugins/issues/2105)

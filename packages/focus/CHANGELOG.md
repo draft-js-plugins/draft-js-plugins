@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 4.1.2
+
+- add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
+
 ## 4.1.1
 
 - checking if the selection has focus [#1818](https://github.com/draft-js-plugins/draft-js-plugins/issues/1818)

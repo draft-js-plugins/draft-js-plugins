@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.2
+
+- add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
+
 ## 4.1.1
 
 - add missing forwardRef for image component [#1977](https://github.com/draft-js-plugins/draft-js-plugins/issues/1977)

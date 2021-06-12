@@ -1,7 +1,9 @@
 {
   "name": "@draft-js-plugins/buttons",
-  "version": "4.1.0",
-  "sideEffects": false,
+  "version": "4.1.1",
+  "sideEffects": [
+    "*.css"
+  ],
   "description": "Buttons for DraftJS",
   "author": {
     "name": "Nik Graf",

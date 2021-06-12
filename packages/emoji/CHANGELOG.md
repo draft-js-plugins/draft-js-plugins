@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+## 4.5.5
+
+- add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
+
 ## 4.5.4
 
 - add `disableInlineEmojis` to disable inline emoji suggestions [#2028](https://github.com/draft-js-plugins/draft-js-plugins/issues/2028)
