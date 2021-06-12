@@ -1,7 +1,9 @@
 {
   "name": "@draft-js-plugins/static-toolbar",
-  "version": "4.1.0",
-  "sideEffects": false,
+  "version": "4.1.1",
+  "sideEffects": [
+    "*.css"
+  ],
   "description": "Static Toolbar Plugin for DraftJS",
   "author": {
     "name": "Julian Krispel",

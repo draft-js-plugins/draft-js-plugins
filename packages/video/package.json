@@ -1,7 +1,9 @@
 {
   "name": "@draft-js-plugins/video",
-  "version": "4.1.0",
-  "sideEffects": false,
+  "version": "4.1.1",
+  "sideEffects": [
+    "*.css"
+  ],
   "description": "Video Plugin for DraftJS",
   "author": {
     "name": "Anchen li"
