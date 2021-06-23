@@ -24,7 +24,7 @@
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@storybook/react": "^6.2.9",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
+    "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.0",
     "@testing-library/user-event": "^13.1.9",
     "@types/jest": "^26.0.23",
