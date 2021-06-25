@@ -26,6 +26,7 @@ describe('Mention', () => {
         className={'className'}
         decoratedText={'decoratedText'}
         mention={mentiont}
+        getEditorState={jest.fn()}
       >
         children
       </Mention>
@@ -50,6 +51,7 @@ describe('Mention', () => {
         className={'className'}
         decoratedText={'decoratedText'}
         mention={mentiont}
+        getEditorState={jest.fn()}
       >
         children
       </Mention>
@@ -74,6 +76,7 @@ describe('Mention', () => {
         className={'className'}
         decoratedText={'decoratedText'}
         mention={mentiont}
+        getEditorState={jest.fn()}
       >
         children
       </Mention>

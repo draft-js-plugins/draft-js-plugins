@@ -151,7 +151,8 @@ function Mention(props) {
     children = props.children,
     decoratedText = props.decoratedText,
     className = props.className,
-    contentState = props.contentState;
+    contentState = props.contentState,
+    getEditorState = props.getEditorState;
   var combinedClassName = clsx(theme.mention, className);
   var mention = contentState.getEntity(entityKey).getData().mention;
   var Component =
@@ -164,6 +165,7 @@ function Mention(props) {
       theme: theme,
       className: combinedClassName,
       decoratedText: decoratedText,
+      editorState: getEditorState(),
     },
     children
   );

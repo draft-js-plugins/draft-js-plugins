@@ -1,5 +1,5 @@
 import React, { ComponentType, ReactElement, ReactNode } from 'react';
-import { ContentState } from 'draft-js';
+import { ContentState, EditorState } from 'draft-js';
 import clsx from 'clsx';
 import { MentionData } from '.';
 import { MentionPluginTheme } from './theme';
@@ -11,6 +11,7 @@ export interface SubMentionComponentProps {
   entityKey: string;
   theme: MentionPluginTheme;
   decoratedText: string;
+  editorState: EditorState;
 }
 
 export interface MentionProps {
@@ -22,6 +23,7 @@ export interface MentionProps {
   mentionComponent?: ComponentType<SubMentionComponentProps>;
   decoratedText: string;
   contentState: ContentState;
+  getEditorState(): EditorState;
 }
 
 function MentionLink({
@@ -61,6 +63,7 @@ export default function Mention(props: MentionProps): ReactElement {
     decoratedText,
     className,
     contentState,
+    getEditorState,
   } = props;
 
   const combinedClassName = clsx(theme.mention, className);
@@ -76,6 +79,7 @@ export default function Mention(props: MentionProps): ReactElement {
       theme={theme}
       className={combinedClassName}
       decoratedText={decoratedText}
+      editorState={getEditorState()}
     >
       {children}
     </Component>

@@ -1,5 +1,5 @@
 import { ComponentType, ReactElement, ReactNode } from 'react';
-import { ContentState } from 'draft-js';
+import { ContentState, EditorState } from 'draft-js';
 import { MentionData } from '.';
 import { MentionPluginTheme } from './theme';
 export interface SubMentionComponentProps {
@@ -9,6 +9,7 @@ export interface SubMentionComponentProps {
   entityKey: string;
   theme: MentionPluginTheme;
   decoratedText: string;
+  editorState: EditorState;
 }
 export interface MentionProps {
   mention: MentionData;
@@ -19,5 +20,6 @@ export interface MentionProps {
   mentionComponent?: ComponentType<SubMentionComponentProps>;
   decoratedText: string;
   contentState: ContentState;
+  getEditorState(): EditorState;
 }
 export default function Mention(props: MentionProps): ReactElement;
