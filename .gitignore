@@ -16,7 +16,6 @@ bundle.js
 .bundle.js
 
 # build
-!*/mention/lib/
 /lib/
 .linaria-cache
 
