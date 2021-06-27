@@ -43,6 +43,7 @@
     "@popperjs/core": "^2.9.2",
     "@types/lodash": "^4.14.170",
     "clsx": "^1.0.4",
+    "draft-js": "^0.11.0",
     "immutable": "~3.7.4",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
@@ -50,6 +51,7 @@
     "react-popper": "^2.2.5"
   },
   "peerDependencies": {
+    "@draft-js-plugins/editor": "^4.1.0",
     "draft-js": "^0.10.1 || ^0.11.0",
     "react": "^16.8.0 || ^17.0.0"
   },

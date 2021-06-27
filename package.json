@@ -8,6 +8,7 @@
     "url": "http://www.nikgraf.com"
   },
   "dependencies": {
+    "@draft-js-plugins/editor": "^4.1.0",
     "draft-js": "^0.11.0",
     "eslint-plugin-import": "^2.23.4",
     "react": "^17.0.2",
@@ -27,6 +28,7 @@
     "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.0",
     "@testing-library/user-event": "^13.1.9",
+    "@types/draft-js": "^0.11.3",
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
@@ -80,7 +82,7 @@
       "bash -c tsc --noEmit"
     ]
   },
-  "main": "lib/index.js",
+  "main": "packages/mention/lib/index.js",
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5"
@@ -97,12 +99,11 @@
     "lint:eslint": "eslint --ext .js,.ts,.tsx ./",
     "lint:eslint:fix": "eslint --fix ./",
     "storybook": "start-storybook -p 6006 -s ./stories/public",
-    "test": "yarn build:dts && yarn test:jest",
+    "test": "yarn build:mention && yarn test:jest",
     "test:jest": "jest",
     "test:watch": "yarn test -- --watch",
-    "build": "yarn build:dts && yarn workspaces run build",
-    "build:dts": "yarn workspace @draft-js-plugins/editor run build && yarn workspace @draft-js-plugins/utils run build && yarn workspace @draft-js-plugins/buttons run build",
     "build:mentions": "yarn workspace @draft-js-plugins/mention run build",
+    "build": "yarn workspaces run build",
     "prerelease": "yarn build",
     "release": "changeset publish",
     "postinstall": "husky install"
