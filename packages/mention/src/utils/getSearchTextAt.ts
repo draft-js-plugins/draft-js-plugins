@@ -19,7 +19,7 @@ export default function getSearchTextAt(
     .map((trigger) => escapeRegExp(trigger))
     .join('|');
 
-  const TRIGGER_REGEX = new RegExp(`(\\s|^)(${triggerPattern})`, 'g');
+  const TRIGGER_REGEX = new RegExp(`(.|^)(${triggerPattern})`, 'g');
 
   const matches = str.matchAll(TRIGGER_REGEX);
 
