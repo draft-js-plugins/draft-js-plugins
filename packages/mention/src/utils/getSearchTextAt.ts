@@ -27,10 +27,10 @@ export default function getSearchTextAt(
   let valueStartIndex = 0;
 
   for (const match of matches) {
-    const spaceLen = match[1].length;
+    const charactersBeforeTriggerLen = match[1].length;
     const matchLen = match[2].length;
 
-    triggerStartIndex = (match.index || 0) + spaceLen;
+    triggerStartIndex = (match.index || 0) + charactersBeforeTriggerLen;
     valueStartIndex = triggerStartIndex + matchLen;
   }
 
