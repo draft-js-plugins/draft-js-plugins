@@ -50,7 +50,7 @@
     "react-dom": "^15.5.0 || ^16.0.0 || ^17.0.0"
   },
   "devDependencies": {
-    "@types/linkify-it": "^3.0.1"
+    "@types/linkify-it": "^3.0.2"
   },
   "publishConfig": {
     "access": "public"
