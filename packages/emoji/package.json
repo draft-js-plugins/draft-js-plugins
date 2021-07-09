@@ -47,7 +47,7 @@
     "emoji-toolkit": "^6.5.1",
     "emojibase": "^5.2.0",
     "emojibase-data": "^6.2.0",
-    "immutable": "~3.7.4",
+    "immutable": "~4.0.0-rc.14",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "prop-types": "^15.5.8",
