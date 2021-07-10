@@ -74,13 +74,13 @@ An editor component accepting plugins. [see source](https://github.com/draft-js-
 
 | Props                                                           |                                         Description                                          | Required |
 | --------------------------------------------------------------- | :------------------------------------------------------------------------------------------: | -------: |
-| editorState                                                     | [see here](https://draftjs.org/docs/api-reference-editor-state/#content) |       \* |
-| onChange                                                        |   [see here](https://draftjs.org/docs/api-reference-editor/#onchange)    |       \* |
+| editorState                                                     | [see here](https://draftjs.org/docs/api-reference-editor-state/#content)                     |       \* |
+| onChange                                                        |   [see here](https://draftjs.org/docs/api-reference-editor/#onchange)                        |       \* |
 | plugins                                                         |                                     an array of plugins                                      |          |
 | decorators                                                      |                                an array of custom decorators                                 |          |
 | defaultKeyBindings                                              |                                             bool                                             |          |
 | defaultBlockRenderMap                                           |                                             bool                                             |          |
-| all other props accepted by the DraftJS Editor except decorator |     [see here](https://draftjs.org/docs/api-reference-editor/#props)     |          |
+| all other props accepted by the DraftJS Editor except decorator |     [see here](https://draftjs.org/docs/api-reference-editor/#props)                         |          |
 
 Usage:
 
