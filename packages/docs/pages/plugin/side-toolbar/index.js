@@ -134,6 +134,14 @@ export default class App extends Component {
               option is used.
             </span>
           </div>
+
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>sideToolbarButtonComponent</span>
+            <span>
+              Button component to be used when a the Side Toolbar is visible.
+              Default to 3 dots.
+            </span>
+          </div>
         </Container>
         <Container>
           <Heading level={2}>Simple Side Toolbar Example</Heading>

@@ -16,7 +16,12 @@ module.exports = {
       parser: '@typescript-eslint/parser',
       rules: {
         'react/jsx-indent': 0, //disabeld as it throws the error: "TypeError: Cannot read property 'type' of null"
-        '@typescript-eslint/ban-ts-ignore': 0,
+        '@typescript-eslint/ban-ts-comment': [
+          0,
+          {
+            'ts-ignore': 'allow-with-description',
+          },
+        ],
         '@typescript-eslint/explicit-function-return-type': [
           'error',
           {

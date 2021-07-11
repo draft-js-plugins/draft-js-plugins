@@ -32,6 +32,7 @@ import multiComponentExampleCode from '!!raw-loader!../../../components/Examples
 // eslint-disable-next-line import/no-unresolved
 import multiComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers.module.css';
 // eslint-disable-next-line import/no-unresolved
+//@ts-ignore sample is js
 import webpackConfig from '!!raw-loader!../../../components/Examples/mention/webpackConfig';
 
 import styles from './Mention.module.css';
@@ -348,7 +349,7 @@ export default function Mention(): ReactElement {
           name="Mentions.ts"
         />
         <Code
-          code={simpleExampleEditorStylesCode}
+          code={simpleExampleEditorStylesCode as unknown as string}
           name="SimpleMentionEditor.module.css"
         />
       </Container>
@@ -360,7 +361,7 @@ export default function Mention(): ReactElement {
           name="CustomMentionEditor.ts"
         />
         <Code
-          code={customExampleMentionsStylesCode}
+          code={customExampleMentionsStylesCode as unknown as string}
           name="MentionsStyles.module.css"
         />
         <Code
@@ -368,7 +369,7 @@ export default function Mention(): ReactElement {
           name="Mentions.ts"
         />
         <Code
-          code={customExampleEditorStylesCode}
+          code={customExampleEditorStylesCode as unknown as string}
           name="CustomMentionEditor.module.css"
         />
       </Container>
@@ -380,7 +381,7 @@ export default function Mention(): ReactElement {
           name="RemoteMentionEditor.tsx"
         />
         <Code
-          code={remoteExampleEditorStylesCode}
+          code={remoteExampleEditorStylesCode as unknown as string}
           name="RemoteMentionEditor.module.css"
         />
       </Container>
@@ -392,7 +393,7 @@ export default function Mention(): ReactElement {
           name="CustomComponentMentionEditor.tsx"
         />
         <Code
-          code={customComponentExampleStylesCode}
+          code={customComponentExampleStylesCode as unknown as string}
           name="CustomComponentMentionEditor.module.css"
         />
       </Container>
@@ -404,7 +405,7 @@ export default function Mention(): ReactElement {
           name="MultiMentionTriggers.tsx"
         />
         <Code
-          code={multiComponentExampleStylesCode}
+          code={multiComponentExampleStylesCode as unknown as string}
           name="MultiMentionTriggers.module.css"
         />
       </Container>
