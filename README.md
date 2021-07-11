@@ -74,13 +74,13 @@ An editor component accepting plugins. [see source](https://github.com/draft-js-
 
 | Props                                                           |                                         Description                                          | Required |
 | --------------------------------------------------------------- | :------------------------------------------------------------------------------------------: | -------: |
-| editorState                                                     | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content) |       \* |
-| onChange                                                        |   [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onchange)    |       \* |
+| editorState                                                     | [see here](https://draftjs.org/docs/api-reference-editor-state/#content)                     |       \* |
+| onChange                                                        |   [see here](https://draftjs.org/docs/api-reference-editor/#onchange)                        |       \* |
 | plugins                                                         |                                     an array of plugins                                      |          |
 | decorators                                                      |                                an array of custom decorators                                 |          |
 | defaultKeyBindings                                              |                                             bool                                             |          |
 | defaultBlockRenderMap                                           |                                             bool                                             |          |
-| all other props accepted by the DraftJS Editor except decorator |     [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#props)     |          |
+| all other props accepted by the DraftJS Editor except decorator |     [see here](https://draftjs.org/docs/api-reference-editor/#props)                         |          |
 
 Usage:
 
