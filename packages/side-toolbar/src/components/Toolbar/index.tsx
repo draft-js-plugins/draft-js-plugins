@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { ReactElement, FC } from 'react';
+import React, { ReactElement, FC, ComponentType } from 'react';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -21,6 +21,7 @@ import {
   SideToolbarPosition,
 } from '../..';
 import Popover from './Popover';
+import { SideToolbarButtonProps } from '../BlockTypeSelect/SideToolbarButton';
 
 export type SideToolbarChildrenProps = BlockTypeSelectChildProps;
 
@@ -30,6 +31,7 @@ interface ToolbarProps {
   position: SideToolbarPosition;
   theme: SideToolbarPluginTheme;
   popperOptions?: PopperOptions;
+  sideToolbarButtonComponent: ComponentType<SideToolbarButtonProps>;
 }
 
 interface ToolbarState {
@@ -96,7 +98,14 @@ export default class Toolbar extends React.Component<ToolbarProps> {
   };
 
   render(): ReactElement | null {
-    const { theme, store, popperOptions, position, children } = this.props;
+    const {
+      theme,
+      store,
+      popperOptions,
+      position,
+      children,
+      sideToolbarButtonComponent,
+    } = this.props;
 
     if (this.state.referenceElement === null) {
       //do not show popover if reference element is not there
@@ -115,6 +124,7 @@ export default class Toolbar extends React.Component<ToolbarProps> {
           setEditorState={store.getItem('setEditorState')!}
           theme={theme}
           childNodes={children!}
+          sideToolbarButtonComponent={sideToolbarButtonComponent}
         />
       </Popover>
     );

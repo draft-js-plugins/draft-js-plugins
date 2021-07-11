@@ -5,11 +5,13 @@ import React, {
   MouseEvent,
   ReactElement,
   Component,
+  ComponentType,
 } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import { DraftJsButtonTheme } from '@draft-js-plugins/buttons';
 import { SideToolbarPluginTheme } from '../../theme';
+import { SideToolbarButtonProps } from './SideToolbarButton';
 
 export interface BlockTypeSelectChildProps {
   theme: DraftJsButtonTheme;
@@ -23,6 +25,7 @@ interface BlockTypeSelectProps {
   getEditorState(): EditorState;
   setEditorState(state: EditorState): void;
   childNodes: FC<BlockTypeSelectChildProps>;
+  sideToolbarButtonComponent: ComponentType<SideToolbarButtonProps>;
 }
 
 export default class BlockTypeSelect extends Component<BlockTypeSelectProps> {
@@ -59,24 +62,20 @@ export default class BlockTypeSelect extends Component<BlockTypeSelectProps> {
   };
 
   render(): ReactElement {
-    const { theme, getEditorState, setEditorState } = this.props;
+    const {
+      theme,
+      getEditorState,
+      setEditorState,
+      sideToolbarButtonComponent: SideToolbarButton,
+    } = this.props;
     return (
       <div
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onMouseDown={this.onMouseDown}
       >
-        <div className={theme.blockTypeSelectStyles?.blockType}>
-          <svg
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-          </svg>
-        </div>
+        <SideToolbarButton className={theme.blockTypeSelectStyles?.blockType} />
+
         {/*
           The spacer is needed so the popup doesn't go away when moving from the
           blockType div to the popup.

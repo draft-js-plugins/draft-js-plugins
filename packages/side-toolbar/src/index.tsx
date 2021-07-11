@@ -6,8 +6,10 @@ import * as PopperJS from '@popperjs/core';
 import { Modifier } from 'react-popper';
 import Toolbar, { SideToolbarChildrenProps } from './components/Toolbar';
 import { defaultTheme, SideToolbarPluginTheme } from './theme';
+import type { SideToolbarButtonProps } from './components/BlockTypeSelect/SideToolbarButton';
+import SideToolbarButton from './components/BlockTypeSelect/SideToolbarButton';
 
-export type { SideToolbarPluginTheme };
+export type { SideToolbarPluginTheme, SideToolbarButtonProps };
 
 export type SideToolbarPosition = 'left' | 'right';
 
@@ -15,6 +17,7 @@ export interface SideToolbarPluginConfig {
   theme?: SideToolbarPluginTheme;
   position?: SideToolbarPosition;
   popperOptions?: PopperOptions;
+  sideToolbarButtonComponent?: ComponentType<SideToolbarButtonProps>;
 }
 
 export type PopperOptions = Omit<Partial<PopperJS.Options>, 'modifiers'> & {
@@ -53,6 +56,7 @@ export default (config: SideToolbarPluginConfig = {}): SideToolbarPlugin => {
   const {
     position = defaultPostion,
     theme = defaultTheme,
+    sideToolbarButtonComponent = SideToolbarButton,
     popperOptions,
   } = config;
 
@@ -63,6 +67,7 @@ export default (config: SideToolbarPluginConfig = {}): SideToolbarPlugin => {
       theme={theme}
       position={position}
       popperOptions={popperOptions}
+      sideToolbarButtonComponent={sideToolbarButtonComponent}
     />
   );
 
