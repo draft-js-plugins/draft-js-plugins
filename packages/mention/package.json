@@ -43,7 +43,7 @@
     "@popperjs/core": "^2.9.2",
     "@types/lodash": "^4.14.171",
     "clsx": "^1.0.4",
-    "immutable": "~3.7.4",
+    "immutable": "~4.0.0-rc.14",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "prop-types": "^15.5.8",
