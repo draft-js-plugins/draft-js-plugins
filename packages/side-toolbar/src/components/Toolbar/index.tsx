@@ -13,7 +13,9 @@ import {
   UnorderedListButton,
   OrderedListButton,
 } from '@draft-js-plugins/buttons';
-import BlockTypeSelect, { BlockTypeSelectChildProps } from '../BlockTypeSelect';
+import BlockTypeSelect, {
+  BlockTypeSelectChildProps,
+} from '../BlockTypeSelect/BlockTypeSelect';
 import { SideToolbarPluginTheme } from '../../theme';
 import {
   PopperOptions,
