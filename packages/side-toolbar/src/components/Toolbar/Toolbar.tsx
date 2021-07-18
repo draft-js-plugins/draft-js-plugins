@@ -72,8 +72,8 @@ export default function Toolbar({
   const onEditorStateChange = useCallback((editorState?: EditorState) => {
     const selection = editorState!.getSelection();
     if (!selection.getHasFocus()) {
-      return;
       setReferenceElement(null);
+      return;
     }
 
     const currentContent = editorState!.getCurrentContent();
@@ -130,6 +130,7 @@ export default function Toolbar({
         childNodes={children}
         referenceElement={buttonReferenceElement}
         show={show}
+        rootReferenceElement={referenceElement}
       />
     </>
   );

@@ -6,6 +6,7 @@ import React, {
   MouseEvent,
   ReactElement,
   useCallback,
+  useEffect,
   useState,
 } from 'react';
 import { SideToolbarPluginTheme } from '../../theme';
@@ -22,6 +23,7 @@ interface BlockTypeSelectProps {
   setEditorState(state: EditorState): void;
   childNodes: FC<BlockTypeSelectChildProps>;
   referenceElement: HTMLElement | null;
+  rootReferenceElement: HTMLElement | null;
   show: boolean;
 }
 
@@ -32,6 +34,7 @@ export default function BlockTypeSelect({
   childNodes,
   referenceElement,
   show,
+  rootReferenceElement,
 }: BlockTypeSelectProps): ReactElement {
   const onMouseDown = useCallback((clickEvent: MouseEvent) => {
     clickEvent.preventDefault();
@@ -40,18 +43,26 @@ export default function BlockTypeSelect({
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    //placement: 'right',
-    modifiers: [
-      { name: 'arrow', options: { element: arrowElement } },
-      {
-        name: 'offset',
-        options: {
-          offset: [-8, -8],
+  const { styles, attributes, update } = usePopper(
+    referenceElement,
+    popperElement,
+    {
+      placement: 'left',
+      modifiers: [
+        { name: 'arrow', options: { element: arrowElement } },
+        {
+          name: 'offset',
+          options: {
+            offset: [-4, -4],
+          },
         },
-      },
-    ],
-  });
+      ],
+    }
+  );
+
+  useEffect(() => {
+    update?.();
+  }, [rootReferenceElement, update]);
 
   return (
     <div
@@ -62,17 +73,20 @@ export default function BlockTypeSelect({
       data-show={show}
       onMouseDown={onMouseDown}
     >
-      {childNodes({
-        getEditorState,
-        setEditorState,
-        theme: theme.buttonStyles!,
-      })}
-      <div
-        ref={setArrowElement}
-        style={styles.arrow}
-        className={theme.blockTypeSelectStyles?.arrow}
-        {...attributes.popper}
-      />
+      <div className={theme.blockTypeSelectStyles?.popupFrame}>
+        {childNodes({
+          getEditorState,
+          setEditorState,
+          theme: theme.buttonStyles!,
+        })}
+        <div
+          ref={setArrowElement}
+          style={styles.arrow}
+          className={theme.blockTypeSelectStyles?.arrow}
+          data-show={show}
+          {...attributes.popper}
+        />
+      </div>
     </div>
   );
 }
