@@ -72,8 +72,8 @@ export default function Toolbar({
   const onEditorStateChange = useCallback((editorState?: EditorState) => {
     const selection = editorState!.getSelection();
     if (!selection.getHasFocus()) {
-      setReferenceElement(null);
       return;
+      setReferenceElement(null);
     }
 
     const currentContent = editorState!.getCurrentContent();

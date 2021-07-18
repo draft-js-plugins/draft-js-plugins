@@ -47,7 +47,6 @@ export default function BlockTypeSelect({
     referenceElement,
     popperElement,
     {
-      placement: 'left',
       modifiers: [
         { name: 'arrow', options: { element: arrowElement } },
         {
