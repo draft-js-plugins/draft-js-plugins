@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/side-toolbar",
-  "version": "4.2.1",
+  "version": "5.0.0",
   "sideEffects": [
     "*.css"
   ],

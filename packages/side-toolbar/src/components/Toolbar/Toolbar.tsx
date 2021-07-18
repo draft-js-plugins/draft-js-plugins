@@ -20,6 +20,7 @@ import {
 } from '@draft-js-plugins/buttons';
 import BlockTypeSelect, {
   BlockTypeSelectChildProps,
+  CreateBlockTypeSelectPopperOptionsFn,
 } from '../BlockTypeSelect/BlockTypeSelect';
 import { SideToolbarPluginTheme } from '../../theme';
 import {
@@ -38,6 +39,7 @@ interface ToolbarProps {
   position: SideToolbarPosition;
   theme: SideToolbarPluginTheme;
   popperOptions?: PopperOptions;
+  createBlockTypeSelectPopperOptions?: CreateBlockTypeSelectPopperOptionsFn;
   sideToolbarButtonComponent: ComponentType<SideToolbarButtonProps>;
 }
 
@@ -62,6 +64,7 @@ export default function Toolbar({
   position,
   popperOptions,
   store,
+  createBlockTypeSelectPopperOptions,
   children = DefaultChildren,
   sideToolbarButtonComponent: SideToolbarButton,
 }: ToolbarProps): ReactElement | null {
@@ -72,8 +75,8 @@ export default function Toolbar({
   const onEditorStateChange = useCallback((editorState?: EditorState) => {
     const selection = editorState!.getSelection();
     if (!selection.getHasFocus()) {
-      return;
       setReferenceElement(null);
+      return;
     }
 
     const currentContent = editorState!.getCurrentContent();
@@ -131,6 +134,7 @@ export default function Toolbar({
         referenceElement={buttonReferenceElement}
         show={show}
         rootReferenceElement={referenceElement}
+        createBlockTypeSelectPopperOptions={createBlockTypeSelectPopperOptions}
       />
     </>
   );

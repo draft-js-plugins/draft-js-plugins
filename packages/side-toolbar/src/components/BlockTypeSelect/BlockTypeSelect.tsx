@@ -7,14 +7,20 @@ import React, {
   ReactElement,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { SideToolbarPluginTheme } from '../../theme';
+import { PopperOptions } from '../..';
 
 export interface BlockTypeSelectChildProps {
   theme: DraftJsButtonTheme;
   getEditorState(): EditorState;
   setEditorState(state: EditorState): void;
+}
+
+export interface CreateBlockTypeSelectPopperOptionsFn {
+  (arrowElement: HTMLElement | null): PopperOptions;
 }
 
 interface BlockTypeSelectProps {
@@ -25,6 +31,23 @@ interface BlockTypeSelectProps {
   referenceElement: HTMLElement | null;
   rootReferenceElement: HTMLElement | null;
   show: boolean;
+  createBlockTypeSelectPopperOptions?: CreateBlockTypeSelectPopperOptionsFn;
+}
+
+function createDefaultPopperOptions(
+  arrowElement: HTMLElement | null
+): PopperOptions {
+  return {
+    modifiers: [
+      { name: 'arrow', options: { element: arrowElement } },
+      {
+        name: 'offset',
+        options: {
+          offset: [-4, -4],
+        },
+      },
+    ],
+  };
 }
 
 export default function BlockTypeSelect({
@@ -35,6 +58,7 @@ export default function BlockTypeSelect({
   referenceElement,
   show,
   rootReferenceElement,
+  createBlockTypeSelectPopperOptions = createDefaultPopperOptions,
 }: BlockTypeSelectProps): ReactElement {
   const onMouseDown = useCallback((clickEvent: MouseEvent) => {
     clickEvent.preventDefault();
@@ -43,20 +67,14 @@ export default function BlockTypeSelect({
 
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
+  const popperOptions = useMemo(
+    () => createBlockTypeSelectPopperOptions(arrowElement),
+    [arrowElement, createBlockTypeSelectPopperOptions]
+  );
   const { styles, attributes, update } = usePopper(
     referenceElement,
     popperElement,
-    {
-      modifiers: [
-        { name: 'arrow', options: { element: arrowElement } },
-        {
-          name: 'offset',
-          options: {
-            offset: [-4, -4],
-          },
-        },
-      ],
-    }
+    popperOptions
   );
 
   useEffect(() => {
