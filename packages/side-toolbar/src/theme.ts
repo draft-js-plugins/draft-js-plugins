@@ -5,8 +5,8 @@ export interface SideToolbarPluginTheme {
   buttonStyles?: DraftJsButtonTheme;
   blockTypeSelectStyles?: {
     blockType?: string;
-    spacer?: string;
     popup?: string;
+    arrow?: string;
   };
   toolbarStyles?: {
     wrapper?: string;
@@ -64,14 +64,6 @@ const blockTypeSelectStyles: SideToolbarPluginTheme['blockTypeSelectStyles'] = {
     }
   `,
 
-  spacer: css`
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    width: 74px;
-    height: 8px;
-  `,
-
   popup: css`
     position: absolute;
     left: 50%;
@@ -84,7 +76,8 @@ const blockTypeSelectStyles: SideToolbarPluginTheme['blockTypeSelectStyles'] = {
     z-index: 3;
     box-sizing: border-box;
     width: 74px;
-    margin-top: 8px;
+    margin: 8px;
+    //visibility: hidden;
     &:after,
     &:before {
       bottom: 100%;
@@ -107,6 +100,47 @@ const blockTypeSelectStyles: SideToolbarPluginTheme['blockTypeSelectStyles'] = {
       border-bottom-color: #ddd;
       border-width: 6px;
       margin-left: -6px;
+    }
+    &:hover,
+    &[data-show='true'] {
+      visibility: visible;
+    }
+  `,
+
+  arrow: css`
+    &,
+    &::before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: inherit;
+      border: 1px solid #ddd;
+    }
+
+    & {
+      visibility: hidden;
+    }
+
+    &::before {
+      visibility: visible;
+      content: '';
+      transform: rotate(45deg);
+    }
+
+    &[data-popper-placement^='top'] {
+      bottom: -4px;
+    }
+
+    &[data-popper-placement^='bottom'] {
+      top: -4px;
+    }
+
+    &[data-popper-placement^='left'] {
+      right: -4px;
+    }
+
+    &[data-popper-placement^='right'] {
+      left: -4px;
     }
   `,
 };

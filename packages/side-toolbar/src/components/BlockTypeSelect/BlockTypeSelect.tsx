@@ -1,8 +1,7 @@
 import { EditorState } from 'draft-js';
 import { DraftJsButtonTheme } from '@draft-js-plugins/buttons';
+import { usePopper } from 'react-popper';
 import React, {
-  ComponentType,
-  CSSProperties,
   FC,
   MouseEvent,
   ReactElement,
@@ -10,7 +9,6 @@ import React, {
   useState,
 } from 'react';
 import { SideToolbarPluginTheme } from '../../theme';
-import { SideToolbarButtonProps } from './SideToolbarButton';
 
 export interface BlockTypeSelectChildProps {
   theme: DraftJsButtonTheme;
@@ -23,7 +21,8 @@ interface BlockTypeSelectProps {
   getEditorState(): EditorState;
   setEditorState(state: EditorState): void;
   childNodes: FC<BlockTypeSelectChildProps>;
-  sideToolbarButtonComponent: ComponentType<SideToolbarButtonProps>;
+  referenceElement: HTMLElement | null;
+  show: boolean;
 }
 
 export default function BlockTypeSelect({
@@ -31,49 +30,49 @@ export default function BlockTypeSelect({
   getEditorState,
   setEditorState,
   childNodes,
-  sideToolbarButtonComponent: SideToolbarButton,
+  referenceElement,
+  show,
 }: BlockTypeSelectProps): ReactElement {
-  const [style, setStyle] = useState<CSSProperties>({
-    transform: 'translate(-50%) scale(0)',
-  });
-  const onMouseEnter = useCallback(() => {
-    setStyle({
-      transform: 'translate(-50%) scale(1)',
-      transition: 'transform 0.15s cubic-bezier(.3,1.2,.2,1)',
-    });
-  }, []);
-
-  const onMouseLeave = useCallback(() => {
-    setStyle({
-      transform: 'translate(-50%) scale(0)',
-    });
-  }, []);
-
   const onMouseDown = useCallback((clickEvent: MouseEvent) => {
     clickEvent.preventDefault();
     clickEvent.stopPropagation();
   }, []);
 
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
+  const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    //placement: 'right',
+    modifiers: [
+      { name: 'arrow', options: { element: arrowElement } },
+      {
+        name: 'offset',
+        options: {
+          offset: [-8, -8],
+        },
+      },
+    ],
+  });
+
   return (
     <div
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      className={theme.blockTypeSelectStyles?.popup}
+      ref={setPopperElement}
+      style={styles.popper}
+      {...attributes.popper}
+      data-show={show}
       onMouseDown={onMouseDown}
     >
-      <SideToolbarButton className={theme.blockTypeSelectStyles?.blockType} />
-
-      {/*
-    The spacer is needed so the popup doesn't go away when moving from the
-    blockType div to the popup.
-  */}
-      <div className={theme.blockTypeSelectStyles?.spacer} />
-      <div className={theme.blockTypeSelectStyles?.popup} style={style}>
-        {childNodes({
-          getEditorState,
-          setEditorState,
-          theme: theme.buttonStyles!,
-        })}
-      </div>
+      {childNodes({
+        getEditorState,
+        setEditorState,
+        theme: theme.buttonStyles!,
+      })}
+      <div
+        ref={setArrowElement}
+        style={styles.arrow}
+        className={theme.blockTypeSelectStyles?.arrow}
+        {...attributes.popper}
+      />
     </div>
   );
 }

@@ -63,7 +63,7 @@ export default function Toolbar({
   popperOptions,
   store,
   children = DefaultChildren,
-  sideToolbarButtonComponent,
+  sideToolbarButtonComponent: SideToolbarButton,
 }: ToolbarProps): ReactElement | null {
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
     null
@@ -72,8 +72,8 @@ export default function Toolbar({
   const onEditorStateChange = useCallback((editorState?: EditorState) => {
     const selection = editorState!.getSelection();
     if (!selection.getHasFocus()) {
-      setReferenceElement(null);
       return;
+      setReferenceElement(null);
     }
 
     const currentContent = editorState!.getCurrentContent();
@@ -96,25 +96,41 @@ export default function Toolbar({
     };
   }, [store]);
 
+  const [buttonReferenceElement, setButtonReferenceElement] =
+    useState<HTMLElement | null>(null);
+  const [show, setShow] = useState(false);
+
   if (referenceElement === null) {
     //do not show popover if reference element is not there
     return null;
   }
 
   return (
-    <Popover
-      className={theme.toolbarStyles?.wrapper}
-      referenceElement={referenceElement}
-      position={position}
-      popperOptions={popperOptions}
-    >
+    <>
+      <Popover
+        className={theme.toolbarStyles?.wrapper}
+        referenceElement={referenceElement}
+        position={position}
+        popperOptions={popperOptions}
+      >
+        <div
+          ref={setButtonReferenceElement}
+          onMouseEnter={() => setShow(true)}
+          onMouseLeave={() => setShow(false)}
+        >
+          <SideToolbarButton
+            className={theme.blockTypeSelectStyles?.blockType}
+          />
+        </div>
+      </Popover>
       <BlockTypeSelect
         getEditorState={store.getItem('getEditorState')!}
         setEditorState={store.getItem('setEditorState')!}
         theme={theme}
         childNodes={children}
-        sideToolbarButtonComponent={sideToolbarButtonComponent}
+        referenceElement={buttonReferenceElement}
+        show={show}
       />
-    </Popover>
+    </>
   );
 }
