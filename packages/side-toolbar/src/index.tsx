@@ -4,7 +4,9 @@ import { createStore, Store } from '@draft-js-plugins/utils';
 import { EditorPlugin } from '@draft-js-plugins/editor';
 import * as PopperJS from '@popperjs/core';
 import { Modifier } from 'react-popper';
-import Toolbar, { SideToolbarChildrenProps } from './components/Toolbar';
+import Toolbar, {
+  SideToolbarChildrenProps,
+} from './components/Toolbar/Toolbar';
 import { defaultTheme, SideToolbarPluginTheme } from './theme';
 import type { SideToolbarButtonProps } from './components/BlockTypeSelect/SideToolbarButton';
 import SideToolbarButton from './components/BlockTypeSelect/SideToolbarButton';
