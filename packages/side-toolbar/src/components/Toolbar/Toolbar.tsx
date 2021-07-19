@@ -68,14 +68,18 @@ export default function Toolbar({
   children = DefaultChildren,
   sideToolbarButtonComponent: SideToolbarButton,
 }: ToolbarProps): ReactElement | null {
+  const [show, setShow] = useState(false);
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
     null
   );
+  const [buttonReferenceElement, setButtonReferenceElement] =
+    useState<HTMLElement | null>(null);
 
   const onEditorStateChange = useCallback((editorState?: EditorState) => {
     const selection = editorState!.getSelection();
     if (!selection.getHasFocus()) {
       setReferenceElement(null);
+      setShow(false);
       return;
     }
 
@@ -98,10 +102,6 @@ export default function Toolbar({
       store.unsubscribeFromItem('editorState', onEditorStateChange);
     };
   }, [store]);
-
-  const [buttonReferenceElement, setButtonReferenceElement] =
-    useState<HTMLElement | null>(null);
-  const [show, setShow] = useState(false);
 
   if (referenceElement === null) {
     //do not show popover if reference element is not there

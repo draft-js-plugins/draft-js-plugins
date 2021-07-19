@@ -76,9 +76,13 @@ const blockTypeSelectStyles: SideToolbarPluginTheme['blockTypeSelectStyles'] = {
     z-index: 3;
     padding: 8px;
     visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s cubic-bezier(0.3, 1.2, 0.2, 1);
     &:hover,
+    &:hover > div::before,
     &[data-show='true'] {
       visibility: visible;
+      opacity: 1;
     }
   `,
 
@@ -89,20 +93,12 @@ const blockTypeSelectStyles: SideToolbarPluginTheme['blockTypeSelectStyles'] = {
       width: 6px;
       height: 6px;
       background: inherit;
-      border: 1px solid #ddd;
-    }
-
-    & {
-      visibility: hidden;
     }
 
     &::before {
       content: '';
+      border: 1px solid #ddd;
       transform: rotate(45deg);
-    }
-
-    &[data-show='true']::before {
-      visibility: visible;
     }
 
     &[data-popper-placement^='top'] {

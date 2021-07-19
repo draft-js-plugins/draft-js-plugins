@@ -100,7 +100,6 @@ export default function BlockTypeSelect({
           ref={setArrowElement}
           style={styles.arrow}
           className={theme.blockTypeSelectStyles?.arrow}
-          data-show={show}
           {...attributes.popper}
         />
       </div>
