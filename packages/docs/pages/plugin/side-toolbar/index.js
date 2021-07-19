@@ -132,14 +132,26 @@ export default class App extends Component {
               </ExternalLink>
               The <InlineCode code="position" /> option is ignored when the this
               option is used.
+              <br />
+              This is the popover for the 3 dots button component.
             </span>
           </div>
-
           <div className={styles.paramBig}>
             <span className={styles.paramName}>sideToolbarButtonComponent</span>
             <span>
               Button component to be used when a the Side Toolbar is visible.
               Default to 3 dots.
+            </span>
+          </div>
+          <div className={styles.paramBig}>
+            <span className={styles.paramName}>
+              createBlockTypeSelectPopperOptions
+            </span>
+            <span>
+              This function will be used create the options for popper.js. As a
+              first parameter it will get a reference to the arrow DOM node.
+              <br />
+              This is the popover for the block type selection components.
             </span>
           </div>
         </Container>

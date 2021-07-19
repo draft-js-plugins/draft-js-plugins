@@ -5,6 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 5.0.0
+
+- add `createBlockTypeSelectPopperOptions` option to control `popper.js` for BlockTypeSelect popup [#2182](https://github.com/draft-js-plugins/draft-js-plugins/issues/2182)
+- css class `spacer` removed and `popupFrame` and `arrow` added
+- refactor components to functional components
 - add `sideToolbarButtonComponent` option for custom button component [#2179](https://github.com/draft-js-plugins/draft-js-plugins/issues/2179)
 
 ## 4.2.1
