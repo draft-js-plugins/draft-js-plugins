@@ -35,8 +35,25 @@ interface EntryProps {
   searchValue?: string;
 }
 
-const Entry = (props: EntryProps): ReactElement => {
+const Entry = ({
+  onMentionSelect,
+  mention,
+  theme,
+  index,
+  onMentionFocus,
+  isFocused,
+  id,
+  searchValue,
+  entryComponent: EntryComponent,
+}: EntryProps): ReactElement => {
   const mouseDown = useRef(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isFocused) {
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [isFocused]);
 
   useEffect(() => {
     mouseDown.current = false;
@@ -44,7 +61,7 @@ const Entry = (props: EntryProps): ReactElement => {
 
   const onMouseUp = (): void => {
     if (mouseDown.current) {
-      props.onMentionSelect(props.mention);
+      onMentionSelect(mention);
       mouseDown.current = false;
     }
   };
@@ -57,30 +74,29 @@ const Entry = (props: EntryProps): ReactElement => {
   };
 
   const onMouseEnter = (): void => {
-    props.onMentionFocus(props.index);
+    onMentionFocus(index);
   };
 
-  const { theme = {}, mention, searchValue, isFocused, id } = props;
   const className = isFocused
     ? theme.mentionSuggestionsEntryFocused
     : theme.mentionSuggestionsEntry;
 
-  const EntryComponent = props.entryComponent;
-
   return (
-    <EntryComponent
-      className={className}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      onMouseEnter={onMouseEnter}
-      role="option"
-      id={id}
-      aria-selected={isFocused ? 'true' : undefined}
-      theme={theme}
-      mention={mention}
-      isFocused={isFocused}
-      searchValue={searchValue}
-    />
+    <div ref={ref}>
+      <EntryComponent
+        className={className}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onMouseEnter={onMouseEnter}
+        role="option"
+        id={id}
+        aria-selected={isFocused ? 'true' : undefined}
+        theme={theme}
+        mention={mention}
+        isFocused={isFocused}
+        searchValue={searchValue}
+      />
+    </div>
   );
 };
 
