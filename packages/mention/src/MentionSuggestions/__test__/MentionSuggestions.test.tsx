@@ -5,6 +5,8 @@ import {
   MentionSuggestionsProps,
 } from '../MentionSuggestions';
 
+window.HTMLElement.prototype.scrollIntoView = jest.fn();
+
 const mentions = [
   {
     name: 'Matthew Russell',
@@ -41,7 +43,7 @@ const mentions = [
 ];
 
 function defaultProps(): MentionSuggestionsProps {
-  return ({
+  return {
     open: false,
     onOpenChange: jest.fn(),
     suggestions: mentions,
@@ -61,7 +63,7 @@ function defaultProps(): MentionSuggestionsProps {
     onAddMention: jest.fn(),
     positionSuggestions: jest.fn(() => ({})),
     theme: {},
-  } as unknown) as MentionSuggestionsProps;
+  } as unknown as MentionSuggestionsProps;
 }
 
 describe('MentionSuggestions Component', () => {

@@ -50,8 +50,8 @@ const Entry = ({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isFocused) {
-      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (isFocused && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }, [isFocused]);
 
