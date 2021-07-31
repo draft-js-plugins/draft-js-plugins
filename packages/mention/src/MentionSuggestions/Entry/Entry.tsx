@@ -50,8 +50,11 @@ const Entry = ({
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isFocused && ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (isFocused) {
+      //delay the scrolling as the popup needs some time for positioning
+      requestAnimationFrame(() =>
+        ref.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      );
     }
   }, [isFocused]);
 
