@@ -142,6 +142,19 @@ export default function Mention(): ReactElement {
             </div>
             <div className={styles.subParam}>
               <span className={styles.subParamName}>
+                mentionSuggestionsPopup:
+              </span>
+              CSS class for popup.js suggestions component.
+            </div>
+            <div className={styles.subParam}>
+              <span className={styles.subParamName}>
+                mentionSuggestionsPopupVisible:
+              </span>
+              CSS class for popup.js suggestions component when it is visible.
+              Can be used for animations.
+            </div>
+            <div className={styles.subParam}>
+              <span className={styles.subParamName}>
                 mentionSuggestionsEntry:
               </span>
               CSS class for an entry in the suggestions component.

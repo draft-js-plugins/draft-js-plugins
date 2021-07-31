@@ -11,6 +11,8 @@ const entryShared = `
 export interface MentionPluginTheme {
   mention?: string;
   mentionSuggestions?: string;
+  mentionSuggestionsPopup?: string;
+  mentionSuggestionsPopupVisible?: string;
   mentionSuggestionsEntry?: string;
   mentionSuggestionsEntryFocused?: string;
   mentionSuggestionsEntryText?: string;
@@ -60,6 +62,14 @@ export const defaultTheme: MentionPluginTheme = {
     flex-direction: column;
     box-sizing: border-box;
     transform: scale(0);
+  `,
+
+  mentionSuggestionsPopup: css`
+    opacity: 0;
+    transition: opacity 0.25s cubic-bezier(0.3, 1.2, 0.2, 1);
+  `,
+  mentionSuggestionsPopupVisible: css`
+    opacity: 1;
   `,
 
   // CSS classes for an entry in the suggestions component
