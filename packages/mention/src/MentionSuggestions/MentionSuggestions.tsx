@@ -403,8 +403,8 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     return (
       <PopoverContainer
         store={this.props.store}
-        className={theme.mentionSuggestions}
         popperOptions={popperOptions}
+        theme={theme}
       >
         {this.props.suggestions.map((mention, index) => (
           <Entry
