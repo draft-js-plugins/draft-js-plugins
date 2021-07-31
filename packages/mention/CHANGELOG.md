@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- delay scrolling into view for selected item in mention list [#2233](https://github.com/draft-js-plugins/draft-js-plugins/issues/2233)
+
 ## 4.6.0
 
 - sroll focused `Entry` component into view [#997](https://github.com/draft-js-plugins/draft-js-plugins/issues/997)
