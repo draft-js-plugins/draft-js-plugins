@@ -41,7 +41,7 @@
   "license": "MIT",
   "dependencies": {
     "@popperjs/core": "^2.9.3",
-    "@types/lodash": "^4.14.171",
+    "@types/lodash": "^4.14.172",
     "clsx": "^1.0.4",
     "immutable": "~3.7.4",
     "lodash": "^4.17.21",
