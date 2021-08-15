@@ -18,7 +18,7 @@ import '@draft-js-plugins/alignment/lib/plugin.css';
 
 import 'prismjs/themes/prism.css';
 
-import { AppProps } from 'next/dist/next-server/lib/router/router';
+import { AppProps } from 'next/app';
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 
