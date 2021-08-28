@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/alignment",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "sideEffects": [
     "*.css"
   ],
