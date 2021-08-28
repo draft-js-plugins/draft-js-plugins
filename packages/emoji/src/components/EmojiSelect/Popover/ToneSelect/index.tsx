@@ -53,8 +53,8 @@ export default class ToneSelect extends Component<ToneSelectParams> {
   }
 
   setCorrectPosition = (
-    areaBounds: ClientRect,
-    entryBounds: ClientRect
+    areaBounds: Boundaries,
+    entryBounds: Boundaries
   ): void => {
     const width = this.tones!.offsetWidth;
     const height = this.tones!.offsetHeight;
@@ -100,11 +100,11 @@ export default class ToneSelect extends Component<ToneSelectParams> {
       <div className={theme.emojiSelectPopoverToneSelect}>
         <ul
           className={theme.emojiSelectPopoverToneSelectList}
-          ref={element => {
+          ref={(element) => {
             this.tones = element;
           }}
         >
-          {(toneSet || []).map(emoji => (
+          {(toneSet || []).map((emoji) => (
             <li
               key={`tone-select(${emoji})`}
               className={theme.emojiSelectPopoverToneSelectItem}
