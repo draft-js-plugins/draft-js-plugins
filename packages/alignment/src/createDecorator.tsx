@@ -53,6 +53,9 @@ export default ({ store }: { store: AlignmentPluginStore }) =>
         } else if (store.getItem('visibleBlock') === block.getKey()) {
           store.updateItem('visibleBlock', null);
         }
+        return () => {
+          store.updateItem('visibleBlock', null);
+        };
       }, [blockProps.isFocused, blockProps.isCollapsedSelection, store]);
 
       const alignment = blockProps.alignment;
