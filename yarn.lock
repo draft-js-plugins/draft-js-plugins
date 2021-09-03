@@ -2609,10 +2609,10 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
-"@types/draft-js@^0.11.4":
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.4.tgz#96637c1d29dff1dcd6394d9ea0192867354691a1"
-  integrity sha512-T/z+wlf7rVloFdUsrNJV15DVbKvJbq44Lkf9WPTuS1g3Lqaqw83MzeFFZntPrKcsiCNBlHZQw+14PGW2rYN+fg==
+"@types/draft-js@^0.11.5":
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.5.tgz#53e0c91b8c297b6ba88e6b1440a56efc81b6d70b"
+  integrity sha512-rf33PMmHMOcTR4HyUcdheTB+1Wpmj5bMLIEDSHoXMAYnkYPO58TLcUxYdDy5chrGyzwNrsFHxwFX2NvbEOQVWA==
   dependencies:
     "@types/react" "*"
     immutable "~3.7.4"
