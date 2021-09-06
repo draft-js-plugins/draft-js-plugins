@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/static-toolbar",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "sideEffects": [
     "*.css"
   ],
