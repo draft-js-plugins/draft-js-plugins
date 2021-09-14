@@ -16,6 +16,7 @@ import Code from '../../../components/Code/Code';
 // eslint-disable-next-line import/no-duplicates
 import SimpleResizeableEditor from '../../../components/Examples/resizeable/SimpleResizeableEditor';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import ExternalLink from '../../../components/Link/Link';
 
 export default class App extends Component {
   render() {
@@ -49,6 +50,23 @@ export default class App extends Component {
           <Code code="npm install @draft-js-plugins/editor" />
           <Code code="npm install @draft-js-plugins/focus" />
           <Code code="npm install @draft-js-plugins/resizeable" />
+          <Heading level={3}>Notes</Heading>
+          <p>
+            This plugin needs to read and write the size information to the
+            resized HTML element. Therefore the resized component needs to use{' '}
+            <ExternalLink href="https://reactjs.org/docs/forwarding-refs.html">
+              forwarding ref
+            </ExternalLink>
+            . As reported in issue{' '}
+            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/issues/2272#issuecomment-909642353">
+              #2272
+            </ExternalLink>{' '}
+            in some cases it might be usefult to wrap the ref with{' '}
+            <ExternalLink href="https://reactjs.org/docs/hooks-reference.html#useimperativehandle">
+              useImperativeHandle
+            </ExternalLink>
+            .
+          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>
