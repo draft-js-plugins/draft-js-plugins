@@ -125,15 +125,23 @@ export default class App extends Component {
               className
             </span>
           </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>linkifyit</span>
+            <span>
+              If provided this linkify-it object will be used instead of the
+              default linkify-it object. You can read more in Linkify-it website
+            </span>
+          </div>
           <Heading level={3}>Additional Exports</Heading>
           <div>
             In addition to the plugin the module exports{' '}
             <InlineCode code={'extractLinks'} />
-            . As first argument it takes the text string. The function returns a
-            list of linkifyit.Matches or null.
+            . As first argument it takes the text string, Second argument
+            (Optional) it takes linkify-It object. The function returns a list
+            of linkifyit.Matches or null.
             <Code
               code={
-                'function extractLinks(text: string): linkifyIt.Match[] | null;'
+                'function extractLinks(text: string, linkifyit: LinkifyIt): linkifyIt.Match[] | null;'
               }
             />
             It can be imported by:

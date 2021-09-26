@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
-import createLinkifyPlugin from '@draft-js-plugins/linkify';
+import createLinkifyPlugin, { linkifyIt } from '@draft-js-plugins/linkify';
 import editorStyles from './editorStyles.module.css';
 
 const linkifyPlugin = createLinkifyPlugin({
@@ -9,6 +9,8 @@ const linkifyPlugin = createLinkifyPlugin({
     // eslint-disable-next-line no-alert, jsx-a11y/anchor-has-content
     return <a {...props} onClick={() => alert('Clicked on Link!')} />;
   },
+  // exclude emails from being recognized as a link [https://www.npmjs.com/package/linkify-it]
+  linkifyit: linkifyIt.set({ fuzzyEmail: false }),
 });
 const plugins = [linkifyPlugin];
 
