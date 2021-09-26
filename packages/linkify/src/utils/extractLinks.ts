@@ -1,9 +1,15 @@
-import linkifyIt from 'linkify-it';
+import linkifyIt, { LinkifyIt } from 'linkify-it';
 import tlds from 'tlds';
 
-export const linkify = linkifyIt();
-linkify.tlds(tlds);
+const linkify: LinkifyIt = linkifyIt().tlds(tlds);
 
-export function extractLinks(text: string): linkifyIt.Match[] | null {
+export function extractLinks(
+  text: string,
+  linkifyit: LinkifyIt = linkify
+): linkifyIt.Match[] | null {
+  if (linkifyit) {
+    linkifyit.tlds(tlds);
+    return linkifyit.match(text);
+  }
   return linkify.match(text);
 }
