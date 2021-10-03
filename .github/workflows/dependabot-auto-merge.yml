@@ -3,7 +3,7 @@ name: auto-merge
 on:
   pull_request_target:
     branches:
-      - main
+      - master
 
 jobs:
   auto-merge:
@@ -14,5 +14,4 @@ jobs:
         with:
           github-token: ${{ secrets.AUTOMERGE_TOKEN }}
           command: 'squash and merge'
-          approve: false
           target: minor
