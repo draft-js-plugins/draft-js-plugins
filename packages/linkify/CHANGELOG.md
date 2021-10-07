@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Instead of using a defualt object of Linkify-it, we can pass it as an optional arg for `extractLinks` & `createLinkifyPlugin`. This change was important to give the ability to customize the default configurations of Linkify-it object.
 
+- Instead of using a object of Linkify-it, old behavior kept as it is and we can pass it as a custom funcation that return an array that contains the links index, lastIndex for `createLinkifyPlugin`. This change was important to give the ability to customize the default behaver.
+
 ## 4.1.1
 
 - add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
