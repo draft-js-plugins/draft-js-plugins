@@ -1,20 +1,27 @@
 import React, { ComponentType, ReactElement } from 'react';
 import { EditorPlugin } from '@draft-js-plugins/editor';
-import linkifyItObj, { LinkifyIt } from 'linkify-it';
-import tlds from 'tlds';
 import Link, { LinkProps, ComponentProps } from './Link/Link';
 import linkStrategy from './linkStrategy';
 import { defaultTheme, LinkifyPluginTheme } from './theme';
 
 export { extractLinks } from './utils/extractLinks';
-export const linkifyIt = linkifyItObj().tlds(tlds) as LinkifyIt;
 
 export interface LinkifyPluginConfig {
   component?: ComponentType<ComponentProps>;
   theme?: LinkifyPluginTheme;
   target?: string;
   rel?: string;
-  linkifyit?: LinkifyIt;
+  /**
+   * Custom extract links function that should return Array of index, lastIndex.
+   * @param {string} text - Current state of the editor as a plain text.
+   */
+  customExtractLinksFun?: (
+    text: string
+  ) => Array<{
+    index: number;
+    lastIndex: number;
+    [others: string]: any;
+  }> | null;
 }
 
 export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
@@ -46,7 +53,7 @@ export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
     decorators: [
       {
         strategy: (contentBlock, callback) =>
-          linkStrategy(contentBlock, callback, config.linkifyit as LinkifyIt),
+          linkStrategy(contentBlock, callback, config.customExtractLinksFun),
         component: DecoratedLink,
       },
     ],

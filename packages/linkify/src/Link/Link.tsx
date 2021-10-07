@@ -23,6 +23,13 @@ export interface LinkProps {
   target?: string;
   rel?: string;
   className?: string;
+  customExtractLinksFun?: (
+    text: string
+  ) => Array<{
+    index: number;
+    lastIndex: number;
+    [others: string]: any;
+  }> | null;
 
   // following props are not used
   entityKey?: unknown;
@@ -41,6 +48,7 @@ export default function Link(props: LinkProps): ReactElement {
   const {
     decoratedText = '',
     theme = {} as LinkifyPluginTheme,
+    customExtractLinksFun = null,
     target = '_self',
     rel = 'noreferrer noopener',
     className,
@@ -58,8 +66,17 @@ export default function Link(props: LinkProps): ReactElement {
   } = props;
 
   const combinedClassName = clsx(theme?.link, className);
-  const links = linkify.match(decoratedText);
-  const href = links && links[0] ? links[0].url : '';
+  const links = customExtractLinksFun
+    ? customExtractLinksFun(decoratedText)
+    : linkify.match(decoratedText);
+  let href = '';
+  if (links && links[0]) {
+    if (customExtractLinksFun) {
+      href = decoratedText;
+    } else {
+      href = links[0].url;
+    }
+  }
 
   const linkProps = {
     ...otherProps,
