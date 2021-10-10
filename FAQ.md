@@ -114,13 +114,18 @@ Note: Those imports _might_ not cover all possibly needed polyfills; this means,
 
 
 
-## When using 'keyBindingFn' prop with custom key bindings, mention plugin does not handle up and down arrows in a users' list popover.
+## Keybindings added by a plugin stop working when using custom 'keyBindingFn' function.
 
-You need to return `undefined` if you want plugins to execute the `keyBindingFn` as otherwise the [execution chain ends](draft-js-plugins/packages/editor/src/Editor/PluginHooks.ts). For example:
+You need to return `undefined` if you want plugins to execute the `keyBindingFn` as otherwise the [execution chain ends](draft-js-plugins/packages/editor/src/Editor/PluginHooks.ts).
+For example:
 
 ```js
 const keyBindingFn = (e) => {
-  // Allows mention plugin to handle up and down arrows in a triggered popover
+  /*
+   * Add condition for keybindings added by a plugin that you want to keep
+   * and return 'undefined'.
+   * Example below allows mention plugin to handle up and down arrows in a triggered popover
+   */
   if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
     return undefined;
   }
