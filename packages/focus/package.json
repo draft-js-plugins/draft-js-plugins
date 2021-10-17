@@ -40,7 +40,7 @@
   "license": "MIT",
   "dependencies": {
     "clsx": "^1.0.4",
-    "immutable": "~4.0.0"
+    "immutable": "~3.7.4"
   },
   "peerDependencies": {
     "draft-js": "^0.11.0",
