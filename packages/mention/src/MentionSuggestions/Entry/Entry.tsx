@@ -21,12 +21,13 @@ export interface EntryComponentProps {
   mention: MentionData;
   isFocused: boolean;
   searchValue?: string;
+  selectMention(mention: MentionData | null): void;
 }
 
 interface EntryProps {
   mention: MentionData;
   entryComponent: ComponentType<EntryComponentProps>;
-  onMentionSelect(mention: MentionData): void;
+  onMentionSelect(mention: MentionData | null): void;
   theme: MentionPluginTheme;
   id: string;
   index: number;
@@ -98,6 +99,7 @@ const Entry = ({
         mention={mention}
         isFocused={isFocused}
         searchValue={searchValue}
+        selectMention={onMentionSelect}
       />
     </div>
   );
