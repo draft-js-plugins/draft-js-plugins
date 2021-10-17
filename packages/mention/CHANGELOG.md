@@ -5,7 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 5.0.0
+
 - reset selected item on search change for mention suggestion [#2348](https://github.com/draft-js-plugins/draft-js-plugins/issues/2348)
+- add `selectMention` to `EntryComponentProps` [#2363](https://github.com/draft-js-plugins/draft-js-plugins/issues/2363)
 
 ## 4.6.1
 
