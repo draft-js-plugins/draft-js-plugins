@@ -34,3 +34,4 @@ updates:
         versions:
           - 4.14.2
       - dependency-name: 'animateplus'
+      - dependency-name: 'immutable'
