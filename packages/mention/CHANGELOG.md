@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+- reset selected item on search change for mention suggestion [#2348](https://github.com/draft-js-plugins/draft-js-plugins/issues/2348)
+
 ## 4.6.1
 
 - delay scrolling into view for selected item in mention list [#2233](https://github.com/draft-js-plugins/draft-js-plugins/issues/2233)
