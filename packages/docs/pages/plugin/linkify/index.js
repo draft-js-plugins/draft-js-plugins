@@ -126,10 +126,11 @@ export default class App extends Component {
             </span>
           </div>
           <div className={styles.param}>
-            <span className={styles.paramName}>customExtractLinksFun</span>
+            <span className={styles.paramName}>customExtractLinks</span>
             <span>
-              If provided this customExtractLinksFun funcation it will be used
-              instead of the default extractLinks utils.
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If provided this customExtractLinks
+              funcation it will be used to extreact links from the editor
+              instead of the default (function) behavior.
             </span>
           </div>
           <Heading level={3}>Additional Exports</Heading>

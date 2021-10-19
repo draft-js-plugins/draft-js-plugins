@@ -11,7 +11,7 @@ const linkifyPlugin = createLinkifyPlugin({
     // eslint-disable-next-line no-alert, jsx-a11y/anchor-has-content
     return <a {...props} onClick={() => alert('Clicked on Link!')} />;
   },
-  customExtractLinksFun: (text) =>
+  customExtractLinks: (text) =>
     linkifyIt().tlds(tlds).set({ fuzzyEmail: false }).match(text),
 });
 const plugins = [linkifyPlugin];
