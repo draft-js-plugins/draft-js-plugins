@@ -84,7 +84,7 @@ describe('Link', () => {
     const { getByRole } = render(
       <Link
         decoratedText="example@me.com"
-        customExtractLinksFun={() =>
+        customExtractLinks={() =>
           LinkifyIt().set({ fuzzyEmail: false }).match('example@me.com')
         }
       >
