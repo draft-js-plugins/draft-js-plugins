@@ -3,6 +3,7 @@ import { EditorPlugin } from '@draft-js-plugins/editor';
 import Link, { LinkProps, ComponentProps } from './Link/Link';
 import linkStrategy from './linkStrategy';
 import { defaultTheme, LinkifyPluginTheme } from './theme';
+import { ExtractLinks, extractLinks } from './utils/extractLinks';
 
 export { extractLinks } from './utils/extractLinks';
 
@@ -12,16 +13,10 @@ export interface LinkifyPluginConfig {
   target?: string;
   rel?: string;
   /**
-   * Custom extract links function that should return Array of index, lastIndex.
+   * Custom extract links function that should return Array of index, lastIndex & url.
    * @param {string} text - Current state of the editor as a plain text.
    */
-  customExtractLinksFun?: (
-    text: string
-  ) => Array<{
-    index: number;
-    lastIndex: number;
-    [others: string]: any;
-  }> | null;
+  customExtractLinks?: ExtractLinks;
 }
 
 export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
@@ -37,6 +32,7 @@ export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
     theme = defaultTheme,
     target = '_self',
     rel = 'noreferrer noopener',
+    customExtractLinks = extractLinks,
   } = config;
 
   const DecoratedLink = (props: LinkProps): ReactElement => (
@@ -46,6 +42,7 @@ export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
       target={target}
       rel={rel}
       component={component}
+      customExtractLinks={customExtractLinks}
     />
   );
 
@@ -53,7 +50,7 @@ export default (config: LinkifyPluginConfig = {}): EditorPlugin => {
     decorators: [
       {
         strategy: (contentBlock, callback) =>
-          linkStrategy(contentBlock, callback, config.customExtractLinksFun),
+          linkStrategy(contentBlock, callback, customExtractLinks),
         component: DecoratedLink,
       },
     ],

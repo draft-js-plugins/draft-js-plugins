@@ -1,11 +1,7 @@
 import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import clsx from 'clsx';
-import linkifyIt from 'linkify-it';
-import tlds from 'tlds';
 import { LinkifyPluginTheme } from '../theme';
-
-const linkify = linkifyIt();
-linkify.tlds(tlds);
+import { ExtractLinks, extractLinks } from '../utils/extractLinks';
 
 export interface ComponentProps {
   children: ReactNode;
@@ -23,13 +19,7 @@ export interface LinkProps {
   target?: string;
   rel?: string;
   className?: string;
-  customExtractLinksFun?: (
-    text: string
-  ) => Array<{
-    index: number;
-    lastIndex: number;
-    [others: string]: any;
-  }> | null;
+  customExtractLinks?: ExtractLinks;
 
   // following props are not used
   entityKey?: unknown;
@@ -48,7 +38,7 @@ export default function Link(props: LinkProps): ReactElement {
   const {
     decoratedText = '',
     theme = {} as LinkifyPluginTheme,
-    customExtractLinksFun = null,
+    customExtractLinks = (text) => extractLinks(text),
     target = '_self',
     rel = 'noreferrer noopener',
     className,
@@ -66,17 +56,8 @@ export default function Link(props: LinkProps): ReactElement {
   } = props;
 
   const combinedClassName = clsx(theme?.link, className);
-  const links = customExtractLinksFun
-    ? customExtractLinksFun(decoratedText)
-    : linkify.match(decoratedText);
-  let href = '';
-  if (links && links[0]) {
-    if (customExtractLinksFun) {
-      href = decoratedText;
-    } else {
-      href = links[0].url;
-    }
-  }
+  const links = customExtractLinks(decoratedText);
+  const href = links && links[0] ? links[0].url : '';
 
   const linkProps = {
     ...otherProps,
