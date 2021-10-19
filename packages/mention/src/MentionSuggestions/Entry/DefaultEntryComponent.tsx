@@ -1,17 +1,9 @@
 import React, { ReactElement } from 'react';
-import { MentionData } from '../../';
-import { MentionPluginTheme } from '../../theme';
 import Avatar from './Avatar/Avatar';
-
-interface DefaultEntryComponentProps {
-  mention: MentionData;
-  theme?: MentionPluginTheme;
-  isFocused: boolean;
-  searchValue?: string;
-}
+import { EntryComponentProps } from './Entry';
 
 export default function DefaultEntryComponent(
-  props: DefaultEntryComponentProps
+  props: EntryComponentProps
 ): ReactElement {
   const {
     mention,
@@ -20,6 +12,7 @@ export default function DefaultEntryComponent(
     isFocused, // eslint-disable-line @typescript-eslint/no-unused-vars
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     searchValue, // eslint-disable-line @typescript-eslint/no-unused-vars
+    selectMention, // eslint-disable-line @typescript-eslint/no-unused-vars
     ...parentProps
   } = props;
 

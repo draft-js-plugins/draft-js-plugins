@@ -182,7 +182,6 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
     ) {
       this.openDropdown();
     }
-
     // makes sure the focused index is reseted every time a new selection opens
     // or the selection was moved to another mention search
     if (lastActiveOffsetKey !== this.activeOffsetKey) {
@@ -215,6 +214,10 @@ export class MentionSuggestions extends Component<MentionSuggestionsProps> {
       this.lastActiveTrigger = trigger;
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ trigger, value: searchValue });
+      //reset focus item if search is cahnged
+      this.setState({
+        focusedOptionIndex: 0,
+      });
     }
   };
 
