@@ -125,6 +125,14 @@ export default class App extends Component {
               className
             </span>
           </div>
+          <div className={styles.param}>
+            <span className={styles.paramName}>customExtractLinks</span>
+            <span>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If provided this customExtractLinks
+              funcation it will be used to extreact links from the editor
+              instead of the default (function) behavior.
+            </span>
+          </div>
           <Heading level={3}>Additional Exports</Heading>
           <div>
             In addition to the plugin the module exports{' '}

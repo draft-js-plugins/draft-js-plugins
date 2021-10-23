@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { render } from '@testing-library/react';
+import LinkifyIt from 'linkify-it';
 import Link from '../Link';
 
 describe('Link', () => {
@@ -77,6 +78,20 @@ describe('Link', () => {
       'href',
       'mailto:name@example.com'
     );
+  });
+
+  it('generates the correct href when using a custom exreactLinks funcation', () => {
+    const { getByRole } = render(
+      <Link
+        decoratedText="example@me.com"
+        customExtractLinks={() =>
+          LinkifyIt().set({ fuzzyEmail: false }).match('example@me.com')
+        }
+      >
+        Link
+      </Link>
+    );
+    expect(getByRole('link')).toHaveAttribute('href', '');
   });
 
   it('applies custom target value', () => {
