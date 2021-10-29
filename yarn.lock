@@ -12962,10 +12962,10 @@ tiny-emitter@^2.0.0:
   resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
-tlds@^1.224.0:
-  version "1.224.0"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.224.0.tgz#dc9a5b0bda0708af0302114f6e24458770c5af01"
-  integrity sha512-Jgdc8SEijbDFUsmCn6Wk/f7E6jBLFZOG3U1xK0amGSfEH55Xx97ItUS/d2NngsuApjn11UeWCWj8Um3VRhseZQ==
+tlds@^1.225.0:
+  version "1.225.0"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.225.0.tgz#c73f3505c30099e71e2828995d30e33e21aaf8fa"
+  integrity sha512-W6lNjs+IT3rjXumIJJindITMnv4R17mNBRsMkp6Kr0bF8vQcGW2Y//2VvMqegGmBnizBZFryv1thcPcpJQ3+CA==
 
 tmp@^0.0.33:
   version "0.0.33"
