@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
-### Added
+- upgrade to `emojibase@6`
 
 ## 4.5.5
 
