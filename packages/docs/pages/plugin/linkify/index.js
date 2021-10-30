@@ -129,8 +129,8 @@ export default class App extends Component {
             <span className={styles.paramName}>customExtractLinks</span>
             <span>
               If specified, the customExtractLinks function will be function
-              will be used to extract links. I receives the text and must return
-              a list of index, lastIndes and url or null.
+              will be used to extract links. It receives the text and must
+              return a list of index, lastIndex and url or null.
             </span>
           </div>
           <Heading level={3}>Additional Exports</Heading>
