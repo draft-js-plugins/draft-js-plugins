@@ -9,8 +9,9 @@
 
 .paramName {
   font-weight: bold;
-  width: 125px;
+  min-width: 125px;
   display: inline-block;
+  margin-right: 10px;
 }
 
 .subParams {

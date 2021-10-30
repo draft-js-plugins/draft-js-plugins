@@ -128,9 +128,9 @@ export default class App extends Component {
           <div className={styles.param}>
             <span className={styles.paramName}>customExtractLinks</span>
             <span>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If provided this customExtractLinks
-              funcation it will be used to extreact links from the editor
-              instead of the default (function) behavior.
+              If specified, the customExtractLinks function will be function
+              will be used to extract links. It receives the text and must
+              return a list of index, lastIndex and url or null.
             </span>
           </div>
           <Heading level={3}>Additional Exports</Heading>
