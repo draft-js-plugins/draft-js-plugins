@@ -1,30 +1,27 @@
-import React, { Component } from 'react';
-
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import simpleExampleCode from '!!raw-loader!../../../components/Examples/focus/SimpleFocusEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/focus/SimpleFocusEditor/editorStyles.module.css';
-// eslint-disable-next-line import/no-unresolved
 import simpleExampleColorBlockCode from '!!raw-loader!../../../components/Examples/focus/SimpleFocusEditor/colorBlockPlugin';
 // eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/focus/SimpleFocusEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/focus/webpackConfig';
-
-import Container from '../../../components/Container/Container';
+import React, { Component } from 'react';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import SimpleFocusEditor from '../../../components/Examples/focus/SimpleFocusEditor';
-import ExternalLink from '../../../components/Link/Link';
+import Heading from '../../../components/Heading/Heading';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/focus/index.js'}>
         <Container>
           <Heading level={2}>Focus</Heading>
           <Heading level={3}>Prerequisite</Heading>
@@ -78,14 +75,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>

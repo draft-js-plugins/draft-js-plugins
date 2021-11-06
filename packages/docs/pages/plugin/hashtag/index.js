@@ -1,10 +1,3 @@
-import React, { Component } from 'react';
-
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import simpleExampleCode from '!!raw-loader!../../../components/Examples/hashtag/SimpleHashtagEditor';
-// eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/hashtag/SimpleHashtagEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customExampleCode from '!!raw-loader!../../../components/Examples/hashtag/CustomHashtagEditor';
@@ -15,26 +8,30 @@ import customExampleHashtagStylesCode from '!!raw-loader!../../../components/Exa
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!../../../components/Examples/hashtag/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!../../../components/Examples/hashtag/webpackConfig';
-
-import Container from '../../../components/Container/Container';
-import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
-import Code from '../../../components/Code/Code';
-import InlineCode from '../../../components/InlineCode/InlineCode';
 // eslint-disable-next-line import/no-duplicates
-import SimpleHashtagEditor from '../../../components/Examples/hashtag/SimpleHashtagEditor';
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/hashtag/SimpleHashtagEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/hashtag/SimpleHashtagEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!raw-loader!../../../components/Examples/hashtag/webpackConfig';
+import React, { Component } from 'react';
+import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
+import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import CustomHashtagEditor from '../../../components/Examples/hashtag/CustomHashtagEditor';
-import ExternalLink from '../../../components/Link/Link';
+// eslint-disable-next-line import/no-duplicates
+import SimpleHashtagEditor from '../../../components/Examples/hashtag/SimpleHashtagEditor';
+import Heading from '../../../components/Heading/Heading';
+import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   // eslint-disable-next-line class-methods-use-this
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/hashtag/index.js'}>
         <Container>
           <Heading level={2}>Hashtag</Heading>
           <p>Highlighting words starting with a number sign (#).</p>
@@ -87,14 +84,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Hashtag/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>

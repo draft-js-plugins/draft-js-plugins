@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customExampleCode from '!!raw-loader!../../../components/Examples/drag-n-drop/CustomImageEditor';
@@ -9,22 +7,23 @@ import customExampleEditorStylesCode from '!!raw-loader!../../../components/Exam
 import gettingStarted from '!!raw-loader!../../../components/Examples/drag-n-drop/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/drag-n-drop/webpackConfig';
-
-import Container from '../../../components/Container/Container';
+import React, { Component } from 'react';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import CustomImageEditor from '../../../components/Examples/drag-n-drop/CustomImageEditor';
-import ExternalLink from '../../../components/Link/Link';
+import Heading from '../../../components/Heading/Heading';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame
+        filePath={'packages/docs/pages/plugin/drag-n-drop/index.js'}
+      >
         <Container>
           <Heading level={2}>{"Drag'n'Drop"}</Heading>
           <Heading level={3}>Supported Environment</Heading>
@@ -70,14 +69,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>

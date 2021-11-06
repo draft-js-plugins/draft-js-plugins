@@ -1,16 +1,18 @@
-import React, { ReactElement, ReactNode, useEffect } from 'react';
 import Prism from 'prismjs';
+import React, { ReactElement, ReactNode, useEffect } from 'react';
+import Footer from '../Footer/Footer';
 import Menu from '../Menu/Menu';
 import Separator from '../Separator/Separator';
 import SocialBar from '../SocialBar/SocialBar';
-import Footer from '../Footer/Footer';
 
 interface PluginPageFrameProps {
   children: ReactNode;
+  filePath: string;
 }
 
 export default function PluginPageFrame({
   children,
+  filePath,
 }: PluginPageFrameProps): ReactElement {
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -23,7 +25,7 @@ export default function PluginPageFrame({
       <Menu />
       <Separator />
       {children}
-      <SocialBar />
+      <SocialBar filePath={filePath} />
       <Footer />
     </div>
   );

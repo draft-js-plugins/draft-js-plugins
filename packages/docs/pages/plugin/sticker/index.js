@@ -1,41 +1,38 @@
-import React, { Component } from 'react';
-
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import simpleExampleCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor';
-// eslint-disable-next-line import/no-unresolved
-import simpleExampleStickersCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor/stickers';
-// eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customExampleCode from '!!raw-loader!../../../components/Examples/sticker/CustomStickerEditor';
 // eslint-disable-next-line import/no-unresolved
-import customExampleStickersCode from '!!raw-loader!../../../components/Examples/sticker/CustomStickerEditor/stickers';
-// eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/sticker/CustomStickerEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleStickersCode from '!!raw-loader!../../../components/Examples/sticker/CustomStickerEditor/stickers';
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!../../../components/Examples/sticker/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleStickersCode from '!!raw-loader!../../../components/Examples/sticker/SimpleStickerEditor/stickers';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/sticker/webpackConfig';
-
-import Container from '../../../components/Container/Container';
+import React, { Component } from 'react';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
-import ExternalLink from '../../../components/Link/Link';
-import InlineCode from '../../../components/InlineCode/InlineCode';
-import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import CustomStickerEditor from '../../../components/Examples/sticker/CustomStickerEditor';
 // eslint-disable-next-line import/no-duplicates
 import SimpleStickerEditor from '../../../components/Examples/sticker/SimpleStickerEditor';
+import Heading from '../../../components/Heading/Heading';
+import InlineCode from '../../../components/InlineCode/InlineCode';
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/sticker/index.js'}>
         <Container>
           <Heading level={2}>Sticker</Heading>
           <Heading level={3}>Supported Environment</Heading>
@@ -80,14 +77,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Sticker/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>

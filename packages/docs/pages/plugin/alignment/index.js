@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import simpleExampleCode from '!!raw-loader!../../../components/Examples/alignment/SimpleAlignmentEditor';
@@ -8,34 +6,35 @@ import simpleExampleColorBlockCode from '!!raw-loader!../../../components/Exampl
 // eslint-disable-next-line import/no-unresolved
 import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/alignment/SimpleAlignmentEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import themedExampleCode from '!!raw-loader!../../../components/Examples/alignment/ThemedAlignmentEditor';
+// eslint-disable-next-line import/no-unresolved
 import themedExampleAlignmentToolStylesCode from '!!raw-loader!../../../components/Examples/alignment/ThemedAlignmentEditor/alignmentToolStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 import themedExampleButtonStylesCode from '!!raw-loader!../../../components/Examples/alignment/ThemedAlignmentEditor/buttonStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import themedExampleCode from '!!raw-loader!../../../components/Examples/alignment/ThemedAlignmentEditor';
-// eslint-disable-next-line import/no-unresolved
 import themedExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/alignment/ThemedAlignmentEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/alignment/webpackConfig';
-
-import styles from './styles.module.css';
+import React, { Component } from 'react';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Code from '../../../components/Code/Code';
 import Container from '../../../components/Container/Container';
-import ExternalLink from '../../../components/Link/Link';
-import Heading from '../../../components/Heading/Heading';
-import InlineCode from '../../../components/InlineCode/InlineCode';
-import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
 // eslint-disable-next-line import/no-duplicates
 import SimpleAlignmentEditor from '../../../components/Examples/alignment/SimpleAlignmentEditor';
 // eslint-disable-next-line import/no-duplicates
 import ThemedAlignmentEditor from '../../../components/Examples/alignment/ThemedAlignmentEditor';
+import Heading from '../../../components/Heading/Heading';
+import InlineCode from '../../../components/InlineCode/InlineCode';
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame
+        filePath={'packages/docs/pages/plugin/alignment/index.js'}
+      >
         <Container>
           <Heading level={2}>Alignment</Heading>
           <Heading level={3}>Prerequisite</Heading>
@@ -95,14 +94,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Alignment/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>

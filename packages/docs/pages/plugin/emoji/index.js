@@ -1,6 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
-import React, { Component } from 'react';
-
+// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/emoji/CustomEmojiEditor';
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!../../../components/Examples/emoji/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
@@ -10,22 +11,19 @@ import simpleExampleCode from '!!raw-loader!../../../components/Examples/emoji/S
 import simpleEditorStylesCode from '!!raw-loader!../../../components/Examples/emoji/SimpleEmojiEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/emoji/webpackConfig';
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import customExampleCode from '!!raw-loader!../../../components/Examples/emoji/CustomEmojiEditor';
-
-import styles from './styles.module.css';
-import Container from '../../../components/Container/Container';
-import Heading from '../../../components/Heading/Heading';
+import React, { Component } from 'react';
+import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Code from '../../../components/Code/Code';
-// eslint-disable-next-line import/no-duplicates
-import SimpleEmojiEditor from '../../../components/Examples/emoji/SimpleEmojiEditor';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import CustomEmojiEditor from '../../../components/Examples/emoji/CustomEmojiEditor';
-import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import ExternalLink from '../../../components/Link/Link';
+// eslint-disable-next-line import/no-duplicates
+import SimpleEmojiEditor from '../../../components/Examples/emoji/SimpleEmojiEditor';
+import Heading from '../../../components/Heading/Heading';
 import InlineCode from '../../../components/InlineCode/InlineCode';
+import ExternalLink from '../../../components/Link/Link';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 const toneSelectStyles = `.emojiSelectPopoverToneSelect {
   position: absolute;
@@ -53,7 +51,7 @@ const selectGroupsCode = `selectGroups: [{
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/emoji/index.js'}>
         <Container>
           <Heading level={2}>Emoji</Heading>
           <p>
@@ -131,14 +129,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Emoji/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>
