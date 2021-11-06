@@ -1,26 +1,3 @@
-import React, { ReactElement } from 'react';
-
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import simpleExampleCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor';
-// eslint-disable-next-line import/no-unresolved
-import simpleExampleMentionsCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/Mentions';
-// eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor.module.css';
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import customExampleCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor';
-// eslint-disable-next-line import/no-unresolved
-import customExampleMentionsCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/Mentions';
-// eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor.module.css';
-// eslint-disable-next-line import/no-unresolved
-import customExampleMentionsStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/MentionsStyles.module.css';
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import remoteExampleCode from '!!raw-loader!../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
-// eslint-disable-next-line import/no-unresolved
-import remoteExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customComponentExampleCode from '!!raw-loader!../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor';
@@ -28,35 +5,55 @@ import customComponentExampleCode from '!!raw-loader!../../../components/Example
 import customComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor.module.css';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor.module.css';
+// eslint-disable-next-line import/no-unresolved
+import customExampleMentionsCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/Mentions';
+// eslint-disable-next-line import/no-unresolved
+import customExampleMentionsStylesCode from '!!raw-loader!../../../components/Examples/mention/CustomMentionEditor/MentionsStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
 import multiComponentExampleCode from '!!raw-loader!../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers';
 // eslint-disable-next-line import/no-unresolved
 import multiComponentExampleStylesCode from '!!raw-loader!../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers.module.css';
 // eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import remoteExampleCode from '!!raw-loader!../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import remoteExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor.module.css';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleMentionsCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/Mentions';
+// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor.module.css';
+// eslint-disable-next-line import/no-unresolved
 import webpackConfig from '!!raw-loader!../../../components/Examples/mention/webpackConfig';
-
-import styles from './Mention.module.css';
-import Heading from '../../../components/Heading/Heading';
-import Container from '../../../components/Container/Container';
+import React, { ReactElement } from 'react';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
 import Code from '../../../components/Code/Code';
-import InlineCode from '../../../components/InlineCode/InlineCode';
-import ExternalLink from '../../../components/Link/Link';
-
-// eslint-disable-next-line import/no-duplicates
-import SimpleMentionEditor from '../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor';
-// eslint-disable-next-line import/no-duplicates
-import CustomMentionEditor from '../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor';
-// eslint-disable-next-line import/no-duplicates
-import RemoteMentionEditor from '../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import CustomComponentMentionEditor from '../../../components/Examples/mention/CustomComponentMentionEditor/CustomComponentMentionEditor';
 // eslint-disable-next-line import/no-duplicates
+import CustomMentionEditor from '../../../components/Examples/mention/CustomMentionEditor/CustomMentionEditor';
+// eslint-disable-next-line import/no-duplicates
 import MultiMentionTriggers from '../../../components/Examples/mention/MultiMentionTriggers/MultiMentionTriggers';
+// eslint-disable-next-line import/no-duplicates
+import RemoteMentionEditor from '../../../components/Examples/mention/RemoteMentionEditor/RemoteMentionEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleMentionEditor from '../../../components/Examples/mention/SimpleMentionEditor/SimpleMentionEditor';
+import Heading from '../../../components/Heading/Heading';
+import InlineCode from '../../../components/InlineCode/InlineCode';
+import ExternalLink from '../../../components/Link/Link';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './Mention.module.css';
 
 export default function Mention(): ReactElement {
   return (
-    <PluginPageFrame>
+    <PluginPageFrame filePath={'packages/docs/pages/plugin/mention/index.tsx'}>
       <Container>
         <Heading level={2}>Mention</Heading>
         <p>
@@ -117,14 +114,6 @@ export default function Mention(): ReactElement {
           </li>
           <li className={styles.listEntry}>4. Restart Webpack.</li>
         </ul>
-        <Heading level={4}>Browserify Usage</Heading>
-        <p>
-          Please help, by submiting a Pull Request to the{' '}
-          <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Mention/index.js">
-            documentation
-          </ExternalLink>
-          .
-        </p>
       </AlternateContainer>
       <Container>
         <Heading level={2}>Configuration Parameters</Heading>

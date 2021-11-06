@@ -1,8 +1,3 @@
-import React, { Component } from 'react';
-import Link from 'next/link';
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import simpleExampleCode from '!!raw-loader!../../../components/Examples/anchor/SimpleLinkPluginEditor';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customExampleCode from '!!raw-loader!../../../components/Examples/anchor/CustomInlineToolbarEditor';
@@ -10,24 +5,28 @@ import customExampleCode from '!!raw-loader!../../../components/Examples/anchor/
 import customExampleLinkStylesCode from '!!raw-loader!../../../components/Examples/anchor/CustomInlineToolbarEditor/linkStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!../../../components/Examples/anchor/gettingStarted';
-
-import Container from '../../../components/Container/Container';
-import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
-import Code from '../../../components/Code/Code';
-import InlineCode from '../../../components/InlineCode/InlineCode';
+// eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
-import SimpleLinkPluginEditor from '../../../components/Examples/anchor/SimpleLinkPluginEditor';
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/anchor/SimpleLinkPluginEditor';
+import Link from 'next/link';
+import React, { Component } from 'react';
+import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
+import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import CustomInlineToolbarEditor from '../../../components/Examples/anchor/CustomInlineToolbarEditor';
+// eslint-disable-next-line import/no-duplicates
+import SimpleLinkPluginEditor from '../../../components/Examples/anchor/SimpleLinkPluginEditor';
+import Heading from '../../../components/Heading/Heading';
+import InlineCode from '../../../components/InlineCode/InlineCode';
 import ExternalLink from '../../../components/Link/Link';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/anchor/index.js'}>
         <Container>
           <Heading level={2}>Link</Heading>
           <Heading level={3}>Supported Environment</Heading>

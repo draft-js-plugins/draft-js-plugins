@@ -1,34 +1,32 @@
-import React, { Component } from 'react';
-
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import simpleExampleCode from '!!raw-loader!../../../components/Examples/video/SimpleVideoEditor';
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import customExampleCode from '!!raw-loader!../../../components/Examples/video/CustomVideoEditor';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import addVideoEditorExampleCode from '!!raw-loader!../../../components/Examples/video/CustomAddVideoVideoEditor';
 // eslint-disable-next-line import/no-unresolved
-import gettingStarted from '!!raw-loader!../../../components/Examples/video/gettingStarted';
-
-import Container from '../../../components/Container/Container';
-import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
-import Code from '../../../components/Code/Code';
 // eslint-disable-next-line import/no-duplicates
-import SimpleVideoEditor from '../../../components/Examples/video/SimpleVideoEditor';
+import customExampleCode from '!!raw-loader!../../../components/Examples/video/CustomVideoEditor';
+// eslint-disable-next-line import/no-unresolved
+import gettingStarted from '!!raw-loader!../../../components/Examples/video/gettingStarted';
+// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/video/SimpleVideoEditor';
+import React, { Component } from 'react';
+import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
+import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
+// eslint-disable-next-line import/no-duplicates
+import CustomAddVideoVideoEditor from '../../../components/Examples/video/CustomAddVideoVideoEditor';
 // eslint-disable-next-line import/no-duplicates
 import CustomVideoEditor from '../../../components/Examples/video/CustomVideoEditor';
 // eslint-disable-next-line import/no-duplicates
-import CustomAddVideoVideoEditor from '../../../components/Examples/video/CustomAddVideoVideoEditor';
+import SimpleVideoEditor from '../../../components/Examples/video/SimpleVideoEditor';
+import Heading from '../../../components/Heading/Heading';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/video/index.js'}>
         <Container>
           <Heading level={2}>Video</Heading>
           <Heading level={3}>Supported Environment</Heading>

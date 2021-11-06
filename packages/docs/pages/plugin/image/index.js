@@ -1,44 +1,41 @@
-import React, { Component } from 'react';
-
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import simpleExampleCode from '!!raw-loader!../../../components/Examples/image/SimpleImageEditor';
-// eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/SimpleImageEditor/editorStyles.module.css';
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import customExampleCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor';
-// eslint-disable-next-line import/no-unresolved
-import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import addImageExampleCode from '!!raw-loader!../../../components/Examples/image/AddImageEditor';
 // eslint-disable-next-line import/no-unresolved
 import addImageExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/AddImageEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-duplicates
+import customExampleCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor';
+// eslint-disable-next-line import/no-unresolved
+import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!../../../components/Examples/image/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!../../../components/Examples/image/webpackConfig';
-
-import Container from '../../../components/Container/Container';
-import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
-import Code from '../../../components/Code/Code';
 // eslint-disable-next-line import/no-duplicates
-import SimpleImageEditor from '../../../components/Examples/image/SimpleImageEditor';
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/image/SimpleImageEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/SimpleImageEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!raw-loader!../../../components/Examples/image/webpackConfig';
+import React, { Component } from 'react';
+import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
+import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
+// eslint-disable-next-line import/no-duplicates
+import AddImageEditor from '../../../components/Examples/image/AddImageEditor';
 // eslint-disable-next-line import/no-duplicates
 import CustomImageEditor from '../../../components/Examples/image/CustomImageEditor';
 // eslint-disable-next-line import/no-duplicates
-import AddImageEditor from '../../../components/Examples/image/AddImageEditor';
-import ExternalLink from '../../../components/Link/Link';
+import SimpleImageEditor from '../../../components/Examples/image/SimpleImageEditor';
+import Heading from '../../../components/Heading/Heading';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/image/index.js'}>
         <Container>
           <Heading level={2}>Image</Heading>
           <Heading level={3}>Supported Environment</Heading>
@@ -83,14 +80,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Image/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>

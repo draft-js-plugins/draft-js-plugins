@@ -1,11 +1,4 @@
 /* eslint-disable react/no-unknown-property */
-import React, { Component } from 'react';
-
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-duplicates
-import simpleExampleCode from '!!raw-loader!../../../components/Examples/undo/SimpleUndoEditor';
-// eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/undo/SimpleUndoEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customExampleCode from '!!raw-loader!../../../components/Examples/undo/CustomUndoEditor';
@@ -16,25 +9,29 @@ import customExampleEditorStylesCode from '!!raw-loader!../../../components/Exam
 // eslint-disable-next-line import/no-unresolved
 import gettingStarted from '!!raw-loader!../../../components/Examples/undo/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
-import webpackConfig from '!!raw-loader!../../../components/Examples/undo/webpackConfig';
-
-import Container from '../../../components/Container/Container';
-import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
-import Code from '../../../components/Code/Code';
 // eslint-disable-next-line import/no-duplicates
-import SimpleUndoEditor from '../../../components/Examples/undo/SimpleUndoEditor';
+import simpleExampleCode from '!!raw-loader!../../../components/Examples/undo/SimpleUndoEditor';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/undo/SimpleUndoEditor/editorStyles.module.css';
+// eslint-disable-next-line import/no-unresolved
+import webpackConfig from '!!raw-loader!../../../components/Examples/undo/webpackConfig';
+import React, { Component } from 'react';
+import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
+import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import CustomUndoEditor from '../../../components/Examples/undo/CustomUndoEditor';
-import ExternalLink from '../../../components/Link/Link';
+// eslint-disable-next-line import/no-duplicates
+import SimpleUndoEditor from '../../../components/Examples/undo/SimpleUndoEditor';
+import Heading from '../../../components/Heading/Heading';
 import InlineCode from '../../../components/InlineCode/InlineCode';
 import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame filePath={'packages/docs/pages/plugin/undo/index.js'}>
         <Container>
           <Heading level={2}>Undo/Redo</Heading>
           <Heading level={3}>Supported Environment</Heading>
@@ -79,14 +76,6 @@ export default class App extends Component {
             </li>
             <li className={styles.listEntry}>4. Restart Webpack.</li>
           </ul>
-          <Heading level={4}>Browserify Usage</Heading>
-          <p>
-            Please help, by submiting a Pull Request to the{' '}
-            <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/blob/master/docs/client/components/pages/Undo/index.js">
-              documentation
-            </ExternalLink>
-            .
-          </p>
         </AlternateContainer>
         <Container>
           <Heading level={2}>Configuration Parameters</Heading>

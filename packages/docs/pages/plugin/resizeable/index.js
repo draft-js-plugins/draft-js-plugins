@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import simpleExampleCode from '!!raw-loader!../../../components/Examples/resizeable/SimpleResizeableEditor';
 // eslint-disable-next-line import/no-unresolved
-import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/resizeable/SimpleResizeableEditor/editorStyles.module.css';
-// eslint-disable-next-line import/no-unresolved
 import simpleExampleColorBlockCode from '!!raw-loader!../../../components/Examples/resizeable/SimpleResizeableEditor/colorBlockPlugin';
-
-import Container from '../../../components/Container/Container';
+// eslint-disable-next-line import/no-unresolved
+import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/resizeable/SimpleResizeableEditor/editorStyles.module.css';
+import React, { Component } from 'react';
 import AlternateContainer from '../../../components/AlternateContainer/AlternateContainer';
-import Heading from '../../../components/Heading/Heading';
-import styles from './styles.module.css';
 import Code from '../../../components/Code/Code';
+import Container from '../../../components/Container/Container';
 // eslint-disable-next-line import/no-duplicates
 import SimpleResizeableEditor from '../../../components/Examples/resizeable/SimpleResizeableEditor';
-import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import Heading from '../../../components/Heading/Heading';
 import ExternalLink from '../../../components/Link/Link';
+import PluginPageFrame from '../../../components/PluginPageFrame/PluginPageFrame';
+import styles from './styles.module.css';
 
 export default class App extends Component {
   render() {
     return (
-      <PluginPageFrame>
+      <PluginPageFrame
+        filePath={'packages/docs/pages/plugin/resizeable/index.js'}
+      >
         <Container>
           <Heading level={2}>Resizeable</Heading>
           <Heading level={3}>Prerequisite</Heading>
