@@ -118,9 +118,9 @@ A decorator can contain a `strategy` and a `component` e.g.
 }
 ```
 
-You can read more about it in the original Draft.js documentation about [decorators](https://facebook.github.io/draft-js/docs/advanced-topics-decorators.html#compositedecorator).
+You can read more about it in the original Draft.js documentation about [decorators](https://draftjs.org/docs/advanced-topics-decorators/#compositedecorator).
 
-If you want to implement the [DraftDecoratorType Interface](https://facebook.github.io/draft-js/docs/advanced-topics-decorators.html#beyond-compositedecorator) yourself, you can include those in your `decorators` array alongside the composite decorators. See [draft-js-simpledecorator](https://github.com/Soreine/draft-js-simpledecorator) for an example of an implementation of DraftDecoratorType. Here's an example mixed `decorators` array:
+If you want to implement the [DraftDecoratorType Interface](https://draftjs.org/docs/advanced-topics-decorators/#beyond-compositedecorator) yourself, you can include those in your `decorators` array alongside the composite decorators. See [draft-js-simpledecorator](https://github.com/Soreine/draft-js-simpledecorator) for an example of an implementation of DraftDecoratorType. Here's an example mixed `decorators` array:
 
 ```js
 {
