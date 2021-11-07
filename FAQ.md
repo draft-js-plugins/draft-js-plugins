@@ -25,7 +25,7 @@ const emojiPlugin = createEmojiPlugin({
 
 The Draft framework includes a handful of CSS resources intended for use with the editor, available in a single file via the build, [DraftStyleDefault.css](https://github.com/facebook/draft-js/blob/master/src/component/utils/DraftStyleDefault.css)
 
-You most probably miss this file. See also the troubleshooting in the original [DraftJS documentation](https://facebook.github.io/draft-js/docs/advanced-topics-issues-and-pitfalls.html#missing-draft-css).
+You most probably miss this file. See also the troubleshooting in the original [DraftJS documentation](https://draftjs.org/docs/advanced-topics-issues-and-pitfalls/#missing-draftcss).
 
 ## How can I use custom decorators with the plugin editor?
 

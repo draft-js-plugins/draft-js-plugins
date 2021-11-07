@@ -196,7 +196,7 @@ export default function Mention(): ReactElement {
           <span>
             Can be one of: &quot;IMMUTABLE&quot;, &quot;SEGMENTED&quot; or
             &quot;MUTABLE&quot;. Read in detail about it
-            <ExternalLink href="https://facebook.github.io/draft-js/docs/advanced-topics-entities.html#mutability">
+            <ExternalLink href="https://draftjs.org/docs/advanced-topics-entities/#mutability">
               &nbsp;here
             </ExternalLink>
           </span>
