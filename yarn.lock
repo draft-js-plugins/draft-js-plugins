@@ -8836,10 +8836,10 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-linaria@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.1.0.tgz#2afd27d9dbcab08031c010bcc60eec2a174d50c7"
-  integrity sha512-dv6vuATZMYCDmnD5Ccgcqi2RUYfkfq/wE0hGUpyTW3khNAJqpiPWM7NVApCXxdD+mGg3WnD7fdkL+ndL9s8vtQ==
+linaria@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.1.1.tgz#73b245b6aa647e6d3f44daa4b7b049d1a2b6d831"
+  integrity sha512-8jHVnBgurMOxzAWZR+9cXt7Vl7fC3w27B/Xmtl7ZAnKemGVfFioHzyQSh/jvgLWREPL5xieW+tQPY5Ho3Ges6w==
   dependencies:
     "@babel/generator" ">=7"
     "@babel/plugin-proposal-export-namespace-from" ">=7"
