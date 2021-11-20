@@ -52,7 +52,6 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       PropTypes.string,
     ]),
     toneSelectOpenDelay: PropTypes.number,
-    useNativeArt: PropTypes.bool,
     menuPosition: PropTypes.oneOf(['top', 'bottom']),
   };
 
