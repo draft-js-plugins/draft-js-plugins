@@ -29,6 +29,7 @@ export default class EmojiSelect extends Component {
     ]),
     toneSelectOpenDelay: PropTypes.number,
     useNativeArt: PropTypes.bool,
+    menuPosition: PropTypes.oneOf(['top', 'bottom']),
   };
 
   static defaultProps = {
@@ -89,6 +90,7 @@ export default class EmojiSelect extends Component {
       selectButtonContent,
       toneSelectOpenDelay,
       useNativeArt,
+      menuPosition,
     } = this.props;
     const buttonClassName = this.state.isOpen
       ? theme.emojiSelectButtonPressed
@@ -114,6 +116,7 @@ export default class EmojiSelect extends Component {
           toneSelectOpenDelay={toneSelectOpenDelay}
           isOpen={this.state.isOpen}
           useNativeArt={useNativeArt}
+          menuPosition={menuPosition}
         />
       </div>
     );

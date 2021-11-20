@@ -17,6 +17,7 @@ export default class Popover extends Component {
     toneSelectOpenDelay: PropTypes.number.isRequired,
     isOpen: PropTypes.bool,
     useNativeArt: PropTypes.bool,
+    menuPosition: PropTypes.oneOf(['top', 'bottom']),
   };
 
   static defaultProps = {
@@ -156,6 +157,22 @@ export default class Popover extends Component {
     return null;
   };
 
+  renderMenu = position => {
+    const { menuPosition, theme = {}, groups = [] } = this.props;
+    const { activeGroup } = this.state;
+
+    if (position === (menuPosition || 'bottom'))
+      return (
+        <Nav
+          theme={theme}
+          groups={groups}
+          activeGroup={activeGroup}
+          onGroupSelect={this.onGroupSelect}
+        />
+      );
+    return null;
+  };
+
   render() {
     const {
       cacheBustParam,
@@ -181,15 +198,12 @@ export default class Popover extends Component {
           this.container = element;
         }}
       >
-        <Nav
-          theme={theme}
-          groups={groups}
-          activeGroup={activeGroup}
-          onGroupSelect={this.onGroupSelect}
-        />
         <h3 className={theme.emojiSelectPopoverTitle}>
           {groups[activeGroup].title}
         </h3>
+
+        {this.renderMenu('top')}
+
         <Groups
           theme={theme}
           groups={groups}
@@ -209,6 +223,7 @@ export default class Popover extends Component {
         />
 
         {this.renderToneSelect()}
+        {this.renderMenu('bottom')}
       </div>
     );
   }
