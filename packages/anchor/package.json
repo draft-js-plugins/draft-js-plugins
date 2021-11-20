@@ -1,0 +1,58 @@
+{
+  "name": "@draft-js-plugins/anchor",
+  "version": "4.1.3",
+  "sideEffects": [
+    "*.css"
+  ],
+  "description": "Link Plugin for DraftJS",
+  "author": {
+    "name": "Jan Amann",
+    "email": "jan@amann.me",
+    "url": "http://amann.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
+  },
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "editor",
+    "wysiwyg",
+    "draft",
+    "react",
+    "ux",
+    "components",
+    "widget",
+    "link",
+    "react-component"
+  ],
+  "scripts": {
+    "clean": "yarn rimraf lib",
+    "build": "yarn build:js && yarn build:dts && yarn build:css",
+    "build:js": "yarn rollup --config ../../rollup.config.js",
+    "build:dts": "tsc -d",
+    "build:css": "node ../../scripts/build-css.js $(pwd)",
+    "test": "jest"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@draft-js-plugins/utils": "^4.0.0",
+    "clsx": "^1.0.4",
+    "prepend-http": "3.0.1",
+    "prop-types": "^15.5.8",
+    "tlds": "^1.225.0"
+  },
+  "peerDependencies": {
+    "draft-js": "^0.10.1 || ^0.11.0",
+    "react": "^15.5.0 || ^16.0.0 || ^17.0.0",
+    "react-dom": "^15.5.0 || ^16.0.0 || ^17.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -55,57 +55,53 @@ Checkout [the website](https://www.draft-js-plugins.com/)!
 First, install the editor with `npm`:
 
 ```
-$ npm install draft-js-plugins-editor --save
+$ npm install @draft-js-plugins/editor --save
 ```
 
 Then import the editor somewhere in your code and you're ready to go!
 
 ```js
-import Editor from 'draft-js-plugins-editor';
+import Editor from '@draft-js-plugins/editor';
 ```
 
 ## Documentation
 
-### draft-js-plugins-editor
+### @draft-js-plugins/editor
 
 #### Editor
 
-An editor component accepting plugins. [see source](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/draft-js-plugins-editor/src/Editor/index.js#L16)
+An editor component accepting plugins. [see source](https://github.com/draft-js-plugins/draft-js-plugins/blob/73d5f504ac62ef6c9e206f053e2800b2bf99c058/packages/editor/src/Editor/index.tsx#L24)
 
-| Props                                          | Description  | Required
-| -----------------------------------------------|:------------:| -------:|
-| editorState                                    | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content)| * |
-| onChange                                       | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#onchange)| * |
-| plugins                                        | an array of plugins |  |
-| decorators                                     | an array of custom decorators |  |
-| defaultKeyBindings                             | bool |  |
-| defaultBlockRenderMap                          | bool |  |
-| all other props accepted by the DraftJS Editor except decorator | [see here](https://facebook.github.io/draft-js/docs/api-reference-editor.html#props) |  |
+| Props                                                           |                                         Description                                          | Required |
+| --------------------------------------------------------------- | :------------------------------------------------------------------------------------------: | -------: |
+| editorState                                                     | [see here](https://draftjs.org/docs/api-reference-editor-state/#content)                     |       \* |
+| onChange                                                        |   [see here](https://draftjs.org/docs/api-reference-editor/#onchange)                        |       \* |
+| plugins                                                         |                                     an array of plugins                                      |          |
+| decorators                                                      |                                an array of custom decorators                                 |          |
+| defaultKeyBindings                                              |                                             bool                                             |          |
+| defaultBlockRenderMap                                           |                                             bool                                             |          |
+| all other props accepted by the DraftJS Editor except decorator |     [see here](https://draftjs.org/docs/api-reference-editor/#props)                         |          |
 
 Usage:
 
 ```js
 import React, { Component } from 'react';
-import Editor from 'draft-js-plugins-editor';
-import createHashtagPlugin from 'draft-js-hashtag-plugin';
-import createLinkifyPlugin from 'draft-js-linkify-plugin';
+import Editor from '@draft-js-plugins/editor';
+import createHashtagPlugin from '@draft-js-plugins/hashtag';
+import createLinkifyPlugin from '@draft-js-plugins/linkify';
 import { EditorState } from 'draft-js';
 
 const hashtagPlugin = createHashtagPlugin();
 const linkifyPlugin = createLinkifyPlugin();
 
-const plugins = [
-  linkifyPlugin,
-  hashtagPlugin,
-];
+const plugins = [linkifyPlugin, hashtagPlugin];
 
 export default class UnicornEditor extends Component {
-
   state = {
     editorState: EditorState.createEmpty(),
   };
 
-  onChange = (editorState) => {
+  onChange = editorState => {
     this.setState({
       editorState,
     });
@@ -128,6 +124,7 @@ export default class UnicornEditor extends Component {
 Feel free to copy any of the existing plugins as a starting point.In this repository you can also find a [Guide](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/HOW_TO_CREATE_A_PLUGIN.md) on how to create a plugin, including a description of the supported features. In addition you can contact [@nikgraf](https://github.com/nikgraf) directly in case you need help or simply open a Github Issue!
 
 ## Discussion and Support
+
 Join the channel #draft-js-plugins after signing into the DraftJS [Slack organization](https://draftjs.herokuapp.com) or check out our collection of frequently asked questions here: [FAQ](https://github.com/draft-js-plugins/draft-js-plugins/blob/master/FAQ.md).
 
 ## Development
@@ -139,10 +136,6 @@ Check out our [Contribution Guide](https://github.com/draft-js-plugins/draft-js-
 In this talk Nik Graf explained the ContentState structure of a Draft.js Editor as well as explained how to use plugins.
 
 [<img width="450" src="http://img.youtube.com/vi/gxNuHZXZMgs/maxresdefault.jpg" >](https://www.youtube.com/watch?v=gxNuHZXZMgs)
-
-## Maintainers
-
-This project was initiated by [Nik Graf](https://twitter.com/nikgraf) and is maintained by [Julian Krispel](https://twitter.com/juliandoesstuff). Julian is a draft.js consultant and available for hire, you can get in touch with him on his website, [react rocket](https://reactrocket.com)
 
 ## License
 

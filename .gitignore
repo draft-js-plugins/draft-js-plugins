@@ -1,6 +1,9 @@
 .DS_Store
 .idea
 *.iml
+.yarn
+.yarnrc
+distTs
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
@@ -20,4 +23,9 @@ bundle.js
 npm-debug.log
 npm-debug.log*
 
-docs/build
+# yarn errors
+yarn-error.log
+
+# next.js
+packages/docs/.next/
+packages/docs/out/

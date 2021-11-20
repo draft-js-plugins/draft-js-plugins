@@ -10,24 +10,27 @@ Depending on how your Editor or wrapping elements are positioned the positioning
 You can provide a custom `positionSuggestions` function to the plugin config that returns an empty. This will not position the suggestion in any way. Once you got to that point you need to investigate how to position your suggestions manually leveraging `positionSuggestions`.
 
 ```js
-import createEmojiPlugin from 'draft-js-emoji-plugin';
+import createEmojiPlugin from '@draft-js-plugins/emoji';
 
 const positionSuggestions = ({ state, props }) => {
   return {};
 };
 
-const emojiPlugin = createEmojiPlugin({ positionSuggestions: positionSuggestions });
+const emojiPlugin = createEmojiPlugin({
+  positionSuggestions: positionSuggestions,
+});
 ```
 
 ## My default styles are broken?
 
 The Draft framework includes a handful of CSS resources intended for use with the editor, available in a single file via the build, [DraftStyleDefault.css](https://github.com/facebook/draft-js/blob/master/src/component/utils/DraftStyleDefault.css)
 
-You most probably miss this file. See also the troubleshooting in the original [DraftJS documentation](https://facebook.github.io/draft-js/docs/advanced-topics-issues-and-pitfalls.html#missing-draft-css).
+You most probably miss this file. See also the troubleshooting in the original [DraftJS documentation](https://draftjs.org/docs/advanced-topics-issues-and-pitfalls/#missing-draftcss).
 
 ## How can I use custom decorators with the plugin editor?
 
 `Editor` takes a prop called `decorators` which will be combined with plugin decorators and the provided decorators to a composite decorator.
+
 ```jsx
 const customDecorators = [
   {
@@ -49,7 +52,7 @@ const MyEditor = ({ editorState, onChange }) => (
 
 ## Can I use the same plugin for multiple plugin Editors?
 
-No, you need to instantiation multiple plugins in case you use multiple editors.
+No, you need to instantiate multiple plugins in case you use multiple editors.
 
 ```jsx
 const emojiPlugin = createEmojiPlugin();
@@ -86,7 +89,7 @@ export default MyEditor;
 The order of the plugins matter. It will ignore the hash if the linkifyPlugin comes first in the plugins array.
 
 ```js
-const plugin = [linkifyPlugin, hashtagPlugin]
+const plugin = [linkifyPlugin, hashtagPlugin];
 ```
 
 ## The editor throws errors in Internet Explorer 11?
@@ -107,4 +110,28 @@ import 'core-js/fn/string/starts-with';
 import 'core-js/fn/string/ends-with';
 ```
 
-Note: Those imports *might* not cover all possibly needed polyfills; this means, you maybe need to adapt them.
+Note: Those imports _might_ not cover all possibly needed polyfills; this means, you maybe need to adapt them.
+
+
+
+## Keybindings added by a plugin stop working when using custom 'keyBindingFn' function.
+
+You need to return `undefined` if you want plugins to execute the `keyBindingFn` as otherwise the [execution chain ends](draft-js-plugins/packages/editor/src/Editor/PluginHooks.ts).
+
+For example:
+
+```js
+const keyBindingFn = (e) => {
+  /**
+   * Add condition for keybindings added by a plugin that you want to keep
+   * and return 'undefined'.
+   * Example below allows mention plugin to handle up and down arrows
+   * in a triggered popover.
+   */
+  if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    return undefined;
+  }
+
+  return getDefaultKeyBinding(e);
+};
+```

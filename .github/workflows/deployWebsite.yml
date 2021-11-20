@@ -1,0 +1,40 @@
+name: deployWebsite
+
+on: workflow_dispatch
+
+jobs:
+  deployWebsite:
+    name: Deploy Website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: Setup Node.js 12.x
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.x
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build plugins
+        run: yarn build
+
+      - name: Tests
+        run: yarn test
+
+      - name: Build Website
+        run: ./scripts/publishGithubPages.sh
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: packages/docs/out

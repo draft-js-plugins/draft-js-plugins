@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: eslint-config-prettier
+        versions:
+          - 8.0.0
+          - 8.3.0
+      - dependency-name: '@storybook/react'
+        versions:
+          - 6.2.2
+          - 6.2.9
+      - dependency-name: next
+        versions:
+          - 10.1.1
+      - dependency-name: '@types/draft-js'
+        versions:
+          - 0.11.1
+      - dependency-name: '@rollup/plugin-node-resolve'
+        versions:
+          - 11.2.1
+      - dependency-name: '@babel/core'
+        versions:
+          - 7.13.1
+          - 7.13.10
+      - dependency-name: rollup
+        versions:
+          - 2.38.4
+      - dependency-name: '@typescript-eslint/parser'
+        versions:
+          - 4.14.2
+      - dependency-name: 'animateplus'
+      - dependency-name: 'immutable'

@@ -52,56 +52,58 @@ We are also happy about updates to the documentation in combination with changes
 
 Because of the structure of this repository you can not just use your own fork of draft-js-plugins in your own development projects. There are a few problems; first NPM doesn't allow referencing sub directories. So `"draft-js-plugins-editor": "<your github username>/draft-js-plugins-editor"` does not work. And secondly by specifying `"draft-js-plugins": "<your github username>/draft-js-plugins"` NPM does not get the sources for the different sub projects (I "Mark" don't know why). Thankfully [Yarn](https://yarnpkg.com/) does do this as expected. So to get your own fork working you need to follow the folling steps:
 
-1) Add `"draft-js-plugins": "<your github username>/draft-js-plugins"` to your package files.
+1. Add `"draft-js-plugins": "<your github username>/draft-js-plugins"` to your package files.
 
-2) Install Yarn `npm install --global yarn` and install node modules `yarn install`
+2. Install Yarn `npm install --global yarn` and install node modules `yarn install`
 
-3) Reference the needed sub packages in your code f.ex. the plugin editor `import PluginEditor from 'draft-js-plugins-editor';`
+3. Reference the needed sub packages in your code f.ex. the plugin editor `import PluginEditor from '@draft-js-plugins/editor';`
 
-4) When using Webpack you need to tell it how to compile the draft-js-plugins code, you do that by adding an additional loader like this:
+4. When using Webpack you need to tell it how to compile the draft-js-plugins code, you do that by adding an additional loader like this:
+
 ```
 module: {
   loaders: [{
     test: /\.js$/,
     loaders: 'babel-loader',
     include: [
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-plugins-editor', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-hashtag-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-linkify-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-mention-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-sticker-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-undo-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-emoji-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-upload-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-counter-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-focus-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-alignment-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-image-plugin', 'src'),
-      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-resizeable-plugin', 'src')
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'editor', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'hashtag', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'linkify', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'mention', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'sticker', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'undo', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'emoji', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'drag-n-drop', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'drag-n-drop-upload', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'counter', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'focus', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'alignment', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'image', 'src'),
+      path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'resizeable', 'src')
     ]
   }]
 }
 ```
 
-5) And you need to tell the compiler where to find the different draft-js-plugins modules
+5. And you need to tell the compiler where to find the different draft-js-plugins modules
+
 ```
 resolve: {
   alias: {
-    'draft-js-plugins-editor': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-plugins-editor', 'src'),
-    'draft-js-hashtag-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-hashtag-plugin', 'src'),
-    'draft-js-linkify-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-linkify-plugin', 'src'),
-    'draft-js-mention-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-mention-plugin', 'src'),
-    'draft-js-sticker-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-sticker-plugin', 'src'),
-    'draft-js-undo-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-undo-plugin', 'src'),
-    'draft-js-emoji-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-emoji-plugin', 'src'),
-    'draft-js-counter-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-counter-plugin', 'src'),
-    'draft-js-drag-n-drop-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-plugin', 'src'),
-    'draft-js-drag-n-drop-upload-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-drag-n-drop-upload-plugin', 'src'),
-    'draft-js-focus-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-focus-plugin', 'src'),
-    'draft-js-alignment-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-alignment-plugin', 'src'),
-    'draft-js-image-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-image-plugin', 'src'),
-    'draft-js-resizeable-plugin': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'draft-js-resizeable-plugin', 'src')
+    '@draft-js-plugins/editor': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'plugins-editor', 'src'),
+    '@draft-js-plugins/hashtag': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'hashtag', 'src'),
+    '@draft-js-plugins/linkify': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'linkify', 'src'),
+    '@draft-js-plugins/mention': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'mention', 'src'),
+    '@draft-js-plugins/sticker': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'sticker', 'src'),
+    '@draft-js-plugins/undo': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'undo', 'src'),
+    '@draft-js-plugins/emoji': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'emoji', 'src'),
+    '@draft-js-plugins/counter': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'counter', 'src'),
+    '@draft-js-plugins/drag-n-drop': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'drag-n-drop', 'src'),
+    '@draft-js-plugins/drag-n-drop-upload': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'drag-n-drop-upload', 'src'),
+    '@draft-js-plugins/focus': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'focus', 'src'),
+    '@draft-js-plugins/alignment': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'alignment', 'src'),
+    '@draft-js-plugins/image': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'image', 'src'),
+    '@draft-js-plugins/resizeable': path.join(__dirname, 'node_modules', 'draft-js-plugins', 'packages', 'resizeable', 'src')
   }
 }
 ```
