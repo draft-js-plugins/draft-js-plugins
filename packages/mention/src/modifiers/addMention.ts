@@ -32,7 +32,7 @@ export default function addMention(
     editorState.getCurrentContent(),
     mentionTextSelection,
     `${mentionPrefix}${mention.name}`,
-    undefined, // no inline style needed
+    editorState.getCurrentInlineStyle(),
     entityKey
   );
 
