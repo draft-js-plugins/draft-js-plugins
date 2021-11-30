@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 5.1.0
+
+- Use current inline style for mention [#2414](https://github.com/draft-js-plugins/draft-js-plugins/issues/2414)
+
 ## 5.0.0
 
 - reset selected item on search change for mention suggestion [#2348](https://github.com/draft-js-plugins/draft-js-plugins/issues/2348)
