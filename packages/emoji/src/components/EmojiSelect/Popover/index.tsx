@@ -22,6 +22,7 @@ interface PopoverProps {
   isOpen?: boolean;
   emojiImage: ComponentType<EmojiImageProps>;
   onEmojiSelect(): void;
+  menuPosition?: 'top' | 'bottom';
 }
 
 export default class Popover extends Component<PopoverProps> {
@@ -32,6 +33,7 @@ export default class Popover extends Component<PopoverProps> {
     emojis: PropTypes.object.isRequired,
     toneSelectOpenDelay: PropTypes.number.isRequired,
     isOpen: PropTypes.bool,
+    menuPosition: PropTypes.oneOf(['top', 'bottom']),
   };
 
   activeEmoji: Entry | null = null;
@@ -170,6 +172,22 @@ export default class Popover extends Component<PopoverProps> {
     return null;
   };
 
+  renderMenu = (position: string): ReactElement | null => {
+    const { menuPosition, theme = {}, groups = [] } = this.props;
+    const { activeGroup } = this.state;
+
+    if (position === (menuPosition || 'bottom'))
+      return (
+        <Nav
+          theme={theme}
+          groups={groups}
+          activeGroup={activeGroup}
+          onGroupSelect={this.onGroupSelect}
+        />
+      );
+    return null;
+  };
+
   render(): ReactElement {
     const {
       theme = {},
@@ -188,7 +206,7 @@ export default class Popover extends Component<PopoverProps> {
       <div
         className={className}
         onMouseDown={this.onMouseDown}
-        ref={(element) => {
+        ref={element => {
           this.container = element;
         }}
       >
@@ -197,6 +215,7 @@ export default class Popover extends Component<PopoverProps> {
             <h3 className={theme.emojiSelectPopoverTitle}>
               {groups[activeGroup].title}
             </h3>
+            {this.renderMenu('top')}
             <Groups
               theme={theme}
               groups={groups}
@@ -205,18 +224,14 @@ export default class Popover extends Component<PopoverProps> {
               onEmojiSelect={this.onEmojiSelect}
               onEmojiMouseDown={this.onEmojiMouseDown}
               onGroupScroll={this.onGroupScroll}
-              ref={(element) => {
+              ref={element => {
                 this.groupsElement = element;
               }}
               emojiImage={emojiImage}
               isOpen={isOpen}
             />
-            <Nav
-              theme={theme}
-              groups={groups}
-              activeGroup={activeGroup}
-              onGroupSelect={this.onGroupSelect}
-            />
+            {this.renderMenu('bottom')}
+
             {this.renderToneSelect()}
           </>
         )}

@@ -31,6 +31,7 @@ interface EmojiSelectParams extends EmojiSelectPubParams {
   selectButtonContent?: ReactNode;
   toneSelectOpenDelay?: number;
   emojiImage: ComponentType<EmojiImageProps>;
+  menuPosition?: 'top' | 'bottom';
 }
 
 export default class EmojiSelect extends Component<EmojiSelectParams> {
@@ -51,6 +52,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       PropTypes.string,
     ]),
     toneSelectOpenDelay: PropTypes.number,
+    menuPosition: PropTypes.oneOf(['top', 'bottom']),
   };
 
   static defaultProps = {
@@ -115,6 +117,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       toneSelectOpenDelay,
       emojiImage,
       closeOnEmojiSelect,
+      menuPosition,
     } = this.props;
     const buttonClassName = this.state.isOpen
       ? theme.emojiSelectButtonPressed
@@ -136,6 +139,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
           toneSelectOpenDelay={toneSelectOpenDelay!}
           isOpen={this.state.isOpen}
           emojiImage={emojiImage}
+          menuPosition={menuPosition}
           onEmojiSelect={() => {
             if (closeOnEmojiSelect) {
               this.closePopover();
