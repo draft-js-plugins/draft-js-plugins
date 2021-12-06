@@ -45,7 +45,7 @@
     "clsx": "^1.0.4",
     "prepend-http": "3.0.1",
     "prop-types": "^15.5.8",
-    "tlds": "^1.225.0"
+    "tlds": "^1.227.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
