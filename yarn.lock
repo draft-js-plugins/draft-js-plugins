@@ -8900,10 +8900,10 @@ lilconfig@2.0.4:
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.0.4.tgz#f4507d043d7058b380b6a8f5cb7bcd4b34cee082"
   integrity sha512-bfTIN7lEsiooCocSISTWXkiWJkRqtL9wYtYy+8EK3Y41qh3mpwPU0ycTOgjdY9ErwXCc8QyrQp82bdL0Xkm9yA==
 
-linaria@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.2.0.tgz#a917ec7e9be79e1b84df3a78ebcda525e95ef1fe"
-  integrity sha512-wsSCTo58Nx80MpcKpLqpYRMOOsqIE13UhY5TRWZRk2iZyGs2ST40+8M0sblORsyicd3J3Qk47jAa8ztzyIykfQ==
+linaria@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/linaria/-/linaria-2.3.0.tgz#bf6e309224aa4d2b6108f3616cc8665bba4cd20b"
+  integrity sha512-PwRbYk4Fu5BuSjse+2Nc6BQsx996L/OorFSZG8vEszEo0dd1ZnjXiRGpqR0lN4wVMTC55YntLNfraDFM8/xKRQ==
   dependencies:
     "@babel/generator" ">=7"
     "@babel/plugin-proposal-export-namespace-from" ">=7"
