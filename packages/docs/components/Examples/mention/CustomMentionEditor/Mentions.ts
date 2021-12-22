@@ -39,6 +39,13 @@ const mentions: MentionData[] = [
     title: 'Randomly Generated User',
     avatar: 'https://randomuser.me/api/portraits/men/36.jpg',
   },
+  {
+    name: '佐々木 小次郎',
+    title: 'Famous Japanese swordsman (SAMURAI)',
+    avatar:
+      'https://upload.wikimedia.org/wikipedia/commons/0/08/Sasaki-Ganryu-%28Kojiro%29-by-Utagawa-Kuniyoshi-1845.png',
+    url: 'https://en.wikipedia.org/wiki/Sasaki_Kojir%C5%8D',
+  },
 ];
 
 export default mentions;

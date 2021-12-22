@@ -9,6 +9,8 @@ export default '[' +
   '\u014A-\u017F' +
   // Cyrillic symbols: \u0410-\u044F - https://en.wikipedia.org/wiki/Cyrillic_script_in_Unicode
   '\u0410-\u044F' +
+  // Symbols that are sometimes used in Japanese names: \u3005-\u3006
+  '\u3005-\u3006' +
   // hiragana (japanese): \u3040-\u309F - https://gist.github.com/ryanmcgrath/982242#file-japaneseregex-js
   '\u3040-\u309F' +
   // katakana (japanese): \u30A0-\u30FF - https://gist.github.com/ryanmcgrath/982242#file-japaneseregex-js
