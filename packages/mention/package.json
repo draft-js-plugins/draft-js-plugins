@@ -46,7 +46,7 @@
     "immutable": "~3.7.4",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.8.0",
     "react-popper": "^2.2.5"
   },
   "peerDependencies": {
