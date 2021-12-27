@@ -53,7 +53,7 @@
     "prettier": "^2.5.1",
     "prismjs": "^1.25.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.61.1",
+    "rollup": "^2.62.0",
     "style-loader": "^0.23.1",
     "ts-jest": "27.1.2",
     "ts-node": "10.4.0",
