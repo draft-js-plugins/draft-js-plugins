@@ -1,3 +1,5 @@
 module.exports = {
-  stories: ['../stories/index.js', '../stories/**/*.stories.*'],
+  stories: ['../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  framework: '@storybook/react',
+  staticDirs: ['../stories/public'],
 };
