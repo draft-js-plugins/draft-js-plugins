@@ -41,7 +41,7 @@
   "license": "MIT",
   "dependencies": {
     "clsx": "^1.0.4",
-    "prop-types": "^15.8.0",
+    "prop-types": "^15.8.1",
     "punycode": "^2.0.1"
   },
   "peerDependencies": {
