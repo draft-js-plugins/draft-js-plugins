@@ -1,3 +1,8 @@
 module.exports = {
-  stories: ['../stories/index.js', '../stories/**/*.stories.*'],
+  core: {
+    builder: 'webpack5',
+  },
+  stories: ['../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  framework: '@storybook/react',
+  staticDirs: ['../stories/public'],
 };

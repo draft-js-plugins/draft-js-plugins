@@ -47,13 +47,13 @@ module.exports = async ({ config }) => {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
             },
           },
         ],
       },
-
       {
         test: /\.css$/,
         include: [/linaria-cache/, /node_modules/],
@@ -86,6 +86,7 @@ module.exports = async ({ config }) => {
       'prop-types': path.join(__dirname, '..', 'node_modules', 'prop-types'),
     },
     extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
+    fallback: { path: require.resolve('path-browserify') },
   };
 
   return config;
