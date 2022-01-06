@@ -44,7 +44,7 @@
     "@draft-js-plugins/utils": "^4.0.0",
     "clsx": "^1.0.4",
     "prepend-http": "3.0.1",
-    "prop-types": "^15.8.0",
+    "prop-types": "^15.8.1",
     "tlds": "^1.228.0"
   },
   "peerDependencies": {

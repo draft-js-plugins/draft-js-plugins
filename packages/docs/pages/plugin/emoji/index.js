@@ -413,7 +413,7 @@ export default class App extends Component {
               <span className={styles.paramName}>onSearchChange</span>
               <span>
                 A callback which is triggered whenever the search term changes.
-                The first argument is an object which constains the search term
+                The first argument is an object which contains the search term
                 in the property value.
               </span>
             </div>
