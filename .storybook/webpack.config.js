@@ -86,6 +86,7 @@ module.exports = async ({ config }) => {
       'prop-types': path.join(__dirname, '..', 'node_modules', 'prop-types'),
     },
     extensions: ['.ts', '.tsx', '.js', '.json', '.mjs'],
+    fallback: { path: require.resolve('path-browserify') },
   };
 
   return config;
