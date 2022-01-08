@@ -17,6 +17,10 @@ import createDragNDropUploadPlugin from '@draft-js-plugins/drag-n-drop-upload';
 import editorStyles from './editorStyles.module.css';
 import mockUpload from './mockUpload';
 
+import '@draft-js-plugins/image/lib/plugin.css';
+import '@draft-js-plugins/alignment/lib/plugin.css';
+import '@draft-js-plugins/focus/lib/plugin.css';
+
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
 const blockDndPlugin = createBlockDndPlugin();
