@@ -1,4 +1,6 @@
-const mentions = [
+import { MentionData } from '@draft-js-plugins/mention';
+
+const mentions: MentionData[] = [
   {
     name: 'Matthew Russell',
     link: 'https://twitter.com/mrussell247',
