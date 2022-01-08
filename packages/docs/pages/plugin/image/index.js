@@ -156,6 +156,26 @@ export default class App extends Component {
             Alignment + Resize + Focus + Drag&apos;n&apos;Drop +
             Drag&apos;n&apos;Drop Upload Example
           </Heading>
+          <Heading level={3}>Prerequisites</Heading>
+          <Heading level={4}>NPM Imports</Heading>
+          <Code code="npm install @draft-js-plugins/alignment" />
+          <Code code="npm install @draft-js-plugins/focus" />
+          <Code code="npm install @draft-js-plugins/resizeable" />
+          <Code code="npm install @draft-js-plugins/drag-n-drop" />
+          <Code code="npm install @draft-js-plugins/drag-n-drop-upload" />
+          <Heading level={4}>Importing the default styles</Heading>
+          <p>
+            The prerequisite plugins ship with default styling available using these imports: &nbsp;
+            <InlineCode
+              code={"import '@draft-js-plugins/image/lib/plugin.css';"}
+            />
+            <InlineCode
+              code={"import '@draft-js-plugins/alignment/lib/plugin.css';"}
+            />
+            <InlineCode
+              code={"import '@draft-js-plugins/focus/lib/plugin.css';"}
+            />
+          </p>
           <CustomImageEditor />
           <Code code={customExampleCode} name="AddImageEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
