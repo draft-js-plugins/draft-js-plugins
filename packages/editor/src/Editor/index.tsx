@@ -1,24 +1,23 @@
 /* eslint-disable no-continue,no-restricted-syntax */
-import React, { Component, KeyboardEvent, ReactElement } from 'react';
-import PropTypes from 'prop-types';
 import {
-  EditorState,
-  Editor,
+  CompositeDecorator,
   DefaultDraftBlockRenderMap,
-  EditorProps,
+  DraftBlockRenderMap,
+  DraftDecorator,
   DraftEditorCommand,
   DraftStyleMap,
-  DraftBlockRenderMap,
-  CompositeDecorator,
-  DraftDecorator,
+  Editor,
+  EditorProps,
+  EditorState,
 } from 'draft-js';
 import { Map } from 'immutable';
-import moveSelectionToEnd from './moveSelectionToEnd';
-import resolveDecorators from './resolveDecorators';
+import PropTypes from 'prop-types';
+import React, { Component, KeyboardEvent, ReactElement } from 'react';
+import { AriaProps, EditorPlugin, EditorRef, PluginFunctions } from '..';
 import { keyBindingFn } from './defaultKeyBindings';
 import { handleKeyCommand } from './defaultKeyCommands';
-import { AriaProps, EditorPlugin, PluginFunctions, EditorRef } from '..';
 import { createPluginHooks } from './PluginHooks';
+import resolveDecorators from './resolveDecorators';
 
 export interface PluginEditorProps extends Omit<EditorProps, 'keyBindingFn'> {
   plugins?: EditorPlugin[];
@@ -108,7 +107,7 @@ class PluginEditor extends Component<PluginEditorProps> {
     );
 
     const editorState = EditorState.set(this.props.editorState, { decorator });
-    this.onChange(moveSelectionToEnd(editorState));
+    this.onChange(EditorState.moveFocusToEnd(editorState));
   }
 
   componentDidUpdate(prevProps: PluginEditorProps): void {
@@ -137,7 +136,7 @@ class PluginEditor extends Component<PluginEditorProps> {
     const editorState = EditorState.set(next.editorState, {
       decorator: currDec,
     });
-    this.onChange(moveSelectionToEnd(editorState));
+    this.onChange(EditorState.moveFocusToEnd(editorState));
   }
 
   componentWillUnmount(): void {
@@ -181,7 +180,7 @@ class PluginEditor extends Component<PluginEditorProps> {
   };
 
   //the editors editor html element is not supported in the draft js typescript interface
-  getEditorRef = (): EditorRef => (this.editor as unknown) as EditorRef;
+  getEditorRef = (): EditorRef => this.editor as unknown as EditorRef;
 
   getEditorState = (): EditorState => this.props.editorState;
 
