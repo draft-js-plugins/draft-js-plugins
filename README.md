@@ -8,9 +8,11 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 
 ## Available Plugins (incl. Docs)
 
+- [Anchor](https://www.draft-js-plugins.com/plugin/anchor)
 - [Alignment](https://www.draft-js-plugins.com/plugin/alignment)
 - [Counter](https://www.draft-js-plugins.com/plugin/counter)
 - [Drag and Drop](https://www.draft-js-plugins.com/plugin/drag-n-drop)
+- [Divider](https://www.draft-js-plugins.com/plugin/divider)
 - [Emoji](https://www.draft-js-plugins.com/plugin/emoji)
 - [Focus](https://www.draft-js-plugins.com/plugin/focus)
 - [Hashtag](https://www.draft-js-plugins.com/plugin/hashtag)
@@ -20,6 +22,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 - [Mention](https://www.draft-js-plugins.com/plugin/mention)
 - [Resizeable](https://www.draft-js-plugins.com/plugin/resizeable)
 - [Side Toolbar](https://www.draft-js-plugins.com/plugin/side-toolbar)
+- [Static Toolbar](https://www.draft-js-plugins.com/plugin/static-toolbar)
 - [Sticker](https://www.draft-js-plugins.com/plugin/sticker)
 - [Undo](https://www.draft-js-plugins.com/plugin/undo)
 - [Video](https://www.draft-js-plugins.com/plugin/video)
