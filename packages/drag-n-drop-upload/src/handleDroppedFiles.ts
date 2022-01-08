@@ -1,14 +1,14 @@
-// import replaceBlock from './modifiers/replaceBlock';
-// import modifyBlockData from './modifiers/modifyBlockData';
+import replaceBlock from './modifiers/replaceBlock';
+import modifyBlockData from './modifiers/modifyBlockData';
 import { DraftHandleValue, EditorState, SelectionState } from 'draft-js';
 import { PluginFunctions } from '@draft-js-plugins/editor';
 import { DndUploadPluginConfig } from '.';
 import { readFiles } from './utils/file';
-// import { getBlocksWhereEntityData } from './utils/block';
+import { getBlocksWhereEntityData } from './utils/block';
 
-/* function defaultHandleBlock(state, selection, data, defaultBlockType) {
+ function defaultHandleBlock(state, selection, data, defaultBlockType) {
   return addBlock(state, selection, defaultBlockType, data);
-} */
+}
 
 export default function onDropFile(config: DndUploadPluginConfig) {
   return function onDropFileInner(
@@ -54,61 +54,61 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         setEditorState(editorState);
 
         // Perform upload
-        // handleUpload(data, (uploadedFiles, { retainSrc }) => {
-        //   // Success, remove 'progress' and 'src'
-        //   let newEditorState = getEditorState();
-        //   uploadedFiles.forEach((file) => {
-        //     const blocks = getBlocksWhereEntityData(state, (block) => block.src === file.src && block.progress !== undefined);
-        //     if (blocks.size) {
-        //       const newEditorStateOrBlockType = handleBlock
-        //         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-        //         : defaultBlockType;
+         handleUpload(data, (uploadedFiles, { retainSrc }) => {
+           // Success, remove 'progress' and 'src'
+           let newEditorState = getEditorState();
+           uploadedFiles.forEach((file) => {
+             const blocks = getBlocksWhereEntityData(state, (block) => block.src === file.src && block.progress !== undefined);
+             if (blocks.size) {
+               const newEditorStateOrBlockType = handleBlock
+                 ? handleBlock(newEditorState, newEditorState.getSelection(), file)
+                 : defaultBlockType;
+
+               newEditorState = replaceBlock(
+                 modifyBlockData(
+                   newEditorState,
+                   blocks.first().get('key'),
+                   retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
+                 ),
+                 blocks.first().get('key'),
+                 newEditorStateOrBlockType
+               );
+             } else {
+               const newEditorStateOrBlockType = handleBlock
+                 ? handleBlock(newEditorState, newEditorState.getSelection(), file)
+                 : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
+
+               if (!newEditorStateOrBlockType) {
+              newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
+            } else if (typeof newEditorStateOrBlockType === 'string') {
+              newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
+            } else {
+              newEditorState = newEditorStateOrBlockType;
+            }
+          }
+        });
         //
-        //       newEditorState = replaceBlock(
-        //         modifyBlockData(
-        //           newEditorState,
-        //           blocks.first().get('key'),
-        //           retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
-        //         ),
-        //         blocks.first().get('key'),
-        //         newEditorStateOrBlockType
-        //       );
-        //     } /* else {
-        //       const newEditorStateOrBlockType = handleBlock
-        //         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-        //         : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
-        //
-        //       if (!newEditorStateOrBlockType) {
-        //         newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
-        //       } else if (typeof newEditorStateOrBlockType === 'string') {
-        //         newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
-        //       } else {
-        //         newEditorState = newEditorStateOrBlockType;
-        //       }
-        //     } */
-        //   });
-        //
-        //   // Propagate progress
-        //   if (handleProgress) handleProgress(null);
-        //   setEditorState(newEditorState);
+        // Propagate progress
+        if (handleProgress) handleProgress(null);
+        setEditorState(newEditorState);
         // }, () => {
-        //   // console.error(err);
+        // console.error(err);
         // }, (percent) => {
-        //   // On progress, set entity data's progress field
-        //   let newEditorState = getEditorState();
-        //   placeholders.forEach((placeholder) => {
-        //     const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
-        //     if (blocks.size) {
-        //       newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
-        //     }
-        //   });
-        //   setEditorState(newEditorState);
+        // On progress, set entity data's progress field
+        newEditorState = getEditorState();
+        placeholders.forEach((placeholder) => {
+          const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
+          if (blocks.size) {
+            newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
+          }
+        });
+        setEditorState(newEditorState);
         //
-        //   // Propagate progress
-        //   if (handleProgress) {
-        //     handleProgress(percent);
-        //   }
-        // });
+        // Propagate progress
+        if (handleProgress) {
+          handleProgress(percent);
+        }
+        });
       });
 
       return 'handled';
