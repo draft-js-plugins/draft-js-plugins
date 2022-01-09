@@ -17,15 +17,42 @@ const decorator = composeDecorators(
 );
 const imagePlugin = createImagePlugin({ decorator });
 
-const handleUpload = () => {
- alert("UPLOADING FILE...");
- console.log("::::");
- console.log("Uploading file");
- return true;
+/*
+*
+* @name: handleUpload
+* @desc: Custom file upload function.
+* @param {param type} data - (){})
+* @param {param type} success - successful upload
+* @param {param type} failed - failed to upload files.
+* @param {param type} progress - handle progress.
+*/
+const handleUpload = async (data, success, failed, progress) => {
+ //console.log("::::");
+ //console.log(files);
+ //console.log("Uploading file");
+ const UPLOAD_URL = "";
+ const options = {
+   method: 'POST',
+   headers: { 'Content-Type': 'application/json' },
+   body: JSON.stringify({ title: 'Fetch POST Request Example' })
+ }
+
+ /*
+ const response = await fetch(UPLOAD_URL, options);
+ return response.json();*/
+ //success(files, { retainSrc: true })
+ //fetch(UPLOAD_URL, options);
+ const files = [{
+   src: 'https://www.wired.com/wp-content/uploads/2015/06/15DAY2jc_7247.jpg',
+   progress: 100
+ }];
+
+ success(files, { retainSrc: true });
 }
+
 const dndFileUploadPlugin = createDragNDropUploadPlugin({
   handleUpload: handleUpload,
-  /*addImage: imagePlugin.addImage*/
+  addImage: imagePlugin.addImage
 });
 
 const plugins = [

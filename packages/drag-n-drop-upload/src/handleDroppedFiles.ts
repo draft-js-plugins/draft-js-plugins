@@ -1,14 +1,19 @@
 import replaceBlock from './modifiers/replaceBlock';
 import modifyBlockData from './modifiers/modifyBlockData';
+import addBlock from './modifiers/addBlock';
 import { DraftHandleValue, EditorState, SelectionState } from 'draft-js';
 import { PluginFunctions } from '@draft-js-plugins/editor';
 import { DndUploadPluginConfig } from '.';
 import { readFiles } from './utils/file';
 import { getBlocksWhereEntityData } from './utils/block';
-
  function defaultHandleBlock(state, selection, data, defaultBlockType) {
   return addBlock(state, selection, defaultBlockType, data);
 }
+
+// Todo: without these variables the code below stops working.
+// What should they be set to?
+const handleBlock = undefined;
+const defaultBlockType = '';
 
 export default function onDropFile(config: DndUploadPluginConfig) {
   return function onDropFileInner(
@@ -58,7 +63,7 @@ export default function onDropFile(config: DndUploadPluginConfig) {
            // Success, remove 'progress' and 'src'
            let newEditorState = getEditorState();
            uploadedFiles.forEach((file) => {
-             const blocks = getBlocksWhereEntityData(state, (block) => block.src === file.src && block.progress !== undefined);
+             const blocks = getBlocksWhereEntityData(editorState, (block) => block.src === file.src && block.progress !== undefined);
              if (blocks.size) {
                const newEditorStateOrBlockType = handleBlock
                  ? handleBlock(newEditorState, newEditorState.getSelection(), file)
@@ -89,8 +94,8 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         });
         //
         // Propagate progress
-        if (handleProgress) handleProgress(null);
-        setEditorState(newEditorState);
+        //if (handleProgress) handleProgress(null);
+        //setEditorState(newEditorState);
         // }, () => {
         // console.error(err);
         // }, (percent) => {
@@ -105,9 +110,10 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         setEditorState(newEditorState);
         //
         // Propagate progress
-        if (handleProgress) {
-          handleProgress(percent);
-        }
+        //if (handleProgress) {
+        //  handleProgress(percent);
+        //}
+
         });
       });
 
