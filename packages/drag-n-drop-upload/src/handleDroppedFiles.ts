@@ -49,7 +49,10 @@ export default function onDropFile(config: DndUploadPluginConfig) {
 
       // Read files on client side
       readFiles(data.files).then((placeholders) => {
+
+
         // Add blocks for each image before uploading
+        /*
         let editorState = getEditorState();
         placeholders.forEach((placeholder) => {
           if (config.addImage) {
@@ -57,14 +60,32 @@ export default function onDropFile(config: DndUploadPluginConfig) {
           }
         });
         setEditorState(editorState);
+        */
 
         // Perform upload
          handleUpload(data, (uploadedFiles, { retainSrc }) => {
+
+           // TODO: this inserts the files on the editor
+           // but does not handle progress.
+           if(uploadedFiles){
+             let editorState = getEditorState();
+             uploadedFiles.forEach((file) => {
+               if (config.addImage) {
+                 editorState = config.addImage(editorState, file.src);
+               }
+             });
+             setEditorState(editorState);
+
+             return 'handled';
+           }
+
+
            // Success, remove 'progress' and 'src'
            let newEditorState = getEditorState();
            uploadedFiles.forEach((file) => {
              const blocks = getBlocksWhereEntityData(editorState, (block) => block.src === file.src && block.progress !== undefined);
              if (blocks.size) {
+               // Blocks have progress or placeholders.
                const newEditorStateOrBlockType = handleBlock
                  ? handleBlock(newEditorState, newEditorState.getSelection(), file)
                  : defaultBlockType;
@@ -100,6 +121,10 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         // console.error(err);
         // }, (percent) => {
         // On progress, set entity data's progress field
+
+
+        /*
+        TODO: on progress code.
         newEditorState = getEditorState();
         placeholders.forEach((placeholder) => {
           const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
@@ -108,6 +133,8 @@ export default function onDropFile(config: DndUploadPluginConfig) {
           }
         });
         setEditorState(newEditorState);
+        */
+
         //
         // Propagate progress
         //if (handleProgress) {

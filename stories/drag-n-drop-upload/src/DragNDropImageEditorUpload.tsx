@@ -4,16 +4,18 @@ import Editor, { composeDecorators } from '@draft-js-plugins/editor';
 import createBlockDndPlugin from '@draft-js-plugins/drag-n-drop';
 import createImagePlugin from '@draft-js-plugins/image';
 import createFocusPlugin from '@draft-js-plugins/focus';
+import createResizeablePlugin from '@draft-js-plugins/resizeable';
 import createDragNDropUploadPlugin from '@draft-js-plugins/drag-n-drop-upload';
 import editorStyles from './editorStyles.css';
 
 // Plugins
 const blockDndPlugin = createBlockDndPlugin();
 const focusPlugin = createFocusPlugin();
-
+const resizeablePlugin = createResizeablePlugin();
 const decorator = composeDecorators(
   focusPlugin.decorator,
-  blockDndPlugin.decorator
+  blockDndPlugin.decorator,
+  resizeablePlugin.decorator
 );
 const imagePlugin = createImagePlugin({ decorator });
 
@@ -43,8 +45,7 @@ const handleUpload = async (data, success, failed, progress) => {
  //success(files, { retainSrc: true })
  //fetch(UPLOAD_URL, options);
  const files = [{
-   src: 'https://www.wired.com/wp-content/uploads/2015/06/15DAY2jc_7247.jpg',
-   progress: 100
+   src: 'https://www.wired.com/wp-content/uploads/2015/06/15DAY2jc_7247.jpg'
  }];
 
  success(files, { retainSrc: true });
@@ -59,6 +60,7 @@ const plugins = [
   blockDndPlugin,
   focusPlugin,
   imagePlugin,
+  resizeablePlugin,
   dndFileUploadPlugin
 ];
 
