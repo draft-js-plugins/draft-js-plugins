@@ -1,19 +1,21 @@
-import replaceBlock from './modifiers/replaceBlock';
-import modifyBlockData from './modifiers/modifyBlockData';
-import addBlock from './modifiers/addBlock';
 import { DraftHandleValue, EditorState, SelectionState } from 'draft-js';
 import { PluginFunctions } from '@draft-js-plugins/editor';
 import { DndUploadPluginConfig } from '.';
+//import replaceBlock from './modifiers/replaceBlock';
+//import modifyBlockData from './modifiers/modifyBlockData';
+//import addBlock from './modifiers/addBlock';
 import { readFiles } from './utils/file';
-import { getBlocksWhereEntityData } from './utils/block';
- function defaultHandleBlock(state, selection, data, defaultBlockType) {
+//import { getBlocksWhereEntityData } from './utils/block';
+
+/*
+ function defaultHandleBlock(state, selection, data, defaultBlockType):Any {
   return addBlock(state, selection, defaultBlockType, data);
-}
+}*/
 
 // Todo: without these variables the code below stops working.
 // What should they be set to?
-const handleBlock = undefined;
-const defaultBlockType = '';
+//const handleBlock = undefined;
+//const defaultBlockType = '';
 
 export default function onDropFile(config: DndUploadPluginConfig) {
   return function onDropFileInner(
@@ -61,9 +63,10 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         });
         setEditorState(editorState);
         */
+        console.log(placeholders); // eslint-disable-line no-console
 
         // Perform upload
-         handleUpload(data, (uploadedFiles, { retainSrc }) => {
+         handleUpload(data, (uploadedFiles/*, {  retainSrc }*/) => {
 
            // TODO: this inserts the files on the editor
            // but does not handle progress.
@@ -75,11 +78,12 @@ export default function onDropFile(config: DndUploadPluginConfig) {
                }
              });
              setEditorState(editorState);
-
-             return 'handled';
            }
 
 
+           return 'handled';
+
+           /*
            // Success, remove 'progress' and 'src'
            let newEditorState = getEditorState();
            uploadedFiles.forEach((file) => {
@@ -133,14 +137,13 @@ export default function onDropFile(config: DndUploadPluginConfig) {
           }
         });
         setEditorState(newEditorState);
-        */
 
         //
         // Propagate progress
         //if (handleProgress) {
         //  handleProgress(percent);
         //}
-
+        */
         });
       });
 
