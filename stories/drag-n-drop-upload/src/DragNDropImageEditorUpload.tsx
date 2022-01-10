@@ -44,8 +44,11 @@ const customUpload = async (data, success /*, failed, progress*/):void => {
  //fetch(UPLOAD_URL, options);
  const files = [{
    src: 'https://www.wired.com/wp-content/uploads/2015/06/15DAY2jc_7247.jpg'
- }];
- success(files, { retainSrc: true });
+ }]; 
+ setTimeout(() => {
+   success(files, { retainSrc: true });
+ }, 3000);
+
 }
 
 const dndFileUploadPlugin = createDragNDropUploadPlugin({

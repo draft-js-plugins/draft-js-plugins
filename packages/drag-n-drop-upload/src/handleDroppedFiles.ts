@@ -1,14 +1,18 @@
-import { DraftHandleValue, EditorState, SelectionState } from 'draft-js';
+import { DraftHandleValue, EditorState, SelectionState, AtomicBlockUtils } from 'draft-js';
 import { PluginFunctions } from '@draft-js-plugins/editor';
 import { DndUploadPluginConfig } from '.';
 //import replaceBlock from './modifiers/replaceBlock';
-//import modifyBlockData from './modifiers/modifyBlockData';
-//import addBlock from './modifiers/addBlock';
+import modifyBlockData from './modifiers/modifyBlockData';
 import { readFiles } from './utils/file';
+import { insertPlaceholder } from  './components/insertPlaceholder';
+import UploadPlaceholder from './components/UploadPlaceholder';
+
+const placeholderBlocksList = [];
+
 //import { getBlocksWhereEntityData } from './utils/block';
 
 /*
- function defaultHandleBlock(state, selection, data, defaultBlockType):Any {
+function defaultHandleBlock(state, selection, data, defaultBlockType):Any {
   return addBlock(state, selection, defaultBlockType, data);
 }*/
 
@@ -52,25 +56,24 @@ export default function onDropFile(config: DndUploadPluginConfig) {
       // Read files on client side
       readFiles(data.files).then((placeholders) => {
 
-
-        // Add blocks for each image before uploading
-        /*
+        // Add upload placeholders for each image before uploading
         let editorState = getEditorState();
         placeholders.forEach((placeholder) => {
-          if (config.addImage) {
-            editorState = config.addImage(editorState, placeholder.src);
-          }
+          const customBlockProps = insertPlaceholder(editorState, placeholder.name);
+          const { state, key, text} = customBlockProps;
+          placeholderBlocksList.push({key: key, text: text});
+          editorState = state;
         });
         setEditorState(editorState);
-        */
-        console.log(placeholders); // eslint-disable-line no-console
 
         // Perform upload
-         handleUpload(data, (uploadedFiles/*, {  retainSrc }*/) => {
+        handleUpload(data, (uploadedFiles/*, {  retainSrc }*/) => {
+
 
            // TODO: this inserts the files on the editor
            // but does not handle progress.
-           if(uploadedFiles){
+           /*
+           if(uploadedFiles) {
              let editorState = getEditorState();
              uploadedFiles.forEach((file) => {
                if (config.addImage) {
@@ -78,8 +81,16 @@ export default function onDropFile(config: DndUploadPluginConfig) {
                }
              });
              setEditorState(editorState);
-           }
+           }*/
 
+           /*
+           placeholderBlocksList.forEach(element => {
+            editorState = modifyBlockData(editorState, element.key,
+              { name: element.text, progress: '10%' }
+            );
+           });
+           setEditorState(editorState);
+           */
 
            return 'handled';
 
