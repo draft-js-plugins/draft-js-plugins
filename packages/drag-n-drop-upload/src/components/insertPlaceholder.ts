@@ -22,7 +22,7 @@ export const insertPlaceholder = (editorState, text) => {
 
   return {
     state: stateSelected,
-    key: blockKey,
+    key: entityKey,
     text: text
   }
 };

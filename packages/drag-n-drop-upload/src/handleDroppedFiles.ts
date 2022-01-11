@@ -1,13 +1,65 @@
 import { DraftHandleValue, EditorState, SelectionState, AtomicBlockUtils } from 'draft-js';
 import { PluginFunctions } from '@draft-js-plugins/editor';
 import { DndUploadPluginConfig } from '.';
-//import replaceBlock from './modifiers/replaceBlock';
 import modifyBlockData from './modifiers/modifyBlockData';
+import removeBlock from './modifiers/removeBlock';
 import { readFiles } from './utils/file';
 import { insertPlaceholder } from  './components/insertPlaceholder';
 import UploadPlaceholder from './components/UploadPlaceholder';
 
-const placeholderBlocksList = [];
+let placeholderBlocksList = [];
+
+/*
+const onProgress = (percent, file) => {
+  newEditorState = getEditorState();
+  placeholders.forEach((placeholder) => {
+    const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
+    if (blocks.size) {
+      newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
+    }
+  });
+  setEditorState(newEditorState);
+}*/
+
+const onFailure = (file) => console.log(fail);
+//const onSuccess =
+
+   /*
+   // Success, remove 'progress' and 'src'
+   let newEditorState = getEditorState();
+   uploadedFiles.forEach((file) => {
+     const blocks = getBlocksWhereEntityData(editorState, (block) => block.src === file.src && block.progress !== undefined);
+     if (blocks.size) {
+       // Blocks have progress or placeholders.
+       const newEditorStateOrBlockType = handleBlock
+         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
+         : defaultBlockType;
+
+       newEditorState = replaceBlock(
+         modifyBlockData(
+           newEditorState,
+           blocks.first().get('key'),
+           retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
+         ),
+         blocks.first().get('key'),
+         newEditorStateOrBlockType
+       );
+     } else {
+       const newEditorStateOrBlockType = handleBlock
+         ? handleBlock(newEditorState, newEditorState.getSelection(), file)
+         : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
+
+       if (!newEditorStateOrBlockType) {
+      newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
+    } else if (typeof newEditorStateOrBlockType === 'string') {
+      newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
+    } else {
+      newEditorState = newEditorStateOrBlockType;
+    }
+  }
+});
+
+};
 
 //import { getBlocksWhereEntityData } from './utils/block';
 
@@ -29,20 +81,16 @@ export default function onDropFile(config: DndUploadPluginConfig) {
   ): DraftHandleValue {
     // TODO need to make sure the correct image block is added
     // TODO -> addImage must be passed in. content type matching should happen
-
     // TODO make sure the Form building also works fine with S3 direct upload
 
     // Get upload function from config or editor props
     const { handleUpload } = config;
 
     if (handleUpload) {
-      const formData = new FormData();
 
-      // Set data {files: [Array of files], formData: FormData}
-      const data: { files: File[]; formData: FormData } = {
-        files: [],
-        formData,
-      };
+      const formData = new FormData();
+      const data: { files: File[]; formData: FormData } = { files: [], formData };
+
       for (const file of files) {
         // eslint-disable-line no-restricted-syntax
         if (file && file instanceof File) {
@@ -66,15 +114,16 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         });
         setEditorState(editorState);
 
-        // Perform upload
-        handleUpload(data, (uploadedFiles/*, {  retainSrc }*/) => {
+        //
+        handleUpload(data, (uploadedFiles, {  retainSrc }) => {
+            /* Success */
+           const blockInList  = placeholderBlocksList.find(p => p.text === uploadedFiles[0].name)[0];
+           let editorState = getEditorState();
 
-
-           // TODO: this inserts the files on the editor
-           // but does not handle progress.
            /*
+           // TODO: this inserts the files on the editor
            if(uploadedFiles) {
-             let editorState = getEditorState();
+
              uploadedFiles.forEach((file) => {
                if (config.addImage) {
                  editorState = config.addImage(editorState, file.src);
@@ -82,85 +131,22 @@ export default function onDropFile(config: DndUploadPluginConfig) {
              });
              setEditorState(editorState);
            }*/
-
-           /*
-           placeholderBlocksList.forEach(element => {
-            editorState = modifyBlockData(editorState, element.key,
-              { name: element.text, progress: '10%' }
-            );
-           });
-           setEditorState(editorState);
-           */
-
-           return 'handled';
-
-           /*
-           // Success, remove 'progress' and 'src'
-           let newEditorState = getEditorState();
-           uploadedFiles.forEach((file) => {
-             const blocks = getBlocksWhereEntityData(editorState, (block) => block.src === file.src && block.progress !== undefined);
-             if (blocks.size) {
-               // Blocks have progress or placeholders.
-               const newEditorStateOrBlockType = handleBlock
-                 ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-                 : defaultBlockType;
-
-               newEditorState = replaceBlock(
-                 modifyBlockData(
-                   newEditorState,
-                   blocks.first().get('key'),
-                   retainSrc ? { progress: undefined } : { progress: undefined, src: undefined }
-                 ),
-                 blocks.first().get('key'),
-                 newEditorStateOrBlockType
-               );
-             } else {
-               const newEditorStateOrBlockType = handleBlock
-                 ? handleBlock(newEditorState, newEditorState.getSelection(), file)
-                 : defaultHandleBlock(newEditorState, newEditorState.getSelection(), file, defaultBlockType);
-
-               if (!newEditorStateOrBlockType) {
-              newEditorState = defaultHandleBlock(newEditorState, selection, file, defaultBlockType);
-            } else if (typeof newEditorStateOrBlockType === 'string') {
-              newEditorState = defaultHandleBlock(newEditorState, selection, file, newEditorStateOrBlockType);
-            } else {
-              newEditorState = newEditorStateOrBlockType;
-            }
+         } , onFailure, (percent, file) => {
+          /* On progress */
+          let newEditorState = getEditorState();
+          let blockKey = placeholderBlocksList.find(p => p.text === file);
+          if(blockKey !== undefined) {
+            const blockData = { name: file, progress: percent + '%' };
+            newEditorState = modifyBlockData(newEditorState, blockKey.key, blockData);
+            setEditorState(newEditorState);
           }
         });
-        //
-        // Propagate progress
-        //if (handleProgress) handleProgress(null);
-        //setEditorState(newEditorState);
-        // }, () => {
-        // console.error(err);
-        // }, (percent) => {
-        // On progress, set entity data's progress field
 
-
-        /*
-        TODO: on progress code.
-        newEditorState = getEditorState();
-        placeholders.forEach((placeholder) => {
-          const blocks = getBlocksWhereEntityData(newEditorState, (p) => p.src === placeholder.src && p.progress !== undefined);
-          if (blocks.size) {
-            newEditorState = modifyBlockData(newEditorState, blocks.first().get('key'), { progress: percent });
-          }
-        });
-        setEditorState(newEditorState);
-
-        //
-        // Propagate progress
-        //if (handleProgress) {
-        //  handleProgress(percent);
-        //}
-        */
-        });
       });
 
       return 'handled';
-    }
+   }
 
     return 'not-handled';
-  };
+  }
 }
