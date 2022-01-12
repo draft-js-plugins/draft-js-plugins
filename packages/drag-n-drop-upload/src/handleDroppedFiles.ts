@@ -50,10 +50,11 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         });
         setEditorState(_editorState);
 
-        handleUpload(data, (uploadedFiles /*, {  retainSrc }*/) => {
+        handleUpload(data,
+          // TODO: what does retainSrc do?
+          (uploadedFiles /*, {  retainSrc }*/) => {
             /* Success! */
 
-           // TODO: what does retainSrc do?
            // TODO: this removes all placeholders and inserts all images,
            // but probably not in the same place. Fix this.
            let editorState = getEditorState();
