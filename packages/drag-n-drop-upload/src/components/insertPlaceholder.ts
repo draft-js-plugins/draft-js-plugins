@@ -1,6 +1,13 @@
 import { EditorState, AtomicBlockUtils } from 'draft-js';
 
-export const insertPlaceholder = (editorState, text) => {
+type InsertPlaceholderReturn = {
+  state: EditorState,
+  blockKey: string,
+  key: string,
+  text: string
+};
+
+export const insertPlaceholder = (editorState:EditorState, text:string): InsertPlaceholderReturn => {
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(
     'UploadPlaceholder',
@@ -18,11 +25,14 @@ export const insertPlaceholder = (editorState, text) => {
     newEditorState,
     newEditorState.getCurrentContent().getSelectionAfter()
   );
-  const blockKey = newEditorState.getCurrentContent().getLastBlock().getKey();
+
+  const blockArrayMap = newEditorState.getCurrentContent().getBlocksAsArray().map(b => b.getKey());
+  const nextToLastBlock = newEditorState.getCurrentContent().getBlockForKey(blockArrayMap[blockArrayMap.length-2]);
 
   return {
     state: stateSelected,
+    blockKey: nextToLastBlock.getKey(),
     key: entityKey,
-    text: text
+    text
   }
 };

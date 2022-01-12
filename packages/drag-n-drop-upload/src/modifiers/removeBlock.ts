@@ -1,42 +1,32 @@
-import { ContentState, Modifier, SelectionState } from 'draft-js';
+import { ContentState, Modifier, EditorState, SelectionState } from 'draft-js';
 
 export default function removeBlock(
-  contentState: ContentState,
-  blockKey: string
+  editorState: EditorState,
+  blockKey: string,
 ): ContentState {
-  const afterKey = contentState.getKeyAfter(blockKey);
-  const afterBlock = contentState.getBlockForKey(afterKey);
-  let targetRange;
 
-  // Only if the following block the last with no text then the whole block
-  // should be removed. Otherwise the block should be reduced to an unstyled block
-  // without any characters.
-  if (
-    afterBlock &&
-    afterBlock.getType() === 'unstyled' &&
-    afterBlock.getLength() === 0 &&
-    afterBlock === contentState.getBlockMap().last()
-  ) {
-    targetRange = new SelectionState({
-      anchorKey: blockKey,
-      anchorOffset: 0,
-      focusKey: afterKey,
-      focusOffset: 0,
-    });
-  } else {
-    targetRange = new SelectionState({
-      anchorKey: blockKey,
-      anchorOffset: 0,
-      focusKey: blockKey,
-      focusOffset: 1,
-    });
-  }
+  const content = editorState.getCurrentContent();
+  const block = content.getBlockForKey(blockKey);
 
-  // change the blocktype and remove the characterList entry with the block
-  const newContentState = Modifier.setBlockType(
-    contentState,
-    targetRange,
-    'unstyled'
+  const targetRange = new SelectionState({
+    anchorKey: blockKey,
+    anchorOffset: 0,
+    focusKey: blockKey,
+    focusOffset: block.getLength(),
+  });
+
+  const withoutBlock = Modifier.removeRange(content, targetRange, "backward");
+  const resetBlock = Modifier.setBlockType(
+    withoutBlock,
+    withoutBlock.getSelectionAfter(),
+    "unstyled"
   );
-  return Modifier.removeRange(newContentState, targetRange, 'backward');
+
+  const newState = EditorState.push(editorState, resetBlock, "remove-range");
+  const newStateWithoutBlock = EditorState.forceSelection(
+    newState,
+    resetBlock.getSelectionAfter()
+  );
+
+  return newStateWithoutBlock;
 }

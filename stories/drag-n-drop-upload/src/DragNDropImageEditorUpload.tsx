@@ -19,6 +19,8 @@ const decorator = composeDecorators(
 );
 const imagePlugin = createImagePlugin({ decorator });
 
+//const FILE_SRC = '/images/canada-landscape-small.jpg';
+
 /*
 *
 * @name: handleUpload
@@ -33,7 +35,14 @@ const customUpload = (data, success, failed, progress):void => {
  const files = [{
    name: 'eva1.jpeg',
    src: 'https://www.wired.com/wp-content/uploads/2015/06/15DAY2jc_7247.jpg'
- }];
+ }/*,
+ {
+   name: 'FEvfI2GWUAsVOlG.jpeg',
+   src: 'https://www.wired.com/wp-content/uploads/2015/06/15DAY2jc_7247.jpg'
+ }*/];
+
+ //console.clear();
+ //console.log(data);
 
  let intervalId = -1;
  let currentProgress = 0;
@@ -41,15 +50,15 @@ const customUpload = (data, success, failed, progress):void => {
  intervalId = setInterval(() => {
 
    if(currentProgress < 100) {
-    currentProgress = currentProgress+10;
-    progress(currentProgress, files[0].name);
-  }
+      currentProgress+=10;
+      progress(currentProgress, files[0].name);
+    }
 
-  if(currentProgress === 100 || intervalId !== -1) {
-    clearInterval(intervalId);
-    success(files, { retainSrc: true });
-    return;
-  }
+    if(currentProgress === 100) {
+      clearInterval(intervalId);
+      //success(files /*, { retainSrc: true }*/);
+      failed(files[0]);
+    }
 
  }, 1000);
 
