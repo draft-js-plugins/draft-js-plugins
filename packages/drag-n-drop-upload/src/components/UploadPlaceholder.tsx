@@ -3,7 +3,12 @@ import React, { ReactElement } from 'react';
 
 interface UploadPlaceholderParams {
   block: ContentBlock;
-  blockProps: { name: string };
+  blockProps: {
+    resizeData: {
+      name: string,
+      progress: string
+    }
+  };
 }
 
 export default function UploadPlaceholder(props: UploadPlaceholderParams): ReactElement {

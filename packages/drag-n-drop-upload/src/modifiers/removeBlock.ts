@@ -1,9 +1,9 @@
-import { ContentState, Modifier, EditorState, SelectionState } from 'draft-js';
+import { Modifier, EditorState, SelectionState } from 'draft-js';
 
 export default function removeBlock(
   editorState: EditorState,
   blockKey: string,
-): ContentState {
+): EditorState {
 
   const content = editorState.getCurrentContent();
   const block = content.getBlockForKey(blockKey);

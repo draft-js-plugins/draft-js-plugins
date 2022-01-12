@@ -5,8 +5,23 @@ import UploadPlaceholder from './components/UploadPlaceholder';
 
 export { readFiles, readFile } from './utils/file';
 
+export type PlaceholderBlockType = {
+  key: string,
+  text: string,
+  blockKey: string
+};
+
+export type FileToUpload = {
+  src: string,
+  name: string
+}
+
+type SucessFunction = (uploadedFiles:Array<FileToUpload>) => void;
+type FailFunction = (file: FileToUpload) => void;
+type ProgressFunction = (percent:number, file:FileToUpload) => void;
+
 export interface DndUploadPluginConfig {
-  handleUpload?(): void;
+  handleUpload?(data:any, success:SucessFunction, failed:FailFunction, progress:ProgressFunction):string;
   addImage?(
     editorState: EditorState,
     placeholderSrc: string | ArrayBuffer | null

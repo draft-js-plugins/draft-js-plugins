@@ -9,7 +9,7 @@ const FILE_SRC = '/images/canada-landscape-small.jpg';
 * @param {function({name: string, src?: string})} failed - function that is called to mark a failure to upload one or more files. Removes the upload placeholders.
 * @param {(function(percent:int, file: {name:string, src:string})} progress - function to mark the progress in percentage points. It updates the progress count on each placeholder.
 */
-export const customUpload = (data, success, failed, progress):void => {
+export const customUpload = (data, success, failed, progress) => {
 
  const mockResult = data.files.map(f => ({ name: f.name, src: FILE_SRC }));
 
@@ -19,7 +19,7 @@ export const customUpload = (data, success, failed, progress):void => {
  intervalId = setInterval(() => {
    if (currentProgress < 100) {
       currentProgress += 10;
-      progress(currentProgress, mockResult[0].name);
+      progress(currentProgress, mockResult[0]);
     }
 
     if (currentProgress === 100) {

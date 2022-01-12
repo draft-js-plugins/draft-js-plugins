@@ -6,7 +6,7 @@ import addImageExampleEditorStylesCode from '!!raw-loader!../../../components/Ex
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customExampleCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor';
-import customExampleMockUploadCode from '!!raw-loader!../../../components/Examples/image/mockUpload';
+import customExampleMockUploadCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor/mockUpload';
 
 // eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor/editorStyles.module.css';

@@ -1,12 +1,16 @@
 import { DraftHandleValue, EditorState, SelectionState } from 'draft-js';
 import { PluginFunctions } from '@draft-js-plugins/editor';
-import { DndUploadPluginConfig } from '.';
+import {
+  DndUploadPluginConfig,
+  PlaceholderBlockType,
+  FileToUpload
+} from '.';
 import modifyBlockData from './modifiers/modifyBlockData';
 import removeBlock from './modifiers/removeBlock';
 import { readFiles } from './utils/file';
 import { insertPlaceholder } from  './components/insertPlaceholder';
 
-let placeholderBlocksList = [];
+let placeholderBlocksList:Array<PlaceholderBlockType> = [];
 
 export default function onDropFile(config: DndUploadPluginConfig) {
   return function onDropFileInner(
@@ -49,7 +53,7 @@ export default function onDropFile(config: DndUploadPluginConfig) {
 
         handleUpload(data,
           // TODO: what does retainSrc do? Is it useful to keep this option.
-          (uploadedFiles /*, {  retainSrc }*/) => {
+          (uploadedFiles:Array<FileToUpload> /*, {  retainSrc }*/):void => {
             /* Success! */
 
            /*
@@ -74,7 +78,7 @@ export default function onDropFile(config: DndUploadPluginConfig) {
              setEditorState(editorState);
            }
 
-         } , (file) => {
+         } , (file: FileToUpload):void => {
            /* On fail */
 
            // Failed to upload a given file.
@@ -82,16 +86,17 @@ export default function onDropFile(config: DndUploadPluginConfig) {
            // Any other special handling of this use case should be done manually by the user.
            let editorState = getEditorState();
            const blockInList  = placeholderBlocksList.find(p => p.text === file.name);
-           editorState = removeBlock(editorState, blockInList.blockKey);
-           setEditorState(editorState);
-
-         }, (percent, file) => {
+           if(blockInList !== undefined) {
+             editorState = removeBlock(editorState, blockInList.blockKey);
+             setEditorState(editorState);
+           }
+         }, (percent:number, file:FileToUpload):void => {
           /* On progress */
           let newEditorState = getEditorState();
-          const blockKey = placeholderBlocksList.find(p => p.text === file);
-          if(blockKey !== undefined) {
-            const blockData = { name: file, progress: `${percent}%`};
-            newEditorState = modifyBlockData(newEditorState, blockKey.key, blockData);
+          const block = placeholderBlocksList.find(p => p.text === file.name);
+          if(block !== undefined) {
+            const blockData = { name: file.name, progress: `${percent}%`};
+            newEditorState = modifyBlockData(newEditorState, block.key, blockData);
             setEditorState(newEditorState);
           }
         });
