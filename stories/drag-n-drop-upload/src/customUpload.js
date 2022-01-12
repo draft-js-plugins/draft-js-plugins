@@ -2,7 +2,7 @@ const FILE_SRC = '/images/canada-landscape-small.jpg';
 
 /*
 *
-* @name: handleUpload
+* @name: customUpload
 * @desc: Custom file upload function.
 * @param {[File], formData} data: consists of an array of files that have been uploaded and a formData object composed of those same files.
 * @param {function([{name: string, src: string}])} success - function to mark a successfull file upload, it takes an array of successfully uploaded files.

@@ -6,6 +6,8 @@ import addImageExampleEditorStylesCode from '!!raw-loader!../../../components/Ex
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
 import customExampleCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor';
+import customExampleMockUploadCode from '!!raw-loader!../../../components/Examples/image/mockUpload';
+
 // eslint-disable-next-line import/no-unresolved
 import customExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/image/CustomImageEditor/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
@@ -157,6 +159,7 @@ export default class App extends Component {
             Drag&apos;n&apos;Drop Upload Example
           </Heading>
           <CustomImageEditor />
+          <Code code={customExampleMockUploadCode} name="mockUpload.js" />
           <Code code={customExampleCode} name="AddImageEditor.js" />
           <Code code={customExampleEditorStylesCode} name="editorStyles.css" />
         </Container>
