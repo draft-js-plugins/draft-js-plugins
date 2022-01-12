@@ -14,11 +14,8 @@ export default function onDropFile(config: DndUploadPluginConfig) {
     files: Blob[],
     { getEditorState, setEditorState }: PluginFunctions
   ): DraftHandleValue {
-    // TODO need to make sure the correct image block is added
-    // TODO -> addImage must be passed in. content type matching should happen
-    // TODO make sure the Form building also works fine with S3 direct upload
 
-    // Get upload function from config or editor props
+    // Get upload function from config.
     const { handleUpload } = config;
 
     if (handleUpload) {
@@ -51,12 +48,17 @@ export default function onDropFile(config: DndUploadPluginConfig) {
         setEditorState(_editorState);
 
         handleUpload(data,
-          // TODO: what does retainSrc do?
+          // TODO: what does retainSrc do? Is it useful to keep this option.
           (uploadedFiles /*, {  retainSrc }*/) => {
             /* Success! */
 
-           // TODO: this removes all placeholders and inserts all images,
-           // but probably not in the same place. Fix this.
+           /*
+            * TODO:
+            * This removes all placeholders and inserts all uploaded images,
+            * Since fail() function removes placeholders for the files that have been marked as failing by the fail()
+            * function, those placeholders can be safely removed here, but perhaps it would be useful
+            * to modify `placeholderBlocksList` at some point on the fail() function.
+           */
            let editorState = getEditorState();
            placeholderBlocksList.forEach(element => {
              editorState = removeBlock(editorState, element.blockKey);
