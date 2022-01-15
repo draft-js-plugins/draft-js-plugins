@@ -5,9 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
-### Fixed
+## 5.1.1
 
 - Add Japanese symbol to default regExp
+- Fixing lodash import to reduce bundle size [#2530](https://github.com/draft-js-plugins/draft-js-plugins/issues/2530)
 
 ## 5.1.0
 
