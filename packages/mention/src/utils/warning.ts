@@ -1,4 +1,4 @@
-import { once } from 'lodash';
+import once from 'lodash/once';
 
 export const warning = once((text: string): void => {
   if (process.env.NODE_ENV === 'development') {
