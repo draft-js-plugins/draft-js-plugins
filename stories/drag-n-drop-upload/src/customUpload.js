@@ -1,4 +1,4 @@
-const FILE_SRC = '/images/canada-landscape-small.jpg';
+import { readFiles } from '../../../packages/drag-n-drop-upload/src/utils/file';
 
 /*
 *
@@ -11,20 +11,24 @@ const FILE_SRC = '/images/canada-landscape-small.jpg';
 */
 export const customUpload = (data, success, failed, progress) => {
 
- const mockResult = data.files.map(f => ({ name: f.name, src: FILE_SRC }));
-
  let intervalId = -1;
  let currentProgress = 0;
 
  intervalId = setInterval(() => {
    if (currentProgress < 100) {
       currentProgress += 10;
-      progress(currentProgress, mockResult[0]);
+      data.files.forEach((imageFile) => {
+        progress(currentProgress, imageFile);
+      });
     }
 
     if (currentProgress === 100) {
       clearInterval(intervalId);
-      success(mockResult/*, { retainSrc: true }*/);
+
+      readFiles(data.files).then((filesRead) => {
+        const mockResult = filesRead.map(f => ({ name: f.name, src: f.src }));
+        success(mockResult/*, { retainSrc: true }*/);
+      });
     }
 
  }, 1000);
