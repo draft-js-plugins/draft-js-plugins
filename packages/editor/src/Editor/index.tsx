@@ -7,6 +7,7 @@ import {
   DraftEditorCommand,
   DraftStyleMap,
   Editor,
+  ContentBlock,
   EditorProps,
   EditorState,
 } from 'draft-js';
@@ -225,6 +226,34 @@ class PluginEditor extends Component<PluginEditorProps> {
       );
   };
 
+  getBlockAlignment(block: ContentBlock): string {
+    let style = 'left';
+    block.findStyleRanges((value) => {
+      if(value.hasStyle('right')) {
+        style = 'right'
+      }
+      if(value.hasStyle('center')) {
+        style = 'center'
+      }
+      return true;
+    }, () => true);
+    return style;
+  }
+
+  blockStyleFn = (block: ContentBlock): string => {
+    let alignment = this.getBlockAlignment(block);
+    if (!block.getText()) {
+      const previousBlock = this.getEditorState().getCurrentContent().getBlockBefore(block.getKey());
+      if (previousBlock) {
+        alignment = this.getBlockAlignment(previousBlock);
+      }
+    }
+    if(this.props.blockStyleFn) {
+      return `${this.props.blockStyleFn(block)} text-alignment-${alignment}`;
+    }
+    return `text-alignment-${alignment}`;
+  }
+
   resolveblockRenderMap = (): DraftBlockRenderMap => {
     let blockRenderMap = this.props
       .plugins!.filter((plug) => plug.blockRenderMap !== undefined)
@@ -287,6 +316,7 @@ class PluginEditor extends Component<PluginEditorProps> {
         {...editorProps}
         {...accessibilityProps}
         {...pluginHooks}
+        blockStyleFn={this.blockStyleFn}
         readOnly={this.props.readOnly || this.state.readOnly}
         customStyleMap={customStyleMap}
         blockRenderMap={blockRenderMap}
