@@ -18,6 +18,9 @@ import AlignBlockDefaultButton from './components/AlignBlockDefaultButton';
 import AlignBlockCenterButton from './components/AlignBlockCenterButton';
 import AlignBlockLeftButton from './components/AlignBlockLeftButton';
 import AlignBlockRightButton from './components/AlignBlockRightButton';
+import AlignTextCenterButton from './components/AlignTextCenterButton';
+import AlignTextRightButton from './components/AlignTextRightButton';
+import AlignTextLeftButton from './components/AlignTextLeftButton';
 import SubButton from './components/SubButton';
 import SupButton from './components/SupButton';
 
@@ -68,4 +71,7 @@ export {
   AlignBlockCenterButton,
   AlignBlockLeftButton,
   AlignBlockRightButton,
+  AlignTextCenterButton,
+  AlignTextLeftButton,
+  AlignTextRightButton,
 };
