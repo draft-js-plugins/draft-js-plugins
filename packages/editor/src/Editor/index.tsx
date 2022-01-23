@@ -249,9 +249,9 @@ class PluginEditor extends Component<PluginEditorProps> {
       }
     }
     if(this.props.blockStyleFn) {
-      return `${this.props.blockStyleFn(block)} text-alignment-${alignment}`;
+      return `${this.props.blockStyleFn(block)} draftBlockAlign-${alignment}`;
     }
-    return `text-alignment-${alignment}`;
+    return `draftBlockAlign-${alignment}`;
   }
 
   resolveblockRenderMap = (): DraftBlockRenderMap => {

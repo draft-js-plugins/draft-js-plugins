@@ -36,15 +36,15 @@
   white-space: pre-wrap;
 }
 
-.text-alignment-left .public-DraftStyleDefault-block {
+.draftBlockAlign-left .public-DraftStyleDefault-block {
     text-align: left;
 }
 
-.text-alignment-center .public-DraftStyleDefault-block {
+.draftBlockAlign-center .public-DraftStyleDefault-block {
     text-align: center;
 }
 
-.text-alignment-right .public-DraftStyleDefault-block {
+.draftBlockAlign-right .public-DraftStyleDefault-block {
     text-align: right;
 }
 
