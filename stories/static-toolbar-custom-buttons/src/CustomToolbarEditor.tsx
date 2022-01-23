@@ -20,6 +20,9 @@ import {
   CodeBlockButton,
   SubButton,
   SupButton,
+  AlignTextCenterButton,
+  AlignTextLeftButton,
+  AlignTextRightButton,
 } from '@draft-js-plugins/buttons';
 import editorStyles from './editorStyles.css';
 
@@ -117,6 +120,10 @@ const CustomToolbarEditor = (): ReactElement => {
                 <ItalicButton {...externalProps} />
                 <UnderlineButton {...externalProps} />
                 <CodeButton {...externalProps} />
+                <Separator {...externalProps} />
+                <AlignTextLeftButton {...externalProps} />
+                <AlignTextCenterButton {...externalProps} />
+                <AlignTextRightButton {...externalProps} />
                 <Separator {...externalProps} />
                 <HeadlinesButton {...externalProps} />
                 <UnorderedListButton {...externalProps} />

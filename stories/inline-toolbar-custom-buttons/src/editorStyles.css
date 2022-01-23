@@ -32,3 +32,15 @@
 .headlineButton:focus {
   background: #f3f3f3;
 }
+
+.editor :global .draftBlockAlign-left .public-DraftStyleDefault-block {
+  text-align: left;
+}
+
+.editor :global .draftBlockAlign-center .public-DraftStyleDefault-block {
+  text-align: center;
+}
+
+.editor :global .draftBlockAlign-right .public-DraftStyleDefault-block {
+  text-align: right;
+}
