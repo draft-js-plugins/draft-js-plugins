@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.0
+
+- add `Text Alignment Feature` [#1104](https://github.com/draft-js-plugins/draft-js-plugins/issues/1104)
+
 ## 4.1.2
 
 - add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
