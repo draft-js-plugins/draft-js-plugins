@@ -48,7 +48,7 @@
     "husky": "^7.0.4",
     "jest": "^27.4.7",
     "linaria": "2.1",
-    "lint-staged": "^12.3.1",
+    "lint-staged": "^12.3.2",
     "matched": "^5.0.1",
     "multer": "^1.4.4",
     "postcss-loader": "^6.2.1",
