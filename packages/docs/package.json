@@ -19,7 +19,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
-    "@types/prismjs": "^1.16.8",
+    "@types/prismjs": "^1.26.0",
     "raw-loader": "^4.0.2"
   }
 }
