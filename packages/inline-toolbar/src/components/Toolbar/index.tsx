@@ -47,9 +47,6 @@ export default class Toolbar extends React.Component<ToolbarProps> {
         <BoldButton {...externalProps} />
         <UnderlineButton {...externalProps} />
         <CodeButton {...externalProps} />
-        <AlignTextLeftButton {...externalProps} />
-        <AlignTextCenterButton {...externalProps} />
-        <AlignTextRightButton {...externalProps} />
       </div>
     ),
   };
