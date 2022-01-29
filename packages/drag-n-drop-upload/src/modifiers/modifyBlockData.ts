@@ -7,9 +7,9 @@ export default function modifyBlockData(
 ): EditorState {
   const currentContentState = editorState.getCurrentContent();
 
-  const block = currentContentState.getBlockForKey(key);
-  const entityKey = block.getEntityAt(0);
-  currentContentState.mergeEntityData(entityKey, data);
+  //const block = currentContentState.getBlockForKey(key);
+  //const entityKey = block.getEntityAt(0)
+  currentContentState.mergeEntityData(key, data);
 
   return EditorState.forceSelection(
     editorState,
