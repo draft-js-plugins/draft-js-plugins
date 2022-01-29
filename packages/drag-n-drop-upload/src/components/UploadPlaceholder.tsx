@@ -3,16 +3,22 @@ import React, { ReactElement } from 'react';
 
 interface UploadPlaceholderParams {
   block: ContentBlock;
-  blockProps: { name: string };
+  blockProps: {
+    resizeData: {
+      name: string,
+      progress: string
+    }
+  };
 }
 
-export default function UploadPlaceholder({
-  blockProps,
-  block,
-}: UploadPlaceholderParams): ReactElement {
+export default function UploadPlaceholder(props: UploadPlaceholderParams): ReactElement {
+  const {
+    blockProps,
+    block,
+  } = props;
   return (
     <span contentEditable={false} data-offset-key={`${block.get('key')}-0-0`}>
-      ![Uploading {blockProps.name}...](){' '}
+      ![Uploading {blockProps.resizeData.name}...]({blockProps.resizeData.progress}){' '}
     </span>
   );
 }
