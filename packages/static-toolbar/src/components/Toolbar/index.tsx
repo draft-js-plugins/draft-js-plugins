@@ -7,9 +7,6 @@ import {
   UnderlineButton,
   CodeButton,
   DraftJsButtonTheme,
-  AlignTextCenterButton,
-  AlignTextLeftButton,
-  AlignTextRightButton,
 } from '@draft-js-plugins/buttons';
 import PropTypes from 'prop-types';
 import { StaticToolBarPluginStore, StaticToolbarPluginTheme } from '../../';
@@ -71,9 +68,6 @@ export default class Toolbar extends React.Component<ToolbarProps> {
       <BoldButton {...externalProps} />
       <UnderlineButton {...externalProps} />
       <CodeButton {...externalProps} />
-      <AlignTextLeftButton {...externalProps} />
-      <AlignTextCenterButton {...externalProps} />
-      <AlignTextRightButton {...externalProps} />
     </div>
   );
 

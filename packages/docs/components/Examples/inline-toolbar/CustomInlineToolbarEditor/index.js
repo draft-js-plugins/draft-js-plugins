@@ -18,6 +18,9 @@ import {
   OrderedListButton,
   BlockquoteButton,
   CodeBlockButton,
+  AlignTextLeftButton,
+  AlignTextCenterButton,
+  AlignTextRightButton,
 } from '@draft-js-plugins/buttons';
 import editorStyles from './editorStyles.module.css';
 
@@ -132,6 +135,10 @@ export default class CustomInlineToolbarEditor extends Component {
                 <OrderedListButton {...externalProps} />
                 <BlockquoteButton {...externalProps} />
                 <CodeBlockButton {...externalProps} />
+                <Separator {...externalProps} />
+                <AlignTextLeftButton {...externalProps} />
+                <AlignTextCenterButton {...externalProps} />
+                <AlignTextRightButton {...externalProps} />
               </div>
             )
           }

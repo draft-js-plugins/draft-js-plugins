@@ -7,9 +7,6 @@ import {
   UnderlineButton,
   CodeButton,
   DraftJsButtonTheme,
-  AlignTextCenterButton,
-  AlignTextLeftButton,
-  AlignTextRightButton,
 } from '@draft-js-plugins/buttons';
 import { InlineToolbarPluginStore } from '../../';
 import { InlineToolbarPluginTheme } from '../../theme';
