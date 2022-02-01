@@ -105,6 +105,8 @@ module.exports = {
     'import/core-modules': [
       '@draft-js-plugins/alignment',
       '@draft-js-plugins/alignment/lib/plugin.css',
+      '@draft-js-plugins/text-alignment',
+      '@draft-js-plugins/text-alignment/lib/plugin.css',
       '@draft-js-plugins/anchor',
       '@draft-js-plugins/anchor/lib/plugin.css',
       '@draft-js-plugins/buttons',

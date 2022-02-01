@@ -18,6 +18,7 @@ const packages = [
   '@draft-js-plugins/side-toolbar',
   '@draft-js-plugins/focus',
   '@draft-js-plugins/alignment',
+  '@draft-js-plugins/text-alignment',
   '@draft-js-plugins/image',
   '@draft-js-plugins/resizeable',
   '@draft-js-plugins/buttons',
