@@ -24,6 +24,7 @@ High quality plugins with great UX on top of [DraftJS](https://github.com/facebo
 - [Side Toolbar](https://www.draft-js-plugins.com/plugin/side-toolbar)
 - [Static Toolbar](https://www.draft-js-plugins.com/plugin/static-toolbar)
 - [Sticker](https://www.draft-js-plugins.com/plugin/sticker)
+- [Text Alignment](https://www.draft-js-plugins.com/plugin/text-alignment)
 - [Undo](https://www.draft-js-plugins.com/plugin/undo)
 - [Video](https://www.draft-js-plugins.com/plugin/video)
 - or build your own … :)
