@@ -5,9 +5,9 @@ import customExampleCode from '!!raw-loader!../../../components/Examples/text-al
 import themedExampleButtonStylesCode from '!!raw-loader!../../../components/Examples/text-alignment/CustomStaticToolbarPlugin/buttonStyles.module.css';
 import themedExampleToolbarStylesCode from '!!raw-loader!../../../components/Examples/text-alignment/CustomStaticToolbarPlugin/toolbarStyles.module.css';
 import themedExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/text-alignment/CustomStaticToolbarPlugin/editorStyles.module.css';
+import themedExampleAlignmentStyles from '!!raw-loader!../../../components/Examples/text-alignment/CustomStaticToolbarPlugin/alignmentStyles.module.css';
 import simpleExampleEditorStylesCode from '!!raw-loader!../../../components/Examples/text-alignment/SimpleTextAlignmentPlugin/editorStyles.module.css';
 // eslint-disable-next-line import/no-unresolved
-import blocksStyle from '!!raw-loader!../../../components/Examples/text-alignment/blocksStyle.css';
 import gettingStarted from '!!raw-loader!../../../components/Examples/text-alignment/gettingStarted';
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-duplicates
@@ -70,33 +70,7 @@ export default class App extends Component {
             ). Otherwise you can supply your own styles via the `theme` config
             option.
           </p>
-          <p>
-            <b>Important</b>: this plugin use{' '}
-            <InlineCode code={'blockStyleFn'} /> of draftjs, so you must put
-            this style in your css, read
-            <ExternalLink
-              target="_blank"
-              href="https://draftjs.org/docs/advanced-topics-block-styling/#blockstylefn"
-            >
-              {' '}
-              Block Styling - draftjs
-            </ExternalLink>
-          </p>
-          <Code code={blocksStyle} />
         </AlternateContainer>
-        <Container>
-          <Heading level={2}>Configuration Parameters</Heading>
-          <div className={styles.param}>
-            <span className={styles.paramName}>prefixClass</span>
-            <span>Prefix of class name of aligned blocks</span>
-            <div className={styles.subParams}>
-              <div className={styles.subParam}>
-                <span className={styles.subParamName}>Default:</span>
-                draft-textAlign
-              </div>
-            </div>
-          </div>
-        </Container>
         <Container>
           <Heading level={2}>Simple Static Toolbar Example</Heading>
           <SimpleTextAlignmentPluginEditor />
@@ -115,6 +89,10 @@ export default class App extends Component {
           <Code
             code={themedExampleToolbarStylesCode}
             name="toolbarStyles.css"
+          />
+          <Code
+            code={themedExampleAlignmentStyles}
+            name="alignmentStyles.css"
           />
         </Container>
       </PluginPageFrame>
