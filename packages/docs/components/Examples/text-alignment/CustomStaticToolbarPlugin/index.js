@@ -9,11 +9,13 @@ import {
 } from '@draft-js-plugins/buttons';
 import editorStyles from './editorStyles.module.css';
 import buttonStyles from './buttonStyles.module.css';
+import alignmentStyles from './alignmentStyles.module.css';
 import toolbarStyles from './toolbarStyles.module.css';
 
 const textAlignmentPlugin = createTextAlignmentPlugin({
-  prefixClass: 'custom-alignment',
+  theme: { alignmentStyles },
 });
+
 const staticToolbarPlugin = createStaticToolbarPlugin({
   theme: { buttonStyles, toolbarStyles },
 });

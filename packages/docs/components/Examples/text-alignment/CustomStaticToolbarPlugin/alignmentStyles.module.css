@@ -1,0 +1,14 @@
+.draftLeft {
+  color: blue;
+  font-weight: bold;
+}
+
+.draftRight {
+  color: green;
+  font-weight: bold;
+}
+
+.draftCenter {
+  color: red;
+  font-weight: bold;
+}

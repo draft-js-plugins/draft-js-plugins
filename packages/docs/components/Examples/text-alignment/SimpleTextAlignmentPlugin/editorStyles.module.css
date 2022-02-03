@@ -12,15 +12,3 @@
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
 }
-
-.editor :global .draft-textAlign-left .public-DraftStyleDefault-block {
-  text-align: left;
-}
-
-.editor :global .draft-textAlign-center .public-DraftStyleDefault-block {
-  text-align: center;
-}
-
-.editor :global .draft-textAlign-right .public-DraftStyleDefault-block {
-  text-align: right;
-}
