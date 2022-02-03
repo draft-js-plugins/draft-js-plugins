@@ -2,16 +2,19 @@ import React, { ComponentType, ReactElement } from 'react';
 import { ContentBlock, EditorState } from 'draft-js';
 import { EditorPlugin } from '@draft-js-plugins/editor';
 import { createStore, Store } from '@draft-js-plugins/utils';
-import TextAlignmentComponent from './TextAlignmentComponent';
-import type { TextAlignmentButtonsTheme } from './theme';
-
-export interface AlignmentPluginProps {
-  theme: TextAlignmentButtonsTheme;
-}
+import TextAlignmentComponent, {
+  AlignmentPluginsPubParams,
+} from './TextAlignmentComponent';
+import type { TextAlignmentPluginTheme } from './theme';
+import { defaultTheme } from './theme';
 
 export interface AlignmentPluginConfig {
-  prefixClass?: string;
+  theme?: TextAlignmentPluginTheme;
 }
+
+export type TextAlignmentPlugin = EditorPlugin & {
+  TextAlignment: ComponentType<AlignmentPluginsPubParams>;
+};
 
 interface StoreItemMap {
   getEditorState?(): EditorState;
@@ -20,15 +23,16 @@ interface StoreItemMap {
 
 export type AlignmentPluginStore = Store<StoreItemMap>;
 
-export default (
-  config: AlignmentPluginConfig = {}
-): EditorPlugin & {
-  TextAlignment: ComponentType<AlignmentPluginProps>;
-} => {
+export default (config: AlignmentPluginConfig = {}): TextAlignmentPlugin => {
+  const { theme } = config;
+
   const store = createStore<StoreItemMap>();
-  const TextAlignment = (props: AlignmentPluginProps): ReactElement => (
+  const TextAlignment = (props: AlignmentPluginsPubParams): ReactElement => (
     <TextAlignmentComponent store={store} {...props} />
   );
+
+  const capitalFirstLetter = (str: string): string =>
+    str.charAt(0).toUpperCase() + str.slice(1);
 
   const getBlockAlignment = (block: ContentBlock): string => {
     let style = 'left';
@@ -40,28 +44,28 @@ export default (
       },
       () => true
     );
-    return style;
+    return capitalFirstLetter(style);
   };
 
-  const prefixClass = config.prefixClass
-    ? config.prefixClass
-    : 'draft-textAlign';
   return {
     initialize: ({ getEditorState, setEditorState }) => {
       store.updateItem('getEditorState', getEditorState);
       store.updateItem('setEditorState', setEditorState);
     },
+
     blockStyleFn: (block: ContentBlock, { getEditorState }) => {
-      let alignment = getBlockAlignment(block);
+      let alignment = `draft${getBlockAlignment(block)}`;
       if (!block.getText()) {
         const previousBlock = getEditorState()
           .getCurrentContent()
           .getBlockBefore(block.getKey());
         if (previousBlock) {
-          alignment = getBlockAlignment(previousBlock);
+          alignment = `draft${getBlockAlignment(previousBlock)}`;
         }
       }
-      return `${prefixClass}-${alignment}`;
+      return theme
+        ? `${theme.alignmentStyles[alignment]} ${defaultTheme.alignmentStyles[alignment]}`
+        : defaultTheme.alignmentStyles[alignment];
     },
     TextAlignment,
   };

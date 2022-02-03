@@ -7,22 +7,22 @@ import {
   AlignTextRightButton,
 } from '@draft-js-plugins/buttons';
 import { AlignmentPluginStore } from '.';
-import type { TextAlignmentButtonsTheme } from './theme';
+import type { TextAlignmentPluginTheme } from './theme';
 
-export interface AlignmentChildrenProps {
-  theme: TextAlignmentButtonsTheme;
+export interface AlignmentPluginsPubParams {
+  theme: TextAlignmentPluginTheme;
   getEditorState: () => EditorState;
   setEditorState: (editorState: EditorState) => void;
 }
 
 interface ToolbarProps {
   store: AlignmentPluginStore;
-  theme: TextAlignmentButtonsTheme;
+  theme: TextAlignmentPluginTheme;
 }
 
 export default class Alignment extends React.Component<ToolbarProps> {
   renderAlignmentButtons = (
-    externalProps: AlignmentChildrenProps
+    externalProps: AlignmentPluginsPubParams
   ): ReactElement => (
     <>
       <AlignTextLeftButton {...externalProps} />
@@ -33,7 +33,7 @@ export default class Alignment extends React.Component<ToolbarProps> {
 
   render(): ReactElement {
     const { store, theme } = this.props;
-    const childrenProps: AlignmentChildrenProps = {
+    const childrenProps: AlignmentPluginsPubParams = {
       theme,
       getEditorState: store.getItem('getEditorState')!,
       setEditorState: store.getItem('setEditorState')!,
