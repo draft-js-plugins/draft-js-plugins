@@ -25,6 +25,7 @@ const links: [string, string][][] = [
   [
     ['/plugin/focus', 'Focus'],
     ['/plugin/alignment', 'Alignment'],
+    ['/plugin/text-alignment', 'Text Alignment'],
     ['/plugin/resizeable', 'Resizeable'],
     ['/plugin/drag-n-drop', "Drag'n'Drop"],
     ['/plugin/divider', 'Divider'],

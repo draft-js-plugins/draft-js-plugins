@@ -1,13 +1,13 @@
 {
-  "name": "@draft-js-plugins/buttons",
-  "version": "4.2.0",
+  "name": "@draft-js-plugins/text-alignment",
+  "version": "1.0.0",
   "sideEffects": [
     "*.css"
   ],
-  "description": "Buttons for DraftJS",
+  "description": "Text Alignment Plugin for DraftJS",
   "author": {
-    "name": "Nik Graf",
-    "email": "nik@nikgraf.com"
+    "name": "Ibraheem S. Ali",
+    "email": "ibraheems.ali95@gmail.com"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   },
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
-  "types": "lib/index.d.ts",
+  "types": "./lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -31,19 +31,24 @@
   ],
   "scripts": {
     "clean": "yarn rimraf lib",
-    "build": "yarn build:js && yarn build:dts",
+    "build": "yarn build:js && yarn build:dts && yarn build:css",
     "build:js": "yarn rollup --config ../../rollup.config.js",
     "build:dts": "tsc -d",
+    "build:css": "node ../../scripts/build-css.js $(pwd)",
     "test": "jest"
   },
   "license": "MIT",
   "dependencies": {
-    "clsx": "^1.0.4"
+    "@draft-js-plugins/buttons": "^4.2.0",
+    "@draft-js-plugins/utils": "^4.0.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
-    "react": "^15.5.0 || ^16.0.0 || ^17.0.0",
-    "react-dom": "^15.5.0 || ^16.0.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
+  },
+  "devDependencies": {
+    "@types/react-dom": "17.0.11"
   },
   "publishConfig": {
     "access": "public"

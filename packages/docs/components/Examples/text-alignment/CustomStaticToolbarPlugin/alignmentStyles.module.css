@@ -1,0 +1,17 @@
+.draftLeft :global(.public-DraftStyleDefault-ltr) {
+  color: blue;
+  font-weight: bold;
+  text-align: left;
+}
+
+.draftRight :global(.public-DraftStyleDefault-ltr) {
+  color: green;
+  font-weight: bold;
+  text-align: right;
+}
+
+.draftCenter :global(.public-DraftStyleDefault-ltr) {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}

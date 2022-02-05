@@ -15,6 +15,7 @@ import '@draft-js-plugins/undo/lib/plugin.css';
 import '@draft-js-plugins/image/lib/plugin.css';
 import '@draft-js-plugins/focus/lib/plugin.css';
 import '@draft-js-plugins/alignment/lib/plugin.css';
+import '@draft-js-plugins/text-alignment/lib/plugin.css';
 
 import 'prismjs/themes/prism.css';
 
