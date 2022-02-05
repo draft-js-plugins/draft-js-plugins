@@ -1,7 +1,7 @@
-import React, { ComponentType, ReactElement } from 'react';
-import { ContentBlock, EditorState } from 'draft-js';
 import { EditorPlugin } from '@draft-js-plugins/editor';
 import { createStore, Store } from '@draft-js-plugins/utils';
+import { ContentBlock, EditorState } from 'draft-js';
+import React, { ComponentType, ReactElement } from 'react';
 import TextAlignmentComponent, {
   AlignmentPluginsPubParams,
 } from './TextAlignmentComponent';
@@ -24,7 +24,7 @@ interface StoreItemMap {
 export type AlignmentPluginStore = Store<StoreItemMap>;
 
 export default (config: AlignmentPluginConfig = {}): TextAlignmentPlugin => {
-  const { theme } = config;
+  const { theme = defaultTheme } = config;
 
   const store = createStore<StoreItemMap>();
   const TextAlignment = (props: AlignmentPluginsPubParams): ReactElement => (
@@ -63,9 +63,7 @@ export default (config: AlignmentPluginConfig = {}): TextAlignmentPlugin => {
           alignment = `draft${getBlockAlignment(previousBlock)}`;
         }
       }
-      return theme
-        ? `${theme.alignmentStyles[alignment]} ${defaultTheme.alignmentStyles[alignment]}`
-        : defaultTheme.alignmentStyles[alignment];
+      return theme.alignmentStyles[alignment];
     },
     TextAlignment,
   };
