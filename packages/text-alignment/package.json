@@ -39,7 +39,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@draft-js-plugins/buttons": "^4.0.0",
+    "@draft-js-plugins/buttons": "^4.2.0",
     "@draft-js-plugins/utils": "^4.0.0"
   },
   "peerDependencies": {

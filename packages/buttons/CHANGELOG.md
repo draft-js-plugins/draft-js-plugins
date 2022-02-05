@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.0
+
+- add buttons for text alignment [#2576](https://github.com/draft-js-plugins/draft-js-plugins/pull/2576)
 ## 4.1.1
 
 - add `sideEffects` for css files [#1833](https://github.com/draft-js-plugins/draft-js-plugins/issues/1833)
