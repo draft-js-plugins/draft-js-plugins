@@ -112,8 +112,6 @@ import 'core-js/fn/string/ends-with';
 
 Note: Those imports _might_ not cover all possibly needed polyfills; this means, you maybe need to adapt them.
 
-
-
 ## Keybindings added by a plugin stop working when using custom 'keyBindingFn' function.
 
 You need to return `undefined` if you want plugins to execute the `keyBindingFn` as otherwise the [execution chain ends](draft-js-plugins/packages/editor/src/Editor/PluginHooks.ts).
@@ -135,3 +133,17 @@ const keyBindingFn = (e) => {
   return getDefaultKeyBinding(e);
 };
 ```
+
+## draft-js-plugin decorators are removed after creating a new `EditorState`
+
+If you create a new `EditorState` after the initial rendering of the editor, as in this example, the decorators are removed from the plugins:
+
+```js
+useEffect(() => {
+    let es = getEditorStateFromRaw(props.content));
+    setEditorState(es);
+  }, [props.content]);
+};
+```
+
+You should instead use the [push](https://draftjs.org/docs/api-reference-editor-state/#push) method of `EditorState` to update the state without removing the decorators.
