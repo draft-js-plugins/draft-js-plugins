@@ -107,7 +107,7 @@ class PluginEditor extends Component<PluginEditorProps> {
     );
 
     const editorState = EditorState.set(this.props.editorState, { decorator });
-    this.onChange(EditorState.moveFocusToEnd(editorState));
+    this.onChange(EditorState.moveSelectionToEnd(editorState));
   }
 
   componentDidUpdate(prevProps: PluginEditorProps): void {
@@ -136,7 +136,7 @@ class PluginEditor extends Component<PluginEditorProps> {
     const editorState = EditorState.set(next.editorState, {
       decorator: currDec,
     });
-    this.onChange(EditorState.moveFocusToEnd(editorState));
+    this.onChange(EditorState.moveSelectionToEnd(editorState));
   }
 
   componentWillUnmount(): void {
