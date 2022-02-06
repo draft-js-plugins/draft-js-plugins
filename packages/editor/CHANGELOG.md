@@ -5,9 +5,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.2
+
+- Use `EditorState.moveSelectionToEnd` instead of  `EditorState.moveFocusToEnd` to prevent focus [#2521](https://github.com/draft-js-plugins/draft-js-plugins/issues/2521)
+
 ## 4.1.1
 
 - Use `EditorState.moveFocusToEnd` to move focus to end [#2469](https://github.com/draft-js-plugins/draft-js-plugins/issues/2469)
+
 ## 4.1.0
 
 - add "sideEffects": false for tree shaking
