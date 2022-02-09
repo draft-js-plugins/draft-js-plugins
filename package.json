@@ -46,7 +46,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
-    "jest": "^27.5.0",
+    "jest": "^27.5.1",
     "linaria": "2.1",
     "lint-staged": "^12.3.3",
     "matched": "^5.0.1",
