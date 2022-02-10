@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## To be released
 
 - upgrade to `emojibase@6`
+- escaping variation selector-16 character when splitting emojis into categories [here](https://github.com/draft-js-plugins/draft-js-plugins/issues/2599)
 
 ### Added
 
