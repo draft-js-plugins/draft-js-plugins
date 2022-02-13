@@ -5,7 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
-- add support for a custom upload function in the drag-n-drop-upload plugin.
+## 4.2.0
+
+- add support for a custom upload function in the drag-n-drop-upload plugin. [2518](https://github.com/draft-js-plugins/draft-js-plugins/issues/2518)
 
 ## 4.1.1
 
