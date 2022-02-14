@@ -53,7 +53,7 @@ export default function onDropFile(config: DndUploadPluginConfig) {
 
         handleUpload(data,
           // TODO: what does retainSrc do? Is it useful to keep this option.
-          (uploadedFiles:Array<FileToUpload> /*, {  retainSrc }*/):void => {
+          (uploadedFiles:Array<FileToUpload> /*, {  retainSrc }*/, extraData: Record<string, unknown>[]):void => {
             /* Success! */
 
            /*
@@ -70,9 +70,9 @@ export default function onDropFile(config: DndUploadPluginConfig) {
            setEditorState(editorState);
 
            if(uploadedFiles) {
-             uploadedFiles.forEach((file) => {
+             uploadedFiles.forEach((file, index) => {
                if (config.addImage) {
-                 editorState = config.addImage(editorState, file.src);
+                 editorState = config.addImage(editorState, file.src, extraData[index] || {});
                }
              });
              setEditorState(editorState);
