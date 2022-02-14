@@ -24,7 +24,8 @@ export interface DndUploadPluginConfig {
   handleUpload?(data:any, success:SucessFunction, failed:FailFunction, progress:ProgressFunction):string;
   addImage?(
     editorState: EditorState,
-    placeholderSrc: string | ArrayBuffer | null
+    placeholderSrc: string | ArrayBuffer | null,
+    extraData: Record<string, unknown>
   ): EditorState;
 }
 
