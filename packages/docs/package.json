@@ -14,7 +14,7 @@
     "clsx": "^1.1.1",
     "immutable": "^4.0.0-rc.12",
     "next": "12.1.0",
-    "prismjs": "^1.25.0",
+    "prismjs": "^1.27.0",
     "react-share": "^4.4.0",
     "whatwg-fetch": "^3.6.2"
   },
