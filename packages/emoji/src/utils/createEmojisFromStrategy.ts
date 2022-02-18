@@ -7,12 +7,18 @@ export interface EmojiStrategy {
   };
 }
 
+// Filtering out all non printable characters.
+// All the printable characters of ASCII are conveniently in one continuous range
+function escapeNonASCIICharacters(str: string): string {
+  return str.replace(/[^ -~]+/g, '');
+}
+
 export default function createEmojisFromStrategy(): EmojiStrategy {
   const emojis: EmojiStrategy = {};
 
   for (const item of data) {
     const shortName = toShort(item.unicode);
-    const emoji = emojiList[shortName];
+    const emoji = emojiList[escapeNonASCIICharacters(shortName)];
     if (emoji) {
       if (!emojis[emoji.category]) {
         emojis[emoji.category] = {};
