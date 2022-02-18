@@ -53,7 +53,7 @@
     "multer": "^1.4.4",
     "postcss-loader": "^6.2.1",
     "prettier": "^2.5.1",
-    "prismjs": "^1.25.0",
+    "prismjs": "^1.27.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.67.3",
     "style-loader": "3.3.1",
