@@ -5,13 +5,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.6.0
+
 - upgrade to `emojibase@6`
-- escaping variation selector-16 character when splitting emojis into categories [here](https://github.com/draft-js-plugins/draft-js-plugins/issues/2599)
-
-### Added
-
-- added Support header-menu position customization for emoji picker to have "top/Bottom" position
-- You can find more details [here](https://github.com/draft-js-plugins/draft-js-plugins/pull/2433)
+- escaping variation selector-16 character when splitting emojis into categories [#2599](https://github.com/draft-js-plugins/draft-js-plugins/issues/2599)
+- added Support header-menu position customization for emoji picker to have "top/Bottom" position [#2433](https://github.com/draft-js-plugins/draft-js-plugins/pull/2433)
 
 ## 4.5.5
 
