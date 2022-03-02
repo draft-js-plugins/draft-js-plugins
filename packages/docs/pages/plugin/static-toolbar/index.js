@@ -62,7 +62,7 @@ export default class App extends Component {
             in the installed package: &nbsp;
             <InlineCode
               code={
-                'node_modules/@draft-js-plugins/tatic-toolbar/lib/plugin.css'
+                'node_modules/@draft-js-plugins/static-toolbar/lib/plugin.css'
               }
             />
           </p>
