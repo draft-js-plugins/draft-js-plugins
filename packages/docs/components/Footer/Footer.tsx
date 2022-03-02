@@ -10,7 +10,7 @@ export default function Footer(): ReactElement {
       &nbsp;on Planet Earth
       <div className={styles.emojiAttribution}>
         Emoji art provided free by&nbsp;
-        <Link href="http://emojione.com/">Joy Pixels</Link>
+        <Link href="https://www.joypixels.com/">Joy Pixels</Link>
       </div>
     </footer>
   );
