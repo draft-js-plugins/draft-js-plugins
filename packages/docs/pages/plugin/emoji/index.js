@@ -58,10 +58,10 @@ export default class App extends Component {
             Consistent Emoji display across all platforms, independent of the
             host system.
           </p>
-          <Heading level={3}>Attribution to EmojiOne</Heading>
+          <Heading level={3}>Attribution to JoyPixels</Heading>
           <p>
             The beautiful Emoji art used in this plugin is provided by the{' '}
-            <ExternalLink href="http://emojione.com/">Emoji One</ExternalLink>{' '}
+            <ExternalLink href="http://emojione.com/">Joy Pixels</ExternalLink>{' '}
             project. Personal or non-commercial use of the emojis do not require
             attribution. For the rights to use our emojis still for free in
             commercial projects proper attribution in form of a link is
@@ -343,7 +343,7 @@ export default class App extends Component {
             <div>
               These entries will be show first in the EmojiSuggestions dropdown
               after typing `:`. Must be an object which must contain Emoji
-              entries used by EmojiOne e.g.
+              entries used by JoyPixels e.g.
               <Code code={priorityListCode} />
             </div>
           </div>
@@ -352,7 +352,7 @@ export default class App extends Component {
             <div>
               Emoji select groups specification. Must be an array of objects,
               which declare each group: title, icon (can be a string or React
-              element), array of emoji categories from EmojiOne e.g.
+              element), array of emoji categories from JoyPixels e.g.
               <Code code={selectGroupsCode} />
             </div>
           </div>
@@ -374,7 +374,7 @@ export default class App extends Component {
             <span className={styles.paramName}>useNativeArt</span>
             <span>
               If set to <InlineCode code={'true'} />, uses host system art for
-              emojis instead of EmojiOne art. Default value is{' '}
+              emojis instead of JoyPixels art. Default value is{' '}
               <InlineCode code={'false'} />.
             </span>
           </div>
