@@ -109,7 +109,7 @@ export default class App extends Component {
             In addition to the plugin the module exports{' '}
             <InlineCode code={'extractHashtagsWithIndices'} />
             . As first argument it takes the text string. The function returns a
-            list of hashtags with start and end positons.
+            list of hashtags with start and end positions.
             <Code
               code={
                 'function extractHashtagsWithIndices(text: string): Array<{hashtag: string; indices: [number, number];}>;'
