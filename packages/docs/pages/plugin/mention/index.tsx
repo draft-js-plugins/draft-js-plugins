@@ -267,7 +267,7 @@ export default function Mention(): ReactElement {
             <span className={styles.paramName}>onSearchChange</span>
             <span>
               A callback which is triggered whenever the search term changes.
-              The first argument is an object which constains the search term in
+              The first argument is an object which contains the search term in
               the property value.
             </span>
           </div>
@@ -332,7 +332,7 @@ export default function Mention(): ReactElement {
           In addition to the plugin the module exports{' '}
           <InlineCode code={'defaultSuggestionsFilter'} />. As first argument it
           takes the search term as a String. The second argument is an array of
-          mentions. The third argment is a trigger that is used to filter multi
+          mentions. The third argument is a trigger that is used to filter multi
           mentions. The function returns the filter list based on substring
           matches.
           <Code code="import { defaultSuggestionsFilter } from '@draft-js-plugins/mention';" />
