@@ -61,7 +61,7 @@ export default class App extends Component {
             <ExternalLink href="https://github.com/draft-js-plugins/draft-js-plugins/issues/2272#issuecomment-909642353">
               #2272
             </ExternalLink>{' '}
-            in some cases it might be usefult to wrap the ref with{' '}
+            in some cases it might be useful to wrap the ref with{' '}
             <ExternalLink href="https://reactjs.org/docs/hooks-reference.html#useimperativehandle">
               useImperativeHandle
             </ExternalLink>

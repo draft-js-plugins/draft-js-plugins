@@ -127,7 +127,7 @@ export default class App extends Component {
             In addition to the plugin the module exports{' '}
             <InlineCode code={'extractLinks'} />
             . As first argument it takes the text string. The function returns a
-            list of linkifyit.Matches or null.
+            list of linkifyIt.Matches or null.
             <Code
               code={
                 'function extractLinks(text: string): linkifyIt.Match[] | null;'
