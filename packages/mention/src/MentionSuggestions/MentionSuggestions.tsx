@@ -1,31 +1,31 @@
-import React, {
-  Component,
-  CSSProperties,
-  ComponentType,
-  KeyboardEvent,
-  ReactElement,
-  RefAttributes,
-} from 'react';
-import PropTypes from 'prop-types';
+import { AriaProps, EditorCommand } from '@draft-js-plugins/editor';
 import {
   DraftHandleValue,
   EditorState,
   genKey,
   SelectionState,
 } from 'draft-js';
-import { AriaProps, EditorCommand } from '@draft-js-plugins/editor';
-import Entry, { EntryComponentProps } from './Entry/Entry';
-import addMention from '../modifiers/addMention';
-import getSearchText from '../utils/getSearchText';
-import defaultEntryComponent from './Entry/DefaultEntryComponent';
+import PropTypes from 'prop-types';
+import React, {
+  Component,
+  ComponentType,
+  CSSProperties,
+  KeyboardEvent,
+  ReactElement,
+  RefAttributes,
+} from 'react';
 import { MentionData, MentionPluginStore, PopperOptions } from '..';
+import addMention from '../modifiers/addMention';
+import { MentionPluginTheme } from '../theme';
+import getSearchText from '../utils/getSearchText';
+import getTriggerForMention from '../utils/getTriggerForMention';
 import defaultPositionSuggestions, {
   PositionSuggestionsFn,
 } from '../utils/positionSuggestions';
-import { MentionPluginTheme } from '../theme';
-import getTriggerForMention from '../utils/getTriggerForMention';
-import Popover from './Popover';
 import { warning } from '../utils/warning';
+import defaultEntryComponent from './Entry/DefaultEntryComponent';
+import Entry, { EntryComponentProps } from './Entry/Entry';
+import Popover, { PopoverProps } from './Popover';
 
 export interface MentionSuggestionCallbacks {
   keyBindingFn?(event: KeyboardEvent): EditorCommand | null | undefined;
@@ -50,7 +50,7 @@ export interface MentionSuggestionsPubProps {
     PopoverComponentProps & RefAttributes<HTMLElement>
   >;
   entryComponent?: ComponentType<EntryComponentProps>;
-  popoverContainer?: ComponentType<PopperOptions>;
+  popoverContainer?: ComponentType<PopoverProps>;
   renderEmptyPopup?: boolean;
 }
 

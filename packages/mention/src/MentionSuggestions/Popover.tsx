@@ -1,10 +1,10 @@
+import clsx from 'clsx';
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { usePopper } from 'react-popper';
-import clsx from 'clsx';
 import { MentionPluginStore, PopperOptions } from '..';
 import { MentionPluginTheme } from '../theme';
 
-interface PopoverProps {
+export interface PopoverProps {
   store: MentionPluginStore;
   children: ReactNode;
   popperOptions?: PopperOptions;
