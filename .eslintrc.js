@@ -31,6 +31,7 @@ module.exports = {
           },
         ],
         '@typescript-eslint/explicit-member-accessibility': 0,
+        '@typescript-eslint/no-explicit-any': ['error'],
         '@typescript-eslint/no-non-null-assertion': 0,
         '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/no-use-before-define': [

@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.1
+
+- TypeScript: change handleUpload data from any to specific type
+
 ## 4.2.0
 
 - add support for a custom upload function in the drag-n-drop-upload plugin. [2518](https://github.com/draft-js-plugins/draft-js-plugins/issues/2518)

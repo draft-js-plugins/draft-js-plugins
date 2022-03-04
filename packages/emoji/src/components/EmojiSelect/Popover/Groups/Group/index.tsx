@@ -1,11 +1,14 @@
-import React, { Component, ComponentType, ReactElement } from 'react';
 import PropTypes from 'prop-types';
-import Entry from '../../Entry';
-import { EmojiImageProps, EmojiPluginTheme, EmojiSelectGroup } from '../../../../../index';
+import React, { Component, ComponentType, ReactElement } from 'react';
+import {
+  EmojiImageProps,
+  EmojiPluginTheme,
+  EmojiSelectGroup,
+} from '../../../../../index';
 import { EmojiStrategy } from '../../../../../utils/createEmojisFromStrategy';
+import Entry from '../../Entry';
 
 interface GroupProps {
-  hasRenderedEmoji?: boolean;
   theme: EmojiPluginTheme;
   group: EmojiSelectGroup;
   emojis: EmojiStrategy;
@@ -61,7 +64,7 @@ export default class Group extends Component<GroupProps> {
 
     const categoryEmojis = emojis[category];
 
-    return Object.keys(categoryEmojis).map(key => (
+    return Object.keys(categoryEmojis).map((key) => (
       <li
         key={categoryEmojis[key][0]}
         className={theme.emojiSelectPopoverGroupItem}
@@ -89,18 +92,18 @@ export default class Group extends Component<GroupProps> {
     return (
       <section
         className={theme.emojiSelectPopoverGroup}
-        ref={element => {
+        ref={(element) => {
           this.container = element;
         }}
       >
         <h3 className={theme.emojiSelectPopoverGroupTitle}>{group.title}</h3>
         <ul
           className={theme.emojiSelectPopoverGroupList}
-          ref={element => {
+          ref={(element) => {
             this.list = element;
           }}
         >
-          {group.categories.map(category => this.renderCategory(category))}
+          {group.categories.map((category) => this.renderCategory(category))}
         </ul>
       </section>
     );

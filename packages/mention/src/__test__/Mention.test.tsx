@@ -1,10 +1,7 @@
-import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ContentState } from 'draft-js';
+import React from 'react';
 import Mention from '../Mention';
-import { MentionData } from '..';
-
-const mentiont: MentionData = { name: 'mention' };
 
 describe('Mention', () => {
   it('renders an Anchor tag in case a link is provided', () => {
@@ -25,7 +22,6 @@ describe('Mention', () => {
         contentState={contentState}
         className={'className'}
         decoratedText={'decoratedText'}
-        mention={mentiont}
       >
         children
       </Mention>
@@ -49,7 +45,6 @@ describe('Mention', () => {
         contentState={contentState}
         className={'className'}
         decoratedText={'decoratedText'}
-        mention={mentiont}
       >
         children
       </Mention>
@@ -73,7 +68,6 @@ describe('Mention', () => {
         contentState={contentState}
         className={'className'}
         decoratedText={'decoratedText'}
-        mention={mentiont}
       >
         children
       </Mention>
