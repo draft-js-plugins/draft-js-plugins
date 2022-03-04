@@ -1,10 +1,9 @@
-import React, { Component, ComponentType, ReactElement } from 'react';
-import PropTypes from 'prop-types';
 import { shortnameToUnicode } from 'emoji-toolkit';
+import PropTypes from 'prop-types';
+import React, { Component, ComponentType, ReactElement } from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
 
 interface EntryProps {
-  isFocused?: boolean;
   mouseDown?: boolean;
   theme: EmojiPluginTheme;
   emoji: string;

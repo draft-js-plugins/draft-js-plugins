@@ -1,27 +1,32 @@
-import { EditorState } from 'draft-js';
 import { EditorPlugin } from '@draft-js-plugins/editor';
-import handleDroppedFiles from './handleDroppedFiles';
+import { EditorState } from 'draft-js';
 import UploadPlaceholder from './components/UploadPlaceholder';
+import handleDroppedFiles, { FileData } from './handleDroppedFiles';
 
-export { readFiles, readFile } from './utils/file';
+export { readFile, readFiles } from './utils/file';
 
 export type PlaceholderBlockType = {
-  key: string,
-  text: string,
-  blockKey: string
+  key: string;
+  text: string;
+  blockKey: string;
 };
 
 export type FileToUpload = {
-  src: string,
-  name: string
-}
+  src: string;
+  name: string;
+};
 
-type SucessFunction = (uploadedFiles:Array<FileToUpload>) => void;
+type SucessFunction = (uploadedFiles: Array<FileToUpload>) => void;
 type FailFunction = (file: FileToUpload) => void;
-type ProgressFunction = (percent:number, file:FileToUpload) => void;
+type ProgressFunction = (percent: number, file: FileToUpload) => void;
 
 export interface DndUploadPluginConfig {
-  handleUpload?(data:any, success:SucessFunction, failed:FailFunction, progress:ProgressFunction):string;
+  handleUpload?(
+    data: FileData,
+    success: SucessFunction,
+    failed: FailFunction,
+    progress: ProgressFunction
+  ): string;
   addImage?(
     editorState: EditorState,
     placeholderSrc: string | ArrayBuffer | null
@@ -48,8 +53,8 @@ const createDndFileUploadPlugin = (
       return null;
     }
 
-   return null;
-  }
+    return null;
+  },
 });
 
 export default createDndFileUploadPlugin;

@@ -1,20 +1,23 @@
-import React, { ComponentType, ReactElement, ReactNode } from 'react';
-import { ContentState } from 'draft-js';
 import clsx from 'clsx';
+import { ContentState } from 'draft-js';
+import React, { ComponentType, ReactElement, ReactNode } from 'react';
 import { MentionData } from '.';
 import { MentionPluginTheme } from './theme';
 
 export interface SubMentionComponentProps {
+  // eslint-disable-next-line react/no-unused-prop-types
   mention: MentionData;
   children: ReactNode;
   className: string;
+  // eslint-disable-next-line react/no-unused-prop-types
   entityKey: string;
+  // eslint-disable-next-line react/no-unused-prop-types
   theme: MentionPluginTheme;
+  // eslint-disable-next-line react/no-unused-prop-types
   decoratedText: string;
 }
 
 export interface MentionProps {
-  mention: MentionData;
   children: ReactNode;
   className: string;
   entityKey: string;
