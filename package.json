@@ -60,7 +60,7 @@
     "ts-jest": "27.1.3",
     "ts-node": "10.6.0",
     "typescript": "4.6.2",
-    "webpack": "^5.69.1"
+    "webpack": "^5.70.0"
   },
   "keywords": [
     "components",
