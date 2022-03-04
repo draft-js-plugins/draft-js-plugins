@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 5.1.2
+
+- Fixing `popoverContainer` type for `MentionSuggestions` [#2633](https://github.com/draft-js-plugins/draft-js-plugins/issues/2633)
+
 ## 5.1.1
 
 - Add Japanese symbol to default regExp
