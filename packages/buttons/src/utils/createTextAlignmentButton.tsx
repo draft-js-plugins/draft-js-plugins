@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
-import React, { MouseEvent, ReactNode } from 'react';
-import { Modifier, EditorState } from 'draft-js';
 import clsx from 'clsx';
+import { EditorState, Modifier } from 'draft-js';
+import React, { MouseEvent, ReactNode } from 'react';
 import { DraftJsStyleButtonType } from '..';
 
 interface CreateTextAlignmentButtonProp {
@@ -68,7 +68,7 @@ export default function createTextAlignmentButton({
       props.getEditorState &&
       props.getEditorState().getCurrentInlineStyle().has(alignment);
 
-    const { theme } = props;
+    const { theme, buttonProps = {} } = props;
     const className = styleIsActive()
       ? clsx(theme.button, theme.active)
       : theme.button;
@@ -80,6 +80,7 @@ export default function createTextAlignmentButton({
           onClick={toggleStyle}
           type="button"
           children={children}
+          {...buttonProps}
         />
       </div>
     );

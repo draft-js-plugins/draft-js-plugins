@@ -1,29 +1,29 @@
-import { ComponentType } from 'react';
 import { EditorState } from 'draft-js';
-import createBlockStyleButton from './utils/createBlockStyleButton';
-import createInlineStyleButton from './utils/createInlineStyleButton';
-import createBlockAlignmentButton from './utils/createBlockAlignmentButton';
-import createTextAlignmentButton from './utils/createTextAlignmentButton';
-import ItalicButton from './components/ItalicButton';
-import BoldButton from './components/BoldButton';
-import CodeButton from './components/CodeButton';
-import UnderlineButton from './components/UnderlineButton';
-import HeadlineOneButton from './components/HeadlineOneButton';
-import HeadlineTwoButton from './components/HeadlineTwoButton';
-import HeadlineThreeButton from './components/HeadlineThreeButton';
-import UnorderedListButton from './components/UnorderedListButton';
-import OrderedListButton from './components/OrderedListButton';
-import BlockquoteButton from './components/BlockquoteButton';
-import CodeBlockButton from './components/CodeBlockButton';
-import AlignBlockDefaultButton from './components/AlignBlockDefaultButton';
+import { ButtonHTMLAttributes, ComponentType } from 'react';
 import AlignBlockCenterButton from './components/AlignBlockCenterButton';
+import AlignBlockDefaultButton from './components/AlignBlockDefaultButton';
 import AlignBlockLeftButton from './components/AlignBlockLeftButton';
 import AlignBlockRightButton from './components/AlignBlockRightButton';
-import AlignTextLeftButton from './components/AlignTextLeftButton';
 import AlignTextCenterButton from './components/AlignTextCenterButton';
+import AlignTextLeftButton from './components/AlignTextLeftButton';
 import AlignTextRightButton from './components/AlignTextRightButton';
+import BlockquoteButton from './components/BlockquoteButton';
+import BoldButton from './components/BoldButton';
+import CodeBlockButton from './components/CodeBlockButton';
+import CodeButton from './components/CodeButton';
+import HeadlineOneButton from './components/HeadlineOneButton';
+import HeadlineThreeButton from './components/HeadlineThreeButton';
+import HeadlineTwoButton from './components/HeadlineTwoButton';
+import ItalicButton from './components/ItalicButton';
+import OrderedListButton from './components/OrderedListButton';
 import SubButton from './components/SubButton';
 import SupButton from './components/SupButton';
+import UnderlineButton from './components/UnderlineButton';
+import UnorderedListButton from './components/UnorderedListButton';
+import createBlockAlignmentButton from './utils/createBlockAlignmentButton';
+import createBlockStyleButton from './utils/createBlockStyleButton';
+import createInlineStyleButton from './utils/createInlineStyleButton';
+import createTextAlignmentButton from './utils/createTextAlignmentButton';
 
 export interface DraftJsButtonTheme {
   // CSS classes to apply
@@ -34,6 +34,7 @@ export interface DraftJsButtonTheme {
 
 export interface DraftJsButtonProps {
   theme: DraftJsButtonTheme;
+  buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
 }
 
 export interface DraftJsBlockAlignmentButtonProps extends DraftJsButtonProps {

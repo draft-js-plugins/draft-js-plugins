@@ -1,6 +1,6 @@
 /* eslint-disable react/no-children-prop */
-import React, { MouseEvent, ReactNode } from 'react';
 import clsx from 'clsx';
+import React, { MouseEvent, ReactNode } from 'react';
 import { DraftJsBlockAlignmentButtonType } from '..';
 
 interface CreateBlockAlignmentButtonProps {
@@ -24,7 +24,7 @@ export default function createBlockAlignmentButton({
 
     const isActive = (): boolean => props.alignment === alignment;
 
-    const { theme } = props;
+    const { theme, buttonProps = {} } = props;
     const className = isActive()
       ? clsx(theme.button, theme.active)
       : theme.button;
@@ -36,6 +36,7 @@ export default function createBlockAlignmentButton({
           onClick={activate}
           type="button"
           children={children}
+          {...buttonProps}
         />
       </div>
     );
