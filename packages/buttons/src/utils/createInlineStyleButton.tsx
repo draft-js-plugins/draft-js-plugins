@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
-import React, { MouseEvent, ReactNode } from 'react';
-import { RichUtils } from 'draft-js';
 import clsx from 'clsx';
+import { RichUtils } from 'draft-js';
+import React, { MouseEvent, ReactNode } from 'react';
 import { DraftJsStyleButtonType } from '..';
 
 interface CreateInlineStyleButtonProp {
@@ -30,7 +30,7 @@ export default function createInlineStyleButton({
       props.getEditorState &&
       props.getEditorState().getCurrentInlineStyle().has(style);
 
-    const { theme } = props;
+    const { theme, buttonProps = {} } = props;
     const className = styleIsActive()
       ? clsx(theme.button, theme.active)
       : theme.button;
@@ -38,10 +38,11 @@ export default function createInlineStyleButton({
     return (
       <div className={theme.buttonWrapper} onMouseDown={preventBubblingUp}>
         <button
+          children={children}
+          {...buttonProps}
           className={className}
           onClick={toggleStyle}
           type="button"
-          children={children}
         />
       </div>
     );

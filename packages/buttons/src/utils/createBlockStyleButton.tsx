@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
-import React, { MouseEvent, ReactNode } from 'react';
-import { RichUtils } from 'draft-js';
 import clsx from 'clsx';
+import { RichUtils } from 'draft-js';
+import React, { MouseEvent, ReactNode } from 'react';
 import { DraftJsStyleButtonType } from '..';
 
 interface CreateBlockStyleButtonProps {
@@ -39,7 +39,7 @@ export default function createBlockStyleButton({
       return type === blockType;
     };
 
-    const { theme } = props;
+    const { theme, buttonProps = {} } = props;
     const className = blockTypeIsActive()
       ? clsx(theme.button, theme.active)
       : theme.button;
@@ -47,10 +47,11 @@ export default function createBlockStyleButton({
     return (
       <div className={theme.buttonWrapper} onMouseDown={preventBubblingUp}>
         <button
+          children={children}
+          {...buttonProps}
           className={className}
           onClick={toggleStyle}
           type="button"
-          children={children}
         />
       </div>
     );
