@@ -76,11 +76,11 @@ export default function createTextAlignmentButton({
     return (
       <div className={theme.buttonWrapper} onMouseDown={preventBubblingUp}>
         <button
+          children={children}
+          {...buttonProps}
           className={className}
           onClick={toggleStyle}
           type="button"
-          children={children}
-          {...buttonProps}
         />
       </div>
     );

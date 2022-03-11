@@ -38,11 +38,11 @@ export default function createInlineStyleButton({
     return (
       <div className={theme.buttonWrapper} onMouseDown={preventBubblingUp}>
         <button
+          children={children}
+          {...buttonProps}
           className={className}
           onClick={toggleStyle}
           type="button"
-          children={children}
-          {...buttonProps}
         />
       </div>
     );
