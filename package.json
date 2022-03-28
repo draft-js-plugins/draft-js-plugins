@@ -59,7 +59,7 @@
     "style-loader": "3.3.1",
     "ts-jest": "27.1.4",
     "ts-node": "10.7.0",
-    "typescript": "4.6.2",
+    "typescript": "4.6.3",
     "webpack": "^5.70.0"
   },
   "keywords": [
