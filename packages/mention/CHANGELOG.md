@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 5.2.2
+
+- Export `Popover` component for `MentionSuggestions` prop `popoverContainer` without lose of Popper.js functionally  [#2684](https://github.com/draft-js-plugins/draft-js-plugins/issues/2684)
+
 ## 5.1.2
 
 - Fixing `popoverContainer` type for `MentionSuggestions` [#2633](https://github.com/draft-js-plugins/draft-js-plugins/issues/2633)
