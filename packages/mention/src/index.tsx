@@ -21,6 +21,7 @@ import mentionSuggestionsStrategy from './mentionSuggestionsStrategy';
 import suggestionsFilter from './utils/defaultSuggestionsFilter';
 
 export { default as MentionSuggestions } from './MentionSuggestions/MentionSuggestions';
+export { default as Popover } from './MentionSuggestions/Popover';
 
 export { defaultTheme };
 export { addMention };
