@@ -5,8 +5,13 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+
 jobs:
   auto-merge:
+    permissions:
+      contents: none
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:

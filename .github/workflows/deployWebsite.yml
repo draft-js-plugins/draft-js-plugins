@@ -2,8 +2,13 @@ name: deployWebsite
 
 on: workflow_dispatch
 
+permissions:
+  contents: read
+
 jobs:
   deployWebsite:
+    permissions:
+      contents: write  # for JamesIves/github-pages-deploy-action to push changes in repo
     name: Deploy Website
     runs-on: ubuntu-latest
     steps:
