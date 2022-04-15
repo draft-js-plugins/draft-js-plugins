@@ -1,17 +1,17 @@
 /* eslint no-unused-expressions: 0, react/no-children-prop:0 */
-import React from 'react';
 import { render } from '@testing-library/react';
 import userEvents from '@testing-library/user-event';
 import { EditorState, Modifier } from 'draft-js';
-import Undo from '../index';
+import React from 'react';
 import { UndoPuginStore } from '../..';
+import Undo from '../index';
 
 describe('UndoButton', () => {
   function getStore(state = EditorState.createEmpty()): UndoPuginStore {
-    return ({
+    return {
       getEditorState: () => state,
       setEditorState: jest.fn(),
-    } as unknown) as UndoPuginStore;
+    } as unknown as UndoPuginStore;
   }
 
   it('applies the className based on the theme property `undo`', () => {
@@ -56,7 +56,7 @@ describe('UndoButton', () => {
     expect(getByRole('button')).toHaveProperty('disabled', true);
   });
 
-  it('removes disabled attribute from button if the getUndoStack is not empty and click button', () => {
+  it('removes disabled attribute from button if the getUndoStack is not empty and click button', async () => {
     const editorState = EditorState.createEmpty();
     const contentState = editorState.getCurrentContent();
     const SelectionState = editorState.getSelection();
@@ -77,7 +77,7 @@ describe('UndoButton', () => {
       </Undo>
     );
     expect(getByRole('button')).toHaveProperty('disabled', false);
-    userEvents.click(getByRole('button'));
+    await userEvents.click(getByRole('button'));
     expect(store.setEditorState).toHaveBeenCalledTimes(1);
   });
 });
