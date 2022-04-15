@@ -20,6 +20,7 @@ module.exports = {
   ],
   plugins: [
     ['@babel/plugin-proposal-class-properties', { loose: true }],
+    '@babel/transform-runtime',
     removeLinariaImport,
   ],
 };
