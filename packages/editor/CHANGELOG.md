@@ -5,9 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.3
+
+- support react 18 in peer dependencies [#2701](https://github.com/draft-js-plugins/draft-js-plugins/issues/2701)
+
 ## 4.1.2
 
-- Use `EditorState.moveSelectionToEnd` instead of  `EditorState.moveFocusToEnd` to prevent focus [#2521](https://github.com/draft-js-plugins/draft-js-plugins/issues/2521)
+- Use `EditorState.moveSelectionToEnd` instead of `EditorState.moveFocusToEnd` to prevent focus [#2521](https://github.com/draft-js-plugins/draft-js-plugins/issues/2521)
 
 ## 4.1.1
 

@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 5.0.1
+
+- support react 18 in peer dependencies [#2701](https://github.com/draft-js-plugins/draft-js-plugins/issues/2701)
+
 ## 5.0.0
 
 - add `createBlockTypeSelectPopperOptions` option to control `popper.js` for BlockTypeSelect popup [#2182](https://github.com/draft-js-plugins/draft-js-plugins/issues/2182)

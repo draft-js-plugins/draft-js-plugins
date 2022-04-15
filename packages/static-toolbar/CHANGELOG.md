@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.3
+
+- support react 18 in peer dependencies [#2701](https://github.com/draft-js-plugins/draft-js-plugins/issues/2701)
+
 ## 4.1.2
 
 - adjust types to fix issue with anchor plugin [#1802](https://github.com/draft-js-plugins/draft-js-plugins/issues/1802)

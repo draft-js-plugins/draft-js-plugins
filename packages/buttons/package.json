@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/buttons",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "sideEffects": [
     "*.css"
   ],
@@ -42,8 +42,8 @@
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
-    "react": "^15.5.0 || ^16.0.0 || ^17.0.0",
-    "react-dom": "^15.5.0 || ^16.0.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "publishConfig": {
     "access": "public"
