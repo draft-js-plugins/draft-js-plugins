@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/text-alignment",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "sideEffects": [
     "*.css"
   ],
@@ -44,12 +44,10 @@
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
-  "devDependencies": {
-    "@types/react-dom": "17.0.14"
-  },
+  "devDependencies": {},
   "publishConfig": {
     "access": "public"
   }

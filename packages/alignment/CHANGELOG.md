@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 5.0.3
+
+- support react 18 in peer dependencies [#2701](https://github.com/draft-js-plugins/draft-js-plugins/issues/2701)
+
 ## 5.0.2
 
 - set `visibleBlock` to null on decorator destructing [#2277](https://github.com/draft-js-plugins/draft-js-plugins/issues/2277)

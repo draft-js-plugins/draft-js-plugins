@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.3.1
+
+- support react 18 in peer dependencies [#2701](https://github.com/draft-js-plugins/draft-js-plugins/issues/2701)
+
 ## 4.3.0
 
 - add `buttonProps` to customize buttons [#2628](https://github.com/draft-js-plugins/draft-js-plugins/issues/2628)
