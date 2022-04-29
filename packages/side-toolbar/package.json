@@ -43,7 +43,7 @@
     "@draft-js-plugins/utils": "^4.0.0",
     "@popperjs/core": "^2.11.5",
     "prop-types": "^15.8.1",
-    "react-popper": "^2.2.5"
+    "react-popper": "^2.3.0"
   },
   "peerDependencies": {
     "draft-js": "^0.11.0",
