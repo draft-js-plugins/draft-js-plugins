@@ -47,7 +47,7 @@
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "prop-types": "^15.8.1",
-    "react-popper": "^2.2.5"
+    "react-popper": "^2.3.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
