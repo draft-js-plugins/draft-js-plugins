@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+#4.1.4
+
+- Account for scroll offsets in parent elements of DraftEditor-root
+
 ## 4.1.3
 
 - support react 18 in peer dependencies [#2701](https://github.com/draft-js-plugins/draft-js-plugins/issues/2701)
