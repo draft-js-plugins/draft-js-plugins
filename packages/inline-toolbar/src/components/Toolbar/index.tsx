@@ -112,9 +112,18 @@ export default class Toolbar extends React.Component<ToolbarProps> {
       // but rather with a small offset so the caret doesn't overlap with the text.
       const extraTopOffset = -5;
 
+      // Account for scrollTop of all ancestors
+      let scrollOffset = 0;
+      let ancestorNode = editorRoot.parentNode as HTMLElement;
+      while (ancestorNode !== null && !! ancestorNode.scrollTop) {
+        scrollOffset += ancestorNode.scrollTop;
+        ancestorNode = ancestorNode.parentNode as HTMLElement;
+      }
+
       const position = {
         top:
           editorRoot.offsetTop -
+          scrollOffset -
           this.toolbar.offsetHeight +
           (selectionRect.top - editorRootRect.top) +
           extraTopOffset,
