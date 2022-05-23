@@ -5,7 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
-#4.1.4
+## 4.1.5
+
+- Account for scroll offsets of 0 in parent elements of DraftEditor-root
+
+- Account for scroll offsets in parent elements of DraftEditor-root [#2766](https://github.com/draft-js-plugins/draft-js-plugins/issues/2766)
+## 4.1.4
 
 - Account for scroll offsets in parent elements of DraftEditor-root [#2766](https://github.com/draft-js-plugins/draft-js-plugins/issues/2766)
 
