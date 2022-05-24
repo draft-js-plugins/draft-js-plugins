@@ -115,8 +115,8 @@ export default class Toolbar extends React.Component<ToolbarProps> {
       // Account for scrollTop of all ancestors
       let scrollOffset = 0;
       let ancestorNode = editorRoot.parentNode as HTMLElement;
-      while (ancestorNode !== null) {
-        scrollOffset += ancestorNode.scrollTop ?? 0;
+      while (ancestorNode !== null && !! ancestorNode.scrollTop) {
+        scrollOffset += ancestorNode.scrollTop;
         ancestorNode = ancestorNode.parentNode as HTMLElement;
       }
 
