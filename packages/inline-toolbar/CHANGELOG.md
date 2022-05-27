@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.1.6
+
+- Ignore scroll offset of HTML node
+
 ## 4.1.5
 
 - Account for scroll offsets of 0 in parent elements of DraftEditor-root
