@@ -1,3 +1,19 @@
+import createAlignmentPlugin from '@draft-js-plugins/alignment';
+import createBlockDndPlugin from '@draft-js-plugins/drag-n-drop';
+import Editor, { composeDecorators } from '@draft-js-plugins/editor';
+import createEmojiPlugin from '@draft-js-plugins/emoji';
+import createFocusPlugin from '@draft-js-plugins/focus';
+import createHashtagPlugin from '@draft-js-plugins/hashtag';
+import createImagePlugin from '@draft-js-plugins/image';
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
+import createLinkifyPlugin from '@draft-js-plugins/linkify';
+import createMentionPlugin, {
+  defaultSuggestionsFilter,
+} from '@draft-js-plugins/mention';
+import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
+import createStickerPlugin from '@draft-js-plugins/sticker';
+import createUndoPlugin from '@draft-js-plugins/undo';
+import { convertFromRaw, EditorState } from 'draft-js';
 import React, {
   ReactElement,
   useCallback,
@@ -5,26 +21,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import Editor, { composeDecorators } from '@draft-js-plugins/editor';
-import createHashtagPlugin from '@draft-js-plugins/hashtag';
-import createStickerPlugin from '@draft-js-plugins/sticker';
-import createLinkifyPlugin from '@draft-js-plugins/linkify';
-import createMentionPlugin, {
-  defaultSuggestionsFilter,
-} from '@draft-js-plugins/mention';
-import createEmojiPlugin from '@draft-js-plugins/emoji';
-import createUndoPlugin from '@draft-js-plugins/undo';
-import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
-import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
-import createImagePlugin from '@draft-js-plugins/image';
-import createFocusPlugin from '@draft-js-plugins/focus';
-import createAlignmentPlugin from '@draft-js-plugins/alignment';
-import createBlockDndPlugin from '@draft-js-plugins/drag-n-drop';
-import { convertFromRaw, EditorState } from 'draft-js';
-import styles from './UnicornEditor.module.css';
-import stickers from './Stickers';
-import mentions from './Mentions';
 import initialState from './InitialState';
+import mentions from './Mentions';
+import stickers from './Stickers';
+import styles from './UnicornEditor.module.css';
 
 const emojiPlugin = createEmojiPlugin();
 const hashtagPlugin = createHashtagPlugin();
@@ -79,7 +79,7 @@ export default function UnicornEditor(): ReactElement {
     setEditorState(_editorState);
   }, []);
 
-  const onMentionSearchChange = useCallback(({ value }) => {
+  const onMentionSearchChange = useCallback(({ value }: { value: string }) => {
     setSuggestions(defaultSuggestionsFilter(value, mentions));
   }, []);
 

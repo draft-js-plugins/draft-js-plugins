@@ -1,12 +1,11 @@
+import PropTypes from 'prop-types';
 import React, {
   Component,
   ComponentType,
   ReactElement,
   WheelEvent,
 } from 'react';
-import PropTypes from 'prop-types';
-import { Scrollbars, positionValues } from 'react-custom-scrollbars-2';
-import Group from './Group';
+import { positionValues, Scrollbars } from 'react-custom-scrollbars-2';
 import {
   EmojiImageProps,
   EmojiPluginTheme,
@@ -14,6 +13,7 @@ import {
 } from '../../../../index';
 import { EmojiStrategy } from '../../../../utils/createEmojisFromStrategy';
 import Entry from '../Entry';
+import Group from './Group';
 
 interface GroupsProps {
   activeGroup?: number;
@@ -69,11 +69,8 @@ export default class Groups extends Component<GroupsProps> {
 
   onWheel = (event: WheelEvent<HTMLDivElement>): void => {
     // Disable page scroll, but enable groups scroll
-    const {
-      clientHeight,
-      scrollHeight,
-      scrollTop,
-    } = this.scrollbars!.getValues();
+    const { clientHeight, scrollHeight, scrollTop } =
+      this.scrollbars!.getValues();
     if (event.deltaY > 0) {
       if (scrollTop < scrollHeight - clientHeight - event.deltaY) {
         event.stopPropagation();
@@ -143,7 +140,7 @@ export default class Groups extends Component<GroupsProps> {
           renderTrackVertical={() => (
             <div className={theme.emojiSelectPopoverScrollbar} />
           )}
-          renderThumbVertical={(props) => (
+          renderThumbVertical={(props: Record<string, unknown>) => (
             <div
               {...props}
               className={theme.emojiSelectPopoverScrollbarThumb}
