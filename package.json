@@ -24,7 +24,7 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@storybook/builder-webpack5": "^6.5.8",
     "@storybook/manager-webpack5": "^6.5.8",
-    "@storybook/react": "^6.5.7",
+    "@storybook/react": "^6.5.8",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/react-hooks": "^8.0.0",
