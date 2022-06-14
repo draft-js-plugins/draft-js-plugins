@@ -2115,17 +2115,6 @@
     qs "^6.10.0"
     telejson "^6.0.8"
 
-"@storybook/channel-websocket@6.5.8":
-  version "6.5.8"
-  resolved "https://registry.yarnpkg.com/@storybook/channel-websocket/-/channel-websocket-6.5.8.tgz#722743619f86ebc9325bbff026acf6eba13b21ca"
-  integrity sha512-lAtvgO0FWsyS3u7uFbsGIYp2aSWJfWU/LOtc3x1K5c84JJAd9fncYkyZMwP1gMbdNgYxJoxe8HXtVtfeNegPuQ==
-  dependencies:
-    "@storybook/channels" "6.5.8"
-    "@storybook/client-logger" "6.5.8"
-    core-js "^3.8.2"
-    global "^4.4.0"
-    telejson "^6.0.8"
-
 "@storybook/channel-websocket@6.5.9":
   version "6.5.9"
   resolved "https://registry.yarnpkg.com/@storybook/channel-websocket/-/channel-websocket-6.5.9.tgz#6b7a0127fec58ee5be4f6aebcf460adc564f2f34"
@@ -2252,32 +2241,6 @@
     qs "^6.10.0"
     react-syntax-highlighter "^15.4.5"
     regenerator-runtime "^0.13.7"
-    util-deprecate "^1.0.2"
-
-"@storybook/core-client@6.5.8":
-  version "6.5.8"
-  resolved "https://registry.yarnpkg.com/@storybook/core-client/-/core-client-6.5.8.tgz#4be4ce024a74b51c0650d346f1f3a11a0f921952"
-  integrity sha512-8x8qKQ2clvpfDcoWrNBmQ8Xt9z/i32TFIBp4PEZMcbB7eqo517nzfllLiXDipiJgO7BGxKtY5CRHQ9pAU9G27A==
-  dependencies:
-    "@storybook/addons" "6.5.8"
-    "@storybook/channel-postmessage" "6.5.8"
-    "@storybook/channel-websocket" "6.5.8"
-    "@storybook/client-api" "6.5.8"
-    "@storybook/client-logger" "6.5.8"
-    "@storybook/core-events" "6.5.8"
-    "@storybook/csf" "0.0.2--canary.4566f4d.1"
-    "@storybook/preview-web" "6.5.8"
-    "@storybook/store" "6.5.8"
-    "@storybook/ui" "6.5.8"
-    airbnb-js-shims "^2.2.1"
-    ansi-to-html "^0.6.11"
-    core-js "^3.8.2"
-    global "^4.4.0"
-    lodash "^4.17.21"
-    qs "^6.10.0"
-    regenerator-runtime "^0.13.7"
-    ts-dedent "^2.0.0"
-    unfetch "^4.2.0"
     util-deprecate "^1.0.2"
 
 "@storybook/core-client@6.5.9":
@@ -2572,20 +2535,20 @@
     webpack-dev-middleware "^3.7.3"
     webpack-virtual-modules "^0.2.2"
 
-"@storybook/manager-webpack5@^6.5.8":
-  version "6.5.8"
-  resolved "https://registry.yarnpkg.com/@storybook/manager-webpack5/-/manager-webpack5-6.5.8.tgz#36e97096506073c837716897495fffe4a616fe83"
-  integrity sha512-foW/ZvTqGZAl4TfcfGKdS3RlaBDDAgEjUCbCaVShlZRshZ8tzWBVu3JQFqbPVGslH89T5qp9DUYoN/SJqTUpcg==
+"@storybook/manager-webpack5@^6.5.9":
+  version "6.5.9"
+  resolved "https://registry.yarnpkg.com/@storybook/manager-webpack5/-/manager-webpack5-6.5.9.tgz#ce9dd6ea6298ab426b111f170c23deea7085ba08"
+  integrity sha512-J1GamphSsaZLNBEhn1awgxzOS8KfvzrHtVlAm2VHwW7j1E1DItROFJhGCgduYYuBiN9eqm+KIYrxcr6cRuoolQ==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-transform-template-literals" "^7.12.1"
     "@babel/preset-react" "^7.12.10"
-    "@storybook/addons" "6.5.8"
-    "@storybook/core-client" "6.5.8"
-    "@storybook/core-common" "6.5.8"
-    "@storybook/node-logger" "6.5.8"
-    "@storybook/theming" "6.5.8"
-    "@storybook/ui" "6.5.8"
+    "@storybook/addons" "6.5.9"
+    "@storybook/core-client" "6.5.9"
+    "@storybook/core-common" "6.5.9"
+    "@storybook/node-logger" "6.5.9"
+    "@storybook/theming" "6.5.9"
+    "@storybook/ui" "6.5.9"
     "@types/node" "^14.0.10 || ^16.0.0"
     babel-loader "^8.0.0"
     case-sensitive-paths-webpack-plugin "^2.3.0"
@@ -2853,24 +2816,6 @@
     core-js "^3.8.2"
     memoizerific "^1.11.3"
     regenerator-runtime "^0.13.7"
-
-"@storybook/ui@6.5.8":
-  version "6.5.8"
-  resolved "https://registry.yarnpkg.com/@storybook/ui/-/ui-6.5.8.tgz#acd8dadd221c68f65c4963c4ab86b4a757860591"
-  integrity sha512-rL09kxgY9pCVbxr/VUK4b5FL5VbALfciZR+50sNT1EcTDb9k0OPeqx7a4Ptc+KNkgyPdSTxUGvhzVqH5PYrhZQ==
-  dependencies:
-    "@storybook/addons" "6.5.8"
-    "@storybook/api" "6.5.8"
-    "@storybook/channels" "6.5.8"
-    "@storybook/client-logger" "6.5.8"
-    "@storybook/components" "6.5.8"
-    "@storybook/core-events" "6.5.8"
-    "@storybook/router" "6.5.8"
-    "@storybook/semver" "^7.3.2"
-    "@storybook/theming" "6.5.8"
-    core-js "^3.8.2"
-    regenerator-runtime "^0.13.7"
-    resolve-from "^5.0.0"
 
 "@storybook/ui@6.5.9":
   version "6.5.9"
