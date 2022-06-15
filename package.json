@@ -45,7 +45,7 @@
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
     "jest": "^27.5.1",
     "linaria": "2.1",
