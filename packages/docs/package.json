@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "animateplus": "1.4.0",
-    "clsx": "^1.1.1",
+    "clsx": "^1.2.0",
     "immutable": "^4.0.0-rc.12",
     "next": "12.2.0",
     "prismjs": "^1.28.0",
