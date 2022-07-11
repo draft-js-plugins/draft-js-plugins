@@ -13,7 +13,7 @@
     "animateplus": "1.4.0",
     "clsx": "^1.2.1",
     "immutable": "^4.0.0-rc.12",
-    "next": "12.2.1",
+    "next": "12.2.2",
     "prismjs": "^1.28.0",
     "react-share": "^4.4.0",
     "whatwg-fetch": "^3.6.2"
