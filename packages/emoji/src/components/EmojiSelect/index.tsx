@@ -66,14 +66,17 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     isOpen: false,
   };
 
+  // Emoji select ref
+  emojiSelectRef = React.createRef();
+
   // When the selector is open and users click anywhere on the page,
   // the selector should close
   componentDidMount(): void {
-    document.addEventListener('click', this.closePopover);
+    document.addEventListener('click', this.closeIfClickedOutside);
   }
 
   componentWillUnmount(): void {
-    document.removeEventListener('click', this.closePopover);
+    document.removeEventListener('click', this.closeIfClickedOutside);
   }
 
   onClick = (event: MouseEvent): void => {
@@ -108,6 +111,13 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     }
   };
 
+  // To check if clicked outside of emoji popover
+  closeIfClickedOutside = (e: React.MouseEvent<HTMLElement>) => {
+    if (this.emojiSelectRef && !this.emojiSelectRef.current.contains(e.target)) {
+      this.closePopover();
+    }
+  }
+
   render(): ReactElement {
     const {
       theme = {},
@@ -123,7 +133,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       ? theme.emojiSelectButtonPressed
       : theme.emojiSelectButton;
     return (
-      <div className={theme.emojiSelect} onClick={this.onClick}>
+      <div className={theme.emojiSelect} ref={this.emojiSelectRef}>
         <button
           className={buttonClassName}
           onMouseUp={this.onButtonMouseUp}
