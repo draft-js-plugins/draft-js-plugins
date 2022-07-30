@@ -1,0 +1,58 @@
+{
+  "name": "@draft-js-plugins/table",
+  "version": "5.0.3",
+  "sideEffects": [
+    "*.css"
+  ],
+  "description": "Resizeable Plugin for DraftJS",
+  "author": {
+    "name": "Dobes Vandermeer",
+    "email": "dobesv@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/draft-js-plugins/draft-js-plugins.git"
+  },
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "editor",
+    "wysiwyg",
+    "draft",
+    "react",
+    "ux",
+    "components",
+    "widget",
+    "react-component"
+  ],
+  "scripts": {
+    "clean": "yarn rimraf lib",
+    "build": "yarn build:js && yarn build:dts",
+    "build:js": "yarn rollup --config ../../rollup.config.js",
+    "build:dts": "tsc -d",
+    "test": "jest"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "immutable": "~3.7.4",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "draft-js": "^0.10.1 || ^0.11.0",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "prettier": "^2.7.1"
+  },
+  "peerDependencies": {
+    "draft-js": "^0.10.1 || ^0.11.0",
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,38 @@
+.root {
+  padding: 50px;
+  position: relative;
+}
+
+.editor {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  cursor: text;
+  padding: 16px;
+  border-radius: 2px;
+  margin-bottom: 2em;
+  box-shadow: inset 0px 1px 8px -3px #ABABAB;
+  background: #fefefe;
+}
+
+.editor :global(.public-DraftEditor-content) {
+  min-height: 140px;
+}
+
+.editor table {
+  margin: 8px;
+  border: 1px solid silver;
+  border-collapse: collapse;
+}
+
+.editor table td, .editor table th {
+  border: 1px solid silver;
+  padding: 8px 16px;
+}
+
+.editor table thead tr:nth-child(odd) {
+  background-color: #f7cef7;
+}
+
+.editor table tbody tr:nth-child(even) {
+  background-color: #accef7;
+}

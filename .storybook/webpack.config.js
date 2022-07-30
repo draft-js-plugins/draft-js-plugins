@@ -24,6 +24,7 @@ const packages = [
   '@draft-js-plugins/buttons',
   '@draft-js-plugins/video',
   '@draft-js-plugins/divider',
+  '@draft-js-plugins/table',
 ];
 
 const packagesAliases = {};

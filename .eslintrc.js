@@ -143,6 +143,7 @@ module.exports = {
       '@draft-js-plugins/static-toolbar/lib/plugin.css',
       '@draft-js-plugins/sticker',
       '@draft-js-plugins/sticker/lib/plugin.css',
+      '@draft-js-plugins/table',
       '@draft-js-plugins/undo',
       '@draft-js-plugins/undo/lib/plugin.css',
       '@draft-js-plugins/video',
