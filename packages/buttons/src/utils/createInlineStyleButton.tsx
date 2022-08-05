@@ -43,6 +43,8 @@ export default function createInlineStyleButton({
           className={className}
           onClick={toggleStyle}
           type="button"
+          role="button"
+          aria-label={`${style} text`}
         />
       </div>
     );

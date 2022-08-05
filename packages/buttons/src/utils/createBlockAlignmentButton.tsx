@@ -37,6 +37,8 @@ export default function createBlockAlignmentButton({
           className={className}
           onClick={activate}
           type="button"
+          role="button"
+          aria-label={`block align text ${alignment}`}
         />
       </div>
     );
