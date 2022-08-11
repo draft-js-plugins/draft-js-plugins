@@ -13,9 +13,10 @@ You must have [Node.js v5](https://nodejs.org/en/download/package-manager/) or l
 ```sh
 npm install --global yarn
 yarn install
-cd docs
+yarn build
+cd packages/docs
 yarn install
-npm start
+yarn dev
 ```
 
 ## Linting
