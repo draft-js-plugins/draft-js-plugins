@@ -41,7 +41,7 @@
   "dependencies": {
     "@draft-js-plugins/buttons": "^4.0.0",
     "@draft-js-plugins/utils": "^4.0.0",
-    "@popperjs/core": "^2.11.5",
+    "@popperjs/core": "^2.11.6",
     "prop-types": "^15.8.1",
     "react-popper": "^2.3.0"
   },
