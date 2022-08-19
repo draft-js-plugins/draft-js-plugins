@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
-- fix performance issue with shortnameToUnicode translation
+- fix performance issue with shortname to unicode translation
 
 ## 4.6.2
 
