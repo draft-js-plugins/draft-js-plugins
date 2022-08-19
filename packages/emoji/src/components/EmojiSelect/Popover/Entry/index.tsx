@@ -1,7 +1,7 @@
-import { shortnameToUnicode } from 'emoji-toolkit';
 import PropTypes from 'prop-types';
 import React, { Component, ComponentType, ReactElement } from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
+import shortnameToUnicode from '../../../../utils/shortnameToUnicode';
 
 interface EntryProps {
   mouseDown?: boolean;

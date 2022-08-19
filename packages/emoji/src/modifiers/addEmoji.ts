@@ -1,5 +1,5 @@
 import { Modifier, EditorState } from 'draft-js';
-import { shortnameToUnicode } from 'emoji-toolkit';
+import shortnameToUnicode from '../utils/shortnameToUnicode';
 import getSearchText from '../utils/getSearchText';
 
 // This modifier can inserted emoji to current cursor position (with replace selected fragment),

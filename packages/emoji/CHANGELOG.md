@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+- fix performance issue with shortnameToUnicode translation
+
 ## 4.6.2
 
 - Autoclose emoji popover for multiple instance [#2875](https://github.com/draft-js-plugins/draft-js-plugins/issues/2875)
