@@ -53,7 +53,7 @@
     "matched": "^5.0.1",
     "multer": "^1.4.4",
     "prettier": "^2.7.1",
-    "prismjs": "^1.28.0",
+    "prismjs": "^1.29.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.78.1",
     "style-loader": "3.3.1",
