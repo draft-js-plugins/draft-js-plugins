@@ -8,8 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## 4.3.2
 
 - add Aria roles and labels to buttons to improve accessibility
-- [React Accessibility](https://reactjs.org/docs/accessibility.html)
-- [WCAG Accessibility Standards](http://web-accessibility.carnegiemuseums.org/foundations/aria/)
+  - [React Accessibility](https://reactjs.org/docs/accessibility.html)
+  - [WCAG Accessibility Standards](http://web-accessibility.carnegiemuseums.org/foundations/aria/)
 
 ## 4.3.1
 
