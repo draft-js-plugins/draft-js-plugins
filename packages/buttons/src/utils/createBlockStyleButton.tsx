@@ -52,6 +52,8 @@ export default function createBlockStyleButton({
           className={className}
           onClick={toggleStyle}
           type="button"
+          role="button"
+          aria-label={`create ${blockType}`}
         />
       </div>
     );

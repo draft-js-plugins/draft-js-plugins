@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.3.2
+
+- add Aria roles and labels to buttons to improve accessibility
+  - [React Accessibility](https://reactjs.org/docs/accessibility.html)
+  - [WCAG Accessibility Standards](http://web-accessibility.carnegiemuseums.org/foundations/aria/)
+
 ## 4.3.1
 
 - support react 18 in peer dependencies [#2701](https://github.com/draft-js-plugins/draft-js-plugins/issues/2701)

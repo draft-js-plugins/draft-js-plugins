@@ -81,6 +81,8 @@ export default function createTextAlignmentButton({
           className={className}
           onClick={toggleStyle}
           type="button"
+          role="button"
+          aria-label={`text align ${alignment}`}
         />
       </div>
     );
