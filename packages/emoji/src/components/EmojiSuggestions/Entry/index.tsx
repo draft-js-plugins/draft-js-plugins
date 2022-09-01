@@ -1,4 +1,3 @@
-import { shortnameToUnicode } from 'emoji-toolkit';
 import { EmojiImageProps } from 'packages/emoji/src';
 import React, {
   // PropTypes,
@@ -8,6 +7,7 @@ import React, {
   ReactElement,
 } from 'react';
 import { EmojiPluginTheme } from '../../../theme';
+import shortnameToUnicode from '../../../utils/shortnameToUnicode';
 
 interface EntryProps {
   emoji: string;
