@@ -45,6 +45,7 @@ export default function Popover({
       style={styles.popper}
       {...attributes.popper}
       className={className}
+      role="listbox"
     >
       {children}
     </div>

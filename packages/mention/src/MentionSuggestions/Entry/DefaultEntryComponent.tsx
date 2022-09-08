@@ -17,7 +17,7 @@ export default function DefaultEntryComponent(
   } = props;
 
   return (
-    <div {...parentProps}>
+    <div {...parentProps} aria-selected={isFocused}>
       <Avatar mention={mention} theme={theme} />
       <span className={theme?.mentionSuggestionsEntryText}>{mention.name}</span>
     </div>
