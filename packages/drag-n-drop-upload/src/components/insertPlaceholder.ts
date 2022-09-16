@@ -21,18 +21,23 @@ export const insertPlaceholder = (editorState:EditorState, text:string): InsertP
     ' '
   );
 
+  const insertedAtomicBlock = newEditorState
+    .getCurrentContent()
+    .getBlockBefore(newEditorState.getSelection().getAnchorKey());
+
+  if (insertedAtomicBlock === undefined) {
+    throw new Error('Unable to locate the block-key of inserted-atomic-block.');
+  }
+
   const stateSelected = EditorState.forceSelection(
     newEditorState,
     newEditorState.getCurrentContent().getSelectionAfter()
   );
 
-  const blockArrayMap = newEditorState.getCurrentContent().getBlocksAsArray().map(b => b.getKey());
-  const nextToLastBlock = newEditorState.getCurrentContent().getBlockForKey(blockArrayMap[blockArrayMap.length-2]);
-
   return {
     state: stateSelected,
-    blockKey: nextToLastBlock.getKey(),
+    blockKey: insertedAtomicBlock.getKey(),
     key: entityKey,
-    text
-  }
+    text,
+  };
 };
