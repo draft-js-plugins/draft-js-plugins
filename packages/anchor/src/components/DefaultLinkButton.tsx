@@ -28,6 +28,7 @@ export default function DefaultLinkButton({
         className={className}
         onClick={hasLinkSelected ? onRemoveLinkAtSelection : onAddLinkClick}
         type="button"
+        aria-label="create hypertext link"
       >
         <svg
           height="24"
