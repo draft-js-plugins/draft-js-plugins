@@ -1,44 +1,27 @@
 /* eslint-disable react/no-array-index-key */
-import React, { ReactElement } from 'react';
-import { EditorState } from 'draft-js';
 import {
-  AlignTextLeftButton,
   AlignTextCenterButton,
+  AlignTextLeftButton,
   AlignTextRightButton,
+  DraftJsButtonTheme,
 } from '@draft-js-plugins/buttons';
-import { AlignmentPluginStore } from '.';
-import type { TextAlignmentPluginTheme } from './theme';
+import { EditorState } from 'draft-js';
+import React, { ReactElement } from 'react';
 
 export interface AlignmentPluginsPubParams {
-  theme: TextAlignmentPluginTheme;
+  theme: DraftJsButtonTheme;
   getEditorState: () => EditorState;
   setEditorState: (editorState: EditorState) => void;
 }
 
-interface ToolbarProps {
-  store: AlignmentPluginStore;
-  theme: TextAlignmentPluginTheme;
-}
-
-export default class Alignment extends React.Component<ToolbarProps> {
-  renderAlignmentButtons = (
-    externalProps: AlignmentPluginsPubParams
-  ): ReactElement => (
+export default function Alignment(
+  props: AlignmentPluginsPubParams
+): ReactElement {
+  return (
     <>
-      <AlignTextLeftButton {...externalProps} />
-      <AlignTextCenterButton {...externalProps} />
-      <AlignTextRightButton {...externalProps} />
+      <AlignTextLeftButton {...props} />
+      <AlignTextCenterButton {...props} />
+      <AlignTextRightButton {...props} />
     </>
   );
-
-  render(): ReactElement {
-    const { store, theme } = this.props;
-    const childrenProps: AlignmentPluginsPubParams = {
-      theme,
-      getEditorState: store.getItem('getEditorState')!,
-      setEditorState: store.getItem('setEditorState')!,
-    };
-
-    return this.renderAlignmentButtons(childrenProps);
-  }
 }

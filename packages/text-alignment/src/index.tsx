@@ -1,6 +1,5 @@
 import { EditorPlugin } from '@draft-js-plugins/editor';
-import { createStore, Store } from '@draft-js-plugins/utils';
-import { ContentBlock, EditorState } from 'draft-js';
+import { ContentBlock } from 'draft-js';
 import React, { ComponentType, ReactElement } from 'react';
 import TextAlignmentComponent, {
   AlignmentPluginsPubParams,
@@ -16,19 +15,11 @@ export type TextAlignmentPlugin = EditorPlugin & {
   TextAlignment: ComponentType<AlignmentPluginsPubParams>;
 };
 
-interface StoreItemMap {
-  getEditorState?(): EditorState;
-  setEditorState?(editorState: EditorState): void;
-}
-
-export type AlignmentPluginStore = Store<StoreItemMap>;
-
 export default (config: AlignmentPluginConfig = {}): TextAlignmentPlugin => {
   const { theme = defaultTheme } = config;
 
-  const store = createStore<StoreItemMap>();
   const TextAlignment = (props: AlignmentPluginsPubParams): ReactElement => (
-    <TextAlignmentComponent store={store} {...props} />
+    <TextAlignmentComponent {...props} />
   );
 
   const capitalFirstLetter = (str: string): string =>
@@ -48,11 +39,6 @@ export default (config: AlignmentPluginConfig = {}): TextAlignmentPlugin => {
   };
 
   return {
-    initialize: ({ getEditorState, setEditorState }) => {
-      store.updateItem('getEditorState', getEditorState);
-      store.updateItem('setEditorState', setEditorState);
-    },
-
     blockStyleFn: (block: ContentBlock, { getEditorState }) => {
       let alignment = `draft${getBlockAlignment(block)}`;
       if (!block.getText()) {
