@@ -2315,17 +2315,6 @@
     qs "^6.10.0"
     telejson "^6.0.8"
 
-"@storybook/channel-websocket@6.5.12":
-  version "6.5.12"
-  resolved "https://registry.yarnpkg.com/@storybook/channel-websocket/-/channel-websocket-6.5.12.tgz#4796e2436900d73fb867591f7d7cf8f94898d51b"
-  integrity sha512-0t5dLselHVKTRYaphxx1dRh4pmOFCfR7h8oNJlOvJ29Qy5eNyVujDG9nhwWbqU6IKayuP4nZrAbe9Req9YZYlQ==
-  dependencies:
-    "@storybook/channels" "6.5.12"
-    "@storybook/client-logger" "6.5.12"
-    core-js "^3.8.2"
-    global "^4.4.0"
-    telejson "^6.0.8"
-
 "@storybook/channel-websocket@6.5.13":
   version "6.5.13"
   resolved "https://registry.yarnpkg.com/@storybook/channel-websocket/-/channel-websocket-6.5.13.tgz#b7a55149295a77004bb156a4ceefc44839f52bb3"
@@ -2449,32 +2438,6 @@
     memoizerific "^1.11.3"
     qs "^6.10.0"
     regenerator-runtime "^0.13.7"
-    util-deprecate "^1.0.2"
-
-"@storybook/core-client@6.5.12":
-  version "6.5.12"
-  resolved "https://registry.yarnpkg.com/@storybook/core-client/-/core-client-6.5.12.tgz#1a3889604b92292d210d956c46f86a64dd7a9483"
-  integrity sha512-jyAd0ud6zO+flpLv0lEHbbt1Bv9Ms225M6WTQLrfe7kN/7j1pVKZEoeVCLZwkJUtSKcNiWQxZbS15h31pcYwqg==
-  dependencies:
-    "@storybook/addons" "6.5.12"
-    "@storybook/channel-postmessage" "6.5.12"
-    "@storybook/channel-websocket" "6.5.12"
-    "@storybook/client-api" "6.5.12"
-    "@storybook/client-logger" "6.5.12"
-    "@storybook/core-events" "6.5.12"
-    "@storybook/csf" "0.0.2--canary.4566f4d.1"
-    "@storybook/preview-web" "6.5.12"
-    "@storybook/store" "6.5.12"
-    "@storybook/ui" "6.5.12"
-    airbnb-js-shims "^2.2.1"
-    ansi-to-html "^0.6.11"
-    core-js "^3.8.2"
-    global "^4.4.0"
-    lodash "^4.17.21"
-    qs "^6.10.0"
-    regenerator-runtime "^0.13.7"
-    ts-dedent "^2.0.0"
-    unfetch "^4.2.0"
     util-deprecate "^1.0.2"
 
 "@storybook/core-client@6.5.13":
@@ -2769,20 +2732,20 @@
     webpack-dev-middleware "^3.7.3"
     webpack-virtual-modules "^0.2.2"
 
-"@storybook/manager-webpack5@^6.5.12":
-  version "6.5.12"
-  resolved "https://registry.yarnpkg.com/@storybook/manager-webpack5/-/manager-webpack5-6.5.12.tgz#77c98a63ef6c8d2ae0b1e69eb432818d0c25e672"
-  integrity sha512-F+KgoINhfo1ArbirCc9L+EyADYD8Z4t0LyZYDVcBiZ8DlRIMIoUSye6tDsnyEm+OPloLVAcGwRMYgFhuHB70Lg==
+"@storybook/manager-webpack5@^6.5.13":
+  version "6.5.13"
+  resolved "https://registry.yarnpkg.com/@storybook/manager-webpack5/-/manager-webpack5-6.5.13.tgz#3d88d4ec7dfce6413da944e94e28f3b7a1af4b51"
+  integrity sha512-lQEZacSfeRsbqfJE7TVk35Hm1vkr0I2i1pyYqM+4862gRbMh1nJQXbJ5GqZ+Fo/bf0ZfyFZ32jGDIJAFdlpkuQ==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-transform-template-literals" "^7.12.1"
     "@babel/preset-react" "^7.12.10"
-    "@storybook/addons" "6.5.12"
-    "@storybook/core-client" "6.5.12"
-    "@storybook/core-common" "6.5.12"
-    "@storybook/node-logger" "6.5.12"
-    "@storybook/theming" "6.5.12"
-    "@storybook/ui" "6.5.12"
+    "@storybook/addons" "6.5.13"
+    "@storybook/core-client" "6.5.13"
+    "@storybook/core-common" "6.5.13"
+    "@storybook/node-logger" "6.5.13"
+    "@storybook/theming" "6.5.13"
+    "@storybook/ui" "6.5.13"
     "@types/node" "^14.0.10 || ^16.0.0"
     babel-loader "^8.0.0"
     case-sensitive-paths-webpack-plugin "^2.3.0"
@@ -3053,26 +3016,6 @@
     core-js "^3.8.2"
     memoizerific "^1.11.3"
     regenerator-runtime "^0.13.7"
-
-"@storybook/ui@6.5.12":
-  version "6.5.12"
-  resolved "https://registry.yarnpkg.com/@storybook/ui/-/ui-6.5.12.tgz#25ccd6e6d5aae227ba6561c2b8e9cfda9b0ad4de"
-  integrity sha512-P7+ARI5NvaEYkrbIciT/UMgy3kxMt4WCtHMXss2T01UMCIWh1Ws4BJaDNqtQSpKuwjjS4eqZL3aQWhlUpYAUEg==
-  dependencies:
-    "@storybook/addons" "6.5.12"
-    "@storybook/api" "6.5.12"
-    "@storybook/channels" "6.5.12"
-    "@storybook/client-logger" "6.5.12"
-    "@storybook/components" "6.5.12"
-    "@storybook/core-events" "6.5.12"
-    "@storybook/router" "6.5.12"
-    "@storybook/semver" "^7.3.2"
-    "@storybook/theming" "6.5.12"
-    core-js "^3.8.2"
-    memoizerific "^1.11.3"
-    qs "^6.10.0"
-    regenerator-runtime "^0.13.7"
-    resolve-from "^5.0.0"
 
 "@storybook/ui@6.5.13":
   version "6.5.13"
