@@ -105,7 +105,7 @@
     "build": "yarn build:dts && yarn workspaces run build",
     "build:dts": "yarn workspace @draft-js-plugins/editor run build && yarn workspace @draft-js-plugins/utils run build && yarn workspace @draft-js-plugins/buttons run build",
     "prerelease": "yarn build",
-    "release": "changeset publish",
+    "release": "changeset publish"
   },
   "workspaces": [
     "packages/*"
