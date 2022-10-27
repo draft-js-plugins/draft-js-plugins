@@ -28,10 +28,12 @@ export default function addMention(
     focusOffset: end,
   });
 
+  const firstMentionCharacter = mention.name.charAt(0);
+
   let mentionReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
     mentionTextSelection,
-    `${mentionPrefix}${mention.name}`,
+    `${mentionTrigger === firstMentionCharacter ? firstMentionCharacter : mentionPrefix}${mention.name}`,
     editorState.getCurrentInlineStyle(),
     entityKey
   );
