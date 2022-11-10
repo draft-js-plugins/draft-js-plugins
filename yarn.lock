@@ -4529,18 +4529,7 @@ browserify-zlib@^0.2.0:
   dependencies:
     pako "~1.0.5"
 
-browserslist@^4.12.0, browserslist@^4.14.5:
-  version "4.20.3"
-  resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.20.3.tgz#eb7572f49ec430e054f56d52ff0ebe9be915f8bf"
-  integrity sha512-NBhymBQl1zM0Y5dQT/O+xiLP9/rzOIQdKM/eMJBAq7yBgaB6krIYLGejrwVYnSHZdqjscB1SPuAjHwxjvN6Wdg==
-  dependencies:
-    caniuse-lite "^1.0.30001332"
-    electron-to-chromium "^1.4.118"
-    escalade "^3.1.1"
-    node-releases "^2.0.3"
-    picocolors "^1.0.0"
-
-browserslist@^4.21.3:
+browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4.21.3:
   version "4.21.3"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.21.3.tgz#5df277694eb3c48bc5c4b05af3e8b7e09c5a6d1a"
   integrity sha512-898rgRXLAyRkM1GryrrBHGkqA5hlpkV5MhtZwg9QXeiyLUYs2k00Un05aX5l2/yJIOObYKOpS2JNo8nJDE7fWQ==
@@ -4771,7 +4760,7 @@ camelcase@^6.2.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.3.0.tgz#5685b95eb209ac9c0c177467778c9c84df58ba9a"
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
-caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001332, caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001406:
+caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001370, caniuse-lite@^1.0.30001406:
   version "1.0.30001407"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001407.tgz#92281a6ee67cb90bfd8a6a1201fcc2dc19b60a15"
   integrity sha512-4ydV+t4P7X3zH83fQWNDX/mQEzYomossfpViCOx9zHBSMV+rIe3LFqglHHtVyvNl1FhTNxPxs3jei82iqOW04w==
@@ -5884,11 +5873,6 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
-
-electron-to-chromium@^1.4.118:
-  version "1.4.140"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.140.tgz#1b5836b7244aff341a11c8efd63dfe003dee4a19"
-  integrity sha512-NLz5va823QfJBYOO/hLV4AfU4Crmkl/6Hl2pH3qdJcmi0ySZ3YTWHxOlDm3uJOFBEPy3pIhu8gKQo6prQTWKKA==
 
 electron-to-chromium@^1.4.202:
   version "1.4.251"
@@ -9654,11 +9638,6 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-releases@^2.0.3:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.5.tgz#280ed5bc3eba0d96ce44897d8aee478bfb3d9666"
-  integrity sha512-U9h1NLROZTq9uE1SNffn6WuPDg8icmi3ns4rEl/oTfIle4iLjTliCzgTsbaIFMq/Xn078/lfY/BL0GWZ+psK4Q==
-
 node-releases@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.6.tgz#8a7088c63a55e493845683ebf3c828d8c51c5503"
@@ -13045,10 +13024,10 @@ webpack@4:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-"webpack@>=4.43.0 <6.0.0", webpack@^5.74.0, webpack@^5.9.0:
-  version "5.74.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.74.0.tgz#02a5dac19a17e0bb47093f2be67c695102a55980"
-  integrity sha512-A2InDwnhhGN4LYctJj6M1JEaGL7Luj6LOmyBHjcI8529cm5p6VXiTIW2sn6ffvEAKmveLzvu4jrihwXtPojlAA==
+"webpack@>=4.43.0 <6.0.0", webpack@^5.75.0, webpack@^5.9.0:
+  version "5.75.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.75.0.tgz#1e440468647b2505860e94c9ff3e44d5b582c152"
+  integrity sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^0.0.51"
