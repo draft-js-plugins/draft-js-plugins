@@ -42,7 +42,7 @@
   "dependencies": {
     "@draft-js-plugins/buttons": "^4.0.0",
     "@draft-js-plugins/utils": "^4.2.0",
-    "@types/lodash": "^4.14.189",
+    "@types/lodash": "^4.14.190",
     "clsx": "^1.2.1",
     "emoji-toolkit": "^6.6.0",
     "emojibase": "^6.1.0",
