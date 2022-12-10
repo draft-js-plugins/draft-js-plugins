@@ -88,6 +88,9 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
           return 'handled';
         }
       }
+      if (command === 'space' && focusableBlockIsSelected(editorState, blockKeyStore)) {
+        return 'handled';
+      }
       return 'not-handled';
     },
 
@@ -141,8 +144,13 @@ export default (config: FocusEditorPluginConfig = {}): FocusEditorPlugin => {
     // TODO edgecase: if one block is selected and the user wants to expand the selection using the shift key
     keyBindingFn(evt, { getEditorState, setEditorState }) {
       const editorState = getEditorState();
-      // TODO match by entitiy instead of block type
+      // TODO match by entity instead of block type
       if (focusableBlockIsSelected(editorState, blockKeyStore)) {
+        // space
+        if (evt.keyCode === 32) {
+          return 'space';
+        }
+
         // arrow left
         if (evt.keyCode === 37) {
           setSelection(getEditorState, setEditorState, 'up', evt);
