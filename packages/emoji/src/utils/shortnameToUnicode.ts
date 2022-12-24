@@ -1,4 +1,7 @@
-import { toShort } from 'emoji-toolkit';
+import {
+  toShort,
+  shortnameToUnicode as emojiToolkitShortnameToUnicode,
+} from 'emoji-toolkit';
 import data from 'emojibase-data/en/compact.json';
 
 const mapShortnameToUnicode: Record<string, string> = Object.fromEntries(
@@ -6,5 +9,5 @@ const mapShortnameToUnicode: Record<string, string> = Object.fromEntries(
 );
 
 export default function shortnameToUnicode(str: string): string {
-  return mapShortnameToUnicode[str];
+  return mapShortnameToUnicode[str] || emojiToolkitShortnameToUnicode(str);
 }
