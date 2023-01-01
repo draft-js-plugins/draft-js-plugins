@@ -1,6 +1,6 @@
 import {
-  toShort,
   shortnameToUnicode as emojiToolkitShortnameToUnicode,
+  toShort,
 } from 'emoji-toolkit';
 import data from 'emojibase-data/en/compact.json';
 
