@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.6.4
+
+- fix issue with shortname to unicode translation [#3045](https://github.com/draft-js-plugins/draft-js-plugins/issues/3045)
+
 ## 4.6.3
 
 - fix performance issue with shortname to unicode translation [#2915](https://github.com/draft-js-plugins/draft-js-plugins/issues/2915)

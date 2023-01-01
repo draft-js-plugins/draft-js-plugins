@@ -1,15 +1,15 @@
 import shortnameToUnicode from '../shortnameToUnicode';
 
 describe('shortnameToUnicode', () => {
-  it('empty shortname -> undefined', () => {
-    expect(shortnameToUnicode('')).toBeUndefined();
+  test('empty shortname -> undefined', () => {
+    expect(shortnameToUnicode('')).toBe('');
   });
 
-  it('invalid shortname -> undefined', () => {
-    expect(shortnameToUnicode('obviously not an emoji name')).toBeUndefined();
-  });
-
-  it('valid shortname -> emoji', () => {
+  test('valid shortname -> emoji', () => {
     expect(shortnameToUnicode(':grinning:')).toBe('😀');
+  });
+
+  test('valid shortname -> emoji', () => {
+    expect(shortnameToUnicode(':thumbsup:')).toBe('👍');
   });
 });
