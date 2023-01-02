@@ -44,7 +44,7 @@
     "@draft-js-plugins/utils": "^4.2.0",
     "@types/lodash": "^4.14.191",
     "clsx": "^1.2.1",
-    "emoji-toolkit": "^6.6.0",
+    "emoji-toolkit": "^7.0",
     "emojibase": "^6.1.0",
     "emojibase-data": "^7.0.1",
     "immutable": "~3.7.4",
