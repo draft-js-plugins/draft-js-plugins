@@ -3,24 +3,25 @@ import data from 'emojibase-data/en/compact.json';
 
 const mapShortnameToUnicode: { key: string; value: string }[] = [];
 
-for (const item of data) {
+data.forEach((item) => {
   mapShortnameToUnicode.push({
     key: toShort(item.unicode),
     value: item.unicode,
   });
   if (item.skins) {
-    for (const skin of item.skins) {
+    item.skins.forEach((skin) => {
       mapShortnameToUnicode.push({
         key: toShort(skin.unicode),
         value: skin.unicode,
       });
-    }
+    });
   }
-}
+});
 
 export default function shortnameToUnicode(str: string): string {
   return str.length
-    ? // Somehow encoding is different, checking with indexOf instead of === works
-      mapShortnameToUnicode.find((x) => x.key.indexOf(str) > -1)?.value || ''
+    ? // We need to use localeCompare because the unicode item may be a utf-16 string
+      mapShortnameToUnicode.find((x) => str.localeCompare(x.key) === 0)
+        ?.value || ''
     : '';
 }
