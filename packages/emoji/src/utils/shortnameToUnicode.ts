@@ -1,13 +1,27 @@
-import {
-  shortnameToUnicode as emojiToolkitShortnameToUnicode,
-  toShort,
-} from 'emoji-toolkit';
+import { toShort } from 'emoji-toolkit';
 import data from 'emojibase-data/en/compact.json';
 
-const mapShortnameToUnicode: Record<string, string> = Object.fromEntries(
-  data.map((item) => [toShort(item.unicode), item.unicode])
-);
+const mapShortnameToUnicode: { key: string; value: string }[] = [];
+
+data.forEach((item) => {
+  mapShortnameToUnicode.push({
+    key: toShort(item.unicode),
+    value: item.unicode,
+  });
+  if (item.skins) {
+    item.skins.forEach((skin) => {
+      mapShortnameToUnicode.push({
+        key: toShort(skin.unicode),
+        value: skin.unicode,
+      });
+    });
+  }
+});
 
 export default function shortnameToUnicode(str: string): string {
-  return mapShortnameToUnicode[str] || emojiToolkitShortnameToUnicode(str);
+  return str.length
+    ? // We need to use localeCompare because the unicode item may be a utf-16 string
+      mapShortnameToUnicode.find((x) => str.localeCompare(x.key) === 0)
+        ?.value || ''
+    : '';
 }
