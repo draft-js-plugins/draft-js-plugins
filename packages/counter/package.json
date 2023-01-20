@@ -42,7 +42,7 @@
   "dependencies": {
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
-    "punycode": "^2.2.0"
+    "punycode": "^2.3.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
