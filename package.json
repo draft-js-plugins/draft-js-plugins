@@ -39,7 +39,7 @@
     "babel-plugin-transform-rename-import": "^2.3.0",
     "css-loader": "6.7.3",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "2.7.1",
     "eslint-plugin-jsx-a11y": "4.0.0",
