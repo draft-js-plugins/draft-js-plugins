@@ -186,7 +186,7 @@ export default function Mention(): ReactElement {
           <span>
             This options will be used to initialize popper.js. Read in detail
             about it{' '}
-            <ExternalLink href=" https://popper.js.org/docs/v2/">
+            <ExternalLink href="https://popper.js.org/docs/v2/">
               here.
             </ExternalLink>
           </span>
