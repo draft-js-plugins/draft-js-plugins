@@ -52,7 +52,7 @@
     "lint-staged": "^13.2.0",
     "matched": "^5.0.1",
     "multer": "^1.4.4",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.5",
     "prismjs": "^1.29.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.79.1",
