@@ -54,7 +54,7 @@
     "multer": "^1.4.4",
     "prettier": "^2.8.8",
     "prismjs": "^1.29.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^5.0.1",
     "rollup": "^2.79.1",
     "style-loader": "3.3.3",
     "ts-jest": "27.1.4",
