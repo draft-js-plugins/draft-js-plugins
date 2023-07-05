@@ -206,6 +206,10 @@ export const defaultTheme: EmojiPluginTheme = {
 
   emojiSelectButton: css`
     ${selectButtonSharedStyle}
+
+    &:hover, &:active, &:focus {
+      background: #ededed;
+    }
   `,
   emojiSelectButtonPressed: css`
     ${selectButtonSharedStyle}
