@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.7.0
+- added basic keyboard navigation to fix [#3233](https://github.com/draft-js-plugins/draft-js-plugins/issues/3233)
+- Removed support for the `emojiSelectPopoverEntryFocused` theme prop in favor of using `:focus` on emojiSelectPopoverEntry
+
 ## 4.6.5
 
 - fix performance issue searching shortname to unicode translation not using shortNameToUnicode from emoji-toolkit at all (really slow regex) [#3045](https://github.com/draft-js-plugins/draft-js-plugins/issues/3045)
