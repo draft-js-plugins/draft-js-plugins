@@ -78,7 +78,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     document.removeEventListener('click', this.closeIfClickedOutside);
   }
 
-  onButtonMouseUp = (): void =>
+  onButtonClick = (): void =>
     this.state.isOpen ? this.closePopover() : this.openPopover();
 
   // Open the popover
@@ -134,7 +134,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       <div className={theme.emojiSelect} ref={this.emojiSelectRef}>
         <button
           className={buttonClassName}
-          onMouseUp={this.onButtonMouseUp}
+          onClick={this.onButtonClick}
           type="button"
         >
           {selectButtonContent}

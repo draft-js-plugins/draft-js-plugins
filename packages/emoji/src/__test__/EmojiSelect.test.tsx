@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, RenderResult } from '@testing-library/react';
-import { EmojiPluginStore } from 'packages/emoji/lib';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { EmojiPluginStore } from '../index';
 import EmojiSelect from '../components/EmojiSelect/index';
 import NativeEmojiImage from '../components/Emoji/NativeEmojiImage';
 
@@ -35,5 +35,14 @@ describe('EmojiSelect', (): void => {
   it('Renders a button', async () => {
     const { screen } = renderComponent();
     expect(await screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  it('should open the EmojiSelect menu with a click event', async () => {
+    const { screen } = renderComponent();
+    const button = await screen.getByRole('button');
+    fireEvent.click(button);
+
+    const grinEmoji = await screen.getByRole('button', { name: ':grinning:' });
+    expect(grinEmoji).toBeInTheDocument();
   });
 });
