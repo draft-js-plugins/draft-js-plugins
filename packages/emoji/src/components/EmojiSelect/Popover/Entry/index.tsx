@@ -1,5 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Component, ComponentType, ReactElement } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  KeyboardEvent,
+  ReactElement,
+} from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
 import shortnameToUnicode from '../../../../utils/shortnameToUnicode';
 
@@ -65,6 +70,12 @@ export default class Entry extends Component<EntryProps> {
     this.setState({ isFocused: false });
   };
 
+  onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.props.onEmojiSelect(this.props.emoji);
+    }
+  };
+
   mouseDown = this.props.mouseDown;
 
   render(): ReactElement {
@@ -83,6 +94,7 @@ export default class Entry extends Component<EntryProps> {
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onMouseUp={this.onMouseUp}
+        onKeyDown={this.onKeyDown}
         ref={(element) => {
           this.button = element;
         }}
