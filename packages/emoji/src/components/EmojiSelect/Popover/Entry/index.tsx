@@ -54,13 +54,13 @@ export default class Entry extends Component<EntryProps> {
     }
   };
 
-  onMouseEnter = (): void => {
+  onFocusOrHover = (): void => {
     if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: true });
     }
   };
 
-  onMouseLeave = (): void => {
+  onBlur = (): void => {
     if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: false });
     }
@@ -91,8 +91,10 @@ export default class Entry extends Component<EntryProps> {
             : theme.emojiSelectPopoverEntry
         }
         onMouseDown={this.onMouseDown}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
+        onMouseEnter={this.onFocusOrHover}
+        onMouseLeave={this.onBlur}
+        onFocus={this.onFocusOrHover}
+        onBlur={this.onBlur}
         onMouseUp={this.onMouseUp}
         onKeyDown={this.onKeyDown}
         ref={(element) => {

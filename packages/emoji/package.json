@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/emoji",
-  "version": "4.7.0",
+  "version": "4.6.6",
   "sideEffects": [
     "*.css"
   ],
