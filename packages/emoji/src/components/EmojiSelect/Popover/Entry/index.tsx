@@ -1,5 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { Component, ComponentType, ReactElement } from 'react';
+import React, {
+  Component,
+  ComponentType,
+  KeyboardEvent,
+  ReactElement,
+} from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
 import shortnameToUnicode from '../../../../utils/shortnameToUnicode';
 
@@ -49,13 +54,13 @@ export default class Entry extends Component<EntryProps> {
     }
   };
 
-  onMouseEnter = (): void => {
+  onFocusOrHover = (): void => {
     if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: true });
     }
   };
 
-  onMouseLeave = (): void => {
+  onBlur = (): void => {
     if (!this.props.checkMouseDown()) {
       this.setState({ isFocused: false });
     }
@@ -63,6 +68,12 @@ export default class Entry extends Component<EntryProps> {
 
   deselect = (): void => {
     this.setState({ isFocused: false });
+  };
+
+  onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.props.onEmojiSelect(this.props.emoji);
+    }
   };
 
   mouseDown = this.props.mouseDown;
@@ -80,9 +91,12 @@ export default class Entry extends Component<EntryProps> {
             : theme.emojiSelectPopoverEntry
         }
         onMouseDown={this.onMouseDown}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
+        onMouseEnter={this.onFocusOrHover}
+        onMouseLeave={this.onBlur}
+        onFocus={this.onFocusOrHover}
+        onBlur={this.onBlur}
         onMouseUp={this.onMouseUp}
+        onKeyDown={this.onKeyDown}
         ref={(element) => {
           this.button = element;
         }}
