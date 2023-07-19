@@ -1,15 +1,15 @@
-import { EditorState } from 'draft-js';
+import { EditorState } from "draft-js";
 import React, {
   ReactElement,
   ReactNode,
   useEffect,
   useLayoutEffect,
   useRef,
-} from 'react';
-import { MentionPluginStore } from '.';
+} from "react";
+import { MentionPluginStore } from ".";
 
 const useIsomorphicLayoutEffect =
-  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export interface MentionSuggestionsPortalProps {
   offsetKey: string;
@@ -58,6 +58,13 @@ export default function MentionSuggestionsPortal(
       props.store.setReferenceElement(null);
     };
   }, []);
+
+  useEffect(() => {
+    // Use hook to set reference element. CFR: https://github.com/draft-js-plugins/draft-js-plugins/issues/2966
+    if (searchPortal.current) {
+      props.store.setReferenceElement(searchPortal.current as HTMLElement);
+    }
+  }, [searchPortal.current]);
 
   useEffect(() => {
     updatePortalClientRect(props);
