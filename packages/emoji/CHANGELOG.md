@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.6.6
+- added basic keyboard navigation to fix [#3233](https://github.com/draft-js-plugins/draft-js-plugins/issues/3233)
+
 ## 4.6.5
 
 - fix performance issue searching shortname to unicode translation not using shortNameToUnicode from emoji-toolkit at all (really slow regex) [#3045](https://github.com/draft-js-plugins/draft-js-plugins/issues/3045)
