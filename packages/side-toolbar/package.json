@@ -1,9 +1,7 @@
 {
   "name": "@draft-js-plugins/side-toolbar",
   "version": "5.0.1",
-  "sideEffects": [
-    "*.css"
-  ],
+  "sideEffects": ["*.css"],
   "description": "Toolbar Plugin for DraftJS",
   "author": {
     "name": "Benjamin Kniffler",
@@ -16,9 +14,7 @@
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "keywords": [
     "editor",
     "wysiwyg",
@@ -47,8 +43,8 @@
   },
   "peerDependencies": {
     "draft-js": "^0.11.0",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+    "react": "^16.8.0 || ^17.0.0 || >=18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || >=18.0.0"
   },
   "publishConfig": {
     "access": "public"
