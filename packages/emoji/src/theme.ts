@@ -159,7 +159,6 @@ export const defaultTheme: EmojiPluginTheme = {
 
   emojiSuggestions: css`
     border: 1px solid #eee;
-    margin-top: 1.75em;
     position: absolute;
     min-width: 220px;
     max-width: 440px;

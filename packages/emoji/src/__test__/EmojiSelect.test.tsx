@@ -34,6 +34,8 @@ describe('EmojiSelect', (): void => {
       register: jest.fn(),
       updatePortalClientRect: jest.fn(),
       unregister: jest.fn(),
+      getReferenceElement: jest.fn(),
+      setReferenceElement: jest.fn(),
     };
 
     const props = {
