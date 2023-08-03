@@ -29,12 +29,14 @@ export default function EmojiSuggestionsPortal({
   useEffect(() => {
     store.register(offsetKey);
     updatePortalClientRect();
+    store.setReferenceElement(ref.current);
 
     // trigger a re-render so the EmojiSuggestions becomes active
     store.setEditorState!(store.getEditorState!());
 
     return () => {
       store.unregister(offsetKey);
+      store.setReferenceElement(null);
     };
   }, [updatePortalClientRect, store]);
 

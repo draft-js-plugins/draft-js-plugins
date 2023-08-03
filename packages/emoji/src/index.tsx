@@ -1,3 +1,5 @@
+import * as PopperJS from '@popperjs/core';
+import { Modifier } from 'react-popper';
 import React, {
   ComponentType,
   CSSProperties,
@@ -24,9 +26,7 @@ import EmojiSelect, { EmojiSelectPubParams } from './components/EmojiSelect';
 import emojiStrategy from './emojiStrategy';
 import emojiSuggestionsStrategy from './emojiSuggestionsStrategy';
 import attachImmutableEntitiesToEmojis from './modifiers/attachImmutableEntitiesToEmojis';
-import defaultPositionSuggestions, {
-  PositionSuggestionsParams,
-} from './utils/positionSuggestions';
+import { PositionSuggestionsParams } from './utils/positionSuggestions';
 import emojiList from './utils/emojiList';
 import { defaultTheme } from './theme';
 import type { EmojiPluginTheme } from './theme';
@@ -38,6 +38,11 @@ import JoyPixelEmojiInlineText from './components/Emoji/JoyPixelEmojiInlineText'
 
 export { defaultTheme };
 export type { EmojiPluginTheme };
+
+export type PopperOptions = Omit<Partial<PopperJS.Options>, 'modifiers'> & {
+  createPopper?: typeof PopperJS.createPopper;
+  modifiers?: ReadonlyArray<Modifier<unknown>>;
+};
 
 export interface EmojiImageProps {
   emoji: string;
@@ -84,6 +89,7 @@ export interface EmojiPluginConfig {
   emojiImage?: ComponentType<EmojiImageProps>;
   emojiInlineText?: ComponentType<EmojiInlineTextProps>;
   disableInlineEmojis?: boolean;
+  popperOptions?: PopperOptions;
 }
 
 interface GetClientRectFn {
@@ -101,6 +107,9 @@ export interface EmojiPluginStore {
   register(offsetKey: string): void;
   updatePortalClientRect(offsetKey: string, func: GetClientRectFn): void;
   unregister(offsetKey: string): void;
+
+  getReferenceElement(): HTMLElement | null;
+  setReferenceElement(element: HTMLElement | null): void;
 }
 
 export type EmojiPlugin = EditorPlugin & {
@@ -127,6 +136,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   let searches: Map<string, string> = Map();
   let escapedSearch: string | undefined;
   let clientRectFunctions: Map<string, GetClientRectFn> = Map();
+  let referenceElement: HTMLElement | null;
 
   const store: EmojiPluginStore = {
     getEditorState: undefined,
@@ -154,6 +164,11 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
       searches = searches.delete(offsetKey);
       clientRectFunctions = clientRectFunctions.delete(offsetKey);
     },
+
+    getReferenceElement: () => referenceElement,
+    setReferenceElement: (element: HTMLElement | null) => {
+      referenceElement = element;
+    },
   };
 
   // Styles are overwritten instead of merged as merging causes a lot of confusion.
@@ -164,7 +179,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
   // breaking change. 1px of an increased padding can break a whole layout.
   const {
     theme = defaultTheme,
-    positionSuggestions = defaultPositionSuggestions,
+    positionSuggestions,
     priorityList,
     selectGroups,
     selectButtonContent,
@@ -175,6 +190,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     emojiInlineText = useNativeArt
       ? NativeEmojiInlineText
       : JoyPixelEmojiInlineText,
+    popperOptions,
   } = config;
 
   // if priorityList is configured in config then set priorityList
@@ -189,6 +205,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     positionSuggestions,
     shortNames: List(keys(emojiList.list)),
     emojiImage,
+    popperOptions,
   };
   const selectProps = {
     theme,

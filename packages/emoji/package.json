@@ -40,6 +40,7 @@
   "dependencies": {
     "@draft-js-plugins/buttons": "^4.0.0",
     "@draft-js-plugins/utils": "^4.2.0",
+    "@popperjs/core": "^2.11.8",
     "@types/lodash": "^4.14.195",
     "clsx": "^1.2.1",
     "emoji-toolkit": "^7.0",
@@ -51,6 +52,7 @@
     "prop-types": "^15.8.1",
     "react-custom-scrollbars-2": "^4.5.0",
     "react-icons": "^4.9.0",
+    "react-popper": "^2.3.0",
     "to-style": "^1.3.3"
   },
   "peerDependencies": {

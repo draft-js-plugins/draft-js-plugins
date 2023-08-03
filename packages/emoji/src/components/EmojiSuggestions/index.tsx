@@ -15,11 +15,20 @@ import utils from '@draft-js-plugins/utils';
 import { AriaProps } from '@draft-js-plugins/editor';
 import { List } from 'immutable';
 import Entry from './Entry';
-import { EmojiImageProps, EmojiPLuginCallbacks, EmojiPluginStore } from '../..';
+import {
+  EmojiImageProps,
+  EmojiPLuginCallbacks,
+  EmojiPluginStore,
+  PopperOptions,
+} from '../..';
 import addEmoji, { Mode as AddEmojiMode } from '../../modifiers/addEmoji';
 import getSearchText from '../../utils/getSearchText';
-import { PositionSuggestionsParams } from '../../utils/positionSuggestions';
+import defaultPositionSuggestions, {
+  PositionSuggestionsParams,
+} from '../../utils/positionSuggestions';
 import { EmojiPluginTheme } from '../../theme';
+import Popover from './Popover';
+import { warning } from '../../utils/warning';
 
 export interface EmojiSuggestionsPubParams {
   isActive?: boolean;
@@ -34,9 +43,10 @@ interface EmojiSuggestionsParams extends EmojiSuggestionsPubParams {
   ariaProps: AriaProps;
   store: EmojiPluginStore;
   shortNames: List<string>;
-  positionSuggestions(arg: PositionSuggestionsParams): CSSProperties;
+  positionSuggestions?(arg: PositionSuggestionsParams): CSSProperties;
   theme: EmojiPluginTheme;
   emojiImage: ComponentType<EmojiImageProps>;
+  popperOptions?: PopperOptions;
 }
 
 export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> {
@@ -77,7 +87,9 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
         this.activeOffsetKey!
       );
       if (decoratorRect) {
-        const newStyles: CSSProperties = this.props.positionSuggestions({
+        const positionSuggestions =
+          this.props.positionSuggestions || defaultPositionSuggestions;
+        const newStyles: CSSProperties = positionSuggestions({
           decoratorRect,
           props: this.props,
           state: this.state,
@@ -359,20 +371,52 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
       onOpen, // eslint-disable-line @typescript-eslint/no-unused-vars
       onSearchChange, // eslint-disable-line @typescript-eslint/no-unused-vars
       positionSuggestions, // eslint-disable-line @typescript-eslint/no-unused-vars
+      popperOptions, // eslint-disable-line @typescript-eslint/no-unused-vars
       shortNames, // eslint-disable-line @typescript-eslint/no-unused-vars
       store, // eslint-disable-line @typescript-eslint/no-unused-vars
       emojiImage,
       ...restProps
     } = this.props;
+
+    if (positionSuggestions) {
+      warning(
+        'The property `positionSuggestions` is deprecated and will be removed in @draft-js-plugins/emoji 5.0 . Use `popperOptions` instead'
+      );
+
+      return (
+        <div
+          {...restProps}
+          className={theme.emojiSuggestions}
+          role="listbox"
+          id={`emojis-list-${this.key}`}
+          ref={(element) => {
+            this.popover = element;
+          }}
+        >
+          {this.filteredEmojis
+            .map((emoji, index) => (
+              <Entry
+                key={emoji}
+                onEmojiSelect={this.onEmojiSelect}
+                onEmojiFocus={this.onEmojiFocus}
+                isFocused={this.state.focusedOptionIndex === index}
+                emoji={emoji!}
+                index={index!}
+                id={`emoji-option-${this.key}-${index}`}
+                theme={theme}
+                emojiImage={emojiImage}
+              />
+            ))
+            .toJS()}
+        </div>
+      );
+    }
+
     return (
-      <div
-        {...restProps}
-        className={theme.emojiSuggestions}
-        role="listbox"
-        id={`emojis-list-${this.key}`}
-        ref={(element) => {
-          this.popover = element;
-        }}
+      <Popover
+        store={this.props.store}
+        popperOptions={popperOptions}
+        theme={theme}
       >
         {this.filteredEmojis
           .map((emoji, index) => (
@@ -389,7 +433,7 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
             />
           ))
           .toJS()}
-      </div>
+      </Popover>
     );
   }
 }
