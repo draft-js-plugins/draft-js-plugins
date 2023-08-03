@@ -12,6 +12,7 @@ import {
 } from '../../../index';
 import { EmojiStrategy } from '../../../utils/createEmojisFromStrategy';
 import Entry from './Entry';
+import { EmojiShape } from '../../../constants/type';
 
 interface PopoverProps {
   theme: EmojiPluginTheme;
@@ -80,7 +81,7 @@ export default class Popover extends Component<PopoverProps> {
     }
   };
 
-  onEmojiSelect = (emoji: string): void => {
+  onEmojiSelect = (emoji: EmojiShape): void => {
     const newEditorState = addEmoji(this.props.store.getEditorState!(), emoji);
     this.props.store.setEditorState!(newEditorState);
     this.props.onEmojiSelect();
@@ -206,7 +207,7 @@ export default class Popover extends Component<PopoverProps> {
       <div
         className={className}
         onMouseDown={this.onMouseDown}
-        ref={element => {
+        ref={(element) => {
           this.container = element;
         }}
       >
@@ -224,7 +225,7 @@ export default class Popover extends Component<PopoverProps> {
               onEmojiSelect={this.onEmojiSelect}
               onEmojiMouseDown={this.onEmojiMouseDown}
               onGroupScroll={this.onGroupScroll}
-              ref={element => {
+              ref={(element) => {
                 this.groupsElement = element;
               }}
               emojiImage={emojiImage}

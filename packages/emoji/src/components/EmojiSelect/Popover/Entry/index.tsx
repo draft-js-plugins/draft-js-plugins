@@ -6,14 +6,15 @@ import React, {
   ReactElement,
 } from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
+import { EmojiShape } from '../../../../constants/type';
 import shortnameToUnicode from '../../../../utils/shortnameToUnicode';
 
 interface EntryProps {
   mouseDown?: boolean;
   theme: EmojiPluginTheme;
-  emoji: string;
+  emoji: EmojiShape;
   checkMouseDown(): boolean;
-  onEmojiSelect(emoji: string): void;
+  onEmojiSelect(emoji: EmojiShape): void;
   // eslint-disable-next-line no-use-before-define
   onEmojiMouseDown?(entryComponent: Entry, toneSet: string[] | null): void;
   toneSet?: string[] | null;

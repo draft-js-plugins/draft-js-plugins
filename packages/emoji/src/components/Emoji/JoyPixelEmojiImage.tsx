@@ -6,7 +6,7 @@ export default function JoyPixelEmojiImage({
   emoji,
   theme,
 }: EmojiImageProps): ReactElement {
-  const imgTag = toImage(emoji);
+  const imgTag = toImage(emoji.shortname);
   const path = /src="(.*)"/.exec(imgTag)?.[1];
   return (
     <img

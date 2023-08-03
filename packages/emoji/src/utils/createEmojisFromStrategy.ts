@@ -1,9 +1,10 @@
 import { emojiList, toShort } from 'emoji-toolkit';
 import data from 'emojibase-data/en/compact.json';
+import { EmojiShape } from 'packages/emoji/src/constants/type';
 
 export interface EmojiStrategy {
   [x: string]: {
-    [x: string]: string[];
+    [x: string]: EmojiShape[];
   };
 }
 

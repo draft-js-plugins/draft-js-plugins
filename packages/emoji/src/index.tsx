@@ -35,6 +35,7 @@ import JoyPixelEmojiImage from './components/Emoji/JoyPixelEmojiImage';
 import NativeEmojiImage from './components/Emoji/NativeEmojiImage';
 import NativeEmojiInlineText from './components/Emoji/NativEmojiInlineText';
 import JoyPixelEmojiInlineText from './components/Emoji/JoyPixelEmojiInlineText';
+import { EmojiShape } from './constants/type';
 
 export { defaultTheme };
 export type { EmojiPluginTheme };
@@ -45,7 +46,7 @@ export type PopperOptions = Omit<Partial<PopperJS.Options>, 'modifiers'> & {
 };
 
 export interface EmojiImageProps {
-  emoji: string;
+  emoji: EmojiShape;
   theme: EmojiPluginTheme;
   unicode: string;
 }

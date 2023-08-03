@@ -27,6 +27,7 @@ import defaultPositionSuggestions, {
   PositionSuggestionsParams,
 } from '../../utils/positionSuggestions';
 import { EmojiPluginTheme } from '../../theme';
+import { EmojiShape } from '../../constants/type';
 import Popover from './Popover';
 import { warning } from '../../utils/warning';
 
@@ -260,7 +261,7 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
     this.props.store.setEditorState!(this.props.store.getEditorState!());
   };
 
-  onEmojiSelect = (emoji: string): void => {
+  onEmojiSelect = (emoji: EmojiShape): void => {
     this.closeDropdown();
     const newEditorState = addEmoji(
       this.props.store.getEditorState!(),
@@ -396,7 +397,7 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
           {this.filteredEmojis
             .map((emoji, index) => (
               <Entry
-                key={emoji}
+                key={emoji!.shortname}
                 onEmojiSelect={this.onEmojiSelect}
                 onEmojiFocus={this.onEmojiFocus}
                 isFocused={this.state.focusedOptionIndex === index}
