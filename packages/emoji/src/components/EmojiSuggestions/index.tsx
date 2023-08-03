@@ -43,7 +43,7 @@ interface EmojiSuggestionsParams extends EmojiSuggestionsPubParams {
   callbacks: EmojiPLuginCallbacks;
   ariaProps: AriaProps;
   store: EmojiPluginStore;
-  shortNames: List<string>;
+  emojis: List<EmojiShape>;
   positionSuggestions?(arg: PositionSuggestionsParams): CSSProperties;
   theme: EmojiPluginTheme;
   emojiImage: ComponentType<EmojiImageProps>;
@@ -58,7 +58,7 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
 
   popover?: HTMLDivElement | null;
   key!: string;
-  filteredEmojis?: List<string>;
+  filteredEmojis?: List<EmojiShape>;
   activeOffsetKey?: string;
   lastSelectionIsInsideWord?: Immutable.Iterable<string, boolean>;
   lastSearchValue?: string;
@@ -94,7 +94,9 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
           decoratorRect,
           props: this.props,
           state: this.state,
-          filteredEmojis: this.filteredEmojis,
+          filteredEmojis: this.filteredEmojis
+            .map((emojiShape) => emojiShape!.shortname)
+            .toList(),
           popover: this.popover,
         });
         for (const [key, value] of Object.entries(newStyles)) {
@@ -281,26 +283,23 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
   };
 
   // Get the first 6 emojis that match
-  getEmojisForFilter = (): List<string> => {
+  getEmojisForFilter = (): List<EmojiShape> => {
     const selection = this.props.store.getEditorState!().getSelection();
     const { word } = getSearchText(
       this.props.store.getEditorState!(),
       selection
     );
     const emojiValue = word.substring(1, word.length).toLowerCase();
-    const filteredValues = this.props.shortNames.filter(
-      (emojiShortName) =>
-        !emojiValue || emojiShortName!.indexOf(emojiValue) > -1
-    ) as List<string>;
+    const filteredValues = this.props.emojis.filter(
+      (emojiShape) =>
+        !emojiValue || emojiShape!.shortname.indexOf(emojiValue) > -1
+    ) as List<EmojiShape>;
     const size = filteredValues.size < 9 ? filteredValues.size : 9;
     return filteredValues.setSize(size);
   };
 
   commitSelection = (): DraftHandleValue => {
-    this.onEmojiSelect({
-      shortname: this.filteredEmojis!.get(this.state.focusedOptionIndex),
-      unicode: 'TODO',
-    });
+    this.onEmojiSelect(this.filteredEmojis!.get(this.state.focusedOptionIndex));
     return 'handled';
   };
 
@@ -376,7 +375,7 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
       onSearchChange, // eslint-disable-line @typescript-eslint/no-unused-vars
       positionSuggestions, // eslint-disable-line @typescript-eslint/no-unused-vars
       popperOptions, // eslint-disable-line @typescript-eslint/no-unused-vars
-      shortNames, // eslint-disable-line @typescript-eslint/no-unused-vars
+      emojis, // eslint-disable-line @typescript-eslint/no-unused-vars
       store, // eslint-disable-line @typescript-eslint/no-unused-vars
       emojiImage,
       ...restProps
@@ -425,11 +424,11 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
         {this.filteredEmojis
           .map((emoji, index) => (
             <Entry
-              key={emoji}
+              key={emoji!.shortname}
               onEmojiSelect={this.onEmojiSelect}
               onEmojiFocus={this.onEmojiFocus}
               isFocused={this.state.focusedOptionIndex === index}
-              emoji={{ shortname: emoji!, unicode: 'TODO' }}
+              emoji={emoji!}
               index={index!}
               id={`emoji-option-${this.key}-${index}`}
               theme={theme}

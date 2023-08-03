@@ -13,7 +13,8 @@ import {
   EditorCommand,
 } from '@draft-js-plugins/editor';
 import { Map, List } from 'immutable';
-import keys from 'lodash/keys';
+import flatten from 'lodash/flatten';
+import values from 'lodash/values';
 import { DraftHandleValue, EditorState } from 'draft-js';
 import Emoji, { EmojiProps } from './components/Emoji';
 import EmojiSuggestions, {
@@ -203,7 +204,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     theme,
     store,
     positionSuggestions,
-    shortNames: List(keys(emojiList.list)),
+    emojis: List(flatten(values(emojiList.list))),
     emojiImage,
     popperOptions,
   };
