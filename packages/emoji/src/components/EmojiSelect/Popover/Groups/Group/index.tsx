@@ -7,7 +7,7 @@ import {
 } from '../../../../../index';
 import { EmojiStrategy } from '../../../../../utils/createEmojisFromStrategy';
 import Entry from '../../Entry';
-import { EmojiShape } from '../../../../../constants/type';
+import { EmojiShape, ToneSet } from '../../../../../constants/type';
 
 interface GroupProps {
   theme: EmojiPluginTheme;
@@ -15,7 +15,7 @@ interface GroupProps {
   emojis: EmojiStrategy;
   checkMouseDown(): boolean;
   onEmojiSelect(emoji: EmojiShape): void;
-  onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
+  onEmojiMouseDown(entryComponent: Entry, toneSet: ToneSet): void;
   emojiImage: ComponentType<EmojiImageProps>;
   isActive?: boolean;
 }

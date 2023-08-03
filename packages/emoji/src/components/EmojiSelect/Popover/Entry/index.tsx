@@ -6,7 +6,7 @@ import React, {
   ReactElement,
 } from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
-import { EmojiShape } from '../../../../constants/type';
+import { EmojiShape, ToneSet } from '../../../../constants/type';
 import shortnameToUnicode from '../../../../utils/shortnameToUnicode';
 
 interface EntryProps {
@@ -16,8 +16,8 @@ interface EntryProps {
   checkMouseDown(): boolean;
   onEmojiSelect(emoji: EmojiShape): void;
   // eslint-disable-next-line no-use-before-define
-  onEmojiMouseDown?(entryComponent: Entry, toneSet: string[] | null): void;
-  toneSet?: string[] | null;
+  onEmojiMouseDown?(entryComponent: Entry, toneSet: ToneSet): void;
+  toneSet?: ToneSet;
   emojiImage: ComponentType<EmojiImageProps>;
 }
 

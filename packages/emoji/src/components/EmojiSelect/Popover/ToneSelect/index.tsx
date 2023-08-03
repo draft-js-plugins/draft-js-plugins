@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import toStyle from 'to-style';
 import Entry from '../Entry';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
-import { EmojiShape } from '../../../../constants/type';
+import { EmojiShape, ToneSet } from '../../../../constants/type';
 
 interface Boundaries {
   left: number;
@@ -18,7 +18,7 @@ interface ToneSelectParams {
   theme: EmojiPluginTheme;
   bounds: { areaBounds: Boundaries; entryBounds: Boundaries };
   onEmojiSelect(emoji: EmojiShape): void;
-  toneSet: string[] | null;
+  toneSet: ToneSet;
   emojiImage: ComponentType<EmojiImageProps>;
 }
 

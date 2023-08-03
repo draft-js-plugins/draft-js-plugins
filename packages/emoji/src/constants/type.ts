@@ -1,2 +1,2 @@
 export type EmojiShape = string;
-export type ToneSet = EmojiShape[];
+export type ToneSet = EmojiShape[] | null;
