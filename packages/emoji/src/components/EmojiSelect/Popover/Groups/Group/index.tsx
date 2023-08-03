@@ -67,7 +67,7 @@ export default class Group extends Component<GroupProps> {
 
     return Object.keys(categoryEmojis).map((key) => (
       <li
-        key={categoryEmojis[key][0]}
+        key={categoryEmojis[key][0].shortname}
         className={theme.emojiSelectPopoverGroupItem}
       >
         {isActive && (

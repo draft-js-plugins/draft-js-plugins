@@ -11,10 +11,10 @@ export interface EmojiStrategy {
 // `toShort` from the toolkit uses a long regular expression that can perform quite poorly.
 // We leverage their (incorrectly typed) `shortnameLookup` object to short-circuit the lookup for common Emoji.
 function fasterUnicodeToShortname(unicode: string): EmojiShape {
-  return (
+  const shortname =
     (shortnameLookup as unknown as { [unicode: string]: string })[unicode] ||
-    toShort(unicode)
-  );
+    toShort(unicode);
+  return { shortname, unicode };
 }
 
 // Filtering out all non printable characters.
@@ -27,19 +27,19 @@ export default function createEmojisFromStrategy(): EmojiStrategy {
   const emojis: EmojiStrategy = {};
 
   for (const item of data) {
-    const shortName = fasterUnicodeToShortname(item.unicode);
-    const emoji = emojiList[escapeNonASCIICharacters(shortName)];
+    const emojiShape = fasterUnicodeToShortname(item.unicode);
+    const emoji = emojiList[escapeNonASCIICharacters(emojiShape.shortname)];
     if (emoji) {
       if (!emojis[emoji.category]) {
         emojis[emoji.category] = {};
       }
-      emojis[emoji.category][shortName] = [shortName];
+      emojis[emoji.category][emojiShape.shortname] = [emojiShape];
 
       if (item.skins) {
         for (const skin of item.skins) {
-          const skinShortName = fasterUnicodeToShortname(skin.unicode);
-          if (emojiList[skinShortName]) {
-            emojis[emoji.category][shortName].push(skinShortName);
+          const skinEmoji = fasterUnicodeToShortname(skin.unicode);
+          if (emojiList[skinEmoji.shortname]) {
+            emojis[emoji.category][emojiShape.shortname].push(skinEmoji);
           }
         }
       }

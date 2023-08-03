@@ -12,7 +12,7 @@ export default function JoyPixelEmojiImage({
     <img
       src={path}
       className={theme.emojiSelectPopoverEntryIcon}
-      title={emoji}
+      title={emoji.shortname}
       draggable={false}
       role="presentation"
     />

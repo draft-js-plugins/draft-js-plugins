@@ -297,7 +297,10 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
   };
 
   commitSelection = (): DraftHandleValue => {
-    this.onEmojiSelect(this.filteredEmojis!.get(this.state.focusedOptionIndex));
+    this.onEmojiSelect({
+      shortname: this.filteredEmojis!.get(this.state.focusedOptionIndex),
+      unicode: 'TODO',
+    });
     return 'handled';
   };
 
@@ -426,7 +429,7 @@ export default class EmojiSuggestions extends Component<EmojiSuggestionsParams> 
               onEmojiSelect={this.onEmojiSelect}
               onEmojiFocus={this.onEmojiFocus}
               isFocused={this.state.focusedOptionIndex === index}
-              emoji={emoji!}
+              emoji={{ shortname: emoji!, unicode: 'TODO' }}
               index={index!}
               id={`emoji-option-${this.key}-${index}`}
               theme={theme}

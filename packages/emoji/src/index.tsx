@@ -48,7 +48,6 @@ export type PopperOptions = Omit<Partial<PopperJS.Options>, 'modifiers'> & {
 export interface EmojiImageProps {
   emoji: EmojiShape;
   theme: EmojiPluginTheme;
-  unicode: string;
 }
 
 export interface EmojiInlineTextProps {

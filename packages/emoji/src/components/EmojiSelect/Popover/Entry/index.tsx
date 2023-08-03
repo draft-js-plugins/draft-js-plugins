@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
 import { EmojiShape, ToneSet } from '../../../../constants/type';
-import shortnameToUnicode from '../../../../utils/shortnameToUnicode';
 
 interface EntryProps {
   mouseDown?: boolean;
@@ -24,7 +23,7 @@ interface EntryProps {
 export default class Entry extends Component<EntryProps> {
   static propTypes = {
     theme: PropTypes.object.isRequired,
-    emoji: PropTypes.string.isRequired,
+    emoji: PropTypes.object.isRequired,
     mouseDown: PropTypes.bool,
     checkMouseDown: PropTypes.func.isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
@@ -102,11 +101,7 @@ export default class Entry extends Component<EntryProps> {
           this.button = element;
         }}
       >
-        <EmojiImage
-          emoji={emoji}
-          theme={theme}
-          unicode={shortnameToUnicode(emoji)}
-        />
+        <EmojiImage emoji={emoji} theme={theme} />
       </button>
     );
   }
