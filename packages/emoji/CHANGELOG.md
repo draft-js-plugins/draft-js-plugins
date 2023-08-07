@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
-- change EmojiSuggestions to popper.js with option `suggestionsPopperOptions` and deprecate `positionSuggestions` [TBD](https://github.com/draft-js-plugins/draft-js-plugins/issues/TBD)
+- change EmojiSuggestions to popper.js with option `suggestionsPopperOptions` and deprecate `positionSuggestions` [#3254](https://github.com/draft-js-plugins/draft-js-plugins/issues/3254)
 - change EmojiSelect to use popper.js with option `selectPopperOptions` [#3260](https://github.com/draft-js-plugins/draft-js-plugins/issues/3260)
 
 ## 4.6.6
