@@ -57,7 +57,8 @@ const emojiList: EmojiList = {
 const priorityList: EmojiPriorityListObject = {
   ':thumbsup:': ['1f44d'],
   ':smile:': ['1f604'],
-  ':heart:': ['2764-fe0f', '2764'],
+  ':heart:': ['2764-fe0f'],
+  ':heart_in_black:': ['2764'],
   ':ok_hand:': ['1f44c'],
   ':joy:': ['1f602'],
   ':tada:': ['1f389'],
