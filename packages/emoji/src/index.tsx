@@ -90,6 +90,7 @@ export interface EmojiPluginConfig {
   emojiInlineText?: ComponentType<EmojiInlineTextProps>;
   disableInlineEmojis?: boolean;
   suggestionsPopperOptions?: PopperOptions;
+  selectPopperOptions?: PopperOptions;
 }
 
 interface GetClientRectFn {
@@ -191,6 +192,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
       ? NativeEmojiInlineText
       : JoyPixelEmojiInlineText,
     suggestionsPopperOptions,
+    selectPopperOptions,
   } = config;
 
   // if priorityList is configured in config then set priorityList
@@ -214,6 +216,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     selectButtonContent,
     toneSelectOpenDelay,
     emojiImage,
+    popperOptions: selectPopperOptions,
   };
   const DecoratedEmojiSuggestions = (
     props: EmojiSuggestionsPubParams

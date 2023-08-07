@@ -12,6 +12,7 @@ import {
   EmojiPluginStore,
   EmojiPluginTheme,
   EmojiSelectGroup,
+  PopperOptions,
 } from '../../index';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import Popover from './Popover';
@@ -32,7 +33,7 @@ interface EmojiSelectParams extends EmojiSelectPubParams {
   toneSelectOpenDelay?: number;
   emojiImage: ComponentType<EmojiImageProps>;
   menuPosition?: 'top' | 'bottom';
-  popperOptions?: Options;
+  popperOptions?: PopperOptions;
 }
 
 export default class EmojiSelect extends Component<EmojiSelectParams> {
@@ -102,7 +103,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       this.popperInstance = createPopper(
         this.buttonRef.current,
         this.popoverContainer,
-        this.props.popperOptions
+        this.props.popperOptions as Options
       );
     }
   };
