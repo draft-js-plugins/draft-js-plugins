@@ -5,7 +5,7 @@ import React, {
   ReactElement,
   ReactNode,
 } from 'react';
-import { createPopper, Instance } from '@popperjs/core';
+import { createPopper, Instance, Options } from '@popperjs/core';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import {
   EmojiImageProps,
@@ -32,6 +32,7 @@ interface EmojiSelectParams extends EmojiSelectPubParams {
   toneSelectOpenDelay?: number;
   emojiImage: ComponentType<EmojiImageProps>;
   menuPosition?: 'top' | 'bottom';
+  popperOptions?: Options;
 }
 
 export default class EmojiSelect extends Component<EmojiSelectParams> {
@@ -53,12 +54,14 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     ]),
     toneSelectOpenDelay: PropTypes.number,
     menuPosition: PropTypes.oneOf(['top', 'bottom']),
+    popperOptions: PropTypes.object,
   };
 
   static defaultProps = {
     selectButtonContent: '☺',
     selectGroups: defaultEmojiGroups,
     toneSelectOpenDelay: 500,
+    popperOptions: { placement: 'bottom-start' },
   };
 
   // Start the selector closed
@@ -99,7 +102,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
       this.popperInstance = createPopper(
         this.buttonRef.current,
         this.popoverContainer,
-        { placement: 'bottom-start' }
+        this.props.popperOptions
       );
     }
   };
