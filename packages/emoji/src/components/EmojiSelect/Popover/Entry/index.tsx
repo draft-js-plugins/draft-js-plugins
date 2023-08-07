@@ -40,6 +40,16 @@ export default class Entry extends Component<EntryProps> {
 
   button?: HTMLButtonElement | null;
 
+  _isMounted = false;
+
+  componentDidMount(): void {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount(): void {
+    this._isMounted = false;
+  }
+
   onMouseUp = (): void => {
     if (this.mouseDown) {
       this.mouseDown = false;
@@ -67,7 +77,9 @@ export default class Entry extends Component<EntryProps> {
   };
 
   deselect = (): void => {
-    this.setState({ isFocused: false });
+    if (this._isMounted) {
+      this.setState({ isFocused: false });
+    }
   };
 
   onKeyDown = (event: KeyboardEvent): void => {
