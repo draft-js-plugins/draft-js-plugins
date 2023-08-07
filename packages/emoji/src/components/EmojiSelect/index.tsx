@@ -62,7 +62,17 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     selectButtonContent: '☺',
     selectGroups: defaultEmojiGroups,
     toneSelectOpenDelay: 500,
-    popperOptions: { placement: 'bottom-start' },
+    popperOptions: {
+      placement: 'bottom-start',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 10],
+          },
+        },
+      ],
+    },
   };
 
   // Start the selector closed
