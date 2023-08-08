@@ -90,7 +90,8 @@ export interface EmojiPluginConfig {
   emojiImage?: ComponentType<EmojiImageProps>;
   emojiInlineText?: ComponentType<EmojiInlineTextProps>;
   disableInlineEmojis?: boolean;
-  popperOptions?: PopperOptions;
+  suggestionsPopperOptions?: PopperOptions;
+  selectPopperOptions?: PopperOptions;
 }
 
 interface GetClientRectFn {
@@ -191,7 +192,8 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     emojiInlineText = useNativeArt
       ? NativeEmojiInlineText
       : JoyPixelEmojiInlineText,
-    popperOptions,
+    suggestionsPopperOptions,
+    selectPopperOptions,
   } = config;
 
   // if priorityList is configured in config then set priorityList
@@ -206,7 +208,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     positionSuggestions,
     emojis: List(flatten(values(emojiList.list))),
     emojiImage,
-    popperOptions,
+    popperOptions: suggestionsPopperOptions,
   };
   const selectProps = {
     theme,
@@ -215,6 +217,7 @@ export default (config: EmojiPluginConfig = {}): EmojiPlugin => {
     selectButtonContent,
     toneSelectOpenDelay,
     emojiImage,
+    popperOptions: selectPopperOptions,
   };
   const DecoratedEmojiSuggestions = (
     props: EmojiSuggestionsPubParams

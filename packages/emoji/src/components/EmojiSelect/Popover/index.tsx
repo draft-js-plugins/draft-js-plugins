@@ -24,6 +24,7 @@ interface PopoverProps {
   emojiImage: ComponentType<EmojiImageProps>;
   onEmojiSelect(): void;
   menuPosition?: 'top' | 'bottom';
+  setPopperRef(element: HTMLDivElement): void;
 }
 
 export default class Popover extends Component<PopoverProps> {
@@ -209,6 +210,7 @@ export default class Popover extends Component<PopoverProps> {
         onMouseDown={this.onMouseDown}
         ref={(element) => {
           this.container = element;
+          this.props.setPopperRef(this.container!);
         }}
       >
         {isOpen && (

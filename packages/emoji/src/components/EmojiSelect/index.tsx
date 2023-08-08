@@ -5,12 +5,14 @@ import React, {
   ReactElement,
   ReactNode,
 } from 'react';
+import { createPopper, Instance, Options } from '@popperjs/core';
 import defaultEmojiGroups from '../../constants/defaultEmojiGroups';
 import {
   EmojiImageProps,
   EmojiPluginStore,
   EmojiPluginTheme,
   EmojiSelectGroup,
+  PopperOptions,
 } from '../../index';
 import createEmojisFromStrategy from '../../utils/createEmojisFromStrategy';
 import Popover from './Popover';
@@ -31,6 +33,7 @@ interface EmojiSelectParams extends EmojiSelectPubParams {
   toneSelectOpenDelay?: number;
   emojiImage: ComponentType<EmojiImageProps>;
   menuPosition?: 'top' | 'bottom';
+  popperOptions?: PopperOptions;
 }
 
 export default class EmojiSelect extends Component<EmojiSelectParams> {
@@ -52,12 +55,24 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     ]),
     toneSelectOpenDelay: PropTypes.number,
     menuPosition: PropTypes.oneOf(['top', 'bottom']),
+    popperOptions: PropTypes.object,
   };
 
   static defaultProps = {
     selectButtonContent: '☺',
     selectGroups: defaultEmojiGroups,
     toneSelectOpenDelay: 500,
+    popperOptions: {
+      placement: 'bottom-start',
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 10],
+          },
+        },
+      ],
+    },
   };
 
   // Start the selector closed
@@ -67,6 +82,9 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
 
   // Emoji select ref
   emojiSelectRef = React.createRef<HTMLDivElement>();
+  buttonRef = React.createRef<HTMLButtonElement>();
+  popoverContainer: HTMLDivElement | null = null;
+  popperInstance: Instance | null = null;
 
   // When the selector is open and users click anywhere on the page,
   // the selector should close
@@ -91,6 +109,13 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     if (this.props.onOpen) {
       this.props.onOpen();
     }
+    if (this.buttonRef.current && this.popoverContainer) {
+      this.popperInstance = createPopper(
+        this.buttonRef.current,
+        this.popoverContainer,
+        this.props.popperOptions as Options
+      );
+    }
   };
 
   // Close the popover
@@ -103,6 +128,8 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     if (this.props.onClose) {
       this.props.onClose();
     }
+    this.popperInstance?.destroy();
+    this.popperInstance = null;
   };
 
   // To check if clicked outside of emoji popover
@@ -133,6 +160,7 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
     return (
       <div className={theme.emojiSelect} ref={this.emojiSelectRef}>
         <button
+          ref={this.buttonRef}
           className={buttonClassName}
           onClick={this.onButtonClick}
           type="button"
@@ -140,6 +168,9 @@ export default class EmojiSelect extends Component<EmojiSelectParams> {
           {selectButtonContent}
         </button>
         <Popover
+          setPopperRef={(element) => {
+            this.popoverContainer = element;
+          }}
           theme={theme}
           store={store}
           groups={selectGroups!}

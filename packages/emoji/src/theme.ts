@@ -222,7 +222,6 @@ export const defaultTheme: EmojiPluginTheme = {
   `,
 
   emojiSelectPopover: css`
-    margin-top: 10px;
     padding: 0 0.3em;
     position: absolute;
     z-index: 1000;
