@@ -7,11 +7,11 @@ import React, {
   ReactElement,
 } from 'react';
 import { EmojiPluginTheme } from '../../../theme';
-import shortnameToUnicode from '../../../utils/shortnameToUnicode';
+import { EmojiShape } from '../../../constants/type';
 
 interface EntryProps {
-  emoji: string;
-  onEmojiSelect(emoji: string): void;
+  emoji: EmojiShape;
+  onEmojiSelect(emoji: EmojiShape): void;
   index: number;
   onEmojiFocus(index: number): void;
   theme: EmojiPluginTheme;
@@ -67,13 +67,9 @@ export default class Entry extends Component<EntryProps> {
         id={id}
         aria-selected={isFocused ? 'true' : undefined}
       >
-        <EmojiImage
-          emoji={emoji}
-          theme={theme}
-          unicode={shortnameToUnicode(emoji)}
-        />
+        <EmojiImage emoji={emoji} theme={theme} />
         <span className={theme.emojiSuggestionsEntryText}>
-          {this.props.emoji}
+          {this.props.emoji.shortname}
         </span>
       </div>
     );

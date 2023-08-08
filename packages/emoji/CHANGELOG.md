@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+- speed up initial import for native Emoji [#3255](https://github.com/draft-js-plugins/draft-js-plugins/issues/3255)
 - change EmojiSuggestions to popper.js with option `popperOptions` and deprecate `positionSuggestions` [TBD](https://github.com/draft-js-plugins/draft-js-plugins/issues/TBD)
 
 ## 4.6.6

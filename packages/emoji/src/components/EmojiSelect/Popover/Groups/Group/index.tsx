@@ -7,14 +7,15 @@ import {
 } from '../../../../../index';
 import { EmojiStrategy } from '../../../../../utils/createEmojisFromStrategy';
 import Entry from '../../Entry';
+import { EmojiShape, ToneSet } from '../../../../../constants/type';
 
 interface GroupProps {
   theme: EmojiPluginTheme;
   group: EmojiSelectGroup;
   emojis: EmojiStrategy;
   checkMouseDown(): boolean;
-  onEmojiSelect(emoji: string): void;
-  onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
+  onEmojiSelect(emoji: EmojiShape): void;
+  onEmojiMouseDown(entryComponent: Entry, toneSet: ToneSet): void;
   emojiImage: ComponentType<EmojiImageProps>;
   isActive?: boolean;
 }
@@ -66,7 +67,7 @@ export default class Group extends Component<GroupProps> {
 
     return Object.keys(categoryEmojis).map((key) => (
       <li
-        key={categoryEmojis[key][0]}
+        key={categoryEmojis[key][0].shortname}
         className={theme.emojiSelectPopoverGroupItem}
       >
         {isActive && (

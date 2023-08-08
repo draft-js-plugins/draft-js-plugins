@@ -6,24 +6,24 @@ import React, {
   ReactElement,
 } from 'react';
 import { EmojiImageProps, EmojiPluginTheme } from '../../../../index';
-import shortnameToUnicode from '../../../../utils/shortnameToUnicode';
+import { EmojiShape, ToneSet } from '../../../../constants/type';
 
 interface EntryProps {
   mouseDown?: boolean;
   theme: EmojiPluginTheme;
-  emoji: string;
+  emoji: EmojiShape;
   checkMouseDown(): boolean;
-  onEmojiSelect(emoji: string): void;
+  onEmojiSelect(emoji: EmojiShape): void;
   // eslint-disable-next-line no-use-before-define
-  onEmojiMouseDown?(entryComponent: Entry, toneSet: string[] | null): void;
-  toneSet?: string[] | null;
+  onEmojiMouseDown?(entryComponent: Entry, toneSet: ToneSet): void;
+  toneSet?: ToneSet;
   emojiImage: ComponentType<EmojiImageProps>;
 }
 
 export default class Entry extends Component<EntryProps> {
   static propTypes = {
     theme: PropTypes.object.isRequired,
-    emoji: PropTypes.string.isRequired,
+    emoji: PropTypes.object.isRequired,
     mouseDown: PropTypes.bool,
     checkMouseDown: PropTypes.func.isRequired,
     onEmojiSelect: PropTypes.func.isRequired,
@@ -101,11 +101,7 @@ export default class Entry extends Component<EntryProps> {
           this.button = element;
         }}
       >
-        <EmojiImage
-          emoji={emoji}
-          theme={theme}
-          unicode={shortnameToUnicode(emoji)}
-        />
+        <EmojiImage emoji={emoji} theme={theme} />
       </button>
     );
   }
