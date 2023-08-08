@@ -14,6 +14,7 @@ import {
 import { EmojiStrategy } from '../../../../utils/createEmojisFromStrategy';
 import Entry from '../Entry';
 import Group from './Group';
+import { EmojiShape, ToneSet } from '../../../../constants/type';
 
 interface GroupsProps {
   activeGroup?: number;
@@ -21,8 +22,8 @@ interface GroupsProps {
   groups: EmojiSelectGroup[];
   emojis: EmojiStrategy;
   checkMouseDown(): boolean;
-  onEmojiSelect(emoji: string): void;
-  onEmojiMouseDown(entryComponent: Entry, toneSet: string[] | null): void;
+  onEmojiSelect(emoji: EmojiShape): void;
+  onEmojiMouseDown(entryComponent: Entry, toneSet: ToneSet): void;
   onGroupScroll(activeGroup: number): void;
   emojiImage: ComponentType<EmojiImageProps>;
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import { Modifier, EditorState } from 'draft-js';
-import shortnameToUnicode from '../utils/shortnameToUnicode';
+import { EmojiShape } from 'packages/emoji/src/constants/type';
 import getSearchText from '../utils/getSearchText';
 
 // This modifier can inserted emoji to current cursor position (with replace selected fragment),
@@ -11,15 +11,15 @@ const Mode = {
 
 export default function addEmoji(
   editorState: EditorState,
-  emojiShortName: string,
+  emoji: EmojiShape,
   mode = Mode.INSERT
 ): EditorState {
-  const emoji = shortnameToUnicode(emojiShortName);
+  const unicode = emoji.unicode;
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(
     'emoji',
     'IMMUTABLE',
-    { emojiUnicode: emoji }
+    { emojiUnicode: unicode }
   );
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   const currentSelectionState = editorState.getSelection();
@@ -43,7 +43,7 @@ export default function addEmoji(
       emojiAddedContent = Modifier.insertText(
         afterRemovalContentState,
         targetSelection,
-        emoji,
+        unicode,
         undefined,
         entityKey
       );
@@ -67,7 +67,7 @@ export default function addEmoji(
       emojiAddedContent = Modifier.replaceText(
         contentState,
         emojiTextSelection,
-        emoji,
+        unicode,
         undefined,
         entityKey
       );

@@ -12,6 +12,7 @@ import {
 } from '../../../index';
 import { EmojiStrategy } from '../../../utils/createEmojisFromStrategy';
 import Entry from './Entry';
+import { EmojiShape, ToneSet } from '../../../constants/type';
 
 interface PopoverProps {
   theme: EmojiPluginTheme;
@@ -40,7 +41,7 @@ export default class Popover extends Component<PopoverProps> {
   activeEmoji: Entry | null = null;
   toneSelectTimer: ReturnType<typeof setTimeout> | null = null;
   mouseDown = false;
-  toneSet: string[] | null = null;
+  toneSet: ToneSet = null;
   container?: HTMLDivElement | null;
   groupsElement?: Groups | null;
 
@@ -81,13 +82,13 @@ export default class Popover extends Component<PopoverProps> {
     }
   };
 
-  onEmojiSelect = (emoji: string): void => {
+  onEmojiSelect = (emoji: EmojiShape): void => {
     const newEditorState = addEmoji(this.props.store.getEditorState!(), emoji);
     this.props.store.setEditorState!(newEditorState);
     this.props.onEmojiSelect();
   };
 
-  onEmojiMouseDown = (emojiEntry: Entry, toneSet: string[] | null): void => {
+  onEmojiMouseDown = (emojiEntry: Entry, toneSet: ToneSet): void => {
     this.activeEmoji = emojiEntry;
 
     if (toneSet) {
@@ -107,14 +108,14 @@ export default class Popover extends Component<PopoverProps> {
     }
   };
 
-  openToneSelectWithTimer = (toneSet: string[] | null): void => {
+  openToneSelectWithTimer = (toneSet: ToneSet): void => {
     this.toneSelectTimer = setTimeout(() => {
       this.toneSelectTimer = null;
       this.openToneSelect(toneSet);
     }, this.props.toneSelectOpenDelay);
   };
 
-  openToneSelect = (toneSet: string[] | null): void => {
+  openToneSelect = (toneSet: ToneSet): void => {
     this.toneSet = toneSet;
 
     this.setState({
