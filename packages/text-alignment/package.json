@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/text-alignment",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "sideEffects": ["*.css"],
   "description": "Text Alignment Plugin for DraftJS",
   "author": {
@@ -35,7 +35,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@draft-js-plugins/buttons": "^4.2.0"
+    "@draft-js-plugins/buttons": "^4.2.1"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",

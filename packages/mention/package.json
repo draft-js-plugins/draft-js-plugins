@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/mention",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "sideEffects": ["*.css"],
   "description": "Mention Plugin for DraftJS",
   "author": {

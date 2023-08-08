@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/hashtag",
-  "version": "4.2.2",
+  "version": "4.2.1",
   "sideEffects": ["*.css"],
   "description": "Hashtag Plugin for DraftJS",
   "author": {

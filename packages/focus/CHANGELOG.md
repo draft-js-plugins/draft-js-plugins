@@ -5,7 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 4.1.5
+
+- adjust react peer dependency
+
 ## 4.1.4
+
 - Fix bug when a focused block receives the space keydown [#3042](https://github.com/draft-js-plugins/draft-js-plugins/issues/3042)
 
 ## 4.1.3

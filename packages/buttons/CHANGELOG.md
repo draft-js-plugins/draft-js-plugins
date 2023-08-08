@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.3.3
+
+- adjust react peer dependency
+
 ## 4.3.2
 
 - add Aria roles and labels to buttons to improve accessibility

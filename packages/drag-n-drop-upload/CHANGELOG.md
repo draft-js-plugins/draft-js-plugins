@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.4
+
+- adjust react peer dependency
+
 ## 4.2.3
 
 - fix drop upload placeholder does not get removed [#2849](https://github.com/draft-js-plugins/draft-js-plugins/issues/2849)

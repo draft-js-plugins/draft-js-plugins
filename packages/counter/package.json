@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/counter",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "sideEffects": ["*.css"],
   "description": "Counter Plugin for DraftJS",
   "author": {

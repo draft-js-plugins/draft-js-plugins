@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/drag-n-drop",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "sideEffects": ["*.css"],
   "description": "Block Drag & Drop Plugin for DraftJS",
   "author": {

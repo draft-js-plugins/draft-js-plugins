@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.1
+
+- adjust react peer dependency
+
 ## 4.2.0
 
 - adds accessibility aria label to LinkButton

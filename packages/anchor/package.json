@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/anchor",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "sideEffects": ["*.css"],
   "description": "Link Plugin for DraftJS",
   "author": {

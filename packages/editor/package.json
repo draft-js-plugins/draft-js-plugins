@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/editor",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "sideEffects": false,
   "description": "Editor for DraftJS Plugins",
   "author": {

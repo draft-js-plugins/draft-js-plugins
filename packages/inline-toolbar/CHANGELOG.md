@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To be released
 
+## 4.2.1
+
+- adjust react peer dependency
+
 ## 4.2.0
 
 - Change inline toolbar to functional component to remove `UNSAFE_componentWillMount` [#2983](https://github.com/draft-js-plugins/draft-js-plugins/issues/2983)

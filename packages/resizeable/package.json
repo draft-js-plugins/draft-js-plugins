@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/resizeable",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "sideEffects": ["*.css"],
   "description": "Resizeable Plugin for DraftJS",
   "author": {

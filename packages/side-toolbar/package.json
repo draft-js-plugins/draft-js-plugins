@@ -1,6 +1,6 @@
 {
   "name": "@draft-js-plugins/side-toolbar",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "sideEffects": ["*.css"],
   "description": "Toolbar Plugin for DraftJS",
   "author": {
@@ -35,8 +35,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@draft-js-plugins/buttons": "^4.0.0",
-    "@draft-js-plugins/utils": "^4.0.0",
+    "@draft-js-plugins/buttons": "^4.3.3",
+    "@draft-js-plugins/utils": "^4.2.1",
     "@popperjs/core": "^2.11.8",
     "prop-types": "^15.8.1",
     "react-popper": "^2.3.0"
