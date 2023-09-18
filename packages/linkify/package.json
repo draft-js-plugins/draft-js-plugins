@@ -46,7 +46,7 @@
     "react-dom": "^16.8.0 || ^17.0.0 || >=18.0.0"
   },
   "devDependencies": {
-    "@types/linkify-it": "^3.0.2"
+    "@types/linkify-it": "^3.0.3"
   },
   "publishConfig": {
     "access": "public"
