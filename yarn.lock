@@ -12545,10 +12545,10 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-tlds@^1.239.0:
-  version "1.239.0"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.239.0.tgz#99c61a8a22c1252cfb563ef1cfd367b537ff62e6"
-  integrity sha512-lhiymAloYTizXVGDVnplwjQK2YkiB30k5bbeZlyZ6u2vbG4q7re+fwTlOeliCcfiqvmK3yv9savLIFzfKjAVQg==
+tlds@^1.242.0:
+  version "1.242.0"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.242.0.tgz#da136a9c95b0efa1a4cd57dca8ef240c08ada4b7"
+  integrity sha512-aP3dXawgmbfU94mA32CJGHmJUE1E58HCB1KmlKRhBNtqBL27mSQcAEmcaMaQ1Za9kIVvOdbxJD3U5ycDy7nJ3w==
 
 tmp@^0.0.33:
   version "0.0.33"
