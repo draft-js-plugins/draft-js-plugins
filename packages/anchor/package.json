@@ -38,7 +38,7 @@
   "license": "MIT",
   "dependencies": {
     "@draft-js-plugins/utils": "^4.0.0",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "prepend-http": "3.0.1",
     "prop-types": "^15.8.1",
     "tlds": "^1.242.0"
