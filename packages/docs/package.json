@@ -16,7 +16,7 @@
     "next": "12.3.1",
     "prismjs": "^1.29.0",
     "react-share": "^4.4.1",
-    "whatwg-fetch": "^3.6.2"
+    "whatwg-fetch": "^3.6.19"
   },
   "devDependencies": {
     "@types/prismjs": "^1.26.0",
