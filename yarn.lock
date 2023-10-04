@@ -6319,10 +6319,10 @@ emoji-toolkit@^7.0:
   resolved "https://registry.yarnpkg.com/emoji-toolkit/-/emoji-toolkit-7.0.1.tgz#4ea2a78fe4b40c7cdbe7ef5725c7011299932f09"
   integrity sha512-l5aJyAhpC5s4mDuoVuqt4SzVjwIsIvakPh4ZGJJE4KWuWFCEHaXacQFkStVdD9zbRR+/BbRXob7u99o0lQFr8A==
 
-emojibase-data@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-7.0.1.tgz#a81d7fcd12247f7d94a96dcbdb143e6b6dd5c328"
-  integrity sha512-BLZpOdwyFpZ7lzBWyDtnxmKVm/SJMYgAfp1if3o6n1TVUMSXAf0nikONXl90LZuJ/m3XWPBkkubgCet2BsCGGQ==
+emojibase-data@^15.1.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-15.1.0.tgz#9c264f32dfe507e2f5d7e07a3598cce5253467ea"
+  integrity sha512-373zSNmw5k+pGpGQPgaR/JUTDgYGUc6TDkRsnRH624F8shD87bh+kDniJS1v0q8s0U+1K1nIdWFYwGNjwc+nBw==
 
 emojibase@^6.1.0:
   version "6.1.0"
