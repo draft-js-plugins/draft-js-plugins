@@ -43,7 +43,7 @@
     "@popperjs/core": "^2.11.8",
     "@types/lodash": "^4.14.195",
     "clsx": "^2.0.0",
-    "emoji-toolkit": "^7.0",
+    "emoji-toolkit": "^8.0",
     "emojibase": "^6.1.0",
     "emojibase-data": "^7.0.1",
     "immutable": "~3.7.4",
