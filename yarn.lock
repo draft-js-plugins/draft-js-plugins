@@ -3203,10 +3203,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/draft-js@^0.11.10":
-  version "0.11.10"
-  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.10.tgz#46cf41e142b4b572467f7a78269a630a77e1f19c"
-  integrity sha512-o/DST8x0wNerwhRiaE577UHFIXb6HCywaZOZfj9TF2vU3CONvsCGoQmdOsKqERdXp+3ZNlSvFUH0B8lEEYOT4A==
+"@types/draft-js@^0.11.15":
+  version "0.11.15"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.15.tgz#d51a02817195e12595ed7f2d745f451b92804549"
+  integrity sha512-2alZTv5TimhxH1gTNWyEa9nq0Kf29hNFhIgiWXBx/VYz51DaYhNgBQxXG3uHY7wyeo+vdPZZ1pGpVFfMENBhfQ==
   dependencies:
     "@types/react" "*"
     immutable "~3.7.4"
