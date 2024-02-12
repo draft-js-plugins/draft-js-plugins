@@ -6332,10 +6332,10 @@ emojibase-data@^7.0.1:
   resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-7.0.1.tgz#a81d7fcd12247f7d94a96dcbdb143e6b6dd5c328"
   integrity sha512-BLZpOdwyFpZ7lzBWyDtnxmKVm/SJMYgAfp1if3o6n1TVUMSXAf0nikONXl90LZuJ/m3XWPBkkubgCet2BsCGGQ==
 
-emojibase@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/emojibase/-/emojibase-6.1.0.tgz#c3bc281e998a0e06398416090c23bac8c5ed3ee8"
-  integrity sha512-1GkKJPXP6tVkYJHOBSJHoGOr/6uaDxZ9xJ6H7m6PfdGXTmQgbALHLWaVRY4Gi/qf5x/gT/NUXLPuSHYLqtLtrQ==
+emojibase@^15.3.0:
+  version "15.3.0"
+  resolved "https://registry.yarnpkg.com/emojibase/-/emojibase-15.3.0.tgz#1dc9ebd239fd4f7adcd9ce57b5f4000cbaaf0243"
+  integrity sha512-lFdQb14hoznwDh1xDoOFzkPdeeexmbuJdhUUjDaJZf/+jK+6Z3HkI5hWOemWfEdaMxtTujc1vNRx9DKtdtiOXA==
 
 emojis-list@^3.0.0:
   version "3.0.0"
