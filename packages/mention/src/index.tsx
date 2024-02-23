@@ -64,7 +64,7 @@ export interface MentionPluginStore {
 }
 
 export interface MentionPluginConfig {
-  mentionPrefix?: string;
+  mentionPrefix?: string | ((trigger: string) => string);
   theme?: MentionPluginTheme;
   positionSuggestions?: PositionSuggestionsFn;
   mentionComponent?: ComponentType<SubMentionComponentProps>;
@@ -154,7 +154,8 @@ export default (
     theme = defaultTheme,
     positionSuggestions,
     mentionComponent,
-    mentionSuggestionsComponent: MentionSuggestionsComponent = MentionSuggestions,
+    mentionSuggestionsComponent:
+      MentionSuggestionsComponent = MentionSuggestions,
     entityMutability = 'SEGMENTED',
     mentionTrigger = '@',
     mentionRegExp = defaultRegExp,

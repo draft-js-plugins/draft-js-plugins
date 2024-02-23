@@ -6,7 +6,7 @@ import getTypeByTrigger from '../utils/getTypeByTrigger';
 export default function addMention(
   editorState: EditorState,
   mention: MentionData,
-  mentionPrefix: string,
+  mentionPrefix: string | ((trigger: string) => string),
   mentionTrigger: string,
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE'
 ): EditorState {
@@ -31,7 +31,7 @@ export default function addMention(
   let mentionReplacedContent = Modifier.replaceText(
     editorState.getCurrentContent(),
     mentionTextSelection,
-    `${mentionPrefix}${mention.name}`,
+    `${typeof mentionPrefix === 'string' ? mentionPrefix : mentionPrefix(mentionTrigger)}${mention.name}`,
     editorState.getCurrentInlineStyle(),
     entityKey
   );
