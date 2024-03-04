@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## To Be Released
 
+## 5.3.0
+
+- Add support for defining `mentionPrefix` as a callback function that takes the `mentionTrigger` as an argument and returns the prefix.
+
 ## 5.2.2
 
 - adjust react peer dependency

@@ -45,4 +45,4 @@ const topics = [
   },
 ];
 
-export default { '@': mentions, '(': topics };
+export default { '@': mentions, '#': topics };

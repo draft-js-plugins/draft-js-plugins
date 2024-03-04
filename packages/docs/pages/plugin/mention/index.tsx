@@ -204,8 +204,10 @@ export default function Mention(): ReactElement {
         <div className={styles.param}>
           <span className={styles.paramName}>mentionPrefix</span>
           <span>
-            By default it is an empty String. For Twitter or Slack like mention
-            behaviour you can provide an `@`
+            Allows you to define a custom prefix to add to the selected
+            mention&apos;s name. Can either be a string or a function that takes
+            the `mentionTrigger` as an argument and returns a string. Defaults
+            to an empty string.
           </span>
         </div>
         <div className={styles.param}>

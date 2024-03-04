@@ -60,7 +60,7 @@ export interface MentionSuggestionsProps extends MentionSuggestionsPubProps {
   positionSuggestions?: PositionSuggestionsFn;
   ariaProps: AriaProps;
   theme: MentionPluginTheme;
-  mentionPrefix: string;
+  mentionPrefix: string | ((trigger: string) => string);
   mentionTriggers: string[];
   entityMutability: 'SEGMENTED' | 'IMMUTABLE' | 'MUTABLE';
   popperOptions?: PopperOptions;
