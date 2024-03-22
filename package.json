@@ -22,7 +22,7 @@
     "@changesets/cli": "^2.26.2",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-node-resolve": "^14.1.0",
-    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/builder-webpack5": "^8.0.4",
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/react": "^6.5.16",
     "@testing-library/jest-dom": "^5.16.5",
