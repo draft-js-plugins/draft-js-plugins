@@ -36,7 +36,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.1",
     "linkify-it": "^4.0.1",
     "tlds": "^1.250.0"
   },
