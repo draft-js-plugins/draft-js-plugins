@@ -42,7 +42,7 @@
     "@draft-js-plugins/utils": "^4.2.1",
     "@popperjs/core": "^2.11.8",
     "@types/lodash": "^4.14.195",
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.1",
     "emoji-toolkit": "^7.0",
     "emojibase": "^6.1.0",
     "emojibase-data": "^7.0.1",

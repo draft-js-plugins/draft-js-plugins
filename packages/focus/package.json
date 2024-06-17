@@ -35,7 +35,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "clsx": "^2.0.0",
+    "clsx": "^2.1.1",
     "immutable": "~3.7.4"
   },
   "peerDependencies": {
