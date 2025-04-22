@@ -41,7 +41,7 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-import-resolver-typescript": "2.7.1",
+    "eslint-import-resolver-typescript": "4.3.4",
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-no-only-tests": "^3.3.0",
     "eslint-plugin-react": "^7.37.5",
