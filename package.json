@@ -51,7 +51,7 @@
     "linaria": "2.1",
     "lint-staged": "^13.2.2",
     "matched": "^5.0.1",
-    "multer": "^1.4.4",
+    "multer": "^2.0.1",
     "prettier": "^3.5.3",
     "prismjs": "^1.30.0",
     "rimraf": "^5.0.7",
