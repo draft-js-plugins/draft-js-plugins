@@ -33,12 +33,12 @@ describe('Toolbar', () => {
             isCollapsed: () => true,
             getHasFocus: () => true,
           }),
-        } as EditorState),
+        }) as EditorState,
     });
 
     const { container } = render(
       <Toolbar store={store} theme={theme}>
-        {(externalProps) => <Child {...externalProps} />}
+        {(externalProps: ToolbarChildrenProps) => <Child {...externalProps} />}
       </Toolbar>
     );
     expect(container.querySelectorAll('.initial')).toHaveLength(1);

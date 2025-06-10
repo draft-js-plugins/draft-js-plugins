@@ -11,7 +11,9 @@ export interface InlineToolbarPluginConfig {
 }
 
 export interface ToolbarProps {
-  children?: FC<ToolbarChildrenProps>;
+  children?:
+    | ((externalProps: ToolbarChildrenProps) => ReactElement)
+    | FC<ToolbarChildrenProps>;
   overrideContent?: ComponentType<ToolbarChildrenProps>;
 }
 
