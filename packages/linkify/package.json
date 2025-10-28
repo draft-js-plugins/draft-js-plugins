@@ -38,7 +38,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "linkify-it": "^4.0.1",
-    "tlds": "^1.260.0"
+    "tlds": "^1.261.0"
   },
   "peerDependencies": {
     "draft-js": "^0.10.1 || ^0.11.0",
