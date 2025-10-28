@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^29.7.0",
+    "babel-jest": "^30.2.0",
     "babel-loader": "^8.2.5",
     "babel-plugin-transform-rename-import": "^2.3.0",
     "css-loader": "6.8.1",
