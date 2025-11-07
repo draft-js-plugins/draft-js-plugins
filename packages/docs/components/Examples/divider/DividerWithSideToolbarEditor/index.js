@@ -88,7 +88,7 @@ export default class CustomImageEditor extends Component {
 
         <SideToolbar>
           {
-            // may be use React.Fragment instead of div to improve perfomance after React 16
+            // may be use React.Fragment instead of div to improve performance after React 16
             (externalProps) => (
               <div>
                 <DividerButton {...externalProps} />
