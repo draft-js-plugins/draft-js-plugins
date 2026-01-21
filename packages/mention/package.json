@@ -41,7 +41,7 @@
     "clsx": "^2.1.1",
     "immutable": "~3.7.4",
     "lodash": "^4.17.21",
-    "lodash-es": "^4.17.21",
+    "lodash-es": "^4.17.23",
     "prop-types": "^15.8.1",
     "react-popper": "^2.3.0"
   },
