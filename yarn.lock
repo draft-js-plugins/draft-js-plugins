@@ -6368,10 +6368,10 @@ emoji-toolkit@^7.0:
   resolved "https://registry.yarnpkg.com/emoji-toolkit/-/emoji-toolkit-7.0.1.tgz#4ea2a78fe4b40c7cdbe7ef5725c7011299932f09"
   integrity sha512-l5aJyAhpC5s4mDuoVuqt4SzVjwIsIvakPh4ZGJJE4KWuWFCEHaXacQFkStVdD9zbRR+/BbRXob7u99o0lQFr8A==
 
-emojibase-data@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-7.0.1.tgz#a81d7fcd12247f7d94a96dcbdb143e6b6dd5c328"
-  integrity sha512-BLZpOdwyFpZ7lzBWyDtnxmKVm/SJMYgAfp1if3o6n1TVUMSXAf0nikONXl90LZuJ/m3XWPBkkubgCet2BsCGGQ==
+emojibase-data@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/emojibase-data/-/emojibase-data-17.0.0.tgz#5816fba6395da6b567fbd54b029ca6b5de2d9255"
+  integrity sha512-Yvgb5AWoHViHV/gq1qr5ZAarcBip+B27/ZLRsUJkbgAEaLlZ/fof9g882LTpmEpyhBNEC0m2SEmItljHsTygjA==
 
 emojibase@^6.1.0:
   version "6.1.0"
